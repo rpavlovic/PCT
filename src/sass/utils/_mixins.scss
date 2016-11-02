@@ -1,0 +1,56 @@
+
+//function to calculate in rems.
+// It strips the unit of measure and returns it
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+@function convert-to-rem($value, $base-value: $rem-base)  {
+  $value: strip-unit($value) / strip-unit($base-value) * 1em;
+  @if ($value == 0em) { $value: 0; } // Turn 0em into 0
+  @return $value;
+}
+
+@function rem-calc($values, $base-value: $rem-base) {
+  $max: length($values);
+
+  @if $max == 1 { @return convert-to-rem(nth($values, 1), $base-value); }
+
+  $remValues: ();
+  @for $i from 1 through $max {
+    $remValues: append($remValues, convert-to-rem(nth($values, $i), $base-value));
+  }
+  @return $remValues;
+}
+///////
+
+@mixin trans($val...) {
+   -webkit-transition: $val;
+   -moz-transition: $val;
+   -o-transition: $val;
+   transition: $val;
+}
+@mixin box-shadow($args...) {
+  -webkit-box-shadow: $args;
+  -moz-box-shadow: $args;
+  box-shadow: $args;
+}
+
+@mixin breakpoint($name) {
+ @if map-has-key($breakpoints, $name) {
+   @media #{inspect(map-get($breakpoints, $name))} {
+     @content;
+   }
+ } @else {
+   @warn "Couldn't find a breakpoint named `#{$name}`.";
+ }
+}
+
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

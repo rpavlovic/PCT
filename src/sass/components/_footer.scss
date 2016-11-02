@@ -1,0 +1,15 @@
+footer {
+  position: fixed;
+  bottom: 0;
+  background-color: red;
+  padding: 20px;
+  width: 100%;
+  -webkit-animation: fadeIn 1s;
+  -moz-animation: fadeIn 1s;
+  -o-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+  @include breakpoint('medium') {
+    opacity: 0;
+    display:none;
+  }
+}

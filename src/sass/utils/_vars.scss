@@ -1,0 +1,39 @@
+//colors
+$white: #fff;
+$grey: grey;
+
+//font-sizes typography
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+
+h1 {font-size: rem-calc(35)}
+h2 {font-size: rem-calc(25)}
+h3 {font-size: rem-calc(20)}
+h4 {font-size: rem-calc(18)}
+h5 {font-size: rem-calc(16)}
+h6 {font-size: rem-calc(14)}
+
+
+// grid variables
+$grid-columns: 12;
+$grid-max-width: 60em;
+
+
+$breakpoints: (
+ 'tiny':   (max-width:  20em),
+ 'small':  (min-width:  26em),
+ 'medium': (min-width:  62em),
+ 'large':  (min-width: 75em)
+);
+
+
+%clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+  content: " ";
+  display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
