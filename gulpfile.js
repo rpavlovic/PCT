@@ -8,7 +8,9 @@ var browserSync = require('browser-sync').create();
 
 // paths
 var sassSrc = 'src/sass/**/*.scss',
-    sassDest = 'build/css';
+    sassDest = 'build/css',
+    jsSrc = 'src/js/*.js',
+    jsDest = 'build/js';
 
 
 //process scss files
@@ -23,10 +25,10 @@ gulp.task('styles', function() {
 
 // process JS files and return the stream.
 gulp.task('js', function () {
-    return gulp.src('src/js/*js')
+    return gulp.src(jsSrc)
         .pipe(browserify())
         .pipe(uglify())
-        .pipe(gulp.dest('build/js'));
+        .pipe(gulp.dest(jsDest));
 });
 
 // create a task that ensures the `js` task is complete before
@@ -39,10 +41,10 @@ gulp.task('js-watch', ['js'], function (done) {
 //browser synk and scss watch
 gulp.task('serve', ['styles'], function() {
     browserSync.init({
-        proxy: "localhost/weber/src/templates/"
+        proxy: "localhost/weber-shandwick/build/"
     });
-    gulp.watch("src/sass/**/*.scss",['styles']);
-    gulp.watch("src/js/*.js", ['js-watch']);
+    gulp.watch(sassSrc,['styles']);
+    gulp.watch(jsSrc, ['js-watch']);
     gulp.watch("build/**/*.html").on('change', browserSync.reload);
 
 });
