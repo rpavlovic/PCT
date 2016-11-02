@@ -8,7 +8,7 @@ var browserSync = require('browser-sync').create();
 
 // paths
 var sassSrc = 'src/sass/**/*.scss',
-    sassDest = 'src/css';
+    sassDest = 'build/css';
 
 
 //process scss files
@@ -26,7 +26,7 @@ gulp.task('js', function () {
     return gulp.src('src/js/*js')
         .pipe(browserify())
         .pipe(uglify())
-        .pipe(gulp.dest('src/js'));
+        .pipe(gulp.dest('build/js'));
 });
 
 // create a task that ensures the `js` task is complete before
@@ -43,7 +43,7 @@ gulp.task('serve', ['styles'], function() {
     });
     gulp.watch("src/sass/**/*.scss",['styles']);
     gulp.watch("src/js/*.js", ['js-watch']);
-    gulp.watch("src/templates/*.html").on('change', browserSync.reload);
+    gulp.watch("build/**/*.html").on('change', browserSync.reload);
 
 });
 
