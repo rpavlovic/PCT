@@ -52,7 +52,8 @@ gulp.task('serve', ['styles', 'js-watch'], function() {
     });
     gulp.watch(sassSrc,['styles']);
     gulp.watch(jsSrc, ['js']);
-    gulp.watch("build/**/*.html").on('change', browserSync.reload);
+    gulp.watch("build/**/*.html");
+    gulp.watch("build/**/*.inc").on('change', browserSync.reload);
 
 });
 
