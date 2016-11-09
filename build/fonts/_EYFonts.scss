@@ -1,0 +1,28 @@
+@mixin font-face($style-name, $file, $category:"") {
+  $filepath: "../fonts/" + $file;
+  @font-face {
+    font-family: "#{$style-name}";
+    src:  url($filepath + ".eot");
+    src:  url($filepath + ".eot?#iefix") format('embedded-opentype'),
+          url($filepath + ".woff") format('woff'),
+          url($filepath + ".ttf")  format('truetype');
+  }
+  %#{$style-name} {
+    font: {
+      @if $category != "" {
+          family: "#{$style-name}", #{$category};
+      }
+      @else {
+        family: "#{$style-name}";
+        weight: normal;
+      }
+    }
+  }
+}
+@include font-face('EYBold', 'EYInterstate-Bold', 'bold');
+@include font-face('EYBoldItalic', 'EYInterstate-BoldItalic', 'normal');
+@include font-face('EYItalic', 'EYInterstate-Italic', 'bold');
+@include font-face('EYLight', 'EYInterstate-Light', 'light');
+@include font-face('EYLightBold', 'EYInterstate-LightBold', 'bold');
+@include font-face('EYLightItalic', 'EYInterstate-LightItalic', 'light');
+@include font-face('EYRegular', 'EYInterstate-Regular', 'normal');

@@ -1,5 +1,5 @@
 (function () {
     $(function () {
-      $('footer').text;
+      $('header').text;
     })
 })();

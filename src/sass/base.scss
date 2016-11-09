@@ -1,6 +1,8 @@
 @import "vendor/reset",
         "utils/vars",
         "utils/mixins",
+        "./build/fonts/_EYFonts.scss",
+        "utils/fonts",
         "components/buttons",
         "components/header",
         "components/footer";

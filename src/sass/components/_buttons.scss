@@ -5,7 +5,7 @@
   color: $white;
   cursor: pointer;
   border: none;
-  background-color: $grey;
+  background-color: $dark-grey;
   @include box-shadow(0 1px 3px 0px rgba(0, 0, 0, 0.4));
   margin: 0 2px;
   text-decoration: none;
@@ -16,11 +16,11 @@
     box-shadow: inset 0 1px 3px 0px rgba(0, 0, 0, 0.4);
   }
   &:hover {
-    background:darken($grey, 8%);
+    background:darken($dark-grey, 8%);
     @include trans(all 0.3s ease);
   }
   &:active {
-    background:darken($grey, 25%);
+    background:darken($dark-grey, 25%);
   }
 }
 //custom button colors.

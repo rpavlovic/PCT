@@ -7,13 +7,17 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync').create(),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
+    compile = require('gulp-jqtmpl'),
+    nunjucksRender = require('gulp-nunjucks-render'),
     flatten = require('gulp-flatten');
 
 // paths
 var sassSrc = 'src/sass/**/*.scss',
     sassDest = 'build/css',
     jsSrc = 'src/js/**/*.js',
-    jsDest = 'build/js';
+    jsDest = 'build/js',
+    htmlSrc = 'src/templates**/*.nunjucks',
+    htmlDest = 'build/templates';
 
 //process scss files
 gulp.task('styles', function() {
@@ -38,6 +42,24 @@ gulp.task('js', function () {
       .pipe(gulp.dest(jsDest));
 });
 
+gulp.task('nunjucks', function () {
+  // Gets .html and .nunjucks files in pages
+ return gulp.src('src/templates/**/*.+(html|nunjucks)')
+    // Renders template with nunjucks
+    .pipe(nunjucksRender({
+        path: ['src/templates']
+      }))
+    // output files in app folder
+    .pipe(gulp.dest('build/templates'))
+});
+
+// create a task that ensures the `nunchucks` task is complete before
+// reloading browsers
+gulp.task('nunjucks-watch', ['nunjucks'], function (done) {
+    browserSync.reload();
+    done();
+});
+
 // create a task that ensures the `js` task is complete before
 // reloading browsers
 gulp.task('js-watch', ['js'], function (done) {
@@ -46,15 +68,15 @@ gulp.task('js-watch', ['js'], function (done) {
 });
 
 //browser synk and scss watch
-gulp.task('serve', ['styles', 'js-watch'], function() {
+gulp.task('serve', ['styles', 'js-watch', 'nunjucks-watch'], function() {
     browserSync.init({
-        proxy: "localhost/weber-shandwick/build/"
+      proxy: "localhost/weber-shandwick/build/templates/pages"
     });
     gulp.watch(sassSrc,['styles']);
     gulp.watch(jsSrc, ['js']);
-    gulp.watch("build/**/*.html");
-    gulp.watch("build/**/*.inc").on('change', browserSync.reload);
-
+    gulp.watch(htmlSrc, ['nunjucks']).on('change', browserSync.reload);
 });
+
+
 
 gulp.task('default', ['serve']);

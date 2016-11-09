@@ -1,17 +1,13 @@
 //colors
 $white: #fff;
-$grey: grey;
-
-//font-sizes typography
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
-
-h1 {font-size: rem-calc(35)}
-h2 {font-size: rem-calc(25)}
-h3 {font-size: rem-calc(20)}
-h4 {font-size: rem-calc(18)}
-h5 {font-size: rem-calc(16)}
-h6 {font-size: rem-calc(14)}
-
+$default-grey: #323232;
+$dark-grey: #343434;
+$darker-grey: #333;
+$medium-grey: #5b5b5b;
+$light-grey: #b2b2b2;
+$link-color: #1b74ba;
+$red: #ff5816;
+$green: #11c276;
 
 // grid variables
 $grid-columns: 12;
@@ -25,7 +21,6 @@ $breakpoints: (
  'large':  (min-width: 75em)
 );
 
-
 %clearfix {
   *zoom: 1;
   &:before,
@@ -36,4 +31,11 @@ $breakpoints: (
   &:after {
     clear: both;
   }
+}
+%strong {
+  font-family: bold “EYBold”, Arial;
+}
+%caption{
+  color: $dark-grey;
+  font-family: normal italic “EYLightItalic”, Arial;
 }

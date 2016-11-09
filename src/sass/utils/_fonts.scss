@@ -1,0 +1,55 @@
+
+a {
+  color: $link-color;
+  text-decoration: none;
+  &.active,
+  &:focus {
+    color: $default-grey;
+  }
+  &:active {
+    color: $link-color;
+  }
+}
+h1 {
+  font: normal bold 3.75rem/4.5rem “EYBold”, Arial;
+  color: $default-grey;
+  margin-bottom: 1.25rem;
+}
+h2 {
+  font: normal italic 1.875rem/2.5rem "EYLightItalic", Arial;
+  margin-bottom: .625rem;
+  color: $default-grey;
+}
+h3 {
+  font: bold 1.5rem/1.875rem “EYBold”, Arial;
+  margin-bottom: .625rem;
+  color: $default-grey;
+}
+h4 {
+  font: bold 1.125rem/1.5rem “EYBold”, Arial;
+  margin-bottom: .625rem;
+  color: $default-grey;
+}
+h5 {
+  font: normal bold 1rem/1.3125rem “EYBold”, Arial;
+  margin-bottom: .625rem;
+  color: $default-grey;}
+h6 {
+  font: normal bold .75rem/.75rem “EYBold”, Arial;
+  margin-bottom: .625rem;
+  color: $default-grey;
+}
+
+p {
+  font: 1rem/1.3125rem “EYLight”, Arial;
+  color: $medium-grey;
+  margin-bottom: 1.625rem;
+}
+footer * {
+  font: normal .75rem/1rem “EYLight”, Arial;
+}
+nav {
+  * {
+    font: normal bold 1.25rem/1.5rem "EYBold", Arial;
+  }
+}

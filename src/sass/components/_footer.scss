@@ -1,7 +1,7 @@
 footer {
   position: fixed;
   bottom: 0;
-  background-color: $grey;
+  background-color: blue;
   color: $white;
   padding: 20px;
   width: 100%;
@@ -9,6 +9,7 @@ footer {
   -moz-animation: fadeIn 1s;
   -o-animation: fadeIn 1s;
   animation: fadeIn 1s;
+  font-family: "EYBold", Arial;
   @include breakpoint('medium') {
     opacity: 0;
     display:none;
