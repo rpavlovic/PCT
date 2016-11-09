@@ -3,15 +3,15 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <title>Sample App</title>
-    <link href="./css/font-awesome.min.css" rel="stylesheet">
     <link href="./css/base.css" rel="stylesheet">
   </head>
   <body>
-    <!-- You write code for this content block in another file -->
-    {% import './macros/nav-macro.nunjucks' as nav %}
+    {% import './macros/nav-macro.njk' as nav %}
     {{nav.active('home')}}
+    <!--/content-->
     {% block content %} {% endblock %}
-    {% include "./partials/footer.nunjucks" %}
+      <!--footer-->
+    {% include "./partials/footer.njk" %}
     <script src="./js/base.js"></script>
   </body>
 </html>
