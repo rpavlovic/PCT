@@ -1,5 +1,14 @@
 {% extends "layout.nunjucks" %}
-{% include "partials/header.nunjucks" %}
 {% block content %}
-<h1>This is the index page</h1>
+<h1>header home</h1>
+<div id="json_data">
+  <!-- Loops through "images" array -->
+{#   {% for data in results %}
+  <ul class="gallery__item">
+    <li>{{data.CompCode}}</li>
+    <li>{{data.CompName}}</li>
+  </ul>
+  {% endfor %} #}
+</div>
 {% endblock %}
+`

@@ -1,0 +1,2040 @@
+{
+  "d" : {
+    "results" : [
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('0001')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('0001')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "0001",
+        "CompName" : "SAP A.G."
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AEA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AEA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "AEA1",
+        "CompName" : "JM Worldwide Ltd (Dubai)"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AR01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AR01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "AR01",
+        "CompName" : "Country Template AR"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AT01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AT01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "AT01",
+        "CompName" : "Country Template AT"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AU01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AU01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "AU01",
+        "CompName" : "Country Template AU"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AUA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AUA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "AUA1",
+        "CompName" : "Weber Shandwick Australia"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AUA2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AUA2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "AUA2",
+        "CompName" : "FutureBrand Australia"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AUA4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AUA4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "AUA4",
+        "CompName" : "IPR Shandwick Pty Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AUA5')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AUA5')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "AUA5",
+        "CompName" : "R/GA Australia"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AUA6')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('AUA6')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "AUA6",
+        "CompName" : "Milkmoney Pty Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BE01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BE01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "BE01",
+        "CompName" : "Country Template BE"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BEA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BEA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "BEA1",
+        "CompName" : "CMGRP Belgium SCRL"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BEA2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BEA2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "BEA2",
+        "CompName" : "Charles Barker BSMG"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BEA3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BEA3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "BEA3",
+        "CompName" : "Weber Shandwick Belgium"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BEA4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BEA4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "BEA4",
+        "CompName" : "Octagon Worldwide BVBA"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BEA5')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BEA5')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "BEA5",
+        "CompName" : "IPG Luxembourg S.a.r.l."
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BEA6')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BEA6')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "BEA6",
+        "CompName" : "IPG Holding Lux S.a.r.l."
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BEA7')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BEA7')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "BEA7",
+        "CompName" : "Interpublic BE Holdngs SA"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BR01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('BR01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "BR01",
+        "CompName" : "Country Template BR"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CA01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CA01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CA01",
+        "CompName" : "Country Template CA"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CA10')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CA10')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CA10",
+        "CompName" : "Weber Shandwick Canada"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CA11')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CA11')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CA11",
+        "CompName" : "BDDS Shandwick Corp"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CA12')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CA12')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CA12",
+        "CompName" : "Cont Communications Corp"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CA13')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CA13')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CA13",
+        "CompName" : "Shandwick Inv Co Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CA14')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CA14')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CA14",
+        "CompName" : "3707822 Canada Inc"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CA15')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CA15')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CA15",
+        "CompName" : "Hypermedia Toronto"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CA16')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CA16')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CA16",
+        "CompName" : "Pedersen Gesk Canada"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CH01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CH01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CH01",
+        "CompName" : "Country Template CH"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CHA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CHA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CHA1",
+        "CompName" : "Future Brand AG"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CHA2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CHA2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CHA2",
+        "CompName" : "CMRGP Switzerland SA"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CHA3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CHA3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CHA3",
+        "CompName" : "Shandwick Geneve"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CL01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CL01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CL01",
+        "CompName" : "Country Template CL"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CN01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CN01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CN01",
+        "CompName" : "Country Template CN"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CNA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CNA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CNA1",
+        "CompName" : "CMG China"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CNA2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CNA2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CNA2",
+        "CompName" : "WS Worldwide (AP) Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CNA3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CNA3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CNA3",
+        "CompName" : "Guangzhou Shandwick PR Co"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CNA4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CNA4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CNA4",
+        "CompName" : "GolinMagic China"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CO01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CO01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CO01",
+        "CompName" : "Country Template CO"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CZ01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('CZ01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "CZ01",
+        "CompName" : "Country Template CZ"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DE01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DE01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "DE01",
+        "CompName" : "Country Template DE"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DE02')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DE02')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "DE02",
+        "CompName" : "Country Template DE"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DEA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DEA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "DEA1",
+        "CompName" : "CMGRP Deutschland GmbH"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DEA2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DEA2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "DEA2",
+        "CompName" : "Golin"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DEA3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DEA3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "DEA3",
+        "CompName" : "Future Brand AG"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DEA4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DEA4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "DEA4",
+        "CompName" : "Jack Morton WorldwideGmbH"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DEA5')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DEA5')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "DEA5",
+        "CompName" : "IPG Holding GmbH"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DEA6')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DEA6')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "DEA6",
+        "CompName" : "Nicole Weber Comms"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DK01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DK01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "DK01",
+        "CompName" : "Country Template DK"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DKA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('DKA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "DKA1",
+        "CompName" : "IPG Denmark Holdings"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ES01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ES01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "ES01",
+        "CompName" : "Country Template ES"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ESA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ESA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "ESA1",
+        "CompName" : "CMG SAU"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ESA2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ESA2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "ESA2",
+        "CompName" : "Golin Harris Int  Inc."
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ESA3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ESA3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "ESA3",
+        "CompName" : "Octagon Mktg Spain, S.L."
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('FI01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('FI01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "FI01",
+        "CompName" : "Country Template FI"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('FR01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('FR01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "FR01",
+        "CompName" : "Country Template FR"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('FRA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('FRA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "FRA1",
+        "CompName" : "CMGRP France SAS - old"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('FRA2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('FRA2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "FRA2",
+        "CompName" : "CMGRP France SAS"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('FRA3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('FRA3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "FRA3",
+        "CompName" : "Octagon Sports Mktg Sarl"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GB01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GB01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GB01",
+        "CompName" : "Country Template GB"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBA1",
+        "CompName" : "CMGRP UK Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBA2",
+        "CompName" : "AMS Investments Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBA3",
+        "CompName" : "AMS Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBA4",
+        "CompName" : "FOX IPL LIMITED"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA5')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA5')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBA5",
+        "CompName" : "Jack Morton Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA6')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA6')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBA6",
+        "CompName" : "Golin/Harris Int'l Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA7')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA7')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBA7",
+        "CompName" : "CMG HOLDING LTD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA8')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA8')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBA8",
+        "CompName" : "Octagon Worldwide LTD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA9')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBA9')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBA9",
+        "CompName" : "Octagon Athlete Represent"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBB1",
+        "CompName" : "Springpoint Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBB2",
+        "CompName" : "Weber Shandwick Int Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBB3",
+        "CompName" : "Weber Shandwick Trustees"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBB4",
+        "CompName" : "Weber Shandwick Consumer"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB5')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB5')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBB5",
+        "CompName" : "PR Consultants Scotland"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB6')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB6')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBB6",
+        "CompName" : "Briefcope LTD UK"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB7')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB7')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBB7",
+        "CompName" : "APL Group Limited"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB8')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB8')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBB8",
+        "CompName" : "Shandwick N Ireland LTD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB9')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBB9')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBB9",
+        "CompName" : "Acclaro International LTD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBC1",
+        "CompName" : "BSMG Medical & Health Com"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBC2",
+        "CompName" : "Charles Barker Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBC3",
+        "CompName" : "BSMG Worldwide (Euro) Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBC4",
+        "CompName" : "Shandwick Scotland LTD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC5')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC5')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBC5",
+        "CompName" : "The PR Centre LTD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC6')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC6')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBC6",
+        "CompName" : "Shandwick Design limited"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC7')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC7')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBC7",
+        "CompName" : "Prime Communications Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC8')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC8')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBC8",
+        "CompName" : "TPS Public Relations LTD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC9')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBC9')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBC9",
+        "CompName" : "Charles Barker Healthcare"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBD1",
+        "CompName" : "Charles Barker ESOP Trust"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBD2",
+        "CompName" : "Charles Barker Publishing"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBD3",
+        "CompName" : "GJW Holdings LTD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBD4",
+        "CompName" : "Square Mile Holding Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD5')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD5')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBD5",
+        "CompName" : "Shandwick North Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD6')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD6')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBD6",
+        "CompName" : "Weber Shandwick Consultan"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD7')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD7')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBD7",
+        "CompName" : "Weber Shandwick Broadcast"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD8')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD8')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBD8",
+        "CompName" : "Shandwick Interactive LTD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD9')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBD9')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBD9",
+        "CompName" : "Weber Shandwick PR Co.LTD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBE1",
+        "CompName" : "Rogers & Cowan Int Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBE2",
+        "CompName" : "Weber Shandwick UK LTD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBE3",
+        "CompName" : "Radclyffe Comms Group Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBE4",
+        "CompName" : "WS Design Consultancy UK"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE5')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE5')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBE5",
+        "CompName" : "Square Mile Communication"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE6')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE6')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBE6",
+        "CompName" : "Fleet Financial Comms Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE7')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE7')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBE7",
+        "CompName" : "Gresham Financial Marketi"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE8')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE8')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBE8",
+        "CompName" : "Hopkins and Bailey LTD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE9')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBE9')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBE9",
+        "CompName" : "GJW Government Relations"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBF1",
+        "CompName" : "GJW Europe LTD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBF2",
+        "CompName" : "GJW International Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBF3",
+        "CompName" : "Rogers & Cowan Brand Repl"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBF4",
+        "CompName" : "WS Investor Relations LTD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF5')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF5')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBF5",
+        "CompName" : "GJWS LTD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF6')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF6')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBF6",
+        "CompName" : "Shandwick Public Relation"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF7')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF7')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBF7",
+        "CompName" : "Widestrong Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF8')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF8')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBF8",
+        "CompName" : "Weber Shandwick Mktg Svcs"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF9')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBF9')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBF9",
+        "CompName" : "Ludgate Group Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBG1",
+        "CompName" : "Ludgate Communications"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBG2",
+        "CompName" : "Ludgate Laud Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBG3",
+        "CompName" : "Ludgate Design Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBG4",
+        "CompName" : "Shandwick Public Affairs"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG5')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG5')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBG5",
+        "CompName" : "TSI Commmunications UK"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG6')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG6')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBG6",
+        "CompName" : "CMGRP Marketing Services"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG7')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG7')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBG7",
+        "CompName" : "Futurebrand London"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG8')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG8')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBG8",
+        "CompName" : "Futurebrand Consumer"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG9')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBG9')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBG9",
+        "CompName" : "Coleman Group UK"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBH1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBH1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBH1",
+        "CompName" : "Springpoint UK"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBH2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBH2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBH2",
+        "CompName" : "Jack Morton EU Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBH3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBH3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBH3",
+        "CompName" : "Virgo Health Limited"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBH4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('GBH4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "GBH4",
+        "CompName" : "Hugo & Cat Limited"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HK01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HK01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "HK01",
+        "CompName" : "Country Template HK"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "HKA1",
+        "CompName" : "CMGRP Limited"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "HKA2",
+        "CompName" : "Golin/Harris Hong Kong"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "HKA3",
+        "CompName" : "FutureBrand Hong Kong"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "HKA4",
+        "CompName" : "CMGRP (Asia Pacific) Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA5')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA5')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "HKA5",
+        "CompName" : "Ludgate Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA6')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA6')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "HKA6",
+        "CompName" : "*******DO NOT USE*******"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA7')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA7')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "HKA7",
+        "CompName" : "Springpoint Asia"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA8')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA8')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "HKA8",
+        "CompName" : "Scotchbrook BSMG-HK"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA9')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKA9')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "HKA9",
+        "CompName" : "Presko Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKB1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HKB1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "HKB1",
+        "CompName" : "Joyous Max Limited"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HU01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('HU01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "HU01",
+        "CompName" : "Country Template HU"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('IE01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('IE01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "IE01",
+        "CompName" : "Country Template IE"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('IEA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('IEA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "IEA1",
+        "CompName" : "Weber Shandwick Limited"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('IN01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('IN01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "IN01",
+        "CompName" : "India Model Company, IN"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('IT01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('IT01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "IT01",
+        "CompName" : "Country Template IT"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ITA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ITA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "ITA1",
+        "CompName" : "CMGRP Italia S.p.A."
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ITA2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ITA2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "ITA2",
+        "CompName" : "Weber Shandwick Mass Med"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ITA3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ITA3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "ITA3",
+        "CompName" : "IPR Shandwick Italy Hld"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ITA4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ITA4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "ITA4",
+        "CompName" : "Bridge Editore S.r.l."
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ITA5')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ITA5')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "ITA5",
+        "CompName" : "FB Gio Rossi Assoc Spa"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('JP01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('JP01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "JP01",
+        "CompName" : "Country Template JP"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('JPA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('JPA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "JPA1",
+        "CompName" : "CMGRP Japan"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('JPA2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('JPA2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "JPA2",
+        "CompName" : "GolinHarris - TYO"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('JPA3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('JPA3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "JPA3",
+        "CompName" : "FutureBrand-Japan"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('JPA4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('JPA4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "JPA4",
+        "CompName" : "PRS"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('JPA5')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('JPA5')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "JPA5",
+        "CompName" : "IMC"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('JPA6')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('JPA6')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "JPA6",
+        "CompName" : "Kokusai PR, K.K. (IPR)"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('KR01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('KR01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "KR01",
+        "CompName" : "Country Template KR"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('KZ01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('KZ01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "KZ01",
+        "CompName" : "Country Template KZ"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('LU01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('LU01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "LU01",
+        "CompName" : "Country Template LU"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('MX01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('MX01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "MX01",
+        "CompName" : "Country Template MX"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('MY01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('MY01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "MY01",
+        "CompName" : "Country Template MY"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('MYA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('MYA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "MYA1",
+        "CompName" : "CMGRP (Malaysia) Sdn Bhd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('MYA2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('MYA2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "MYA2",
+        "CompName" : "FutureBrand Malaysia"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NL01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NL01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NL01",
+        "CompName" : "Country Template NL"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NLA1",
+        "CompName" : "WS Netherlands"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NLA2",
+        "CompName" : "Shandwick BV"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NLA3",
+        "CompName" : "Shandwick Int BV"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NLA4",
+        "CompName" : "BSMG Worldwide BV"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA5')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA5')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NLA5",
+        "CompName" : "Octagon WW Holding B.V."
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA6')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA6')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NLA6",
+        "CompName" : "Lowe Worldwide Holdings"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA7')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA7')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NLA7",
+        "CompName" : "Western Int'l Media"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA8')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA8')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NLA8",
+        "CompName" : "IPG Nederland B.V."
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA9')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLA9')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NLA9",
+        "CompName" : "IPG Holdings B.V."
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLB2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLB2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NLB2",
+        "CompName" : "IPG Holdings C.V."
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLB3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLB3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NLB3",
+        "CompName" : "Wilkens Group B.V."
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLB4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLB4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NLB4",
+        "CompName" : "UXUS Europe B.V."
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLB5')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLB5')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NLB5",
+        "CompName" : "IPG Group NL BV"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLB6')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLB6')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NLB6",
+        "CompName" : "True North Hold NL BV"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLB7')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NLB7')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NLB7",
+        "CompName" : "Malenia Holding B.V."
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NO01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NO01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NO01",
+        "CompName" : "Country Template NO"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NZ01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NZ01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NZ01",
+        "CompName" : "Country Template NZ"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NZA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('NZA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "NZA1",
+        "CompName" : "Weber Shandwick NZ"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('PE01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('PE01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "PE01",
+        "CompName" : "Country Template PE"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('PH01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('PH01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "PH01",
+        "CompName" : "Country Template PH"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('PL01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('PL01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "PL01",
+        "CompName" : "Country Template PL"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('PT01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('PT01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "PT01",
+        "CompName" : "Country Template PT"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('RU01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('RU01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "RU01",
+        "CompName" : "Country Template RU"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('SE01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('SE01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "SE01",
+        "CompName" : "Country Template SE"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('SG01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('SG01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "SG01",
+        "CompName" : "SAP Asia"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('SGA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('SGA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "SGA1",
+        "CompName" : "CMGRP (Singapore) PTE Ltd"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('SGA2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('SGA2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "SGA2",
+        "CompName" : "PT Intra PR"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('SGA3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('SGA3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "SGA3",
+        "CompName" : "Golin/Harris Singapore"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('SGA4')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('SGA4')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "SGA4",
+        "CompName" : "FutureBrand Singapore"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('SGA5')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('SGA5')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "SGA5",
+        "CompName" : "IPG Singapore Holding Pte"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('SK01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('SK01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "SK01",
+        "CompName" : "Country Template SK"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('TH01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('TH01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "TH01",
+        "CompName" : "Country Template TH"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('THA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('THA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "THA1",
+        "CompName" : "CMGRP_TH"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('THA2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('THA2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "THA2",
+        "CompName" : "BTL (Thailand) Ltd."
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('THA3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('THA3')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "THA3",
+        "CompName" : "Shandwick Holding (Thaila"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('TR01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('TR01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "TR01",
+        "CompName" : "Country Template TR"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('TW01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('TW01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "TW01",
+        "CompName" : "Country Template TW"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('TWA1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('TWA1')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "TWA1",
+        "CompName" : "CMGRP -Taiwan"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('TWA2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('TWA2')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "TWA2",
+        "CompName" : "GolinHarris-Taiwan"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('UA01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('UA01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "UA01",
+        "CompName" : "Country Template UA"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US01",
+        "CompName" : "Country Template US"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US10')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US10')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US10",
+        "CompName" : "Weber Shandwick"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US11')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US11')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US11",
+        "CompName" : "Rowan & Blewitt"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US12')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US12')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US12",
+        "CompName" : "CMGRP, Inc."
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US13')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US13')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US13",
+        "CompName" : "Golin Harris"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US14')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US14')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US14",
+        "CompName" : "DeVries Public Relations"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US15')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US15')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US15",
+        "CompName" : "MWW Group INC"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US16')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US16')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US16",
+        "CompName" : "FutureBrand"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US17')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US17')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US17",
+        "CompName" : "Hypermedia NY"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US18')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US18')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US18",
+        "CompName" : "Jack Morton Worldwide Inc"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US19')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US19')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US19",
+        "CompName" : "Octagon Marketing"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US20')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US20')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US20",
+        "CompName" : "Octagon A&P"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US21')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US21')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US21",
+        "CompName" : "Octagon WW"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US22')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US22')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US22",
+        "CompName" : "Octagon Financial Service"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US23')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US23')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US23",
+        "CompName" : "CMG Operations – OC"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US24')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US24')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US24",
+        "CompName" : "CMG Operations – FB"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US25')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US25')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US25",
+        "CompName" : "CMG Operations-GO"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US26')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US26')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US26",
+        "CompName" : "Genuine Interactive, LLC"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US27')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US27')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US27",
+        "CompName" : "Cassidy & Associates, Inc"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US28')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('US28')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "US28",
+        "CompName" : "Speck Product Design, LLC"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('VE01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('VE01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "VE01",
+        "CompName" : "Country Template VE"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ZA01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ZA01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "ZA01",
+        "CompName" : "Country Template ZA"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ZZ01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ZZ01')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "ZZ01",
+        "CompName" : "Octagon Managed Event-SAS"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ZZ02')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_COMPANY_CODE_SRV/CompanycodeCollection('ZZ02')",
+          "type" : "ZUX_COMPANY_CODE_SRV.CompanycodeList"
+        },
+        "CompCode" : "ZZ02",
+        "CompName" : "Octagon Managed Event-CME"
+      }
+    ]
+  }
+}

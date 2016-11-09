@@ -8,7 +8,10 @@
   </head>
   <body>
     <!-- You write code for this content block in another file -->
+    {% import './macros/nav-macro.nunjucks' as nav %}
+    {{nav.active('home')}}
     {% block content %} {% endblock %}
-     <script src="./js/base.js"></script>
+    {% include "./partials/footer.nunjucks" %}
+    <script src="./js/base.js"></script>
   </body>
 </html>
