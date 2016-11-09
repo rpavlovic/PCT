@@ -17,12 +17,17 @@ var sassSrc = 'src/sass/**/*.scss',
     sassDest = 'build/css',
     jsSrc = 'src/js/**/*.js',
     jsDest = 'build/js',
-    htmlSrc = 'src/templates/**/*.nunjucks',
+    htmlSrc = 'src/templates/**/*.njk',
     htmlDest = 'build/templates',
     defaults = {
       path: ['src/templates'],
     };
 
+// Fonts
+gulp.task('fonts', function() {
+  return gulp.src(['src/fonts/**/*.{eot,svg,ttf,woff,woff2}'])
+  .pipe(gulp.dest('build/fonts/'));
+});
 
 //process scss files
 gulp.task('styles', function() {
@@ -49,7 +54,7 @@ gulp.task('js', function () {
 
 gulp.task('nunjucks', function () {
   // Gets .html and .nunjucks files in pages
- return gulp.src('src/templates/**/*.+(html|nunjucks)')
+ return gulp.src('src/templates/**/*.+(html|njk)')
     // Renders template with nunjucks
     .pipe(nunjucksRender(defaults))
     // .pipe(data(function() {
@@ -59,6 +64,13 @@ gulp.task('nunjucks', function () {
     .pipe(gulp.dest('build/templates'))
 });
 
+// Data
+gulp.task('data', function () {
+  return gulp.src([
+    'src/data/**/*.csv',
+    'src/data/**/*.json'])
+  .pipe(gulp.dest('build/data'));
+});
 
 // create a task that ensures the `nunchucks` task is complete before
 // reloading browsers
@@ -88,3 +100,6 @@ gulp.task('serve', ['styles', 'js-watch', 'nunjucks-watch'], function() {
 
 
 gulp.task('default', ['serve']);
+
+// Build
+gulp.task('build', ['styles', 'js', 'fonts', 'nunjucks', 'data']);

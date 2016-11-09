@@ -1,9 +1,7 @@
 (function () {
   $.getJSON( "./data/gw_client_data.json", function( data ) {
    var items = [];
-
    $.each( data.d.results, function( key, val ) {
-    console.log(key);
       for (var key in val) {
         if(typeof val[key] === 'object') {
           for(var key_2 in val[key] ) {

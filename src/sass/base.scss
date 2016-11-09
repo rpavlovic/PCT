@@ -1,7 +1,9 @@
+
 @import "vendor/reset",
+        "vendor/fa/font-awesome",
         "utils/vars",
         "utils/mixins",
-        "./build/fonts/_EYFonts.scss",
+        "../fonts/_EYFonts",
         "utils/fonts",
         "components/buttons",
         "components/header",
