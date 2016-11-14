@@ -90,11 +90,8 @@ gulp.task('js-watch', ['js'], function (done) {
 gulp.task('serve', ['styles', 'js-watch'], function() {
     browserSync.init({
       server: {
-          baseDir: "build",
-          index: "/templates/pages/index.html",
-          routes: {
-            "/templates/pages": "*.html"
-          }
+          baseDir: "./build",
+          index: "templates/pages/index.htm"
       }
     });
     gulp.watch(sassSrc,['styles']);
