@@ -36,13 +36,11 @@ $breakpoint-large: 75em;
   //when in large
    @include breakpoint('medium') {
     width: 80%;
-    background: red;
   }
   //when in medium
    @include breakpoint('large') {
     width: 75%;
     max-width: 60rem;
-    background: green;
   }
 }
 

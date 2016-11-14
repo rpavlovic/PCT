@@ -7,6 +7,7 @@ var fadeTabs = (function ($) {
   'use strict';
 
   function initFadeTabs() {
+
     $('ul.tabs li').on('click', function() {
       var tab_id = "#" + $(this).attr('data-tab');
 
