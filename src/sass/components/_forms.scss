@@ -1,0 +1,17 @@
+form {
+  input {
+    background-color: $form-grey;
+    border: solid 1px #dfdfdf;
+    padding: 20px 10px 14px 10px;
+    margin: 5px 0;
+    width: 100%;
+    display: inline-block;
+    font-size: 1rem;
+  }
+  .btn-footer {
+    margin-top: 15px;
+    a {
+      margin-left: 15px;
+    }
+  }
+}

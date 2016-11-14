@@ -47,4 +47,4 @@
     // $('button').prop('disabled', false);
   });
 
-})(jQuery);
+})($);

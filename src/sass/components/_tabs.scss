@@ -2,29 +2,49 @@ ul.tabs{
     margin: 0px;
     padding: 0px;
     list-style: none;
+    margin: 0 10px;
     li {
       background: none;
       color: #222;
       display: inline-block;
       padding: 10px 15px;
       cursor: pointer;
+      h3 {
+        color: #60b9ff;
+      }
       &.current{
-        background: #ededed;
+        background: $white;
         color: #222;
+        h3 {
+          color: inherit;
+        }
       }
     }
   }
 .tab-content {
   opacity: 0;
-  background: #ededed;
+  background: $white;
   height: 0;
+  visibility: hidden;
   &.current {
     opacity: 1;
     padding: 20px;
     height: auto;
+    visibility: visible;
     @include trans(visibility 100ms linear, opacity 500ms linear);
     p {
       line-height: inherit;
     }
+  }
+}
+.tabs-wrapper {
+  background: rgba(40, 95, 142, .8);
+  h1,
+  p {
+    color: $white;
+    padding-left: 10px;
+  }
+  h1 {
+    padding-top: 25px;
   }
 }
