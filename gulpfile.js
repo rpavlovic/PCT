@@ -62,6 +62,7 @@ gulp.task('nunjucks', function () {
     //    }))
     // output files in app folder
     .pipe(gulp.dest('build/templates'))
+    .pipe(browserSync.stream({once: true}));
 });
 
 // Data
@@ -73,7 +74,7 @@ gulp.task('data', function () {
 });
 
 // create a task that ensures the `nunchucks` task is complete before
-// reloading browsers
+// reloading browsers can be added to the task serve
 gulp.task('nunjucks-watch', ['nunjucks'], function (done) {
     browserSync.reload();
     done();
@@ -86,11 +87,14 @@ gulp.task('js-watch', ['js'], function (done) {
 });
 
 //browser synk and scss,js and nunjucks watch
-gulp.task('serve', ['styles', 'js-watch', 'nunjucks-watch'], function() {
+gulp.task('serve', ['styles', 'js-watch'], function() {
     browserSync.init({
       server: {
           baseDir: "build",
-          index: "/templates/pages/index.html"
+          index: "/templates/pages/index.html",
+          routes: {
+            "/templates/pages": "*.html"
+          }
       }
     });
     gulp.watch(sassSrc,['styles']);
@@ -98,8 +102,8 @@ gulp.task('serve', ['styles', 'js-watch', 'nunjucks-watch'], function() {
     gulp.watch(htmlSrc, ['nunjucks']).on('change', browserSync.reload);
 });
 
-
-gulp.task('default', ['serve']);
-
 // Build
 gulp.task('build', ['styles', 'js', 'fonts', 'nunjucks', 'data']);
+
+
+gulp.task('default', ['serve']);
