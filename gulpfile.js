@@ -10,6 +10,8 @@ var gulp = require('gulp'),
     compile = require('gulp-jqtmpl'),
     nunjucksRender = require('gulp-nunjucks-render'),
     data = require('gulp-data'),
+    imagemin = require('gulp-imagemin'),
+    newer = require('gulp-newer'),
     flatten = require('gulp-flatten');
 
 // paths
@@ -19,6 +21,8 @@ var sassSrc = 'src/sass/**/*.scss',
     jsDest = 'build/js',
     htmlSrc = 'src/templates/**/*.njk',
     htmlDest = 'build/templates',
+    imgSrc = 'src/images/**',
+    imgDest = 'build/images',
     defaults = {
       path: ['src/templates'],
     };
@@ -42,15 +46,18 @@ gulp.task('styles', function() {
 // process JS files and return the stream.
 gulp.task('js', function () {
     return gulp.src(jsSrc)
-      .pipe(uglify()
-        .on('error', function(e) {
-           console.log(e);
-        })
-      )
-      .pipe(flatten())
-      .pipe(concat('base.js'))
-      .pipe(gulp.dest(jsDest));
+    .pipe(sourcemaps.init())
+    .pipe(uglify()
+      .on('error', function(e) {
+         console.log(e);
+      })
+    )
+    .pipe(sourcemaps.write())
+    .pipe(flatten())
+    .pipe(concat('base.js'))
+    .pipe(gulp.dest(jsDest));
 });
+
 
 gulp.task('nunjucks', function () {
   // Gets .html and .nunjucks files in pages
@@ -86,21 +93,30 @@ gulp.task('js-watch', ['js'], function (done) {
     done();
 });
 
+// add image minify task
+gulp.task('imagemin', function () {
+  return gulp.src(imgSrc)
+    .pipe(newer(imgSrc))
+    .pipe(imagemin())
+    .pipe(gulp.dest(imgDest));
+});
+
 //browser synk and scss,js and nunjucks watch
 gulp.task('serve', ['styles', 'js-watch'], function() {
-    browserSync.init({
+    browserSync.init( ["/css/*.css", "/js/*.js"], {
       server: {
           baseDir: "./build",
-          index: "templates/pages/index.htm"
+          index: "templates/pages/index.html"
       }
     });
     gulp.watch(sassSrc,['styles']);
     gulp.watch(jsSrc, ['js']);
+    gulp.watch(imgSrc, ['imagemin']);
     gulp.watch(htmlSrc, ['nunjucks']).on('change', browserSync.reload);
 });
 
 // Build
-gulp.task('build', ['styles', 'js', 'fonts', 'nunjucks', 'data']);
+gulp.task('build', ['data', 'nunjucks' ,'styles', 'js', 'fonts', 'imagemin']);
 
 
 gulp.task('default', ['serve']);

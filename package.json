@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/northpoint/weber-shandwick.git"
   },
-  "author": "",
+  "author": "anna.dulfan@ey.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/northpoint/weber-shandwick/issues"
@@ -29,6 +29,8 @@
     "gulp-watch": "^4.3.10"
   },
   "dependencies": {
-    "gulp-jqtmpl": "0.0.6"
+    "gulp-imagemin": "^3.1.1",
+    "gulp-jqtmpl": "0.0.6",
+    "gulp-newer": "^1.3.0"
   }
 }

@@ -5,101 +5,64 @@
     <title>Sample App</title>
     <link href="/css/base.css" rel="stylesheet">
   </head>
-  <body>
+  
+    <body class="home-page">
+  
     <!--header-->
     
       
-<header><h1>HEADER</h1></header>
+<header>
+  <a href="/" title="weber-shandwick"><img src='/images/logo.png' alt="app-logo" className="app-logo"/></a>
+  <button class="btn-blue login" >Log in / Register</button>
+</header>
 
+      
     
 
-    
     <!--/content-->
     
-<h1>Index Page</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <h1>Log In/Register</h1>
+      <p>Lorem ipsum dolor dit amet, consectetur.</p>
+      <ul class="tabs">
+        <li class="tab-link current" data-tab="tab-1">Log In</li>
+        <li class="tab-link" data-tab="tab-2">Register</li>
+      </ul>
 
-
-
-
-  <p>
-    <strong>green</strong> :
-    
-       james,
-    
-       jessie,
-    
-  </p>
-
-  <p>
-    <strong>blue</strong> :
-    
-       john,
-    
-       jim,
-    
-  </p>
-
-
-<nav>
-  
-    <a href="/templates/pages/home.html" class=" active "> Home</a>
-  
-    <a href="/templates/pages/about.html" class=""> About</a>
-  
-    <a href="/templates/pages/contacts.html" class=""> Contacts</a>
-  
-    <a href="/templates/pages/testimonials.html" class=""> Testimonials</a>
-  
-</nav>
-
-
-
-
-
-<div>
-  <label>name</label>
-</div>
-
-
-<div class="field">
-  <input type="text" name="name"
-          placeholder="your name"
-          value=""
-          />
-</div>
-
-
-
-<div>
-  <label>password</label>
-</div>
-
-
-<div class="field">
-  <input type="password" name="password"
-          placeholder=""
-          value=""
-          />
-</div>
-
-
-
-<div>
-  <label>address</label>
-</div>
-
-
-<div class="field">
-  <input type="text" name="address"
-          placeholder="your address"
-          value=""
-          />
-</div>
-
-
-<div id="json_data">
-  <!-- Loops through "images" array -->
-
+      <div id="tab-1" class="tab-content current">
+        <section>
+          <form>
+            <input type="text" name="username" placeholder="Username" />
+            <input type="password" name="password" placeholder="Password">
+            <section>
+              <button class="btn btn-light-grey" type="reset" value="cancel">Cancel</button>
+              <button class="btn disabled" value="log in" type="submit" disabled>Log In</button>
+              <a href="/forgotyourpassword.html" title="forgot your password?">Forgot your password?</a>
+            </section>
+          </form>
+        </section>
+      </div>
+      <div id="tab-2" class="tab-content">
+        <section>
+         <form>
+            <input type="text" name="first name" placeholder="First Name" />
+            <input type="text" name="last name" placeholder="Last Name" />
+            <input type="email" name="email" placeholder="Email" />
+            <input type="text" name="email" placeholder="Confirm Email" />
+            <input type="password" name="password" placeholder="Password">
+            <input type="password" name="confirm password" placeholder="Confirm Password">
+            <section>
+              <button class="btn btn-light-grey" type="reset" value="cancel">Cancel</button>
+              <button class="btn disabled" value="Register" type="submit" disabled>Register</button>
+              <a href="/forgotyourpassword.html" title="forgot your password?">Forgot your password?</a>
+            </section>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
 </div>
 
 

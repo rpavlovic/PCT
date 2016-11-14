@@ -5,13 +5,23 @@
     <title>Sample App</title>
     <link href="/css/base.css" rel="stylesheet">
   </head>
-  <body>
+  {% if pgHome %}
+    <body class="home-page">
+  {% elif pgAbout %}
+    <body class="about-page">
+  {% elif pgProjects %}
+    <body class="projects-page">
+  {% elif pgReports%}
+   <body class="reports-page">
+  {% elif page %}
+  <body class="page">
+  {% endif %}
     <!--header-->
     {% block header %}
       {% include "./partials/header.njk" %}
+      {% import './macros/nav-macro.njk' as nav %}
     {% endblock %}
 
-    {% import './macros/nav-macro.njk' as nav %}
     <!--/content-->
     {% block content %} {% endblock %}
 
