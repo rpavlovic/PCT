@@ -6,12 +6,19 @@
     <link href="./css/base.css" rel="stylesheet">
   </head>
   <body>
+    <!--header-->
+    {% block header %}
+      {% include "./partials/header.njk" %}
+    {% endblock %}
+
     {% import './macros/nav-macro.njk' as nav %}
-    {{nav.active('home')}}
     <!--/content-->
     {% block content %} {% endblock %}
-      <!--footer-->
-    {% include "./partials/footer.njk" %}
+
+    <!--footer-->
+    {% block footer %}
+      {% include "./partials/footer.njk" %}
+    {% endblock %}
     <script src="./js/base.js"></script>
   </body>
 </html>

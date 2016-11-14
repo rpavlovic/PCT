@@ -1,6 +1,36 @@
 {% extends "layout.njk" %}
 {% block content %}
 <h1>Index Page</h1>
+
+{% set items = [
+    { name: 'james', type: 'green' },
+    { name: 'john', type: 'blue' },
+    { name: 'jim', type: 'blue' },
+    { name: 'jessie', type: 'green' }
+  ]
+%}
+
+{% for type, items in items | groupby("type") %}
+  <p>
+    <strong>{{ type }}</strong> :
+    {% for item in items %}
+       {{ item.name }},
+    {% endfor %}
+  </p>
+{% endfor %}
+{{nav.active('home')}}
+
+
+{% import "./macros/form.njk" as forms %}
+{{ forms.label('name') }}
+{{ forms.field('name', placeholder='your name') }}
+
+{{ forms.label('password') }}
+{{ forms.field('password', type='password') }}
+
+{{ forms.label('address') }}
+{{ forms.field('address', placeholder='your address') }}
+
 <div id="json_data">
   <!-- Loops through "images" array -->
 {#   {% for data in results %}
