@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <title>Sample App</title>
+    <link href="/css/base.css" rel="stylesheet">
+  </head>
+  
+    <body class="home-page">
+  
+    <!--header-->
+    
+      
+<header>
+  <a href="/" title="weber-shandwick"><img src='/images/logo.png' alt="app-logo" className="app-logo"/></a>
+  <button class="btn-blue login" >Log in / Register</button>
+</header>
+
+      
+    
+
+    <!--/content-->
+    
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <h1>Log In/Register</h1>
+      <p>Lorem ipsum dolor dit amet, consectetur.</p>
+      <ul class="tabs">
+        <li class="tab-link current" data-tab="tab-1">Log In</li>
+        <li class="tab-link" data-tab="tab-2">Register</li>
+      </ul>
+
+      <div id="tab-1" class="tab-content current">
+        <section>
+          <form>
+            <input type="text" name="username" placeholder="Username" />
+            <input type="password" name="password" placeholder="Password">
+            <section>
+              <button class="btn btn-light-grey" type="reset" value="cancel">Cancel</button>
+              <button class="btn disabled" value="log in" type="submit" disabled>Log In</button>
+              <a href="/forgotyourpassword.html" title="forgot your password?">Forgot your password?</a>
+            </section>
+          </form>
+        </section>
+      </div>
+      <div id="tab-2" class="tab-content">
+        <section>
+         <form>
+            <input type="text" name="first name" placeholder="First Name" />
+            <input type="text" name="last name" placeholder="Last Name" />
+            <input type="email" name="email" placeholder="Email" />
+            <input type="text" name="email" placeholder="Confirm Email" />
+            <input type="password" name="password" placeholder="Password">
+            <input type="password" name="confirm password" placeholder="Confirm Password">
+            <section>
+              <button class="btn btn-light-grey" type="reset" value="cancel">Cancel</button>
+              <button class="btn disabled" value="Register" type="submit" disabled>Register</button>
+              <a href="/forgotyourpassword.html" title="forgot your password?">Forgot your password?</a>
+            </section>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!--footer-->
+    
+      
+<footer>
+  <nav>
+    <ul className="mobile-nav">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact Us</a>
+    </ul>
+  </nav>
+</footer>
+
+    
+    <script src="/js/base.js"></script>
+  </body>
+</html>

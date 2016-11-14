@@ -1,43 +1,47 @@
 {% extends "layout.njk" %}
+{% set pgHome = true %}
 {% block content %}
-<h1>Index Page</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <h1>Log In/Register</h1>
+      <p>Lorem ipsum dolor dit amet, consectetur.</p>
+      <ul class="tabs">
+        <li class="tab-link current" data-tab="tab-1">Log In</li>
+        <li class="tab-link" data-tab="tab-2">Register</li>
+      </ul>
 
-{% set items = [
-    { name: 'james', type: 'green' },
-    { name: 'john', type: 'blue' },
-    { name: 'jim', type: 'blue' },
-    { name: 'jessie', type: 'green' }
-  ]
-%}
-
-{% for type, items in items | groupby("type") %}
-  <p>
-    <strong>{{ type }}</strong> :
-    {% for item in items %}
-       {{ item.name }},
-    {% endfor %}
-  </p>
-{% endfor %}
-{{nav.active('home')}}
-
-
-{% import "./macros/form.njk" as forms %}
-{{ forms.label('name') }}
-{{ forms.field('name', placeholder='your name') }}
-
-{{ forms.label('password') }}
-{{ forms.field('password', type='password') }}
-
-{{ forms.label('address') }}
-{{ forms.field('address', placeholder='your address') }}
-
-<div id="json_data">
-  <!-- Loops through "images" array -->
-{#   {% for data in results %}
-  <ul class="gallery__item">
-    <li>{{data.CompCode}}</li>
-    <li>{{data.CompName}}</li>
-  </ul>
-  {% endfor %} #}
+      <div id="tab-1" class="tab-content current">
+        <section>
+          <form>
+            <input type="text" name="username" placeholder="Username" />
+            <input type="password" name="password" placeholder="Password">
+            <section>
+              <button class="btn btn-light-grey" type="reset" value="cancel">Cancel</button>
+              <button class="btn disabled" value="log in" type="submit" disabled>Log In</button>
+              <a href="/forgotyourpassword.html" title="forgot your password?">Forgot your password?</a>
+            </section>
+          </form>
+        </section>
+      </div>
+      <div id="tab-2" class="tab-content">
+        <section>
+         <form>
+            <input type="text" name="first name" placeholder="First Name" />
+            <input type="text" name="last name" placeholder="Last Name" />
+            <input type="email" name="email" placeholder="Email" />
+            <input type="text" name="email" placeholder="Confirm Email" />
+            <input type="password" name="password" placeholder="Password">
+            <input type="password" name="confirm password" placeholder="Confirm Password">
+            <section>
+              <button class="btn btn-light-grey" type="reset" value="cancel">Cancel</button>
+              <button class="btn disabled" value="Register" type="submit" disabled>Register</button>
+              <a href="/forgotyourpassword.html" title="forgot your password?">Forgot your password?</a>
+            </section>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

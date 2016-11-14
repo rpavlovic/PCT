@@ -1,2 +1,11 @@
 header {
+  background-color: $darker-grey;
+  padding: 20px;
+  color: $white;
+  nav {
+    opacity: 0;
+    @include breakpoint('medium') {
+      opacity: 1;
+    }
+  }
 }
