@@ -1,5 +1,7 @@
 (function () {
-  $.getJSON( "./data/gw_client_data.json", function( data ) {
+
+
+  $.getJSON( "/data/gw_client_data.json", function( data ) {
    var items = [];
    $.each( data.d.results, function( key, val ) {
       for (var key in val) {
@@ -14,9 +16,12 @@
       }
     });
 
-   $( "<ul/>", {
-     "class": "data-list",
-     html: items.join( "" )
-   }).appendTo( "#json_data" );
+   if($("#json_data").length > 0) {
+      $( "<ul/>", {
+        "class": "data-list",
+        html: items.join( "" )
+      }).appendTo( "#json_data" );
+    }
   });
+
 })($);
