@@ -1,6 +1,12 @@
-{% block header %}
 <header>
   <a href="/" title="weber-shandwick"><img src='/images/logo.png' alt="app-logo" className="app-logo"/></a>
   <button class="btn-blue login" >Log in / Register</button>
+  {% import "macros/nav-macro.njk" as nav %}
+  {% if pgAbout %}
+    {{nav.active('about')}}
+  {% elif pgProjects %}
+    {{nav.active('projects')}}
+  {% elif pgReports %}
+   {{nav.active('reports')}}
+  {% endif %}
 </header>
-{% endblock %}

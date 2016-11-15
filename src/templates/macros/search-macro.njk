@@ -1,0 +1,11 @@
+{% macro search(placeHolder="Search stuff...", buttonText="Search") %}
+  <form class="form-inline">
+    <input class="form-control" type="text" placeholder="{{ placeHolder }}">
+    <button class="btn btn-success-outline" type="submit">{{ buttonText }}</button>
+  </form>
+{% endmacro %}
+{# {% macro alert(class="success", text="<strong>Well done!</strong> You successfully read this important alert message.") %}
+  <div class="alert alert-{{ class }}" role="alert">
+    {{ text | safe }}
+  </div>
+{% endmacro %} #}

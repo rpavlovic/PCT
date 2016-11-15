@@ -12,23 +12,24 @@
   {% elif pgProjects %}
     <body class="projects-page">
   {% elif pgReports%}
-   <body class="reports-page">
+    <body class="reports-page">
   {% elif page %}
-  <body class="page">
+    <body class="page">
   {% endif %}
     <!--header-->
     {% block header %}
-      {% include "./partials/header.njk" %}
-      {% import './macros/nav-macro.njk' as nav %}
+      {% include "partials/header.njk" %}
     {% endblock %}
 
     <!--/content-->
     {% block content %} {% endblock %}
 
     <!--footer-->
-    {% block footer %}
-      {% include "./partials/footer.njk" %}
-    {% endblock %}
+    {% ifnot pgHome %}
+      {% block footer %}
+        {% include "partials/footer.njk" %}
+      {% endblock %}
+    {% endif %}
     <script src="/js/base.js"></script>
   </body>
 </html>

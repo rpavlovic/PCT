@@ -27,6 +27,34 @@
     // ShowHide Tabs init
     fadeTabs.initFadeTabs();
 
+    $.fn.extend({
+      disable: function(state) {
+        return this.each(function() {
+          this.disabled = state;
+        });
+        console.log(state);
+      }
+    })
+
+
+
+  var $fields = $("form.login :input");
+  $fields.keyup(function() {
+    var $emptyFields = $fields.filter(function() {
+      // remove the $.trim if whitespace is counted as filled
+      return $.trim(this.value) === "";
+      console.log($.trim(this.value));
+    });
+
+    if (!$emptyFields.length) {
+     console.log("form has been filled");
+      $('input[type="submit"], input[type="button"], button').disable(false);
+    } else {
+      console.log("uh-oh, you forgot to fill something out");
+      $('input[type="submit"], input[type="button"], button').disable(true);
+    }
+  });
+
 
     // // Disable function future use
     // jQuery.fn.extend({

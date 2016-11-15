@@ -1,5 +1,7 @@
 {% extends "layout.njk" %}
 {% set pgHome = true %}
+{% set base_path = "/" %}
+{% set page_title = "Home page | Weber-Shandwick" %}
 {% block content %}
 <div class="container">
   <div class="row">
@@ -15,8 +17,8 @@
 
           <div id="tab-1" class="tab-content current">
             <section>
-              <form>
-                <input type="text" name="username" placeholder="Username" />
+              <form action="#" method="post" class="login">
+                <input type="text" name="username" placeholder="Username" autofocus />
                 <input type="password" name="password" placeholder="Password">
                 <section class="btn-footer">
                   <button class="btn btn-light-grey" type="reset" value="cancel">Cancel</button>
@@ -28,13 +30,13 @@
           </div>
           <div id="tab-2" class="tab-content">
             <section>
-             <form>
-                <input type="text" name="first name" placeholder="First Name" />
-                <input type="text" name="last name" placeholder="Last Name" />
-                <input type="email" name="email" placeholder="Email" />
-                <input type="text" name="email" placeholder="Confirm Email" />
-                <input type="password" name="password" placeholder="Password">
-                <input type="password" name="confirm password" placeholder="Confirm Password">
+             <form action="#" method="post" class="register">
+                <input type="text" name="first name" placeholder="First Name" autofocus required />
+                <input type="text" name="last name" placeholder="Last Name" required />
+                <input type="email" name="email" placeholder="Email" value=""   required />
+                <input type="text" name="email" placeholder="Confirm Email" value="" required />
+                <input type="password" name="password" placeholder="Password" required />
+                <input type="password" name="confirm password" placeholder="Confirm Password" required />
                 <section class="btn-footer">
                   <button class="btn btn-light-grey" type="reset" value="cancel">Cancel</button>
                   <button class="btn disabled" value="Register" type="submit" disabled>Register</button>
