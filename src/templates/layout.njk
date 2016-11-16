@@ -25,7 +25,7 @@
     {% block content %} {% endblock %}
 
     <!--footer-->
-    {% ifnot pgHome %}
+    {% if not pgHome %}
       {% block footer %}
         {% include "partials/footer.njk" %}
       {% endblock %}

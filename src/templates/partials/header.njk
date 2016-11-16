@@ -1,12 +1,21 @@
-<header>
-  <a href="/" title="weber-shandwick"><img src='/images/logo.png' alt="app-logo" className="app-logo"/></a>
-  <button class="btn-blue login" >Log in / Register</button>
-  {% import "macros/nav-macro.njk" as nav %}
-  {% if pgAbout %}
-    {{nav.active('about')}}
-  {% elif pgProjects %}
-    {{nav.active('projects')}}
-  {% elif pgReports %}
-   {{nav.active('reports')}}
-  {% endif %}
+<header class="clearfix">
+  <div class="float-left">
+    <a href="/" title="weber-shandwick"><img src='/images/logo.png' alt="app-logo" className="app-logo"/></a>
+  </div>
+  <div class="float-right">
+    {% if pgHome %}
+      <div>
+        <button class="btn-blue login" target="2">Log in / Register</button>
+      </div>
+    {% endif %}
+    {% import "macros/nav-macro.njk" as nav %}
+    {% if pgAbout %}
+      {{nav.active('about')}}
+    {% elif pgProjects %}
+      {{nav.active('projects')}}
+    {% elif pgReports %}
+     {{nav.active('reports')}}
+    {% endif %}
+  </div>
 </header>
+

@@ -2,16 +2,50 @@ form {
   input {
     background-color: $form-grey;
     border: solid 1px #dfdfdf;
-    padding: 20px 10px 14px 10px;
-    margin: 5px 0;
+    padding: rem-calc(20 10 14 10);
+    margin: rem-calc(5 0);
     width: 100%;
     display: inline-block;
     font-size: 1rem;
+    &:focus {
+      &::-webkit-input-placeholder {
+        transition: opacity 0.5s 0.5s ease;
+        // transform: translate(0,-10px);
+        opacity: 0;
+      }
+      &:-moz-placeholder {
+        color: red;
+      }
+      input[placeholder] {
+        color: red;
+      }
+    }
+    // input:-webkit-autofill,
+    // textarea:-webkit-autofill,
+    // select:-webkit-autofill {
+
+    // }
+    & + span {
+      position: relative;
+      display: block;
+      &.check:after {
+        content: "\f00c";
+        font-family: FontAwesome;
+        position: absolute;
+        right: 3%;
+        top: 50%;
+        display: block;
+        color: green;
+        font-size: 30px;
+        margin-top: -50px;
+      }
+    }
   }
   .btn-footer {
-    margin-top: 15px;
+    margin-top: rem-calc(15);
     a {
-      margin-left: 15px;
+      margin-left: rem-calc(15);
     }
   }
 }
+
