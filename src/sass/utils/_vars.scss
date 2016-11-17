@@ -17,6 +17,7 @@ $form-grey: #f2f2f2;
 $grid-columns: 12;
 $grid-max-width: 60em;
 
+$rem-base: 16px !default;
 
 $breakpoints: (
  'tiny':   (max-width:  20em),
@@ -26,7 +27,6 @@ $breakpoints: (
 );
 
 %clearfix {
-  *zoom: 1;
   &:before,
   &:after {
   content: " ";
@@ -36,10 +36,32 @@ $breakpoints: (
     clear: both;
   }
 }
-%strong {
+.clearfix {
+  @extend %clearfix;
+}
+
+.strong {
   font-family: bold “EYBold”, Arial;
 }
-%caption{
+.caption{
   color: $dark-grey;
   font-family: normal italic “EYLightItalic”, Arial;
 }
+.hide {
+  display: none;
+}
+.show {
+  display: inherit;
+}
+.float-left {
+  float: left;
+  text-align:left;
+}
+.float-right {
+  float: right;
+  text-align:right;
+}
+
+
+
+

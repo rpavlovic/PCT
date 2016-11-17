@@ -2,12 +2,12 @@ ul.tabs{
     margin: 0px;
     padding: 0px;
     list-style: none;
-    margin: 0 10px;
+    margin: rem-calc(0 10);
     li {
       background: none;
       color: #222;
       display: inline-block;
-      padding: 10px 15px;
+      padding: rem-calc(10 15);
       cursor: pointer;
       h3 {
         color: #60b9ff;
@@ -28,7 +28,7 @@ ul.tabs{
   visibility: hidden;
   &.current {
     opacity: 1;
-    padding: 20px;
+    padding: rem-calc(20);
     height: auto;
     visibility: visible;
     @include trans(visibility 100ms linear, opacity 500ms linear);
@@ -42,9 +42,9 @@ ul.tabs{
   h1,
   p {
     color: $white;
-    padding-left: 10px;
+    padding-left: rem-calc(10);
   }
   h1 {
-    padding-top: 25px;
+    padding-top: rem-calc(10);
   }
 }

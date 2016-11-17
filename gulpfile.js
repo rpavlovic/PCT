@@ -7,12 +7,12 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync').create(),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
-    compile = require('gulp-jqtmpl'),
     nunjucksRender = require('gulp-nunjucks-render'),
     data = require('gulp-data'),
     imagemin = require('gulp-imagemin'),
     newer = require('gulp-newer'),
-    flatten = require('gulp-flatten');
+    flatten = require('gulp-flatten'),
+    del = require('del');
 
 // paths
 var sassSrc = 'src/sass/**/*.scss',
@@ -58,10 +58,17 @@ gulp.task('js', function () {
     .pipe(gulp.dest(jsDest));
 });
 
+function getDataForFile(file) {
+  console.log(file.relative);
+  return {
+    example: 'data loaded for ' + file.relative
+  };
+}
 
 gulp.task('nunjucks', function () {
   // Gets .html and .nunjucks files in pages
  return gulp.src('src/templates/**/*.+(html|njk)')
+    .pipe(data(getDataForFile))
     // Renders template with nunjucks
     .pipe(nunjucksRender(defaults))
     // .pipe(data(function() {
@@ -86,6 +93,7 @@ gulp.task('nunjucks-watch', ['nunjucks'], function (done) {
     browserSync.reload();
     done();
 });
+
 // create a task that ensures the `js` task is complete before
 // reloading browsers
 gulp.task('js-watch', ['js'], function (done) {
@@ -114,6 +122,17 @@ gulp.task('serve', ['styles', 'js-watch'], function() {
     gulp.watch(imgSrc, ['imagemin']);
     gulp.watch(htmlSrc, ['nunjucks']).on('change', browserSync.reload);
 });
+
+//Remove build folder before runing build task
+gulp.task('clean-all', function () {
+  return del([
+    // here we use a globbing pattern to match everything inside the `build` folder
+    'build/**/*',
+    'build/',
+    'node_modules/'
+  ]);
+});
+
 
 // Build
 gulp.task('build', ['data', 'nunjucks' ,'styles', 'js', 'fonts', 'imagemin']);

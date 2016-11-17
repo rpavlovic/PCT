@@ -7,11 +7,11 @@
   border: none;
   background-color: $dark-grey;
   @include box-shadow(0 1px 3px 0px rgba(0, 0, 0, 0.4));
-  margin: 0 2px;
+  margin: rem-calc(0 2);
   text-decoration: none;
   // text-shadow: 0 .063em #000;
   font: bold 1rem sans-serif;
-  border-radius: 3px;
+  border-radius: rem-calc(3);
   &:hover {
     box-shadow: inset 0 1px 3px 0px rgba(0, 0, 0, 0.4);
   }
@@ -22,9 +22,15 @@
   &:active {
     background:darken($dark-grey, 25%);
   }
+  &:disabled {
+     cursor: default;
+     &:hover {
+      box-shadow: none;
+    }
+  }
 }
 //custom button colors.
-@mixin button-bg($bg, $color: $white) {
+@mixin button-bg($bg, $color: $white, $disabled: $bg) {
   background: $bg;
   color: $color;
   &:hover {
@@ -32,6 +38,9 @@
     @include trans(all 0.3s ease);
   }
   &:active {
+    background:darken($bg, 25%);
+  }
+  &:disabled {
     background:darken($bg, 25%);
   }
 }
@@ -42,12 +51,12 @@ button {
 }
 .btn {
   &-blue {
-    @include button-bg(#3498db);
+    @include button-bg(#3498db, $white, #3498db);
   }
-  &.disabled {
+  &:disabled {
     @include button-bg($disabled-btn, #ccc);
   }
   &-light-grey {
-    @include button-bg(#ececec, #999999);
+    @include button-bg(#ececec, #999999, #ececec);
   }
 }
