@@ -3,7 +3,6 @@ footer {
   bottom: 0;
   background-color: $darker-grey;
   color: $white;
-  padding: rem-calc(29);
   width: 100%;
   -webkit-animation: fadeIn 1s;
   -moz-animation: fadeIn 1s;
@@ -13,5 +12,22 @@ footer {
   @include breakpoint('medium') {
     opacity: 0;
     display:none;
+  }
+  li {
+    &.current {
+      background: #644a6e;
+    }
+    &.projects a:before {
+      content: "\f03a";
+    }
+    &.reports a:before {
+      content: "\f15c";
+    }
+    &.about a:before {
+      content: "\f05a";
+    }
+    &.profile a:before {
+      content: "\f007";
+    }
   }
 }

@@ -1,0 +1,50 @@
+nav {
+  li {
+    float: left;
+    text-align: center;
+    a {
+      display: block;
+      padding: rem-calc(15 0);
+      font-size: rem-calc(20);
+      &:before {
+        font-family: FontAwesome;
+        display: block;
+      }
+      &.active {
+        color: $white;
+      }
+    }
+  }
+  //header navigation
+  header & {
+    opacity: 0;
+    display: none;
+    @include breakpoint('medium') {
+      opacity: 1;
+      display: block;
+    }
+    li {
+      padding: 0 20px;
+      border-left: solid 1px #262626;
+      border-right: solid 1px #333;
+      a {
+        color: #b3b3b3;
+        &.active {
+          color: $white;
+        }
+      }
+      &.current {
+        background: #1a1a1a;
+      }
+    }
+  }
+  //footer navigation
+  footer & {
+    li {
+      width: 25%;
+    }
+    span {
+      display: none;
+    }
+  }
+}

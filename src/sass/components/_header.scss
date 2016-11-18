@@ -1,14 +1,13 @@
 header {
   background-color: $darker-grey;
-  padding: rem-calc(20);
   color: $white;
-  nav {
-    opacity: 0;
-    @include breakpoint('medium') {
-      opacity: 1;
-    }
-  }
   .home-page & {
     padding: 0;
+    .app-logo {
+      padding: 0;
+    }
+  }
+  .app-logo {
+    padding: rem-calc(10);
   }
 }
