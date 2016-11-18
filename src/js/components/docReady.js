@@ -1,6 +1,11 @@
 (function ($) {
   $(function () {
-    loadJSON.initJSON("/data/gw_client_data.json");
+    var path = window.location.pathname;
+
+    //TODO check what pages to load what json
+    if(path != '/') {
+      loadJSON.initJSON("/data/gw_client_data.json");
+     }
 
     //Get started button show tabs to sign in or register
     showLogin.initLoginTabs();

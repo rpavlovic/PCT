@@ -7,34 +7,34 @@ var fillForm = (function ($) {
   'use strict';
 
   function initFillForm(form) {
-
+    //TODO for validation might need an object with data
+    // var data = {};
     var fields = $(form + "  :input:not(button)"),
         empty = true;
 
-    //check if the filed values are being entered.
-    fields.bind('propertychange change click keyup input paste', function(e) {
+    fields.bind('blur paste', function(event) {
+      resetAll();
       empty = false;
 
       //for each field create a var. to record that all fields are filled.
-      fields.each(function(e) {
-        if ($(this).val() == '') {
+      fields.each(function(i) {
+        if ($(this).val() === '') {
           empty = true;
+          $(form + ' :reset').on('click', function() {
+            resetAll();
+          })
         } else {
           $(this).after('<span class="check"></span>').fadeIn();
+          $(form + ' :submit').prop('disabled', false);
         }
       });
-
-      //disable/enable submit on empty and on reset click.
-      if (empty) {
-        $(form + ' :reset').on('click', function() {
-          $(form + ' :submit').prop('disabled', true);
-          $('span.check').remove();
-        })
-      } else {
-        $(form + ' :submit').prop('disabled', false);
-
-      }
     });
+
+    function resetAll() {
+      $('span.check').remove();
+      $(form + ' :submit').prop('disabled', true);
+    }
+
   }
 
   return {

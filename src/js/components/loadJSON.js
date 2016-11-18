@@ -29,8 +29,8 @@ var loadJSON = (function ($) {
          html: items.join( "" )
        }).appendTo( "#json_data" );
     })
-    .fail(function() {
-      console.log( "error!!" );
+    .fail(function(jqXHR, exception) {
+      console.log(jqXHR, exception);
     })
     .always(function() {
       console.log( "complete" );
