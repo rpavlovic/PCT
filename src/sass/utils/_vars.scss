@@ -15,15 +15,15 @@ $form-grey: #f2f2f2;
 
 // grid variables
 $grid-columns: 12;
-$grid-max-width: 60em;
+$grid-max-width: 60rem;
 
 $rem-base: 16px !default;
 
 $breakpoints: (
- 'tiny':   (max-width:  20em),
- 'small':  (min-width:  26em),
- 'medium': (min-width:  62em),
- 'large':  (min-width: 75em)
+ 'tiny':   (max-width:  20rem),
+ 'small':  (min-width:  26rem),
+ 'medium': (min-width:  62rem),
+ 'large':  (min-width: 75rem)
 );
 
 %clearfix {

@@ -20,11 +20,6 @@ form {
         color: red;
       }
     }
-    // input:-webkit-autofill,
-    // textarea:-webkit-autofill,
-    // select:-webkit-autofill {
-
-    // }
     & + span {
       position: relative;
       display: block;
@@ -47,10 +42,8 @@ form {
       margin-left: rem-calc(15);
     }
     button {
-      width: 100%;
       margin-bottom: 20px;
       @include breakpoint(small) {
-        width: auto;
         margin-bottom: 0;
       }
     }

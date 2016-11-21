@@ -33,7 +33,7 @@ var loadJSON = (function ($) {
       console.log(jqXHR, exception);
     })
     .always(function() {
-      console.log( "complete" );
+      console.log( "complete JSON" );
     });
   }
   return {
