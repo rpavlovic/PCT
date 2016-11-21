@@ -14,6 +14,11 @@
     fillForm.initFillForm('form.login');
     fillForm.initFillForm('form.register');
     fillForm.initFillForm('form.forgotpassword');
+    fillForm.initFillForm('form.form-edit-profile');
+
+    //show inplace form
+    editProfileForm.initEditProfileForm('form.form-edit-profile');
+
   });
 
 })(jQuery);

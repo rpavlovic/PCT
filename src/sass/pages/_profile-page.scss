@@ -1,0 +1,20 @@
+.profile-page {
+  p {
+    margin-bottom: rem-calc(3);
+  }
+  img {
+    &.profile-image {
+      width: 100%;
+    }
+  }
+  .submit-profile {
+    position: absolute;
+    left: 0;
+  }
+  form {
+    label {
+      display: block;
+      margin-bottom: rem-calc(3);
+    }
+  }
+}
