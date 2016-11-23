@@ -11,11 +11,18 @@
     showLogin.initLoginTabs();
 
     //Enbale submit when fileds are filled.
-    fillForm.initFillForm('form.login');
-    fillForm.initFillForm('form.register');
-    fillForm.initFillForm('form.forgotpassword');
-    fillForm.initFillForm('form.form-edit-profile');
-
+    if($('form.login').length > 0) {
+      fillForm.initFillForm('.login');
+    }
+    if($('form.register').length > 0) {
+      fillForm.initFillForm('.register');
+    }
+    if($('form.forgotpassword').length > 0) {
+      fillForm.initFillForm('.forgotpassword');
+    }
+    if($('form.form-edit-profile').length > 0) {
+      fillForm.initFillForm('.form-edit-profile');
+    }
     //show inplace form
     editProfileForm.initEditProfileForm('form.form-edit-profile');
 

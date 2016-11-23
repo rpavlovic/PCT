@@ -6,25 +6,25 @@
     <div class="col-2">
       <h1>Profile</h1>
     </div>
-    <div class="col-10 relative">
+    <div class="col-10">
       <button class="btn btn-blue edit-profile" value="Edit Profile" type="button">Edit Profile</button>
       <button class="btn btn-blue submit-profile hide" value="Submit" type="submit">Submit</button>
     </div>
   </div>
-
+<div id="results"></div>
   <div class="row">
     <div class="col-2">
       <img class="profile-image" src="/images/profile_avatar.png" alt="profile name">
     </div>
     <div class="col-10">
-      <form class="form-edit-profile" name="edit-profile" action="" method="POST">
+      <form class="form-edit-profile" name="edit-profile" action="#" method="POST">
         <div class="row">
           <div class="col-3-sm col-2">
             <strong>Name</strong>
           </div>
           <div class="col-9-sm col-10">
             <label>Samantha Lee</label>
-            <input type="text" name="editText" value="Samantha Lee" class="hide">
+            <input type="text" name="editText" value="Samantha Lee" class="hide" placeholder="Name">
           </div>
         </div>
 
@@ -34,7 +34,7 @@
           </div>
           <div class="col-9-sm col-10">
             <label><a href="mailto:sam.lee@webershandwick.com" title="email">sam.lee@webershandwick.com</a></label>
-            <input type="email" name="editText" value="sam.lee@webershandwick.com" class="hide">
+            <input type="email" name="editText" value="sam.lee@webershandwick.com" class="hide" placeholder="Email Address">
           </div>
         </div>
 
@@ -43,8 +43,8 @@
             <strong>Password</strong>
           </div>
           <div class="col-9-sm col-10">
-            <label>****</label>
-            <input type="password" name="editText" value="***" class="hide">
+            <label>********</label>
+            <input type="password" name="editText" value="" class="hide" placeholder="Password">
           </div>
         </div>
 
@@ -54,7 +54,7 @@
           </div>
           <div class="col-9-sm col-10">
             <label><a href="tel://1-555-555-5555" title="phone number">+1 (555) 555-5555</a></label>
-            <input type="tel" name="editText" value="+1 (555) 555-5555" class="hide">
+            <input type="tel" pattern= "\d{3}[\-]\d{3}[\-]\d{4}" name="editText" value="+1 (555) 555-5555" class="hide" placeholder="Phone Number">
           </div>
         </div>
 
@@ -63,8 +63,8 @@
             <strong>Cell Phone Number</strong>
           </div>
           <div class="col-9-sm col-10">
-            <label><a href="tel://1-555-555-5555" title="phone number">+1 (555) 555-5555</a></label>
-            <input type="tel" name="editText" value="+1 (555) 555-5555" class="hide">
+            <label><a href="tel://1-111-555-5555" title="phone number">+1 (111) 555-5555</a></label>
+            <input type="tel" pattern= "\d{3}[\-]\d{3}[\-]\d{4}" name="editText" value="+1 (111) 555-5555" class="hide" placeholder="Cell Phone number">
           </div>
         </div>
 
@@ -76,11 +76,11 @@
 
             <section>
               <label><strong>NYC Office</strong></label>
-              <input type="text" name="editText" value="NYC Office" class="hide">
+              <input type="text" name="editText" value="NYC Office" class="hide" placeholder="Name of Office">
               <label>1540 Broadway, 41 Floor</label>
-              <input type="text" name="editText" value="1540 Broadway, 41 Floor" class="hide">
+              <input type="text" name="editText" value="1540 Broadway, 41 Floor" class="hide" placeholder="Building number and Street Name  ">
               <label>New York, NY 10036</label>
-              <input type="text" name="editText" value="New York, NY 10036" class="hide">
+              <input type="text" name="editText" value="New York, NY 10036" class="hide" placeholder="City, State, Zip">
             </section>
 
           </div>

@@ -52,9 +52,9 @@ gulp.task('js', function () {
          console.log(e);
       })
     )
-    .pipe(sourcemaps.write())
     .pipe(flatten())
     .pipe(concat('base.js'))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(jsDest));
 });
 
