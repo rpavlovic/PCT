@@ -10,16 +10,16 @@ var editProfileForm = (function ($) {
      $('input[name=editText]').hide();
      $(form + ' span').hide();
 
-    $('.edit-profile').click(function() {
-      $('form label').fadeOut('slow');
-      $(this).fadeOut('slow');
-      $('input[name=editText]').fadeIn('slow').removeClass('hide');
-      $('button[type="submit"]').fadeIn('slow');
-      $('form span').show();
+    $('.edit-profile').on('click',function() {
+      $('form label').fadeToggle('slow');
+      $('input[name=editText]').fadeToggle('slow').removeClass('hide');
+      $('button[type="submit"]').fadeToggle('slow');
+      $('form span').toggle();
+      $(this).html($(this)
+              .html() == 'Edit Profile' ? 'Exit' : 'Edit Profile')
+              .val($(this).val() == 'Edit Profile' ? 'Exit' : 'Edit Profile');
     });
   }
-
-
   return {
     initEditProfileForm:initEditProfileForm
   }

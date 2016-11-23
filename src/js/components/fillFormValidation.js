@@ -6,18 +6,17 @@
 var fillForm = (function ($) {
   'use strict';
 
-  function initFillForm(form) {
-    //TODO for validation might need an object with data
-    // var data = {};
+  function initFillForm(form, callback) {
 
-    var fields = $(form + "  :input:not(button)"),
-        empty = true;
+  var fields = $(form + "  :input:not(button)"),
+      empty = true;
 
-  //check if fields are already filled.
-   checkFieldsValue();
+    //check if fields are already filled.
+    checkFieldsValue();
+    submitProfileForm();
 
     // when typing check filled inputs.
-    fields.bind('blur paste input', function(event) {
+    fields.on('blur paste input', function(event) {
       resetAll();
       checkFieldsValue();
     });
@@ -42,8 +41,31 @@ var fillForm = (function ($) {
       $(form).find('span.check').remove();
       $(form + ' :submit').prop('disabled', true);
     }
-  }
 
+    function submitProfileForm() {
+      $('button[type="submit"]').on('click', function(e) {
+        var fields_values = fields.serializeArray(),
+            labels = fields.siblings('label');
+
+        $.each(labels, function(i, field) {
+          $(this).text(fields_values[i].value);
+        });
+
+        //create a jason string to send back in the future
+        var jsonString = JSON.stringify(fields_values);
+
+
+        $('input[name=editText]').fadeOut('slow').addClass('hide');
+        $('.submit-profile').fadeOut('slow');
+
+        $(form).find('label').fadeIn('slow');
+        $(form).find('span.check').hide();
+
+        $('button.edit-profile').val('Edit Profile').html('Edit Profile');
+        $('button.edit-profile').fadeIn('slow');
+      });
+    }
+  }
   return {
     initFillForm:initFillForm
   }
