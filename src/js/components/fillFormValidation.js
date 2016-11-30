@@ -10,13 +10,12 @@ var fillForm = (function ($) {
 
   var fields = $(form + "  :input:not(button)"),
       empty = true;
-
     //check if fields are already filled.
     checkFieldsValue();
     submitProfileForm();
 
     // when typing check filled inputs.
-    fields.on('blur paste input', function(event) {
+    fields.on('blur paste input change', function(event) {
       resetAll();
       checkFieldsValue();
     });
@@ -44,18 +43,16 @@ var fillForm = (function ($) {
 
     function submitProfileForm() {
       $('button[type="submit"]').on('click', function(e) {
-        var fields_values = fields.serializeArray(),
-            labels = fields.siblings('label');
+        var fields_values = fields.serializeArray();
 
-        $.each(labels, function(i, field) {
-          $(this).text(fields_values[i].value);
+        $.each(fields, function(i, field) {
+          $('label[for="'+$(this).attr('name')+'"]').text(fields_values[i].value);
         });
 
         //create a jason string to send back in the future
         var jsonString = JSON.stringify(fields_values);
 
-
-        $('input[name=editText]').fadeOut('slow').addClass('hide');
+        $('input[data-name="editText"]').fadeOut('slow').addClass('hide');
         $('.submit-profile').fadeOut('slow');
 
         $(form).find('label').fadeIn('slow');
@@ -63,6 +60,16 @@ var fillForm = (function ($) {
 
         $('button.edit-profile').val('Edit Profile').html('Edit Profile');
         $('button.edit-profile').fadeIn('slow');
+
+        //write JSON into local storage
+        localStorage.setItem('storeProfile', jsonString);
+      //  console.log(localStorage.setItem('storeProfile', JSON.stringify(jsonString)));
+        //retrieve the object
+        var obj = JSON.parse(localStorage.getItem('storeProfile'));
+        //load the new file into the html
+        // if(obj) {
+        //   console.log(obj);
+        // }
       });
     }
   }
