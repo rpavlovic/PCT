@@ -7,12 +7,12 @@ var editProfileForm = (function ($) {
   'use strict';
 
   function initEditProfileForm(form) {
-     $('input[name=editText]').hide();
+     $('input[data-name="editText"]').hide();
      $(form + ' span').hide();
 
     $('.edit-profile').on('click',function() {
       $('form label').fadeToggle('slow');
-      $('input[name=editText]').fadeToggle('slow').removeClass('hide');
+      $('input[data-name="editText"]').fadeToggle('slow').removeClass('hide');
       $('button[type="submit"]').fadeToggle('slow');
       $('form span').toggle();
       $(this).html($(this)
