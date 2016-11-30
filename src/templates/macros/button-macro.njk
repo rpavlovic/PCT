@@ -1,0 +1,6 @@
+{% macro field(type='button', class='btn', value='',  text) %}
+
+<button type="{{ type }}" class="{{ class }}"
+  value="{{ value | escape }}"
+>{{ text }}</button>
+{% endmacro %}

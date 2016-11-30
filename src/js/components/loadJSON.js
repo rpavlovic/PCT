@@ -26,7 +26,6 @@ var loadJSON = (function ($) {
   function Iterate_profile_JSON(data, frm) {
    var fields = $(frm + "  :input:not(button)"),
       fields_values = fields.serializeArray();
-      console.log(fields_values);
 
     $.each(data, function(key, val) {
       for (var key in val) {
