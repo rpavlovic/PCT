@@ -13,6 +13,7 @@
   font: bold 1rem sans-serif;
   border-radius: rem-calc(3);
   width: 100%;
+  position: relative;
   @include breakpoint('small') {
     width: auto;
   }
@@ -62,5 +63,32 @@ button {
   }
   &-light-grey {
     @include button-bg(#ececec, #999999, #ececec);
+  }
+}
+//plus content on the button.
+.plus {
+  &::before {
+    display: inline-block;
+    content:"+";
+    width: 0;
+    height: 0;
+    vertical-align: middle;
+    position: absolute;
+    left: 13px;
+  }
+}
+//arrow after the text in the dropdown button.
+button[data-toggle] {
+  &::after {
+    display: inline-block;
+    content:"";
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-top: 4px solid\9;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
   }
 }

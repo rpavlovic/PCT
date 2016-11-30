@@ -2,18 +2,15 @@
 {% set pgProfile = true %}
 {% set base_path = "/" %}
 {% block content %}
-
-<div class="row">
-  <div class="col-2">
+{% import "macros/button-macro.njk" as btn %}
+<div class="clearfix page-header">
     <h1>Profile</h1>
-  </div>
-  <div class="col-10">
-    <button class="btn btn-blue edit-profile" value="Edit Profile" type="button">Edit Profile</button>
-    <button class="btn btn-blue submit-profile hide" value="Submit" type="submit">Submit</button>
-  </div>
+    <section>
+      {{ btn.field(type="button", class='btn btn-blue edit-profile', value='Edit Profile', 'Edit Profile') }}
+      {{ btn.field(type="submit", class='btn btn-blue submit-profile hide', value='Submit', 'Submit') }}
+    </section>
 </div>
-
-<div id="results"></div>
+{# <div id="results"></div> #}
   <div class="row">
     <div class="col-2">
       <img class="profile-image" src="/images/profile_avatar.png" alt="profile name">

@@ -29,6 +29,10 @@
     //show inplace form
     editProfileForm.initEditProfileForm('form.form-edit-profile');
 
+    //dropdown selects and buttons.
+    dropDown.initDropDown('[data-toggle]');
+
   });
+
 
 })(jQuery);

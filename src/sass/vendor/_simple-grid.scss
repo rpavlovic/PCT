@@ -36,19 +36,23 @@ $breakpoint-med: 462em;
 $breakpoint-large: 75em;
 
 .container {
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-
+  width: 100%;
+  padding-left: rem-calc(20);
+  padding-right: rem-calc(20);
+  &.centered {
+    margin-left: auto;
+    margin-right: auto;
+  }
   //when in large
    @include breakpoint('medium') {
-    width: 80%;
+   // width: 80%;
   }
   //when in medium
    @include breakpoint('large') {
-    width: 75%;
-    max-width: 60rem;
+    // width: 75%;
+    // max-width: 60rem;
   }
+
 }
 
 .row {
