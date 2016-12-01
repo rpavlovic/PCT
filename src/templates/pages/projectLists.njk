@@ -4,9 +4,234 @@
 {% import "macros/button-macro.njk" as btn %}
 {% block content %}
 
-  <div class="clearfix page-header">
-    <h1>Project Information</h1>
+<div class="clearfix page-header">
+  <h1>Project Information</h1>
 </div>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<form name="project-info" action="#" method="POST" class="project-info">
+  <div class="row">
+    <div class="col-2">
+      <h3>Location</h3>
+    </div>
+    <div class="col-10">
+      <div class="row">
+        <div class="col-4">
+          <div class="field-wrapper">
+            <label for="regions">Regions</label>
+            <select name="regions">
+              <option value="The Americas">The Americas</option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="Africa">Africa</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="field-wrapper">
+            <label for="regions">Regions</label>
+            <select name="regions">
+              <option value="The Americas">The Americas</option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="Africa">Africa</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="field-wrapper">
+            <label for="regions">Regions</label>
+            <select name="regions">
+              <option value="The Americas">The Americas</option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="Africa">Africa</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="field-wrapper">
+            <label for="regions">Regions</label>
+            <select name="regions">
+              <option value="The Americas">The Americas</option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="Africa">Africa</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2">
+      <h3>Project Details</h3>
+    </div>
+    <div class="col-10">
+      <div class="row">
+          <input type="radio" id="radio1" class="radio1" name="group1">
+          <label for="radio1">Existing Client</label>
+          <input type="radio" id="radio2" class="radio2" name="group1">
+          <label for="radio2">New Client</label>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div class="field-wrapper">
+            <label for="regions">Regions</label>
+            <select name="regions">
+              <option value="The Americas">The Americas</option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="Africa">Africa</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="field-wrapper">
+            <label for="fname">First Name</label>
+            <input name="fname" placeholder="First Name" />
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="field-wrapper">
+            <label for="regions">Regions</label>
+            <select name="regions">
+              <option value="The Americas">The Americas</option>
+              <option value="Asia">Asia</option>
+              <option value="Europe">Europe</option>
+              <option value="Africa">Africa</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="field-wrapper">
+            <label for="city">City</label>
+            <input name="city" placeholder="City" value="Springville" />
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="field-wrapper">
+            <label for="city">City</label>
+            <input name="city" placeholder="City" value="Springville" />
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="field-wrapper">
+            <label for="city">City</label>
+            <input name="city" placeholder="City" value="Springville" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2">
+      <h3>Timing</h3>
+    </div>
+    <div class="col-10">
+      <div class="row">
+        <div class="col-4">
+          <div class="field-wrapper">
+            <label for="planby">Plan By</label>
+            <select name="planby">
+              <option value="Daily">Daily</option>
+              <option value="Weekly">Weekly</option>
+              <option value="Monthly">Monthly</option>
+              <option value="Yearly">Yearly</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="field-wrapper">
+              <label for="date">Estimated Start Date</label>
+              <input type="text" placeholder="Estimated Start Date" class="datepicker" name="date" />
+              <a class="fa fa-calendar"></a>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="field-wrapper">
+            <label for="fname">First Name</label>
+            <input name="fname" placeholder="First Name" />
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="field-wrapper">
+            <label for="city">City</label>
+            <input name="city" placeholder="City" value="Springville" />
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="field-wrapper">
+            <label for="city">City</label>
+            <input name="city" placeholder="City" value="Springville" />
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="field-wrapper">
+            <label for="city">City</label>
+            <input name="city" placeholder="City" value="Springville" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2">
+      <h3>Deliverables/Work Streams</h3>
+    </div>
+    <div class="col-10">
+      <div class="row">
+        <div class="col-11">
+          <div class="field-wrapper">
+            <label for="fname">First Name</label>
+            <input name="fname" placeholder="First Name" />
+          </div>
+        </div>
+        <div class="col-1">
+          {{ btn.field(type="button", class='btn btn-blue fa fa-trash', value='', '') }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-11">
+          <div class="field-wrapper">
+            <label for="city">City</label>
+            <input name="city" placeholder="City" value="Springville" />
+          </div>
+        </div>
+        <div class="col-1">
+          {{ btn.field(type="button", class='btn btn-blue fa fa-trash', value='', '') }}
+        </div>
+        </div>
+      <div class="row">
+        <div class="col-11">
+          <div class="field-wrapper">
+            <label for="city">City</label>
+            <input name="city" placeholder="City" value="Springville" />
+          </div>
+        </div>
+        <div class="col-1">
+          {{ btn.field(type="button", class='btn btn-blue fa fa-trash', value='', '') }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-11">
+          <div class="field-wrapper">
+            <label for="city">City</label>
+            <input name="city" placeholder="City" value="Springville" />
+          </div>
+        </div>
+        <div class="col-1">
+          {{ btn.field(type="button", class='btn btn-blue fa fa-trash', value='', '') }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-11 offset-2">
+          {{ btn.field(type="button", class='btn btn-blue add-row plus', value='Add Delivarable/ Stream', 'Add Delivarable/ Stream') }}
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
 {# <div id="json_data">
 </div> #}
 {# {% include "partials/formStartProject_general.njk" %} #}

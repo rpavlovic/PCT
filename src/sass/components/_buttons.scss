@@ -77,6 +77,19 @@ button {
     left: 13px;
   }
 }
+.trash::before {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  position: absolute;
+  left: 13px;
+  content: "\f014";
+  font-family: "FontAwesome";
+}
+.add-row {
+  width: 100%;
+}
 //arrow after the text in the dropdown button.
 button[data-toggle] {
   &::after {

@@ -73,6 +73,9 @@ $breakpoint-large: 75em;
   }
 }
 
+[class^="col"].offset-2 {
+  margin-left: 18%;
+}
 .row::after {
   content: "";
   display: table;

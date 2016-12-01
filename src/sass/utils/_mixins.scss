@@ -35,7 +35,10 @@
   -moz-box-shadow: $args;
   box-shadow: $args;
 }
-
+%reset-webkit {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
 @mixin breakpoint($name) {
  @if map-has-key($breakpoints, $name) {
    @media #{inspect(map-get($breakpoints, $name))} {

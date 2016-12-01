@@ -32,7 +32,12 @@
     //dropdown selects and buttons.
     dropDown.initDropDown('[data-toggle]');
 
-  });
+    //floating label in the input fields.
+    floatLabel.initfloatLabel();
+    //calendars
+    $( ".datepicker" ).datepicker();
 
+    addRemoveFields.initaddRemoveFields('.project-info');
+  });
 
 })(jQuery);

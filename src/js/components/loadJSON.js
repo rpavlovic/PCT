@@ -51,8 +51,6 @@ var loadJSON = (function ($) {
           "class": "data-list",
           html: items.join( "" )
         }).appendTo( "#json_data" );
-      } else {
-        //values and lables populate;
       }
     })
     .fail(function(jqXHR, exception) {
