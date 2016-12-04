@@ -39,7 +39,10 @@ h6 {
   margin-bottom: .625rem;
   color: $default-grey;
 }
-
+span,
+label {
+  font-family: “EYLight”, Arial;
+}
 p {
   font: 1rem/1.3125rem “EYLight”, Arial;
   color: $medium-grey;

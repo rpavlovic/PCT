@@ -5,9 +5,8 @@
 */
 var addRemoveFields = (function ($) {
   'use strict';
-  var cloned_row = $('.main-input').clone(true).html();
+    function initAddRemoveFields(form) {
 
-  function initaddRemoveFields(form) {
     // var html_row = '<div class="row\">' +
     //     '<div class="col-11">'  +
     //       '<div class="field-wrapper">'+
@@ -18,31 +17,26 @@ var addRemoveFields = (function ($) {
     //       '<button type="button" class="btn btn-blue fa fa-trash" value=""></button>' +
     //       '</div></div>';
 
+    var count_rows = $('.deliverables').find($('.row .row')).length;
 
-    $('.main-input').on('click', function(e) {
+    $(form + ' .row .row').on('click',  function(e) {
       var target = $(e.target);
       var $this = $(this);
-      var remove_row = $this;
+      var cloned_input = $this.prev().clone(true, true);
 
       if(target.hasClass('fa-trash')) {
-        remove_row.remove();
+        $this.detach();
+        return $this;
       }
+
       if(target.hasClass('add-row')) {
-        var row = $(this).prev().clone(true);
-        console.log(cloned_row);
-        $(this).prepend(cloned_row);
-        // remove_row.prev().before(row).find( 'input' ).val( '' );
-        // if(row.length > 0) {
-        //   remove_row.prev().before(row).find( 'input' ).val( '' );
-        // }  else {
-        //   remove_row.before(html_row);
-        // }
+        var clear_input = cloned_input.insertAfter($this.prev());
+        clear_input.find('input, label').removeClass('show').val('');
       }
     });
   }
-
   return {
-    initaddRemoveFields:initaddRemoveFields
+    initAddRemoveFields:initAddRemoveFields
   }
 
 })($);
