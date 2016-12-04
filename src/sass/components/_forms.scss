@@ -1,7 +1,9 @@
 form {
-  .row .row [class^="col"]{
-    margin-left: rem-calc(5px);
-    margin-right: rem-calc(5px);
+  .row .row [class^="col"] {
+    @include breakpoint(small) {
+      margin-left: rem-calc(5px);
+      margin-right: rem-calc(5px);
+    }
   }
   input:not([type=checkbox]):not([type=radio]) {
     background-color: $form-grey;
@@ -129,6 +131,16 @@ form {
       font-size: 25px;
       color: $link-color;
     }
+  }
+  &.project-info {
+    > .row {
+      border-bottom: solid 1px $light-grey;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+    }
+  }
+  .radio-group {
+    margin-bottom:20px;
   }
 }
 

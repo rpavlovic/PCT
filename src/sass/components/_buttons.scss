@@ -12,7 +12,7 @@
   // text-shadow: 0 .063em #000;
   font: bold 1rem sans-serif;
   border-radius: rem-calc(3);
-  width: 100%;
+  width: auto;
   position: relative;
   @include breakpoint('small') {
     width: auto;
