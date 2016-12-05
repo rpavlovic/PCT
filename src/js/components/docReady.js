@@ -38,6 +38,7 @@
     $( ".datepicker" ).datepicker();
 
     addRemoveFields.initAddRemoveFields('.project-info');
+    
   });
 
-})(jQuery);
+})($);
