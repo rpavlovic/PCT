@@ -50,6 +50,7 @@ gulp.task('js', function () {
     .pipe(uglify()
       .on('error', function(e) {
          console.log(e);
+         this.emit('end');
       })
     )
     .pipe(flatten())

@@ -13,7 +13,7 @@
     //Get started button show tabs to sign in or register
     showLogin.initLoginTabs();
 
-    //Enbale submit when fileds are filled.
+    //Enable submit when fileds are filled.
     if($('form.login').length > 0) {
       fillForm.initFillForm('.login');
     }
@@ -26,13 +26,19 @@
     if($('form.form-edit-profile').length > 0) {
       fillForm.initFillForm('.form-edit-profile');
     }
-    //show inplace form
+    //show in-place form.
     editProfileForm.initEditProfileForm('form.form-edit-profile');
 
-    //dropdown selects and buttons.
+    //drop-down selects and buttons.
     dropDown.initDropDown('[data-toggle]');
 
+    //floating label in the input fields.
+    floatLabel.initfloatLabel();
+    //calendars
+    $( ".datepicker" ).datepicker();
+
+    addRemoveFields.initAddRemoveFields('.project-info');
+    
   });
 
-
-})(jQuery);
+})($);

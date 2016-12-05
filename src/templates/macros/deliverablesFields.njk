@@ -1,0 +1,30 @@
+{% import "macros/button-macro.njk" as btn %}
+{% macro deliverablesRow(length=1) %}
+
+<div class="row deliverables">
+    <div class="col-2">
+        <h3>Deliverables / Work Streams</h3>
+    </div>
+    <div class="col-10">
+        {% for i in range(0, length) %}
+        <div class="row">
+            <div class="col-11  col-10-sm">
+                <div class="field-wrapper">
+                    <label for="Deliverables/Work Stream">Deliverables/Work Stream</label>
+                    <input name="city" placeholder="Deliverables/Work Stream" value="" />
+                </div>
+            </div>
+            <div class="col-1 col-2-sm">
+                {{ btn.field(type="button", class='btn btn-blue fa fa-trash', value='', '') }}
+            </div>
+        </div>
+        {% endfor %}
+        <div class="row">
+            <div class="col-11 offset-2">
+                {{ btn.field(type="button", class='btn btn-blue add-row plus', value='Add Delivarable/ Stream', 'Add Delivarable/ Stream') }}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endmacro %}

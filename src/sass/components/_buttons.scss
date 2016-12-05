@@ -12,7 +12,7 @@
   // text-shadow: 0 .063em #000;
   font: bold 1rem sans-serif;
   border-radius: rem-calc(3);
-  width: 100%;
+  width: auto;
   position: relative;
   @include breakpoint('small') {
     width: auto;
@@ -76,6 +76,19 @@ button {
     position: absolute;
     left: 13px;
   }
+}
+.trash::before {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  position: absolute;
+  left: 13px;
+  content: "\f014";
+  font-family: "FontAwesome";
+}
+.add-row {
+  width: 100%;
 }
 //arrow after the text in the dropdown button.
 button[data-toggle] {

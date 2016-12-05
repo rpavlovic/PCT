@@ -1,16 +1,21 @@
 form {
-  input {
+  .row .row [class^="col"] {
+    @include breakpoint(small) {
+      margin-left: rem-calc(5px);
+      margin-right: rem-calc(5px);
+    }
+  }
+  input:not([type=checkbox]):not([type=radio]) {
     background-color: $form-grey;
     border: solid 1px #dfdfdf;
-    padding: rem-calc(20 10 14 10);
-    margin: rem-calc(5 0);
+    padding: rem-calc(14 10);
+    // margin: rem-calc(5 0 0);
     width: 100%;
     display: inline-block;
     font-size: 1rem;
     &:focus {
       &::-webkit-input-placeholder {
         transition: opacity 0.5s 0.5s ease;
-        // transform: translate(0,-10px);
         opacity: 0;
       }
       &:-moz-placeholder {
@@ -32,7 +37,57 @@ form {
         display: block;
         color: green;
         font-size: 30px;
-        margin-top: -50px;
+        margin-top: -40px;
+      }
+    }
+  }
+  select {
+    @extend input:not([type=checkbox]):not([type=radio]);
+    border-radius: 0;
+    @extend %reset-webkit;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%2828, 117, 187%29'></polygon></svg>");
+    -webkit-background-size: 9px 6px;
+    background-size: 9px 6px;
+    background-position: right -1rem center;
+    -webkit-background-origin: content-box;
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    padding-right: 1.5rem;
+  }
+  input[type="radio"] {
+    display:none;
+    + label {
+      display: inline-block;
+      position: relative;
+      &::before {
+        width: 1.25rem;
+        height: 1.25rem;
+        content: '';
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        margin: 0 0.5em;
+        color: transparent;
+        vertical-align: middle;
+      }
+    }
+    &:checked + label {
+      font-weight: bold;
+      &::before {
+        border: 1px solid $yellow;
+      }
+      &::after {
+        content: "";
+        display: inline-block;
+        border: none;
+        border-radius: 50%;
+        margin: 0 0.5rem;
+        position: absolute;
+        background: $yellow;
+        width: 1rem;
+        height: 1rem;
+        left: 2px;
+        top: 2px;
       }
     }
   }
@@ -47,6 +102,45 @@ form {
         margin-bottom: 0;
       }
     }
+  }
+  //works with jQuery to show labels within the
+  //input fields.
+  .field-wrapper {
+    position: relative;
+    label {
+      position: absolute;
+      top: 4px;
+      left: 10px;
+      font-size: 11px;
+      color: #aaa;
+      transition: all 0.1s linear;
+      opacity: 0;
+      &.on {
+        color: $default-blue;
+      }
+      &.show {
+        top: 4px;
+        opacity: 1;
+      }
+    }
+    .fa-calendar {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      margin-top: -11px;
+      font-size: 25px;
+      color: $link-color;
+    }
+  }
+  &.project-info {
+    > .row {
+      border-bottom: solid 1px $light-grey;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+    }
+  }
+  .radio-group {
+    margin-bottom:20px;
   }
 }
 
