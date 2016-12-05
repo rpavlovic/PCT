@@ -4,7 +4,7 @@
 {% block content %}
 {% import "macros/button-macro.njk" as btn %}
 <div class="clearfix page-header">
-    <h1>Profile</h1>
+    <h1>{%set page_title = 'Profile'%} {{page_title}}</h1>
     <section>
       {{ btn.field(type="button", class='btn btn-blue edit-profile', value='Edit Profile', 'Edit Profile') }}
       {{ btn.field(type="submit", class='btn btn-blue submit-profile hide', value='Submit', 'Submit') }}
