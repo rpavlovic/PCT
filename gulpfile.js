@@ -72,12 +72,18 @@ gulp.task('nunjucks', function () {
     .pipe(data(getDataForFile))
     // Renders template with nunjucks
     .pipe(nunjucksRender(defaults))
+    .on('error', function(e) {
+       console.log(e);
+       this.emit('end');
+    })
     // .pipe(data(function() {
     //      return require('./src/data/gw_client_data.json')
     //    }))
     // output files in app folder
     .pipe(gulp.dest('build/templates'))
-    .pipe(browserSync.stream({once: true}));
+    browserSync.reload();
+    done();
+    // .pipe(browserSync.stream({once: true}));
 });
 
 // Data

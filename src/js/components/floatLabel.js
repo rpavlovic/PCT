@@ -9,7 +9,7 @@
      var onClass = "on",
         showClass = "show";
 
-    $("input, select").bind("checkval", function() {
+    $("input, select, textarea").bind("checkval", function() {
       var label = $(this).prev("label");
       if(this.value !== ""){
         label.addClass(showClass);

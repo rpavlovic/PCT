@@ -1,0 +1,25 @@
+{% extends "layout.njk" %}
+{% set pgProjects = true %}
+{% set base_path = "/" %}
+{% set page_title = "Project Summary" %}
+{% import "macros/button-macro.njk" as btn %}
+{% import 'macros/deliverables-macro.njk' as stream %}
+{% import 'macros/progress-nav-macro.njk' as progressNav %}
+{# {{ progressNav.progress-nav('projectLists') }} #}
+
+{% block content %}
+  {{ progressNav.active('Summary') }}
+  <div class="clearfix page-header">
+    <h1>{{page_title}}</h1>
+  </div>
+  <form action="#" method="POST" class="project-resources">
+
+    <div class="row">
+      <div class="col-12">
+        <a href="/templates/pages/projects.html" title="">{{ btn.field(type="submit", class='btn btn-green float-right arrowpointer', value='Complete and Save', 'Complete and Save') }}</a>
+        {{ btn.field(type="reset", class='btn btn-light-grey float-right', value='Clear Form', 'Clear Form') }}
+      </div>
+    </div>
+
+  </form>
+{% endblock %}
