@@ -9,7 +9,7 @@ form {
     background-color: $form-grey;
     border: solid 1px #dfdfdf;
     padding: rem-calc(14 10);
-    // margin: rem-calc(5 0 0);
+    margin-bottom: rem-calc(10);
     width: 100%;
     display: inline-block;
     font-size: 1rem;
@@ -37,9 +37,12 @@ form {
         display: block;
         color: green;
         font-size: 30px;
-        margin-top: -40px;
+        margin-top: -50px;
       }
     }
+  }
+  textarea {
+    @extend input:not([type=checkbox]):not([type=radio]);
   }
   select {
     @extend input:not([type=checkbox]):not([type=radio]);
@@ -115,11 +118,11 @@ form {
       color: #aaa;
       transition: all 0.1s linear;
       opacity: 0;
+      z-index: 10;
       &.on {
         color: $default-blue;
       }
       &.show {
-        top: 4px;
         opacity: 1;
       }
     }
@@ -134,13 +137,51 @@ form {
   }
   &.project-info {
     > .row {
-      border-bottom: solid 1px $light-grey;
+      border-bottom: solid 1px $gray-border;
       margin-bottom: 20px;
       padding-bottom: 20px;
     }
   }
   .radio-group {
     margin-bottom:20px;
+  }
+  &#progress-navigation {
+    li {
+      display: inline-block;
+      position: relative;
+      padding: 0 20px 0 0;
+      text-align: center;
+      font-size: 14px;
+      &:not(:last-child):after {
+        content: '';
+        background: #cccccc;
+        height: 4px;
+        width: 100%;
+        position: absolute;
+        top: 25px;
+        z-index: 1;
+      }
+      label {
+        position: relative;
+        background: white;
+        z-index: 10;
+      }
+      input + label:before,
+      input + label:after {
+        margin: 0 2px;
+      }
+      &.current {
+        span {
+          font-weight: bold;
+          color: #000;
+        }
+      }
+      span {
+        color: #cccccc;
+        display: block;
+        margin-bottom: 3px;
+      }
+    }
   }
 }
 

@@ -3,9 +3,12 @@
 {% set base_path = "/" %}
 {% set page_title = "Project Information" %}
 {% import "macros/button-macro.njk" as btn %}
-{% import 'macros/deliverablesFields.njk' as stream %}
+{% import 'macros/deliverables-macro.njk' as stream %}
+{% import 'macros/progress-nav-macro.njk' as progressNav %}
 
 {% block content %}
+{{ progressNav.active('General') }}
+
 <div class="clearfix page-header">
   <h1>{{page_title}}</h1>
 </div>
@@ -30,34 +33,34 @@
         </div>
         <div class="col-4">
           <div class="field-wrapper">
-            <label for="regions">Regions</label>
-            <select name="regions">
-              <option value="The Americas">The Americas</option>
-              <option value="Asia">Asia</option>
-              <option value="Europe">Europe</option>
-              <option value="Africa">Africa</option>
+            <label for="country">Country</label>
+            <select name="country">
+              <option value="United States">United States</option>
+              <option value="France">France</option>
+              <option value="Italy">Italy</option>
+              <option value="Greece">Greece</option>
             </select>
           </div>
         </div>
         <div class="col-4">
           <div class="field-wrapper">
-            <label for="regions">Regions</label>
-            <select name="regions">
-              <option value="The Americas">The Americas</option>
-              <option value="Asia">Asia</option>
-              <option value="Europe">Europe</option>
-              <option value="Africa">Africa</option>
+            <label for="billing">Billing Office</label>
+            <select name="billing">
+              <option value="WS Chicago">WS Chicago</option>
+              <option value="New York">New York</option>
+              <option value="Cleveland">Cleveland</option>
+              <option value="Portland">Portland</option>
             </select>
           </div>
         </div>
         <div class="col-4">
           <div class="field-wrapper">
-            <label for="regions">Regions</label>
-            <select name="regions">
-              <option value="The Americas">The Americas</option>
-              <option value="Asia">Asia</option>
-              <option value="Europe">Europe</option>
-              <option value="Africa">Africa</option>
+            <label for="currency">Currency</label>
+            <select name="currency">
+              <option value="US Dollars">US Dollars</option>
+              <option value="Euro">Euro</option>
+              <option value="Krona">Krona</option>
+              <option value="Yen">Yen</option>
             </select>
           </div>
         </div>
@@ -78,48 +81,48 @@
       <div class="row">
         <div class="col-4">
           <div class="field-wrapper">
-            <label for="regions">Regions</label>
-            <select name="regions">
-              <option value="The Americas">The Americas</option>
-              <option value="Asia">Asia</option>
-              <option value="Europe">Europe</option>
-              <option value="Africa">Africa</option>
+            <label for="name">Client Name</label>
+            <select name="name">
+              <option value="Mondelez Global">Mondelez Global</option>
+              <option value="Timewarner">Timewarner</option>
+              <option value="Webber">Webber</option>
+              <option value="NBC">NBC</option>
             </select>
           </div>
         </div>
         <div class="col-4">
           <div class="field-wrapper">
-            <label for="fname">First Name</label>
-            <input name="fname" placeholder="First Name" />
+            <label for="projectname">Project Name</label>
+            <input type="text" name="projectname" placeholder="Project Name" />
           </div>
         </div>
         <div class="col-4">
           <div class="field-wrapper">
-            <label for="regions">Regions</label>
-            <select name="regions">
-              <option value="The Americas">The Americas</option>
-              <option value="Asia">Asia</option>
-              <option value="Europe">Europe</option>
-              <option value="Africa">Africa</option>
+            <label for="compensation">Compensation Type (Optional)</label>
+            <select name="compensation">
+              <option value="Value 1">Value 1</option>
+              <option value="Value 2">Value 2</option>
+              <option value="Value 3">Value 3</option>
+              <option value="Value 4">Value 4</option>
             </select>
           </div>
         </div>
         <div class="col-4">
           <div class="field-wrapper">
-            <label for="city">City</label>
-            <input name="city" placeholder="City" value="" />
+            <label for="jnumber">Job Number (Optional)</label>
+            <input type="text" name="jnumber" placeholder="Job Number" value="" />
           </div>
         </div>
         <div class="col-4">
           <div class="field-wrapper">
-            <label for="city">City</label>
-            <input name="city" placeholder="City" value="" />
+            <label for="sownumber">SOW Number (Optional)</label>
+            <input type="text" name="sownumber" placeholder="SOW Number" value="" />
           </div>
         </div>
         <div class="col-4">
           <div class="field-wrapper">
-            <label for="city">City</label>
-            <input name="city" placeholder="City" value="" />
+            <label for="uploadsow">Upload SOW (Optional)</label>
+            <input type="text" name="uploadsow" placeholder="Upload SOW" value="" />
           </div>
         </div>
       </div>
@@ -151,32 +154,56 @@
         </div>
         <div class="col-4">
           <div class="field-wrapper">
-            <label for="fname">First Name</label>
-            <input name="fname" placeholder="First Name" />
+            <label for="duration">Duration</label>
+            <input type="text" name="duration" placeholder="Duration" />
           </div>
         </div>
         <div class="col-4">
           <div class="field-wrapper">
-            <label for="city">City</label>
-            <input name="city" placeholder="City" value="" />
+            <label for="punits">Planning Units</label>
+            <input type="text" name="punits" placeholder="Planning Units" value="" />
           </div>
         </div>
         <div class="col-4">
           <div class="field-wrapper">
-            <label for="city">City</label>
-            <input name="city" placeholder="City" value="" />
+            <label for="weekstart">Week Starting</label>
+            <input type="text" name="weekstart" placeholder="Week Starting" value="" />
           </div>
         </div>
         <div class="col-4">
           <div class="field-wrapper">
-            <label for="city">City</label>
-            <input name="city" placeholder="City" value="" />
+            <label for="enddate">Estimated End Date</label>
+            <input type="text" name="enddate" placeholder="Estimated End Date" value="" />
           </div>
         </div>
       </div>
     </div>
   </div>
+
   {{ stream.deliverablesRow(4) }}
+
+  <div class="row">
+    <div class="col-2">
+      <h3>Comments / Project Notes</h3>
+    </div>
+    <div class="col-10">
+      <div class="field-wrapper">
+        <label for="preparedby">Prepared By</label>
+        <input name="preparedby" placeholder="Prepared By" value="" />
+      </div>
+      <div class="field-wrapper">
+        <label for="comments">Comments and Projects Notes</label>
+        <textarea name="comments" placeholder="Comments and Projects Notes" value="" rows="4" cols="100"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <a href="/templates/pages/projectResources.html" title="">{{ btn.field(type="button", class='btn btn-green float-right arrowpointer', value='Save and Continue', 'Save and Continue') }}</a>
+      {{ btn.field(type="reset", class='btn btn-light-grey float-right', value='Clear Form', 'Clear Form') }}
+    </div>
+  </div>
 
 </form>
 {# <div id="json_data">

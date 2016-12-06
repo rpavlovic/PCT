@@ -1,0 +1,24 @@
+{% extends "layout.njk" %}
+{% set pgProjects = true %}
+{% set base_path = "/" %}
+{% set page_title = "Project Resources" %}
+{% import "macros/button-macro.njk" as btn %}
+{% import 'macros/deliverables-macro.njk' as stream %}
+{% import 'macros/progress-nav-macro.njk' as progressNav %}
+
+{% block content %}
+  {{ progressNav.active('Resources') }}
+  <div class="clearfix page-header">
+    <h1>{{page_title}}</h1>
+  </div>
+  <form action="#" method="POST" class="project-resources">
+
+    <div class="row">
+      <div class="col-12">
+        <a href="/templates/pages/projectExpences.html" title="">{{ btn.field(type="button", class='btn btn-green float-right arrowpointer', value='Save and Continue', 'Save and Continue') }}</a>
+        {{ btn.field(type="reset", class='btn btn-light-grey float-right', value='Clear Form', 'Clear Form') }}
+      </div>
+    </div>
+
+  </form>
+{% endblock %}

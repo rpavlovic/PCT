@@ -38,7 +38,8 @@
     $( ".datepicker" ).datepicker();
 
     addRemoveFields.initAddRemoveFields('.project-info');
-    
+
+    progressNav.initProgressNav('#progress-navigation');
   });
 
-})($);
+})(jQuery);
