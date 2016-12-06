@@ -116,12 +116,19 @@ gulp.task('imagemin', function () {
     .pipe(gulp.dest(imgDest));
 });
 
+gulp.task('move',['clean'], function(){
+  // the base option sets the relative root for the set of files,
+  // preserving the folder structure
+  gulp.src(filesToMove, { base: './' })
+  .pipe(gulp.dest('dist'));
+});
+
 //browser synk and scss,js and nunjucks watch
 gulp.task('serve', ['styles', 'js-watch'], function() {
     browserSync.init( ["/css/*.css", "/js/*.js"], {
       server: {
           baseDir: "./build",
-          index: "templates/pages/index.html"
+          index: "index.html"
       }
     });
     gulp.watch(sassSrc,['styles']);
@@ -142,7 +149,19 @@ gulp.task('clean-all', function () {
 
 
 // Build
-gulp.task('build', ['data', 'nunjucks' ,'styles', 'js', 'fonts', 'imagemin']);
+gulp.task('build', ['data', 'nunjucks', 'move', 'styles', 'js', 'fonts', 'imagemin']);
+
+
+var filesToMove = [
+      '/src/templates/pages/index.html',
+    ];
+
+gulp.task('move', function(){
+  // the base option sets the relative root for the set of files,
+  // preserving the folder structure
+  gulp.src("build/templates/pages/index.html")
+  .pipe(gulp.dest('build/'));
+});
 
 
 gulp.task('default', ['serve']);
