@@ -37,8 +37,7 @@
     //calendars
     $( ".datepicker" ).datepicker({
       onSelect: function(dateText, inst) {
-        console.log(inst);
-        projectDuration.initProjectDuration('.project-info');
+        projectDuration.initProjectDuration('.project-info', inst, dateText);
       }
     });
 
