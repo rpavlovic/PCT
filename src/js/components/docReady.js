@@ -34,18 +34,18 @@
 
     //floating label in the input fields.
     floatLabel.initfloatLabel();
-    //calendars
-    $( ".datepicker" ).datepicker({
-      onSelect: function(dateText, inst) {
-        projectDuration.initProjectDuration('.project-info', inst, dateText);
-      }
-    });
 
     addRemoveFields.initAddRemoveFields('.project-info');
 
     progressNav.initProgressNav('#progress-navigation');
 
-    projectDuration.initProjectDuration('.project-info');
+    //calendars
+    $( ".datepicker" ).datepicker({
+      onSelect: function(dateText, inst) {
+        projectDuration.initProjectDuration('.project-info', inst, dateText);
+        floatLabel.initfloatLabel();
+      }
+    });
   });
 
-})(jQuery);
+}(jQuery));

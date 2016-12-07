@@ -138,10 +138,9 @@
           <div class="field-wrapper">
             <label for="planby">Plan By</label>
             <select name="planby">
-              <option value="Daily">Daily</option>
               <option value="Weekly">Weekly</option>
               <option value="Monthly">Monthly</option>
-              <option value="Yearly">Yearly</option>
+              <option value="Summary">Summary</option>
             </select>
           </div>
         </div>
@@ -155,7 +154,7 @@
         <div class="col-4">
           <div class="field-wrapper">
             <label for="duration">Duration</label>
-            <input type="text" name="duration" placeholder="Duration" />
+            <input type="text" name="duration" placeholder="Duration" value="" />
           </div>
         </div>
         <div class="col-4">
@@ -200,7 +199,6 @@
 
   <div class="row">
     <div class="col-12">
-      <button>Submit</button>
       <a href="/templates/pages/projectResources.html" title="">{{ btn.field(type="button", class='btn btn-green float-right arrowpointer', value='Save and Continue', 'Save and Continue') }}</a>
       {{ btn.field(type="reset", class='btn btn-light-grey float-right', value='Clear Form', 'Clear Form') }}
     </div>

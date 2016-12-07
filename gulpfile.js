@@ -17,7 +17,8 @@ var gulp = require('gulp'),
 // paths
 var sassSrc = 'src/sass/**/*.scss',
     sassDest = 'build/css',
-    jsSrc = 'src/js/components/*.js',
+    jsSrc = 'src/js/**/*.js',
+    // jsVendorSrc = 'src/js/assets/*.js',
     jsDest = 'build/js',
     htmlSrc = 'src/templates/**/*.njk',
     htmlDest = 'build/templates',
@@ -58,6 +59,16 @@ gulp.task('js', function () {
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(jsDest));
 });
+
+// process JS files and return the stream.
+// gulp.task('vendor_js', function () {
+//     return gulp.src(jsVendorSrc)
+//     .pipe(sourcemaps.init())
+//     .pipe(uglify())
+//     .pipe(concat('vendor.js'))
+//     .pipe(sourcemaps.write())
+//     .pipe(gulp.dest(jsDest));
+// });
 
 function getDataForFile(file) {
   console.log(file.relative);
@@ -146,12 +157,6 @@ gulp.task('clean-all', function () {
     'node_modules/'
   ]);
 });
-
-
-// Build
-gulp.task('build', ['data', 'nunjucks', 'move', 'styles', 'js', 'fonts', 'imagemin']);
-
-
 var filesToMove = [
       '/src/templates/pages/index.html',
     ];
@@ -162,6 +167,12 @@ gulp.task('move', function(){
   gulp.src("build/templates/pages/index.html")
   .pipe(gulp.dest('build/'));
 });
+
+
+// Build
+gulp.task('build', ['data', 'nunjucks', 'move', 'styles', 'js',  'fonts', 'imagemin']);
+
+
 
 
 gulp.task('default', ['serve']);
