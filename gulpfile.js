@@ -12,6 +12,8 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     newer = require('gulp-newer'),
     flatten = require('gulp-flatten'),
+    dt      = require( 'datatables.net' ),
+    buttons = require( 'datatables.net-buttons' ),
     del = require('del');
 
 // paths
@@ -168,11 +170,9 @@ gulp.task('move', function(){
   .pipe(gulp.dest('build/'));
 });
 
-
 // Build
 gulp.task('build', ['data', 'nunjucks', 'move', 'styles', 'js',  'fonts', 'imagemin']);
 
 
-
-
 gulp.task('default', ['serve']);
+

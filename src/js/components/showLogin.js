@@ -11,6 +11,7 @@ var showLogin = (function ($) {
   // $('button.login').prop('disabled', false);
 
   function initLoginTabs() {
+
     $('button.show-login, button.login, .forgot-pass').on('click', function(e) {
       e.preventDefault();
       $('.targetBlock').fadeOut('slow');
@@ -19,11 +20,16 @@ var showLogin = (function ($) {
       if($('#show2').is(':visible')) {
        $('button.login').prop('disabled', true);
       }
-      if($(e.target).hasClass('forgot-pass')){
+      if($(e.target).hasClass('forgot-pass')) {
         $('button.login').prop('disabled', false);
       }
     });
 
+    $('.toggle').on('click', function() {
+      $('.row.hide').fadeToggle('slow');
+       $(this).html($(this)
+              .html() == '- Hide Options' ? '+ Advanced Search Options' : '- Hide Options');
+    });
     //open the tabs
     fadeTabs.initFadeTabs();
   }
