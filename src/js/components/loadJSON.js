@@ -24,8 +24,6 @@ var loadJSON = (function ($) {
   }
 
   function Iterate_profile_JSON(data, frm) {
-   var fields = $(frm + "  :input:not(button)"),
-      fields_values = fields.serializeArray();
 
     $.each(data, function(key, val) {
       for (var key in val) {
@@ -38,7 +36,7 @@ var loadJSON = (function ($) {
 
   function initJSON(jsonFile) {
 
-    $.getJSON(jsonFile, function(data, key) {
+    $.getJSON(jsonFile, function(data) {
       if(jsonFile != '/data/profile.json') {
         Iterate_client_JSON(data);
       } else {

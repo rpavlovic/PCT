@@ -17,7 +17,7 @@ var gulp = require('gulp'),
 // paths
 var sassSrc = 'src/sass/**/*.scss',
     sassDest = 'build/css',
-    jsSrc = 'src/js/**/*.js',
+    jsSrc = 'src/js/components/*.js',
     jsDest = 'build/js',
     htmlSrc = 'src/templates/**/*.njk',
     htmlDest = 'build/templates',
