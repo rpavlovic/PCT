@@ -12,14 +12,12 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     newer = require('gulp-newer'),
     flatten = require('gulp-flatten'),
-    dt      = require( 'datatables.net' ),
-    buttons = require( 'datatables.net-buttons' ),
     del = require('del');
 
 // paths
 var sassSrc = 'src/sass/**/*.scss',
     sassDest = 'build/css',
-    jsSrc = 'src/js/**/*.js',
+    jsSrc = 'src/js/components/*.js',
     // jsVendorSrc = 'src/js/assets/*.js',
     jsDest = 'build/js',
     htmlSrc = 'src/templates/**/*.njk',
@@ -129,12 +127,12 @@ gulp.task('imagemin', function () {
     .pipe(gulp.dest(imgDest));
 });
 
-gulp.task('move',['clean'], function(){
-  // the base option sets the relative root for the set of files,
-  // preserving the folder structure
-  gulp.src(filesToMove, { base: './' })
-  .pipe(gulp.dest('dist'));
-});
+// gulp.task('move', function(){
+//   // the base option sets the relative root for the set of files,
+//   // preserving the folder structure
+//   gulp.src(filesToMove, { base: './' })
+//   .pipe(gulp.dest('dist'));
+// });
 
 //browser synk and scss,js and nunjucks watch
 gulp.task('serve', ['styles', 'js-watch'], function() {
@@ -160,18 +158,32 @@ gulp.task('clean-all', function () {
   ]);
 });
 var filesToMove = [
-      '/src/templates/pages/index.html',
-    ];
+  '/src/templates/pages/index.html',
+];
 
-gulp.task('move', function(){
+var jsLibToMove = [
+  'src/js/assets/DataTables-1.10.13/media/js/jquery.dataTables.min.js',
+  'src/js/assets/aa_jquery-3.1.1.min.js',
+  'src/js/assets/ab_jquery-ui.min.js'
+];
+
+gulp.task('move', function() {
   // the base option sets the relative root for the set of files,
   // preserving the folder structure
   gulp.src("build/templates/pages/index.html")
   .pipe(gulp.dest('build/'));
 });
 
+gulp.task('moveJS', function() {
+  // the base option sets the relative root for the set of files,
+  // preserving the folder structure
+  gulp.src(jsLibToMove)
+  .pipe(gulp.dest('build/js/'));
+});
+
+
 // Build
-gulp.task('build', ['data', 'nunjucks', 'move', 'styles', 'js',  'fonts', 'imagemin']);
+gulp.task('build', ['data', 'nunjucks', 'move', 'moveJS', 'styles', 'js',  'fonts', 'imagemin']);
 
 
 gulp.task('default', ['serve']);
