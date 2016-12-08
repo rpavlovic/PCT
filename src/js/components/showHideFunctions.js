@@ -3,14 +3,14 @@
 * @version
 */
 
-var showLogin = (function ($) {
+var showHide = (function ($) {
   'use strict';
   var path = window.location.pathname;
 
   $("#show2, #show3").hide();
   // $('button.login').prop('disabled', false);
 
-  function initLoginTabs() {
+  function initShowHide() {
 
     $('button.show-login, button.login, .forgot-pass').on('click', function(e) {
       e.preventDefault();
@@ -26,7 +26,7 @@ var showLogin = (function ($) {
     });
 
     $('.toggle').on('click', function() {
-      $('.row.hide').fadeToggle('slow');
+      $('.toolbar').fadeToggle('slow');
        $(this).html($(this)
               .html() == '- Hide Options' ? '+ Advanced Search Options' : '- Hide Options');
     });
@@ -35,7 +35,7 @@ var showLogin = (function ($) {
   }
 
   return {
-    initLoginTabs:initLoginTabs
+    initShowHide:initShowHide
   }
 
 })($);

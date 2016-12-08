@@ -60,16 +60,6 @@ gulp.task('js', function () {
     .pipe(gulp.dest(jsDest));
 });
 
-// process JS files and return the stream.
-// gulp.task('vendor_js', function () {
-//     return gulp.src(jsVendorSrc)
-//     .pipe(sourcemaps.init())
-//     .pipe(uglify())
-//     .pipe(concat('vendor.js'))
-//     .pipe(sourcemaps.write())
-//     .pipe(gulp.dest(jsDest));
-// });
-
 function getDataForFile(file) {
   console.log(file.relative);
   return {

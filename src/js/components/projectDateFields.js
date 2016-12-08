@@ -39,8 +39,6 @@ var projectDuration = (function ($) {
       } else {
         duration.val();
       }
-
-
         break;
       case 'Summary':
           duration.val(duration.val() + ' Sum');

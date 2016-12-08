@@ -1,3 +1,22 @@
 table {
+  &#example {
+    thead {
+      th {
+      }
+    }
 
+  }
+}
+.toolbar {
+  select {
+    width: 100%;
+     @include breakpoint('small') {
+       width: 16%;
+    }
+
+    margin-right: .678%;
+    &:last-child {
+      margin: 0;
+    }
+  }
 }
