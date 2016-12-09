@@ -18,7 +18,6 @@ var gulp = require('gulp'),
 var sassSrc = 'src/sass/**/*.scss',
     sassDest = 'build/css',
     jsSrc = 'src/js/components/*.js',
-    // jsVendorSrc = 'src/js/assets/*.js',
     jsDest = 'build/js',
     htmlSrc = 'src/templates/**/*.njk',
     htmlDest = 'build/templates',
@@ -81,9 +80,7 @@ gulp.task('nunjucks', function () {
     //      return require('./src/data/gw_client_data.json')
     //    }))
     // output files in app folder
-    .pipe(gulp.dest('build/templates'))
-    browserSync.reload();
-    done();
+    .pipe(gulp.dest('build/templates'));
     // .pipe(browserSync.stream({once: true}));
 });
 
@@ -153,6 +150,13 @@ var filesToMove = [
 
 var jsLibToMove = [
   'src/js/assets/DataTables-1.10.13/media/js/jquery.dataTables.min.js',
+  'src/js/assets/DataTables-1.10.13/extensions/Select/js/dataTables.select.min.js',
+  'src/js/assets/DataTables-1.10.13/extensions/Buttons/js/dataTables.buttons.min.js',
+  'src/js/assets/DataTables-1.10.13/extensions/Buttons/js/buttons.print.min.js',
+  'src/js/assets/DataTables-1.10.13/extensions/Buttons/js/buttons.html5.min.js',
+  'src/js/assets/vfs_fonts.js',
+  'src/js/assets/pdfmake.min.js',
+  'src/js/assets/jszip.min.js',
   'src/js/assets/aa_jquery-3.1.1.min.js',
   'src/js/assets/ab_jquery-ui.min.js'
 ];

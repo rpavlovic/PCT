@@ -4,7 +4,7 @@
   padding: .938em 1.875em;
   color: $white;
   cursor: pointer;
-  border: none;
+  border: none !important;
   background-color: $dark-grey;
   @include box-shadow(0 1px 3px 0px rgba(0, 0, 0, 0.4));
   margin: rem-calc(0 2);
@@ -22,7 +22,7 @@
     background:darken($dark-grey, 8%);
     @include trans(all 0.3s ease);
   }
-  &:active {
+  &:active{
     background:darken($dark-grey, 25%);
   }
   &:disabled {
@@ -36,7 +36,8 @@
 @mixin button-bg($bg, $color: $white, $disabled: $bg) {
   background: $bg;
   color: $color;
-  &:hover {
+  &:hover,
+  &:focus {
     background:darken($bg, 8%);
     @include trans(all 0.3s ease);
   }
@@ -79,6 +80,13 @@ button {
         border-left-color: #12c377;
       }
     }
+  }
+}
+div.dt-buttons {
+  float: none;
+  .dt-button {
+    @extend %btn;
+    @extend .btn-blue;
   }
 }
 //plus content on the button.
