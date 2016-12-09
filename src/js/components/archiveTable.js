@@ -8,7 +8,7 @@ var archiveTable = (function ($) {
 
   function initArchiveTable() {
 
-  var table = $('table.display');
+  var table = $('#archived-projects');
 
   // var activeTable = table({
   //   "dom": '<"toolbar"><B><tip>',
@@ -50,7 +50,7 @@ var archivedTable = table.dataTable({
   "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
     //to find and style win/loss cells.
     console.log(aData);
-    if (aData[5] == "Win") {
+    if (aData[5] === "Win") {
       $("td:eq(5)", nRow).addClass('win');
     } else {
        $("td:eq(5)", nRow).addClass('loss');
