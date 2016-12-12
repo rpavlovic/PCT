@@ -1,8 +1,8 @@
 
 @import "vendor/reset",
         "vendor/fa/font-awesome",
-        "utils/vars",
         "utils/mixins",
+        "utils/vars",
         "vendor/simple-grid",
         "vendor/jquery-ui.min",
         "vendor/jquery.dataTables.min",
@@ -20,5 +20,6 @@
         "components/footer",
         "pages/page-headers",
         "pages/pages-generic",
-        "pages/profile-page",
+        "pages/page-profile",
+        "pages/pages-project",
         "pages/home";

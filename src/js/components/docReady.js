@@ -47,7 +47,10 @@
         floatLabel.initfloatLabel();
       }
     });
+
     archiveTable.initArchiveTable();
+    //upload CSV for the user
+    loadCustomBillSheet.initLoadCustomBillSheet();
 
   });
 

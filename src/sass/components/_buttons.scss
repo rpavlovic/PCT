@@ -1,7 +1,7 @@
 //default placeholder for button style.
 %btn {
   display: inline-block;
-  padding: .938em 1.875em;
+  padding: .938em 0.75em;
   color: $white;
   cursor: pointer;
   border: none !important;
@@ -9,14 +9,11 @@
   @include box-shadow(0 1px 3px 0px rgba(0, 0, 0, 0.4));
   margin: rem-calc(0 2);
   text-decoration: none;
-  // text-shadow: 0 .063em #000;
   font: bold 1rem sans-serif;
   border-radius: rem-calc(3);
   width: auto;
   position: relative;
-  @include breakpoint('small') {
-    width: auto;
-  }
+  white-space: nowrap;
   &:hover {
     box-shadow: inset 0 1px 3px 0px rgba(0, 0, 0, 0.4);
     background:darken($dark-grey, 8%);

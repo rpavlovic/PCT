@@ -10,54 +10,57 @@ var archiveTable = (function ($) {
 
   var table = $('#archived-projects');
 
-  // var activeTable = table({
-  //   "dom": '<"toolbar"><B><tip>',
-  //   "ajax": '/data/archived.json',
-  //     searching: true,
-  //     lengthMenu: [
-  //      [ 10, 25, 50, -1 ],
-  //      [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+  // function activeTable() {
+  //   var table = $('#archived-projects');
+  //   var activeTable = table({
+  //     "dom": '<"toolbar"><B><tip>',
+  //     "ajax": '/data/archived.json',
+  //       searching: true,
+  //       lengthMenu: [
+  //        [ 10, 25, 50, -1 ],
+  //        [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+  //       ],
+  //       select: true,
+  //       buttons: [
+  //        'copy', 'csv', 'excel', 'pageLength',
+  //       {
+  //         extend: 'pdf',
+  //         download: 'open'
+  //       }
   //     ],
-  //     select: true,
-  //     buttons: [
-  //      'copy', 'csv', 'excel', 'pageLength',
-  //     {
-  //       extend: 'pdf',
-  //       download: 'open'
-  //     }
-  //   ],
-  // });
+  //   });
+  // }
 
-var archivedTable = table.dataTable({
-  "dom": '<"toolbar"><B><tip>',
-  "ajax": '/data/archived.json',
-  // "bLengthChange": false,
-  //removes search functionality.
-  // "bFilter": false,
-  searching: true,
-  lengthMenu: [
-    [ 10, 25, 50, -1 ],
-    [ '10 rows', '25 rows', '50 rows', 'Show all' ]
-  ],
-  select: true,
-  buttons: [
-    'copy', 'csv', 'excel', 'pageLength',
-    {
-      extend: 'pdf',
-      download: 'open'
-    }
-  ],
-  "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-    //to find and style win/loss cells.
-    console.log(aData);
-    if (aData[5] === "Win") {
-      $("td:eq(5)", nRow).addClass('win');
-    } else {
-       $("td:eq(5)", nRow).addClass('loss');
-    }
-  },
-  //starts the table with search populted.
-  // "oSearch": {"sSearch": "Archived Projects"},
+  var archivedTable = table.dataTable({
+    "dom": '<"toolbar"><B><tip>',
+    "ajax": '/data/archived.json',
+    // "bLengthChange": false,
+    //removes search functionality.
+    // "bFilter": false,
+    searching: true,
+    lengthMenu: [
+      [ 10, 25, 50, -1 ],
+      [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+    ],
+    select: true,
+    buttons: [
+      'copy', 'csv', 'excel', 'pageLength',
+      {
+        extend: 'pdf',
+        download: 'open'
+      }
+    ],
+    "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+      //to find and style win/loss cells.
+      console.log(aData);
+      if (aData[5] === "Win") {
+        $("td:eq(5)", nRow).addClass('win');
+      } else {
+         $("td:eq(5)", nRow).addClass('loss');
+      }
+    },
+    //starts the table with search populted.
+    // "oSearch": {"sSearch": "Archived Projects"},
     initComplete: function () {
       this.api().columns().every( function () {
         var column = this;
