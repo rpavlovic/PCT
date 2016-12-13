@@ -52,7 +52,6 @@ var archiveTable = (function ($) {
     ],
     "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
       //to find and style win/loss cells.
-      console.log(aData);
       if (aData[5] === "Win") {
         $("td:eq(5)", nRow).addClass('win');
       } else {

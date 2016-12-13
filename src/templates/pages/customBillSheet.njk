@@ -3,6 +3,7 @@
 {% set pgCustomBS = true %}
 {% set base_path = "/" %}
 {%set page_title = 'Custom Bill Sheet'%}
+{% import "macros/button-macro.njk" as btn %}
 
 {% block content %}
   <div class="clearfix page-header">
@@ -31,6 +32,13 @@
     <div class="hide">
       <input name="upload" type="file" id="fileinput"/>
     </div>
+    <table id="table" class="display dataTable" cellspacing="0" width="100%">
+    </table>
+    <div class="row button-row">
+      <div class="col-12">
+        <a href="" title="">{{ btn.field(type="button", class='btn btn-green float-right arrowpointer', value='Save and Continue', 'Save and Continue') }}</a>
+        {{ btn.field(type="reset", class='btn btn-light-grey float-right', value='Cancel', 'Cancel') }}
+      </div>
+    </div>
 
-    <table id="table" class="display" cellspacing="0" width="100%"></table>
 {% endblock %}
