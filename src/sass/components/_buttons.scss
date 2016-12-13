@@ -1,28 +1,25 @@
 //default placeholder for button style.
 %btn {
   display: inline-block;
-  padding: .938em 1.875em;
+  padding: .938em 0.75em;
   color: $white;
   cursor: pointer;
-  border: none;
+  border: none !important;
   background-color: $dark-grey;
   @include box-shadow(0 1px 3px 0px rgba(0, 0, 0, 0.4));
   margin: rem-calc(0 2);
   text-decoration: none;
-  // text-shadow: 0 .063em #000;
   font: bold 1rem sans-serif;
   border-radius: rem-calc(3);
   width: auto;
   position: relative;
-  @include breakpoint('small') {
-    width: auto;
-  }
+  white-space: nowrap;
   &:hover {
     box-shadow: inset 0 1px 3px 0px rgba(0, 0, 0, 0.4);
     background:darken($dark-grey, 8%);
     @include trans(all 0.3s ease);
   }
-  &:active {
+  &:active{
     background:darken($dark-grey, 25%);
   }
   &:disabled {
@@ -36,7 +33,8 @@
 @mixin button-bg($bg, $color: $white, $disabled: $bg) {
   background: $bg;
   color: $color;
-  &:hover {
+  &:hover,
+  &:focus {
     background:darken($bg, 8%);
     @include trans(all 0.3s ease);
   }
@@ -81,8 +79,17 @@ button {
     }
   }
 }
+div.dt-buttons {
+  float: none;
+  .dt-button {
+    @extend %btn;
+    @extend .btn-blue;
+  }
+}
 //plus content on the button.
 .plus {
+  padding-left: 2rem;
+  padding-right: 1rem;
   &::before {
     display: inline-block;
     content:"+";
@@ -120,4 +127,13 @@ button[data-toggle] {
     border-right: 4px solid transparent;
     border-left: 4px solid transparent;
   }
+}
+
+.button-row {
+  border-bottom: solid 1px #ebebeb;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-top: solid 1px #ebebeb;
+  margin-top: 20px;
+  padding-top: 20px;
 }

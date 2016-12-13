@@ -4,6 +4,8 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <title>Sample App</title>
     <link href="/css/base.css" rel="stylesheet">
+    <script src="/js/jquery-3.1.1.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
   </head>
 
   {% if pgHome %}
@@ -11,6 +13,9 @@
   {% elif pgAbout %}
     <body class="about-page">
   {% elif pgProjects %}
+    {% if pgCustomBS %}
+      <body class="projects-page custom-bill-sheet">
+    {% endif %}
     <body class="projects-page">
   {% elif pgReports%}
     <body class="reports-page">
@@ -33,6 +38,17 @@
         {% include "partials/footer.njk" %}
       {% endblock %}
     {% endif %}
+    <!--ALl DataTables plugins-->
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.select.min.js"></script>
+    <script src="/js/dataTables.buttons.min.js"></script>
+    <script src="/js/dataTables.autoFill.min.js"></script>
+    <script src="/js/buttons.print.min.js"></script>
+    <script src="/js/buttons.html5.min.js"></script>
+    <script src="/js/jszip.min.js"></script>
+    <script src="/js/pdfmake.min.js"></script>
+    <script src="/js/vfs_fonts.js"></script>
+    <!--/custom js -->
     <script src="/js/base.js"></script>
   </body>
 </html>

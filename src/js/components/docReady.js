@@ -10,8 +10,9 @@
     if(path[3] === 'profile.html') {
      loadJSON.initJSON("/data/profile.json");
     }
-    //Get started button show tabs to sign in or register
-    showLogin.initLoginTabs();
+
+    //Show Hide elements
+    showHide.initShowHide();
 
     //Enable submit when fileds are filled.
     if($('form.login').length > 0) {
@@ -34,12 +35,23 @@
 
     //floating label in the input fields.
     floatLabel.initfloatLabel();
-    //calendars
-    $( ".datepicker" ).datepicker();
 
     addRemoveFields.initAddRemoveFields('.project-info');
 
     progressNav.initProgressNav('#progress-navigation');
+
+    //calendars
+    $( ".datepicker" ).datepicker({
+      onSelect: function(dateText, inst) {
+        projectDuration.initProjectDuration('.project-info', inst, dateText);
+        floatLabel.initfloatLabel();
+      }
+    });
+
+    archiveTable.initArchiveTable();
+    //upload CSV for the user
+    loadCustomBillSheet.initLoadCustomBillSheet();
+
   });
 
-})(jQuery);
+}( jQuery ));

@@ -3,14 +3,15 @@
 * @version
 */
 
-var showLogin = (function ($) {
+var showHide = (function ($) {
   'use strict';
   var path = window.location.pathname;
 
   $("#show2, #show3").hide();
   // $('button.login').prop('disabled', false);
 
-  function initLoginTabs() {
+  function initShowHide() {
+
     $('button.show-login, button.login, .forgot-pass').on('click', function(e) {
       e.preventDefault();
       $('.targetBlock').fadeOut('slow');
@@ -19,17 +20,22 @@ var showLogin = (function ($) {
       if($('#show2').is(':visible')) {
        $('button.login').prop('disabled', true);
       }
-      if($(e.target).hasClass('forgot-pass')){
+      if($(e.target).hasClass('forgot-pass')) {
         $('button.login').prop('disabled', false);
       }
     });
 
+    $('.toggle').on('click', function() {
+      $('.toolbar').fadeToggle('slow');
+       $(this).html($(this)
+              .html() == '- Hide Options' ? '+ Advanced Search Options' : '- Hide Options');
+    });
     //open the tabs
     fadeTabs.initFadeTabs();
   }
 
   return {
-    initLoginTabs:initLoginTabs
+    initShowHide:initShowHide
   }
 
 })($);

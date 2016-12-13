@@ -17,7 +17,7 @@ var gulp = require('gulp'),
 // paths
 var sassSrc = 'src/sass/**/*.scss',
     sassDest = 'build/css',
-    jsSrc = 'src/js/**/*.js',
+    jsSrc = 'src/js/components/*.js',
     jsDest = 'build/js',
     htmlSrc = 'src/templates/**/*.njk',
     htmlDest = 'build/templates',
@@ -80,9 +80,7 @@ gulp.task('nunjucks', function () {
     //      return require('./src/data/gw_client_data.json')
     //    }))
     // output files in app folder
-    .pipe(gulp.dest('build/templates'))
-    browserSync.reload();
-    done();
+    .pipe(gulp.dest('build/templates'));
     // .pipe(browserSync.stream({once: true}));
 });
 
@@ -116,12 +114,12 @@ gulp.task('imagemin', function () {
     .pipe(gulp.dest(imgDest));
 });
 
-gulp.task('move',['clean'], function(){
-  // the base option sets the relative root for the set of files,
-  // preserving the folder structure
-  gulp.src(filesToMove, { base: './' })
-  .pipe(gulp.dest('dist'));
-});
+// gulp.task('move', function(){
+//   // the base option sets the relative root for the set of files,
+//   // preserving the folder structure
+//   gulp.src(filesToMove, { base: './' })
+//   .pipe(gulp.dest('dist'));
+// });
 
 //browser synk and scss,js and nunjucks watch
 gulp.task('serve', ['styles', 'js-watch'], function() {
@@ -146,22 +144,42 @@ gulp.task('clean-all', function () {
     'node_modules/'
   ]);
 });
-
-
-// Build
-gulp.task('build', ['data', 'nunjucks', 'move', 'styles', 'js', 'fonts', 'imagemin']);
-
-
 var filesToMove = [
-      '/src/templates/pages/index.html',
-    ];
+  '/src/templates/pages/index.html',
+];
 
-gulp.task('move', function(){
+var jsLibToMove = [
+  'src/js/assets/DataTables-1.10.13/media/js/jquery.dataTables.min.js',
+  'src/js/assets/DataTables-1.10.13/extensions/Select/js/dataTables.select.min.js',
+  'src/js/assets/DataTables-1.10.13/extensions/Buttons/js/dataTables.buttons.min.js',
+  'src/js/assets/DataTables-1.10.13/extensions/Buttons/js/buttons.print.min.js',
+  'src/js/assets/DataTables-1.10.13/extensions/Buttons/js/buttons.html5.min.js',
+  'src/js/assets/DataTables-1.10.13/extensions/AutoFill/js/dataTables.autoFill.min.js',
+  'src/js/assets/vfs_fonts.js',
+  'src/js/assets/pdfmake.min.js',
+  'src/js/assets/jszip.min.js',
+  'src/js/assets/aa_jquery-3.1.1.min.js',
+  'src/js/assets/ab_jquery-ui.min.js'
+];
+
+gulp.task('move', function() {
   // the base option sets the relative root for the set of files,
   // preserving the folder structure
   gulp.src("build/templates/pages/index.html")
   .pipe(gulp.dest('build/'));
 });
 
+gulp.task('moveJS', function() {
+  // the base option sets the relative root for the set of files,
+  // preserving the folder structure
+  gulp.src(jsLibToMove)
+  .pipe(gulp.dest('build/js/'));
+});
+
+
+// Build
+gulp.task('build', ['data', 'nunjucks', 'move', 'moveJS', 'styles', 'js',  'fonts', 'imagemin']);
+
 
 gulp.task('default', ['serve']);
+

@@ -60,6 +60,11 @@ $breakpoints: (
   text-align:left;
 }
 .float-right {
+  @include breakpoint('small') {
+    float: right !important;
+  }
+}
+.float-right {
   float: right;
   text-align:right;
 }

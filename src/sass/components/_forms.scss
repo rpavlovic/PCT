@@ -130,16 +130,9 @@ form {
       position: absolute;
       right: 20px;
       top: 50%;
-      margin-top: -11px;
+      margin-top: -17px;
       font-size: 25px;
       color: $link-color;
-    }
-  }
-  &.project-info {
-    > .row {
-      border-bottom: solid 1px $gray-border;
-      margin-bottom: 20px;
-      padding-bottom: 20px;
     }
   }
   .radio-group {

@@ -6,16 +6,18 @@
 var fillForm = (function ($) {
   'use strict';
 
-  function initFillForm(form, callback) {
+  function initFillForm(form) {
 
-  var fields = $(form + "  :input:not(button)"),
-      empty = true;
+    var fields, empty;
+    fields = $(form + "  :input:not(button)");
+    empty = true;
+
     //check if fields are already filled.
     checkFieldsValue();
     submitProfileForm();
 
     // when typing check filled inputs.
-    fields.on('blur paste input change', function(event) {
+    fields.on("blur paste input change", function() {
       resetAll();
       checkFieldsValue();
     });
@@ -27,25 +29,27 @@ var fillForm = (function ($) {
 
     function checkFieldsValue() {
       fields.each(function() {
-        if ($(this).val() === '') {
-          empty = true;
+        if ($(this).val() !== '') {
+          $(this).after("<span class=\"check\"></span>").fadeIn();
+          $(form + " :submit").prop("disabled", false);
         } else {
-          $(this).after('<span class="check"></span>').fadeIn();
-          $(form + ' :submit').prop('disabled', false);
+          empty = true;
         }
       });
     }
 
     function resetAll() {
-      $(form).find('span.check').remove();
-      $(form + ' :submit').prop('disabled', true);
+      $(form).find("span.check").remove();
+      $(form + " :submit").prop("disabled", true);
     }
 
     function submitProfileForm() {
-      $('button[type="submit"]').on('click', function(e) {
+      var button_edit;
+      button_edit =$('button.edit-profile');
+      $("button[type='submit']").on("click", function() {
         var fields_values = fields.serializeArray();
 
-        $.each(fields, function(i, field) {
+        $.each(fields, function(i) {
           $('label[for="'+$(this).attr('name')+'"]').text(fields_values[i].value);
         });
 
@@ -58,8 +62,8 @@ var fillForm = (function ($) {
         $(form).find('label').fadeIn('slow');
         $(form).find('span.check').hide();
 
-        $('button.edit-profile').val('Edit Profile').html('Edit Profile');
-        $('button.edit-profile').fadeIn('slow');
+        button_edit.val('Edit Profile').html('Edit Profile');
+        button_edit.fadeIn('slow');
 
         //write JSON into local storage
         localStorage.setItem('storeProfile', jsonString);
