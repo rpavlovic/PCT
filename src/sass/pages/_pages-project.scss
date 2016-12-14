@@ -1,12 +1,15 @@
 .custom-bill-sheet {
   form {
     &.custom-bill-sheet-form {
-      .btn {
-      }
     }
     .btn {
       width: 100%;
       margin-bottom: 20px;
     }
+  }
+}
+.deliverables {
+  .btn {
+    width: 100%;
   }
 }

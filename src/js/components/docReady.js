@@ -7,9 +7,9 @@
     if(path[3] === 'projects.html') {
       loadJSON.initJSON("/data/gw_client_data.json");
     }
-    if(path[3] === 'profile.html') {
-     loadJSON.initJSON("/data/profile.json");
-    }
+    // if(path[3] === 'profile.html') {
+    //  loadJSON.initJSON("/data/profile.json");
+    // }
 
     //Show Hide elements
     showHide.initShowHide();
