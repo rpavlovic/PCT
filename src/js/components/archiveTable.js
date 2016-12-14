@@ -38,6 +38,7 @@ var archiveTable = (function ($) {
     //removes search functionality.
     // "bFilter": false,
     searching: true,
+    "bDestroy": true,
     lengthMenu: [
       [ 10, 25, 50, -1 ],
       [ '10 rows', '25 rows', '50 rows', 'Show all' ]
@@ -59,7 +60,7 @@ var archiveTable = (function ($) {
       }
     },
     //starts the table with search populted.
-    // "oSearch": {"sSearch": "Archived Projects"},
+    // "o Search": {"sSearch": "Archived Projects"},
     initComplete: function () {
       this.api().columns().every( function () {
         var column = this;
@@ -78,9 +79,8 @@ var archiveTable = (function ($) {
         });
       });
       $('.toolbar').hide();
-    }
+    },
   });
-
   $('input[name="seach_proj_list"]').on( 'keyup', function () {
     archivedTable.search( this.value ).draw();
   });

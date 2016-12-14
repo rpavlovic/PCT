@@ -6,6 +6,7 @@
 {% import "macros/button-macro.njk" as btn %}
 
 {% block content %}
+
   <div class="clearfix page-header">
     <h1>{{page_title}}</h1>
   </div>
@@ -32,13 +33,36 @@
     <div class="hide">
       <input name="upload" type="file" id="fileinput"/>
     </div>
-    <table id="table" class="display dataTable" cellspacing="0" width="100%">
+   <table id="table" class="display" width="100%"></table>
+{#       <thead>
+              <tr>
+                <th>Project Name</th>
+                <th>Billing Office</th>
+                <th>Ext. Start</th>
+                <th>Duration</th>
+                <th>Total Budget</th>
+                <th>Win/Loss</th>
+                <th>Status</th>
+              </tr>
+            </thead> #}
     </table>
+    <div id="table-wrapper" cellspacing="0" width="100%">
+{#       <thead>
+        <tr>
+          <th>Project Name</th>
+          <th>Billing Office</th>
+          <th>Ext. Start</th>
+          <th>Duration</th>
+          <th>Total Budget</th>
+          <th>Win/Loss</th>
+          <th>Status</th>
+        </tr>
+      </thead> #}
+    </div>
     <div class="row button-row">
       <div class="col-12">
         <a href="" title="">{{ btn.field(type="button", class='btn btn-green float-right arrowpointer', value='Save and Continue', 'Save and Continue') }}</a>
         {{ btn.field(type="reset", class='btn btn-light-grey float-right', value='Cancel', 'Cancel') }}
       </div>
     </div>
-
 {% endblock %}
