@@ -1,6 +1,9 @@
 table {
-  &.display {
+  &.dataTable.display {
     thead {
+      tr {
+        background: #e6e6e6;
+      }
       th {
         text-align: left;
         padding-left: 5px;
@@ -10,7 +13,7 @@ table {
       }
     }
     tbody {
-      tr {
+      tr:not(.selected) {
         td {
           border: solid 1px $white;
           background-color: #fafafa;
