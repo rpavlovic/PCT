@@ -9,39 +9,29 @@ var archiveTable = (function ($) {
   function initArchiveTable() {
 
   var table = $('#archived-projects');
-
-  // function activeTable() {
-  //   var table = $('#archived-projects');
-  //   var activeTable = table({
-  //     "dom": '<"toolbar"><B><tip>',
-  //     "ajax": '/data/archived.json',
-  //       searching: true,
-  //       lengthMenu: [
-  //        [ 10, 25, 50, -1 ],
-  //        [ '10 rows', '25 rows', '50 rows', 'Show all' ]
-  //       ],
-  //       select: true,
-  //       buttons: [
-  //        'copy', 'csv', 'excel', 'pageLength',
-  //       {
-  //         extend: 'pdf',
-  //         download: 'open'
-  //       }
-  //     ],
-  //   });
-  // }
-
   var archivedTable = table.dataTable({
     "dom": '<"toolbar"><B><tip>',
     "ajax": '/data/archived.json',
-    // "bLengthChange": false,
-    //removes search functionality.
-    // "bFilter": false,
     searching: true,
     "bDestroy": true,
     lengthMenu: [
       [ 10, 25, 50, -1 ],
       [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+    ],
+    "columnDefs": [{
+      "targets": -1,
+      "data": null,
+      "defaultContent": "<a href=\"#\" title=\"remove row\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a>"
+    }],
+    columns: [
+      { title: "Project Name" },
+      { title: "Billing Office" },
+      { title: "Ext. Start" },
+      { title: "Duration" },
+      { title: "Total Budget" },
+      { title: "Win/Loss" },
+      { title: "Status" },
+      { title: "remove" },
     ],
     select: true,
     buttons: [
@@ -84,6 +74,12 @@ var archiveTable = (function ($) {
   $('input[name="seach_proj_list"]').on( 'keyup', function () {
     archivedTable.search( this.value ).draw();
   });
+
+//TO remove a tr
+//$('.table-remove').click(function () {
+//   $(this).parents('tr').detach();
+// });
+
 
   //TO SELECT STYLES.
   // table.on( 'click', 'tbody tr', function () {

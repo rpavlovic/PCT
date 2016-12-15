@@ -16,7 +16,7 @@
         <form>
           <div class="field-wrapper">
             <label for="billsheet-name">Bill Sheet Name</label>
-            <input type="text" name="billsheet-name" placeholder="Bill Sheet Name" value="" />
+            <input type="text" id="bill-sheet-name" name="billsheet-name" placeholder="Bill Sheet Name" value="" />
           </div>
         </form>
       </div>
@@ -33,36 +33,13 @@
     <div class="hide">
       <input name="upload" type="file" id="fileinput"/>
     </div>
-   <table id="table" class="display" width="100%"></table>
-{#       <thead>
-              <tr>
-                <th>Project Name</th>
-                <th>Billing Office</th>
-                <th>Ext. Start</th>
-                <th>Duration</th>
-                <th>Total Budget</th>
-                <th>Win/Loss</th>
-                <th>Status</th>
-              </tr>
-            </thead> #}
-    </table>
-    <div id="table-wrapper" cellspacing="0" width="100%">
-{#       <thead>
-        <tr>
-          <th>Project Name</th>
-          <th>Billing Office</th>
-          <th>Ext. Start</th>
-          <th>Duration</th>
-          <th>Total Budget</th>
-          <th>Win/Loss</th>
-          <th>Status</th>
-        </tr>
-      </thead> #}
-    </div>
+
+    {% include "partials/customBillTable.njk" %}
+
     <div class="row button-row">
       <div class="col-12">
-        <a href="" title="">{{ btn.field(type="button", class='btn btn-green float-right arrowpointer', value='Save and Continue', 'Save and Continue') }}</a>
-        {{ btn.field(type="reset", class='btn btn-light-grey float-right', value='Cancel', 'Cancel') }}
+        {{ btn.field(type="button", class='btn btn-green float-right arrowpointer', value='Save and Continue', 'Save and Continue') }}
+        {{ btn.field(type="reset", class='btn btn-light-grey float-left', value='Cancel', 'Cancel') }}
       </div>
     </div>
 {% endblock %}
