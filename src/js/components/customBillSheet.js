@@ -49,46 +49,39 @@ var loadCustomBillSheet = (function ($) {
     }
 
     $('.arrowpointer').on('click', function(){
-      if($('.dataTable').length > 0) {
-        $('.dataTable').tableToCSV();
+      if(new_table.length > 0) {
+        new_table.tableToCSV();
+      } else {
+        csv_table.tableToCSV();
       }
     });
-
-    var template_new = $('#new-table').detach();
-
     // insert into div
     $("#populateTable").on('click', function(opt_startByte, opt_stopByte, e) {
-      template_new.detach();
 
-      $("input[type=\"file\"]").trigger('click', function() { });
+        $("input[type=\"file\"]").trigger('click', function() {});
 
-      $("input[type=\"file\"]").on('change', function(evt) {
-        var files = evt.target.files,
-          file = files[0],
-          file_name = file.name,
-          start = parseInt(opt_startByte) || 0,
-          stop = parseInt(opt_stopByte) || file.size - 1,
-          reader = new FileReader();
+        $("input[type=\"file\"]").on('change', function(evt) {
 
-        reader.onloadend = function(event) {
-          if (event.target.readyState == FileReader.DONE) { // DONE == 2
-            uploadCSV(event.target.result);
-          }
-        };
-          var blob = file.slice(start, stop + 1);
-            reader.readAsBinaryString(blob);
-          $('#bill-sheet-name').val(file_name.slice(0,-4));
-      });
+          var files = evt.target.files,
+            file = files[0],
+            file_name = file.name,
+            start = parseInt(opt_startByte) || 0,
+            stop = parseInt(opt_stopByte) || file.size - 1,
+            reader = new FileReader();
+
+          reader.onloadend = function(event) {
+            if (event.target.readyState == FileReader.DONE) { // DONE == 2
+              uploadCSV(event.target.result);
+            }
+          };
+            var blob = file.slice(start, stop + 1);
+              reader.readAsBinaryString(blob);
+            $('#bill-sheet-name').val(file_name.slice(0,-4));
+        });
     });
 
 
     $('#downloadTemplate').on('click', function() {
-      if($('#csv-table_wrapper').length > 0 ) {
-         template_new.insertAfter('#csv-table_wrapper');
-         $('#csv-table_wrapper').hide();
-       } else {
-          template_new.insertAfter(csv_table);
-       }
       new_table.dataTable({
         dom:'<tip>',
         "paging":   false,
@@ -104,13 +97,14 @@ var loadCustomBillSheet = (function ($) {
         }],
         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
            $("td", nRow).prop('contenteditable', true);
+           this.removeClass('hide');
         },
         "bDestroy": true,
       });
 
-      // $('button').on('click', function(){
-      //  addRow();
-      // });
+      $('button').on('click', function(){
+        $('#new-table').row.add();
+      });
 
     })
   }

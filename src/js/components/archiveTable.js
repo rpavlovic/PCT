@@ -9,22 +9,23 @@ var archiveTable = (function ($) {
   function initArchiveTable() {
 
   var table = $('#archived-projects');
+
   var archivedTable = table.dataTable({
-    "dom": '<"toolbar"><B><tip>',
+    "sDom": '<"toolbar"><B><tip>',
     "ajax": '/data/archived.json',
-    searching: true,
-    "bDestroy": true,
-    lengthMenu: [
+    "searching": true,
+    // "dataSrc": 'd',
+    "lengthMenu": [
       [ 10, 25, 50, -1 ],
       [ '10 rows', '25 rows', '50 rows', 'Show all' ]
     ],
     "columnDefs": [{
       "targets": -1,
       "data": null,
-      "defaultContent": "<a href=\"#\" title=\"remove row\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a>"
+      "defaultContent": "<a title=\"remove row\" class=\"remove\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a>"
     }],
-    columns: [
-      { title: "Project Name" },
+    "columns": [
+      { title: "Company" },
       { title: "Billing Office" },
       { title: "Ext. Start" },
       { title: "Duration" },
@@ -32,13 +33,34 @@ var archiveTable = (function ($) {
       { title: "Win/Loss" },
       { title: "Status" },
       { title: "remove" },
+
+      // { data: "d.results.Company" },
+      // { data: "d.results.Compname" },
+      // { data: "d.results.Office" },
+      // { data: "d.results.City" },
+      // { data: "d.results.District" },
+      // { data: "d.results.Postalcode" },
+      // { data: "d.results.District" },
+      // { data: "d.results.Pobox" },
+      // { data: "d.results.Street" },
+      // { data: "d.results.Housenum" },
+      // { data: "d.results.Street2" },
+      // { data: "d.results.Building" },
+      // { data: "d.results.Floor" },
+      // { data: "d.results.Country" },
+      // { data: "d.results.Region" },
+      // { data: "d.results.Telnumber" },
+      // { data: "d.results.Telextens" },
+      // { data: "d.results.Faxnumber" },
+      // { data: "d.results.Currency" },
     ],
-    select: true,
-    buttons: [
+    "bFilter": true,
+    "select": true,
+    "buttons": [
       'copy', 'csv', 'excel', 'pageLength',
       {
-        extend: 'pdf',
-        download: 'open'
+        "extend": 'pdf',
+        "download": 'open'
       }
     ],
     "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
@@ -51,36 +73,44 @@ var archiveTable = (function ($) {
     },
     //starts the table with search populted.
     // "o Search": {"sSearch": "Archived Projects"},
-    initComplete: function () {
-      this.api().columns().every( function () {
+    "fnInitComplete": function (nRow) {
+      this.api().columns().every( function (index) {
         var column = this;
-        var select = $('<select selected><option value=""></option></select>')
-         .appendTo( "div.toolbar")
-          .on( 'change', function () {
-            var val = $.fn.dataTable.util.escapeRegex(
-              $(this).val()
-            );
-            column
-              .search( val ? '^'+val+'$' : '', true, false )
-              .draw();
+            var select = $('<select selected><option value=""></option></select>')
+             .appendTo( "div.toolbar")
+              .on( 'change', function () {
+                var val = $.fn.dataTable.util.escapeRegex(
+                  $(this).val()
+                );
+                column
+                  .search( val ? '^'+val+'$' : '', true, false )
+                  .draw();
+              });
+              column.data().unique().sort().each( function ( d, j ) {
+              select.append( '<option value="'+d+'">'+d+'</option>' )
+            });
           });
-        column.data().unique().sort().each( function ( d, j ) {
-          select.append( '<option value="'+d+'">'+d+'</option>' )
-        });
-      });
       $('.toolbar').hide();
     },
+    "bDestroy": true,
   });
-  $('input[name="seach_proj_list"]').on( 'keyup', function () {
-    archivedTable.search( this.value ).draw();
-  });
-
-//TO remove a tr
-//$('.table-remove').click(function () {
-//   $(this).parents('tr').detach();
-// });
-
-
+  // archivedTable.api().on( 'xhr', function () {
+  //     var json = archivedTable.api().ajax.json();
+  //     alert( json.data.length +' row(s) were loaded' );
+  // } );
+    $('.search-table').on( 'keyup change', function () {
+       archivedTable.api().search( this.value ).draw();
+    });
+    $(".remove").on('click', function () {
+      console.log($(this));
+      archivedTable
+      .row( $(this).parents('tr') )
+      .remove()
+      .draw(false);
+    });
+    $('#archived-projects tbody').on( 'click', '.remove', function () {
+       archivedTable.api().row( $(this).parents('tr') ).remove().draw();
+     } );
   //TO SELECT STYLES.
   // table.on( 'click', 'tbody tr', function () {
   //     if ( table.row( this, { selected: true } ).any() ) {
