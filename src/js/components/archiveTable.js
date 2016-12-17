@@ -12,47 +12,64 @@ var archiveTable = (function ($) {
 
   var archivedTable = table.dataTable({
     "sDom": '<"toolbar"><B><tip>',
-    "ajax": '/data/archived.json',
+    // "ajax": '/data/OfficeCollection.json',
     "searching": true,
-    // "dataSrc": 'd',
+    // "sAjaxDataProp":"",
+    "sAjaxSource": "/data/OfficeCollection.json",
+    "sAjaxDataProp": "d.results",
+    "bServerSide" : false,
     "lengthMenu": [
       [ 10, 25, 50, -1 ],
       [ '10 rows', '25 rows', '50 rows', 'Show all' ]
     ],
     "columnDefs": [{
-      "targets": -1,
+      "targets": 1,
+      "visible": true,
       "data": null,
+      "searchable": false,
       "defaultContent": "<a title=\"remove row\" class=\"remove\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a>"
     }],
-    "columns": [
-      { title: "Company" },
-      { title: "Billing Office" },
-      { title: "Ext. Start" },
-      { title: "Duration" },
-      { title: "Total Budget" },
-      { title: "Win/Loss" },
-      { title: "Status" },
-      { title: "remove" },
-
-      // { data: "d.results.Company" },
-      // { data: "d.results.Compname" },
-      // { data: "d.results.Office" },
-      // { data: "d.results.City" },
-      // { data: "d.results.District" },
-      // { data: "d.results.Postalcode" },
-      // { data: "d.results.District" },
-      // { data: "d.results.Pobox" },
-      // { data: "d.results.Street" },
-      // { data: "d.results.Housenum" },
-      // { data: "d.results.Street2" },
-      // { data: "d.results.Building" },
-      // { data: "d.results.Floor" },
-      // { data: "d.results.Country" },
-      // { data: "d.results.Region" },
-      // { data: "d.results.Telnumber" },
-      // { data: "d.results.Telextens" },
-      // { data: "d.results.Faxnumber" },
-      // { data: "d.results.Currency" },
+    "aoColumns": [
+    {
+      sTitle: 'Company Name',
+      mDataProp:"Compname"
+    },
+    {
+      sTitle: 'Office',
+      mDataProp:"Office"
+    },
+    {
+      sTitle: 'Office Name',
+      mDataProp:"OfficeName"
+    },
+    {
+      sTitle: 'City',
+      mDataProp:"City"
+    },
+    {
+      sTitle: 'District',
+      mDataProp:"District"
+    },
+    {
+      sTitle: 'Postal Code',
+      mDataProp:"Postalcode"
+    },
+    {
+      sTitle: 'Street',
+      mDataProp:"Street"
+    },
+    {
+      sTitle: 'Street Number',
+      mDataProp:"Housenum"
+    },
+    {
+      sTitle: 'Street 2',
+      mDataProp:"Street2"
+    },
+    {
+      sTitle: 'Building',
+      mDataProp: "Building"
+    },
     ],
     "bFilter": true,
     "select": true,
@@ -65,31 +82,32 @@ var archiveTable = (function ($) {
     ],
     "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
       //to find and style win/loss cells.
-      if (aData[5] === "Win") {
-        $("td:eq(5)", nRow).addClass('win');
-      } else {
-         $("td:eq(5)", nRow).addClass('loss');
-      }
+      // if (aData[5] === "Win") {
+      //   $("td:eq(5)", nRow).addClass('win');
+      // } else {
+      //    $("td:eq(5)", nRow).addClass('loss');
+      // }
     },
     //starts the table with search populted.
     // "o Search": {"sSearch": "Archived Projects"},
     "fnInitComplete": function (nRow) {
-      this.api().columns().every( function (index) {
+      this.api().columns().every(function (index) {
         var column = this;
-            var select = $('<select selected><option value=""></option></select>')
-             .appendTo( "div.toolbar")
-              .on( 'change', function () {
-                var val = $.fn.dataTable.util.escapeRegex(
-                  $(this).val()
-                );
-                column
-                  .search( val ? '^'+val+'$' : '', true, false )
-                  .draw();
-              });
-              column.data().unique().sort().each( function ( d, j ) {
-              select.append( '<option value="'+d+'">'+d+'</option>' )
-            });
+          console.log($.fn.dataTable.util.escapeRegex);
+        var select = $('<select selected><option value=""></option></select>')
+        .appendTo( "div.toolbar")
+          .on( 'change', function () {
+            var val = $.fn.dataTable.util.escapeRegex(
+              $(this).val()
+            );
+            column
+              .search( val ? '^'+val+'$' : '', true, false )
+              .draw();
           });
+          column.data().unique().sort().each( function ( d, j ) {
+          select.append( '<option value="'+d+'">'+d+'</option>' )
+        });
+      });
       $('.toolbar').hide();
     },
     "bDestroy": true,
@@ -98,19 +116,22 @@ var archiveTable = (function ($) {
   //     var json = archivedTable.api().ajax.json();
   //     alert( json.data.length +' row(s) were loaded' );
   // } );
-    $('.search-table').on( 'keyup change', function () {
-       archivedTable.api().search( this.value ).draw();
-    });
-    $(".remove").on('click', function () {
-      console.log($(this));
-      archivedTable
-      .row( $(this).parents('tr') )
-      .remove()
-      .draw(false);
-    });
-    $('#archived-projects tbody').on( 'click', '.remove', function () {
-       archivedTable.api().row( $(this).parents('tr') ).remove().draw();
-     } );
+  archivedTable.api().on( 'xhr', function () {
+    var json = archivedTable.api().ajax.json();
+    console.log( json.d.results );
+  });
+  $('.search-table').on( 'keyup change', function () {
+     archivedTable.api().search( this.value ).draw();
+  });
+  $(".remove").on('click', function () {
+    archivedTable.api()
+    .row( $(this).parents('tr') )
+    .remove()
+    .draw(false);
+  });
+  // $('#archived-projects tbody').on( 'click', '.remove', function () {
+  //    archivedTable.api().row( $(this).parents('tr') ).remove().draw();
+  //  });
   //TO SELECT STYLES.
   // table.on( 'click', 'tbody tr', function () {
   //     if ( table.row( this, { selected: true } ).any() ) {

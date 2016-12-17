@@ -44,6 +44,8 @@ var loadCustomBillSheet = (function ($) {
          "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
             $("td", nRow).prop('contenteditable', true);
             $("td:eq(2)").addClass('datepicker');
+            $('#new-table_wrapper').addClass('hide');
+            this.removeClass('hide');
          },
       });
     }
@@ -98,15 +100,11 @@ var loadCustomBillSheet = (function ($) {
         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
            $("td", nRow).prop('contenteditable', true);
            this.removeClass('hide');
+           $('#csv-table_wrapper').addClass('hide');
         },
         "bDestroy": true,
       });
-
-      $('button').on('click', function(){
-        $('#new-table').row.add();
-      });
-
-    })
+    });
   }
 
   return {
