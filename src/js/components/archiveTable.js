@@ -22,54 +22,52 @@ var archiveTable = (function ($) {
       [ 10, 25, 50, -1 ],
       [ '10 rows', '25 rows', '50 rows', 'Show all' ]
     ],
-    "columnDefs": [{
-      "targets": 1,
-      "visible": true,
-      "data": null,
-      "searchable": false,
-      "defaultContent": "<a title=\"remove row\" class=\"remove\"><i class=\"fa fa-trash\" aria-hidden=\"true\"></i></a>"
-    }],
     "aoColumns": [
     {
-      sTitle: 'Company Name',
-      mDataProp:"Compname"
+      "sTitle": 'Company Name',
+      "mData":"Compname"
     },
     {
-      sTitle: 'Office',
-      mDataProp:"Office"
+      "sTitle": 'Billing Office',
+      "mData":"Office"
     },
     {
-      sTitle: 'Office Name',
-      mDataProp:"OfficeName"
+      "sTitle": 'Office Name',
+      "mData":"OfficeName"
     },
     {
-      sTitle: 'City',
-      mDataProp:"City"
+      "sTitle": 'City',
+      "mData":"City"
     },
     {
-      sTitle: 'District',
-      mDataProp:"District"
+      "sTitle": 'District',
+      "mData":"District"
     },
     {
-      sTitle: 'Postal Code',
-      mDataProp:"Postalcode"
+      "sTitle": 'Postal Code',
+      "mData":"Postalcode"
     },
     {
-      sTitle: 'Street',
-      mDataProp:"Street"
+      "sTitle": 'Street',
+      "mData":"Street"
     },
     {
-      sTitle: 'Street Number',
-      mDataProp:"Housenum"
+      "sTitle": 'Street Number',
+      "mData":"Housenum"
     },
     {
-      sTitle: 'Street 2',
-      mDataProp:"Street2"
+      "sTitle": 'Street 2',
+      "mData":"Street2"
     },
     {
-      sTitle: 'Building',
-      mDataProp: "Building"
+      "sTitle": 'Building',
+      "mData": "Building"
     },
+    {
+      "mData":"null",
+      "sClass":"center",
+      "sDefaultContent":" <a class=\"remove\"><i class=\"fa fa-trash\"></i></a>",
+    }
     ],
     "bFilter": true,
     "select": true,
@@ -93,7 +91,6 @@ var archiveTable = (function ($) {
     "fnInitComplete": function (nRow) {
       this.api().columns().every(function (index) {
         var column = this;
-          console.log($.fn.dataTable.util.escapeRegex);
         var select = $('<select selected><option value=""></option></select>')
         .appendTo( "div.toolbar")
           .on( 'change', function () {
@@ -123,15 +120,15 @@ var archiveTable = (function ($) {
   $('.search-table').on( 'keyup change', function () {
      archivedTable.api().search( this.value ).draw();
   });
-  $(".remove").on('click', function () {
-    archivedTable.api()
-    .row( $(this).parents('tr') )
-    .remove()
-    .draw(false);
-  });
-  // $('#archived-projects tbody').on( 'click', '.remove', function () {
-  //    archivedTable.api().row( $(this).parents('tr') ).remove().draw();
-  //  });
+  // $(".remove").on('click', function () {
+  //   archivedTable.api()
+  //   .row( $(this).parents('tr') )
+  //   .remove()
+  //   .draw(false);
+  // });
+  $('#archived-projects tbody').on( 'click', '.remove', function () {
+     archivedTable.api().row( $(this).parents('tr') ).remove().draw();
+   });
   //TO SELECT STYLES.
   // table.on( 'click', 'tbody tr', function () {
   //     if ( table.row( this, { selected: true } ).any() ) {
