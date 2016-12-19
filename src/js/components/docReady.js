@@ -42,13 +42,13 @@
 
     //calendars
     $( ".datepicker" ).datepicker({
-      onSelect: function(dateText, inst) {
-        projectDuration.initProjectDuration('.project-info', inst, dateText);
+      onSelect: function(dateText, instance) {
+        projectDuration.initProjectDuration('.project-info', instance, dateText);
         floatLabel.initfloatLabel();
       }
     });
 
-    archiveTable.initArchiveTable();
+    activeTable.initActiveTable();
     //upload CSV for the user
     loadCustomBillSheet.initLoadCustomBillSheet();
 

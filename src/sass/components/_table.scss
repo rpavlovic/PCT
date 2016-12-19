@@ -1,5 +1,6 @@
 table {
   &.dataTable.display {
+    margin: 20px 0;
     thead {
       tr {
         background: #e6e6e6;
@@ -40,10 +41,13 @@ table {
   }
 }
 .toolbar {
-  select {
+  @extend %clearfix;
+  .field-wrapper {
     width: 100%;
+    display: inline;
      @include breakpoint('small') {
        width: 16%;
+       float: left;
     }
 
     margin-right: .678%;

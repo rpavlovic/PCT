@@ -36,9 +36,7 @@ var loadCustomBillSheet = (function ($) {
           { title: "Billing Office" },
           { title: "Ext. Start" },
           { title: "Duration" },
-          { title: "Total Budget" },
-          { title: "Win/Loss" },
-          { title: "Status" }
+          { title: "Total Budget" }
         ],
         "bDestroy": true,
          "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
