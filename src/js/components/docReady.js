@@ -41,13 +41,13 @@
     progressNav.initProgressNav('#progress-navigation');
 
     //calendars
-    $( ".datepicker" ).datepicker({
-      onSelect: function(dateText, instance) {
-        projectDuration.initProjectDuration('.project-info', instance, dateText);
-        floatLabel.initfloatLabel();
-      }
-    });
-
+    // $( ".datepicker" ).datepicker({
+    //   onSelect: function(dateText, instance) {
+    //     projectDuration.initProjectDuration('.project-info', instance, dateText);
+    //     floatLabel.initfloatLabel();
+    //   }
+    // });
+    projectDuration.initProjectDuration('.project-info');
     activeTable.initActiveTable();
     //upload CSV for the user
     loadCustomBillSheet.initLoadCustomBillSheet();

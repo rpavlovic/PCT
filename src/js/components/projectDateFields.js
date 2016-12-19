@@ -6,7 +6,7 @@
 var projectDuration = (function ($) {
   'use strict';
 
-  function initProjectDuration(form, inst, dateText) {
+  function initProjectDuration(form) {
 
     var estimate_end_date = $(form + " input[name=\"enddate\"]"),
         duration = $(form + " input[name=\"duration\"]");
@@ -19,10 +19,10 @@ var projectDuration = (function ($) {
     var month = lastday.getMonth() + 1;
     var weekly_month = month < 10 ? '0' + month : '' + month;
 
-    function choose_planBy() {
+    function choose_planBy(inst) {
       $(form + " select[name='planby'] option:selected").each(function() {
         console.log($(this).val());
-        switch($(this).val()) {
+        switch(inst.input.val()) {
           case 'Weekly':
 
             if(inst.input.val() != '' && inst.input != 'indefined') {
@@ -47,10 +47,14 @@ var projectDuration = (function ($) {
           }
         });
       }
-     // $(form + " .datepicker").on('change', function() {
-        choose_planBy();
-     // });
 
+$( ".datepicker" ).datepicker({
+  onSelect: function(dateText, instance) {
+    choose_planBy(instance);
+    // projectDuration.initProjectDuration('.project-info', instance, dateText);
+    // floatLabel.initfloatLabel();
+  }
+});
     }
 
 
