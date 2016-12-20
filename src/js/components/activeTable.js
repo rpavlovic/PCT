@@ -34,15 +34,21 @@ var activeTable = (function ($) {
     },
     {
       "title": 'Est.Date',
-      "data":""
+      "data":" ",
+      "targets": [ -1 ],
+      "defaultContent": ''
     },
     {
       "title": 'Duration',
-      "data":""
+      "data":" ",
+      "targets": [ -1 ],
+      "defaultContent": ''
     },
     {
       "title": 'Budget',
-      "data":""
+      "data":" ",
+      "targets": [ -1 ],
+      "defaultContent": ''
     },
     // {
     //   "sTitle": 'Office Name',
@@ -120,10 +126,10 @@ var activeTable = (function ($) {
       $('.toolbar').hide();
     },
   });
-  // activeTable.api().on( 'xhr', function () {
-  //   var json = activeTable.api().ajax.json();
-  //   console.log( json.d.results );
-  // });
+  activeTable.api().on( 'xhr', function () {
+    var json = activeTable.api().ajax.json();
+    console.log( json.d.results );
+  });
   $('.search-table').on( 'keyup change', function () {
      activeTable.api().search( this.value ).draw();
   });
