@@ -5,7 +5,7 @@
 
     //TODO check what pages to load what json
     if(path[3] === 'projectGeneral.html') {
-      loadJSON.initJSON("/data/OfficeCollection.json");
+      loadJSON.initJSON("/data/OfficeCollection.json", "/data/EmployeeCollection.json");
     }
     // if(path[3] === 'profile.html') {
     //  loadJSON.initJSON("/data/profile.json");

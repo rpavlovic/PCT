@@ -184,5 +184,5 @@ gulp.task('moveJS', function() {
 gulp.task('build', ['data', 'nunjucks', 'move', 'moveJS', 'styles', 'js',  'fonts', 'imagemin']);
 
 
-gulp.task('default', ['serve']);
+gulp.task('default', ['serve', 'build']);
 
