@@ -149,6 +149,8 @@ var filesToMove = [
 ];
 
 var jsLibToMove = [
+  'src/js/assets/jquery-3.1.1.min.js',
+  'src/js/assets/jquery-ui.min.js',
   'src/js/assets/DataTables-1.10.13/media/js/jquery.dataTables.min.js',
   'src/js/assets/DataTables-1.10.13/extensions/Select/js/dataTables.select.min.js',
   'src/js/assets/DataTables-1.10.13/extensions/Buttons/js/dataTables.buttons.min.js',
