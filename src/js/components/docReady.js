@@ -4,9 +4,9 @@
     path = path.split("/");
 
     //TODO check what pages to load what json
-    // if(path[3] === 'projects.html') {
-    //   loadJSON.initJSON("/data/OfficeCollection.json");
-    // }
+    if(path[3] === 'projectGeneral.html') {
+      loadJSON.initJSON("/data/OfficeCollection.json");
+    }
     // if(path[3] === 'profile.html') {
     //  loadJSON.initJSON("/data/profile.json");
     // }

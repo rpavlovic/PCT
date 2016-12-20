@@ -2,7 +2,24 @@
 <html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-    <title>Sample App</title>
+    <title>
+      {% if pgHome %}
+        Weber Shandwick
+      {% elif pgAbout %}
+        About Us
+      {% elif pgProjects %}
+        {% if pgCustomBS %}
+         Custom Bill Sheet
+        {% endif %}
+        Project Page
+      {% elif pgReports%}
+        Report Page
+      {% elif pgProfile%}
+        Profile
+      {% elif page %}
+        Weber Shandiwck
+      {% endif %}
+    </title>
     <script src="/js/jquery-3.1.1.min.js"></script>
     <script src="/js/jquery-ui.min.js"></script>
     <link href="/css/base.css" rel="stylesheet">

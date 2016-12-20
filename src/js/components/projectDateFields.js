@@ -26,7 +26,7 @@ var projectDuration = (function ($) {
             function daysInMonth(month,year) {
                 return new Date(year, month, 0).getDate();
             }
-console.log(daysInMonth(month), lastday.getFullYear());
+console.log(daysInMonth(1), lastday.getFullYear());
         // if(plan_by === "Weekly") {
         //   days = 7;
         // } else if (plan_by === "Monthly") {
