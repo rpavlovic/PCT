@@ -8,10 +8,10 @@ var loadJSON = (function ($) {
 
   var items = [];
 
-  function Iterate_billing_office_JSON(data) {
-
+  function Iterate_billing_office_JSON(data1, data2) {
+    console.log(data2);
     var select = $("form.project-info select[name='billing']");
-    $.each(data.d.results, function(key, val) {
+    $.each(data1.d.results, function(key, val) {
       for (var key in val) {
         if(key === "OfficeName") {
           items.push('<option value="' + val[key] + '">' + val[key] + '</option>');
@@ -21,9 +21,9 @@ var loadJSON = (function ($) {
     select.append(jQuery.unique(items));
   }
 
-  function initJSON(jsonFile) {
-    $.getJSON(jsonFile, function(data) {
-      Iterate_billing_office_JSON(data);
+  function initJSON(jsonFile1, jsonFile2) {
+    $.getJSON(jsonFile1, jsonFile2,  function(data1, data2) {
+      Iterate_billing_office_JSON(data1, data2);
     })
     .done(function() {
       floatLabel.initfloatLabel();
