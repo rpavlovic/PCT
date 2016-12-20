@@ -27,17 +27,11 @@ var projectDuration = (function ($) {
         var curr = new Date($(form + " .datepicker").val()), // get current date
                    first = curr.getDate(),
                    daysToAdd,
-                   last = first + daysToAdd,
+                   last = (first + daysToAdd) * duration,
                    lastday = new Date(curr.setDate(last)),
                    month = lastday.getMonth() + 1,
 
-                   weekly_month = month < 10 ? '0' + month : '' + month;
-
-
-
-
-
-console.log(estimate_end_date.val(weekly_month + '/' + lastday.getDate() + '/' + lastday.getFullYear()));
+                   weekly_month = (month*duration) < 10 ? '0' + month : '' + month;
 
         function daysInMonth(month,year) {
           return new Date(year, month, 0).getDate();
