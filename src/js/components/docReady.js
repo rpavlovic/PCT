@@ -4,9 +4,9 @@
     path = path.split("/");
 
     //TODO check what pages to load what json
-    if(path[3] === 'projects.html') {
-      loadJSON.initJSON("/data/gw_client_data.json");
-    }
+    // if(path[3] === 'projects.html') {
+    //   loadJSON.initJSON("/data/OfficeCollection.json");
+    // }
     // if(path[3] === 'profile.html') {
     //  loadJSON.initJSON("/data/profile.json");
     // }
@@ -42,13 +42,13 @@
 
     //calendars
     $( ".datepicker" ).datepicker({
-      onSelect: function(dateText, inst) {
-        projectDuration.initProjectDuration('.project-info', inst, dateText);
+      onSelect: function(dateText, instance) {
+        projectDuration.initProjectDuration('.project-info', instance, dateText);
         floatLabel.initfloatLabel();
       }
     });
 
-    archiveTable.initArchiveTable();
+    activeTable.initActiveTable();
     //upload CSV for the user
     loadCustomBillSheet.initLoadCustomBillSheet();
 

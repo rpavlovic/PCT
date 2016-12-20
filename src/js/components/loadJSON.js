@@ -11,15 +11,20 @@ var loadJSON = (function ($) {
   function Iterate_client_JSON(data) {
 
     $.each(data.d.results, function(key, val) {
+      items.push("<tr>");
+      // for (var key in val) {
+      //   items.push("<th>"+ '<span><strong>' + key + ': </strong></span>'+"</th>");
+      // }
       for (var key in val) {
         if(typeof val[key] === 'object') {
           for(var key_2 in val[key] ) {
-            items.push( "<li class='" + key_2 + "'>" + '<span><strong>' + key_2 + ': </strong></span>' + val[key][key_2] + "</li>" );
+            // items.push( "<td class='" + key_2 + "'>" + '<span><strong>' + key_2 + ': </strong></span>' + val[key][key_2] + "</td>" );
           }
         } else {
-          items.push( "<li class='" + key + "'>" + '<span><strong>' + key + ': </strong></span>' + val[key] + "</li>" );
+          items.push( "<td class='" + key + "'>" + val[key] + "</td>" );
         }
       }
+      items.push("</tr>");
     });
   }
 
@@ -45,10 +50,10 @@ var loadJSON = (function ($) {
     })
     .done(function() {
       if(jsonFile != '/data/profile.json') {
-        $( "<ul/>", {
+        $( "<table />", {
           "class": "data-list",
           html: items.join( "" )
-        }).appendTo( "#json_data" );
+        }).appendTo( ".archived-table" );
       }
     })
     .fail(function(jqXHR, exception) {
