@@ -18,6 +18,8 @@
       }
     }).on("keyup",function() {
       $(this).trigger("checkval");
+    }).on("ready",function() {
+      $(this).trigger("checkval");
     }).on("change",function() {
       $(this).trigger("checkval");
     }).on("focus",function() {
@@ -25,7 +27,6 @@
     }).on("blur",function() {
         $(this).prev("label").removeClass(onClass);
     }).trigger("checkval");
-
    }
    return {
      initfloatLabel:initfloatLabel
