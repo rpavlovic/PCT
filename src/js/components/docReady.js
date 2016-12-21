@@ -44,6 +44,7 @@
     $( ".datepicker" ).datepicker({
       "nextText": "",
       "prevText":"",
+      "dateFormat": "MM dd, yy",
       onSelect: function(dateText, instance) {
         projectDuration.initProjectDuration('.project-info', instance, dateText);
         floatLabel.initfloatLabel();

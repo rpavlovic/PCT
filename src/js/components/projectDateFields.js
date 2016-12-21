@@ -14,8 +14,7 @@ var projectDuration = (function ($) {
         duration = $(form + " input[name=\"duration\"]").val(),
         selected_month = new Date(inst.selectedMonth + 1),
         selected_day = new Date(inst.selectedDay),
-        selected_year = new Date(inst.selectedYear),
-        dateFormat = "mm/dd/yyyy";
+        selected_year = new Date(inst.selectedYear);
 
     if(plan_by === "Weekly") {
       daysToAdd = 7;
@@ -29,9 +28,13 @@ var projectDuration = (function ($) {
       daysToAdd,
       last = first + (daysToAdd * parseInt(duration)),
       lastday = new Date(curr.setDate(last)),
-      month = (lastday.getMonth() + 1),
-
+      month = (lastday.getMonth()+1),
       weekly_month = (month) < 10 ? '0' + month : '' + month;
+
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+
 
     function daysInMonth(month, year) {
       return new Date(year, month, 0).getDate();
@@ -39,7 +42,7 @@ var projectDuration = (function ($) {
 
     function choose_planBy() {
       if($.isNumeric(duration) && duration.length > 0) {
-        var duration_input = estimate_end_date.val(weekly_month + '/' + lastday.getDate() + '/' + lastday.getFullYear());
+        var duration_input = estimate_end_date.val(monthNames[lastday.getMonth()] + ' ' + lastday.getDate() + ', ' + lastday.getFullYear());
         $(form + " select[name='planby'] option:selected").each(function() {
           switch($(this).val()) {
             case 'Weekly':
