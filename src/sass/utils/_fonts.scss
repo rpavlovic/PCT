@@ -2,6 +2,7 @@
 a {
   color: $link-color;
   text-decoration: none;
+  font: normal 1rem/1.2rem "EYInterstate-Regular", Arial;
   &.active,
   &:focus {
     color: $default-grey;
@@ -43,7 +44,7 @@ span,
 label {
   font-family: “EYLight”, Arial;
 }
-p {
+p,th, td {
   font: 1rem/1.3125rem “EYLight”, Arial;
   color: $medium-grey;
   margin-bottom: 1.625rem;
