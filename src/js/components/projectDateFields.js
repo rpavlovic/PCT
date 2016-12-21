@@ -20,7 +20,7 @@ var projectDuration = (function ($) {
         if(plan_by === "Weekly") {
           daysToAdd = 7;
         } else if (plan_by === "Monthly") {
-          daysToAdd = daysInMonth(selected_month, inst.selectedYear);
+          daysToAdd = daysInMonth(selected_month, selected_year);
         }
 
 
@@ -33,30 +33,29 @@ var projectDuration = (function ($) {
 
           weekly_month = (month) < 10 ? '0' + month : '' + month;
 
-        function daysInMonth(month,year) {
+        function daysInMonth(month, year) {
           return new Date(year, month, 0).getDate();
         }
 
     function choose_planBy() {
-      console.log(weekly_month);
-      $(form + " select[name='planby'] option:selected").each(function() {
-        if(inst.input.val != '' && $.isNumeric(duration) || $.isNumeric(duration.length > 0)) {
+      if($.isNumeric(duration) && duration.length > 0) {
+        var duration_input = estimate_end_date.val(weekly_month + '/' + lastday.getDate() + '/' + lastday.getFullYear());
+        $(form + " select[name='planby'] option:selected").each(function() {
           switch($(this).val()) {
             case 'Weekly':
-              estimate_end_date.val(weekly_month + '/' + lastday.getDate() + '/' + lastday.getFullYear());
+              duration_input;
               $(form + " input[name=\"duration\"]").val(duration + (duration == 1 ? ' Week': ' Weeks'));
               break;
             case 'Monthly':
-
-              estimate_end_date.val(weekly_month + '/' + lastday.getDate() + '/' + lastday.getFullYear());
+              duration_input;
               $(form + " input[name=\"duration\"]").val(duration + (duration == 1 ? ' Month': ' Months'));
               break;
             case 'Summary':
                 duration.val(duration.val() + ' Sum');
               break;
           } //end of switch
-        }
-      });
+        });
+      }
     }
     choose_planBy();
   }
