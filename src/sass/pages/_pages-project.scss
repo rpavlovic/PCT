@@ -13,3 +13,13 @@
     width: 100%;
   }
 }
+.project-info {
+  > .row {
+    //&:not(.button-row),
+    &:not(:nth-last-of-type(2)) {
+      border-bottom:solid 1px #ebebeb;
+      margin-bottom:20px;
+      padding-bottom: 20px;
+    }
+  }
+}
