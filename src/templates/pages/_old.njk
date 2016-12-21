@@ -1,0 +1,18 @@
+{% extends "layout.njk" %}
+{% set pgHome = true %}
+{% set base_path = "/" %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-10 targetBlock" id="show1">
+      <section class="">
+        <h1>Welcome to the Profitability &amp; Contribution Tool (PCT)</h1>
+        <h2>The PCT is our global tool that provides teams the capability to estimate price and contribution for jobs by inputing required resources and out of pocket expenses.</h2>
+      </section>
+      <button class="btn-blue show-login" target="2">Get Started</button>
+    </div>
+    {% include "partials/formLoginRegister.njk" %}
+    {% include "partials/formForgotPass.njk" %}
+  </div>
+</div>
+{% endblock %}

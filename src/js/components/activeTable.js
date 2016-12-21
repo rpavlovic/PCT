@@ -100,6 +100,7 @@ var activeTable = (function ($) {
       }
     ],
     "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+      $("td", nRow).prop('contenteditable', true);
     },
     //when json is loaded add the filters to the toolbar div.
     "fnInitComplete": function (nRow) {

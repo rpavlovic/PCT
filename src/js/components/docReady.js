@@ -3,14 +3,10 @@
     var path = window.location.pathname;
     path = path.split("/");
 
-    //TODO check what pages to load what json
-    if(path[3] === 'projectGeneral.html') {
+    //if form to be loaded exists.
+    if($("form.project-info").length > 0) {
       loadJSON.initJSON("/data/OfficeCollection.json", "/data/EmployeeCollection.json");
     }
-    // if(path[3] === 'profile.html') {
-    //  loadJSON.initJSON("/data/profile.json");
-    // }
-
     //Show Hide elements
     showHide.initShowHide();
 
