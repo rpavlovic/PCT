@@ -157,7 +157,6 @@ var jsLibToMove = [
   'src/js/assets/DataTables-1.10.13/extensions/Buttons/js/buttons.print.min.js',
   'src/js/assets/DataTables-1.10.13/extensions/Buttons/js/buttons.html5.min.js',
   'src/js/assets/DataTables-1.10.13/extensions/AutoFill/js/dataTables.autoFill.min.js',
-  'src/js/assets/altEditor.js',
   'src/js/assets/vfs_fonts.js',
   'src/js/assets/pdfmake.min.js',
   'src/js/assets/jszip.min.js',

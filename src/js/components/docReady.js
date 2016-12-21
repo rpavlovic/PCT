@@ -3,9 +3,13 @@
     var path = window.location.pathname;
     path = path.split("/");
 
+    var feeds = {
+      'offices': '/data/OfficeCollection.json',
+      'employee': '/data/EmployeeCollection.json'
+    };
     //if form to be loaded exists.
     if($("form.project-info").length > 0) {
-      loadJSON.initJSON("/data/OfficeCollection.json", "/data/EmployeeCollection.json");
+      loadJSON.initJSON(feeds['offices'], feeds['employee']);
     }
     //Show Hide elements
     showHide.initShowHide();
@@ -38,6 +42,9 @@
 
     //calendars
     $( ".datepicker" ).datepicker({
+      "nextText": "",
+      "prevText":"",
+      "dateFormat": "MM dd, yy",
       onSelect: function(dateText, instance) {
         projectDuration.initProjectDuration('.project-info', instance, dateText);
         floatLabel.initfloatLabel();
