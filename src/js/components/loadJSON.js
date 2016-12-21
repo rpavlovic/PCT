@@ -6,8 +6,14 @@
 var loadJSON = (function ($) {
   'use strict';
 
-  var items = [],
-      select = $("form.project-info select[name='billing']");
+  var items_business = [],
+      items_country = [],
+      items_currency = [],
+      items_region = [],
+      select_billing_office = $("form.project-info select[name='billing']"),
+      select_currency = $("form.project-info select[name='currency']"),
+      select_region = $("form.project-info select[name='regions']"),
+      select_country = $("form.project-info select[name='country']");
 
 
   //prepopulate Billing office select with JSON data.
@@ -15,11 +21,23 @@ var loadJSON = (function ($) {
     $.each(data1.d.results, function(key, val) {
       for (var key in val) {
         if(key === "OfficeName") {
-          items.push('<option value="' + val[key] + '">' + val[key] + '</option>');
+          items_business.push('<option value="' + val[key] + '">' + val[key] + '</option>');
+        }
+        if(key == "Country") {
+          items_country.push('<option value="' + val[key] + '">' + val[key] + '</option>');
+        }
+        if(key == "Currency") {
+          items_currency.push('<option value="' + val[key] + '">' + val[key] + '</option>');
+        }
+        if(key == "Region") {
+          items_region.push('<option value="' + val[key] + '">' + val[key] + '</option>');
         }
       }
     });
-    select.append(jQuery.unique(items));
+    select_billing_office.append(jQuery.unique(items_business));
+    select_country.append(jQuery.unique(items_country));
+    select_currency.append(jQuery.unique(items_currency));
+    select_region.append(jQuery.unique(items_region));
   }
 
   //match the employee office with list of offices and select the matching one.
@@ -27,7 +45,14 @@ var loadJSON = (function ($) {
     $.each(data2.d.results, function(key, val) {
       for (var key in val) {
         if(key === "OfficeName") {
-          $.each( select[0].options, function() {;
+          $.each( select_billing_office[0].options, function() {;
+            if( $(this).val() === val[key]) {
+              $(this).prop('selected', true);
+            }
+          });
+        }
+        if(key === "OfficeCountry") {
+          $.each( select_billing_office[0].options, function() {;
             if( $(this).val() === val[key]) {
               $(this).prop('selected', true);
             }
