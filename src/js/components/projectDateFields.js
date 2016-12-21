@@ -17,25 +17,25 @@ var projectDuration = (function ($) {
         selected_year = new Date(inst.selectedYear),
         dateFormat = "mm/dd/yyyy";
 
-        if(plan_by === "Weekly") {
-          daysToAdd = 7;
-        } else if (plan_by === "Monthly") {
-          daysToAdd = daysInMonth(selected_month, selected_year);
-        }
+    if(plan_by === "Weekly") {
+      daysToAdd = 7;
+    } else if (plan_by === "Monthly") {
+      daysToAdd = daysInMonth(selected_month, selected_year);
+    }
 
 
-        var curr = new Date(estimated_start_date), // get current date
-          first = curr.getDate(),
-          daysToAdd,
-          last = first + (daysToAdd * parseInt(duration)),
-          lastday = new Date(curr.setDate(last)),
-          month = (lastday.getMonth() + 1),
+    var curr = new Date(estimated_start_date), // get current date
+      first = curr.getDate(),
+      daysToAdd,
+      last = first + (daysToAdd * parseInt(duration)),
+      lastday = new Date(curr.setDate(last)),
+      month = (lastday.getMonth() + 1),
 
-          weekly_month = (month) < 10 ? '0' + month : '' + month;
+      weekly_month = (month) < 10 ? '0' + month : '' + month;
 
-        function daysInMonth(month, year) {
-          return new Date(year, month, 0).getDate();
-        }
+    function daysInMonth(month, year) {
+      return new Date(year, month, 0).getDate();
+    }
 
     function choose_planBy() {
       if($.isNumeric(duration) && duration.length > 0) {

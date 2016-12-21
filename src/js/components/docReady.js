@@ -38,6 +38,8 @@
 
     //calendars
     $( ".datepicker" ).datepicker({
+      "nextText": "",
+      "prevText":"",
       onSelect: function(dateText, instance) {
         projectDuration.initProjectDuration('.project-info', instance, dateText);
         floatLabel.initfloatLabel();

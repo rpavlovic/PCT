@@ -25,9 +25,7 @@
     <link href="/css/base.css" rel="stylesheet">
   </head>
 
-  {% if pgHome %}
-    <body class="home-page">
-  {% elif pgAbout %}
+  {% if pgAbout %}
     <body class="about-page">
   {% elif pgProjects %}
     {% if pgCustomBS %}
@@ -62,7 +60,6 @@
     <script src="/js/dataTables.autoFill.min.js"></script>
     <script src="/js/buttons.print.min.js"></script>
     <script src="/js/buttons.html5.min.js"></script>
-    <!--<script src="/js/altEditor.js"></script>-->
     <script src="/js/jszip.min.js"></script>
     <script src="/js/pdfmake.min.js"></script>
     <script src="/js/vfs_fonts.js"></script>

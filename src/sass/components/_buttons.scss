@@ -137,3 +137,22 @@ button[data-toggle] {
   margin-top: 20px;
   padding-top: 20px;
 }
+//calendar buttons
+.ui-datepicker-next,
+.ui-datepicker-prev {
+  &:after {
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+
+    font-family:FontAwesome;
+  }
+}
+.ui-datepicker-next:after {
+  content:"\f054";
+  right:7px;
+}
+.ui-datepicker-prev:after {
+  content:"\f053";
+  left: 7px;
+}
