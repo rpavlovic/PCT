@@ -26,6 +26,7 @@ var addRemoveFields = (function ($) {
         }
       }
       if(target.hasClass('add-row')) {
+        e.preventDefault();
         Form.removeBtn.prop('disabled', false);
         var clear_input = cloned_input.insertAfter($this.prev());
         clear_input.find('input, label, .fa-trash').removeClass('show').val('').prop('disabled', false);

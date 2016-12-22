@@ -1,4 +1,5 @@
 table {
+  width: 100%;
   &.dataTable.display {
     margin: 20px 0;
     thead {
@@ -55,4 +56,61 @@ table {
       margin: 0;
     }
   }
+}
+
+//project resources tables
+.modeling-table {
+  border-collapse: separate;
+  margin: rem-calc(20 0);
+  td {
+    border:solid 1px $white;
+    background-color: #f9f9f9;
+    padding: rem-calc(10);
+    &.high-value,
+    &.low-value {
+      font-weight: bold;
+      i {
+        margin-right: rem-calc(10);
+      }
+    }
+    &.high-value {
+      background-color: lighten($green-alert, 49%);
+      color: $green-alert;
+    }
+    &.low-value {
+      color: $red-alert;
+      background-color: lighten($red-alert, 40%);
+    }
+  }
+  thead {
+    th {
+      font-size: rem-calc(12);
+      text-align: left;
+      font-weight: bold;
+      border-bottom: solid 2px #000;
+      padding-left: rem-calc(15);
+      border-left: solid 2px $white;
+      padding-bottom: 5px;
+    }
+  }
+  tbody > tr {
+    &:nth-of-type(1) {
+      td {
+        padding: rem-calc(8);
+        background-color: #e6e6e6;
+        text-align: left;
+      }
+      span {
+        color: $link-color;
+        font-family: "EYBold";
+        font-size: rem-calc(12);
+      }
+    }
+  }
+  td {
+    &:nth-child(n+2) {
+      text-align: right;
+    }
+  }
+
 }

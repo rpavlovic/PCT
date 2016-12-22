@@ -100,7 +100,8 @@ var activeTable = (function ($) {
       }
     ],
     "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-      $("td", nRow).prop('contenteditable', true);
+      console.log($("td:not(last-child)", nRow));
+      $("td:not(:last)", nRow).prop('contenteditable', true);
     },
     //when json is loaded add the filters to the toolbar div.
     "fnInitComplete": function (nRow) {
@@ -127,10 +128,10 @@ var activeTable = (function ($) {
       $('.toolbar').hide();
     },
   });
-  activeTable.api().on( 'xhr', function () {
-    var json = activeTable.api().ajax.json();
-    console.log( json.d.results );
-  });
+  // activeTable.api().on( 'xhr', function () {
+  //   var json = activeTable.api().ajax.json();
+  //   console.log( json.d.results );
+  // });
   $('.search-table').on( 'keyup change', function () {
      activeTable.api().search( this.value ).draw();
   });

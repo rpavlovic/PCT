@@ -60,7 +60,6 @@ form {
   input[type="radio"] {
     display:none;
     + label {
-      display: inline-block;
       position: relative;
       &::before {
         width: 1.25rem;
@@ -69,9 +68,10 @@ form {
         display: inline-block;
         border: 1px solid #ccc;
         border-radius: 50%;
-        margin: 0 0.5em;
+        margin: 0 2px;
         color: transparent;
         vertical-align: middle;
+        background-color: $white;
       }
     }
     &:checked + label {
@@ -84,13 +84,13 @@ form {
         display: inline-block;
         border: none;
         border-radius: 50%;
-        margin: 0 0.5rem;
+        margin: 0 2px;
         position: absolute;
         background: $yellow;
         width: 1rem;
         height: 1rem;
         left: 2px;
-        top: 2px;
+        top: 3px;
       }
     }
   }
@@ -144,7 +144,6 @@ form {
       position: relative;
       padding: 0 20px 0 0;
       text-align: center;
-      font-size: 14px;
       &:not(:last-child):after {
         content: '';
         background: #cccccc;
@@ -155,13 +154,8 @@ form {
         z-index: 1;
       }
       label {
-        position: relative;
         background: white;
         z-index: 10;
-      }
-      input + label:before,
-      input + label:after {
-        margin: 0 2px;
       }
       &.current,
       &.previous {
@@ -174,11 +168,12 @@ form {
         color: #cccccc;
         display: block;
         margin-bottom: 3px;
+        font-size: rem-calc(14);
       }
       &.previous {
-        &:not(:last-child):after {
-          background: $yellow;
-        }
+        // &:not(:last-child):after {
+        //   background: $yellow;
+        // }
         input[type="radio"] {
            + label {
             font-weight: bold;
@@ -196,12 +191,14 @@ form {
               width: 1rem;
               height: 1rem;
               left: 2px;
-              top: 2px;
+              top: 3px;
             }
           }
         }
       }
     }
+  }
+  &.project-resources {
   }
 }
 
