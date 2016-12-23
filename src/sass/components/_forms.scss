@@ -171,9 +171,6 @@ form {
         font-size: rem-calc(14);
       }
       &.previous {
-        // &:not(:last-child):after {
-        //   background: $yellow;
-        // }
         input[type="radio"] {
            + label {
             font-weight: bold;

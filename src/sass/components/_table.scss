@@ -99,6 +99,11 @@ table {
         padding: rem-calc(8);
         background-color: #e6e6e6;
         text-align: left;
+        border-bottom: solid 2px $light-grey;
+        &.active {
+          background-color: $yellow;
+          span {color: $black;}
+        }
       }
       span {
         color: $link-color;

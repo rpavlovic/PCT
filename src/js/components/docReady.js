@@ -30,9 +30,6 @@
     //show in-place form.
     editProfileForm.initEditProfileForm('form.form-edit-profile');
 
-    //drop-down selects and buttons.
-    dropDown.initDropDown('[data-toggle]');
-
     //floating label in the input fields.
     floatLabel.initfloatLabel();
 
@@ -55,6 +52,9 @@
     //upload CSV for the user
     loadCustomBillSheet.initLoadCustomBillSheet();
 
+    //modeling table highlight headers on radio click
+    $('.modeling-table input[type="radio"]').activateElement();
+    $('button').activateElement();
   });
 
 }( jQuery ));
