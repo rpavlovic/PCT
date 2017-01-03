@@ -93,16 +93,26 @@ var loadCustomBillSheet = (function ($) {
           "targets": -1,
           "searchable": false,
           "data": null,
-          "defaultContent": "<button>Click!</button>"
+          "defaultContent": "<a href=\" \" class=\"add\"><i class=\"fa fa-plus\"></i></a>"
         }],
         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-           $("td", nRow).prop('contenteditable', true);
+           $("td:not(:last)", nRow).prop('contenteditable', true);
            this.removeClass('hide');
            $('#csv-table_wrapper').addClass('hide');
+           $('a.add').row.add( [
+            counter +'.1',
+            counter +'.2',
+            counter +'.3',
+            counter +'.4',
+            counter +'.5'
+        ] ).draw( false );
+
+        counter++;
         },
         "bDestroy": true,
       });
     });
+     $('a.add').click();
   }
 
   return {
