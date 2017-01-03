@@ -100,8 +100,8 @@ var activeTable = (function ($) {
       }
     ],
     "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-      console.log($("td:not(last-child)", nRow));
-      $("td:not(:last)", nRow).prop('contenteditable', true);
+      $(nRow).removeClass('odd even');
+      $("td:not(:first-child):not(:last-child)", nRow).prop('contenteditable', true).addClass("contenteditable");
     },
     //when json is loaded add the filters to the toolbar div.
     "fnInitComplete": function (nRow) {

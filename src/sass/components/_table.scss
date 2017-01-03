@@ -15,10 +15,9 @@ table {
       }
     }
     tbody {
-      tr:not(.selected) {
+      tr {
         td {
           border: solid 1px $white;
-          background-color: #fafafa;
           &:first-child {
             color: $link-color;
             font-weight: bold;
@@ -40,6 +39,16 @@ table {
       }
     }
   }
+  td {
+    &.contenteditable {
+      background-color: #f2f2f2;
+      &:focus {
+        outline-color: $red-alert;
+        outline-width: 1px;
+        background-color: $white;
+      }
+    }
+  }
 }
 .toolbar {
   @extend %clearfix;
@@ -58,6 +67,16 @@ table {
   }
 }
 
+//overwrite datatable styles for selected row
+table.dataTable tbody tr.selected {
+  td,
+  &:hover {
+    background-color: #eaeaea !important;
+  }
+  td.contenteditable:focus {
+    background-color: $white !important;
+  }
+}
 //project resources tables
 .modeling-table {
   border-collapse: separate;
@@ -117,5 +136,4 @@ table {
       text-align: right;
     }
   }
-
 }

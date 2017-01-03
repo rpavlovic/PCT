@@ -24,7 +24,6 @@ $.fn.activateElement = function() {
     } else {
       class_name = 'active';
     }
-
     clicked_element.on('click', function() {
       //remove all active first.
       remove_active(all_active_elements, class_name);
@@ -37,5 +36,10 @@ $.fn.activateElement = function() {
         activate_element.removeClass(class_name);
       }
     });
+    //on reset clear active too.
+    $('button[type="reset"]').on('click', function() {
+      remove_active(all_active_elements, class_name);
+    });
+
   });
 }
