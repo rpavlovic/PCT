@@ -7,16 +7,24 @@ table {
         background: #e6e6e6;
       }
       th {
-        text-align: left;
-        padding-left: 5px;
-        font-size: 13px;
+        font-size: rem-calc(12);
         padding-bottom: 5px;
         font-weight: bold;
+        &:not(.center) {
+          text-align: left;
+        }
+        &.blue-bg {
+          width: 1px;
+          color: #999999;
+          font-size: 1rem;
+        }
       }
     }
     tbody {
       tr {
+        background-color: #f9f9f9;
         td {
+          background-color: transparent;
           border: solid 1px $white;
           &:first-child {
             color: $link-color;
@@ -35,18 +43,40 @@ table {
             background-color: #ffeee8;
             color: #ff5917;
           }
+          &.contenteditable {
+            background-color: #f2f2f2;
+            &:focus {
+              outline-color: $red-alert;
+              outline-width: 1px;
+              background-color: $white;
+            }
+          }
+          &.blue-bg {
+            background-color: #e8f1f8;
+          }
+        }
+        &:hover {
+          > .sorting_1,
+          td {
+            background-color: #eaeaea;
+          }
         }
       }
     }
   }
-  td {
-    &.contenteditable {
+   tbody tr {
+    background: #f9f9f9;
+    td.contenteditable {
       background-color: #f2f2f2;
       &:focus {
         outline-color: $red-alert;
         outline-width: 1px;
         background-color: $white;
       }
+    }
+    input,
+    select {
+      width: auto;
     }
   }
 }
@@ -59,7 +89,6 @@ table {
        width: 16%;
        float: left;
     }
-
     margin-right: .678%;
     &:last-child {
       margin: 0;
@@ -83,7 +112,6 @@ table.dataTable tbody tr.selected {
   margin: rem-calc(20 0);
   td {
     border:solid 1px $white;
-    background-color: #f9f9f9;
     padding: rem-calc(10);
     &.high-value,
     &.low-value {

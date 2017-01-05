@@ -34,10 +34,10 @@ var loadJSON = (function ($) {
         }
       }
     });
-    select_billing_office.append(jQuery.unique(items_business));
-    select_country.append(jQuery.unique(items_country));
-    select_currency.append(jQuery.unique(items_currency));
-    select_region.append(jQuery.unique(items_region));
+    select_billing_office.append($.unique(items_business));
+    select_country.append($.unique(items_country));
+    select_currency.append($.unique(items_currency));
+    select_region.append($.unique(items_region));
   }
 
   //match the employee office with list of offices and select the matching one.
