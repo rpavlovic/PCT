@@ -21,12 +21,11 @@ var projectResourceTable = (function ($) {
         "bAutoWidth": false,
         "columnDefs": [ {
           "orderable": false,
-          "targets": [ 1 ],
+          "targets": [ 0, 1 ],
           }
         ],
         "order": [[ 3, 'asc' ]],
         "columns": [{
-
           "title": 'Row',
           "sClass": "center",
           "defaultContent": '',
@@ -47,7 +46,7 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Office',
           "data": "City",
-          "defaultContent":' ',
+          "defaultContent":'City',
           "render": function ( data, type, set, meta ) {
             var output = '<select>';
             // for(var i = 0; i < meta.row.length; i++;) {
@@ -60,127 +59,106 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Title',
           "data":"title",
-          "targets": [ 3 ],
           "defaultContent": ''
         },
         {
           "title": 'Class',
           "data":" ",
-          "targets": [ 4 ],
           "defaultContent": ''
         },
         {
           "title": 'Practice',
           "data":" ",
-          "targets": [ 5 ],
           "defaultContent": ''
         },
         {
           "title": 'Role',
           "data":" ",
-          "targets": [ 6 ],
           "defaultContent": ''
         },
         {
           "title": 'Proposed <br/> Resource',
           "data":" ",
-          "targets": [ 7 ],
           "defaultContent": ''
         },
         {
           "title": 'Bill Rate',
           "data":" ",
-          "targets": [ 8 ],
           "defaultContent": ''
         },
         {
           "title": 'Bill Rate <br/> Override',
           "data":" ",
-          "targets": [ 9 ],
           "defaultContent": ''
         },
         {
           "title": 'Total Hours',
           "data":" ",
-          "targets": [ 10 ],
           "defaultContent": ''
         },
         {
           "title": 'Total Fees',
           "data":" ",
-          "targets": [ 11 ],
           "defaultContent": ''
         },
         {
           "title": 'JAN <br/> 16',
           "data":" ",
-          "targets": [ 12 ],
           "defaultContent": ''
         },
         {
           "title": 'FEB <br/> 16',
           "data":" ",
-          "targets": [ 13 ],
           "defaultContent": ''
         },
         {
           "title": 'MAR <br/> 16',
           "data":" ",
-          "targets": [ 14 ],
           "defaultContent": ''
         },
         {
           "title": 'APR <br/> 16',
           "data":" ",
-          "targets": [ 15 ],
           "defaultContent": ''
         },
         {
           "title": 'MAY <br/> 16',
           "data":" ",
-          "targets": [ 16 ],
           "defaultContent": ''
         },
         {
           "title": 'JUN <br/> 16',
           "data":" ",
-          "targets": [ 17 ],
           "defaultContent": ''
         },
         {
           "title": 'JUL <br/> 16',
           "data":" ",
-          "targets": [ 18 ],
           "defaultContent": ''
         },
         {
           "title": 'AUG <br/> 16',
           "data":" ",
-          "targets": [ 19 ],
           "defaultContent": ''
         },
         {
           "title": 'SEP <br/> 16',
           "data":" ",
-          "targets": [ 20 ],
           "defaultContent": ''
         },
         {
           "title": 'OCT <br/> 16',
           "data":" ",
-          "targets": [ 21 ],
           "defaultContent": ''
         },
         {
           "title": 'NOV <br/> 16',
           "data":" ",
-          "targets": [ 22 ],
           "defaultContent": ''
         },
         {
           "title": 'DEC <br/> 16',
           "data":" ",
-          "targets": [ 23 ],
           "defaultContent": ''
         }],
         "bFilter": false,
@@ -215,9 +193,11 @@ var projectResourceTable = (function ($) {
       });
 
   //add row
-  $('#addRow').on( 'click', function (e) {
+  $('#add-row').on( 'click', function (e) {
     e.preventDefault();
-    projResourceTable.row.add([]).draw( false );
+    projResourceTable.rows().nodes().to$().removeClass( 'new-row' );
+    var rowNode = projResourceTable.row.add( [ '', '', '', '', 'City'] ).draw().node();
+    $(rowNode).addClass('new-row');
   });
   //remove row
   $('#project-resource-table tbody').on( 'click', '.remove', function (e) {

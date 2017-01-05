@@ -57,17 +57,15 @@
 
     <div class="row">
       <div class="col-12">
-        <h5>Descriptive Details</h5>
-      </div>
-      <div class="col-12">
         {% include "partials/tables/projectResourceTable.njk" %}
-        <button id="addRow" class="button btn-blue plus">Add Resource</button>
+        <button id="add-row" class="button btn-blue plus">Add Resource</button>
       </div>
     </div>
 
     <div class="row button-row">
       <div class="col-12">
         {{ button.default(label='Save and Continue', path='/templates/pages/projectExpences.html', context='btn-green arrowpointer float-right') }}
+        {{ button.default(label='Back to Project Information', path='/templates/pages/projectGeneral.html', context='btn-light-grey float-right') }}
         {{ button.reset(attr="reset", label='Clear Form',  context='btn-light-grey float-left') }}
       </div>
     </div>
