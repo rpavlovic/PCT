@@ -6,6 +6,7 @@ A static gulp site
 
 `gulp build` will create a build directory with all the static files of the site.
 
+`gulp move` and `gulp moveJS` might need to be ran to move js and data files to the src.
 `gulp clean-all` will remove the build and node_modules directories.
 
 `gulp` will build, compile, and watch any changes made to the files during development
