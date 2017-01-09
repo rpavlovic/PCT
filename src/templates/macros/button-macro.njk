@@ -1,6 +1,15 @@
-{% macro field(type='button', class='btn', value='',  text) %}
-
+{% macro field(type='button', class='btn', value='',  text, path='') %}
+{% if path %}
+  <a href="{{ path }}"{% if isExternal %} rel="external nofollow" target="_blank"{% endif %}
+{% else %}
 <button type="{{ type }}" class="{{ class }}"
   value="{{ value | escape }}"
->{{ text }}</button>
+>{{ text }}
+{%- if path -%}
+  </a>
+{%- else -%}
+  </button>
+{% endif %}
+{% endif %}
 {% endmacro %}
+

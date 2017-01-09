@@ -1,5 +1,5 @@
 {# Pn the Project Information Page deliverables #}
-{% import "macros/button-macro.njk" as btn %}
+{% import "macros/button-extended-macro.njk" as button %}
 {% macro deliverablesRow(length=1) %}
 
 <div class="row deliverables">
@@ -16,13 +16,13 @@
                 </div>
             </div>
             <div class="col-1 col-2-sm">
-                {{ btn.field(type="button", class='btn btn-blue fa fa-trash', value='', '') }}
+                {{ button.default(context='btn btn-blue fa fa-trash', label=" ", type="button") }}
             </div>
         </div>
         {% endfor %}
         <div class="row">
             <div class="col-11 offset-2">
-                {{ btn.field(type="button", class='btn btn-blue add-row plus', value='Add Delivarable/ Stream', 'Add Delivarable/ Stream') }}
+                {{ button.default(context='button btn-blue add-row plus', label='Add Delivarable/ Stream') }}
             </div>
         </div>
     </div>

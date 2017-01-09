@@ -19,10 +19,11 @@ var activeTable = (function ($) {
     "sAjaxDataProp": "d.results",
     "bServerSide" : false,
     "iDisplayLength": 10,
-    // "lengthMenu": [
-    //   [10, 20, 30, -1 ],
-    //   ['View 10 records', 'View 20 records', 'View 30 records', 'View All Projects' ]
-    // ],
+    "bAutoWidth": false,
+    "columnDefs": [ {
+      "orderable": false,
+      "targets": [5],
+      }],
     "aoColumns": [
     {
       "sTitle": 'Project Name',
@@ -50,43 +51,11 @@ var activeTable = (function ($) {
       "targets": [ -1 ],
       "defaultContent": ''
     },
-    // {
-    //   "sTitle": 'Office Name',
-    //   "mData":"OfficeName"
-    // },
-    // {
-    //   "sTitle": 'City',
-    //   "mData":"City"
-    // },
-    // {
-    //   "sTitle": 'District',
-    //   "mData":"District"
-    // },
-    // {
-    //   "sTitle": 'Postal Code',
-    //   "mData":"Postalcode"
-    // },
-    // {
-    //   "sTitle": 'Street',
-    //   "mData":"Street"
-    // },
-    // {
-    //   "sTitle": 'Street Number',
-    //   "mData":"Housenum"
-    // },
-    // {
-    //   "sTitle": 'Street 2',
-    //   "mData":"Street2"
-    // },
-    // {
-    //   "sTitle": 'Building',
-    //   "mData": "Building"
-    // },
     {
-      "title" : 'Remove',
-      "sClass": "center",
+      "title" : '<i class="fa fa-trash"></i>',
+      "sClass": "center blue-bg",
       "targets": [ -1 ],
-      "data": '',
+      "data": null,
       "defaultContent":'<a href=" " class="remove"><i class="fa fa-trash"></i></a>',
     }
     ],
@@ -100,7 +69,8 @@ var activeTable = (function ($) {
       }
     ],
     "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-      $("td", nRow).prop('contenteditable', true);
+      $(nRow).removeClass('odd even');
+      $("td:not(:first-child):not(:last-child)", nRow).prop('contenteditable', true).addClass("contenteditable");
     },
     //when json is loaded add the filters to the toolbar div.
     "fnInitComplete": function (nRow) {
@@ -127,10 +97,10 @@ var activeTable = (function ($) {
       $('.toolbar').hide();
     },
   });
-  activeTable.api().on( 'xhr', function () {
-    var json = activeTable.api().ajax.json();
-    console.log( json.d.results );
-  });
+  // activeTable.api().on( 'xhr', function () {
+  //   var json = activeTable.api().ajax.json();
+  //   console.log( json.d.results );
+  // });
   $('.search-table').on( 'keyup change', function () {
      activeTable.api().search( this.value ).draw();
   });

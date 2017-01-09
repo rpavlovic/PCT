@@ -2,7 +2,7 @@
 a {
   color: $link-color;
   text-decoration: none;
-  font: normal 1rem/1.2rem "EYInterstate-Regular", Arial;
+  font: normal 1rem/1.2rem "EYInterstate-Regular", Arial, sans-serif;
   &.active,
   &:focus {
     color: $default-grey;
@@ -12,48 +12,48 @@ a {
   }
 }
 h1 {
-  font: normal bold 3.75rem/4.5rem “EYBold”, Arial;
+  font: normal bold 3.75rem/4.5rem "EYBold", Arial, sans-serif;
   color: $default-grey;
   margin-bottom: 1.25rem;
 }
 h2 {
-  font: italic normal 1.875rem/2.5rem "EYLightItalic", Arial;
+  font: italic normal 1.875rem/2.5rem "EYLightItalic", Arial, sans-serif;
   margin-bottom: .625rem;
   color: $default-grey;
 }
 h3 {
-  font: bold 1.5rem/1.875rem “EYBold”, Arial;
+  font: bold 1.5rem/1.875rem "EYBold", Arial, sans-serif;
   margin-bottom: .625rem;
   color: $default-grey;
 }
 h4 {
-  font: bold 1.125rem/1.5rem “EYBold”, Arial;
+  font: bold 1.125rem/1.5rem "EYBold", Arial, sans-serif;
   margin-bottom: .625rem;
   color: $default-grey;
 }
 h5 {
-  font: normal bold 1rem/1.3125rem “EYBold”, Arial;
+  font: normal bold 1rem/1.3125rem "EYBold", Arial, sans-serif;
   margin-bottom: .625rem;
   color: $default-grey;}
 h6 {
-  font: normal bold .75rem/.75rem “EYBold”, Arial;
+  font: normal bold .75rem/.75rem "EYBold", Arial, sans-serif;
   margin-bottom: .625rem;
   color: $default-grey;
 }
 span,
 label {
-  font-family: “EYLight”, Arial;
+  font-family: "EYLight", Arial, sans-serif;
 }
-p,th, td {
-  font: 1rem/1.3125rem “EYLight”, Arial;
+p, td {
+  font: 1rem/1.3125rem "EYLight", Arial, sans-serif;
   color: $medium-grey;
   margin-bottom: 1.625rem;
 }
 footer * {
-  font: normal .75rem/1rem “EYLight”, Arial;
+  font: normal .75rem/1rem "EYLight", Arial, sans-serif;
 }
 nav {
   * {
-    font: normal bold 1.25rem/1.5rem "EYBold", Arial;
+    font: normal bold 1.25rem/1.5rem "EYBold", Arial, sans-serif;
   }
 }

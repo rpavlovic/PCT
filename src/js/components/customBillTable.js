@@ -82,25 +82,29 @@ var loadCustomBillSheet = (function ($) {
 
 
     $('#downloadTemplate').on('click', function() {
-      new_table.dataTable({
+     var download_template = new_table.DataTable({
         dom:'<tip>',
         "paging":   false,
         "ordering": false,
         "info":     false,
         stateSave: true,
         "order": [[ 1, 'asc' ]],
-        "columnDefs": [{
-          "targets": -1,
-          "searchable": false,
-          "data": null,
-          "defaultContent": "<button>Click!</button>"
-        }],
         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
            $("td", nRow).prop('contenteditable', true);
            this.removeClass('hide');
+           $(nRow).removeClass('odd even');
            $('#csv-table_wrapper').addClass('hide');
+           $("td", nRow).prop('contenteditable', true).addClass("contenteditable");
         },
         "bDestroy": true,
+      });
+
+      //add row
+      $('#add-row').on( 'click', function (e) {
+        e.preventDefault();
+        download_template.rows().nodes().to$().removeClass( 'new-row' );
+        var rowNode = download_template.row.add( [ '', '', '', '', '', '', ''] ).draw().node();
+        $(rowNode).addClass('new-row');
       });
     });
   }

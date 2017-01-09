@@ -9,7 +9,8 @@
   @include box-shadow(0 1px 3px 0px rgba(0, 0, 0, 0.4));
   margin: rem-calc(0 2);
   text-decoration: none;
-  font: bold 1rem sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
   border-radius: rem-calc(3);
   width: auto;
   position: relative;
@@ -47,7 +48,7 @@
 }
 
 //button element extends .btn class for default buttons.
-button {
+.button {
   @extend %btn;
 }
 
@@ -156,3 +157,11 @@ button[data-toggle] {
   content:"\f053";
   left: 7px;
 }
+.fa-caret-up {
+  color: $green-alert;
+}
+.fa-caret-down {
+  color: $red-alert;
+}
+
+

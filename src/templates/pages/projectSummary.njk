@@ -2,22 +2,26 @@
 {% set pgProjects = true %}
 {% set base_path = "/" %}
 {% set page_title = "Project Summary" %}
-{% import "macros/button-macro.njk" as btn %}
-{% import 'macros/deliverables-macro.njk' as stream %}
+{% import "macros/button-extended-macro.njk" as button %}
 {% import 'macros/progress-nav-macro.njk' as progressNav %}
-{# {{ progressNav.progress-nav('projectLists') }} #}
 
 {% block content %}
   {{ progressNav.active('Summary') }}
-  <div class="clearfix page-header">
-    <h1>{{page_title}}</h1>
+ <div class="row">
+    <div class="col-12 page-header">
+      <h1>{{page_title}}</h1>
+    </div>
+    <div class="col-12">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
   </div>
+
   <form action="#" method="POST" class="project-resources">
 
     <div class="row button-row">
       <div class="col-12">
-        <a href="/templates/pages/projectGeneral.html" title="">{{ btn.field(type="button", class='btn btn-green float-right arrowpointer', value='Complete and Save', 'Complete and Save') }}</a>
-        {{ btn.field(type="reset", class='btn btn-light-grey float-left', value='Clear Form', 'Clear Form') }}
+        {{ button.default(label='Save and Continue', path='/templates/pages/projectGeneral.html', context='btn btn-green arrowpointer float-right') }}
+        {{ button.reset(attr="reset", label='Clear Form',  context='btn btn-light-grey float-left') }}
       </div>
     </div>
 

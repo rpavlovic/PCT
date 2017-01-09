@@ -30,6 +30,13 @@
    -o-transition: $val;
    transition: $val;
 }
+@mixin animation($val...) {
+  -webkit-animation: $val;
+  -moz-animation: $val;
+  -o-animation: $val;
+  animation: $val;
+}
+
 @mixin box-shadow($args...) {
   -webkit-box-shadow: $args;
   -moz-box-shadow: $args;
@@ -56,5 +63,27 @@
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+//background color fade
+@-webkit-keyframes fadeIt {
+  0%   { background-color: #FFFFFF; }
+  50%  { background-color: #e8f1f8; }
+  100% { background-color: #FFFFFF; }
+}
+@-moz-keyframes fadeIt {
+  0%   { background-color: #FFFFFF; }
+  50%  { background-color: #e8f1f8; }
+  100% { background-color: #FFFFFF; }
+}
+@-o-keyframes fadeIt {
+  0%   { background-color: #FFFFFF; }
+  50%  { background-color: #e8f1f8; }
+  100% { background-color: #FFFFFF; }
+}
+@keyframes fadeIt {
+  0%   { background-color: #FFFFFF; }
+  50%  { background-color: #e8f1f8; }
+  100% { background-color: #FFFFFF; }
 }
 

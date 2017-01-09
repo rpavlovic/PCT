@@ -2,21 +2,71 @@
 {% set pgProjects = true %}
 {% set base_path = "/" %}
 {% set page_title = "Project Resources" %}
-{% import "macros/button-macro.njk" as btn %}
-{% import 'macros/deliverables-macro.njk' as stream %}
 {% import 'macros/progress-nav-macro.njk' as progressNav %}
+{% import "macros/button-extended-macro.njk" as button %}
 
 {% block content %}
   {{ progressNav.active('Resources') }}
-  <div class="clearfix page-header">
-    <h1>{{page_title}}</h1>
+  <div class="row">
+    <div class="col-12 page-header">
+      <h1>{{page_title}}</h1>
+    </div>
+    <div class="col-12">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </div>
   </div>
+
   <form action="#" method="POST" class="project-resources">
+    <div class="row">
+      <div class="col-3 col-10-sm">
+        <div class="field-wrapper">
+          <label for="version">Version</label>
+          <select name="version">
+            <option value="Value 1">Value 1</option>
+            <option value="Value 2">Value 2</option>
+            <option value="Value 3">Value 3</option>
+            <option value="Value 4">Value 4</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-2 col-2-sm">
+        {{ button.default(label='',  context='button fa fa-save btn-blue') }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        {% include "partials/tables/modelingTable.njk" %}
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-3">
+        <div class="field-wrapper">
+          <label for="rate-card">Rate Card</label>
+          <select name="rate-card">
+            <option value="Value 1">Standard 1</option>
+            <option value="Value 2">Standard 2</option>
+            <option value="Value 3">Standard 3</option>
+            <option value="Value 4">Standard 4</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        {% include "partials/tables/projectResourceTable.njk" %}
+        <button id="add-row" class="button btn-blue plus">Add Resource</button>
+      </div>
+    </div>
 
     <div class="row button-row">
       <div class="col-12">
-        <a href="/templates/pages/projectExpences.html" title="">{{ btn.field(type="button", class='btn btn-green float-right arrowpointer', value='Save and Continue', 'Save and Continue') }}</a>
-        {{ btn.field(type="reset", class='btn btn-light-grey float-left', value='Clear Form', 'Clear Form') }}
+        {{ button.default(label='Save and Continue', path='/templates/pages/projectExpences.html', context='btn-green arrowpointer float-right') }}
+        {{ button.default(label='Back to Project Information', path='/templates/pages/projectGeneral.html', context='btn-light-grey float-right') }}
+        {{ button.reset(attr="reset", label='Clear Form',  context='btn-light-grey float-left') }}
       </div>
     </div>
 
