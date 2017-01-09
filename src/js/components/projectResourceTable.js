@@ -24,7 +24,6 @@ var projectResourceTable = (function ($) {
         "columnDefs": [ {
           "orderable": false,
           "targets": [ 0, 1 ],
-          "data": "City[, ]",
           } ],
         "order": [[ 3, 'asc' ]],
         "columns": [{
@@ -47,15 +46,14 @@ var projectResourceTable = (function ($) {
         },
         {
           "title": 'Office',
-          "data": function ( row, type, val, meta) {
-              var output = [];
-              output+= '<select>';
-              var newItems = $.map(row, function(elem, index) {
-                 output+='<option value="' + row.City + '">' + row.City + '</option>';
-              });
-                 output+='</select>';
-              return output;
-          },
+          "data": "City",
+          "defaultContent":'City',
+          "render": function ( data, type, set, meta ) {
+            var output = '<select class="city">';
+                output += '</select>';
+            return output;
+          }
+        },
         {
           "title": 'Title',
           "data":"title",
@@ -170,6 +168,17 @@ var projectResourceTable = (function ($) {
         "fnInitComplete": function (nRow) {
           //to show a row with indexes.
           projResourceTable.on('order.dt', function () {
+
+            var Cities = nRow.aoData.map(function(city) {
+              return city._aData.City;
+            });
+            Cities = Cities.filter(function(value, key) {
+              return Cities.indexOf(value) == key;
+            });
+
+            $(Cities).each(function (key, value) {
+              $('.city').append($('<option>', { value : Cities[key] }).text(Cities[key]));
+            });
             projResourceTable.column(0, {"order" :"applied", "filter":"applied" }).nodes().each( function (cell, i) {
               cell.innerHTML = i+1;
             });
