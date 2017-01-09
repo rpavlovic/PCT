@@ -9,8 +9,10 @@ var projectResourceTable = (function ($) {
   function initProjectResourceTable() {
 
   var table = $('#project-resource-table'),
+      cities = [];
 
-      projResourceTable = table.DataTable({
+
+  var projResourceTable = table.DataTable({
         "searching": false,
         "sAjaxSource": "/data/OfficeCollection.json",
         "sAjaxDataProp": "d.results",
@@ -22,8 +24,8 @@ var projectResourceTable = (function ($) {
         "columnDefs": [ {
           "orderable": false,
           "targets": [ 0, 1 ],
-          }
-        ],
+          "data": "City[, ]",
+          } ],
         "order": [[ 3, 'asc' ]],
         "columns": [{
           "title": 'Row',
@@ -45,17 +47,15 @@ var projectResourceTable = (function ($) {
         },
         {
           "title": 'Office',
-          "data": "City",
-          "defaultContent":'City',
-          "render": function ( data, type, set, meta ) {
-            var output = '<select>';
-            // for(var i = 0; i < meta.row.length; i++;) {
-              output += '<option>'+ data + '</option>';
-            // }
-            output += '</select>';
-            return output;
-          }
-        },
+          "data": function ( row, type, val, meta) {
+              var output = [];
+              output+= '<select>';
+              var newItems = $.map(row, function(elem, index) {
+                 output+='<option value="' + row.City + '">' + row.City + '</option>';
+              });
+                 output+='</select>';
+              return output;
+          },
         {
           "title": 'Title',
           "data":"title",
@@ -175,28 +175,12 @@ var projectResourceTable = (function ($) {
             });
           }).draw();
         },
-        // "drawCallback": function ( settings ) {
-        //            var api = this.api();
-        //            var rows = api.rows( {page:'current'} ).nodes();
-        //            var last=null;
-
-        //            api.column(0, {page:'current'} ).data().each( function ( group, i ) {
-        //                    if ( last !== group ) {
-        //                            $(rows).eq( i ).before(
-        //                                    '<select><option>'+group.City+'</option></select>'
-        //                            );
-
-        //                            last = group.City;
-        //                    }
-        //            } );
-        //    },
       });
-
   //add row
   $('#add-row').on( 'click', function (e) {
     e.preventDefault();
     projResourceTable.rows().nodes().to$().removeClass( 'new-row' );
-    var rowNode = projResourceTable.row.add( [ '', '', '', '', 'City'] ).draw().node();
+    var rowNode = projResourceTable.row.add(projResourceTable.context["0"].aoData["0"]._aData).draw(false).node();
     $(rowNode).addClass('new-row');
   });
   //remove row

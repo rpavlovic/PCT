@@ -21,10 +21,7 @@ var captureEditTd = (function ($) {
         } else if (nl) {
           // save
           data[el] = el.innerHTML;
-          // if($(el).hasClass("contenteditable")) {
-          //    data[el] = el.innerHTML;
-          // }
-          // we could send an ajax request to update the field
+          // TODO when ready we could send an ajax request to update the field
           /*
           $.ajax({
             url: window.location.toString(),
