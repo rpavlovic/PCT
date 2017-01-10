@@ -186,7 +186,7 @@ var projectResourceTable = (function ($) {
         },
       });
   //add row
-  $('#add-row').on( 'click', function (e) {
+  $('.project-resources #add-row').on( 'click', function (e) {
     e.preventDefault();
     projResourceTable.rows().nodes().to$().removeClass( 'new-row' );
     var rowNode = projResourceTable.row.add(projResourceTable.context["0"].aoData["0"]._aData).draw(false).node();

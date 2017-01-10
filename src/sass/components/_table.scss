@@ -71,6 +71,15 @@ table {
             background-color: #eaeaea;
           }
         }
+        &.selected {
+          td,
+          &:hover {
+            background-color: #eaeaea !important;
+          }
+          td:focus {
+            background-color: $white !important;
+          }
+        }
       }
     }
     &#project-resource-table {
@@ -112,16 +121,6 @@ table {
   }
 }
 
-//overwrite datatable styles for selected row
-table.dataTable tbody tr.selected {
-  td,
-  &:hover {
-    background-color: #eaeaea !important;
-  }
-  td.contenteditable:focus {
-    background-color: $white !important;
-  }
-}
 .sup-tb-header {
   margin: 0;
   thead {
