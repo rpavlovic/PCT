@@ -20,7 +20,9 @@ var captureEditTd = (function ($) {
           el.blur();
         } else if (nl) {
           // save
-          data[el] = el.innerHTML;
+          data ={
+            element:el
+          }
           // TODO when ready we could send an ajax request to update the field
           // $.ajax({
           //   url: window.location.toString(),
@@ -28,29 +30,23 @@ var captureEditTd = (function ($) {
           //   type: 'post'
           // });
           //log(JSON.stringify(data));
-          log(data);
+          returnData(data);
           el.blur();
           event.preventDefault();
         }
       }
     });
 
-    function log(new_data) {
-       if(table === "#csv-table") {
-        $.each(new_data, function(key, value) {
-          console.log(value);
-          var ovd_rate = value;
-          var st_rate = $('.contenteditable:eq(0)').html();
-          var minus = st_rate - ovd_rate
-          var percent = ( (st_rate - ovd_rate) / st_rate) * 100;
-          console.log('KEY: ' + key.hasOwnProperty);
-           $('.contenteditable:eq(2)').next('td').html(percent.toFixed(2)+ "%");
-        });
-
-       }
+    function returnData(new_data) {
+      if(table === "#csv-table") {
+         var ovd_rate = $(new_data.element).html();
+         var st_rate = $(new_data.element).prevAll().eq(1).html();
+         var minus = st_rate - ovd_rate
+         var percent = ( (st_rate - ovd_rate) / st_rate) * 100;
+         $(new_data.element).next('td').html(percent.toFixed(2)+ "%");
+      }
     }
   }
-
 
   return {
     initCaptureEditTd:initCaptureEditTd
