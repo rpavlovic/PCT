@@ -1,8 +1,8 @@
 jQuery.fn.tableToCSV = function() {
 
 	var clean_text = function(text) {
-    text = text.replace(/"/g, '""');
-    return '"'+text+'"';
+    text = text.replace(/"/g, ',');
+    return text;
 	};
 
 	$(this).each(function() {
@@ -29,7 +29,6 @@ jQuery.fn.tableToCSV = function() {
 
 		title = title.join(",");
 		rows = rows.join("\n");
-
 		var csv = title + rows;
 		var uri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
 		var download_link = document.createElement('a');

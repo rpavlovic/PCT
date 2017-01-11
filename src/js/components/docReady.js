@@ -31,6 +31,23 @@
         floatLabel.initfloatLabel();
       }
     });
+    // if($('form.login').length > 0) {
+    //   fillForm.initFillForm('.login');
+    // }
+    // if($('form.register').length > 0) {
+    //   fillForm.initFillForm('.register');
+    // }
+    // if($('form.forgotpassword').length > 0) {
+    //   fillForm.initFillForm('.forgotpassword');
+    // }
+
+    if($('form.form-edit-profile').length > 0) {
+      fillForm.initFillForm('.form-edit-profile');
+    }
+    //show in-place form.
+    editProfileForm.initEditProfileForm('form.form-edit-profile');
+
+
 
     activeTable.initActiveTable();
 
@@ -43,7 +60,12 @@
     $('.modeling-table input[type="radio"]').activateElement();
     $('button').activateElement();
 
-    captureEditTd.initCaptureEditTd('#project-resource-table');
+    var tables = {
+      'customerBill': '#csv-table',
+      'resourceProject': '#project-resource-table',
+    };
+    captureEditTd.initCaptureEditTd(tables['customerBill']);
+    captureEditTd.initCaptureEditTd(tables['resourceProject']);
 
   });
 

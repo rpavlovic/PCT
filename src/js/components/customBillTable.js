@@ -11,55 +11,82 @@ var loadCustomBillSheet = (function ($) {
         new_table = $('#new-table');
 
     function uploadCSV(data) {
+      var newlines = /\r|\n/.exec(data);
+      if(newlines) {
+        var rows = data.split(/\n/),
+            titles = '';
+        //get titles from the Excel sheet
+        for (var i = rows.length - 1; i >= 1; i--) {
+          if(rows[0].indexOf(',') != -1) {
+            titles = rows[0].split(/","/g);
 
-      var rows = data.split("\n");
+            if($.trim(titles[0]) === "Title") {
+              titles[0] =  titles[0].replace(/"/g, "," );
+              titles[titles.length-1] = titles[titles.length-1].replace( /"/g, "," );
 
-      rows = rows.map(function(row) {
-        var columns = row.split(/","/g);
-        columns[0] =  columns[0].replace( /"/g, " " );
-        columns[columns.length-1] = columns[columns.length-1].replace( /"/g, " " );
-        return columns;
-      });
+            } else {
+              titles = ['Title', 'Grade', 'Rate','Currency', 'Upload / Override', 'Discount'];
+            }
+          }
+        }
 
-      csv_table.dataTable({
-        dom:'<tip>',
-        data: rows,
-        select: {
-          items: 'cells',
-          info: false
-        },
-        searching: false,
-        paging: true,
-        length: false,
-        columns: [
-          { title: "Project Name" },
-          { title: "Billing Office" },
-          { title: "Ext. Start" },
-          { title: "Duration" },
-          { title: "Total Budget" }
-        ],
-        "bDestroy": true,
-         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-            $("td", nRow).prop('contenteditable', true);
-            $("td:eq(2)").addClass('datepicker');
-            $('#new-table_wrapper').addClass('hide');
-            this.removeClass('hide');
-         },
-      });
+        rows = rows.map(function(row, index) {
+          var columns = row.split(",");
+          columns[0] =  columns[0].replace(/"/g, "");
+          columns[columns.length-1] = columns[columns.length-1].replace(/"/g, " ");
+          return columns;
+        });
+
+        if($.trim(rows["0"]["0"]) === 'Title') {
+          rows.shift();
+        }
+
+        csv_table.dataTable({
+          dom:'<tip>',
+          data: rows,
+          select: {
+            items: 'cells',
+            info: false
+          },
+          searching: false,
+          paging: false,
+          length: false,
+          // order: [[ 0, 'desc' ]],
+          select: true,
+          columns: [
+            { title: titles[0] },
+            { title: titles[1] },
+            { title: titles[2] },
+            { title: titles[3] },
+            { title: titles[4] },
+            { title: titles[5] },
+          ],
+           "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+              $("td:nth-child(n+3):not(:last-child)", nRow).prop('contenteditable', true).addClass("contenteditable");
+               $(nRow).removeClass('odd even');
+               $("td:nth-child(3)", nRow).addClass('rate');
+              $('#new-table_wrapper').addClass('hide');
+              $('.custom-bill-sheet #add-row').addClass('hide');
+              this.removeClass('hide');
+           },
+          bDestroy: true,
+        });
+      }
+
     }
 
-    $('.arrowpointer').on('click', function(){
-      if(new_table.length > 0) {
-        new_table.tableToCSV();
-      } else {
+    $('.arrowpointer').on('click', function() {
+      if (!$('#csv-table_wrapper').hasClass('hide')) {
         csv_table.tableToCSV();
+      } else if($('#csv-table_wrapper').hasClass('hide')) {
+        new_table.tableToCSV();
       }
     });
-    // insert into div
-    $("#populateTable").on('click', function(opt_startByte, opt_stopByte, e) {
 
+    // Upload CSV into a table.
+    function uploadTable() {
+      $("#uploadTable").on('click', function(event, opt_startByte, opt_stopByte) {
         $("input[type=\"file\"]").trigger('click', function() {});
-
         $("input[type=\"file\"]").on('change', function(evt) {
 
           var files = evt.target.files,
@@ -78,8 +105,15 @@ var loadCustomBillSheet = (function ($) {
               reader.readAsBinaryString(blob);
             $('#bill-sheet-name').val(file_name.slice(0,-4));
         });
-    });
+        event.stopPropagation();
+      });
 
+    }
+    uploadTable();
+
+    $('td.contenteditable:eq(2)').on('keydown', function() {
+          console.info($(this).text());
+    });
 
     $('#downloadTemplate').on('click', function() {
      var download_template = new_table.DataTable({
@@ -92,6 +126,7 @@ var loadCustomBillSheet = (function ($) {
         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
            $("td", nRow).prop('contenteditable', true);
            this.removeClass('hide');
+           $('.custom-bill-sheet #add-row').removeClass('hide');
            $(nRow).removeClass('odd even');
            $('#csv-table_wrapper').addClass('hide');
            $("td", nRow).prop('contenteditable', true).addClass("contenteditable");
@@ -100,17 +135,17 @@ var loadCustomBillSheet = (function ($) {
       });
 
       //add row
-      $('#add-row').on( 'click', function (e) {
+      $('.custom-bill-sheet #add-row').on( 'click', function (e) {
         e.preventDefault();
         download_template.rows().nodes().to$().removeClass( 'new-row' );
-        var rowNode = download_template.row.add( [ '', '', '', '', '', '', ''] ).draw().node();
+        var rowNode = download_template.row.add( ['','','',''] ).draw().node();
         $(rowNode).addClass('new-row');
       });
     });
+
   }
 
   return {
     initLoadCustomBillSheet:initLoadCustomBillSheet
   }
-
 })($);

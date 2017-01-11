@@ -2,12 +2,12 @@
 {% set pgProfile = true %}
 {% set base_path = "/" %}
 {% block content %}
-{% import "macros/button-macro.njk" as btn %}
+{% import "macros/button-extended-macro.njk" as button %}
 <div class="clearfix page-header">
     <h1>{%set page_title = 'Profile'%} {{page_title}}</h1>
     <section>
-      {{ btn.field(type="button", class='btn btn-blue edit-profile', value='Edit Profile', 'Edit Profile') }}
-      {{ btn.field(type="submit", class='btn btn-blue submit-profile hide', value='Submit', 'Submit') }}
+      {{ button.default(label='Edit Profile', context='button btn-blue edit-profile') }}
+      {{ button.submit(label='Submit', context='btn btn-blue submit-profile hide', attr="submit") }}
     </section>
 </div>
 {# <div id="results"></div> #}
@@ -85,6 +85,18 @@
           </div>
         </div>
       </form>
+      <div class="row">
+        <div class="col-3-sm col-2">
+          <strong>Custom Bill Sheets</strong>
+        </div>
+        <div class="col-9-sm col-10">
+          <section>
+            <ul>
+              <li><a href="/templates/pages/customBillSheet.html" title="Custom Bill">Custom Bill</a></li>
+            </ul>
+          </section>
+        </div>
+      </div>
 
   </div>
 {% endblock %}

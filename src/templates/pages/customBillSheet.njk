@@ -21,7 +21,7 @@
         </form>
       </div>
       <div class="col-2">
-        <button class="button btn-blue" id="populateTable"><i class="fa fa-upload"></i>&nbsp;Upload from Excel</button>
+        <button class="button btn-blue" id="uploadTable"><i class="fa fa-upload"></i>&nbsp;Upload from Excel</button>
       </div>
       <div class="col-2">
         <button class="button btn-light-grey" id="downloadTemplate"><i class="fa fa-table"></i>&nbsp;Download Template</button>
@@ -38,8 +38,8 @@
 
      <div class="row button-row">
       <div class="col-12">
-        {{ button.default(label='Save and Continue', path='/', context='btn btn-green arrowpointer float-right') }}
-        {{ button.reset(attr="reset", label='Clear Form',  context='btn btn-light-grey float-left') }}
+        {{ button.default(label='Save and Continue', context='btn btn-green arrowpointer float-right') }}
+        {# {{ button.reset(attr="reset", label='Clear Form',  context='btn btn-light-grey float-left') }} #}
       </div>
     </div>
 

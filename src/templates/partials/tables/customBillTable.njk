@@ -6,15 +6,13 @@
 <div class="row">
   <div class="col-12">
     <table id="new-table" class="display hide" width="100%">
-      <thead>
+     {#  <thead>
         <tr>
-          <th>Project Name</th>
-          <th>Billing Office</th>
-          <th>Ext. Start</th>
-          <th>Duration</th>
-          <th>Total Budget</th>
-          <th>Win/Loss</th>
-          <th>Status</th>
+          <th>Title</th>
+
+          <th>Standard Rate</th>
+          <th>Override</th>
+          <th>Discount</th>
         </tr>
       </thead>
       <tbody>
@@ -23,16 +21,14 @@
           <td></td>
           <td></td>
           <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
         </tr>
-      </tbody>
-      <tfoot>
+      </tbody> #}
+     {#  <tfoot>
         <tr>
           <td> <button id="add-row" class="button btn-blue plus">Add Row</button></td>
         </tr>
-      </tfoot>
+      </tfoot> #}
     </table>
+    <button id="add-row" class="button btn-blue plus hide">Add Row</button>
   </div>
 </div>
