@@ -36,18 +36,26 @@ var captureEditTd = (function ($) {
           event.preventDefault();
         }
       }
+      return data;
     });
 
     function returnData(new_data) {
+
       if(table === "#csv-table") {
-        if($(new_data.element).html() != NaN && $.isNumeric($(new_data.element).html()) && $(new_data.element).html()) {
-             var ovd_rate = $(new_data.element).html();
-             var st_rate = $(new_data.element).prevAll().eq(1).html();
-             var minus = st_rate - ovd_rate
-             var percent = ( (st_rate - ovd_rate) / st_rate) * 100;
-             $(new_data.element).next('td').html(percent.toFixed(2)+ "%");
+        $(new_data.element).removeClass('error');
+        if($(new_data.element).html() != isNaN && $.isNumeric($(new_data.element).html()) && $(new_data.element).html()) {
+          var ovd_rate = $(new_data.element).html();
+          var st_rate = $(new_data.element).prevAll().eq(1).html();
+          var minus = st_rate - ovd_rate
+          var percent = ( (st_rate - ovd_rate) / st_rate) * 100;
+          $(new_data.element).next('td.discount').html(percent.toFixed(2)+ "%");
+        }
+        else {
+          if($(new_data.element).hasClass('rate') || $(new_data.element).hasClass('override')) {
+           $(new_data.element).html('this field accepts numbers only.').addClass('error');
           }
         }
+      }
     }
   }
 

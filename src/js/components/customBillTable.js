@@ -63,9 +63,11 @@ var loadCustomBillSheet = (function ($) {
           ],
            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
               $("td:nth-child(n+3):not(:last-child)", nRow).prop('contenteditable', true).addClass("contenteditable");
-               $(nRow).removeClass('odd even');
-               $("td:nth-child(3)", nRow).addClass('rate');
+              $(nRow).removeClass('odd even');
               $('#new-table_wrapper').addClass('hide');
+              $("td:nth-child(3)", nRow).addClass('rate');
+              $("td:nth-child(6)", nRow).addClass('discount');
+              $("td:nth-child(5)", nRow).addClass('override');
               $('.custom-bill-sheet #add-row').addClass('hide');
               this.removeClass('hide');
            },
@@ -86,7 +88,7 @@ var loadCustomBillSheet = (function ($) {
     // Upload CSV into a table.
     function uploadTable() {
       $("#uploadTable").on('click', function(event, opt_startByte, opt_stopByte) {
-        $("input[type=\"file\"]").trigger('click', function() {});
+        $("input[type=\"file\"]").trigger('click', function() { event.stopPropagation();});
         $("input[type=\"file\"]").on('change', function(evt) {
 
           var files = evt.target.files,
@@ -111,27 +113,9 @@ var loadCustomBillSheet = (function ($) {
     }
     uploadTable();
 
-    $('td.contenteditable:eq(2)').on('keydown', function() {
-          console.info($(this).text());
-    });
-
     $('#downloadTemplate').on('click', function() {
-     var download_template = new_table.DataTable({
-        dom:'<tip>',
-        "paging":   false,
-        "ordering": false,
-        "info":     false,
-        stateSave: true,
-        "order": [[ 1, 'asc' ]],
-        "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-           $("td", nRow).prop('contenteditable', true);
-           this.removeClass('hide');
-           $('.custom-bill-sheet #add-row').removeClass('hide');
-           $(nRow).removeClass('odd even');
-           $('#csv-table_wrapper').addClass('hide');
-           $("td", nRow).prop('contenteditable', true).addClass("contenteditable");
-        },
-        "bDestroy": true,
+      var download_template = new_table.DataTable({
+
       });
 
       //add row

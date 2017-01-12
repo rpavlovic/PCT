@@ -26,6 +26,7 @@
       "nextText": "",
       "prevText":"",
       "dateFormat": "MM dd, yy",
+      "firstDay": 1,
       onSelect: function(dateText, instance) {
         projectDuration.initProjectDuration('.project-info', instance, dateText);
         floatLabel.initfloatLabel();
