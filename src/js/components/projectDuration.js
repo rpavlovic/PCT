@@ -6,7 +6,7 @@
 var projectDuration = (function ($) {
   'use strict';
 
-  function initProjectDuration(form, inst) {
+  function initProjectDuration(form, inst, dataText) {
 
     var estimate_end_date = $(form + " input[name=\"enddate\"]"),
         plan_by = $(form + " select[name='planby'] option:selected").val(),
@@ -15,13 +15,27 @@ var projectDuration = (function ($) {
         selected_month = new Date(inst.selectedMonth + 1),
         selected_day = new Date(inst.selectedDay),
         selected_year = new Date(inst.selectedYear);
-
     if(plan_by === "Weekly") {
       daysToAdd = 7;
     } else if (plan_by === "Monthly") {
       daysToAdd = daysInMonth(selected_month, selected_year);
     }
 
+  function weekStarting() {
+    console.log(dataText);
+    var first_day_week = new Date(dataText);
+      var index = first_day_week.getDay();
+      if(index == 0) {
+       first_day_week.setDate(first_day_week.getDate() - 6);
+      }
+      else if(index == 1) {
+       first_day_week.setDate(first_day_week.getDate());
+      }
+      else if(index != 1 && index > 0) {
+        first_day_week.setDate(first_day_week.getDate() - (index - 1));
+      }
+     return new Date(first_day_week);
+  }
 
     var curr = new Date(estimated_start_date), // get current date
       first = curr.getDate(),
@@ -35,12 +49,12 @@ var projectDuration = (function ($) {
       "July", "August", "September", "October", "November", "December"
     ];
 
-
     function daysInMonth(month, year) {
       return new Date(year, month, 0).getDate();
     }
 
     function choose_planBy() {
+      $(form + " input[name='weekstart']").val(weekStarting());
       if($.isNumeric(duration) && duration.length > 0) {
         var duration_input = estimate_end_date.val(monthNames[lastday.getMonth()] + ' ' + lastday.getDate() + ', ' + lastday.getFullYear());
         $(form + " select[name='planby'] option:selected").each(function() {
