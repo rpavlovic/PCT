@@ -15,7 +15,6 @@ var loadJSON = (function ($) {
       select_region = $("form.project-info select[name='regions']"),
       select_country = $("form.project-info select[name='country']");
 
-
   //prepopulate Billing office select with JSON data.
   function prepopulate_Billing_Office_JSON(data1) {
     $.each(data1.d.results, function(key, val) {
