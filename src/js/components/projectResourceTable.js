@@ -8,8 +8,7 @@ var projectResourceTable = (function ($) {
 
   function initProjectResourceTable() {
 
-  var table = $('#project-resource-table'),
-      cities = [];
+  var table = $('#project-resource-table');
 
 
   var projResourceTable = table.DataTable({
@@ -41,8 +40,12 @@ var projectResourceTable = (function ($) {
         },
         {
           "title": 'Deliverable / Work&nbsp;Stream',
-          "defaultContent":'',
-          "targets": [ 2 ],
+          "defaultContent": 'Non-Deliverable Specific',
+          "render": function ( data, type, set, meta ) {
+            var output = '<select class="deliverable">';
+                output += '</select>';
+            return output;
+          }
         },
         {
           "title": 'Office',
@@ -67,7 +70,12 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Practice',
           "data":" ",
-          "defaultContent": ''
+          "defaultContent": 'Consumer',
+          "render": function ( data, type, set, meta ) {
+            var output = '<select class="practice">';
+                output += '</select>';
+            return output;
+          }
         },
         {
           "title": 'Role',
@@ -82,7 +90,12 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Bill Rate',
           "data":" ",
-          "defaultContent": ''
+          "defaultContent": 'Rate Card',
+          "render": function ( data, type, set, meta ) {
+            var output = '<select class="bill-rate">';
+                output += '</select>';
+            return output;
+          }
         },
         {
           "title": 'Bill Rate <br/> Override',
@@ -163,15 +176,31 @@ var projectResourceTable = (function ($) {
         "select": true,
         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
           $(nRow).removeClass('odd even');
-          $("td:nth-child(n+3):not(:nth-child(4)):not(:nth-child(6)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", nRow).prop('contenteditable', true).addClass("contenteditable");
+          $("td:nth-child(n+5):not(:nth-child(6)):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", nRow).prop('contenteditable', true).addClass("contenteditable");
         },
         "fnInitComplete": function (nRow) {
           //to show a row with indexes.
           projResourceTable.on('order.dt', function () {
 
+            var Deliverable = ["Non-Deliverable Specific", "A","B"];
+            $(Deliverable).each(function (key, value) {
+              $('.deliverable').append($('<option>', { value : Deliverable[key] }).text(Deliverable[key]));
+            });
+
+            var BillRate = ["Rate Card", "Office Standard Rate"];
+            $(BillRate).each(function (key, value) {
+              $('.bill-rate').append($('<option>', { value : BillRate[key] }).text(BillRate[key]));
+            });
+
+            var Practice = ["Consumer", "HR Resources", "PR Counsel", "Finance"];
+            $(Practice).each(function (key, value) {
+              $('.practice').append($('<option>', { value : Practice[key] }).text(Practice[key]));
+            });
+
             var Cities = nRow.aoData.map(function(city) {
               return city._aData.City;
             });
+
             Cities = Cities.filter(function(value, key) {
               return Cities.indexOf(value) == key;
             });
@@ -179,24 +208,25 @@ var projectResourceTable = (function ($) {
             $(Cities).each(function (key, value) {
               $('.city').append($('<option>', { value : Cities[key] }).text(Cities[key]));
             });
+
             projResourceTable.column(0, {"order" :"applied", "filter":"applied" }).nodes().each( function (cell, i) {
               cell.innerHTML = i+1;
             });
           }).draw();
         },
       });
-  //add row
-  $('.project-resources #add-row').on( 'click', function (e) {
-    e.preventDefault();
-    projResourceTable.rows().nodes().to$().removeClass( 'new-row' );
-    var rowNode = projResourceTable.row.add(projResourceTable.context["0"].aoData["0"]._aData).draw(false).node();
-    $(rowNode).addClass('new-row');
-  });
-  //remove row
-  $('#project-resource-table tbody').on( 'click', '.remove', function (e) {
-    e.preventDefault();
-     projResourceTable.row( $(this).parents('tr') ).remove().draw();
-   });
+    //add row
+    $('.project-resources #add-row').on( 'click', function (e) {
+      e.preventDefault();
+      projResourceTable.rows().nodes().to$().removeClass( 'new-row' );
+      var rowNode = projResourceTable.row.add(projResourceTable.context["0"].aoData["0"]._aData).draw(false).node();
+      $(rowNode).addClass('new-row');
+    });
+    //remove row
+    $('#project-resource-table tbody').on( 'click', '.remove', function (e) {
+      e.preventDefault();
+      projResourceTable.row( $(this).parents('tr') ).remove().draw();
+    });
   }
   return {
     initProjectResourceTable:initProjectResourceTable

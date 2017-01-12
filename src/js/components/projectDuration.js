@@ -22,7 +22,6 @@ var projectDuration = (function ($) {
     }
 
   function weekStarting() {
-    console.log(dataText);
     var first_day_week = new Date(dataText);
       var index = first_day_week.getDay();
       if(index == 0) {

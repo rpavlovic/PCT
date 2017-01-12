@@ -7,11 +7,11 @@ var loadCustomBillSheet = (function ($) {
 
   function initLoadCustomBillSheet() {
 
-    var csv_table = $("#csv-table"),
-        new_table = $('#new-table');
+    var csv_table = $("#csv-table");
 
     function uploadCSV(data) {
       var newlines = /\r|\n/.exec(data);
+
       if(newlines) {
         var rows = data.split(/\n/),
             titles = '';
@@ -51,7 +51,7 @@ var loadCustomBillSheet = (function ($) {
           searching: false,
           paging: false,
           length: false,
-          // order: [[ 0, 'desc' ]],
+          order: [[ 1, 'asc' ]],
           select: true,
           columns: [
             { title: titles[0] },
@@ -74,20 +74,12 @@ var loadCustomBillSheet = (function ($) {
           bDestroy: true,
         });
       }
-
     }
-
-    $('.arrowpointer').on('click', function() {
-      if (!$('#csv-table_wrapper').hasClass('hide')) {
-        csv_table.tableToCSV();
-      } else if($('#csv-table_wrapper').hasClass('hide')) {
-        new_table.tableToCSV();
-      }
-    });
 
     // Upload CSV into a table.
     function uploadTable() {
       $("#uploadTable").on('click', function(event, opt_startByte, opt_stopByte) {
+
         $("input[type=\"file\"]").trigger('click', function() { event.stopPropagation();});
         $("input[type=\"file\"]").on('change', function(evt) {
 
@@ -103,30 +95,35 @@ var loadCustomBillSheet = (function ($) {
               uploadCSV(event.target.result);
             }
           };
-            var blob = file.slice(start, stop + 1);
-              reader.readAsBinaryString(blob);
-            $('#bill-sheet-name').val(file_name.slice(0,-4));
+          var blob = file.slice(start, stop + 1);
+            reader.readAsBinaryString(blob);
+          $('#bill-sheet-name').val(file_name.slice(0,-4));
+
         });
         event.stopPropagation();
       });
-
     }
-    uploadTable();
-
-    $('#downloadTemplate').on('click', function() {
-      var download_template = new_table.DataTable({
-
-      });
-
-      //add row
-      $('.custom-bill-sheet #add-row').on( 'click', function (e) {
-        e.preventDefault();
-        download_template.rows().nodes().to$().removeClass( 'new-row' );
-        var rowNode = download_template.row.add( ['','','',''] ).draw().node();
-        $(rowNode).addClass('new-row');
-      });
+    //save the csv on the desktop TODO: save to server.
+    $('.arrowpointer').on('click', function() {
+      csv_table.tableToCSV();
     });
 
+    $('#DeleteCustomBillSheet').on('click', function() {
+      confirm("The template will be deleted and Overrides removed?");
+      $("#csv-table tr").each(function (key, value) {
+        $(this).find('td.override').empty()
+        $(this).find('td.discount').empty();
+      })
+    });
+
+    //add row
+    $('.custom-bill-sheet #add-row').on( 'click', function (e) {
+      e.preventDefault();
+      download_template.rows().nodes().to$().removeClass( 'new-row' );
+      var rowNode = download_template.row.add( ['','','',''] ).draw().node();
+      $(rowNode).addClass('new-row');
+    });
+    uploadTable();
   }
 
   return {

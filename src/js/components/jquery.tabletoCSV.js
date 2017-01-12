@@ -24,15 +24,13 @@ jQuery.fn.tableToCSV = function() {
 			});
 
 			data = data.join(",");
-
 			rows.push(data);
 		});
 
-		title = title.join(",");
+		title = title.join(',');
 		rows = rows.join('\n').replace(/\n\n/g, '\n');
 
-		var csv = title + rows.trim();
-		console.log(csv);
+		var csv = title.trim() + '\n' + rows.trim();
 		var uri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
 		var download_link = document.createElement('a');
 		download_link.href = uri;
