@@ -4,12 +4,20 @@
     path = path.split("/");
 
     var feeds = {
-      'offices': '/data/OfficeCollection.json',
-      'employee': '/data/EmployeeCollection.json'
+      'offices': [ '/data/OfficeCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection' ],
+      'employee': [ '/data/EmployeeCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection' ]
     };
+
+    function get_data_feed(feed) {
+      if (location.href.indexOf('localhost') != -1) {
+        return feed[0];
+      }
+      return feed[1];
+    }
+
     //if form to be loaded exists.
     if($("form.project-info").length > 0) {
-      loadJSON.initJSON(feeds['offices'], feeds['employee']);
+      loadJSON.initJSON(get_data_feed(feeds['offices']), get_data_feed(feeds['employee']));
     }
     //Show Hide elements
     showHide.initShowHide();
