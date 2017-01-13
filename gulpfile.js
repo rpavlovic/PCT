@@ -20,7 +20,7 @@ var sassSrc = 'src/sass/**/*.scss',
     jsSrc = 'src/js/components/*.js',
     jsDest = 'build/js',
     htmlSrc = 'src/templates/**/*.njk',
-    htmlDest = 'build/templates',
+    htmlDest = 'build',
     imgSrc = 'src/images/**',
     imgDest = 'build/images',
     defaults = {
@@ -167,7 +167,7 @@ var jsLibToMove = [
 gulp.task('move', function() {
   // the base option sets the relative root for the set of files,
   // preserving the folder structure
-  gulp.src("build/templates/pages/index.html")
+  gulp.src("build/templates/pages/*.html")
   .pipe(gulp.dest('build/'));
 });
 
