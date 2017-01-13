@@ -48,11 +48,10 @@
     //show in-place form.
     editProfileForm.initEditProfileForm('form.form-edit-profile');
 
-
-
+    //Active Projects on Projects General page.
     activeTable.initActiveTable();
 
-    //upload CSV for the user
+    //upload CSV per the user
     loadCustomBillSheet.initLoadCustomBillSheet();
 
     projectResourceTable.initProjectResourceTable();
