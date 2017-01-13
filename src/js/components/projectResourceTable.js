@@ -100,7 +100,8 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Bill Rate <br/> Override',
           "data":" ",
-          "defaultContent": ''
+          "defaultContent": '',
+          "sClass": "rate-override"
         },
         {
           "title": 'Total Hours',

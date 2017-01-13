@@ -21,15 +21,16 @@ var loadCustomBillSheet = (function ($) {
             titles = rows[0].split(/","/g);
 
             if($.trim(titles[0]) === "Title") {
-              titles[0] =  titles[0].replace(/"/g, "," );
+              //get titles from the Excel.
+              titles[0] = titles[0].replace(/"/g, "," );
               titles[titles.length-1] = titles[titles.length-1].replace( /"/g, "," );
-
             } else {
+              //if not preset to defaults.
               titles = ['Title', 'Grade', 'Rate','Currency', 'Upload / Override', 'Discount'];
             }
+            console.log(typeof titles);
           }
         }
-
         rows = rows.map(function(row, index) {
           var columns = row.split(",");
           columns[0] =  columns[0].replace(/"/g, "");
@@ -37,6 +38,7 @@ var loadCustomBillSheet = (function ($) {
           return columns;
         });
 
+        //remove the row with titles from the table
         if($.trim(rows["0"]["0"]) === 'Title') {
           rows.shift();
         }
@@ -62,14 +64,13 @@ var loadCustomBillSheet = (function ($) {
             { title: titles[5] },
           ],
            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-              $("td:nth-child(n+3):not(:last-child)", nRow).prop('contenteditable', true).addClass("contenteditable");
               $(nRow).removeClass('odd even');
-              $('#new-table_wrapper').addClass('hide');
+              $("td:nth-child(n+3):not(:last-child)", nRow)
+              .prop('contenteditable', true)
+              .addClass("contenteditable");
               $("td:nth-child(3)", nRow).addClass('rate');
               $("td:nth-child(6)", nRow).addClass('discount');
               $("td:nth-child(5)", nRow).addClass('override');
-              $('.custom-bill-sheet #add-row').addClass('hide');
-              this.removeClass('hide');
            },
           bDestroy: true,
         });
@@ -79,49 +80,44 @@ var loadCustomBillSheet = (function ($) {
     // Upload CSV into a table.
     function uploadTable() {
       $("#uploadTable").on('click', function(event, opt_startByte, opt_stopByte) {
+        $("input[type=\"file\"]").trigger('click', function() {
+          event.stopPropagation();
+        });
 
-        $("input[type=\"file\"]").trigger('click', function() { event.stopPropagation();});
         $("input[type=\"file\"]").on('change', function(evt) {
 
           var files = evt.target.files,
-            file = files[0],
-            file_name = file.name,
-            start = parseInt(opt_startByte) || 0,
-            stop = parseInt(opt_stopByte) || file.size - 1,
-            reader = new FileReader();
+              file = files[0],
+              file_name = file.name,
+              start = parseInt(opt_startByte) || 0,
+              stop = parseInt(opt_stopByte) || file.size - 1,
+              reader = new FileReader();
 
           reader.onloadend = function(event) {
-            if (event.target.readyState == FileReader.DONE) { // DONE == 2
+            if (event.target.readyState == FileReader.DONE) {
               uploadCSV(event.target.result);
             }
           };
           var blob = file.slice(start, stop + 1);
-            reader.readAsBinaryString(blob);
-          $('#bill-sheet-name').val(file_name.slice(0,-4));
 
+          reader.readAsBinaryString(blob);
+          $('#bill-sheet-name').val(file_name.slice(0,-4));
         });
         event.stopPropagation();
       });
     }
-    //save the csv on the desktop TODO: save to server.
+    //save the csv on the desktop
+    //TODO: save to server and Profile page
     $('.arrowpointer').on('click', function() {
       csv_table.tableToCSV();
     });
-
+    //TODO delete from Server and Profile page.
     $('#DeleteCustomBillSheet').on('click', function() {
       confirm("The template will be deleted and Overrides removed?");
       $("#csv-table tr").each(function (key, value) {
         $(this).find('td.override').empty()
         $(this).find('td.discount').empty();
       })
-    });
-
-    //add row
-    $('.custom-bill-sheet #add-row').on( 'click', function (e) {
-      e.preventDefault();
-      download_template.rows().nodes().to$().removeClass( 'new-row' );
-      var rowNode = download_template.row.add( ['','','',''] ).draw().node();
-      $(rowNode).addClass('new-row');
     });
     uploadTable();
   }
