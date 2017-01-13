@@ -39,6 +39,7 @@ var captureEditTd = (function ($) {
       return data;
     });
 
+
     function returnData(new_data) {
 
       if(table === "#csv-table") {
@@ -54,6 +55,27 @@ var captureEditTd = (function ($) {
           if($(new_data.element).hasClass('rate') || $(new_data.element).hasClass('override')) {
            $(new_data.element).html('this field accepts numbers only.').addClass('error');
           }
+        }
+      }
+      if(table === '#project-resource-table') {
+        //for now only rate-override with values into an array from the #project-resource-table.
+        var data = $('td.rate-override').map(function(index, value) {
+          if($(this).text() !== '') {
+            return $(this).text();
+          }
+        }).get();
+        var ovd_rate = $(new_data.element).html();
+        ovd_rate = $(new_data.element).serializeArray();
+        var active_modeling_tabs = $('.modeling-table tr td');
+        active_modeling_tabs.removeClass('active');
+        //activate Adjusted Resource Hdr when override is entered.
+        if(data.length > 0) {
+          $(active_modeling_tabs[2]).addClass('active');
+          $(active_modeling_tabs[2]).children('input').prop('checked', true);
+        }
+        else {
+          $(active_modeling_tabs[1]).addClass('active');
+          $(active_modeling_tabs[1]).children('input').prop('checked', true);
         }
       }
     }

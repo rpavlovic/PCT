@@ -182,17 +182,17 @@ var projectResourceTable = (function ($) {
         "fnInitComplete": function (nRow) {
           //to show a row with indexes.
           projResourceTable.on('order.dt', function () {
-
+            //TODO get data from Previous Page.
             var Deliverable = ["Non-Deliverable Specific", "A","B"];
             $(Deliverable).each(function (key, value) {
               $('.deliverable').append($('<option>', { value : Deliverable[key] }).text(Deliverable[key]));
             });
-
+            // TODO get data from Rate Card or DB.
             var BillRate = ["Rate Card", "Office Standard Rate"];
             $(BillRate).each(function (key, value) {
               $('.bill-rate').append($('<option>', { value : BillRate[key] }).text(BillRate[key]));
             });
-
+            // TODO get data from DB.
             var Practice = ["Consumer", "HR Resources", "PR Counsel", "Finance"];
             $(Practice).each(function (key, value) {
               $('.practice').append($('<option>', { value : Practice[key] }).text(Practice[key]));
