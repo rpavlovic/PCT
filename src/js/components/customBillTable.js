@@ -28,7 +28,6 @@ var loadCustomBillSheet = (function ($) {
               //if not preset to defaults.
               titles = ['Title', 'Grade', 'Rate','Currency', 'Upload / Override', 'Discount'];
             }
-            console.log(typeof titles);
           }
         }
         rows = rows.map(function(row, index) {
@@ -70,7 +69,7 @@ var loadCustomBillSheet = (function ($) {
               .addClass("contenteditable");
               $("td:nth-child(3)", nRow).addClass('rate');
               $("td:nth-child(6)", nRow).addClass('discount');
-              $("td:nth-child(5)", nRow).addClass('override');
+              $("td:nth-child(5)", nRow).addClass('rate-override');
            },
           bDestroy: true,
         });
@@ -115,7 +114,7 @@ var loadCustomBillSheet = (function ($) {
     $('#DeleteCustomBillSheet').on('click', function() {
       confirm("The template will be deleted and Overrides removed?");
       $("#csv-table tr").each(function (key, value) {
-        $(this).find('td.override').empty()
+        $(this).find('td.rate-override').empty()
         $(this).find('td.discount').empty();
       })
     });

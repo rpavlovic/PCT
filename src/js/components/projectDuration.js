@@ -39,13 +39,17 @@ var projectDuration = (function ($) {
     }
 
     function estimateEndDate() {
+      //get the value from duration field, if nothing there make a number 1.
+      if(duration <= 0) {
+        duration = 1;
+      }
+
       var daysToAdd = 0;
       if(plan_by === "Weekly") {
         daysToAdd = 7;
       } else if (plan_by === "Monthly") {
         daysToAdd = daysInMonth(selected_month, selected_year);
       }
-
       var curr = new Date(dataText), // get selected date
         first = curr.getDate(),
         last = first + (daysToAdd * parseInt(duration)),
@@ -74,8 +78,11 @@ var projectDuration = (function ($) {
             duration_input;
             break;
           case 'Summary':
-            duration.val(duration.val() + ' Sum');
+            $(form + " input[name=\"duration\"]").val(duration + ' Summary');
+            duration_input;
             break;
+          default:
+
         } //end of switch
       });
     }
