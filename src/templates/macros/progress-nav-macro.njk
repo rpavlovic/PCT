@@ -4,7 +4,7 @@
       {% for i in ['General', 'Resources', 'Expences', 'Summary'] %}
         <li class="{%if 'project' + activePages == 'project' + i %}current {% endif %}" >
           <span>{{ i }}</span>
-          <input value="/templates/pages/{{ 'project' + i }}.html" type="radio" id="radio_{{loop.index}}" name="navGroup">
+          <input value="{{ 'project' + i }}.html" type="radio" id="radio_{{loop.index}}" name="navGroup">
           <label  for="radio_{{loop.index}}"></label>
         </li>
       {% endfor %}

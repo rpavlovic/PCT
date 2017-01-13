@@ -2,7 +2,7 @@
   <nav>
     <ul class="row">
       {% for i in ['projects', 'reports', 'about', 'profile'] %}
-        <li class="{%if activePage == i %}current {% endif %} {{i}}"><a href="/templates/pages/{{ i }}.html" class="{%if activePage == i %}active {% endif %}"> <span>{{ i | title }}</span></a></li>
+        <li class="{%if activePage == i %}current {% endif %} {{i}}"><a href="{{ i }}.html" class="{%if activePage == i %}active {% endif %}"> <span>{{ i | title }}</span></a></li>
       {% endfor %}
     </ul>
   </nav>
