@@ -70,7 +70,6 @@ var expenceTable = (function ($) {
       $("td:nth-child(n+4)", nRow).prop('contenteditable', true).addClass("contenteditable");
     },
     "fnInitComplete": function (nRow) {
-
       var Deliverable = nRow.aoData.map(function(deliverable) {
         return deliverable._aData.Deliverable;
       });
@@ -100,10 +99,6 @@ var expenceTable = (function ($) {
   });
 
   //remove row
-  // $('#project-expence-table tbody').on( 'click', '.remove', function (e) {
-  //   e.preventDefault();
-  //   projResourceTable.row( $(this).parents('tr') ).remove().draw();
-  // });
   $('#project-expence-table tbody').on( 'click', '.remove', function (e) {
     e.preventDefault();
     console.log($(projExpenceTable));
