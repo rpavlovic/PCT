@@ -2,9 +2,9 @@
 {% import "macros/button-extended-macro.njk" as button %}
 {% macro deliverablesRow(length=1) %}
 
-<div class="row deliverables">
+<fieldset class="row deliverables">
     <div class="col-2">
-        <h3>Deliverables / Work Streams</h3>
+        <legend>Deliverables / Work Streams</legend>
     </div>
     <div class="col-10">
         {% for i in range(0, length) %}
@@ -26,6 +26,6 @@
             </div>
         </div>
     </div>
-</div>
+</fieldset>
 
 {% endmacro %}

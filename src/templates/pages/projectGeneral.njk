@@ -18,9 +18,9 @@
 </div>
 
 <form action="#" method="POST" class="project-info">
-  <div class="row">
+  <fieldset class="row">
     <div class="col-2">
-      <h3>Location</h3>
+      <legend>Location</hlegend>
     </div>
     <div class="col-10">
       <div class="row">
@@ -54,10 +54,10 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
+  </fieldset>
+  <fieldset class="row">
     <div class="col-2">
-      <h3>Project Details</h3>
+      <legend>Project Details</legend>
     </div>
     <div class="col-10">
       <div class="row">
@@ -86,10 +86,11 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="row">
+  </fieldset>
+
+  <fieldset class="row">
     <div class="col-2">
-      <h3>Timing</h3>
+      <legend>Timing</legend>
     </div>
     <div class="col-10">
       <div class="row estimate-check">
@@ -136,13 +137,13 @@
         </div>
       </div>
     </div>
-  </div>
+  </fieldset>
 
   {{ stream.deliverablesRow(4) }}
 
-  <div class="row">
+  <fieldset class="row">
     <div class="col-2">
-      <h3>Comments / Project Notes</h3>
+      <legend>Comments / Project Notes</legend>
     </div>
     <div class="col-9">
       <div class="field-wrapper">
@@ -154,7 +155,7 @@
         <textarea name="comments" placeholder="Comments and Projects Notes" value="" rows="4" cols="100"></textarea>
       </div>
     </div>
-  </div>
+  </fieldset>
 
   <div class="row button-row">
     <div class="col-12">

@@ -61,11 +61,15 @@
     $('button').activateElement();
 
     var tables = {
-      'customerBill': '#csv-table',
-      'resourceProject': '#project-resource-table',
+      'customerBillTbl': '#csv-table',
+      'resourceProjectTbl': '#project-resource-table',
+      'expenceTbl' : '#project-expence-table',
     };
-    captureEditTd.initCaptureEditTd(tables['customerBill']);
-    captureEditTd.initCaptureEditTd(tables['resourceProject']);
+    captureEditTd.initCaptureEditTd(tables['customerBillTbl']);
+    captureEditTd.initCaptureEditTd(tables['resourceProjectTbl']);
+     captureEditTd.initCaptureEditTd(tables['expenceTbl']);
+
+    expenceTable.initExpenceTable();
 
   });
 

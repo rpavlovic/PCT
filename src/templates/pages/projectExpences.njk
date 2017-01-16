@@ -1,7 +1,7 @@
 {% extends "layout.njk" %}
 {% set pgProjects = true %}
 {% set base_path = "/" %}
-{% set page_title = "Project Experience" %}
+{% set page_title = "Project Expences" %}
 {% import "macros/button-extended-macro.njk" as button %}
 {% import 'macros/progress-nav-macro.njk' as progressNav %}
 
@@ -14,12 +14,25 @@
     <div class="col-12">
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
+    <div class="col-3 col-3-sm">
+      {{ button.default(label='',  context='button fa fa-save btn-blue') }}
+    </div>
   </div>
-  <form action="#" method="POST" class="project-resources">
+
+  <form action="#" method="POST" class="project-expence">
+
+    <div class="row">
+      <div class="col-12">
+        {% include "partials/tables/projectExpenceTable.njk" %}
+        <button id="add-row" class="button btn-blue plus">Add Resource</button>
+      </div>
+    </div>
+
 
     <div class="row button-row">
       <div class="col-12">
         {{ button.default(label='Save and Continue', path='/templates/pages/projectSummary.html', context='btn btn-green arrowpointer float-right') }}
+        {{ button.default(label='Back to Project Resources', path='/templates/pages/projectResources.html', context='btn-light-grey float-right') }}
         {{ button.reset(attr="reset", label='Clear Form',  context='btn btn-light-grey float-left') }}
       </div>
     </div>

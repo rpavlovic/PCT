@@ -82,6 +82,10 @@ var projectDuration = (function ($) {
             duration_input;
             break;
           default:
+            $(form + " input[name=\"duration\"]").val(duration == 1 ? duration + ' Week': duration + ' Weeks');
+            //update the estimate end date  field.
+            duration_input;
+            break;
 
         } //end of switch
       });

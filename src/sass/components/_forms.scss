@@ -44,6 +44,11 @@ form {
   textarea {
     @extend input:not([type=checkbox]):not([type=radio]);
   }
+  fieldset legend {
+    font: bold 1.5rem/1.875rem "EYBold", Arial, sans-serif;
+    margin-bottom: .625rem;
+    color: $default-grey;
+  }
   select {
     @extend input:not([type=checkbox]):not([type=radio]);
     border-radius: 0;

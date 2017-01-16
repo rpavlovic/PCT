@@ -22,12 +22,19 @@ var activeTable = (function ($) {
     "bAutoWidth": false,
     "columnDefs": [ {
       "orderable": false,
-      "targets": [5],
+      "targets": [5, 6],
       }],
     "aoColumns": [
     {
       "sTitle": 'Project Name',
-      "data":"Compname"
+      "data":"Compname",
+      "render": function ( data, type, set, meta ) {
+        //TODO link to actual project.
+        var output = '<a href="/templates/pages/projectGeneral.html" title="ProjectName">';
+            output += data;
+            output += '</a>';
+        return output;
+      }
     },
     {
       "sTitle": 'Billing Office',
@@ -52,6 +59,14 @@ var activeTable = (function ($) {
       "defaultContent": ''
     },
     {
+      "title" : '<i class="fa fa-files-o"></i>',
+      "sClass": "center blue-bg",
+      "targets": [ 1 ],
+      "data": null,
+       //TODO link to actual project.
+      "defaultContent":'<a href="/templates/pages/projectGeneral.html" class=""><i class="fa fa-files-o"></i></a>',
+    },
+    {
       "title" : '<i class="fa fa-trash"></i>',
       "sClass": "center blue-bg",
       "targets": [ -1 ],
@@ -70,7 +85,7 @@ var activeTable = (function ($) {
     ],
     "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
       $(nRow).removeClass('odd even');
-      $("td:not(:first-child):not(:last-child)", nRow).prop('contenteditable', true).addClass("contenteditable");
+      $("td:not(:first-child):not(:last-child):not(:nth-last-child(2))", nRow).prop('contenteditable', true).addClass("contenteditable");
     },
     //when json is loaded add the filters to the toolbar div.
     "fnInitComplete": function (nRow) {
