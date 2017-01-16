@@ -26,7 +26,6 @@
       "nextText": "",
       "prevText":"",
       "dateFormat": "MM dd, yy",
-      "firstDay": 1,
       onSelect: function(dateText, instance) {
         projectDuration.initProjectDuration('.project-info', instance, dateText);
         floatLabel.initfloatLabel();
@@ -67,7 +66,7 @@
     };
     captureEditTd.initCaptureEditTd(tables['customerBillTbl']);
     captureEditTd.initCaptureEditTd(tables['resourceProjectTbl']);
-     captureEditTd.initCaptureEditTd(tables['expenceTbl']);
+    captureEditTd.initCaptureEditTd(tables['expenceTbl']);
 
     expenceTable.initExpenceTable();
 

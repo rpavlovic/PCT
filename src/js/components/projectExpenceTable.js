@@ -94,7 +94,7 @@ var expenceTable = (function ($) {
   $('.project-expence #add-row').on( 'click', function (e) {
     e.preventDefault();
     projExpenceTable.rows().nodes().to$().removeClass( 'new-row' );
-    var rowNode = projExpenceTable.row.add(projExpenceTable.context["0"].aoData["0"]._aData).draw(false);
+    var rowNode = projExpenceTable.row.add(projExpenceTable.context["0"].aoData["0"]._aData).draw().node();
     $(rowNode).addClass('new-row');
   });
 
