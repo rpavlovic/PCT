@@ -8,6 +8,9 @@ var expenceTable = (function ($) {
 
   function initExpenceTable() {
 
+
+  var Deliverable;
+
   var table = $('#project-expence-table');
 
   var projExpenceTable = table.DataTable({
@@ -65,12 +68,12 @@ var expenceTable = (function ($) {
       },
     ],
     "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-      // $("td", nRow).prop('contenteditable', true);
       $(nRow).removeClass('odd even');
       $("td:nth-child(n+4)", nRow).prop('contenteditable', true).addClass("contenteditable");
     },
     "fnInitComplete": function (nRow) {
-      var Deliverable = nRow.aoData.map(function(deliverable) {
+
+      Deliverable = nRow.aoData.map(function(deliverable) {
         return deliverable._aData.Deliverable;
       });
 
@@ -79,9 +82,9 @@ var expenceTable = (function ($) {
       });
 
       $(Deliverable).each(function (key, value) {
-        console.log(Deliverable);
         $('.deliverable').append($('<option>', { value : Deliverable[key] }).text(Deliverable[key]));
       });
+
       projExpenceTable.on('order.dt', function () {
         projExpenceTable.column(0, {"order" :"applied", "filter":"applied" }).nodes().each( function (cell, i) {
           cell.innerHTML = i+1;
@@ -91,18 +94,30 @@ var expenceTable = (function ($) {
      "bDestroy": true,
   });
   //add row
-  $('.project-expence #add-row').on( 'click', function (e) {
+  $('.project-expence').on( 'click', '#add-row', function (e) {
     e.preventDefault();
     projExpenceTable.rows().nodes().to$().removeClass( 'new-row' );
-    var rowNode = projExpenceTable.row.add(projExpenceTable.context["0"].aoData["0"]._aData).draw().node();
+
+    // var options = $(Deliverable).each(function (key, value) {
+    //   $('.deliverable').append($('<option>', { value : Deliverable[key] }).text(Deliverable[key]));
+    // });
+    var test = projExpenceTable.columns().nodes();
+    console.log(test);
+    var rowNode = projExpenceTable.row.add([projExpenceTable.column(2)]).draw().node();
     $(rowNode).addClass('new-row');
   });
 
   //remove row
   $('#project-expence-table tbody').on( 'click', '.remove', function (e) {
     e.preventDefault();
-    console.log($(projExpenceTable));
    projExpenceTable.row( $(this).parents('tr') ).remove().draw(false);
+  });
+  //clear all edited fields
+  $('button[type="reset"]').on('click', function() {
+    confirm("All overrides will be removed?");
+    $("#project-expence-table tr").each(function (key, value) {
+      $(this).find('td.contenteditable').empty()
+    })
   });
   }
   return {

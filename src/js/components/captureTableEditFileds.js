@@ -45,7 +45,7 @@ var captureEditTd = (function ($) {
       var error = function() {
         if($(new_data.element).hasClass('rate') || $(new_data.element).hasClass('rate-override')) {
           if($(new_data.element).html()) {
-              $(new_data.element).html('this field accepts numbers only.').addClass('error');
+            $(new_data.element).html('this field accepts numbers only.').addClass('error');
           }
         }
         return true;
@@ -92,6 +92,9 @@ var captureEditTd = (function ($) {
           $(active_modeling_tabs[1]).children('input').prop('checked', true);
           error();
         }
+      }
+      if(table === '#project-expence-table') {
+
       }
     }
   }

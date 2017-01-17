@@ -15,7 +15,7 @@ var activeTable = (function ($) {
     // "ajax": '/data/OfficeCollection.json',
     "searching": true,
     // "sAjaxDataProp":"",
-    "sAjaxSource": "/data/OfficeCollection.json",
+    "sAjaxSource": "data/OfficeCollection.json",
     "sAjaxDataProp": "d.results",
     "bServerSide" : false,
     "iDisplayLength": 10,
@@ -30,7 +30,7 @@ var activeTable = (function ($) {
       "data":"Compname",
       "render": function ( data, type, set, meta ) {
         //TODO link to actual project.
-        var output = '<a href="/templates/pages/projectGeneral.html" title="ProjectName">';
+        var output = '<a href="projectGeneral.html" title="ProjectName">';
             output += data;
             output += '</a>';
         return output;
@@ -64,7 +64,7 @@ var activeTable = (function ($) {
       "targets": [ 1 ],
       "data": null,
        //TODO link to actual project.
-      "defaultContent":'<a href="/templates/pages/projectGeneral.html" class=""><i class="fa fa-files-o"></i></a>',
+      "defaultContent":'<a href="projectGeneral.html" class=""><i class="fa fa-files-o"></i></a>',
     },
     {
       "title" : '<i class="fa fa-trash"></i>',

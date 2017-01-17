@@ -60,7 +60,7 @@ var loadCustomBillSheet = (function ($) {
             { title: titles[2] },
             { title: titles[3] },
             { title: titles[4] },
-            { title: titles[5] },
+            { title: titles[5] }
           ],
            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
               $(nRow).removeClass('odd even');
