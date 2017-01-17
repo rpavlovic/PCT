@@ -1,19 +1,21 @@
+// global list of data feeds
+var feeds = {
+  'offices': [ 'data/OfficeCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection' ],
+  'employee': [ 'data/EmployeeCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection' ],
+  'expenses': [ 'data/expences.json', null ]
+};
+
+function get_data_feed(feed) {
+  if (location.href.indexOf('localhost') != -1) {
+    return feed[0];
+  }
+  return feed[1];
+}
+
 (function ($) {
   $(function () {
     var path = window.location.pathname;
     path = path.split("/");
-
-    var feeds = {
-      'offices': [ '/data/OfficeCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection' ],
-      'employee': [ '/data/EmployeeCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection' ]
-    };
-
-    function get_data_feed(feed) {
-      if (location.href.indexOf('localhost') != -1) {
-        return feed[0];
-      }
-      return feed[1];
-    }
 
     //if form to be loaded exists.
     if($("form.project-info").length > 0) {

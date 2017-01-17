@@ -16,7 +16,7 @@ var expenceTable = (function ($) {
   var projExpenceTable = table.DataTable({
     // "dom":'<tip>',
     "searching": false,
-    "sAjaxSource": "/data/expences.json",
+    "sAjaxSource": get_data_feed( feeds['expenses'] ),
     "sAjaxDataProp": "d.results",
     "paging": false,
     "stateSave": true,
@@ -39,7 +39,7 @@ var expenceTable = (function ($) {
         "sClass": "center blue-bg",
         "targets": [1],
         "data": null,
-        "defaultContent":'<a href=" " class="remove"><i class="fa fa-trash"></i></a>',
+        "defaultContent":'<a href="" class="remove"><i class="fa fa-trash"></i></a>',
       },
       {
         "title": 'Deliverable / Work&nbsp;Stream',
@@ -54,7 +54,7 @@ var expenceTable = (function ($) {
       {
         "title": "Category",
         "data": "Category",
-        "defaultContent": "Out of Pocker (OOP)"
+        "defaultContent": "Out of Pocket (OOP)"
       },
       {
         "title": "Description",
