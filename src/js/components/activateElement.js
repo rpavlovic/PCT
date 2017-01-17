@@ -3,7 +3,6 @@
 * @version
 */
 $.fn.activateElement = function() {
-
   function remove_active(elem, class_name) {
     elem.removeClass(class_name);
   };

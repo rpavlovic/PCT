@@ -84,6 +84,13 @@ table {
     }
     &#project-resource-table {
       margin-top: 0;
+      thead {
+        tr:first-child {
+          th {
+            white-space: nowrap;
+          }
+        }
+      }
     }
     tfoot td {
       border: none;

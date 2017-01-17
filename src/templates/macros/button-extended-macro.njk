@@ -16,7 +16,8 @@
           isExternal='',
           isDisabled='',
           size='',
-          attrs='')
+          attrs='',
+          id='')
 -%}
 
 {%- if path -%}
@@ -29,6 +30,7 @@
   {%- if size %} button--{{ size }}{%- endif -%}
   {%- if context %} {{ context }}{% endif -%}"
   {%- if isDisabled %} disabled{% endif -%}
+  id="{%- if id %}{{id}}{% endif -%}"
   {%- for name, item in attrs %} {{ name }}="{{ item }}"{% endfor -%}>{{ label }}
 {%- if path -%}
   </a>
@@ -39,8 +41,8 @@
 
 {# a default button #}
 
-{% macro default(label, context, path, isDisabled, size, attrs) -%}
-  {% call _button(label=label, context=context, path=path, isDisabled=isDisabled, size=size, attrs=attrs) -%}
+{% macro default(label, context, path, isDisabled, size, attrs, id) -%}
+  {% call _button(label=label, id=id, context=context, path=path, isDisabled=isDisabled, size=size, attrs=attrs) -%}
   {%- endcall %}
 {%- endmacro %}
 

@@ -80,8 +80,8 @@ gulp.task('nunjucks', function () {
     //      return require('./src/data/gw_client_data.json')
     //    }))
     // output files in app folder
-    .pipe(gulp.dest('build/templates'));
-    // .pipe(browserSync.stream({once: true}));
+    .pipe(gulp.dest('build/templates'))
+    .pipe(browserSync.stream());
 });
 
 // Data

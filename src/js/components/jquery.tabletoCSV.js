@@ -1,4 +1,4 @@
-jQuery.fn.tableToCSV = function() {
+$.fn.tableToCSV = function() {
 
 	var clean_text = function(text) {
     text = text.replace(/"/g, ',');

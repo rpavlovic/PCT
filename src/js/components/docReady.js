@@ -34,7 +34,6 @@
       "nextText": "",
       "prevText":"",
       "dateFormat": "MM dd, yy",
-      "firstDay": 1,
       onSelect: function(dateText, instance) {
         projectDuration.initProjectDuration('.project-info', instance, dateText);
         floatLabel.initfloatLabel();
@@ -56,11 +55,10 @@
     //show in-place form.
     editProfileForm.initEditProfileForm('form.form-edit-profile');
 
-
-
+    //Active Projects on Projects General page.
     activeTable.initActiveTable();
 
-    //upload CSV for the user
+    //upload CSV per the user
     loadCustomBillSheet.initLoadCustomBillSheet();
 
     projectResourceTable.initProjectResourceTable();
@@ -70,11 +68,15 @@
     $('button').activateElement();
 
     var tables = {
-      'customerBill': '#csv-table',
-      'resourceProject': '#project-resource-table',
+      'customerBillTbl': '#csv-table',
+      'resourceProjectTbl': '#project-resource-table',
+      'expenceTbl' : '#project-expence-table',
     };
-    captureEditTd.initCaptureEditTd(tables['customerBill']);
-    captureEditTd.initCaptureEditTd(tables['resourceProject']);
+    captureEditTd.initCaptureEditTd(tables['customerBillTbl']);
+    captureEditTd.initCaptureEditTd(tables['resourceProjectTbl']);
+    captureEditTd.initCaptureEditTd(tables['expenceTbl']);
+
+    expenceTable.initExpenceTable();
 
   });
 
