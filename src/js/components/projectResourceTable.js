@@ -13,7 +13,9 @@ var projectResourceTable = (function ($) {
     var Cities,
         Practice,
         Deliverable,
+        _del,
         BillRate;
+
     var projResourceTable = table.DataTable({
       "searching": false,
       "sAjaxSource": get_data_feed( feeds['offices'] ),
@@ -44,13 +46,13 @@ var projectResourceTable = (function ($) {
       },
       {
         "title": 'Deliverable / Work&nbsp;Stream',
-        "data": '',
         "defaultContent": '',
+        "data": null,
         "render": function ( data, type, set, meta ) {
-          var output = '<select class="deliverable">';
-          output += data;
-          output += '</select>';
-          return output;
+          // var output = '<select class="deliverable">';
+          // output += _del;
+          // output += '</select>';
+          return _del;
         }
       },
       {
@@ -99,7 +101,6 @@ var projectResourceTable = (function ($) {
       },
       {
         "title": 'Bill Rate',
-        "data":" ",
         "defaultContent": 'Rate Card',
         "render": function ( data, type, set, meta ) {
           var output = '<select class="bill-rate">';
@@ -109,7 +110,24 @@ var projectResourceTable = (function ($) {
       },
       {
         "title": 'Bill Rate <br/> Override',
-        "data":" ",
+        "data": function ( row, type, val, meta ) {
+          console.log(type);
+          if (type === 'set') {
+            row.price = val;
+            // Store the computed display and filter values for efficiency
+            row.price_display = val=="" ? "" : "$"+numberFormat(val);
+            row.price_filter  = val=="" ? "" : "$"+numberFormat(val)+" "+val;
+            return;
+          }
+          else if (type === 'display') {
+            return row.price_display;
+          }
+          else if (type === 'filter') {
+            return row.price_filter;
+          }
+          // 'sort', 'type' and undefined all just use the integer
+          return row.price;
+        },
         "defaultContent": '',
         "sClass": "rate-override"
       },
@@ -195,9 +213,17 @@ var projectResourceTable = (function ($) {
       "initComplete": function (nRow, data) {
         // console.log(data.d.results);
         Deliverable = ["Non-Deliverable Specific", "A","B"];
-        $(Deliverable).each(function (key, value) {
-          $('.deliverable').append($('<option>', { value : Deliverable[key] }).text(Deliverable[key]));
+
+        _del = "<select class=\"deliverable\">";
+        Deliverable.map(function(key, value) {
+          _del += '<option>'+Deliverable[value]+'</option>';
         });
+        _del +='</select>';
+
+        // $(Deliverable).each(function (key, value) {
+        //   $('.deliverable').append($('<option>', { value : Deliverable[key] }).text(Deliverable[key]));
+        // });
+
         // TODO get data from Rate Card or DB.
         BillRate = ["Rate Card", "Office Standard Rate"];
         $(BillRate).each(function (key, value) {
@@ -226,31 +252,35 @@ var projectResourceTable = (function ($) {
             cell.innerHTML = i+1;
           });
         }).draw();
+        addRow();
       },
       "bDestroy": true,
     });
     //add row
-    $('.project-resources #add-row').on( 'click', function (e) {
-      e.preventDefault();
-      var _del = "<select class=\"deliverable\">";
-      Deliverable.map(function(key, value) {
-        _del += '<option>'+Deliverable[value]+'</option>';
-      });
-      _del +='</select>';
+    function addRow() {
+      $('.project-resources #add-row').on( 'click', function (e) {
+        e.preventDefault();
+        var _del = "<select class=\"deliverable\">";
+        Deliverable.map(function(key, value) {
+          _del += '<option>'+Deliverable[value]+'</option>';
+        });
+        _del +='</select>';
 
-      var _city = "<select class=\"deliverable\">";
-      Cities.map(function(key, value) {
-        _city += '<option>'+Cities[value]+'</option>';
-      });
-      _city +='</select>';
+        var _city = "<select class=\"deliverable\">";
+        Cities.map(function(key, value) {
+          _city += '<option>'+Cities[value]+'</option>';
+        });
+        _city +='</select>';
 
-      projResourceTable.rows().nodes().to$().removeClass( 'new-row' );
-      var rowNode = projResourceTable.row.add({
-        'Deliverable': _del,
-        'City': _city
-      }).order( [[ 3, 'asc' ]] ).draw().node();
-      $(rowNode).addClass('new-row');
-    });
+        projResourceTable.rows().nodes().to$().removeClass( 'new-row' );
+        var rowNode = projResourceTable.row.add({
+          'Deliverable': _del,
+          'City': _city
+        }).order( [[ 3, 'asc' ]] ).draw().node();
+        $(rowNode).addClass('new-row');
+      });
+    }
+
     //remove row
     $('#project-resource-table tbody').on( 'click', '.remove', function (e) {
       e.preventDefault();
