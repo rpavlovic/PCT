@@ -18,8 +18,10 @@ var projectResourceTable = (function ($) {
 
     var projResourceTable = table.DataTable({
       "searching": false,
-      "sAjaxSource": get_data_feed( feeds['offices'] ),
-      "sAjaxDataProp": "d.results",
+      "ajax" : {
+         "url": get_data_feed( feeds['offices'] ),
+         "dataSrc": "d.results"
+       },
       "bServerSide" : false,
       "paging": false,
       "stateSave": true,

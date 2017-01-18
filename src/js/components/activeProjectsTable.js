@@ -12,11 +12,11 @@ var activeTable = (function ($) {
 
   var activeTable = table.dataTable({
     "sDom": '<"toolbar"><B><tip>',
-    // "ajax": '/data/OfficeCollection.json',
     "searching": true,
-    // "sAjaxDataProp":"",
-    "sAjaxSource": get_data_feed( feeds['offices'] ),
-    "sAjaxDataProp": "d.results",
+    "ajax" : {
+       "url": get_data_feed( feeds['offices'] ),
+       "dataSrc": "d.results"
+     },
     "bServerSide" : false,
     "iDisplayLength": 10,
     "bAutoWidth": false,

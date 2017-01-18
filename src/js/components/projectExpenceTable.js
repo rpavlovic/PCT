@@ -13,8 +13,10 @@ var expenceTable = (function ($) {
     var projExpenceTable = table.DataTable({
       // "dom":'<tip>',
       "searching": false,
-      "sAjaxSource": get_data_feed( feeds['expenses'] ),
-      "sAjaxDataProp": "d.results",
+      "ajax" : {
+         "url": get_data_feed( feeds['expenses'] ),
+         "dataSrc": "d.results"
+       },
       "paging": false,
       "stateSave": true,
       "info":     false,
