@@ -85,7 +85,6 @@ var activeTable = (function ($) {
     ],
     "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
       $(nRow).removeClass('odd even');
-      $("td:not(:first-child):not(:last-child):not(:nth-last-child(2))", nRow).prop('contenteditable', true).addClass("contenteditable");
     },
     //when json is loaded add the filters to the toolbar div.
     "fnInitComplete": function (nRow) {
