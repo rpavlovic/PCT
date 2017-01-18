@@ -8,12 +8,30 @@ var loadJSON = (function ($) {
 
   var items_business = [],
       items_country = [],
-      items_currency = [],
+      items_currency = [
+        'AUD',
+        'CAD',
+        'CHF',
+        'CNY',
+        'EUR',
+        'GBP',
+        'HKD',
+        'JPY',
+        'MYR',
+        'NZD',
+        'SGD',
+        'USD'
+    ],
       items_region = [],
       select_billing_office = $("form.project-info select[name='billing']"),
       select_currency = $("form.project-info select[name='currency']"),
       select_region = $("form.project-info select[name='regions']"),
       select_country = $("form.project-info select[name='country']");
+
+      $.each(items_currency, function(key, value) {
+        items_currency.push('<option value="' + value + '">' + value + '</option>');
+      });
+      select_currency.append(items_currency);
 
   //prepopulate Billing office select with JSON data.
   function prepopulate_Billing_Office_JSON(data1) {
@@ -25,9 +43,6 @@ var loadJSON = (function ($) {
         if(key == "Country") {
           items_country.push('<option value="' + val[key] + '">' + val[key] + '</option>');
         }
-        if(key == "Currency") {
-          items_currency.push('<option value="' + val[key] + '">' + val[key] + '</option>');
-        }
         if(key == "Region") {
           items_region.push('<option value="' + val[key] + '">' + val[key] + '</option>');
         }
@@ -35,7 +50,6 @@ var loadJSON = (function ($) {
     });
     select_billing_office.append($.unique(items_business));
     select_country.append($.unique(items_country));
-    select_currency.append($.unique(items_currency));
     select_region.append($.unique(items_region));
   }
 

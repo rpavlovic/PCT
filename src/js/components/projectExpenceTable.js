@@ -23,6 +23,7 @@ var expenceTable = (function ($) {
       "length": false,
       "bFilter": false,
       "select": true,
+      // "displayLength": 1,
       "columnDefs": [ {
         "orderable": false,
         "targets": [ 0, 1 ],
@@ -74,22 +75,21 @@ var expenceTable = (function ($) {
         $("td:nth-child(n+4)", nRow).prop('contenteditable', true).addClass("contenteditable");
       },
       // TODO working on grouping the rows
-      // "drawCallback": function ( settings ) {
-      //   var api = this.api();
-      //   var rows = api.rows( {page:'current'} ).nodes();
-      //   var last=null;
-      //   api.column(1, {page:'current'} ).data().each( function ( raNum, i ) {
-      //       if ( last !== raNum ) {
-      //           var data = projExpenceTable.row(i).data();
-      //           console.log(Deliverable);
-      //           // $(rows).eq( i ).append(
-      //           //     '<tr class="group"><td>'+Desc+'</td></tr>'
-      //           // );
+      "drawCallback": function ( settings ) {
+       //  var api = this.api();
+       //  var rows = api.rows( {page:'current'} ).nodes();
+       //  var last=null;
+       // api.column(2, {page:'current'} ).data().each( function ( group, i ) {
+       //  console.log(group);
+       //      if ( last !== group ) {
+       //          $(rows).eq( i ).find('.deliverable').append(
+       //              '<tr><td>'+group+'</td></tr>'
+       //          );
 
-      //           last = raNum;
-      //       }
-      //   });
-      // },
+       //          last = group;
+       //      }
+       //  } );
+      },
       "fnInitComplete": function (nRow) {
         Deliverable = nRow.aoData.map(function(_del) {
           return _del._aData.Deliverable;
