@@ -66,8 +66,8 @@ function get_data_feed(feed) {
     projectResourceTable.initProjectResourceTable();
 
     //modeling table highlight headers on radio click
-    $('.modeling-table input[type="radio"]').activateElement();
-    $('button').activateElement();
+    $('.modeling-table input[type="radio"], button').activateElement();
+    // $('button').activateElement();
 
     var tables = {
       'customerBillTbl': '#csv-table',
@@ -80,6 +80,7 @@ function get_data_feed(feed) {
 
     expenceTable.initExpenceTable();
 
+   $('.project-expence button[type="reset"], .project-resources button[type="reset"]').clearAll();
   });
 
 }( jQuery ));

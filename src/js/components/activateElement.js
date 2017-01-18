@@ -39,6 +39,5 @@ $.fn.activateElement = function() {
     $('button[type="reset"]').on('click', function() {
       remove_active(all_active_elements, class_name);
     });
-
   });
 }
