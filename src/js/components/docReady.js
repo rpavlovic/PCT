@@ -80,6 +80,7 @@ function get_data_feed(feed) {
 
     expenceTable.initExpenceTable();
 
+   $('.project-expence button[type="reset"], .project-resources button[type="reset"]').clearAll();
   });
 
 }( jQuery ));

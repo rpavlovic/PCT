@@ -59,7 +59,7 @@
     <div class="row">
       <div class="col-12">
         {% include "partials/tables/projectResourceTable.njk" %}
-        <button id="add-row" class="button btn-blue plus">Add Resource</button>
+        {{ button.default(label='Add Resource', id='add-row', context='btn-blue plus') }}
       </div>
     </div>
 

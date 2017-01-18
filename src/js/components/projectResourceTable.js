@@ -288,6 +288,7 @@ var projectResourceTable = (function ($) {
       e.preventDefault();
       projResourceTable.row( $(this).parents('tr') ).remove().draw(false);
     });
+
   }
   return {
     initProjectResourceTable:initProjectResourceTable

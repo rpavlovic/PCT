@@ -19,11 +19,10 @@ var expenceTable = (function ($) {
        },
       "paging": false,
       "stateSave": true,
-      "info":     false,
+      "info": false,
       "length": false,
       "bFilter": false,
       "select": true,
-      // "aaSortingFixed": [[2,'asc']],
       "columnDefs": [ {
         "orderable": false,
         "targets": [ 0, 1 ],
@@ -114,18 +113,10 @@ var expenceTable = (function ($) {
    }).order( [[ 2, 'asc' ]] ).draw(false).node();
    $("#project-expence-table tr:last").addClass('new-row');
   });
-
   //remove row
   $('#project-expence-table tbody').on( 'click', '.remove', function (e) {
     e.preventDefault();
     projExpenceTable.row( $(this).parents('tr') ).remove().draw(false);
-  });
-  //clear all edited fields
-  $('button[type="reset"]').on('click', function() {
-    confirm("All overrides will be removed?");
-    $("#project-expence-table tr").each(function (key, value) {
-      $(this).find('td.contenteditable').empty()
-    })
   });
   }
   return {
