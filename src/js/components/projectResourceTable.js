@@ -205,11 +205,12 @@ var projectResourceTable = (function ($) {
         var Cities = nRow.aoData.map(function(city) {
           return city._aData.City;
         });
+        console.log(Cities);
 
         Cities = Cities.filter(function(value, key) {
           return Cities.indexOf(value) == key;
         });
-
+        console.log(Cities);
         $(Cities).each(function (key, value) {
           $('.city').append($('<option>', { value : Cities[key] }).text(Cities[key]));
         });
