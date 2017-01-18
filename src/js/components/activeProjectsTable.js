@@ -15,7 +15,7 @@ var activeTable = (function ($) {
     // "ajax": '/data/OfficeCollection.json',
     "searching": true,
     // "sAjaxDataProp":"",
-    "sAjaxSource": "data/OfficeCollection.json",
+    "sAjaxSource": get_data_feed( feeds['offices'] ),
     "sAjaxDataProp": "d.results",
     "bServerSide" : false,
     "iDisplayLength": 10,
@@ -71,7 +71,7 @@ var activeTable = (function ($) {
       "sClass": "center blue-bg",
       "targets": [ -1 ],
       "data": null,
-      "defaultContent":'<a href=" " class="remove"><i class="fa fa-trash"></i></a>',
+      "defaultContent":'<a href="" class="remove"><i class="fa fa-trash"></i></a>',
     }
     ],
     "bFilter": true,
