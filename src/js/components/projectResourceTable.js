@@ -10,16 +10,20 @@ var projectResourceTable = (function ($) {
 
     var table = $('#project-resource-table');
 
-
+    var Cities,
+        Practice,
+        Deliverable,
+        BillRate;
     var projResourceTable = table.DataTable({
       "searching": false,
-      "sAjaxSource": "/data/OfficeCollection.json",
+      "sAjaxSource": get_data_feed( feeds['offices'] ),
       "sAjaxDataProp": "d.results",
       "bServerSide" : false,
       "paging": false,
       "stateSave": true,
       "info":     false,
       "bAutoWidth": false,
+      "aaSortingFixed": [[2,'asc']],
       "columnDefs": [ {
         "orderable": false,
         "targets": [ 0, 1 ],
@@ -40,10 +44,12 @@ var projectResourceTable = (function ($) {
       },
       {
         "title": 'Deliverable / Work&nbsp;Stream',
-        "defaultContent": 'Non-Deliverable Specific',
+        "data": '',
+        "defaultContent": '',
         "render": function ( data, type, set, meta ) {
           var output = '<select class="deliverable">';
-              output += '</select>';
+          output += data;
+          output += '</select>';
           return output;
         }
       },
@@ -52,9 +58,13 @@ var projectResourceTable = (function ($) {
         "data": "City",
         "defaultContent":'City',
         "render": function ( data, type, set, meta ) {
-          var output = '<select class="city">';
-              output += '</select>';
-          return output;
+          if(data.indexOf('<select') === -1) {
+            var output = '<select class="city">';
+            output += '</select>';
+            return output;
+          } else {
+           return data;
+          }
         }
       },
       {
@@ -179,38 +189,33 @@ var projectResourceTable = (function ($) {
         $(nRow).removeClass('odd even');
         $("td:nth-child(n+5):not(:nth-child(6)):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", nRow).prop('contenteditable', true).addClass("contenteditable");
       },
-       "drawCallback": function( settings ) {
-              var api = this.api();
-
-              // Output the data for the visible rows to the browser's console
-             // console.log( api.rows().data() );
-          },
+       "drawCallback": function( settings, nRow, data) {
+          var data = this.api();
+      },
       "initComplete": function (nRow, data) {
         // console.log(data.d.results);
-        var Deliverable = ["Non-Deliverable Specific", "A","B"];
+        Deliverable = ["Non-Deliverable Specific", "A","B"];
         $(Deliverable).each(function (key, value) {
           $('.deliverable').append($('<option>', { value : Deliverable[key] }).text(Deliverable[key]));
         });
         // TODO get data from Rate Card or DB.
-        var BillRate = ["Rate Card", "Office Standard Rate"];
+        BillRate = ["Rate Card", "Office Standard Rate"];
         $(BillRate).each(function (key, value) {
           $('.bill-rate').append($('<option>', { value : BillRate[key] }).text(BillRate[key]));
         });
         // TODO get data from DB.
-        var Practice = ["Consumer", "HR Resources", "PR Counsel", "Finance"];
+        Practice = ["Consumer", "HR Resources", "PR Counsel", "Finance"];
         $(Practice).each(function (key, value) {
           $('.practice').append($('<option>', { value : Practice[key] }).text(Practice[key]));
         });
 
-        var Cities = nRow.aoData.map(function(city) {
+        Cities = nRow.aoData.map(function(city) {
           return city._aData.City;
         });
-        console.log(Cities);
 
         Cities = Cities.filter(function(value, key) {
           return Cities.indexOf(value) == key;
         });
-        console.log(Cities);
         $(Cities).each(function (key, value) {
           $('.city').append($('<option>', { value : Cities[key] }).text(Cities[key]));
         });
@@ -227,8 +232,23 @@ var projectResourceTable = (function ($) {
     //add row
     $('.project-resources #add-row').on( 'click', function (e) {
       e.preventDefault();
+      var _del = "<select class=\"deliverable\">";
+      Deliverable.map(function(key, value) {
+        _del += '<option>'+Deliverable[value]+'</option>';
+      });
+      _del +='</select>';
+
+      var _city = "<select class=\"deliverable\">";
+      Cities.map(function(key, value) {
+        _city += '<option>'+Cities[value]+'</option>';
+      });
+      _city +='</select>';
+
       projResourceTable.rows().nodes().to$().removeClass( 'new-row' );
-      var rowNode = projResourceTable.row.add(projResourceTable.rows()).draw().node();
+      var rowNode = projResourceTable.row.add({
+        'Deliverable': _del,
+        'City': _city
+      }).order( [[ 3, 'asc' ]] ).draw().node();
       $(rowNode).addClass('new-row');
     });
     //remove row

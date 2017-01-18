@@ -21,7 +21,7 @@ var expenceTable = (function ($) {
       "length": false,
       "bFilter": false,
       "select": true,
-      "aaSortingFixed": [[2,'asc']],
+      // "aaSortingFixed": [[2,'asc']],
       "columnDefs": [ {
         "orderable": false,
         "targets": [ 0, 1 ],
@@ -109,7 +109,7 @@ var expenceTable = (function ($) {
       // 'Category': 'ss',
       // 'Amount': 'ss',
       // 'Description': 'ss',
-   }).draw(false).node();
+   }).order( [[ 2, 'asc' ]] ).draw(false).node();
    $("#project-expence-table tr:last").addClass('new-row');
   });
 
