@@ -73,6 +73,23 @@ var expenceTable = (function ($) {
         $(nRow).removeClass('odd even');
         $("td:nth-child(n+4)", nRow).prop('contenteditable', true).addClass("contenteditable");
       },
+      // TODO working on grouping the rows
+      // "drawCallback": function ( settings ) {
+      //   var api = this.api();
+      //   var rows = api.rows( {page:'current'} ).nodes();
+      //   var last=null;
+      //   api.column(1, {page:'current'} ).data().each( function ( raNum, i ) {
+      //       if ( last !== raNum ) {
+      //           var data = projExpenceTable.row(i).data();
+      //           console.log(Deliverable);
+      //           // $(rows).eq( i ).append(
+      //           //     '<tr class="group"><td>'+Desc+'</td></tr>'
+      //           // );
+
+      //           last = raNum;
+      //       }
+      //   });
+      // },
       "fnInitComplete": function (nRow) {
         Deliverable = nRow.aoData.map(function(_del) {
           return _del._aData.Deliverable;
