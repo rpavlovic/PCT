@@ -21,6 +21,7 @@ var expenceTable = (function ($) {
       "length": false,
       "bFilter": false,
       "select": true,
+      "aaSortingFixed": [[2,'asc']],
       "columnDefs": [ {
         "orderable": false,
         "targets": [ 0, 1 ],
@@ -42,25 +43,29 @@ var expenceTable = (function ($) {
           "title": 'Deliverable / Work&nbsp;Stream',
           "data": "Deliverable",
           "render": function ( data, type, set, meta ) {
-            var output = '<select class="deliverable">';
-                output += '</select>';
-            return output;
+            if(data.indexOf('<select') === -1) {
+              var output = '<select class="deliverable">';
+              output += '</select>';
+              return output;
+            } else {
+             return data;
+            }
           }
         },
         {
           "title": "Category",
           "data": "Category",
-          "defaultContent": '',
+          "defaultContent": ''
         },
         {
           "title": "Description",
           "data": "Description",
-          "defaultContent": '',
+          "defaultContent": ''
         },
         {
           "title": "Amount",
           "data": "Amount",
-          "defaultContent" : '',
+          "defaultContent": ''
         },
       ],
       "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
@@ -68,12 +73,6 @@ var expenceTable = (function ($) {
         $("td:nth-child(n+4)", nRow).prop('contenteditable', true).addClass("contenteditable");
       },
       "fnInitComplete": function (nRow) {
-        // projExpenceTable.rows().filter( function (value, key) {
-        //   var deliverable = this.data();
-        //   console.log(deliverable);
-        //   return deliverable;
-        // //  return $('.deliverable').append($('<option>', { value : deliverable.Deliverable }).text(deliverable.Deliverable));
-        // });
         Deliverable = nRow.aoData.map(function(_del) {
           return _del._aData.Deliverable;
         });
@@ -83,7 +82,6 @@ var expenceTable = (function ($) {
         });
 
         $(Deliverable).each(function (key, value) {
-        //  console.log(Deliverable[key])
           $('.deliverable').append($('<option>', { value : Deliverable[key] }).text(Deliverable[key]));
         });
 
@@ -99,20 +97,19 @@ var expenceTable = (function ($) {
     //add row
   $('.project-expence').on( 'click', '#add-row', function (e) {
     e.preventDefault();
-    // console.log(Deliverable)
 
-    var test = "<select class=\"deliverable\">";
+    var _del = "<select class=\"deliverable\">";
     Deliverable.map(function(key, value) {
-      test += '<option>'+Deliverable[value]+'</option>';
+      _del += '<option>'+Deliverable[value]+'</option>';
     });
-    test +='</select>'
-    //projExpenceTable.row + $(' .deliverable').append($('<option>', { value : Deliverable }).text(Deliverable))
-    // console.log(test);
-    // console.log( projExpenceTable.cells().data(2));
+    _del +='</select>';
+    projExpenceTable.rows().nodes().to$().removeClass( 'new-row' );
     var rowNode = projExpenceTable.row.add({
-      'Category': test,
-      'Deliverable': test
-   }).draw().node()
+      'Deliverable': _del,
+      // 'Category': 'ss',
+      // 'Amount': 'ss',
+      // 'Description': 'ss',
+   }).draw(false).node();
    $("#project-expence-table tr:last").addClass('new-row');
   });
 
