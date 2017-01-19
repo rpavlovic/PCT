@@ -79,10 +79,8 @@ var expenceTable = (function ($) {
           return _del;
         });
         $(Deliverable).each(function (key, value) {
-
           $('.deliverable').append($('<option>', { value : value }).text(value));
         });
-
         projExpenceTable.on('order.dt', function () {
           projExpenceTable.column(0, {"order" :"applied", "filter":"applied" }).nodes().each( function (cell, i) {
             cell.innerHTML = i+1;
@@ -104,9 +102,6 @@ var expenceTable = (function ($) {
     projExpenceTable.rows().nodes().to$().removeClass( 'new-row' );
     var rowNode = projExpenceTable.row.add({
       'Deliverable': _del,
-      // 'Category': 'ss',
-      // 'Amount': 'ss',
-      // 'Description': 'ss',
    }).order( [[ 2, 'asc' ]] ).draw(false).node();
    $("#project-expence-table tr:last").addClass('new-row');
   });
