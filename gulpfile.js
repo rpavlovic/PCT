@@ -92,7 +92,7 @@ gulp.task('data', function () {
 
 // create a task that ensures the `nunchucks` task is complete before
 // reloading browsers can be added to the task serve
-gulp.task('nunjucks-watch', ['nunjucks', 'move', 'moveJS'], function (done) {
+gulp.task('nunjucks-watch', ['nunjucks', 'move'], function (done) {
     browserSync.reload();
     done();
 });
@@ -113,7 +113,7 @@ gulp.task('imagemin', function () {
 });
 
 //browser synk and scss,js and nunjucks watch
-gulp.task('serve', ['styles', 'js-watch'], function() {
+gulp.task('serve', ['styles', 'js-watch', 'nunjucks-watch'], function() {
     browserSync.init( ["/css/*.css", "/js/*.js"], {
       server: {
           baseDir: "./build",
@@ -123,7 +123,7 @@ gulp.task('serve', ['styles', 'js-watch'], function() {
     gulp.watch(sassSrc,['styles']);
     gulp.watch(jsSrc, ['js']);
     gulp.watch(imgSrc, ['imagemin']);
-    gulp.watch(htmlSrc, ['nunjucks']).on('change', browserSync.reload);
+    gulp.watch(htmlSrc, ['nunjucks-watch']).on('change', browserSync.reload);
 });
 
 //Remove build folder before runing build task

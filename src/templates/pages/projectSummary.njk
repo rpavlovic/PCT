@@ -15,17 +15,194 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
   </div>
-  {{ button.default(label='',  context='fa fa-save btn-blue') }}
-  {{ button.default(label='',  context='fa fa-files-o btn-blue') }}
-  {{ button.default(label='',  context='fa fa-table btn-blue') }}
-  {{ button.default(label='',  context='fa fa-print btn-blue') }}
-  <form action="#" method="POST" class="project-resources">
+  <div class="col-12">
+    {{ button.default(label='',  context='fa fa-save btn-blue') }}
+    {{ button.default(label='',  context='fa fa-files-o btn-blue') }}
+    {{ button.default(label='',  context='fa fa-table btn-blue') }}
+    {{ button.default(label='',  context='fa fa-print btn-blue') }}
+  </div>
+  <form action="#" method="POST" class="project-summary">
+    <div class="row">
+      <div class="col-6">
+        <h3>Summary Information</h3>
+        <table class="display dataTable no-footer">
+         <tbody>
+            <tr>
+              <td>aa</td>
+              <td>aa</td>
+            </tr>
+            <tr>
+              <td>aa</td>
+              <td>aa</td>
+            </tr>
+            <tr>
+              <td>aa</td>
+              <td>aa</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-6">
+        <h3>Financial Summary</h3>
+        <table class="display dataTable no-footer">
+          <tbody>
+            <tr>
+              <td>aa</td>
+              <td>aa</td>
+            </tr>
+            <tr>
+              <td>aa</td>
+              <td>aa</td>
+            </tr>
+            <tr>
+              <td>aa</td>
+              <td>aa</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h3>Breakdown by Deliverable / Workstream</h3>
+        <table class="display dataTable no-footer">
+          <thead>
+            <tr>
+              <th>Financial Summary</th>
+              <th>Financial Summary</th>
+              <th>Financial Summary</th>
+              <th>Financial Summary</th>
+              <th>Financial Summary</th>
+              <th>Financial Summary</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+            </tr>
+            <tr>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+            </tr>
+            <tr>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h3>Breakdown by Office</h3>
+        <table class="display dataTable no-footer">
+          <thead>
+            <tr>
+              <th>Financial Summary</th>
+              <th>Financial Summary</th>
+              <th>Financial Summary</th>
+              <th>Financial Summary</th>
+              <th>Financial Summary</th>
+              <th>Financial Summary</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+            </tr>
+            <tr>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+            </tr>
+            <tr>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <h3>Breakdown by Role</h3>
+        <table class="display dataTable no-footer">
+          <thead>
+            <tr>
+              <th>Financial Summary</th>
+              <th>Financial Summary</th>
+              <th>Financial Summary</th>
+              <th>Financial Summary</th>
+              <th>Financial Summary</th>
+            </tr>
+          </thead>
+         <tbody>
+            <tr>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+            </tr>
+            <tr>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+            </tr>
+            <tr>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+              <td>aa</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <fieldset class="row">
+      <div class="col-12">
+      <legend>Comments / Project Notes</legend>
+        <div class="field-wrapper">
+          <label for="comments">Comments and Projects Notes</label>
+          <textarea name="comments" placeholder="Comments and Projects Notes" value="" rows="4" cols="100"></textarea>
+        </div>
+      </div>
+    </fieldset>
 
     <div class="row button-row">
       <div class="col-12">
-        {{ button.default(label='Save and Continue', path='projectGeneral.html', context='btn btn-green arrowpointer float-right') }}
+        {{ button.default(label='Complete and Continue', path='projectGeneral.html', context='btn btn-green arrowpointer float-right') }}
         {{ button.default(label='Back to Expence Information', path='projectExpences.html', context='btn-light-grey float-right') }}
-        {{ button.reset(attr="reset", label='Clear Form',  context='btn btn-light-grey float-left') }}
+        {{ button.reset(attr="reset", label='Cancel',  context='btn btn-light-grey float-left') }}
       </div>
     </div>
 
