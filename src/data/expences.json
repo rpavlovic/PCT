@@ -7,29 +7,12 @@
           "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection('SGANTEDI')",
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.EmployeeProfile"
         },
-        "Deliverable" : "Deliverables/Work Stream",
-        "Category" : "Out of Pocket (OOP)",
-        "Description" : "",
-        "Amount" : "$10,000"
-      },
-      {
-        "__metadata" : {
-          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection('SGANTEDI')",
-          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection('SGANTEDI')",
-          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.EmployeeProfile"
-        },
-        "Deliverable" : "A",
-        "Category" : "Out of Pocket (OOP)",
-        "Description" : "",
-        "Amount" : "$10,000"
-      },
-      {
-        "__metadata" : {
-          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection('SGANTEDI')",
-          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection('SGANTEDI')",
-          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.EmployeeProfile"
-        },
-        "Deliverable" : "B",
+        "Deliverable" :  [
+          "Deliverables/Work Stream",
+          "A",
+          "B",
+          "C"
+        ],
         "Category" : "Out of Pocket (OOP)",
         "Description" : "",
         "Amount" : "$10,000"
