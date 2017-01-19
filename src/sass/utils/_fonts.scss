@@ -49,6 +49,9 @@ p, td {
   color: $medium-grey;
   margin-bottom: 1.625rem;
 }
+thead th {
+  font: normal bold .75rem/.75rem "EYBold", Arial, sans-serif;
+}
 footer * {
   font: normal .75rem/1rem "EYLight", Arial, sans-serif;
 }
