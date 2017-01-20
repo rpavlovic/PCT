@@ -1,3 +1,8 @@
+/**
+* @module Parse Custom Bill Sheet into a table and save.
+* @version
+*/
+
 $.fn.tableToCSV = function() {
 
 	var clean_text = function(text) {

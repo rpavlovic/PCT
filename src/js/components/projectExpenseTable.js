@@ -1,6 +1,5 @@
-
 /**
-* @module Draw Data Table for Archive records.
+* @module Draw Data Table for Expense page.
 * @version
 */
 var expenseTable = (function ($) {
