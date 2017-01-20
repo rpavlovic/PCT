@@ -1,6 +1,6 @@
 
 /**
-* @module Draw Data Table for Archive records.
+* @module Draw Data Table for Active Projects.
 * @version
 */
 var activeTable = (function ($) {

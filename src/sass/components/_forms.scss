@@ -53,6 +53,7 @@ form {
     @extend input:not([type=checkbox]):not([type=radio]);
     border-radius: 0;
     @extend %reset-webkit;
+    //little arrow image
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%2828, 117, 187%29'></polygon></svg>");
     -webkit-background-size: 9px 6px;
     background-size: 9px 6px;
@@ -199,8 +200,6 @@ form {
         }
       }
     }
-  }
-  &.project-resources {
   }
 }
 

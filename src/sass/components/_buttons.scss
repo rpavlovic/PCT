@@ -1,7 +1,6 @@
 //default placeholder for button style.
 %btn {
-  // display: inline-block;
-  padding: .938em 0.75em;
+  padding: rem-calc(15);
   color: $white;
   cursor: pointer;
   border: none !important;
@@ -65,6 +64,7 @@
   &-green {
     @include button-bg(#12c377, $white, #ececec);
     &.arrowpointer {
+      color: $white !important;
       &:before,
       &:after {
         content: "";
@@ -76,6 +76,21 @@
         border-left: 1em solid;
         right: -1em;
         border-left-color: #12c377;
+      }
+      &:hover {
+        box-shadow:  none;
+        &:before,
+        &:after {
+          border-left-color: #0f9e60;
+          @include trans(all 0.3s ease);
+        }
+      }
+      &:active {
+        &:before,
+        &:after {
+          border-left-color: #074e30;
+          @include trans(all 0.3s ease);
+        }
       }
     }
   }

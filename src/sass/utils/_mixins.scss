@@ -1,4 +1,3 @@
-
 //function to calculate in rems.
 // It strips the unit of measure and returns it
 @function strip-unit($num) {
@@ -22,7 +21,6 @@
   }
   @return $remValues;
 }
-///////
 
 @mixin trans($val...) {
    -webkit-transition: $val;

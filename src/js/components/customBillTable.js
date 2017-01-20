@@ -1,5 +1,5 @@
 /**
-* @module DropDown selects.
+* @module Uploads CSV comma delim. document into a Custom Bill Sheet.
 * @version
 */
 var loadCustomBillSheet = (function ($) {

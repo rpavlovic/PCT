@@ -1,6 +1,5 @@
-
 /**
-* @module working with dates in form fields.
+* @module working with dates in form fields in Project Info page.
 * @version
 */
 var projectDuration = (function ($) {

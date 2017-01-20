@@ -8,11 +8,6 @@
     }
   }
 }
-.deliverables {
-  .btn {
-    width: 100%;
-  }
-}
 .project-info {
   > .row {
     &:not(:nth-last-of-type(2)) {
@@ -22,4 +17,6 @@
     }
   }
 }
-
+.project-summary {
+  margin-top: rem-calc(20);
+}
