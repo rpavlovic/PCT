@@ -251,6 +251,14 @@ var projectResourceTable = (function ($) {
         }).draw();
         addRow();
       },
+      "footerCallback": function( tfoot, data, start, end, display ) {
+        var api = this.api();
+        $( api.column( 12).footer() ).html(
+            api.column( 12 ).data().reduce( function ( a, b ) {
+                return a + b;
+            }, 0 )
+        );
+      },
       "bDestroy": true,
     });
     //add row

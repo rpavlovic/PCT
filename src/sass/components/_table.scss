@@ -31,11 +31,10 @@ table {
       tr {
         background-color: #f9f9f9;
         td {
-          background-color: transparent;
           border: solid 1px $white;
-          &:first-child,
-          &:first-child a {
-            font: bold 1rem/1.2rem "EYBold", Arial, sans-serif
+          &:first-child {
+            color: $darker-grey;
+            font-family: "EYRegular";
           }
           &.win,
           &.loss  {
@@ -91,23 +90,53 @@ table {
         }
       }
     }
-    tfoot td {
-      border: none;
+    tfoot tr {
+      background-color: #f9f9f9;
+      td {
+        &:first-child {
+          span {
+            font-family: "EYRegular";
+          }
+          text-align: right;
+        }
+        background-color: transparent;
+        border: solid 1px $white;
+        border-top: 1px solid #111;
+        padding: 8px 10px;
+      }
     }
   }
   tbody tr {
     background: #f9f9f9;
-    td.contenteditable {
-      background-color: #f2f2f2;
-      &:focus {
-        outline-color: $red-alert;
-        outline-width: 1px;
-        background-color: $white;
+    td {
+      &.contenteditable {
+        background-color: #f2f2f2;
+        &:focus {
+          outline-color: $red-alert;
+          outline-width: 1px;
+          background-color: $white;
+        }
       }
-    }
-    input,
-    select {
-      width: rem-calc(200);
+      input,
+      select {
+        width: rem-calc(200);
+        margin: 0.625em 0;
+      }
+      &.high-value,
+      &.low-value {
+        font-weight: bold;
+        i {
+          margin-right: rem-calc(10);
+        }
+      }
+      &.high-value {
+        background-color: lighten($green-alert, 49%);
+        color: $green-alert;
+      }
+      &.low-value {
+        color: $red-alert;
+        background-color: lighten($red-alert, 40%);
+      }
     }
   }
 }
@@ -148,21 +177,6 @@ table {
   td {
     border:solid 1px $white;
     padding: rem-calc(10);
-    &.high-value,
-    &.low-value {
-      font-weight: bold;
-      i {
-        margin-right: rem-calc(10);
-      }
-    }
-    &.high-value {
-      background-color: lighten($green-alert, 49%);
-      color: $green-alert;
-    }
-    &.low-value {
-      color: $red-alert;
-      background-color: lighten($red-alert, 40%);
-    }
   }
   tbody > tr {
     &:nth-of-type(1) {
