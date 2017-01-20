@@ -2,7 +2,11 @@
   <nav>
     <ul class="row">
       {% for i in ['projects', 'reports', 'about', 'profile'] %}
+        {%- if i == 'projects' %}
+        <li class="{%if activePage == i %}current {% endif %} {{i}}"><a href="index.html" class="{%if activePage == i %}active {% endif %}"> <span>{{ i | title }}</span></a></li>
+        {%- else %}
         <li class="{%if activePage == i %}current {% endif %} {{i}}"><a href="{{ i }}.html" class="{%if activePage == i %}active {% endif %}"> <span>{{ i | title }}</span></a></li>
+        {% endif %}
       {% endfor %}
     </ul>
   </nav>
