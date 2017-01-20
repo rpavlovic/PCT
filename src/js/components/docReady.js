@@ -2,7 +2,7 @@
 var feeds = {
   'offices': [ 'data/OfficeCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection' ],
   'employee': [ 'data/EmployeeCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection' ],
-  'expenses': [ 'data/expences.json', null ]
+  'expenses': [ 'data/expenses.json', null ]
 };
 
 function get_data_feed(feed) {
@@ -72,13 +72,13 @@ function get_data_feed(feed) {
     var tables = {
       'customerBillTbl': '#csv-table',
       'resourceProjectTbl': '#project-resource-table',
-      'expenceTbl' : '#project-expence-table',
+      'expenseTbl' : '#project-expense-table',
     };
     captureEditTd.initCaptureEditTd(tables['customerBillTbl']);
     captureEditTd.initCaptureEditTd(tables['resourceProjectTbl']);
-    captureEditTd.initCaptureEditTd(tables['expenceTbl']);
+    captureEditTd.initCaptureEditTd(tables['expenseTbl']);
 
-    expenceTable.initExpenceTable();
+    expenseTable.initExpenseTable();
 
    $('.project-expence button[type="reset"], .project-resources button[type="reset"]').clearAll();
   });

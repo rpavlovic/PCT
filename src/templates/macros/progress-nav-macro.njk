@@ -1,7 +1,7 @@
 {% macro active(activePages ="General") %}
   <form id="progress-navigation">
     <ul class="row radio-group">
-      {% for i in ['General', 'Resources', 'Expences', 'Summary'] %}
+      {% for i in ['General', 'Resources', 'Expenses', 'Summary'] %}
         <li class="{%if 'project' + activePages == 'project' + i %}current {% endif %}" >
           <span>{{ i }}</span>
           <input value="{{ 'project' + i }}.html" type="radio" id="radio_{{loop.index}}" name="navGroup">

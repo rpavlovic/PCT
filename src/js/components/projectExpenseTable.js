@@ -3,14 +3,14 @@
 * @module Draw Data Table for Archive records.
 * @version
 */
-var expenceTable = (function ($) {
+var expenseTable = (function ($) {
   'use strict';
 
-  function initExpenceTable() {
+  function initExpenseTable() {
 
     var Deliverable;
-    var table = $('#project-expence-table');
-    var projExpenceTable = table.DataTable({
+    var table = $('#project-expense-table');
+    var projExpenseTable = table.DataTable({
       // "dom":'<tip>',
       "searching": false,
       "ajax" : {
@@ -81,8 +81,8 @@ var expenceTable = (function ($) {
         $(Deliverable).each(function (key, value) {
           $('.deliverable').append($('<option>', { value : value }).text(value));
         });
-        projExpenceTable.on('order.dt', function () {
-          projExpenceTable.column(0, {"order" :"applied", "filter":"applied" }).nodes().each( function (cell, i) {
+        projExpenseTable.on('order.dt', function () {
+          projExpenseTable.column(0, {"order" :"applied", "filter":"applied" }).nodes().each( function (cell, i) {
             cell.innerHTML = i+1;
           });
         }).draw();
@@ -91,7 +91,7 @@ var expenceTable = (function ($) {
   });
 
     //add row
-  $('.project-expence').on( 'click', '#add-row', function (e) {
+  $('.project-expense').on( 'click', '#add-row', function (e) {
     e.preventDefault();
 
     var _del = "<select class=\"deliverable\">";
@@ -99,20 +99,20 @@ var expenceTable = (function ($) {
       _del += '<option>'+Deliverable[value]+'</option>';
     });
     _del +='</select>';
-    projExpenceTable.rows().nodes().to$().removeClass( 'new-row' );
-    var rowNode = projExpenceTable.row.add({
+    projExpenseTable.rows().nodes().to$().removeClass( 'new-row' );
+    var rowNode = projExpenseTable.row.add({
       'Deliverable': _del,
    }).order( [[ 2, 'asc' ]] ).draw(false).node();
-   $("#project-expence-table tr:last").addClass('new-row');
+    rowNode.addClass('new-row');
   });
   //remove row
-  $('#project-expence-table tbody').on( 'click', '.remove', function (e) {
+  $('#project-expense-table tbody').on( 'click', '.remove', function (e) {
     e.preventDefault();
-    projExpenceTable.row( $(this).parents('tr') ).remove().draw(false);
+    projExpenseTable.row( $(this).parents('tr') ).remove().draw(false);
   });
   }
   return {
-    initExpenceTable:initExpenceTable
+    initExpenseTable:initExpenseTable
   }
 
 })($);
