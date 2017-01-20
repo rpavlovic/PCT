@@ -34,6 +34,15 @@ var showHide = (function ($) {
     fadeTabs.initFadeTabs();
   }
 
+  $(".project-resources select[name='rate-card']").on("change", function(){
+    if($(this).val().indexOf('Standard') === -1) {
+      $(".col-9 a.toggle").fadeOut('slow');
+    } else {
+      $(".col-9 a.toggle").fadeIn('slow');
+    }
+  });
+
+
   return {
     initShowHide:initShowHide
   }
