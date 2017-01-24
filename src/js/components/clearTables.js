@@ -13,8 +13,8 @@ $.fn.clearAll = function() {
     clicked_element.on('click', function() {
       confirm("All overrides will be removed?");
       table_row.each(function (key, value) {
-        $(this).find('td.contenteditable').empty()
+        $(this).find('td.contenteditable').empty();
       });
     });
   });
-}
+};

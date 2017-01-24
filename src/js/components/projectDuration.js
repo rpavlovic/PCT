@@ -23,7 +23,7 @@ var projectDuration = (function ($) {
       var first_day_week = new Date(dataText),
           index = first_day_week.getDay();
 
-      if(index == 0) {
+      if(index === 0) {
        first_day_week.setDate(first_day_week.getDate() - 6);
       }
 
@@ -94,6 +94,6 @@ var projectDuration = (function ($) {
 
   return {
     initProjectDuration:initProjectDuration
-  }
+  };
 
 })($);

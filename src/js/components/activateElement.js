@@ -3,9 +3,10 @@
 * @version
 */
 $.fn.activateElement = function() {
+
   function remove_active(elem, class_name) {
     elem.removeClass(class_name);
-  };
+  }
 
   $(this).each(function() {
 
@@ -40,4 +41,4 @@ $.fn.activateElement = function() {
       remove_active(all_active_elements, class_name);
     });
   });
-}
+};

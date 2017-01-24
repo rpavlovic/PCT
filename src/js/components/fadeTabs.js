@@ -13,11 +13,11 @@ var fadeTabs = (function ($) {
       $('ul.tabs li, .tab-content').removeClass('current');
       $(this).addClass('current');
       $(tab_id).addClass('current');
-    })
+    });
   }
 
   return {
     initFadeTabs:initFadeTabs
-  }
+  };
 
 })($);

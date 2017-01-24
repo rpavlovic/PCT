@@ -34,6 +34,6 @@ var addRemoveFields = (function ($) {
   }
   return {
     initAddRemoveFields:initAddRemoveFields
-  }
+  };
 
 })($);

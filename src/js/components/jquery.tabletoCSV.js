@@ -41,7 +41,7 @@ $.fn.tableToCSV = function() {
 		download_link.href = uri;
 		var ts = new Date().getTime();
 		var input_title = $('#bill-sheet-name').val();
-		if(caption==""){
+		if(caption === ""){
 			download_link.download = input_title + "_"+ ts+".csv";
 		} else {
 			download_link.download = caption+"-"+ts+".csv";
