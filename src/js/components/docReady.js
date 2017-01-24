@@ -74,7 +74,7 @@ function get_data_feed(feed) {
       'resourceProjectTbl': '#project-resource-table',
       'expenseTbl' : '#project-expense-table',
     };
-    //get the value of table cells for validation anc calculations.
+    //get the value of table cells for validation and calculations.
     $.each(tables, function(index, el) {
       captureEditTd.initCaptureEditTd(el);
     });
