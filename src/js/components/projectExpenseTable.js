@@ -70,6 +70,7 @@ var expenseTable = (function ($) {
       ],
       "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
         $(nRow).removeClass('odd even');
+        $("td:last-child", nRow).addClass('amount num');
         $("td:nth-child(n+4)", nRow).prop('contenteditable', true).addClass("contenteditable");
       },
       // TODO working on grouping the rows

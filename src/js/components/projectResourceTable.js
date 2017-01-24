@@ -133,7 +133,7 @@ var projectResourceTable = (function ($) {
           return row.price;
         },
         "defaultContent": '',
-        "sClass": "rate-override"
+        "sClass": "rate-override num"
       },
       {
         "title": 'Total Hours',

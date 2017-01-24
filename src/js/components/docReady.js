@@ -74,13 +74,20 @@ function get_data_feed(feed) {
       'resourceProjectTbl': '#project-resource-table',
       'expenseTbl' : '#project-expense-table',
     };
-    captureEditTd.initCaptureEditTd(tables['customerBillTbl']);
-    captureEditTd.initCaptureEditTd(tables['resourceProjectTbl']);
-    captureEditTd.initCaptureEditTd(tables['expenseTbl']);
+    //get the value of table cells for validation anc calculations.
+    $.each(tables, function(index, el) {
+      captureEditTd.initCaptureEditTd(el);
+    });
 
     expenseTable.initExpenseTable();
 
-   $('.project-expence button[type="reset"], .project-resources button[type="reset"]').clearAll();
+  $('.project-expence button[type="reset"], .project-resources button[type="reset"]').clearAll();
+
+  //print buttons
+  $('.fa-print').click(function(){
+    window.print();
+  });
+
   });
 
 }( jQuery ));

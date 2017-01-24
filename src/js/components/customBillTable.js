@@ -67,9 +67,9 @@ var loadCustomBillSheet = (function ($) {
               $("td:nth-child(n+3):not(:last-child)", nRow)
               .prop('contenteditable', true)
               .addClass("contenteditable");
-              $("td:nth-child(3)", nRow).addClass('rate');
-              $("td:nth-child(6)", nRow).addClass('discount');
-              $("td:nth-child(5)", nRow).addClass('rate-override');
+              $("td:nth-child(3)", nRow).addClass('rate num');
+              $("td:nth-child(6)", nRow).addClass('discount num');
+              $("td:nth-child(5)", nRow).addClass('rate-override num');
            },
           bDestroy: true,
         });
