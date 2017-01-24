@@ -1,0 +1,14 @@
+@media print {
+  header,
+  #progress-navigation,
+  button,
+  .button,
+  .dt-buttons,
+  a.toggle {
+    display: none;
+  }
+  * {
+    background-color: $white;
+    color: $black;
+  }
+}

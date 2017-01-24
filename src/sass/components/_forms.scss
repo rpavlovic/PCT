@@ -48,20 +48,30 @@ form {
     font: bold 1.5rem/1.875rem "EYBold", Arial, sans-serif;
     margin-bottom: .625rem;
     color: $default-grey;
+    display: inline-block;
   }
   select {
     @extend input:not([type=checkbox]):not([type=radio]);
     border-radius: 0;
     @extend %reset-webkit;
     //little arrow image
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%2828, 117, 187%29'></polygon></svg>");
-    -webkit-background-size: 9px 6px;
-    background-size: 9px 6px;
+    // background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%2828, 117, 187%29'></polygon></svg>");
+    // -webkit-background-size: 9px 6px;
+    // background-size: 9px 6px;
     background-position: right -1rem center;
     -webkit-background-origin: content-box;
     background-origin: content-box;
     background-repeat: no-repeat;
-    padding-right: 1.5rem;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+");
+    background-position: 100% center;
+    background-repeat: no-repeat;
+    &::-ms-expand {
+      display: none;
+    }
+    &:focus {
+      background-color: #f3f3f3;
+      border-color: #999999;
+    }
   }
   input[type="radio"] {
     display:none;
