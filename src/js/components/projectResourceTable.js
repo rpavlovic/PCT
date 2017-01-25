@@ -48,16 +48,16 @@ var projectResourceTable = (function ($) {
       {
         "title": 'Deliverable / Work&nbsp;Stream',
         //TODO Will come from expense json
-        "defaultContent": '<select class="deliverable">'+ "<option>Non-Deliverable Specific</option><option>B</option>" +'</select>',
-        "data": null,
+       // "defaultContent": '<select class="deliverable">'+ "<option>Non-Deliverable Specific</option><option>B</option>" +'</select>',
+        "data": "DelvDesc",
         "render": function ( data, type, set, meta ) {
-         // if(data.indexOf('<select') === -1) {
-         //    var output = '<select class="deliverable">';
-         //    output += '</select>';
-         //    return output;
-         //  } else {
-         //   return data;
-         //  }
+         if(data.indexOf('<select') === -1) {
+            var output = '<select class="deliverable">';
+            output += '</select>';
+            return output;
+          } else {
+           return data;
+          }
         }
       },
       {
@@ -215,12 +215,23 @@ var projectResourceTable = (function ($) {
           var data = this.api();
       },
       "initComplete": function (nRow, data) {
-        Deliverable = ["Non-Deliverable Specific", "A","B"];
+        Deliverable = [];
+        $.getJSON(get_data_feed(feeds.projectDeliverables),  function(deliverables) {
+          $.each(deliverables.d.results, function(key, val) {
+            for (key in val) {
+              if (key === 'DelvDesc') {
+                Deliverable.push(val.DelvDesc);
+              }
+            }
+           }); 
+        });
+/*
         _del = "<select class=\"deliverable\">";
         Deliverable.map(function(key, value) {
           _del += '<option>'+Deliverable[value]+'</option>';
         });
         _del +='</select>';
+*/
         // TODO get data from Rate Card or DB.
         BillRate = ["Rate Card", "Office Standard Rate"];
         $(BillRate).each(function (key, value) {
@@ -265,13 +276,11 @@ var projectResourceTable = (function ($) {
     function addRow() {
       $('.project-resources #add-row').on( 'click', function (e) {
         e.preventDefault();
-
         _del = "<select class=\"deliverable\">";
           Deliverable.map(function(key, value) {
             _del += '<option>'+Deliverable[value]+'</option>';
           });
           _del +='</select>';
-
         var _city = "<select class=\"deliverable\">";
         Cities.map(function(key, value) {
           _city += '<option>'+Cities[value]+'</option>';
