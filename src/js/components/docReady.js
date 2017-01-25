@@ -4,13 +4,19 @@ var feeds = {
   'employee': [ 'data/EmployeeCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection' ],
   'jobSearch': [ 'data/JobSearchCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/JobNumberCollection/?$filter=SearchString eq \'{token}\'&$format=json' ],
   'customerSearch': [ 'data/CustomerCollectionByOffice.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/CustomerCollection/?$filter=Office eq \'{token}\'&$format=json' ],
-  
+
   // default rate card by selected office (e.g. 'US01'):
   'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection/?$filter=Plant eq \'{token}\'&$format=json' ],
   'projectDeliverables': [ 'data/ProjectRelatedDeliverables.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection?$format=json' ],
   'expenses': [ 'data/expenses.json', null ]
 };
 
+/**
+ * Returns static JSON if local; SAP endpoint, otherwise
+ * @param {String} key name of feed to return data for
+ * @param {String} query string to be used for SAP endpoint
+ * @return {String|NULL} local filename; SAP endpoint (or NULL)
+ */
 function get_data_feed(feed, query) {
   var json = null;
   if ($.isArray(feed)) {
