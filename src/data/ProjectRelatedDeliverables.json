@@ -1,0 +1,16 @@
+{
+  "d" : {
+    "results" : [
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection('1000000023')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection('1000000023')",
+          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.Project_Deliverables"
+        },
+        "Projid" : "1000000023",
+        "Delvid" : "001",
+        "DelvDesc" : "Test Delv desc"
+      }
+    ]
+  }
+}
