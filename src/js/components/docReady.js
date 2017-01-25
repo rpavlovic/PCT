@@ -2,15 +2,26 @@
 var feeds = {
   'offices': [ 'data/OfficeCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection' ],
   'employee': [ 'data/EmployeeCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection' ],
-  'jobSearch': [ 'data/JobSearchCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/JobNumberCollection/?$filter=SearchString eq \'\'&$format=json' ],
+  'jobSearch': [ 'data/JobSearchCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/JobNumberCollection/?$filter=SearchString eq \'{token}\'&$format=json' ],
+  'customerSearch': [ 'data/CustomerCollectionByOffice.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/CustomerCollection/?$filter=Office eq \'{token}\'&$format=json' ],
+  
+  // default rate card by selected office (e.g. 'US01'):
+  'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection/?$filter=Plant eq \'{token}\'&$format=json' ],
+  'projectDeliverables': [ 'data/ProjectRelatedDeliverables.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection?$format=json' ],
   'expenses': [ 'data/expenses.json', null ]
 };
 
-function get_data_feed(feed) {
-  if (location.href.indexOf('localhost') != -1) {
-    return feed[0];
+function get_data_feed(feed, query) {
+  var json = null;
+  if ($.isArray(feed)) {
+    if (location.href.indexOf('localhost') != -1) {
+      json = feed[0];
+    }
+    else {
+      json = feed[1].replace('{token}', query);
+    }
   }
-  return feed[1];
+  return json;
 }
 
 (function ($) {
