@@ -12,7 +12,8 @@ var projectResourceTable = (function ($) {
     var Cities,
         Practice,
         Deliverable = [],
-        BillRate;
+        EmpTitle = [],
+        BillRate = [];
 
     var projResourceTable = table.DataTable({
       "searching": false,
@@ -67,8 +68,10 @@ var projectResourceTable = (function ($) {
       },
       {
         "title": 'Title',
-        "data":"title",
-        "defaultContent": ''
+        "data": null,
+        "render": function () {
+          return "<select class='title' />";
+        }
       },
       {
         "title": 'Class',
@@ -98,6 +101,7 @@ var projectResourceTable = (function ($) {
       {
         "title": 'Bill Rate',
         "defaultContent": '',
+        "data": null
       },
       {
         "title": 'Bill Rate <br/> Override',
@@ -195,13 +199,19 @@ var projectResourceTable = (function ($) {
       "select": true,
       "rowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
         $(nRow).removeClass('odd even');
-        $("td:nth-child(n+5):not(:nth-child(6)):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", nRow).prop('contenteditable', true).addClass("contenteditable");
+        $("td:nth-child(n+6):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", nRow).prop('contenteditable', true).addClass("contenteditable");
       },
       "drawCallback": function( settings ) {
         // console.log( 'DataTables has redrawn the table' );
       },
-      "initComplete": function (nRow, settings, json) {
+      "initComplete": function (nRow) {
+
+        //get deliverables from json and call function here.
         getDeliverables();
+
+        //get card bill data from json and call function here.
+        getCardBill();
+
         // TODO get data from DB.
         Practice = ["Consumer", "HR Resources", "PR Counsel", "Finance"];
         $(Practice).each(function (key, value) {
@@ -242,6 +252,16 @@ var projectResourceTable = (function ($) {
       });
     }
 
+    //get deliverables from projectRelatedDeliverables json
+    function getCardBill() {
+      $.getJSON(get_data_feed(feeds.rateCards), function(rates) {
+        rates.d.results.map(function(val, key) {
+          BillRate.push(val.BillRate);
+          EmpTitle.push($('<option>', { value :key }).text(val.EmpGradeName));
+        });
+        $('.title').empty().append(EmpTitle);
+      });
+    }
     //add row
     function addRow() {
       $('.project-resources #add-row').on( 'click', function (e) {
@@ -257,9 +277,11 @@ var projectResourceTable = (function ($) {
 
         var rowNode = projResourceTable.row.add({
           'City': _city
-        }).order( [[ 3, 'asc' ]] ).draw(false).node();
+        }).order( [[ 3, 'asc' ]] ).draw().node();
+
         $(rowNode).addClass('new-row');
-        $('.deliverable').empty().append(Deliverable)
+        $('.deliverable').empty().append(Deliverable);
+        $('.title').empty().append(EmpTitle);
       });
     }
     addRow();

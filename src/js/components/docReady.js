@@ -7,8 +7,7 @@ var feeds = {
 
   // default rate card by selected office (e.g. 'US01'):
   'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection/?$filter=Plant eq \'{token}\'&$format=json' ],
-  'projectDeliverables': [ 'data/ProjectRelatedDeliverables.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection?$format=json' ],
-  'expenses': [ 'data/expenses.json', null ]
+  'projectDeliverables': [ 'data/ProjectRelatedDeliverables.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection?$format=json' ]
 };
 
 /**
