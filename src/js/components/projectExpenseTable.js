@@ -7,13 +7,14 @@ var expenseTable = (function ($) {
 
   function initExpenseTable() {
 
-    var Deliverable;
-    var table = $('#project-expense-table');
+    var Deliverable = [],
+        table = $('#project-expense-table');
+
     var projExpenseTable = table.DataTable({
       // "dom":'<tip>',
       "searching": false,
       "ajax" : {
-         "url": get_data_feed( feeds['expenses'] ),
+         "url": get_data_feed( feeds.projectDeliverables ),
          "dataSrc": "d.results"
        },
       "paging": false,
@@ -41,15 +42,11 @@ var expenseTable = (function ($) {
         },
         {
           "title": 'Deliverable / Work&nbsp;Stream',
-          "data": "Deliverable",
+          "data": "DelvDesc",
           "render": function ( data, type, set, meta ) {
-            if(data.indexOf('<select') === -1) {
-              var output = '<select class="deliverable">';
-              output += '</select>';
-              return output;
-            } else {
-             return data;
-            }
+            var output = '<select class="deliverable">';
+            output += '</select>';
+            return output;
           }
         },
         {
@@ -74,13 +71,16 @@ var expenseTable = (function ($) {
         $("td:nth-child(n+4)", nRow).prop('contenteditable', true).addClass("contenteditable");
       },
       // TODO working on grouping the rows
-      "fnInitComplete": function (nRow) {
-        Deliverable = nRow.aoData["0"]._aData.Deliverable.map(function(_del) {
-          return _del;
-        });
-        $(Deliverable).each(function (key, value) {
-          $('.deliverable').append($('<option>', { value : value }).text(value));
-        });
+      "fnInitComplete": function (nRow, data) {
+
+        function getDeliverables() {
+          nRow.aoData.map(function(val, key) {
+            Deliverable.push($('<option>', { value :key }).text(val._aData.DelvDesc));
+          });
+          $('.deliverable').empty().append(Deliverable);
+        }
+        getDeliverables();
+
         projExpenseTable.on('order.dt', function () {
           projExpenseTable.column(0, {"order" :"applied", "filter":"applied" }).nodes().each( function (cell, i) {
             cell.innerHTML = i+1;
@@ -94,16 +94,11 @@ var expenseTable = (function ($) {
   $('.project-expense').on( 'click', '#add-row', function (e) {
     e.preventDefault();
 
-    var _del = "<select class=\"deliverable\">";
-    Deliverable.map(function(key, value) {
-      _del += '<option>'+Deliverable[value]+'</option>';
-    });
-    _del +='</select>';
     projExpenseTable.rows().nodes().to$().removeClass( 'new-row' );
-    var rowNode = projExpenseTable.row.add({
-      'Deliverable': _del,
-   }).order( [[ 2, 'asc' ]] ).draw(false).node();
-    rowNode.addClass('new-row');
+
+    var rowNode = projExpenseTable.row.add([]).order( [[ 2, 'asc' ]] ).draw(false).node();
+    $('.deliverable').empty().append(Deliverable);
+    $('#project-expense-table tr:last-child').addClass('new-row');
   });
   //remove row
   $('#project-expense-table tbody').on( 'click', '.remove', function (e) {
