@@ -201,7 +201,7 @@ var projectResourceTable = (function ($) {
         $(nRow).removeClass('odd even');
         $("td:nth-child(n+6):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", nRow).prop('contenteditable', true).addClass("contenteditable");
       },
-      "drawCallback": function( settings ) {
+      "createdRow": function( settings ) {
         // console.log( 'DataTables has redrawn the table' );
       },
       "initComplete": function (nRow) {
@@ -211,6 +211,17 @@ var projectResourceTable = (function ($) {
 
         //get card bill data from json and call function here.
         getCardBill();
+
+
+        this.api().on( 'draw', function () {
+          showBillRate();
+          // $('select.title').each( function (key, val) {
+          //   console.log(val.children);
+          //   var optionSelected = val.children;
+          //   console.log(optionSelected[0].attr [1])
+          //   $(this).parents('tr').children('td:eq(9)').empty().append('$' + optionSelected.data('rate'))
+          // });
+        } );
 
         // TODO get data from DB.
         Practice = ["Consumer", "HR Resources", "PR Counsel", "Finance"];
@@ -235,10 +246,25 @@ var projectResourceTable = (function ($) {
           projResourceTable.column(0, {"order" :"applied", "filter":"applied" }).nodes().each( function (cell, i) {
             cell.innerHTML = i+1;
           });
+          projResourceTable.column(4, {page:'current'}).nodes().each( function (cell, i) {
+              var optionSelected = $("option:selected");
+              // console.log(cell)
+             //cell.empty().append('$' + optionSelected.data('rate'))
+          });
         }).draw();
+
       },
       "bDestroy": true,
     });
+
+
+    projResourceTable.on( 'draw.dt', function () {
+      $('select.title option').each(function(){
+        console.log($(this))
+      })
+      // console.log($('select.title').filter( "option" ).data('rate'))
+    } );
+
 
     //get deliverables from projectRelatedDeliverables json
     function getDeliverables() {
@@ -257,16 +283,23 @@ var projectResourceTable = (function ($) {
       $.getJSON(get_data_feed(feeds.rateCards), function(rates) {
         rates.d.results.map(function(val, key) {
           BillRate.push(val.BillRate);
-          EmpTitle.push($('<option>', { value :key }).text(val.EmpGradeName));
+          EmpTitle.push($('<option>', { value :val.EmpGradeName , 'data-rate': val.BillRate}).text(val.EmpGradeName));
         });
         $('.title').empty().append(EmpTitle);
+      });
+    }
+    //On load and on change fill the Bill Rate based on title
+    function showBillRate() {
+      //on changing the title lookup the Bill Rate
+      $('select.title').on('change  click', function (e) {
+        var optionSelected = $("option:selected", this);
+        $(this).parents('tr').children('td:eq(9)').empty().append('$' + optionSelected.data('rate'))
       });
     }
     //add row
     function addRow() {
       $('.project-resources #add-row').on( 'click', function (e) {
         e.preventDefault();
-
         var _city = "<select class=\"city\">";
         Cities.map(function(key, value) {
           _city += '<option>'+Cities[value]+'</option>';
