@@ -11,7 +11,7 @@ var projectResourceTable = (function ($) {
 
     var Cities,
         Practice,
-        Deliverable,
+        Deliverable = [],
         _del,
         BillRate;
 
@@ -47,17 +47,9 @@ var projectResourceTable = (function ($) {
       },
       {
         "title": 'Deliverable / Work&nbsp;Stream',
-        //TODO Will come from expense json
-       // "defaultContent": '<select class="deliverable">'+ "<option>Non-Deliverable Specific</option><option>B</option>" +'</select>',
-        "data": "DelvDesc",
-        "render": function ( data, type, set, meta ) {
-         if(data.indexOf('<select') === -1) {
-            var output = '<select class="deliverable">';
-            output += '</select>';
-            return output;
-          } else {
-           return data;
-          }
+        "data": "",
+        "render": function () {
+          return "<select class=\"deliverable\"></select>";
         }
       },
       {
@@ -212,26 +204,12 @@ var projectResourceTable = (function ($) {
         $("td:nth-child(n+5):not(:nth-child(6)):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", nRow).prop('contenteditable', true).addClass("contenteditable");
       },
        "drawCallback": function( settings, nRow, data) {
-          var data = this.api();
+          // var data = this.api();
+          console.log(this.api())
       },
       "initComplete": function (nRow, data) {
-        Deliverable = [];
-        $.getJSON(get_data_feed(feeds.projectDeliverables),  function(deliverables) {
-          $.each(deliverables.d.results, function(key, val) {
-            for (key in val) {
-              if (key === 'DelvDesc') {
-                Deliverable.push(val.DelvDesc);
-              }
-            }
-           }); 
-        });
-/*
-        _del = "<select class=\"deliverable\">";
-        Deliverable.map(function(key, value) {
-          _del += '<option>'+Deliverable[value]+'</option>';
-        });
-        _del +='</select>';
-*/
+        getdeliverables();
+
         // TODO get data from Rate Card or DB.
         BillRate = ["Rate Card", "Office Standard Rate"];
         $(BillRate).each(function (key, value) {
@@ -272,15 +250,29 @@ var projectResourceTable = (function ($) {
       },
       "bDestroy": true,
     });
+    //get deliverables
+    function getdeliverables() {
+      $.getJSON(get_data_feed(feeds.projectDeliverables),  function(deliverables) {
+        deliverables.d.results.map(function(val, key) {
+          if (val.DelvDesc) {
+            Deliverable.push("<option value=" + key+ ">" + val.DelvDesc + "</option>");
+          }
+        });
+        $('.deliverable').append(Deliverable);
+      });
+    }
     //add row
     function addRow() {
       $('.project-resources #add-row').on( 'click', function (e) {
         e.preventDefault();
-        _del = "<select class=\"deliverable\">";
-          Deliverable.map(function(key, value) {
-            _del += '<option>'+Deliverable[value]+'</option>';
-          });
-          _del +='</select>';
+       // _del = "<select class=\"deliverable\">";
+       //  console.log(Deliverable)
+       //    Deliverable.map(function(key, value) {
+       //      $('.deliverable').append(Deliverable[value])
+       //     // _del += '<option>'+Deliverable[value]+'</option>';
+       //    });
+       //  //  _del +='</select>';
+       //  console.log(Deliverable)
         var _city = "<select class=\"deliverable\">";
         Cities.map(function(key, value) {
           _city += '<option>'+Cities[value]+'</option>';
@@ -289,7 +281,7 @@ var projectResourceTable = (function ($) {
 
         projResourceTable.rows().nodes().to$().removeClass( 'new-row' );
         var rowNode = projResourceTable.row.add({
-          'Deliverable': _del,
+          'Deliverable': Deliverable,
           'City': _city
         }).order( [[ 3, 'asc' ]] ).draw().node();
         $(rowNode).addClass('new-row');
