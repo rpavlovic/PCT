@@ -110,6 +110,7 @@ var activeTable = (function ($) {
       });
       $('.toolbar').hide();
     },
+    "bDestroy": true,
   });
   // activeTable.api().on( 'xhr', function () {
   //   var json = activeTable.api().ajax.json();
