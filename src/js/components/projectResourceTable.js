@@ -26,24 +26,23 @@ var projectResourceTable = (function ($) {
       "stateSave": true,
       "info":     false,
       "bAutoWidth": false,
-      "aaSortingFixed": [[2,'asc']],
       "columnDefs": [ {
         "orderable": false,
-        "targets": [ 0, 1 ],
+        "targets": [ 0, 1 ]
       } ],
       "order": [[ 3, 'asc' ]],
       "columns": [{
         "title": 'Row',
         "sClass": "center",
         "defaultContent": '',
-        "data": null,
+        "data": null
       },
         {
           "title" : '<i class="fa fa-trash"></i>',
           "sClass": "center blue-bg",
           "targets": [1],
           "data": null,
-          "defaultContent":'<a href=" " class="remove"><i class="fa fa-trash"></i></a>',
+          "defaultContent":'<a href=" " class="remove"><i class="fa fa-trash"></i></a>'
         },
         {
           "title": 'Deliverable / Work&nbsp;Stream',
@@ -55,7 +54,7 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Office',
           "data": "PlantName",
-          "render": function ( data, type, set, meta ) {
+          "render": function () {
             return '<select class="office" />';
           }
         },
@@ -75,7 +74,7 @@ var projectResourceTable = (function ($) {
           "title": 'Practice',
           "data":" ",
           "defaultContent": 'Consumer',
-          "render": function ( data, type, set, meta ) {
+          "render": function () {
             var output = '<select class="practice">';
             output += '</select>';
             return output;
@@ -98,7 +97,7 @@ var projectResourceTable = (function ($) {
         },
         {
           "title": 'Bill Rate <br/> Override',
-          "data": function ( row, type, val, meta ) {
+          "data": function ( row, type, val ) {
             if (type === 'set') {
               row.price = val;
               // Store the computed display and filter values for efficiency
@@ -190,7 +189,7 @@ var projectResourceTable = (function ($) {
         }],
       "bFilter": false,
       "select": true,
-      "rowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+      "rowCallback": function (nRow) {
         $(nRow).removeClass('odd even');
         $("td:nth-child(n+6):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", nRow)
           .prop('contenteditable', true)
@@ -216,7 +215,7 @@ var projectResourceTable = (function ($) {
 
         // TODO get data from DB.
         Practice = ["Consumer", "HR Resources", "PR Counsel", "Finance"];
-        $(Practice).each(function (key, value) {
+        $(Practice).each(function (key) {
           $('.practice').append($('<option>', { value : Practice[key] }).text(Practice[key]));
         });
         function getOffice() {
@@ -233,14 +232,9 @@ var projectResourceTable = (function ($) {
           //  return  $('.office').append($('<option>', { value : Offices[key] }).text(Offices[key]));
           // });
 
-
           json.d.results.map(function(val, key) {
-            if (val.PlantName) {
-              Offices.push(val.PlantName)
               return  Offices.push($('<option>', { value :key }).text(val.PlantName));
-            }
           });
-
            $('.office').empty().append(Offices);
         }
         //to show a row with indexes.
@@ -251,7 +245,7 @@ var projectResourceTable = (function ($) {
         }).draw();
 
       },
-      "bDestroy": true,
+      "bDestroy": true
     });
 
     //get deliverables from projectRelatedDeliverables json
@@ -269,7 +263,7 @@ var projectResourceTable = (function ($) {
     //get deliverables from projectRelatedDeliverables json
     function getCardBill() {
       $.getJSON(get_data_feed(feeds.rateCards), function(rates) {
-        rates.d.results.map(function(val, key) {
+        rates.d.results.map(function(val) {
           BillRate.push(val.BillRate);
           EmpTitle.push($('<option>', { value :val.EmpGradeName , 'data-rate': val.BillRate}).text(val.EmpGradeName));
         });
@@ -279,7 +273,7 @@ var projectResourceTable = (function ($) {
     //On load and on change fill the Bill Rate based on title
     function showBillRate() {
       //on changing the title lookup the Bill Rate
-      $('select.title').on('change  click', function (e) {
+      $('select.title').on('change  click', function () {
         var optionSelected = $("option:selected", this);
         $(this).parents('tr').children('td:eq(9)').empty().append('$' + optionSelected.data('rate'))
       });
@@ -292,7 +286,7 @@ var projectResourceTable = (function ($) {
         projResourceTable.rows().nodes().to$().removeClass( 'new-row' );
 
         var rowNode = projResourceTable.row.add({
-        }).order( [[ 3, 'asc' ]] ).draw().node();
+        }).order( [[ 2, 'asc' ],  [ 3, 'asc' ], [ 4, 'asc' ]] ).draw().node();
         $(rowNode).addClass('new-row');
         $('.deliverable').empty().append(Deliverable);
         $('select.title').empty().append(EmpTitle);
@@ -301,7 +295,7 @@ var projectResourceTable = (function ($) {
     }
     addRow();
     //remove row
-    $('#project-resource-table tbody').on( 'click', '.remove', function (e) {
+    table.on( 'click', '.remove', function (e) {
       e.preventDefault();
       projResourceTable.row( $(this).parents('tr') ).remove().draw(false);
     });
