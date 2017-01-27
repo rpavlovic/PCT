@@ -199,7 +199,9 @@ var projectResourceTable = (function ($) {
       "select": true,
       "rowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
         $(nRow).removeClass('odd even');
-        $("td:nth-child(n+6):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", nRow).prop('contenteditable', true).addClass("contenteditable");
+        $("td:nth-child(n+6):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", nRow)
+          .prop('contenteditable', true)
+          .addClass("contenteditable");
       },
       "createdRow": function( settings ) {
         // console.log( 'DataTables has redrawn the table' );
@@ -246,25 +248,17 @@ var projectResourceTable = (function ($) {
           projResourceTable.column(0, {"order" :"applied", "filter":"applied" }).nodes().each( function (cell, i) {
             cell.innerHTML = i+1;
           });
-          projResourceTable.column(4, {page:'current'}).nodes().each( function (cell, i) {
-              var optionSelected = $("option:selected");
-              // console.log(cell)
-             //cell.empty().append('$' + optionSelected.data('rate'))
-          });
         }).draw();
 
       },
       "bDestroy": true,
     });
 
-
-    projResourceTable.on( 'draw.dt', function () {
-      $('select.title option').each(function(){
-        console.log($(this))
-      })
-      // console.log($('select.title').filter( "option" ).data('rate'))
-    } );
-
+    // projResourceTable.on( 'draw.dt', function () {
+    //   $('select.title option').each(function(){
+    //   })
+    //   console.log($('select.title').filter( "option" ).data('rate'))
+    // } );
 
     //get deliverables from projectRelatedDeliverables json
     function getDeliverables() {
@@ -314,7 +308,7 @@ var projectResourceTable = (function ($) {
 
         $(rowNode).addClass('new-row');
         $('.deliverable').empty().append(Deliverable);
-        $('.title').empty().append(EmpTitle);
+        $('select.title').empty().append(EmpTitle);
       });
     }
     addRow();

@@ -61,15 +61,16 @@ $breakpoints: (
 .float-left {
   float: left;
   text-align:left;
-}
-.float-right {
-  @include breakpoint('small') {
-    float: right !important;
-  }
+  //@include breakpoint("small") {
+  //  float: none;
+  //}
 }
 .float-right {
   float: right;
   text-align:right;
+  @include breakpoint('small') {
+    float: right !important;
+  }
 }
 
 .error {
