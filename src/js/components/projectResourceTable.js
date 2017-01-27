@@ -1,7 +1,7 @@
 /**
-* @module Draw Data Table for Preoject Resource page.
-* @version
-*/
+ * @module Draw Data Table for Preoject Resource page.
+ * @version
+ */
 var projectResourceTable = (function ($) {
   'use strict';
 
@@ -9,28 +9,28 @@ var projectResourceTable = (function ($) {
 
     var table = $('#project-resource-table');
 
-    var Cities,
-        Practice,
-        Deliverable = [],
-        EmpTitle = [],
-        BillRate = [];
+    var Offices = [],
+      Practice,
+      Deliverable = [],
+      EmpTitle = [],
+      BillRate = [];
 
     var projResourceTable = table.DataTable({
       "searching": false,
       "ajax" : {
-         "url": get_data_feed( feeds['offices'] ),
-         "dataSrc": "d.results"
-       },
+        "url": get_data_feed( feeds.rateCards),
+        "dataSrc": "d.results"
+      },
       "bServerSide" : false,
       "paging": false,
       "stateSave": true,
       "info":     false,
       "bAutoWidth": false,
-      // "aaSortingFixed": [[2,'asc']],
+      "aaSortingFixed": [[2,'asc']],
       "columnDefs": [ {
         "orderable": false,
         "targets": [ 0, 1 ],
-        } ],
+      } ],
       "order": [[ 3, 'asc' ]],
       "columns": [{
         "title": 'Row',
@@ -38,163 +38,156 @@ var projectResourceTable = (function ($) {
         "defaultContent": '',
         "data": null,
       },
-      {
-        "title" : '<i class="fa fa-trash"></i>',
-        "sClass": "center blue-bg",
-        "targets": [1],
-        "data": null,
-        "defaultContent":'<a href=" " class="remove"><i class="fa fa-trash"></i></a>',
-      },
-      {
-        "title": 'Deliverable / Work&nbsp;Stream',
-        "data": null,
-        "render": function () {
-          return "<select class='deliverable' />";
-        }
-      },
-      {
-        "title": 'Office',
-        "data": "City",
-        "defaultContent":'City',
-        "render": function ( data, type, set, meta ) {
-          if(data.indexOf('<select') === -1) {
-            var output = '<select class="city">';
+        {
+          "title" : '<i class="fa fa-trash"></i>',
+          "sClass": "center blue-bg",
+          "targets": [1],
+          "data": null,
+          "defaultContent":'<a href=" " class="remove"><i class="fa fa-trash"></i></a>',
+        },
+        {
+          "title": 'Deliverable / Work&nbsp;Stream',
+          "data": null,
+          "render": function () {
+            return "<select class='deliverable' />";
+          }
+        },
+        {
+          "title": 'Office',
+          "data": "PlantName",
+          "render": function ( data, type, set, meta ) {
+            return '<select class="office" />';
+          }
+        },
+        {
+          "title": 'Title',
+          "data": null,
+          "render": function () {
+            return "<select class='title' />";
+          }
+        },
+        {
+          "title": 'Class',
+          "data":" ",
+          "defaultContent": ''
+        },
+        {
+          "title": 'Practice',
+          "data":" ",
+          "defaultContent": 'Consumer',
+          "render": function ( data, type, set, meta ) {
+            var output = '<select class="practice">';
             output += '</select>';
             return output;
-          } else {
-           return data;
           }
-        }
-      },
-      {
-        "title": 'Title',
-        "data": null,
-        "render": function () {
-          return "<select class='title' />";
-        }
-      },
-      {
-        "title": 'Class',
-        "data":" ",
-        "defaultContent": ''
-      },
-      {
-        "title": 'Practice',
-        "data":" ",
-        "defaultContent": 'Consumer',
-        "render": function ( data, type, set, meta ) {
-          var output = '<select class="practice">';
-              output += '</select>';
-          return output;
-        }
-      },
-      {
-        "title": 'Role',
-        "data":" ",
-        "defaultContent": ''
-      },
-      {
-        "title": 'Proposed <br/> Resource',
-        "data":" ",
-        "defaultContent": ''
-      },
-      {
-        "title": 'Bill Rate',
-        "defaultContent": '',
-        "data": null
-      },
-      {
-        "title": 'Bill Rate <br/> Override',
-        "data": function ( row, type, val, meta ) {
-          if (type === 'set') {
-            row.price = val;
-            // Store the computed display and filter values for efficiency
-            row.price_display = val=="" ? "" : "$"+numberFormat(val);
-            row.price_filter  = val=="" ? "" : "$"+numberFormat(val)+" "+val;
-            return;
-          }
-          else if (type === 'display') {
-            return row.price_display;
-          }
-          else if (type === 'filter') {
-            return row.price_filter;
-          }
-          // 'sort', 'type' and undefined all just use the integer
-          return row.price;
         },
-        "defaultContent": '',
-        "sClass": "rate-override num"
-      },
-      {
-        "title": 'Total Hours',
-        "data":" ",
-        "defaultContent": ''
-      },
-      {
-        "title": 'Total Fees',
-        "data":" ",
-        "defaultContent": ''
-      },
-      {
-        "title": 'JAN <br/> 16',
-        "data":" ",
-        "defaultContent": ''
-      },
-      {
-        "title": 'FEB <br/> 16',
-        "data":" ",
-        "defaultContent": ''
-      },
-      {
-        "title": 'MAR <br/> 16',
-        "data":" ",
-        "defaultContent": ''
-      },
-      {
-        "title": 'APR <br/> 16',
-        "data":" ",
-        "defaultContent": ''
-      },
-      {
-        "title": 'MAY <br/> 16',
-        "data":" ",
-        "defaultContent": ''
-      },
-      {
-        "title": 'JUN <br/> 16',
-        "data":" ",
-        "defaultContent": ''
-      },
-      {
-        "title": 'JUL <br/> 16',
-        "data":" ",
-        "defaultContent": ''
-      },
-      {
-        "title": 'AUG <br/> 16',
-        "data":" ",
-        "defaultContent": ''
-      },
-      {
-        "title": 'SEP <br/> 16',
-        "data":" ",
-        "defaultContent": ''
-      },
-      {
-        "title": 'OCT <br/> 16',
-        "data":" ",
-        "defaultContent": ''
-      },
-      {
-        "title": 'NOV <br/> 16',
-        "data":" ",
-        "defaultContent": ''
-      },
-      {
-        "title": 'DEC <br/> 16',
-        "data":" ",
-        "defaultContent": ''
-      }],
+        {
+          "title": 'Role',
+          "data":" ",
+          "defaultContent": ''
+        },
+        {
+          "title": 'Proposed <br/> Resource',
+          "data":" ",
+          "defaultContent": ''
+        },
+        {
+          "title": 'Bill Rate',
+          "defaultContent": '',
+          "data": null
+        },
+        {
+          "title": 'Bill Rate <br/> Override',
+          "data": function ( row, type, val, meta ) {
+            if (type === 'set') {
+              row.price = val;
+              // Store the computed display and filter values for efficiency
+              row.price_display = val=="" ? "" : "$"+numberFormat(val);
+              row.price_filter  = val=="" ? "" : "$"+numberFormat(val)+" "+val;
+              return;
+            }
+            else if (type === 'display') {
+              return row.price_display;
+            }
+            else if (type === 'filter') {
+              return row.price_filter;
+            }
+            // 'sort', 'type' and undefined all just use the integer
+            return row.price;
+          },
+          "defaultContent": '',
+          "sClass": "rate-override num"
+        },
+        {
+          "title": 'Total Hours',
+          "data":" ",
+          "defaultContent": ''
+        },
+        {
+          "title": 'Total Fees',
+          "data":" ",
+          "defaultContent": ''
+        },
+        {
+          "title": 'JAN <br/> 16',
+          "data":" ",
+          "defaultContent": ''
+        },
+        {
+          "title": 'FEB <br/> 16',
+          "data":" ",
+          "defaultContent": ''
+        },
+        {
+          "title": 'MAR <br/> 16',
+          "data":" ",
+          "defaultContent": ''
+        },
+        {
+          "title": 'APR <br/> 16',
+          "data":" ",
+          "defaultContent": ''
+        },
+        {
+          "title": 'MAY <br/> 16',
+          "data":" ",
+          "defaultContent": ''
+        },
+        {
+          "title": 'JUN <br/> 16',
+          "data":" ",
+          "defaultContent": ''
+        },
+        {
+          "title": 'JUL <br/> 16',
+          "data":" ",
+          "defaultContent": ''
+        },
+        {
+          "title": 'AUG <br/> 16',
+          "data":" ",
+          "defaultContent": ''
+        },
+        {
+          "title": 'SEP <br/> 16',
+          "data":" ",
+          "defaultContent": ''
+        },
+        {
+          "title": 'OCT <br/> 16',
+          "data":" ",
+          "defaultContent": ''
+        },
+        {
+          "title": 'NOV <br/> 16',
+          "data":" ",
+          "defaultContent": ''
+        },
+        {
+          "title": 'DEC <br/> 16',
+          "data":" ",
+          "defaultContent": ''
+        }],
       "bFilter": false,
       "select": true,
       "rowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
@@ -206,7 +199,7 @@ var projectResourceTable = (function ($) {
       "createdRow": function( settings ) {
         // console.log( 'DataTables has redrawn the table' );
       },
-      "initComplete": function (nRow) {
+      "initComplete": function (settings, json) {
 
         //get deliverables from json and call function here.
         getDeliverables();
@@ -214,15 +207,11 @@ var projectResourceTable = (function ($) {
         //get card bill data from json and call function here.
         getCardBill();
 
+        //get Offices
+        getOffice();
 
         this.api().on( 'draw', function () {
           showBillRate();
-          // $('select.title').each( function (key, val) {
-          //   console.log(val.children);
-          //   var optionSelected = val.children;
-          //   console.log(optionSelected[0].attr [1])
-          //   $(this).parents('tr').children('td:eq(9)').empty().append('$' + optionSelected.data('rate'))
-          // });
         } );
 
         // TODO get data from DB.
@@ -230,19 +219,30 @@ var projectResourceTable = (function ($) {
         $(Practice).each(function (key, value) {
           $('.practice').append($('<option>', { value : Practice[key] }).text(Practice[key]));
         });
+        function getOffice() {
+          //DO NOT REMOVE YET, for further exploration
+          // Offices = json.d.results.map(function(city) {
+          //   return city.PlantName;
+          // });
+          //
+          // Offices = Offices.filter(function(value, key) {
+          //   return Offices.indexOf(value) == key;
+          // });
+          //
+          // Offices = $(Offices).each(function (key, value) {
+          //  return  $('.office').append($('<option>', { value : Offices[key] }).text(Offices[key]));
+          // });
 
-        Cities = nRow.aoData.map(function(city) {
-          return city._aData.City;
-        });
 
-        Cities = Cities.filter(function(value, key) {
-          return Cities.indexOf(value) == key;
-        });
+          json.d.results.map(function(val, key) {
+            if (val.PlantName) {
+              Offices.push(val.PlantName)
+              return  Offices.push($('<option>', { value :key }).text(val.PlantName));
+            }
+          });
 
-        $(Cities).each(function (key, value) {
-          $('.city').append($('<option>', { value : Cities[key] }).text(Cities[key]));
-        });
-
+           $('.office').empty().append(Offices);
+        }
         //to show a row with indexes.
         projResourceTable.on('order.dt', function () {
           projResourceTable.column(0, {"order" :"applied", "filter":"applied" }).nodes().each( function (cell, i) {
@@ -253,12 +253,6 @@ var projectResourceTable = (function ($) {
       },
       "bDestroy": true,
     });
-
-    // projResourceTable.on( 'draw.dt', function () {
-    //   $('select.title option').each(function(){
-    //   })
-    //   console.log($('select.title').filter( "option" ).data('rate'))
-    // } );
 
     //get deliverables from projectRelatedDeliverables json
     function getDeliverables() {
@@ -294,21 +288,15 @@ var projectResourceTable = (function ($) {
     function addRow() {
       $('.project-resources #add-row').on( 'click', function (e) {
         e.preventDefault();
-        var _city = "<select class=\"city\">";
-        Cities.map(function(key, value) {
-          _city += '<option>'+Cities[value]+'</option>';
-        });
-        _city +='</select>';
 
         projResourceTable.rows().nodes().to$().removeClass( 'new-row' );
 
         var rowNode = projResourceTable.row.add({
-          'City': _city
         }).order( [[ 3, 'asc' ]] ).draw().node();
-
         $(rowNode).addClass('new-row');
         $('.deliverable').empty().append(Deliverable);
         $('select.title').empty().append(EmpTitle);
+        $('.office').empty().append(Offices)
       });
     }
     addRow();
