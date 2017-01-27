@@ -71,6 +71,7 @@ function get_data_feed(feed, query) {
     if($('form.form-edit-profile').length > 0) {
       fillForm.initFillForm('.form-edit-profile');
     }
+
     //show in-place form.
     editProfileForm.initEditProfileForm('form.form-edit-profile');
 

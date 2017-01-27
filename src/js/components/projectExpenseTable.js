@@ -72,14 +72,10 @@ var expenseTable = (function ($) {
       },
       // TODO working on grouping the rows
       "fnInitComplete": function (nRow, data) {
-
-        function getDeliverables() {
-          nRow.aoData.map(function(val, key) {
-            Deliverable.push($('<option>', { value :key }).text(val._aData.DelvDesc));
-          });
-          $('.deliverable').empty().append(Deliverable);
-        }
-        getDeliverables();
+        nRow.aoData.map(function(val, key) {
+          Deliverable.push($('<option>', { value :key }).text(val._aData.DelvDesc));
+        });
+        $('.deliverable').empty().append(Deliverable);
 
         projExpenseTable.on('order.dt', function () {
           projExpenseTable.column(0, {"order" :"applied", "filter":"applied" }).nodes().each( function (cell, i) {
