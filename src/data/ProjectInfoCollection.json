@@ -1,0 +1,32 @@
+{
+  "d" : {
+    "results" : [
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('1000234')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('1000234')",
+          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
+        },
+        "Projid" : "1000234",
+        "Plantyp" : "OP",
+        "Region" : "AUS",
+        "Office" : "AS01",
+        "Currency" : "USD",
+        "Clientname" : "MORGAN STANLEY",
+        "Projname" : "AUX",
+        "Comptyp" : "HOURLY",
+        "EstStDate" : "\/Date(1484784000000)\/",
+        "Duration" : 50,
+        "PlanUnits" : "2",
+        "StartDate" : "\/Date(1484784000000)\/",
+        "EstEndDate" : "\/Date(1484784000000)\/",
+        "Comments" : "Test data for the Service",
+        "Preparedby" : "VKANDURI",
+        "Createdby" : "VKANDURI",
+        "Createdon" : "\/Date(1484784000000)\/",
+        "Changedby" : "VKANDURI",
+        "Changedon" : "\/Date(1484784000000)\/"
+      }
+    ]
+  }
+}
