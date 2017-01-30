@@ -3,18 +3,18 @@
 * @module Draw Data Table for Active Projects.
 * @version
 */
-var activeTable = (function ($) {
+var activeTableFunction = (function ($) {
   'use strict';
 
   function initActiveTable() {
 
   var table = $('#active-projects');
 
-  var activeTable = table.dataTable({
+  var activeTable = table.DataTable({
     "sDom": '<"toolbar"><B><tip>',
     "searching": true,
     "ajax" : {
-       "url": get_data_feed( feeds['offices'] ),
+       "url": get_data_feed( feeds.project ),
        "dataSrc": "d.results"
      },
     "bServerSide" : false,
@@ -27,10 +27,10 @@ var activeTable = (function ($) {
     "aoColumns": [
     {
       "sTitle": 'Project Name',
-      "data":"Compname",
+      "data":"Projname",
       "render": function ( data, type, set, meta ) {
         //TODO link to actual project.
-        var output = '<a href="projectGeneral.html" title="ProjectName">';
+        var output = '<a href="projectGeneral.html?'+data+'" title="ProjectName">';
             output += data;
             output += '</a>';
         return output;
@@ -42,34 +42,44 @@ var activeTable = (function ($) {
     },
     {
       "title": 'Est.Date',
-      "data":" ",
-      "targets": [ -1 ],
-      "defaultContent": ''
+      "data":"EstStDate",
+      "defaultContent": '',
+      "render" : function(data, type) {
+        var str = data;
+        var num = parseInt(str.replace(/[^0-9]/g, ""));
+        var date = new Date(num);
+        if ( type === 'display' || type === 'filter' ) {
+         var d = date;
+         return d.getDate() +'/'+ (d.getMonth()+1) +'/'+ d.getFullYear();
+        }
+       // Otherwise the data type requested (`type`) is type detection or
+       // sorting data, for which we want to use the integer, so just return
+       // that, unaltered
+       return data;
+       }
     },
     {
       "title": 'Duration',
-      "data":" ",
-      "targets": [ -1 ],
-      "defaultContent": ''
+      "data": "Duration",
+      "defaultContent": '',
     },
     {
       "title": 'Budget',
       "data":" ",
-      "targets": [ -1 ],
       "defaultContent": ''
     },
     {
       "title" : '<i class="fa fa-files-o"></i>',
       "sClass": "center blue-bg",
-      "targets": [ 1 ],
-      "data": null,
-       //TODO link to actual project.
-      "defaultContent":'<a href="projectGeneral.html" class=""><i class="fa fa-files-o"></i></a>',
+      "data": "Projname",
+      "defaultContent": '',
+      "render": function ( data, type, set, meta ) {
+       return '<a href="projectGeneral.html?'+data+'" class=""><i class="fa fa-files-o"></i></a>';
+      }
     },
     {
       "title" : '<i class="fa fa-trash"></i>',
       "sClass": "center blue-bg",
-      "targets": [ -1 ],
       "data": null,
       "defaultContent":'<a href="" class="remove"><i class="fa fa-trash"></i></a>',
     }
@@ -104,7 +114,8 @@ var activeTable = (function ($) {
             select.wrap(field_wrapper);
             label.insertBefore(select);
             column.data().unique().sort().each( function ( d, j ) {
-              select.append( '<option value="'+d+'">'+d+'</option>' )
+                            console.log(d);
+              select.append( '<option value="'+d+'">'+d+'</option>' );
           });
         }
       });
@@ -117,16 +128,16 @@ var activeTable = (function ($) {
   //   console.log( json.d.results );
   // });
   $('.search-table').on( 'keyup change', function () {
-     activeTable.api().search( this.value ).draw();
+     activeTable.search( this.value ).draw();
   });
   // $( '.buttons-page-length' ).insertAfter('#active-projects_wrapperarchived-projects_wrapper').wrap("<div class=\"dt-buttons\" />").addClass('float-right');
   $('#active-projects tbody').on( 'click', '.remove', function (e) {
     e.preventDefault();
-     activeTable.api().row( $(this).parents('tr') ).remove().draw();
+     activeTable.row( $(this).parents('tr') ).remove().draw();
    });
   }
   return {
     initActiveTable:initActiveTable
-  }
+  };
 
 })($);

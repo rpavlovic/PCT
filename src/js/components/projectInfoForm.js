@@ -3,7 +3,7 @@
 * @version
 */
 
-var loadJSON = (function ($) {
+var projectInfoForm = (function ($) {
   'use strict';
 
   var items_business = [],
@@ -51,11 +51,7 @@ var loadJSON = (function ($) {
         }
         //if the currency data is matching to the currency array.
         if(key == "Currency") {
-          $.each(select_currency[0].options, function() {
-            if( $(this).val() === val[key]) {
-              $(this).prop('selected', true);
-            }
-          });
+          currency(key, val);
         }
       }
     });
@@ -70,28 +66,44 @@ var loadJSON = (function ($) {
       for (key in val) {
         //select the office for the employee that matches
         if(key === "OfficeName") {
-          $.each( select_billing_office[0].options, function() {
-            if( $(this).val() === val[key]) {
-              $(this).prop('selected', true);
-            }
-          });
+          billingOffice(key, val);
         }
         //select the office country for the employee that matches
         if(key === "OfficeCountry") {
-          $.each( select_billing_office[0].options, function() {
-            if( $(this).val() === val[key]) {
-              $(this).prop('selected', true);
-            }
-          });
+         country(key, val);
         }
       }
     });
   }
+//TODO make into one plugin
+  function currency(key, val) {
+    $(select_currency[0].options).map(function() {
+      if( $(this).val() === val[key]) {
+       return $(this).prop('selected', true);
+      }
+    });
+  }
 
-  function initJSON(jsonFile1, jsonFile2) {
+  function billingOffice(key, val) {
+    $(select_billing_office[0].options).map(function() {
+      if($(this).val() === val[key]) {
+        $(this).prop('selected', true);
+      }
+    });
+  }
 
-    $.getJSON(jsonFile1,  function(data1) {
+  function country(key, val) {
+    $(select_country[0].options).map(function() {
+      if( $(this).val() === val[key]) {
+        $(this).prop('selected', true);
+      }
+    });
+  }
+
+  function initProjectInfoForm(jsonFile1, jsonFile2, jsonFile3) {
+    $.getJSON(jsonFile1, jsonFile3,  function(data1) {
       prepopulate_Billing_Office_JSON(data1);
+
     })
     .done(function() {
       $.getJSON(jsonFile2,  function(data2) {
@@ -107,7 +119,7 @@ var loadJSON = (function ($) {
     });
   }
   return {
-    initJSON:initJSON
+    initProjectInfoForm:initProjectInfoForm
   };
 
 })($);

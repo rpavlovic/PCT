@@ -10,7 +10,7 @@ var projectResourceTable = (function ($) {
     var table = $('#project-resource-table');
 
     var Offices = [],
-        Practice,
+        Practice = [],
         Deliverable = [],
         EmpTitle = [],
         BillRate = [];
@@ -77,12 +77,10 @@ var projectResourceTable = (function ($) {
       },
       {
         "title": 'Practice',
-        "data":" ",
-        "defaultContent": 'Consumer',
+        "data": "CostCenterName",
+        "defaultContent": '',
         "render": function () {
-          var output = '<select class="practice">';
-          output += '</select>';
-          return output;
+          return '<select class="practice">';
         }
       },
       {
@@ -216,8 +214,6 @@ var projectResourceTable = (function ($) {
         // console.log( 'DataTables has redrawn the table' );
       },
       "initComplete": function (settings, json) {
-        console.log(json.d.results);
-
         //get deliverables from json and call function here.
         getDeliverables();
 
@@ -227,6 +223,9 @@ var projectResourceTable = (function ($) {
         //get Offices
         getOffices();
 
+        //get Practice
+        getPractice(json);
+
         this.api().on( 'draw', function () {
           //on selecting title show corresponding bill rate.
           $('select.title').on('change  click', function () {
@@ -234,11 +233,6 @@ var projectResourceTable = (function ($) {
           });
         });
 
-        // TODO get data from DB.
-        Practice = ["Consumer", "HR Resources", "PR Counsel", "Finance"];
-        $(Practice).each(function (key) {
-          $('.practice').append($('<option>', { value : Practice[key] }).text(Practice[key]));
-        });
         //to show a row with indexes.
         projResourceTable.on('order.dt', function () {
           projResourceTable.column(0, {"order" :"applied", "filter":"applied" }).nodes().each( function (cell, i) {
@@ -289,6 +283,17 @@ var projectResourceTable = (function ($) {
       loadBillRate();
     }
 
+    //get deliverables from projectRelatedDeliverables json
+    function getPractice(data) {
+        data.d.results.map(function(val) {
+          if($.inArray(val.CostCenterName, Practice) === -1) {
+            Practice.push(val.CostCenterName);
+            Practice.push($('<option>', { value :val.CostCenterName }).text(val.CostCenterName));
+          }
+        });
+      $('.practice').empty().append(Practice);
+    }
+
     function loadBillRate() {
      $('select.title').each(function(key, val) {
         $(this).parents('tr').children('td:eq(9)').empty().append("$" + $("option:selected", this).data('rate'));
@@ -305,6 +310,7 @@ var projectResourceTable = (function ($) {
         }).order( [[ 2, 'asc' ],  [ 3, 'asc' ], [ 4, 'asc' ]] ).draw().node();
         $(rowNode).addClass('new-row');
         $('select.title').empty().append(EmpTitle);
+        $('.practice').empty().append(Practice);
         getOffices();
         getDeliverables();
         loadBillRate();

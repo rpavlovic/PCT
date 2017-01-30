@@ -38,7 +38,10 @@ function get_data_feed(feed, query) {
 
     //if form to be loaded exists.
     if($("form.project-info").length > 0) {
-      loadJSON.initJSON(get_data_feed(feeds.offices), get_data_feed(feeds.employee));
+      projectInfoForm.initProjectInfoForm(get_data_feed(feeds.offices),
+        get_data_feed(feeds.employee),
+        get_data_feed(feeds.project));
+            floatLabel.initfloatLabel();
     }
     //Show Hide elements
     showHide.initShowHide();
@@ -78,7 +81,7 @@ function get_data_feed(feed, query) {
     editProfileForm.initEditProfileForm('form.form-edit-profile');
 
     //Active Projects on Projects General page.
-    activeTable.initActiveTable();
+    activeTableFunction.initActiveTable();
 
     //upload CSV per the user
     loadCustomBillSheet.initLoadCustomBillSheet();
