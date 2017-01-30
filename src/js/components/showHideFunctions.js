@@ -45,6 +45,6 @@ var showHide = (function ($) {
 
   return {
     initShowHide:initShowHide
-  }
+  };
 
 })($);

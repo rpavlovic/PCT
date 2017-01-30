@@ -1,4 +1,3 @@
-
 /**
 * @functions Capture and validate and make calculations
 * on the table cells.
@@ -13,7 +12,7 @@ function returnData(new_data, table) {
       }
     }
     return true;
-  }
+  };
 
   var isNum = false;
   if($(new_data.element).html() != isNaN && $.isNumeric($(new_data.element).html())) {
@@ -41,9 +40,7 @@ function returnData(new_data, table) {
         return $(this).text();
       }
     }).get();
-
-    var ovd_rate = $(new_data.element).html(),
-        active_modeling_tabs = $('.modeling-table tr td');
+    var active_modeling_tabs = $('.modeling-table tr td');
     active_modeling_tabs.removeClass('active');
     //activate Adjusted Resource Hdr when override is entered.
     if(data.length > 0 && isNum) {

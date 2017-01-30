@@ -21,6 +21,6 @@ var editProfileForm = (function ($) {
   }
   return {
     initEditProfileForm:initEditProfileForm
-  }
+  };
 
 })($);

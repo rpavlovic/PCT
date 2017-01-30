@@ -36,7 +36,7 @@ var loadJSON = (function ($) {
   //prepopulate Billing office select with JSON data.
   function prepopulate_Billing_Office_JSON(data1) {
     $.each(data1.d.results, function(key, val) {
-      for (var key in val) {
+      for (key in val) {
         //create office name options.
         if(key === "OfficeName") {
           items_business.push('<option value="' + val[key] + '">' + val[key] + '</option>');
@@ -67,10 +67,10 @@ var loadJSON = (function ($) {
   //match the employee office with list of offices and select the matching one.
   function prepopulate_Employee_Office(data2) {
     $.each(data2.d.results, function(key, val) {
-      for (var key in val) {
+      for (key in val) {
         //select the office for the employee that matches
         if(key === "OfficeName") {
-          $.each( select_billing_office[0].options, function() {;
+          $.each( select_billing_office[0].options, function() {
             if( $(this).val() === val[key]) {
               $(this).prop('selected', true);
             }
@@ -78,7 +78,7 @@ var loadJSON = (function ($) {
         }
         //select the office country for the employee that matches
         if(key === "OfficeCountry") {
-          $.each( select_billing_office[0].options, function() {;
+          $.each( select_billing_office[0].options, function() {
             if( $(this).val() === val[key]) {
               $(this).prop('selected', true);
             }
@@ -108,6 +108,6 @@ var loadJSON = (function ($) {
   }
   return {
     initJSON:initJSON
-  }
+  };
 
 })($);

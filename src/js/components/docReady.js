@@ -38,7 +38,7 @@ function get_data_feed(feed, query) {
 
     //if form to be loaded exists.
     if($("form.project-info").length > 0) {
-      loadJSON.initJSON(get_data_feed(feeds['offices']), get_data_feed(feeds['employee']));
+      loadJSON.initJSON(get_data_feed(feeds.offices), get_data_feed(feeds.employee));
     }
     //Show Hide elements
     showHide.initShowHide();

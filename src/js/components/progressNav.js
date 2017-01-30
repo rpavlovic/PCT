@@ -28,6 +28,6 @@ var progressNav = (function ($) {
     }
     return {
       initProgressNav:initProgressNav
-  }
+  };
 
 })($);

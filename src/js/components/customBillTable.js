@@ -53,7 +53,6 @@ var loadCustomBillSheet = (function ($) {
           paging: false,
           length: false,
           order: [[ 1, 'asc' ]],
-          select: true,
           columns: [
             { title: titles[0] },
             { title: titles[1] },
@@ -114,14 +113,14 @@ var loadCustomBillSheet = (function ($) {
     $('#DeleteCustomBillSheet').on('click', function() {
       confirm("The template will be deleted and Overrides removed?");
       $("#csv-table tr").each(function (key, value) {
-        $(this).find('td.rate-override').empty()
+        $(this).find('td.rate-override').empty();
         $(this).find('td.discount').empty();
-      })
+      });
     });
     uploadTable();
   }
 
   return {
     initLoadCustomBillSheet:initLoadCustomBillSheet
-  }
+  };
 })($);

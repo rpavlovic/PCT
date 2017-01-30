@@ -1,4 +1,3 @@
-
 /**
 * @module Capture and Save edits on the tables.
 * @version
@@ -12,7 +11,7 @@ var captureEditTd = (function ($) {
           nl = event.which == 13,
           tab = event.which == 9,
           el = event.target,
-          input = el.nodeName != 'INPUT' && el.nodeName != 'TEXTAREA' && el.nodeName != 'SELECT' && el.children.length == 0,
+          input = el.nodeName != 'INPUT' && el.nodeName != 'TEXTAREA' && el.nodeName != 'SELECT' && el.children.length === 0,
           data = {};
       if (input) {
         if (esc) {
@@ -23,7 +22,7 @@ var captureEditTd = (function ($) {
           // save
           data = {
             element : el
-          }
+          };
           // TODO when ready we could send an ajax request to update the field
           // $.ajax({
           //   url: window.location.toString(),
@@ -42,7 +41,7 @@ var captureEditTd = (function ($) {
 
   return {
     initCaptureEditTd:initCaptureEditTd
-  }
+  };
 
 })($);
 

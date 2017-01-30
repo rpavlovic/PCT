@@ -79,6 +79,6 @@ var fillForm = (function ($) {
   }
   return {
     initFillForm:initFillForm
-  }
+  };
 
 })($);
