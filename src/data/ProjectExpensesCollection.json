@@ -1,0 +1,20 @@
+{
+  "d" : {
+    "results" : [
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('PCT000001')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('PCT000001')",
+          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+        },
+        "Projid" : "PCT000001",
+        "ExpRow" : "001",
+        "DelvDesc" : "Non-Deliverable",
+        "Category" : "OOP",
+        "CatDesc" : "Out Of Pocket",
+        "Amount" : "1234.00",
+        "Currency" : "USD"
+      }
+    ]
+  }
+}
