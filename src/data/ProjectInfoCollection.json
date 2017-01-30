@@ -3,11 +3,11 @@
     "results" : [
       {
         "__metadata" : {
-          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('1000234')",
-          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('1000234')",
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('1000100')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('1000100')",
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
         },
-        "Projid" : "1000234",
+        "Projid" : "1000100",
         "Plantyp" : "OP",
         "Region" : "AUS",
         "Office" : "AS01",
@@ -21,10 +21,88 @@
         "StartDate" : "\/Date(1484784000000)\/",
         "EstEndDate" : "\/Date(1484784000000)\/",
         "Comments" : "Test data for the Service",
-        "Preparedby" : "VKANDURI",
-        "Createdby" : "VKANDURI",
+        "Preparedby" : "RPAVLOVIC",
+        "Createdby" : "RPAVLOVIC",
         "Createdon" : "\/Date(1484784000000)\/",
-        "Changedby" : "VKANDURI",
+        "Changedby" : "RPAVLOVIC",
+        "Changedon" : "\/Date(1484784000000)\/"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('1000101')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('1000101')",
+          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
+        },
+        "Projid" : "1000101",
+        "Plantyp" : "OP",
+        "Region" : "AUS",
+        "Office" : "AS01",
+        "Currency" : "USD",
+        "Clientname" : "MORGAN STANLEY",
+        "Projname" : "AUX",
+        "Comptyp" : "HOURLY",
+        "EstStDate" : "\/Date(1484784000000)\/",
+        "Duration" : 50,
+        "PlanUnits" : "2",
+        "StartDate" : "\/Date(1484784000000)\/",
+        "EstEndDate" : "\/Date(1484784000000)\/",
+        "Comments" : "Test data for the Service",
+        "Preparedby" : "RPAVLOVIC",
+        "Createdby" : "RPAVLOVIC",
+        "Createdon" : "\/Date(1484784000000)\/",
+        "Changedby" : "RPAVLOVIC",
+        "Changedon" : "\/Date(1484784000000)\/"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('1000102')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('1000102')",
+          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
+        },
+        "Projid" : "1000102",
+        "Plantyp" : "OP",
+        "Region" : "USA",
+        "Office" : "US01",
+        "Currency" : "USD",
+        "Clientname" : "MORGAN STANLEY",
+        "Projname" : "AUX",
+        "Comptyp" : "HOURLY",
+        "EstStDate" : "\/Date(1484784000000)\/",
+        "Duration" : 50,
+        "PlanUnits" : "2",
+        "StartDate" : "\/Date(1484784000000)\/",
+        "EstEndDate" : "\/Date(1484784000000)\/",
+        "Comments" : "Test data for the Service",
+        "Preparedby" : "RPAVLOVIC",
+        "Createdby" : "RPAVLOVIC",
+        "Createdon" : "\/Date(1484784000000)\/",
+        "Changedby" : "RPAVLOVIC",
+        "Changedon" : "\/Date(1484784000000)\/"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('1000103')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('1000103')",
+          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
+        },
+        "Projid" : "1000103",
+        "Plantyp" : "OP",
+        "Region" : "USA",
+        "Office" : "US01",
+        "Currency" : "USD",
+        "Clientname" : "MORGAN STANLEY",
+        "Projname" : "AUX",
+        "Comptyp" : "HOURLY",
+        "EstStDate" : "\/Date(1484784000000)\/",
+        "Duration" : 50,
+        "PlanUnits" : "2",
+        "StartDate" : "\/Date(1484784000000)\/",
+        "EstEndDate" : "\/Date(1484784000000)\/",
+        "Comments" : "Test data for the Service",
+        "Preparedby" : "RPAVLOVIC",
+        "Createdby" : "RPAVLOVIC",
+        "Createdon" : "\/Date(1484784000000)\/",
+        "Changedby" : "RPAVLOVIC",
         "Changedon" : "\/Date(1484784000000)\/"
       }
     ]
