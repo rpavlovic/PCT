@@ -10,7 +10,7 @@ var activeTableFunction = (function ($) {
 
   var table = $('#active-projects');
 
-  var activeTable = table.dataTable({
+  var activeTable = table.DataTable({
     "sDom": '<"toolbar"><B><tip>',
     "searching": true,
     "ajax" : {
@@ -71,14 +71,15 @@ var activeTableFunction = (function ($) {
     {
       "title" : '<i class="fa fa-files-o"></i>',
       "sClass": "center blue-bg",
-      "data": null,
-       //TODO link to actual project.
-      "defaultContent":'<a href="projectGeneral.html" class=""><i class="fa fa-files-o"></i></a>',
+      "data": "Projname",
+      "defaultContent": '',
+      "render": function ( data, type, set, meta ) {
+       return '<a href="projectGeneral.html?'+data+'" class=""><i class="fa fa-files-o"></i></a>';
+      }
     },
     {
       "title" : '<i class="fa fa-trash"></i>',
       "sClass": "center blue-bg",
-      "targets": [ -1 ],
       "data": null,
       "defaultContent":'<a href="" class="remove"><i class="fa fa-trash"></i></a>',
     }
@@ -113,6 +114,7 @@ var activeTableFunction = (function ($) {
             select.wrap(field_wrapper);
             label.insertBefore(select);
             column.data().unique().sort().each( function ( d, j ) {
+                            console.log(d);
               select.append( '<option value="'+d+'">'+d+'</option>' );
           });
         }
