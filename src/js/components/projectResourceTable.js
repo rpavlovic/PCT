@@ -10,18 +10,18 @@ var projectResourceTable = (function ($) {
     var table = $('#project-resource-table');
 
     var Offices = [],
-      Practice,
-      Deliverable = [],
-      EmpTitle = [],
-      BillRate = [];
+        Practice,
+        Deliverable = [],
+        EmpTitle = [],
+        BillRate = [];
 
     var projResourceTable = table.DataTable({
       "searching": false,
       "ajax" : {
-        "url": get_data_feed( feeds.rateCards),
+        "url": get_data_feed( feeds.rateCards ),
         "dataSrc": "d.results"
       },
-      "bServerSide" : false,
+      "deferRender": true,
       "paging": false,
       "stateSave": true,
       "info":     false,
@@ -47,13 +47,15 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Deliverable / Work&nbsp;Stream',
           "data": null,
+          "defaultContent": '',
           "render": function () {
             return "<select class='deliverable' />";
           }
         },
         {
           "title": 'Office',
-          "data": "PlantName",
+          "data": null,
+          "defaultContent": '',
           "render": function () {
             return '<select class="office" />';
           }
@@ -61,6 +63,7 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Title',
           "data": null,
+          "defaultContent": '',
           "render": function () {
             return "<select class='title' />";
           }
@@ -101,8 +104,8 @@ var projectResourceTable = (function ($) {
             if (type === 'set') {
               row.price = val;
               // Store the computed display and filter values for efficiency
-              row.price_display = val=="" ? "" : "$"+numberFormat(val);
-              row.price_filter  = val=="" ? "" : "$"+numberFormat(val)+" "+val;
+              row.price_display = val==="" ? "" : "$"+numberFormat(val);
+              row.price_filter  = val==="" ? "" : "$"+numberFormat(val)+" "+val;
               return;
             }
             else if (type === 'display') {
@@ -207,36 +210,17 @@ var projectResourceTable = (function ($) {
         getCardBill();
 
         //get Offices
-        getOffice();
+        getOffices();
 
         this.api().on( 'draw', function () {
           showBillRate();
-        } );
+        });
 
         // TODO get data from DB.
         Practice = ["Consumer", "HR Resources", "PR Counsel", "Finance"];
         $(Practice).each(function (key) {
           $('.practice').append($('<option>', { value : Practice[key] }).text(Practice[key]));
         });
-        function getOffice() {
-          //DO NOT REMOVE YET, for further exploration
-          // Offices = json.d.results.map(function(city) {
-          //   return city.PlantName;
-          // });
-          //
-          // Offices = Offices.filter(function(value, key) {
-          //   return Offices.indexOf(value) == key;
-          // });
-          //
-          // Offices = $(Offices).each(function (key, value) {
-          //  return  $('.office').append($('<option>', { value : Offices[key] }).text(Offices[key]));
-          // });
-
-          json.d.results.map(function(val, key) {
-              return  Offices.push($('<option>', { value :key }).text(val.PlantName));
-          });
-           $('.office').empty().append(Offices);
-        }
         //to show a row with indexes.
         projResourceTable.on('order.dt', function () {
           projResourceTable.column(0, {"order" :"applied", "filter":"applied" }).nodes().each( function (cell, i) {
@@ -248,7 +232,20 @@ var projectResourceTable = (function ($) {
       "bDestroy": true
     });
 
-    //get deliverables from projectRelatedDeliverables json
+    //get Office name from Office Collection json.
+    function getOffices() {
+      $.getJSON(get_data_feed(feeds.offices), function(offices) {
+        offices.d.results.map(function (value, key) {
+           if($.inArray(value.OfficeName, Offices) === -1) {
+              Offices.push(value.OfficeName);
+              Offices.push($('<option>', { value :key }).text(value.OfficeName));
+            }
+        });
+        $('.office').empty().append(Offices);
+      });
+    }
+
+    //get deliverables from projectRelatedDeliverables json.
     function getDeliverables() {
       $.getJSON(get_data_feed(feeds.projectDeliverables),  function(deliverables) {
         deliverables.d.results.map(function(val, key) {
@@ -268,6 +265,7 @@ var projectResourceTable = (function ($) {
           EmpTitle.push($('<option>', { value :val.EmpGradeName , 'data-rate': val.BillRate}).text(val.EmpGradeName));
         });
         $('.title').empty().append(EmpTitle);
+        loadBillRate();
       });
     }
     //On load and on change fill the Bill Rate based on title
@@ -275,7 +273,13 @@ var projectResourceTable = (function ($) {
       //on changing the title lookup the Bill Rate
       $('select.title').on('change  click', function () {
         var optionSelected = $("option:selected", this);
-        $(this).parents('tr').children('td:eq(9)').empty().append('$' + optionSelected.data('rate'))
+        $(this).parents('tr').children('td:eq(9)').empty().append('$' + optionSelected.data('rate'));
+      });
+    }
+
+    function loadBillRate() {
+     $('select.title').each(function(key, val) {
+        $(this).parents('tr').children('td:eq(9)').empty().append('$' + $("option:selected", this).data('rate'));
       });
     }
     //add row
@@ -290,18 +294,21 @@ var projectResourceTable = (function ($) {
         $(rowNode).addClass('new-row');
         $('.deliverable').empty().append(Deliverable);
         $('select.title').empty().append(EmpTitle);
-        $('.office').empty().append(Offices)
+        $('.office').empty().append(Offices);
+        loadBillRate();
       });
     }
+
     addRow();
     //remove row
     table.on( 'click', '.remove', function (e) {
       e.preventDefault();
       projResourceTable.row( $(this).parents('tr') ).remove().draw(false);
     });
+
   }
   return {
     initProjectResourceTable:initProjectResourceTable
-  }
+  };
 
 })($);
