@@ -3,7 +3,7 @@
 * @version
 */
 
-var loadJSON = (function ($) {
+var projectInfoForm = (function ($) {
   'use strict';
 
   var items_business = [],
@@ -88,7 +88,7 @@ var loadJSON = (function ($) {
     });
   }
 
-  function initJSON(jsonFile1, jsonFile2) {
+  function initProjectInfoForm(jsonFile1, jsonFile2) {
 
     $.getJSON(jsonFile1,  function(data1) {
       prepopulate_Billing_Office_JSON(data1);
@@ -107,7 +107,7 @@ var loadJSON = (function ($) {
     });
   }
   return {
-    initJSON:initJSON
+    initProjectInfoForm:initProjectInfoForm
   };
 
 })($);

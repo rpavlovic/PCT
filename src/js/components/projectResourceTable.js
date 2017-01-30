@@ -216,8 +216,6 @@ var projectResourceTable = (function ($) {
         // console.log( 'DataTables has redrawn the table' );
       },
       "initComplete": function (settings, json) {
-        console.log(json.d.results);
-
         //get deliverables from json and call function here.
         getDeliverables();
 
