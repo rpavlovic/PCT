@@ -19,17 +19,19 @@ var projectResourceTable = (function ($) {
       "searching": false,
       "ajax" : {
         "url": get_data_feed( feeds.rateCards ),
-        "dataSrc": "d.results"
+        "dataSrc": "d.results",
       },
       "deferRender": true,
       "paging": false,
       "stateSave": true,
-      "info":     false,
+      "info": false,
       "bAutoWidth": false,
-      "columnDefs": [ {
-        "orderable": false,
-        "targets": [ 0, 1 ]
-      } ],
+      "columnDefs": [
+        {
+          "orderable": false,
+          "targets": [ 0, 1 ],
+        }
+      ],
       "order": [[ 3, 'asc' ]],
       "columns": [{
         "title": 'Row',
@@ -37,159 +39,171 @@ var projectResourceTable = (function ($) {
         "defaultContent": '',
         "data": null
       },
-        {
-          "title" : '<i class="fa fa-trash"></i>',
-          "sClass": "center blue-bg",
-          "targets": [1],
-          "data": null,
-          "defaultContent":'<a href=" " class="remove"><i class="fa fa-trash"></i></a>'
+      {
+        "title" : '<i class="fa fa-trash"></i>',
+        "sClass": "center blue-bg",
+        "targets": [1],
+        "data": null,
+        "defaultContent":'<a href=" " class="remove"><i class="fa fa-trash"></i></a>'
+      },
+      {
+        "title": 'Deliverable / Work&nbsp;Stream',
+        "data": null,
+        "defaultContent": '',
+        "render": function () {
+          return "<select class='deliverable' />";
+        }
+      },
+      {
+        "title": 'Office',
+        "data": null,
+        "defaultContent": '',
+        "render": function () {
+          return '<select class="office" />';
+        }
+      },
+      {
+        "title": 'Title',
+        "data": null,
+        "defaultContent": '',
+        "render": function () {
+          return "<select class='title' />";
+        }
+      },
+      {
+        "title": 'Class',
+        "data":" ",
+        "defaultContent": ''
+      },
+      {
+        "title": 'Practice',
+        "data":" ",
+        "defaultContent": 'Consumer',
+        "render": function () {
+          var output = '<select class="practice">';
+          output += '</select>';
+          return output;
+        }
+      },
+      {
+        "title": 'Role',
+        "data":" ",
+        "defaultContent": ''
+      },
+      {
+        "title": 'Proposed <br/> Resource',
+        "data":" ",
+        "defaultContent": ''
+      },
+      {
+        "title": 'Bill Rate',
+        "defaultContent": '',
+        "render": function (data) {
+          return "$" + data;
         },
-        {
-          "title": 'Deliverable / Work&nbsp;Stream',
-          "data": null,
-          "defaultContent": '',
-          "render": function () {
-            return "<select class='deliverable' />";
+        "data": "BillRate"
+      },
+      {
+        "title": 'Bill Rate <br/> Override',
+        "data": function ( row, type, val ) {
+          if (type === 'set') {
+            row.price = val;
+            // Store the computed display and filter values for efficiency
+            row.price_display = val==="" ? "" : "$"+numberFormat(val);
+            row.price_filter  = val==="" ? "" : "$"+numberFormat(val)+" "+val;
+            return;
           }
-        },
-        {
-          "title": 'Office',
-          "data": null,
-          "defaultContent": '',
-          "render": function () {
-            return '<select class="office" />';
+          else if (type === 'display') {
+            return row.price_display;
           }
-        },
-        {
-          "title": 'Title',
-          "data": null,
-          "defaultContent": '',
-          "render": function () {
-            return "<select class='title' />";
+          else if (type === 'filter') {
+            return row.price_filter;
           }
+          // 'sort', 'type' and undefined all just use the integer
+          return row.price;
         },
-        {
-          "title": 'Class',
-          "data":" ",
-          "defaultContent": ''
-        },
-        {
-          "title": 'Practice',
-          "data":" ",
-          "defaultContent": 'Consumer',
-          "render": function () {
-            var output = '<select class="practice">';
-            output += '</select>';
-            return output;
-          }
-        },
-        {
-          "title": 'Role',
-          "data":" ",
-          "defaultContent": ''
-        },
-        {
-          "title": 'Proposed <br/> Resource',
-          "data":" ",
-          "defaultContent": ''
-        },
-        {
-          "title": 'Bill Rate',
-          "defaultContent": '',
-          "data": null
-        },
-        {
-          "title": 'Bill Rate <br/> Override',
-          "data": function ( row, type, val ) {
-            if (type === 'set') {
-              row.price = val;
-              // Store the computed display and filter values for efficiency
-              row.price_display = val==="" ? "" : "$"+numberFormat(val);
-              row.price_filter  = val==="" ? "" : "$"+numberFormat(val)+" "+val;
-              return;
-            }
-            else if (type === 'display') {
-              return row.price_display;
-            }
-            else if (type === 'filter') {
-              return row.price_filter;
-            }
-            // 'sort', 'type' and undefined all just use the integer
-            return row.price;
-          },
-          "defaultContent": '',
-          "sClass": "rate-override num"
-        },
-        {
-          "title": 'Total Hours',
-          "data":" ",
-          "defaultContent": ''
-        },
-        {
-          "title": 'Total Fees',
-          "data":" ",
-          "defaultContent": ''
-        },
-        {
-          "title": 'JAN <br/> 16',
-          "data":" ",
-          "defaultContent": ''
-        },
-        {
-          "title": 'FEB <br/> 16',
-          "data":" ",
-          "defaultContent": ''
-        },
-        {
-          "title": 'MAR <br/> 16',
-          "data":" ",
-          "defaultContent": ''
-        },
-        {
-          "title": 'APR <br/> 16',
-          "data":" ",
-          "defaultContent": ''
-        },
-        {
-          "title": 'MAY <br/> 16',
-          "data":" ",
-          "defaultContent": ''
-        },
-        {
-          "title": 'JUN <br/> 16',
-          "data":" ",
-          "defaultContent": ''
-        },
-        {
-          "title": 'JUL <br/> 16',
-          "data":" ",
-          "defaultContent": ''
-        },
-        {
-          "title": 'AUG <br/> 16',
-          "data":" ",
-          "defaultContent": ''
-        },
-        {
-          "title": 'SEP <br/> 16',
-          "data":" ",
-          "defaultContent": ''
-        },
-        {
-          "title": 'OCT <br/> 16',
-          "data":" ",
-          "defaultContent": ''
-        },
-        {
-          "title": 'NOV <br/> 16',
-          "data":" ",
-          "defaultContent": ''
-        },
-        {
-          "title": 'DEC <br/> 16',
-          "data":" ",
-          "defaultContent": ''
-        }],
+        "defaultContent": '',
+        "sClass": "rate-override num"
+      },
+      {
+        "title" : "Cost Bill Rate",
+        "data": "CostRate",
+        "defaultContent":'',
+        "visible": false,
+        "render": function (data) {
+          return "$" + data;
+        }
+      },
+      {
+        "title": 'Total Hours',
+        "data":" ",
+        "defaultContent": ''
+      },
+      {
+        "title": 'Total Fees',
+        "data":" ",
+        "defaultContent": ''
+      },
+      {
+        "title": 'JAN <br/> 16',
+        "data":" ",
+        "defaultContent": ''
+      },
+      {
+        "title": 'FEB <br/> 16',
+        "data":" ",
+        "defaultContent": ''
+      },
+      {
+        "title": 'MAR <br/> 16',
+        "data":" ",
+        "defaultContent": ''
+      },
+      {
+        "title": 'APR <br/> 16',
+        "data":" ",
+        "defaultContent": ''
+      },
+      {
+        "title": 'MAY <br/> 16',
+        "data":" ",
+        "defaultContent": ''
+      },
+      {
+        "title": 'JUN <br/> 16',
+        "data":" ",
+        "defaultContent": ''
+      },
+      {
+        "title": 'JUL <br/> 16',
+        "data":" ",
+        "defaultContent": ''
+      },
+      {
+        "title": 'AUG <br/> 16',
+        "data":" ",
+        "defaultContent": ''
+      },
+      {
+        "title": 'SEP <br/> 16',
+        "data":" ",
+        "defaultContent": ''
+      },
+      {
+        "title": 'OCT <br/> 16',
+        "data":" ",
+        "defaultContent": ''
+      },
+      {
+        "title": 'NOV <br/> 16',
+        "data":" ",
+        "defaultContent": ''
+      },
+      {
+        "title": 'DEC <br/> 16',
+        "data":" ",
+        "defaultContent": ''
+      }],
       "bFilter": false,
       "select": true,
       "rowCallback": function (nRow) {
@@ -202,18 +216,22 @@ var projectResourceTable = (function ($) {
         // console.log( 'DataTables has redrawn the table' );
       },
       "initComplete": function (settings, json) {
+        console.log(json.d.results);
 
         //get deliverables from json and call function here.
         getDeliverables();
 
         //get card bill data from json and call function here.
-        getCardBill();
+        getCardBill(json);
 
         //get Offices
         getOffices();
 
         this.api().on( 'draw', function () {
-          showBillRate();
+          //on selecting title show corresponding bill rate.
+          $('select.title').on('change  click', function () {
+            loadBillRate();
+          });
         });
 
         // TODO get data from DB.
@@ -232,6 +250,9 @@ var projectResourceTable = (function ($) {
       "bDestroy": true
     });
 
+    //hide the cost rate column
+    projResourceTable.column( 11 ).visible( false );
+
     //get Office name from Office Collection json.
     function getOffices() {
       $.getJSON(get_data_feed(feeds.offices), function(offices) {
@@ -249,7 +270,8 @@ var projectResourceTable = (function ($) {
     function getDeliverables() {
       $.getJSON(get_data_feed(feeds.projectDeliverables),  function(deliverables) {
         deliverables.d.results.map(function(val, key) {
-          if (val.DelvDesc) {
+          if($.inArray(val.DelvDesc, Deliverable) === -1) {
+            Deliverable.push(val.DelvDesc);
             Deliverable.push($('<option>', { value :key }).text(val.DelvDesc));
           }
         });
@@ -258,28 +280,18 @@ var projectResourceTable = (function ($) {
     }
 
     //get deliverables from projectRelatedDeliverables json
-    function getCardBill() {
-      $.getJSON(get_data_feed(feeds.rateCards), function(rates) {
-        rates.d.results.map(function(val) {
+    function getCardBill(data) {
+        data.d.results.map(function(val) {
           BillRate.push(val.BillRate);
           EmpTitle.push($('<option>', { value :val.EmpGradeName , 'data-rate': val.BillRate}).text(val.EmpGradeName));
         });
-        $('.title').empty().append(EmpTitle);
-        loadBillRate();
-      });
-    }
-    //On load and on change fill the Bill Rate based on title
-    function showBillRate() {
-      //on changing the title lookup the Bill Rate
-      $('select.title').on('change  click', function () {
-        var optionSelected = $("option:selected", this);
-        $(this).parents('tr').children('td:eq(9)').empty().append('$' + optionSelected.data('rate'));
-      });
+      $('.title').empty().append(EmpTitle);
+      loadBillRate();
     }
 
     function loadBillRate() {
      $('select.title').each(function(key, val) {
-        $(this).parents('tr').children('td:eq(9)').empty().append('$' + $("option:selected", this).data('rate'));
+        $(this).parents('tr').children('td:eq(9)').empty().append("$" + $("option:selected", this).data('rate'));
       });
     }
     //add row
@@ -292,9 +304,9 @@ var projectResourceTable = (function ($) {
         var rowNode = projResourceTable.row.add({
         }).order( [[ 2, 'asc' ],  [ 3, 'asc' ], [ 4, 'asc' ]] ).draw().node();
         $(rowNode).addClass('new-row');
-        $('.deliverable').empty().append(Deliverable);
         $('select.title').empty().append(EmpTitle);
-        $('.office').empty().append(Offices);
+        getOffices();
+        getDeliverables();
         loadBillRate();
       });
     }

@@ -1,0 +1,44 @@
+{
+  "d" : {
+    "results" : [
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('US01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('US01')",
+          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.RateCard_Details"
+        },
+        "CompCode" : "US10",
+        "PlantName" : "WS Minneapolis",
+        "CostRate" : "0.020",
+        "EmpGradeName" : "EVP /Senior Director",
+        "FiscalYear" : "2016",
+        "BillRate" : "0.000",
+        "CostCenter" : "US99310400",
+        "FiscalPeriod" : "2016001",
+        "CostCenterName" : "MN - CNSMR",
+        "Plant" : "US01",
+        "EmpGrade" : "990005",
+        "LocalCurrency" : "USD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('US01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('US01')",
+          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.RateCard_Details"
+        },
+        "CompCode" : "US10",
+        "PlantName" : "WS Minneapolis",
+        "CostRate" : "2200.000",
+        "EmpGradeName" : "Sr Acct Exec",
+        "FiscalYear" : "2016",
+        "BillRate" : "200.000",
+        "CostCenter" : "US99310400",
+        "FiscalPeriod" : "2016001",
+        "CostCenterName" : "MN - CNSMR",
+        "Plant" : "US01",
+        "EmpGrade" : "990013",
+        "LocalCurrency" : "USD"
+      }
+    ]
+  }
+}
