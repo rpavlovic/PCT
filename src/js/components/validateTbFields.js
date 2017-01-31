@@ -15,7 +15,8 @@ function returnData(new_data, table) {
   };
 
   var isNum = false;
-  if($(new_data.element).html() != isNaN && $.isNumeric($(new_data.element).html())) {
+  if($(new_data.element).html() != isNaN && $.isNumeric($(new_data.element).html()) &&
+    $(new_data.element).hasClass('num')) {
     $(new_data.element).removeClass('error');
     isNum = true;
   }
@@ -35,23 +36,30 @@ function returnData(new_data, table) {
   }
   if(table === '#project-resource-table') {
     //for now only rate-override with values into an array from the #project-resource-table.
-    var data = $('td.rate-override').map(function(index, value) {
+    var RateOverride = [];
+   $('td.rate-override').map(function(index, value) {
       if($(this).text() !== '') {
-        return $(this).text();
+        return RateOverride.push($(this).text());
       }
-    }).get();
+    });
+
     var active_modeling_tabs = $('.modeling-table tr td');
     active_modeling_tabs.removeClass('active');
+     console.log(RateOverride.length > 0);
     //activate Adjusted Resource Hdr when override is entered.
-    if(data.length > 0 && isNum) {
-      $(active_modeling_tabs[2]).addClass('active');
-      $(active_modeling_tabs[2]).children('input').prop('checked', true);
+    if(isNum) {
+      if(RateOverride.length > 0) {
+        $(active_modeling_tabs[2]).addClass('active');
+        $(active_modeling_tabs[2]).children('input').prop('checked', true);
+      } else {
+        $(active_modeling_tabs[1]).addClass('active');
+        $(active_modeling_tabs[1]).children('input').prop('checked', true);
+      }
+
     }
-    else {
-      $(active_modeling_tabs[1]).addClass('active');
-      $(active_modeling_tabs[1]).children('input').prop('checked', true);
-      error();
-    }
+else {
+        error();
+      }
   }
   if(table === '#project-expence-table') {
     if(isNum) {

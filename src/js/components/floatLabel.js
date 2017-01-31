@@ -16,17 +16,26 @@
       } else {
         label.removeClass(showClass);
       }
-    }).on("keyup",function() {
+    })
+      .on("keyup",function() {
       $(this).trigger("checkval");
-    }).on("ready",function() {
+    })
+      .on("ready",function() {
       $(this).trigger("checkval");
-    }).on("change",function() {
+    })
+      .on("change",function() {
       $(this).trigger("checkval");
-    }).on("focus",function() {
-      $(this).prev("label").addClass(onClass);
-    }).on("blur",function() {
-        $(this).prev("label").removeClass(onClass);
-    }).trigger("checkval");
+    })
+      .on("search",function() {
+      $(this).trigger("checkval");
+    })//when focus and blur we want the label visible but different color.
+      .on("focus",function() {
+        $(this).prev("label").addClass(onClass);
+      })
+      .on("blur",function() {
+      $(this).prev("label").removeClass(onClass);
+    })
+      .trigger("checkval");
    }
    return {
      initfloatLabel:initfloatLabel
