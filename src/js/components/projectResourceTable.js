@@ -12,8 +12,7 @@ var projectResourceTable = (function ($) {
     var Offices = [],
         Practice = [],
         Deliverable = [],
-        EmpTitle = [],
-        BillRate = [];
+        EmpTitle = [];
 
     var projResourceTable = table.DataTable({
       "searching": false,
@@ -96,30 +95,13 @@ var projectResourceTable = (function ($) {
       {
         "title": 'Bill Rate',
         "defaultContent": '',
+        "data": "BillRate",
         "render": function (data) {
           return "$" + data;
-        },
-        "data": "BillRate"
+        }
       },
       {
         "title": 'Bill Rate <br/> Override',
-        "data": function ( row, type, val ) {
-          if (type === 'set') {
-            row.price = val;
-            // Store the computed display and filter values for efficiency
-            row.price_display = val==="" ? "" : "$"+numberFormat(val);
-            row.price_filter  = val==="" ? "" : "$"+numberFormat(val)+" "+val;
-            return;
-          }
-          else if (type === 'display') {
-            return row.price_display;
-          }
-          else if (type === 'filter') {
-            return row.price_filter;
-          }
-          // 'sort', 'type' and undefined all just use the integer
-          return row.price;
-        },
         "defaultContent": '',
         "sClass": "rate-override num"
       },
@@ -272,13 +254,11 @@ var projectResourceTable = (function ($) {
         $('.deliverable').empty().append(Deliverable);
       });
     }
-
     //get deliverables from projectRelatedDeliverables json
     function getCardBill(data) {
-        data.d.results.map(function(val) {
-          BillRate.push(val.BillRate);
-          EmpTitle.push($('<option>', { value :val.EmpGradeName , 'data-rate': val.BillRate}).text(val.EmpGradeName));
-        });
+      data.d.results.map(function(val) {
+        EmpTitle.push($('<option>', { value :val.EmpGradeName , 'data-rate': val.BillRate}).text(val.EmpGradeName));
+      });
       $('.title').empty().append(EmpTitle);
       loadBillRate();
     }
@@ -306,8 +286,7 @@ var projectResourceTable = (function ($) {
 
         projResourceTable.rows().nodes().to$().removeClass( 'new-row' );
 
-        var rowNode = projResourceTable.row.add({
-        }).order( [[ 2, 'asc' ],  [ 3, 'asc' ], [ 4, 'asc' ]] ).draw().node();
+        var rowNode = projResourceTable.row.add([]).order( [[ 2, 'asc' ],  [ 3, 'asc' ], [ 4, 'asc' ]] ).draw(false).node();
         $(rowNode).addClass('new-row');
         $('select.title').empty().append(EmpTitle);
         $('.practice').empty().append(Practice);
