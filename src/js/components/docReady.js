@@ -41,7 +41,7 @@ function get_data_feed(feed, query) {
       projectInfoForm.initProjectInfoForm(get_data_feed(feeds.offices),
         get_data_feed(feeds.employee),
         get_data_feed(feeds.project));
-            floatLabel.initfloatLabel();
+        floatLabel.initfloatLabel();
     }
     //Show Hide elements
     showHide.initShowHide();

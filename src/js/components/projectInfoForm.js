@@ -32,9 +32,12 @@ var projectInfoForm = (function ($) {
   items_currency.map( function(value, key) {
     select_currency.append('<option value="' + value + '">' +  value + '</option>');
   });
+
+
   if(getParameterByName('projName')) {
     $('form.project-info input[name="projectname"]').val( getParameterByName('projName') );
   }
+
   //prepopulate Billing office select with JSON data.
   function prepopulate_Billing_Office_JSON(data1) {
     $.each(data1.d.results, function(key, val) {
@@ -80,27 +83,39 @@ var projectInfoForm = (function ($) {
         if(key === "OfficeCountry") {
           matchOptions(val[key], select_country[0]);
         }
-      }
+      // }
     });
   }
 
-  function matchOptions(key,elem) {
+  function matchOptions(key, elem) {
     $(elem).find('option').map(function() {
+      console.log(key)
       if( $(this).val() === key) {
        return $(this).prop('selected', true);
       }
     });
   }
 
+  function prepopulate_ExtraInfo_JSON(data3) {
+    data3.d.results.map(function(value) {
+      if(value.Projid == getParameterByName('projID')) {
+        $('textarea').val(value.Comments);
+        $('form.project-info input[name="preparedby"]').val(value.Preparedby);
+      }
+    });
+  }
   function initProjectInfoForm(jsonFile1, jsonFile2, jsonFile3) {
-    $.getJSON(jsonFile1, jsonFile3,  function(data1) {
+    $.getJSON(jsonFile1, function(data1) {
       prepopulate_Billing_Office_JSON(data1);
-
     })
     .done(function() {
       $.getJSON(jsonFile2,  function(data2) {
          prepopulate_Employee_Office(data2);
       });
+      $.getJSON(jsonFile3,  function(data3) {
+        prepopulate_ExtraInfo_JSON(data3);
+      });
+
       floatLabel.initfloatLabel();
     })
     .fail(function(jqXHR, exception) {
