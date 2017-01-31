@@ -45,18 +45,21 @@ function returnData(new_data, table) {
 
     var active_modeling_tabs = $('.modeling-table tr td');
     active_modeling_tabs.removeClass('active');
-     console.log(isNum);
+     console.log(RateOverride.length > 0);
     //activate Adjusted Resource Hdr when override is entered.
-    if(RateOverride.length > 0 && isNum) {
-      $(active_modeling_tabs[2]).addClass('active');
-      $(active_modeling_tabs[2]).children('input').prop('checked', true);
-    } else if(RateOverride.length > 0 && !isNum) {
-      error();
-      $(active_modeling_tabs[2]).addClass('active');
-    } else {
-      $(active_modeling_tabs[1]).addClass('active');
-      $(active_modeling_tabs[1]).children('input').prop('checked', true);
+    if(isNum) {
+      if(RateOverride.length > 0) {
+        $(active_modeling_tabs[2]).addClass('active');
+        $(active_modeling_tabs[2]).children('input').prop('checked', true);
+      } else {
+        $(active_modeling_tabs[1]).addClass('active');
+        $(active_modeling_tabs[1]).children('input').prop('checked', true);
+      }
+
     }
+else {
+        error();
+      }
   }
   if(table === '#project-expence-table') {
     if(isNum) {
