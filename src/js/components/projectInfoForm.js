@@ -83,13 +83,12 @@ var projectInfoForm = (function ($) {
         if(key === "OfficeCountry") {
           matchOptions(val[key], select_country[0]);
         }
-      // }
+      }
     });
   }
 
   function matchOptions(key, elem) {
     $(elem).find('option').map(function() {
-      console.log(key)
       if( $(this).val() === key) {
        return $(this).prop('selected', true);
       }
