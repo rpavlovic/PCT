@@ -36,25 +36,26 @@ function returnData(new_data, table) {
   }
   if(table === '#project-resource-table') {
     //for now only rate-override with values into an array from the #project-resource-table.
-    var data = $('td.rate-override').map(function(index, value) {
+    var RateOverride = [];
+   $('td.rate-override').map(function(index, value) {
       if($(this).text() !== '') {
-
-        console.log($(this));
-        return $(this).text();
+        return RateOverride.push($(this).text());
       }
-    }).get();
+    });
+
     var active_modeling_tabs = $('.modeling-table tr td');
     active_modeling_tabs.removeClass('active');
+     console.log(isNum);
     //activate Adjusted Resource Hdr when override is entered.
-    if(data.length > 0 && isNum) {
-      console.log(isNum);
+    if(RateOverride.length > 0 && isNum) {
       $(active_modeling_tabs[2]).addClass('active');
       $(active_modeling_tabs[2]).children('input').prop('checked', true);
-    }
-    else {
+    } else if(RateOverride.length > 0 && !isNum) {
+      error();
+      $(active_modeling_tabs[2]).addClass('active');
+    } else {
       $(active_modeling_tabs[1]).addClass('active');
       $(active_modeling_tabs[1]).children('input').prop('checked', true);
-      error();
     }
   }
   if(table === '#project-expence-table') {

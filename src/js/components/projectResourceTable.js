@@ -20,12 +20,12 @@ var projectResourceTable = (function ($) {
         "url": get_data_feed( feeds.rateCards ),
         "dataSrc": "d.results",
       },
-     "deferRender": true,
+      "deferRender": true,
       "paging": false,
       "stateSave": true,
       "info": false,
       "bAutoWidth": false,
-     "ordering" : true,
+      "ordering" : true,
       "columnDefs": [
         {
           "orderable": false,
@@ -33,7 +33,7 @@ var projectResourceTable = (function ($) {
         }
       ],
       "order": [[ 3, 'asc' ]],
-      "columns": [{
+      "columns": [ {
         "title": 'Row',
         "class": "center",
         "defaultContent": '',
@@ -232,12 +232,9 @@ var projectResourceTable = (function ($) {
         $("td:nth-child(n+6):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", row)
           .prop('contenteditable', true)
           .addClass("contenteditable");
-
       },
       "createdRow": function ( row, data, index ) {
-
-        // $(row).addClass('new-row');
-
+      $('tfoot td').removeClass('center blue-bg rate-override num');
       },
       "initComplete": function (settings, json, row) {
         //get deliverables from json and call function here.
@@ -265,7 +262,6 @@ var projectResourceTable = (function ($) {
             cell.innerHTML = i+1;
           });
         }).draw();
-
       },
       "bDestroy": true
     });
