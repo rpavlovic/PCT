@@ -104,17 +104,25 @@ var activeTableFunction = (function ($) {
         if(index < 5) {
           var select = $('<select name="search_'+index+'" selected><option value=""></option></select>')
           .appendTo( "div.toolbar")
-            .on( 'change', function () {
+            .on('change', function () {
               var val = $.fn.dataTable.util.escapeRegex(
                 $(this).val()
               );
-              column.search( val ? '^'+val+'$' : '', true, false ).draw();
+              column.search( val ? '^' + val + '$' : '', true, false ).draw();
             });
+
             select.wrap(field_wrapper);
             label.insertBefore(select);
-            column.data().unique().sort().each( function ( d, j ) {
-                   //         console.log(d);
-              select.append( '<option value="'+d+'">'+d+'</option>' );
+            //create filters
+            column.data().unique().sort().each( function ( d ) {
+              if(typeof d === 'string' && d.indexOf('/Date') != -1) {
+                console.log(typeof d)
+                var str = d;
+                var num = parseInt(str.replace(/[^0-9]/g, ""));
+                d = new Date(num);
+                d = d.getDate() +'/'+ (d.getMonth()+1) +'/'+ d.getFullYear();
+              }
+              select.append( '<option value="'+ d +'">' + d + '</option>' );
           });
         }
       });
@@ -127,8 +135,8 @@ var activeTableFunction = (function ($) {
   //   console.log( json.d.results );
   // });
 
-  $('.search-table').on( 'keyup change', function () {
-     activeTable.search( this.value ).draw();
+  $('.search-table').on( 'keyup change search', function (e) {
+     activeTable.search( this.value ).draw(  );
   });
   // $( '.buttons-page-length' ).insertAfter('#active-projects_wrapperarchived-projects_wrapper').wrap("<div class=\"dt-buttons\" />").addClass('float-right');
   $('#active-projects tbody').on( 'click', '.remove', function (e) {

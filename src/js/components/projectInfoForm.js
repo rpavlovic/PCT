@@ -8,7 +8,8 @@ var projectInfoForm = (function ($) {
 
   var items_business = [],
       items_country = [],
-      items_currency = [
+      items_currency =
+      [
       'AUD',
       'CAD',
       'CHF',
@@ -20,18 +21,17 @@ var projectInfoForm = (function ($) {
       'MYR',
       'NZD',
       'SGD',
-      'USD'
-  ],
-      items_region = [],
-      select_billing_office = $("form.project-info select[name='billing']"),
-      select_currency = $("form.project-info select[name='currency']"),
-      select_region = $("form.project-info select[name='regions']"),
-      select_country = $("form.project-info select[name='country']"),
-      selected = false;
+      'USD' ],
+  items_region = [],
+  select_billing_office = $("form.project-info select[name='billing']"),
+  select_currency = $("form.project-info select[name='currency']"),
+  select_region = $("form.project-info select[name='regions']"),
+  select_country = $("form.project-info select[name='country']"),
+  selected = false;
 
-    items_currency.map( function(value, key) {
-      select_currency.append('<option value="' + value + '">' +  value + '</option>');
-    });
+  items_currency.map( function(value, key) {
+    select_currency.append('<option value="' + value + '">' +  value + '</option>');
+  });
   if(getParameterByName('projName')) {
     $('form.project-info input[name="projectname"]').val( getParameterByName('projName') );
   }
@@ -53,13 +53,15 @@ var projectInfoForm = (function ($) {
         }
         //if the currency data is matching to the currency array.
         if(key == "Currency") {
-          currency(key, val);
+          matchOptions(val[key], select_currency[0]);
         }
       }
     });
+
     select_billing_office.append($.unique(items_business));
     select_country.append($.unique(items_country));
     select_region.append($.unique(items_region));
+
   }
 
   //match the employee office with list of offices and select the matching one.
@@ -68,36 +70,24 @@ var projectInfoForm = (function ($) {
       for (key in val) {
         //select the office for the employee that matches
         if(key === "OfficeName") {
-          billingOffice(key, val);
+          matchOptions(val[key], select_billing_office[0]);
+        }
+        //select the region for the employee that matches
+        if(key === "OfficeRegion") {
+          matchOptions(val[key], select_region[0]);
         }
         //select the office country for the employee that matches
         if(key === "OfficeCountry") {
-         country(key, val);
+          matchOptions(val[key], select_country[0]);
         }
       }
     });
   }
-//TODO make into one plugin
-  function currency(key, val) {
-    $(select_currency[0].options).map(function() {
-      if( $(this).val() === val[key]) {
+
+  function matchOptions(key,elem) {
+    $(elem).find('option').map(function() {
+      if( $(this).val() === key) {
        return $(this).prop('selected', true);
-      }
-    });
-  }
-
-  function billingOffice(key, val) {
-    $(select_billing_office[0].options).map(function() {
-      if($(this).val() === val[key]) {
-        $(this).prop('selected', true);
-      }
-    });
-  }
-
-  function country(key, val) {
-    $(select_country[0].options).map(function() {
-      if( $(this).val() === val[key]) {
-        $(this).prop('selected', true);
       }
     });
   }
