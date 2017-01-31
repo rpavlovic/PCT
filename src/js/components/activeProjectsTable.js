@@ -15,7 +15,7 @@ var activeTableFunction = (function ($) {
     "searching": true,
     "ajax" : {
        "url": get_data_feed( feeds.project ),
-       "dataSrc": "d.results"
+        "dataSrc": "d.results"
      },
     "bServerSide" : false,
     "iDisplayLength": 10,
@@ -29,8 +29,7 @@ var activeTableFunction = (function ($) {
       "sTitle": 'Project Name',
       "data":"Projname",
       "render": function ( data, type, set, meta ) {
-        //TODO link to actual project.
-        var output = '<a href="projectGeneral.html?'+data+'" title="ProjectName">';
+        var output = '<a href="projectGeneral.html?projID='+set.Projid+'&projName='+data+'" title="ProjectName">';
             output += data;
             output += '</a>';
         return output;
@@ -71,10 +70,10 @@ var activeTableFunction = (function ($) {
     {
       "title" : '<i class="fa fa-files-o"></i>',
       "sClass": "center blue-bg",
-      "data": "Projname",
+      "data": "Projid",
       "defaultContent": '',
       "render": function ( data, type, set, meta ) {
-       return '<a href="projectGeneral.html?'+data+'" class=""><i class="fa fa-files-o"></i></a>';
+       return '<a href="projectGeneral.html?projID='+data+'&projName='+set.Projname+'" class=""><i class="fa fa-files-o"></i></a>';
       }
     },
     {
@@ -114,7 +113,7 @@ var activeTableFunction = (function ($) {
             select.wrap(field_wrapper);
             label.insertBefore(select);
             column.data().unique().sort().each( function ( d, j ) {
-                            console.log(d);
+                   //         console.log(d);
               select.append( '<option value="'+d+'">'+d+'</option>' );
           });
         }
@@ -127,6 +126,7 @@ var activeTableFunction = (function ($) {
   //   var json = activeTable.api().ajax.json();
   //   console.log( json.d.results );
   // });
+
   $('.search-table').on( 'keyup change', function () {
      activeTable.search( this.value ).draw();
   });

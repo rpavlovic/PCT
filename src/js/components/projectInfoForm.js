@@ -32,7 +32,9 @@ var projectInfoForm = (function ($) {
     items_currency.map( function(value, key) {
       select_currency.append('<option value="' + value + '">' +  value + '</option>');
     });
-
+  if(getParameterByName('projName')) {
+    $('form.project-info input[name="projectname"]').val( getParameterByName('projName') );
+  }
   //prepopulate Billing office select with JSON data.
   function prepopulate_Billing_Office_JSON(data1) {
     $.each(data1.d.results, function(key, val) {

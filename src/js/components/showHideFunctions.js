@@ -5,7 +5,6 @@
 
 var showHide = (function ($) {
   'use strict';
-  var path = window.location.pathname;
 
   $("#show2, #show3").hide();
   // $('button.login').prop('disabled', false);
