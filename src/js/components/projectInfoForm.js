@@ -5,7 +5,6 @@
 
 var projectInfoForm = (function ($) {
   'use strict';
-
   var items_business = [],
       items_country = [],
       items_currency =
@@ -27,6 +26,7 @@ var projectInfoForm = (function ($) {
   select_currency = $("form.project-info select[name='currency']"),
   select_region = $("form.project-info select[name='regions']"),
   select_country = $("form.project-info select[name='country']"),
+  input_duration = $("input[name=\"duration\"]"),
   selected = false;
 
   items_currency.map( function(value, key) {
@@ -64,7 +64,6 @@ var projectInfoForm = (function ($) {
     select_billing_office.append($.unique(items_business));
     select_country.append($.unique(items_country));
     select_region.append($.unique(items_region));
-
   }
 
   //match the employee office with list of offices and select the matching one.
@@ -100,12 +99,15 @@ var projectInfoForm = (function ($) {
       if(value.Projid == getParameterByName('projID')) {
         $('textarea').val(value.Comments);
         $('form.project-info input[name="preparedby"]').val(value.Preparedby);
+        input_duration.val(value.Duration);
       }
     });
   }
+
   function initProjectInfoForm(jsonFile1, jsonFile2, jsonFile3) {
     $.getJSON(jsonFile1, function(data1) {
       prepopulate_Billing_Office_JSON(data1);
+      floatLabel.initfloatLabel();
     })
     .done(function() {
       $.getJSON(jsonFile2,  function(data2) {
@@ -113,9 +115,9 @@ var projectInfoForm = (function ($) {
       });
       $.getJSON(jsonFile3,  function(data3) {
         prepopulate_ExtraInfo_JSON(data3);
+        floatLabel.initfloatLabel();
       });
 
-      floatLabel.initfloatLabel();
     })
     .fail(function(jqXHR, exception) {
       console.log(jqXHR, exception);

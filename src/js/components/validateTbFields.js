@@ -15,7 +15,8 @@ function returnData(new_data, table) {
   };
 
   var isNum = false;
-  if($(new_data.element).html() != isNaN && $.isNumeric($(new_data.element).html())) {
+  if($(new_data.element).html() != isNaN && $.isNumeric($(new_data.element).html()) &&
+    $(new_data.element).hasClass('num')) {
     $(new_data.element).removeClass('error');
     isNum = true;
   }
@@ -37,6 +38,8 @@ function returnData(new_data, table) {
     //for now only rate-override with values into an array from the #project-resource-table.
     var data = $('td.rate-override').map(function(index, value) {
       if($(this).text() !== '') {
+
+        console.log($(this));
         return $(this).text();
       }
     }).get();
@@ -44,6 +47,7 @@ function returnData(new_data, table) {
     active_modeling_tabs.removeClass('active');
     //activate Adjusted Resource Hdr when override is entered.
     if(data.length > 0 && isNum) {
+      console.log(isNum);
       $(active_modeling_tabs[2]).addClass('active');
       $(active_modeling_tabs[2]).children('input').prop('checked', true);
     }
