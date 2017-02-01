@@ -6,6 +6,13 @@ var captureEditTd = (function ($) {
   'use strict';
 
   function initCaptureEditTd(table) {
+    //on enter remove value of the cell if error.
+    $(table).on('mousedown', function (event) {
+       if ('this field accepts numbers only.' === $(event.target).html().toLowerCase()) {
+        $(event.target).html('');
+      }
+    });
+
     $(table).on('keydown', function (event) {
       var esc = event.which == 27,
           nl = event.which == 13,
