@@ -27,12 +27,12 @@ var projectInfoForm = (function ($) {
   select_region = $("form.project-info select[name='regions']"),
   select_country = $("form.project-info select[name='country']"),
   input_duration = $("input[name=\"duration\"]"),
+  plan_units = $("input[name=\"punits\"]"),
   selected = false;
 
   items_currency.map( function(value, key) {
     select_currency.append('<option value="' + value + '">' +  value + '</option>');
   });
-
 
   if(getParameterByName('projName')) {
     $('form.project-info input[name="projectname"]').val( getParameterByName('projName') );
@@ -100,6 +100,7 @@ var projectInfoForm = (function ($) {
         $('textarea').val(value.Comments);
         $('form.project-info input[name="preparedby"]').val(value.Preparedby);
         input_duration.val(value.Duration);
+        plan_units.val(value.Comptyp);
       }
     });
   }
@@ -126,6 +127,7 @@ var projectInfoForm = (function ($) {
       console.log( "complete JSON" );
     });
   }
+
   return {
     initProjectInfoForm:initProjectInfoForm
   };

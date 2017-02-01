@@ -47,9 +47,9 @@ function get_data_feed(feed, query) {
     showHide.initShowHide();
 
     //floating label in the input fields.
-    floatLabel.initfloatLabel();
+   // floatLabel.initfloatLabel();
 
-    addRemoveFields.initAddRemoveFields('.project-info');
+    addRemoveFields.initAddRemoveFields('form.project-info');
 
     progressNav.initProgressNav('#progress-navigation');
 
@@ -89,7 +89,7 @@ function get_data_feed(feed, query) {
     projectResourceTable.initProjectResourceTable();
 
     //modeling table highlight headers on radio click
-    $('.modeling-table input[type="radio"], button').activateElement();
+    $('.modeling-table input[type="radio"]').activateElement();
     // $('button').activateElement();
 
     var tables = {
