@@ -45,28 +45,36 @@ function returnData(new_data, table) {
 
     var active_modeling_tabs = $('.modeling-table tr td');
     active_modeling_tabs.removeClass('active');
-     console.log(RateOverride.length > 0);
+    active_modeling_tabs.children('input').prop('checked', false);
     //activate Adjusted Resource Hdr when override is entered.
-    if(isNum) {
-      if(RateOverride.length > 0) {
+    // if(isNum) {
+    //   if(RateOverride.length > 0) {
+    //       console.log("Number: " + RateOverride.length > 0 + "NUMEBER: " + isNum)
+    //       $(active_modeling_tabs[2]).addClass('active');
+    //       $(active_modeling_tabs[2]).children('input').prop('checked', true);
+    //   } else {
+    //     console.log("Number: " + RateOverride.length > 0 + "NUMEBER: " + isNum)
+    //     $(active_modeling_tabs[1]).addClass('active');
+    //     $(active_modeling_tabs[1]).children('input').prop('checked', true);
+    //   }
+    // }
+    if(RateOverride.length > 0) {
+      if(isNum) {
+        console.log("Number: " + RateOverride.length > 0 + "NUMEBER: " + isNum)
         $(active_modeling_tabs[2]).addClass('active');
         $(active_modeling_tabs[2]).children('input').prop('checked', true);
       } else {
-        $(active_modeling_tabs[1]).addClass('active');
-        $(active_modeling_tabs[1]).children('input').prop('checked', true);
-      }
-
-    }
-else {
         error();
+        console.log("Number: " + RateOverride.length > 0 + "NUMEBER: " + isNum)
+        $(active_modeling_tabs[2]).addClass('active');
+        $(active_modeling_tabs[2]).children('input').prop('checked', true);
       }
-  }
-  if(table === '#project-expence-table') {
-    if(isNum) {
-
     }
     else {
+      console.log(RateOverride.length > 0)
       error();
+      $(active_modeling_tabs[1]).addClass('active');
+      $(active_modeling_tabs[1]).children('input').prop('checked', true);
     }
   }
 }
