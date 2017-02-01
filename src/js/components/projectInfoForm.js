@@ -9,18 +9,19 @@ var projectInfoForm = (function ($) {
       items_country = [],
       items_currency =
       [
-      'AUD',
-      'CAD',
-      'CHF',
-      'CNY',
-      'EUR',
-      'GBP',
-      'HKD',
-      'JPY',
-      'MYR',
-      'NZD',
-      'SGD',
-      'USD' ],
+        'AUD',
+        'CAD',
+        'CHF',
+        'CNY',
+        'EUR',
+        'GBP',
+        'HKD',
+        'JPY',
+        'MYR',
+        'NZD',
+        'SGD',
+        'USD'
+      ],
   items_region = [],
   select_billing_office = $("form.project-info select[name='billing']"),
   select_currency = $("form.project-info select[name='currency']"),
@@ -102,6 +103,22 @@ var projectInfoForm = (function ($) {
         input_duration.val(value.Duration);
       }
     });
+  }
+
+  function get_unique_id() {
+    var d = new Date().getTime();
+
+    //use high-precision timer if available
+    if(window.performance && typeof window.performance.now === "function") {
+      d += performance.now();
+    }
+
+    var ProjID = 'xxxxxxxx-xxxx-4xxx-y'.replace(/[xy]/g, function(c) {
+      var r = (d + Math.random()*16)%16 | 0;
+      d = Math.floor(d/16);
+      return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    });
+    return ProjID;
   }
 
   function initProjectInfoForm(jsonFile1, jsonFile2, jsonFile3) {
