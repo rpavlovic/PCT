@@ -268,14 +268,14 @@ var projectResourceTable = (function ($) {
 
     //hide the cost rate column
     projResourceTable.column( 11 ).visible( false );
-
+// this.options[this.selectedIndex].value === 'US09'
     //get Office name from Office Collection json.
     function getOffices() {
       $.getJSON(get_data_feed(feeds.offices), function(offices) {
         offices.d.results.map(function (val, key) {
            if($.inArray(val.OfficeName, Offices) === -1) {
               Offices.push(val.OfficeName);
-              Offices.push('<option value="'+ key +'">'+ val.OfficeName +'</option>');
+              Offices.push('<option value="'+ val.Office +'">'+ val.OfficeName +'</option>');
             }
         });
         $('.office').empty().append(Offices);
