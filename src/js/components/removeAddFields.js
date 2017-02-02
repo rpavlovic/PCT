@@ -13,11 +13,12 @@ var addRemoveFields = (function ($) {
     Form.AddBtn     = $('.add-row');
 
     Form.row.on('click',  function(e) {
+      e.preventDefault();
       var target = e.target,
           $this = $(this),
           cloned_input = $this.prev().clone(true, true);
       if($(target).hasClass('fa-trash')) {
-        console.log(target);
+        e.preventDefault();
         if($(form + ' .deliverables .row').length > 2) {
           $this.detach();
         }
