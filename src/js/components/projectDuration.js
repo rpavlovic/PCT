@@ -18,7 +18,7 @@ var projectDuration = (function ($) {
         monthNames = ["January", "February", "March", "April", "May", "June",
           "July", "August", "September", "October", "November", "December"
         ];
-console.log(duration);
+
     function weekStarting() {
       var first_day_week = new Date(dataText),
           index = first_day_week.getDay();
@@ -38,10 +38,6 @@ console.log(duration);
     }
 
     function estimateEndDate() {
-
-      $(form + " input[name=\"duration\"]").on('focus change ready', function(){
-        console.log($(this));
-      });
       var daysToAdd = 0;
       if(plan_by === "Weekly") {
         daysToAdd = 7;
@@ -72,20 +68,21 @@ console.log(duration);
         if(duration <= 0) {
           duration = 1;
         }
+        //remove error if data is selected from validateDuration.js
+        $(form + " input[name=\"duration\"]").removeClass('error');
+
         switch($(this).val()) {
           case 'Weekly':
-            // if(duration >= 52) {
-            //     $(form + " input[name=\"duration\"]").val('Please enter less then 52');
-            //  }
             $(form + " input[name=\"duration\"]").val(duration == 1 ? duration + ' Week': duration + ' Weeks');
-
             //update the estimate end date  field.
             estimate_end_date_val();
+
             break;
           case 'Monthly':
             $(form + " input[name=\"duration\"]").val(duration == 1 ? duration + ' Month': duration + ' Months');
             //update the estimate end date  field.
             estimate_end_date_val();
+
             break;
           case 'Summary':
             $(form + " input[name=\"duration\"]").val(duration + ' Summary');
@@ -95,9 +92,10 @@ console.log(duration);
             $(form + " input[name=\"duration\"]").val(duration == 1 ? duration + ' Week': duration + ' Weeks');
             //update the estimate end date  field.
             estimate_end_date_val();
-            break;
 
+            break;
         } //end of switch
+
       });
     }
     choose_planBy();

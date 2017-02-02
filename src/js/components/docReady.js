@@ -30,7 +30,6 @@ function get_data_feed(feed, query) {
   }
   return json;
 }
-
 (function ($) {
   $(function () {
     var path = window.location.pathname;
@@ -53,14 +52,17 @@ function get_data_feed(feed, query) {
 
     progressNav.initProgressNav('#progress-navigation');
 
+    validateDurationPlanBy.initValidateDurationPlanBy();
+
     //calendars
     $( ".datepicker" ).datepicker({
       "nextText": "",
       "prevText":"",
       "dateFormat": "MM dd, yy",
       onSelect: function(dateText, instance) {
-        projectDuration.initProjectDuration('.project-info', instance, dateText);
+        projectDuration.initProjectDuration('form.project-info', instance, dateText);
         floatLabel.initfloatLabel();
+        validateDurationPlanBy.initValidateDurationPlanBy();
       }
     });
     // if($('form.login').length > 0) {
@@ -103,6 +105,7 @@ function get_data_feed(feed, query) {
     });
 
     expenseTable.initExpenseTable();
+
 
   $('.project-expence button[type="reset"], .project-resources button[type="reset"]').clearAll();
 
