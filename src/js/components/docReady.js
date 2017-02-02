@@ -53,14 +53,17 @@ function get_data_feed(feed, query) {
 
     progressNav.initProgressNav('#progress-navigation');
 
+    validateDurationPlanBy.initValidateDurationPlanBy();
+
     //calendars
     $( ".datepicker" ).datepicker({
       "nextText": "",
       "prevText":"",
       "dateFormat": "MM dd, yy",
       onSelect: function(dateText, instance) {
-        projectDuration.initProjectDuration('.project-info', instance, dateText);
+        projectDuration.initProjectDuration('form.project-info', instance, dateText);
         floatLabel.initfloatLabel();
+        validateDurationPlanBy.initValidateDurationPlanBy();
       }
     });
     // if($('form.login').length > 0) {
@@ -88,6 +91,7 @@ function get_data_feed(feed, query) {
 
     projectResourceTable.initProjectResourceTable();
 
+
     //modeling table highlight headers on radio click
     $('.modeling-table input[type="radio"]').activateElement();
     // $('button').activateElement();
@@ -104,13 +108,12 @@ function get_data_feed(feed, query) {
 
     expenseTable.initExpenseTable();
 
-  $('.project-expence button[type="reset"], .project-resources button[type="reset"]').clearAll();
+    $('.project-expence button[type="reset"], .project-resources button[type="reset"]').clearAll();
 
-  //print buttons
-  $('.fa-print').click(function(){
-    window.print();
-  });
-
+    //print buttons
+    $('.fa-print').click(function(){
+      window.print();
+    });
   });
 
 }( jQuery ));
