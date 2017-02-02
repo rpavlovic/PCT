@@ -8,7 +8,7 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.RateCard_Details"
         },
         "Class" : "S3",
-        "CompCode" : "US10",
+        "Company" : "US10",
         "PlantName" : "WS Chicago",
         "CostRate" : "27.590",
         "EmpGradeName" : "Account Executive",
@@ -28,7 +28,7 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.RateCard_Details"
         },
         "Class" : "M3",
-        "CompCode" : "US10",
+        "Company" : "US10",
         "PlantName" : "WS Chicago",
         "CostRate" : "62.980",
         "EmpGradeName" : "Account Director",
@@ -48,7 +48,7 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.RateCard_Details"
         },
         "Class" : "E5",
-        "CompCode" : "US10",
+        "Company" : "US10",
         "PlantName" : "WS Chicago",
         "CostRate" : "164.000",
         "EmpGradeName" : "EVP/General Manager",
@@ -68,7 +68,7 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.RateCard_Details"
         },
         "Class" : "E4",
-        "CompCode" : "GBA1",
+        "Company" : "GBA1",
         "PlantName" : "WS LDN CORP-FIN-PA",
         "CostRate" : "47.000",
         "EmpGradeName" : "Exec Vice Pres",
@@ -88,7 +88,7 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.RateCard_Details"
         },
         "Class" : "S1",
-        "CompCode" : "AUA1",
+        "Company" : "AUA1",
         "PlantName" : "WS Sydney",
         "CostRate" : "29.700",
         "EmpGradeName" : "Intern",
@@ -108,7 +108,7 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.RateCard_Details"
         },
         "Class" : "S2",
-        "CompCode" : "AUA1",
+        "Company" : "AUA1",
         "PlantName" : "WS Sydney",
         "CostRate" : "27.360",
         "EmpGradeName" : "Account Coordinator",
@@ -128,7 +128,7 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.RateCard_Details"
         },
         "Class" : "E1",
-        "CompCode" : "CNA1",
+        "Company" : "CNA1",
         "PlantName" : "WS Beijing",
         "CostRate" : "151.600",
         "EmpGradeName" : "Senior Designer",
@@ -148,7 +148,7 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.RateCard_Details"
         },
         "Class" : "M2",
-        "CompCode" : "CNA1",
+        "Company" : "CNA1",
         "PlantName" : "WS Beijing",
         "CostRate" : "180.020",
         "EmpGradeName" : "Group/Acct Manager",
@@ -168,7 +168,7 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.RateCard_Details"
         },
         "Class" : "S3",
-        "CompCode" : "CNA1",
+        "Company" : "CNA1",
         "PlantName" : "WS Beijing",
         "CostRate" : "110.160",
         "EmpGradeName" : "Consultant",
@@ -187,8 +187,9 @@
           "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('US01')",
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.RateCard_Details"
         },
-        "Class" : "E4",
-        "CompCode" : "US10",
+
+        "Class" : "S3",
+        "Company" : "US10",
         "PlantName" : "WS Minneapolis",
         "CostRate" : "130.350",
         "EmpGradeName" : "Exec Vice Pres",
@@ -208,7 +209,7 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.RateCard_Details"
         },
         "Class" : "S4",
-        "CompCode" : "US10",
+        "Company" : "US10",
         "PlantName" : "WS Minneapolis",
         "CostRate" : "33.490",
         "EmpGradeName" : "Sr Acct Exec",
@@ -228,7 +229,7 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.RateCard_Details"
         },
         "Class" : "E6",
-        "CompCode" : "US10",
+        "Company" : "US10",
         "PlantName" : "WS New York",
         "CostRate" : "308.650",
         "EmpGradeName" : "Chairman",
@@ -248,7 +249,7 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.RateCard_Details"
         },
         "Class" : "M2",
-        "CompCode" : "US19",
+        "Company" : "US19",
         "PlantName" : "WS New York",
         "CostRate" : "53.120",
         "EmpGradeName" : "Copywriter",

@@ -30,6 +30,8 @@ function get_data_feed(feed, query) {
   }
   return json;
 }
+
+
 (function ($) {
   $(function () {
     var path = window.location.pathname;
@@ -90,6 +92,7 @@ function get_data_feed(feed, query) {
 
     projectResourceTable.initProjectResourceTable();
 
+
     //modeling table highlight headers on radio click
     $('.modeling-table input[type="radio"]').activateElement();
     // $('button').activateElement();
@@ -109,11 +112,10 @@ function get_data_feed(feed, query) {
 
   $('.project-expence button[type="reset"], .project-resources button[type="reset"]').clearAll();
 
-  //print buttons
-  $('.fa-print').click(function(){
-    window.print();
-  });
-
+    //print buttons
+    $('.fa-print').click(function(){
+      window.print();
+    });
   });
 
 }( jQuery ));
