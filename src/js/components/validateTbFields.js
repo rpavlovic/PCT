@@ -23,7 +23,6 @@ function returnData(new_data, table) {
   //run error here.
   error();
 
-
   if(table === "#csv-table") {
     if(isNum) {
       var ovd_rate = $(new_data.element).html(),

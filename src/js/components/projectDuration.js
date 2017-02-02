@@ -38,11 +38,6 @@ var projectDuration = (function ($) {
     }
 
     function estimateEndDate() {
-      //get the value from duration field, if nothing there make a number 1.
-      if(duration <= 0) {
-        duration = 1;
-      }
-
       var daysToAdd = 0;
       if(plan_by === "Weekly") {
         daysToAdd = 7;
@@ -56,37 +51,51 @@ var projectDuration = (function ($) {
 
       return monthNames[lastday.getMonth()] + ' ' + lastday.getDate() + ', ' + lastday.getFullYear();
     }
+
     function daysInMonth(month, year) {
       return new Date(year, month, 0).getDate();
     }
 
     function choose_planBy() {
       $(form + " input[name='weekstart']").val(weekStarting());
-      var duration_input = estimate_end_date.val(estimateEndDate());
+
+      var estimate_end_date_val = function() {
+        return estimate_end_date.val(estimateEndDate());
+      };
+
       $(form + " select[name='planby'] option:selected").each(function() {
-        $(form + " input[name=\"duration\"]").val(' ');
+        //get the value from duration field, if nothing there make a number 1.
+        if(duration <= 0) {
+          duration = 1;
+        }
+        //remove error if data is selected from validateDuration.js
+        $(form + " input[name=\"duration\"]").removeClass('error');
+
         switch($(this).val()) {
           case 'Weekly':
             $(form + " input[name=\"duration\"]").val(duration == 1 ? duration + ' Week': duration + ' Weeks');
             //update the estimate end date  field.
-            duration_input;
+            estimate_end_date_val();
+
             break;
           case 'Monthly':
             $(form + " input[name=\"duration\"]").val(duration == 1 ? duration + ' Month': duration + ' Months');
             //update the estimate end date  field.
-            duration_input;
+            estimate_end_date_val();
+
             break;
           case 'Summary':
             $(form + " input[name=\"duration\"]").val(duration + ' Summary');
-            duration_input;
+            estimate_end_date_val();
             break;
           default:
             $(form + " input[name=\"duration\"]").val(duration == 1 ? duration + ' Week': duration + ' Weeks');
             //update the estimate end date  field.
-            duration_input;
-            break;
+            estimate_end_date_val();
 
+            break;
         } //end of switch
+
       });
     }
     choose_planBy();

@@ -30,7 +30,6 @@ function get_data_feed(feed, query) {
   }
   return json;
 }
-
 (function ($) {
   $(function () {
     var path = window.location.pathname;
@@ -47,11 +46,13 @@ function get_data_feed(feed, query) {
     showHide.initShowHide();
 
     //floating label in the input fields.
-    floatLabel.initfloatLabel();
+   // floatLabel.initfloatLabel();
 
-    addRemoveFields.initAddRemoveFields('.project-info');
+    addRemoveFields.initAddRemoveFields('form.project-info');
 
     progressNav.initProgressNav('#progress-navigation');
+
+    validateDurationPlanBy.initValidateDurationPlanBy();
 
     //calendars
     $( ".datepicker" ).datepicker({
@@ -59,8 +60,9 @@ function get_data_feed(feed, query) {
       "prevText":"",
       "dateFormat": "MM dd, yy",
       onSelect: function(dateText, instance) {
-        projectDuration.initProjectDuration('.project-info', instance, dateText);
+        projectDuration.initProjectDuration('form.project-info', instance, dateText);
         floatLabel.initfloatLabel();
+        validateDurationPlanBy.initValidateDurationPlanBy();
       }
     });
     // if($('form.login').length > 0) {
@@ -89,7 +91,7 @@ function get_data_feed(feed, query) {
     projectResourceTable.initProjectResourceTable();
 
     //modeling table highlight headers on radio click
-    $('.modeling-table input[type="radio"], button').activateElement();
+    $('.modeling-table input[type="radio"]').activateElement();
     // $('button').activateElement();
 
     var tables = {
@@ -103,6 +105,7 @@ function get_data_feed(feed, query) {
     });
 
     expenseTable.initExpenseTable();
+
 
   $('.project-expence button[type="reset"], .project-resources button[type="reset"]').clearAll();
 

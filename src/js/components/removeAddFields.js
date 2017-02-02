@@ -7,16 +7,17 @@ var addRemoveFields = (function ($) {
 
     function initAddRemoveFields(form) {
     var Form        = {};
-    Form.row        =  $(form + ' .deliverables .row');
+    Form.row        = $(form + ' .deliverables .row');
     Form.input      = $(form + ' .deliverables .row input');
     Form.removeBtn  = $(".fa-trash");
     Form.AddBtn     = $('.add-row');
 
     Form.row.on('click',  function(e) {
-      var target = $(e.target),
+      var target = e.target,
           $this = $(this),
           cloned_input = $this.prev().clone(true, true);
-      if(target.hasClass('fa-trash')) {
+      if($(target).hasClass('fa-trash')) {
+        console.log(target);
         if($(form + ' .deliverables .row').length > 2) {
           $this.detach();
         }
@@ -24,7 +25,7 @@ var addRemoveFields = (function ($) {
            Form.removeBtn.prop('disabled', true);
         }
       }
-      if(target.hasClass('add-row')) {
+      if($(target).hasClass('add-row')) {
         e.preventDefault();
         Form.removeBtn.prop('disabled', false);
         var clear_input = cloned_input.insertAfter($this.prev());
