@@ -14,7 +14,8 @@ var projectResourceTable = (function ($) {
     var Offices = [],
         Practice = [],
         Deliverable = [],
-        EmpTitle = [];
+        EmpTitle = [],
+        data1;
 
     var projResourceTable = table.DataTable({
       "searching": false,
@@ -102,7 +103,14 @@ var projectResourceTable = (function ($) {
         "title": 'Class',
         "data":" ",
         "class": "center",
-        "defaultContent": ''
+        "defaultContent": '',
+        "render": function(data) {
+          if(EmpTitle.length > 0) {
+            loadClass();
+          } else {
+            return data;
+          }
+        }
       },
       {
         "title": 'Practice',
@@ -241,13 +249,17 @@ var projectResourceTable = (function ($) {
       $('tfoot td').removeClass('center blue-bg rate-override num');
             //get card bill data from json and call function here.
       },
+      "drawCallback": function() {
+         getOffices();
+      },
       "initComplete": function (settings, json, row) {
         //get deliverables from json and call function here.
         getDeliverables();
 
+        data1= json;
 
         //get Offices
-        getOffices();
+       // getOffices();
 
         //get Job Title
         getJobTitle(json);
@@ -264,6 +276,7 @@ var projectResourceTable = (function ($) {
           $('select.title').on('change  click', function () {
             loadBillRate();
             loadClass();
+            costRate();
           });
         });
 
@@ -285,9 +298,9 @@ var projectResourceTable = (function ($) {
     function getOffices() {
       $.getJSON(get_data_feed(feeds.offices), function(offices) {
         offices.d.results.map(function (val, key) {
-           if($.inArray(val.OfficeName, Offices) === -1) {
-              Offices.push(val.OfficeName);
-              Offices.push('<option value="'+ val.Office +'" data-company="'+ val.Office +'">'+ val.OfficeName +'</option>');
+           if($.inArray(val.Office, Offices) === -1) {
+              //Offices.push(val.OfficeName);
+              Offices.push('<option value="'+ val.Office +'" data-company="'+ val.Office +'">'+ val.OfficeName + '-' + val.Office + '</option>');
               if (main_office === null) {
                 main_office = val.Office;
               }
@@ -309,26 +322,37 @@ var projectResourceTable = (function ($) {
         $('.deliverable').empty().append(Deliverable);
       });
     }
+
     function selectPerCompany() {
-      $("#project-resource-table select.office").each(function(key, val) {
-        $(this).on('change', function(){
+      $("#project-resource-table select.office").on('change', function(event) {
+         var OfficeID = $(this).val(),
+            titleNode = $(this).parent().next().children('.title');
+
+         $(this).parent().next().children('.title').empty();
+          getJobTitle(data1, OfficeID, titleNode);
         });
        // $(this).parents('tr').children('td:eq(4)').empty().append($("option:selected", this).data('company'));
-      });
     }
-    function getOfficeID() {
-      var OfficeID = $('#project-resource-table select.office').val();
-      return OfficeID;
-    }
+    // function getOfficeID() {
+    //   OfficeID = $('#project-resource-table select.office').val();
+    //   return OfficeID;
+    // }
     // Title
     //get deliverables from projectRelatedDeliverables json
-    function getJobTitle(data) {
+    function getJobTitle(data, OfficeID, titleNode) {
+      if(OfficeID) {
+         EmpTitle.length = 0;
+      }
+
       data.d.results.map(function(val) {
-       // if (getOfficeID() === val.Plant) {
-          EmpTitle.push('<option value="' + val.EmpGradeName + '" data-rate="'+ val.BillRate+ '" data-class="'+ val.Class + '" data-company="'+ val.Plant+'">' + val.EmpGradeName + '</option>');
-     //   }
+        if (OfficeID === val.Plant || !OfficeID) {
+          EmpTitle.push('<option value="' + val.EmpGradeName + '" data-rate="'+ val.BillRate+ '"  data-cost="'+ val.CostRate+ '" data-class="'+ val.Class + '" data-company="'+ val.Plant+'">' + val.EmpGradeName + '</option>');
+        }
       });
-      $('.title').empty().append(EmpTitle);
+
+      if(titleNode){
+         titleNode.empty().append(EmpTitle);
+      }
       loadBillRate();
       loadClass();
     }
@@ -357,6 +381,12 @@ var projectResourceTable = (function ($) {
       });
     }
 
+    function costRate() {
+     $('select.title').each(function(key, val) {
+       // $(this).parents('tr').children('td:eq(11)').empty().append($("option:selected", this).data('cost'));
+      });
+    }
+
     //add row
     function addRow() {
       $('.project-resources').on('click', '#add-row', function(e) {
@@ -376,8 +406,8 @@ var projectResourceTable = (function ($) {
         projResourceTable.row().invalidate('dom').draw();
       });
     }
-
     addRow();
+
     //remove row
     table.on( 'click', '.remove', function (e) {
       e.preventDefault();

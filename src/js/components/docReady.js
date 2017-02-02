@@ -31,7 +31,6 @@ function get_data_feed(feed, query) {
   return json;
 }
 
-
 (function ($) {
   $(function () {
     var path = window.location.pathname;
@@ -109,8 +108,7 @@ function get_data_feed(feed, query) {
 
     expenseTable.initExpenseTable();
 
-
-  $('.project-expence button[type="reset"], .project-resources button[type="reset"]').clearAll();
+    $('.project-expence button[type="reset"], .project-resources button[type="reset"]').clearAll();
 
     //print buttons
     $('.fa-print').click(function(){
