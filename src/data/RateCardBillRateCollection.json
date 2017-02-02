@@ -187,7 +187,7 @@
           "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('US01')",
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.RateCard_Details"
         },
-        "Class" : "S3",
+        "Class" : "E4",
         "CompCode" : "US10",
         "PlantName" : "WS Minneapolis",
         "CostRate" : "130.350",
