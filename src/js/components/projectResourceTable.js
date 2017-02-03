@@ -244,9 +244,18 @@ var projectResourceTable = (function ($) {
           .addClass("contenteditable");
       },
       "createdRow": function ( row, data, index ) {
-      $('tfoot td').removeClass('center blue-bg rate-override num');
+        $('tfoot td').removeClass('center blue-bg rate-override num');
       },
       "drawCallback": function() {
+        //get title, Practice per Company Code.
+        selectPerCompany();
+
+        //on selecting title show corresponding bill rate.
+        $('select.title').on('change  click', function () {
+          loadBillRate();
+          loadClass();
+          costRate();
+        });
       },
       "initComplete": function (settings, json, row) {
         //get deliverables from json and call function here.
@@ -262,18 +271,6 @@ var projectResourceTable = (function ($) {
 
         //get Practice
         getPractice(loadData);
-
-        //get title, Practice per Company Code.
-        selectPerCompany();
-
-        this.api().on( 'draw', function () {
-          //on selecting title show corresponding bill rate.
-          $('select.title').on('change  click', function () {
-            loadBillRate();
-            loadClass();
-            costRate();
-          });
-        });
 
         //to show a row with indexes.
         projResourceTable.on('order.dt', function () {
@@ -312,6 +309,18 @@ var projectResourceTable = (function ($) {
         $('.deliverable').empty().append(Deliverable);
       });
     }
+
+    function selectPerCompany() {
+      $("#project-resource-table select.office").on('change', function(event) {
+         var OfficeID = $(this).val(),
+            titleNode = $(this).parent().next().children('.title');
+
+        titleNode.empty();
+         console.log(titleNode)
+          getJobTitle(loadData, OfficeID, titleNode);
+        });
+    }
+
     // Title
     //get deliverables from projectRelatedDeliverables json
     function getJobTitle(data, OfficeID, titleNode) {
@@ -332,17 +341,6 @@ var projectResourceTable = (function ($) {
       loadBillRate();
       loadClass();
     }
-
-    function selectPerCompany() {
-      $("#project-resource-table select.office").on('change', function(event) {
-         var OfficeID = $(this).val(),
-            titleNode = $(this).parent().next().children('.title');
-
-         $(this).parent().next().children('.title').empty();
-          getJobTitle(loadData, OfficeID, titleNode);
-        });
-    }
-
     //get deliverables from projectRelatedDeliverables json
     function getPractice(data) {
         data.d.results.map(function(val) {
