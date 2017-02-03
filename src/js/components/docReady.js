@@ -21,7 +21,7 @@ var feeds = {
 function get_data_feed(feed, query) {
   var json = null;
   if ($.isArray(feed)) {
-    if (location.href.indexOf('localhost') != -1) {
+    if (location.href.indexOf('localhost') != -1 || location.href.indexOf('10.211.55.2') != -1) {
       json = feed[0];
     }
     else {
@@ -30,7 +30,6 @@ function get_data_feed(feed, query) {
   }
   return json;
 }
-
 
 (function ($) {
   $(function () {
@@ -109,8 +108,7 @@ function get_data_feed(feed, query) {
 
     expenseTable.initExpenseTable();
 
-
-  $('.project-expence button[type="reset"], .project-resources button[type="reset"]').clearAll();
+    $('.project-expence button[type="reset"], .project-resources button[type="reset"]').clearAll();
 
     //print buttons
     $('.fa-print').click(function(){

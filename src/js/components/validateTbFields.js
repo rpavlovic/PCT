@@ -4,18 +4,17 @@
 * @version
 */
 function returnData(new_data, table) {
-
   var isNum = false;
-  if( $(new_data.element).hasClass('num') &&
+  if( $(new_data.element).parent().hasClass('num') &&
       $(new_data.element).html() != isNaN &&
       $.isNumeric($(new_data.element).html()) &&
       $(new_data.element).html() ) {
-    $(new_data.element).removeClass('error');
-    isNum = true;
+        $(new_data.element).removeClass('error');
+        isNum = true;
   }
 
   var error = function() {
-    if( $(new_data.element).hasClass('num') && !isNum ) {
+    if( $(new_data.element).parent().hasClass('num') && !isNum ) {
       $(new_data.element).html('this field accepts numbers only.').addClass('error');
     }
     return true;
@@ -26,11 +25,11 @@ function returnData(new_data, table) {
   if(table === "#csv-table") {
     if(isNum) {
       var ovd_rate = $(new_data.element).html(),
-          st_rate = $(new_data.element).prevAll().eq(1).html().replace(/\D/g, ''),
+          st_rate = $(new_data.element).parent().prevAll('.rate').html().replace(/\D/g, ''),
           minus = st_rate - ovd_rate,
           percent = ( (st_rate - ovd_rate) / st_rate) * 100;
       if(st_rate.length > 0) {
-        $(new_data.element).next('td.discount').html(percent.toFixed(2)+ "%");
+        $(new_data.element).parent().next('td.discount').html(percent.toFixed(2)+ "%");
       }
     }
   }

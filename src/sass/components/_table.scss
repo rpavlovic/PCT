@@ -111,10 +111,17 @@ table {
     td {
       &.contenteditable {
         background-color: #f2f2f2;
-        &:focus {
-          outline-color: $red-alert;
-          outline-width: 1px;
-          background-color: $white;
+        position: relative;
+        div {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+        }
+        div:focus {
+          background-color: #e8f1f8;
+          outline: solid 1px #3498db;
         }
       }
       input,
@@ -136,6 +143,9 @@ table {
       &.low-value {
         color: $red-alert;
         background-color: lighten($red-alert, 40%);
+      }
+      * {
+        font-family: "EYLight";
       }
     }
   }

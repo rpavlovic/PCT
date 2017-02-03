@@ -58,13 +58,17 @@ var loadCustomBillSheet = (function ($) {
             { title: titles[1] },
             { title: titles[2] },
             { title: titles[3] },
-            { title: titles[4] },
+            { title: titles[4],
+              render : function(data, type, row) {
+                return "<div contenteditable />" ;
+              }
+            },
             { title: titles[5] }
           ],
            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
               $(nRow).removeClass('odd even');
-              $("td:nth-child(n+3):not(:last-child)", nRow)
-              .prop('contenteditable', true)
+              $("td:nth-child(n+5):not(:last-child)", nRow)
+              // .prop('contenteditable', true)
               .addClass("contenteditable");
               $("td:nth-child(3)", nRow).addClass('rate num');
               $("td:nth-child(6)", nRow).addClass('discount num');

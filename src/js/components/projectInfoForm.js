@@ -44,8 +44,9 @@ var projectInfoForm = (function ($) {
     $.each(data1.d.results, function(key, val) {
       for (key in val) {
         //create office name options.
-        if(key === "OfficeName") {
-          items_business.push('<option value="' + val[key] + '">' + val[key] + '</option>');
+        if(key === "Office") {
+          console.log(val[key], val.OfficeName);
+          items_business.push('<option value="' + val[key] + '">' + val.OfficeName + '-' + val.City + ' / ' +val[key]+ '</option>');
         }
         //create country options.
         if(key == "Country") {
@@ -72,7 +73,7 @@ var projectInfoForm = (function ($) {
     $.each(data2.d.results, function(key, val) {
       for (key in val) {
         //select the office for the employee that matches
-        if(key === "OfficeName") {
+        if(key === "Office") {
           matchOptions(val[key], select_billing_office[0]);
         }
         //select the region for the employee that matches
