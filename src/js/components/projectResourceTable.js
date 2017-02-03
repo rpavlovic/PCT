@@ -11,9 +11,7 @@ var projectResourceTable = (function ($) {
     var table = $('#project-resource-table');
 
     var Offices = [],
-        Practice = [],
         Deliverable = [],
-        EmpTitle = [],
         loadData;
     var projResourceTable = table.DataTable({
       "searching": false,
@@ -87,16 +85,7 @@ var projectResourceTable = (function ($) {
         "defaultContent": '',
         "class": 'td-title',
         "render": function (data, type, set) {
-          if(EmpTitle.length > 0) {
-           var select = "<select class='title'>";
-           $.each(EmpTitle, function(key, val) {
-            select += val;
-           });
-           select += "</select>";
-           return select;
-          } else {
-            return "<select class='title'/>";
-          }
+          return "<select class='title'/>";
         }
       },
       {
@@ -104,11 +93,12 @@ var projectResourceTable = (function ($) {
         "data":" ",
         "class": "center td-class",
         "defaultContent": '',
-        "render": function(data) {
-          if(EmpTitle.length > 0) {
-            loadClass();
-          } else {
-           // return data;
+        render : function(data, type, row) {
+          if(data) {
+            return "<div contenteditable />" + data + "</div>";
+          }
+           else {
+            return "<div contenteditable />";
           }
         }
       },
@@ -118,45 +108,38 @@ var projectResourceTable = (function ($) {
         "defaultContent": '',
         "class":"td-practice",
         "render": function () {
-          if(Practice.length > 0) {
-           var select = "<select class='practice'>";
-           $.each(Practice, function(key, val){
-            select += val;
-           });
-           select += "</select>";
-           return select;
-          } else {
-            return "<select class='practice'/>";
-          }
+          return "<select class='practice'/>";
         }
       },
       {
         "title": 'Role',
         "data":" ",
-        "defaultContent": ''
+        "defaultContent": '',
+        render : function(data, type, row) {
+          return "<div contenteditable />" ;
+        }
       },
       {
         "title": 'Proposed <br/> Resource',
         "data":" ",
-        "defaultContent": ''
+        "defaultContent": '',
+        render : function(data, type, row) {
+          return "<div contenteditable />" ;
+        }
       },
       {
         "title": 'Bill Rate',
         "defaultContent": '',
         "data": "BillRate",
         "class": "td-billrate",
-        "render": function (data) {
-          if(EmpTitle.length > 0) {
-            loadBillRate();
-          } else {
-           // return data;
-          }
-        }
       },
       {
         "title": 'Bill Rate <br/> Override',
         "defaultContent": '',
-        "sClass": "rate-override num"
+        "sClass": "rate-override num",
+        render : function(data, type, row) {
+          return "<div contenteditable />" ;
+        }
       },
       {
         "title" : "Cost Bill Rate",
@@ -180,76 +163,109 @@ var projectResourceTable = (function ($) {
       {
         "title": 'JAN <br/> 16',
         "data":" ",
-        "defaultContent": ''
+        "defaultContent": '',
+        render : function(data, type, row) {
+          return "<div contenteditable />" ;
+        }
       },
       {
         "title": 'FEB <br/> 16',
         "data":" ",
-        "defaultContent": ''
+        "defaultContent": '',
+        render : function(data, type, row) {
+          return "<div contenteditable />" ;
+        }
       },
       {
         "title": 'MAR <br/> 16',
         "data":" ",
-        "defaultContent": ''
+        "defaultContent": '',
+        render : function(data, type, row) {
+          return "<div contenteditable />" ;
+        }
       },
       {
         "title": 'APR <br/> 16',
         "data":" ",
-        "defaultContent": ''
+        "defaultContent": '',
+        render : function(data, type, row) {
+          return "<div contenteditable />" ;
+        }
       },
       {
         "title": 'MAY <br/> 16',
         "data":" ",
-        "defaultContent": ''
+        "defaultContent": '',
+        render : function(data, type, row) {
+          return "<div contenteditable />" ;
+        }
       },
       {
         "title": 'JUN <br/> 16',
         "data":" ",
-        "defaultContent": ''
+        "defaultContent": '',
+        render : function(data, type, row) {
+          return "<div contenteditable />" ;
+        }
       },
       {
         "title": 'JUL <br/> 16',
         "data":" ",
-        "defaultContent": ''
+        "defaultContent": '',
+        render : function(data, type, row) {
+          return "<div contenteditable />" ;
+        }
       },
       {
         "title": 'AUG <br/> 16',
         "data":" ",
-        "defaultContent": ''
+        "defaultContent": '',
+        render : function(data, type, row) {
+          return "<div contenteditable />" ;
+        }
       },
       {
         "title": 'SEP <br/> 16',
         "data":" ",
-        "defaultContent": ''
+        "defaultContent": '',
+        render : function(data, type, row) {
+          return "<div contenteditable />" ;
+        }
       },
       {
         "title": 'OCT <br/> 16',
         "data":" ",
-        "defaultContent": ''
+        "defaultContent": '',
+        render : function(data, type, row) {
+          return "<div contenteditable />" ;
+        }
       },
       {
         "title": 'NOV <br/> 16',
         "data":" ",
-        "defaultContent": ''
+        "defaultContent": '',
+        render : function(data, type, row) {
+          return "<div contenteditable />" ;
+        }
       },
       {
         "title": 'DEC <br/> 16',
         "data":" ",
-        "defaultContent": ''
+        "defaultContent": '',
+        render : function(data, type, row) {
+          return "<div contenteditable />" ;
+        }
       }],
       "bFilter": false,
       "select": true,
       "rowCallback": function (row, json) {
         $(row).removeClass('odd even');
         $("td:nth-child(n+6):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", row)
-          .prop('contenteditable', true)
+          // .prop('contenteditable', true)
           .addClass("contenteditable");
-
-          console.log($(row).children('.emp-grade-name'));
       },
       "createdRow": function ( row, data, index ) {
         $('tfoot td').removeClass('center blue-bg rate-override num');
-
       },
       "drawCallback": function() {
          //get title, Practice per Company Code.
@@ -267,15 +283,21 @@ var projectResourceTable = (function ($) {
         getDeliverables();
 
         loadData = json;
+        var OfficeID;
+         loadData.d.results.map(function(val) {
+          OfficeID = OfficeID ? OfficeID : val.Office;
+        });
 
-        //get Offices
-        getOffices();
+         //get Offices
+         getOffices();
 
-        //get Job Title
-        getJobTitle(loadData);
-
-        //get Practice
-        getPractice(loadData);
+          projResourceTable.column(4).nodes().each( function (cell, i) {
+            getJobTitle(loadData, OfficeID, $(cell).children());
+          });
+          // get Practice
+          projResourceTable.column(6).nodes().each( function (cell, i) {
+             getPractice(loadData, OfficeID, $(cell).children());
+          });
 
         //to show a row with indexes.
         projResourceTable.on('order.dt', function () {
@@ -333,11 +355,9 @@ var projectResourceTable = (function ($) {
     // Title
     //get deliverables from projectRelatedDeliverables json
     function getJobTitle(data, OfficeID, titleNode) {
-      if(OfficeID) {
-        EmpTitle.length = 0;
-      }
+      var EmpTitle = [];
       data.d.results.map(function(val) {
-        if (OfficeID === val.Office || !OfficeID) {
+        if (OfficeID === val.Office) {
           EmpTitle.push('<option value="' + val.EmpGradeName + '" ' +
                   'data-rate="'+ val.BillRate+ '" data-cost="'+ val.CostRate + '" ' +
                   'data-class="'+ val.Class + '" data-company="'+ val.Office +'"' +
@@ -354,11 +374,9 @@ var projectResourceTable = (function ($) {
     }
     //get deliverables from projectRelatedDeliverables json
     function getPractice(data, OfficeID, practiceNode) {
-      if(OfficeID) {
-        Practice.length = 0;
-      }
+        var Practice = [];
         data.d.results.map(function(val) {
-          if (OfficeID === val.Office || !OfficeID) {
+          if (OfficeID === val.Office) {
             Practice.push('<option value="'+ val.CostCenterName+ '" ' +
                     'data-company="'+ val.Office+'">' +
                     val.CostCenterName+'</option>');
@@ -401,7 +419,7 @@ var projectResourceTable = (function ($) {
 
     function loadClass() {
      $('select.title').each(function() {
-       $(this).parent().siblings('td:eq(4)').empty().append($("option:selected", this).data('class'));
+       $(this).parent().siblings('.td-class').find('div').empty().append($("option:selected", this).data('class'));
       });
     }
 
@@ -418,9 +436,9 @@ var projectResourceTable = (function ($) {
       $('.project-resources').on('click', '#add-row', function(e) {
         e.preventDefault();
         projResourceTable.row.add( {
-          "EmpGradeName":  EmpTitle,
+          "EmpGradeName": [],
           "Office": Offices,
-          "CostCenterName": Practice,
+          "CostCenterName": [],
           "Deliverable": Deliverable
         } ).draw(false).node();
         projResourceTable.rows().nodes().to$().last().addClass('new-row').delay(2000).queue(function(){

@@ -21,7 +21,7 @@ var feeds = {
 function get_data_feed(feed, query) {
   var json = null;
   if ($.isArray(feed)) {
-    if (location.href.indexOf('localhost') != -1) {
+    if (location.href.indexOf('localhost') != -1 || location.href.indexOf('10.211.55.2') != -1) {
       json = feed[0];
     }
     else {
