@@ -10,7 +10,7 @@ var projectDuration = (function ($) {
     var estimate_end_date = $(form + " input[name=\"enddate\"]"),
         plan_by = $(form + " select[name='planby'] option:selected").val(),
         estimated_start_date = new Date(dataText),
-        duration = $(form + " input[name=\"duration\"]").val().replace(/\D/g, ''),
+        duration = $(form + " input[name=\"Duration\"]").val().replace(/\D/g, ''),
         selected_month = estimated_start_date.getMonth(),
         selected_day = estimated_start_date.getDate(),
         selected_year = estimated_start_date.getFullYear(),
@@ -69,27 +69,27 @@ var projectDuration = (function ($) {
           duration = 1;
         }
         //remove error if data is selected from validateDuration.js
-        $(form + " input[name=\"duration\"]").removeClass('error');
+        $(form + " input[name=\"Duration\"]").removeClass('error');
 
         switch($(this).val()) {
           case 'Weekly':
-            $(form + " input[name=\"duration\"]").val(duration == 1 ? duration + ' Week': duration + ' Weeks');
+            $(form + " input[name=\"Duration\"]").val(duration == 1 ? duration + ' Week': duration + ' Weeks');
             //update the estimate end date  field.
             estimate_end_date_val();
 
             break;
           case 'Monthly':
-            $(form + " input[name=\"duration\"]").val(duration == 1 ? duration + ' Month': duration + ' Months');
+            $(form + " input[name=\"Duration\"]").val(duration == 1 ? duration + ' Month': duration + ' Months');
             //update the estimate end date  field.
             estimate_end_date_val();
 
             break;
           case 'Summary':
-            $(form + " input[name=\"duration\"]").val(duration + ' Summary');
+            $(form + " input[name=\"Duration\"]").val(duration + ' Summary');
             estimate_end_date_val();
             break;
           default:
-            $(form + " input[name=\"duration\"]").val(duration == 1 ? duration + ' Week': duration + ' Weeks');
+            $(form + " input[name=\"Duration\"]").val(duration == 1 ? duration + ' Week': duration + ' Weeks');
             //update the estimate end date  field.
             estimate_end_date_val();
 

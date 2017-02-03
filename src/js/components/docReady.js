@@ -100,6 +100,7 @@ function get_data_feed(feed, query) {
       'customerBillTbl': '#csv-table',
       'resourceProjectTbl': '#project-resource-table',
       'expenseTbl' : '#project-expense-table',
+      'modelingTable': '#modeling-table'
     };
     //get the value of table cells for validation and calculations.
     $.each(tables, function(index, el) {
