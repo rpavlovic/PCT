@@ -56,4 +56,5 @@ function returnData(new_data, table) {
       $(active_modeling_tabs[1]).children('input').prop('checked', true);
     }
   }
+
 }
