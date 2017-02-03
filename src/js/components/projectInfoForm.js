@@ -23,12 +23,12 @@ var projectInfoForm = (function ($) {
         'USD'
       ],
   items_region = [],
-  select_billing_office = $("form.project-info select[name='billing']"),
-  select_currency = $("form.project-info select[name='currency']"),
-  select_region = $("form.project-info select[name='regions']"),
-  select_country = $("form.project-info select[name='country']"),
-  input_duration = $("input[name=\"duration\"]"),
-  plan_units = $("input[name=\"punits\"]"),
+  select_billing_office = $("form.project-info select[name='Office']"),
+  select_currency = $("form.project-info select[name='Currency']"),
+  select_region = $("form.project-info select[name='Region']"),
+  select_country = $("form.project-info select[name='Country']"),
+  input_duration = $("input[name='Duration']"),
+  plan_units = $("input[name='PlanUnits']"),
   selected = false;
 
   items_currency.map( function(value, key) {
@@ -36,7 +36,7 @@ var projectInfoForm = (function ($) {
   });
 
   if(getParameterByName('projName')) {
-    $('form.project-info input[name="projectname"]').val( getParameterByName('projName') );
+    $('form.project-info input[name="Projname"]').val( getParameterByName('projName') );
   }
 
   //prepopulate Billing office select with JSON data.
@@ -100,7 +100,7 @@ var projectInfoForm = (function ($) {
     data3.d.results.map(function(value) {
       if(value.Projid == getParameterByName('projID')) {
         $('textarea').val(value.Comments);
-        $('form.project-info input[name="preparedby"]').val(value.Preparedby);
+        $('form.project-info input[name="Preparedby"]').val(value.Preparedby);
         input_duration.val(value.Duration);
         plan_units.val(value.Comptyp);
       }
