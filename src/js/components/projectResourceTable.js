@@ -15,7 +15,6 @@ var projectResourceTable = (function ($) {
         Deliverable = [],
         EmpTitle = [],
         loadData;
-
     var projResourceTable = table.DataTable({
       "searching": false,
       "ajax" : {
@@ -68,6 +67,7 @@ var projectResourceTable = (function ($) {
         "title": 'Office',
         "data": "Offices",
         "defaultContent": '',
+        "class": "td-office",
         "render": function () {
           if(Offices.length > 0) {
            var select = "<select class='office'>";
@@ -85,6 +85,7 @@ var projectResourceTable = (function ($) {
         "title": 'Title',
         "data": "EmpGradeName",
         "defaultContent": '',
+        "class": 'td-title',
         "render": function (data, type, set) {
           if(EmpTitle.length > 0) {
            var select = "<select class='title'>";
@@ -101,7 +102,7 @@ var projectResourceTable = (function ($) {
       {
         "title": 'Class',
         "data":" ",
-        "class": "center",
+        "class": "center td-class",
         "defaultContent": '',
         "render": function(data) {
           if(EmpTitle.length > 0) {
@@ -115,6 +116,7 @@ var projectResourceTable = (function ($) {
         "title": 'Practice',
         "data": "CostCenterName",
         "defaultContent": '',
+        "class":"td-practice",
         "render": function () {
           if(Practice.length > 0) {
            var select = "<select class='practice'>";
@@ -142,6 +144,7 @@ var projectResourceTable = (function ($) {
         "title": 'Bill Rate',
         "defaultContent": '',
         "data": "BillRate",
+        "class": "td-billrate",
         "render": function (data) {
           if(EmpTitle.length > 0) {
             loadBillRate();
@@ -241,19 +244,23 @@ var projectResourceTable = (function ($) {
         $("td:nth-child(n+6):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", row)
           .prop('contenteditable', true)
           .addClass("contenteditable");
+
+          console.log($(row).children('.emp-grade-name'));
       },
       "createdRow": function ( row, data, index ) {
         $('tfoot td').removeClass('center blue-bg rate-override num');
+
       },
       "drawCallback": function() {
+         //get title, Practice per Company Code.
+        selectPerCompany();
         //on selecting title show corresponding bill rate.
         $('select.title').on('change', function () {
           loadBillRate();
           loadClass();
           costRate();
         });
-        //get title, Practice per Company Code.
-        selectPerCompany();
+
       },
       "initComplete": function (settings, json, row) {
         //get deliverables from json and call function here.
@@ -312,8 +319,8 @@ var projectResourceTable = (function ($) {
       $("#project-resource-table select.office").on('change', function(event) {
          var OfficeID = $(this).val(),
             titleNode = $(this).parent().next().children('.title'),
-            practiceNode = $(this).parent().siblings('td:eq(5)').find('.practice'),
-            billRateNode = $(this).parent().siblings('td:eq(8)');
+            practiceNode = $(this).parent().siblings('.td-practice').find('.practice'),
+            billRateNode = $(this).parent().siblings('.td-billrate');
 
           titleNode.empty();
           practiceNode.empty();
@@ -330,10 +337,10 @@ var projectResourceTable = (function ($) {
         EmpTitle.length = 0;
       }
       data.d.results.map(function(val) {
-        if (OfficeID === val.Plant || !OfficeID) {
+        if (OfficeID === val.Office || !OfficeID) {
           EmpTitle.push('<option value="' + val.EmpGradeName + '" ' +
                   'data-rate="'+ val.BillRate+ '" data-cost="'+ val.CostRate + '" ' +
-                  'data-class="'+ val.Class + '" data-company="'+ val.Plant +'"' +
+                  'data-class="'+ val.Class + '" data-company="'+ val.Office +'"' +
                   'data-currency="' + val.LocalCurrency + '">' + val.EmpGradeName + '</option>');
         }
       });
@@ -351,9 +358,9 @@ var projectResourceTable = (function ($) {
         Practice.length = 0;
       }
         data.d.results.map(function(val) {
-          if (OfficeID === val.Plant || !OfficeID) {
+          if (OfficeID === val.Office || !OfficeID) {
             Practice.push('<option value="'+ val.CostCenterName+ '" ' +
-                    'data-company="'+ val.Plant+'">' +
+                    'data-company="'+ val.Office+'">' +
                     val.CostCenterName+'</option>');
           }
         });
@@ -365,30 +372,30 @@ var projectResourceTable = (function ($) {
 
     function loadBillRate() {
      $('select.title').each(function() {
-       if($("option:selected", this).data('currency') ) {
-         var currency;
-         var tems_currency = {
-             'AUD':'$',
-             'CAD':'$',
-             'CHF':'CHF',
-             'CNY':'¥',
-             'EUR':'€',
-             'GBP':'£',
-             'HKD':'$',
-             'JPY':'¥',
-             'MYR':'RM',
-             'NZD':'$',
-             'SGD':'$',
-             'USD': "$"
+        var currency;
+        if($("option:selected", this).data('currency') ) {
+
+        var tems_currency = {
+         'AUD':'$',
+         'CAD':'$',
+         'CHF':'CHF',
+         'CNY':'¥',
+         'EUR':'€',
+         'GBP':'£',
+         'HKD':'$',
+         'JPY':'¥',
+         'MYR':'RM',
+         'NZD':'$',
+         'SGD':'$',
+         'USD':'$'
          };
          for (var key in tems_currency) {
-           console.log($('select.title option:selected').data('currency'))
            if($('select.title option:selected').data('currency') === key) {
              currency = tems_currency[key];
            }
          }
        }
-       $(this).parent().siblings('td:eq(8)').empty().append(currency + $("option:selected", this).data('rate'));
+       $(this).parent().siblings('.td-billrate').empty().append(currency + $("option:selected", this).data('rate'));
       });
     }
 
