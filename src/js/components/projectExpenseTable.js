@@ -23,6 +23,7 @@ var expenseTable = (function ($) {
       "length": false,
       "bFilter": false,
       "select": true,
+      "ordering" : false,
       "columnDefs": [ {
         "orderable": false,
         "targets": [ 0, 1 ],
@@ -51,24 +52,35 @@ var expenseTable = (function ($) {
         },
         {
           "title": "Category",
-          "data": "Category",
-          "defaultContent": ''
+          "data": "",
+          "defaultContent": '',
+          "render": function(data) {
+            return "<div contenteditable />" ;
+          }
         },
         {
           "title": "Description",
-          "data": "Description",
-          "defaultContent": ''
+          "data": "",
+          "defaultContent": '',
+          "render": function(data) {
+            return "<div contenteditable />" ;
+          }
         },
         {
           "title": "Amount",
-          "data": "Amount",
-          "defaultContent": ''
+          "data": "",
+          "defaultContent": '',
+          "render": function(data) {
+            return "<div contenteditable />" ;
+          }
         },
       ],
       "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
         $(nRow).removeClass('odd even');
         $("td:last-child", nRow).addClass('amount num');
-        $("td:nth-child(n+4)", nRow).prop('contenteditable', true).addClass("contenteditable");
+        $("td:nth-child(n+4)", nRow)
+        // .prop('contenteditable', true)
+        .addClass("contenteditable");
       },
       // TODO working on grouping the rows
       "fnInitComplete": function (nRow, data) {
@@ -104,6 +116,6 @@ var expenseTable = (function ($) {
   }
   return {
     initExpenseTable:initExpenseTable
-  }
+  };
 
 })($);

@@ -50,14 +50,14 @@ var projectResourceTable = (function ($) {
         "defaultContent": '',
         "render": function () {
           if(Deliverable.length > 0) {
-           var select = "<select class='deliverable'>";
+           var select = "<select class='deliverable' name='DelvDesc' >";
            $.each(Deliverable, function(key, val){
             select += val;
            });
            select += "</select>";
            return select;
           } else {
-            return "<select class='deliverable'/>";
+            return "<select class='deliverable' name='DelvDesc'/>";
           }
         }
       },
@@ -68,14 +68,14 @@ var projectResourceTable = (function ($) {
         "class": "td-office",
         "render": function () {
           if(Offices.length > 0) {
-           var select = "<select class='office'>";
+           var select = "<select class='office' name='Office'>";
            $.each(Offices, function(key, val){
             select += val;
            });
            select += "</select>";
            return select;
           } else {
-            return "<select class='office'/>";
+            return "<select class='office' name='Office' />";
           }
         }
       },
@@ -85,7 +85,7 @@ var projectResourceTable = (function ($) {
         "defaultContent": '',
         "class": 'td-title',
         "render": function (data, type, set) {
-          return "<select class='title'/>";
+          return "<select class='title' name='EmpGradeName' />";
         }
       },
       {
@@ -108,7 +108,7 @@ var projectResourceTable = (function ($) {
         "defaultContent": '',
         "class":"td-practice",
         "render": function () {
-          return "<select class='practice'/>";
+          return "<select class='practice' name='CostCenterName' />";
         }
       },
       {
@@ -359,8 +359,7 @@ var projectResourceTable = (function ($) {
       data.d.results.map(function(val) {
         if (OfficeID === val.Office) {
           EmpTitle.push('<option value="' + val.EmpGradeName + '" ' +
-                  'data-rate="'+ val.BillRate+ '" data-cost="'+ val.CostRate + '" ' +
-                  'data-class="'+ val.Class + '" data-company="'+ val.Office +'"' +
+                  'data-rate="'+ val.BillRate + '" data-class="'+ val.Class + '" data-company="'+ val.Office +'"' +
                   'data-currency="' + val.LocalCurrency + '">' + val.EmpGradeName + '</option>');
         }
       });
