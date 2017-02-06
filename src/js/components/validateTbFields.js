@@ -14,7 +14,7 @@ function returnData(new_data, table) {
   }
 
   var error = function() {
-    if( $(new_data.element).parent().hasClass('num') && !isNum ) {
+    if( $(new_data.element).parent().hasClass('num') && !isNum &&  $(new_data.element).html()  ) {
       $(new_data.element).html('this field accepts numbers only.').addClass('error');
     }
     return true;
@@ -42,7 +42,7 @@ function returnData(new_data, table) {
         return RateOverride.push($(this).text());
       }
     });
-    var active_modeling_tabs = $('.modeling-table tr td');
+    var active_modeling_tabs = $('#modeling-table tr td');
     active_modeling_tabs.removeClass('active');
     active_modeling_tabs.children('input').prop('checked', false);
 

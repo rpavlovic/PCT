@@ -93,7 +93,7 @@ function get_data_feed(feed, query) {
 
 
     //modeling table highlight headers on radio click
-    $('.modeling-table input[type="radio"]').activateElement();
+    $('#modeling-table input[type="radio"]').activateElement();
     // $('button').activateElement();
 
     var tables = {
