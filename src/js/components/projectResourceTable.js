@@ -317,7 +317,7 @@ var projectResourceTable = (function ($) {
       $.getJSON(get_data_feed(feeds.offices), function(offices) {
         offices.d.results.map(function (val, key) {
            if($.inArray(val.Office, Offices) === -1) {
-              Offices.push('<option value="' + val.Office + '">'+ val.OfficeName + '-' + val.Office + '</option>');
+              Offices.push('<option value="' + val.Office + '">'+ val.OfficeName + ', ' + val.City + '</option>');
            }
         });
         $('.office').empty().append(Offices);
