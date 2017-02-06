@@ -34,18 +34,9 @@ var projectResourceTable = (function ($) {
       var off = values[1];
       var rcs = values[2];
 
-      var myRows = [];
       // add a blank
       off.unshift({});
-      myRows.push({
-        deliver: de,
-        office: off,
-        rateCards: rcs
-      });
 
-
-      //console.log(myRows);
-      //myRows = Object.values(myRows);
       var projResourceTable = $('#project-resource-table').DataTable({
         "searching": false,
         //  "data": myRows,
@@ -299,35 +290,6 @@ var projectResourceTable = (function ($) {
         },
         "bDestroy": true
       });
-
-
-      // $('#project-resource-table tbody').on( 'click', 'td', function () {
-      //     var cell_clicked    = projResourceTable.cell(this).data();
-      //     var row_clicked     = $(this).closest('tr');
-      //     var row_object      = projResourceTable.row(row_clicked).data();
-      //
-      //     console.log(projResourceTable.cell(this));
-      //
-      //     console.log(cell_clicked);
-      //     console.log(row_clicked);
-      //     console.log(row_object);
-      // } );
-
-      // $('#project-resource-table tbody').on('click', 'tr', function () {
-      //     var index = projResourceTable.row(this).index();
-      //     var column = projResourceTable.row(this).column();
-      //     var data = projResourceTable.row(this).data();
-      //     console.log("row"+ index +", " + column + " clicked");
-      //    // alert('You clicked on ' + data[0] + '\'s row' + myro);
-      // });
-      //
-      // $('#project-resource-table tbody').on('change', 'select.office', function () {
-      //     var index = projResourceTable.row(this).index();
-      //     var column = projResourceTable.row(this).column();
-      //     var data = projResourceTable.row(this).data();
-      //     console.log("office changed !!");
-      //     alert('You clicked on ' + data[0] + '\'s row' + index);
-      // });
 
       $('.project-resources').on('click', '#add-row', function (e) {
         e.preventDefault();
