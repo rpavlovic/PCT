@@ -18,7 +18,7 @@ var captureEditTd = (function ($) {
           nl = event.which == 13,
           tab = event.which == 9,
           el = event.target,
-          input = el.nodeName != 'INPUT' && el.nodeName != 'TEXTAREA' && el.nodeName != 'SELECT' && el.children.length === 0,
+          input = el.nodeName != 'INPUT' && el.nodeName != 'TEXTAREA' && el.nodeName != 'SELECT',
           data = {};
       if (input) {
          data = {

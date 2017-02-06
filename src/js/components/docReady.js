@@ -48,8 +48,9 @@ function get_data_feed(feed, query) {
 
     //floating label in the input fields.
    // floatLabel.initfloatLabel();
-
+   if($('form.project-info').length > 0) {
     addRemoveFields.initAddRemoveFields('form.project-info');
+   }
 
     progressNav.initProgressNav('#progress-navigation');
 
