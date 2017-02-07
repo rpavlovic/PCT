@@ -280,13 +280,9 @@ var projectResourceTable = (function ($) {
         "drawCallback": function () {
         },
         "initComplete": function (settings, json, row) {
-          // projResourceTable.row.add({
-          //   "EmpGradeName": [],
-          //   "Office": off,
-          //   "CostCenterName": [],
-          //   "Deliverables": de
-          // }).draw(false).node();
-
+          setTimeout(function() {
+            $('.project-resources #add-row').trigger('click');
+          },10);
         },
         "bDestroy": true
       });
