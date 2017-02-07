@@ -95,7 +95,6 @@ function get_data_feed(feed, query) {
 
     //modeling table highlight headers on radio click
     $('#modeling-table input[type="radio"]').activateElement();
-    // $('button').activateElement();
 
     var tables = {
       'customerBillTbl': '#csv-table',
@@ -109,11 +108,12 @@ function get_data_feed(feed, query) {
     });
 
     expenseTable.initExpenseTable();
+   //$('#project-resource-table').parent('div').siblings('button[type="reset"]').clearAll();
 
-    $('.project-expence button[type="reset"], .project-resources button[type="reset"]').clearAll();
+    $('.project-expense button[type="reset"], .project-resources button[type="reset"]').clearAll();
 
     //print buttons
-    $('.fa-print').click(function(){
+    $('.fa-print').click(function() {
       window.print();
     });
   });

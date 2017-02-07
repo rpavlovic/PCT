@@ -7,13 +7,12 @@ $.fn.clearAll = function() {
   $(this).each(function() {
 
     var clicked_element = $(this),
-        activate_element = $('form'),
-        table_row = activate_element.find('table tbody');
-
+        table = $('table tbody'),
+        table_row = table.find('tr');
     clicked_element.on('click', function() {
       confirm("All overrides will be removed?");
       table_row.each(function (key, value) {
-        $(this).find('td.contenteditable').empty();
+        $(this).find('td.contenteditable div').text('');
       });
     });
   });
