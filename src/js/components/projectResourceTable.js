@@ -35,11 +35,11 @@ var projectResourceTable = (function ($) {
       var rcs = values[2];
 
       // add a blank
-      off.unshift({});
 
       var projResourceTable = $('#project-resource-table').DataTable({
         "searching": false,
         //  "data": myRows,
+        "data": "",
         "deferRender": true,
         "paging": false,
         "stateSave": true,
@@ -90,7 +90,7 @@ var projectResourceTable = (function ($) {
             "render": function (data, type, row, meta) {
               var select = "<select class='office' name='Office'>";
               $.each(data, function (key, val) {
-                select += '<option>' + val.Office + '</option>';
+                select += '<option value="'+val.Office+'">' + val.OfficeName + ',' + val.City + '</option>';
               });
               select += "</select>";
               return select;
@@ -124,7 +124,7 @@ var projectResourceTable = (function ($) {
             "data": "CostCenterName",
             "defaultContent": '',
             "class": "td-practice",
-            "render": function () {
+            "render": function (data, type, set) {
               return "<select class='practice' name='CostCenterName' />";
             }
           },
@@ -132,17 +132,11 @@ var projectResourceTable = (function ($) {
             "title": 'Role',
             "data": " ",
             "defaultContent": '<div contenteditable />',
-            // render : function(data, type, row) {
-            //   return "<div contenteditable />" ;
-            // }
           },
           {
             "title": 'Proposed <br/> Resource',
             "data": " ",
             "defaultContent": '<div contenteditable />',
-            // render : function(data, type, row) {
-            //   return "<div contenteditable />" ;
-            // }
           },
           {
             "title": 'Bill Rate',
@@ -276,21 +270,24 @@ var projectResourceTable = (function ($) {
         "bFilter": false,
         "select": true,
         "rowCallback": function (row, json) {
-          // $(row).removeClass('odd even');
-          // $("td:nth-child(n+6):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", row)
-          // // .prop('contenteditable', true)
-          //     .addClass("contenteditable");
+          $(row).removeClass('odd even');
+          $("td:nth-child(n+6):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", row)
+            .addClass("contenteditable");
         },
         "createdRow": function (row, data, index) {
-          // $('tfoot td').removeClass('center blue-bg rate-override num');
+          $('tfoot td').removeClass('center blue-bg rate-override num');
         },
         "drawCallback": function () {
         },
         "initComplete": function (settings, json, row) {
+          setTimeout(function() {
+            $('.project-resources #add-row').trigger('click');
+          },10);
         },
         "bDestroy": true
       });
 
+      //Add Row
       $('.project-resources').on('click', '#add-row', function (e) {
         e.preventDefault();
         projResourceTable.row.add({
@@ -299,33 +296,41 @@ var projectResourceTable = (function ($) {
           "CostCenterName": [],
           "Deliverables": de
         }).draw(false).node();
-        // projResourceTable.rows().nodes().to$().last().addClass('new-row').delay(2000).queue(function () {
-        //     $(this).removeClass("new-row").dequeue();
-        // });
+        projResourceTable.rows().nodes().to$().last().addClass('new-row').delay(2000).queue(function () {
+            $(this).removeClass("new-row").dequeue();
+        });
+
+
+        //remove row
+        projResourceTable.on( 'click', '.remove', function (e) {
+          e.preventDefault();
+          $(this).closest('tr').remove();
+        });
+
         // We tell to datatable to refresh the cache with the DOM,
         // like that the filter will find the new data added in the table.
         //projResourceTable.row().invalidate('dom').draw();
         $("#project-resource-table tbody select.title").on('change', function () {
           console.log("title changed");
+          var OfficeID = $(this).find(':selected').data('company');
           var nodes = $(this);
           getClass(nodes);
+          getPractice(OfficeID, nodes);
+          loadBillRate(nodes);
         });
         $("#project-resource-table tbody select.office").on('change', function () {
           console.log("office changed");
-          var OfficeID = $(this).val();
-          var nodes = $(this);
-          //console.log(titleSelect);
+          var OfficeID = $(this).val(),
+              nodes = $(this);
 
           console.log(nodes);
           getJobTitle(OfficeID, nodes);
         });
-
-
       });
 
       function getJobTitle(OfficeID, nodes) {
-        var titleSelect = nodes.closest('tr').find('.title');
-        var EmpTitle = [];
+        var titleSelect = nodes.closest('tr').find('.title'),
+            EmpTitle = [];
         EmpTitle.push('<option>Select Title</option>');
         rcs.map(function (val) {
           if (OfficeID === val.Office) {
@@ -336,15 +341,47 @@ var projectResourceTable = (function ($) {
         });
 
         titleSelect.empty().append(EmpTitle);
-
-        //$(this).parent().siblings('.td-class').find('div').empty().append($("option:selected", this).data('class'));
-
       }
 
       function getClass(nodes) {
         nodes.closest('tr').find('.td-class div').empty().append(nodes.find(':selected').data('class'));
       }
 
+
+      //get deliverables from projectRelatedDeliverables json
+      function getPractice(OfficeID, nodes) {
+        console.log(OfficeID);
+        var practiceSelect = nodes.closest('tr').find('.practice');
+          var Practice = [];
+          Practice.push('<option>Select Practice</option>');
+          rcs.map(function (val) {
+            if (OfficeID === val.Office) {
+              Practice.push('<option value="'+ val.CostCenterName+ '" ' +
+                      'data-company="'+ val.Office+'">' +
+                      val.CostCenterName+'</option>');
+            }
+          });
+          practiceSelect.empty().append(Practice);
+      }
+
+      function loadBillRate(nodes) {
+        var tems_currency = {
+           'AUD':'$',
+           'CAD':'$',
+           'CHF':'CHF',
+           'CNY':'¥',
+           'EUR':'€',
+           'GBP':'£',
+           'HKD':'$',
+           'JPY':'¥',
+           'MYR':'RM',
+           'NZD':'$',
+           'SGD':'$',
+           'USD':'$'
+        };
+        var currency = tems_currency[nodes.closest('tr').find('.title :selected').data('currency')];
+        nodes.closest('tr').find('.td-billrate').empty().append(currency + nodes.find(':selected').data('rate'));
+      }
     });
   }
 

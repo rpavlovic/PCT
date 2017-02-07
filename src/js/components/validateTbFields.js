@@ -35,17 +35,16 @@ function returnData(new_data, table) {
   }
   if(table === '#project-resource-table') {
     //for now only rate-override with values into an array from the #project-resource-table.
-    var RateOverride = [];
-    //create an array with bill rates, numbers only.
-    $('td.rate-override').map(function(index, value) {
-      if($(this).text() !== '' && $.isNumeric($(this).text())) {
-        return RateOverride.push($(this).text());
-      }
-    });
-    var active_modeling_tabs = $('#modeling-table tr td');
-    active_modeling_tabs.removeClass('active');
-    active_modeling_tabs.children('input').prop('checked', false);
-
+    var RateOverride = [],
+        active_modeling_tabs = $('#modeling-table tr td');
+        active_modeling_tabs.removeClass('active');
+        active_modeling_tabs.children('input').prop('checked', false);
+      //create an array with bill rates, numbers only.
+      $('td.rate-override div').map(function(index, value) {
+        if($(this).text() && $.isNumeric($(this).text())) {
+          return RateOverride.push($(this).text());
+        }
+      });
     //activate Adjusted Resource Hdr when override is entered.
     if(RateOverride.length > 0) {
       $(active_modeling_tabs[2]).addClass('active');

@@ -46,7 +46,7 @@ var projectInfoForm = (function ($) {
         //create office name options.
         if(key === "Office") {
           console.log(val[key], val.OfficeName);
-          items_business.push('<option value="' + val[key] + '">' + val.OfficeName + '-' + val.City + ' / ' +val[key]+ '</option>');
+          items_business.push('<option value="' + val[key] + '">' + val.OfficeName + ', ' + val.City + ' / ' +val[key]+ '</option>');
         }
         //create country options.
         if(key == "Country") {
