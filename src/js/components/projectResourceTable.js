@@ -34,20 +34,23 @@ var projectResourceTable = (function ($) {
       var off = values[1];
       var rcs = values[2];
 
-      // add a blank
+      off.push({
+        Office: "Select Office",
+        OfficeName: "Select Office Name",
+        City: "Select City"
+      });
 
-
-      // var myRows = [];
-      // myRows.push({
-      //   "EmpGradeName": [],
-      //   "Office": off,
-      //   "CostCenterName": [],
-      //   "Deliverables": de
-      // });
+      var myRows = [];
+      myRows.push({
+        "EmpGradeName": [],
+        "Office": {offices: off, selectedOffice: getParameterByName('Office')},
+        "CostCenterName": [],
+        "Deliverables": de
+      });
 
       var projResourceTable = $('#project-resource-table').DataTable({
         "searching": false,
-        // "data": myRows,
+        "data": myRows,
         "deferRender": true,
         "paging": false,
         "stateSave": true,
@@ -96,9 +99,12 @@ var projectResourceTable = (function ($) {
             "defaultContent": '',
             "class": "td-office",
             "render": function (data, type, row, meta) {
+              var offices = data.offices;
               var select = "<select class='office' name='Office'>";
-              $.each(data, function (key, val) {
-                select += '<option value="'+val.Office+'">' + val.OfficeName + ',' + val.City + '</option>';
+              console.log(data);
+              $.each(offices, function (key, val) {
+                var selectString = data.selectedOffice === val.Office ? 'selected="selected"' : '';
+                select += '<option value="' + val.Office + '"'+ selectString +'>' + val.OfficeName + ', ' + val.City + '</option>';
               });
               select += "</select>";
               return select;
@@ -288,9 +294,14 @@ var projectResourceTable = (function ($) {
         "drawCallback": function () {
         },
         "initComplete": function (settings, json, row) {
-          setTimeout(function() {
-            $('.project-resources #add-row').trigger('click');
-          },10);
+          $("#project-resource-table tbody select.title").on('change', function () {
+            console.log("title changed");
+            var OfficeID = $(this).find(':selected').data('company');
+            var nodes = $(this);
+            getClass(nodes);
+            getPractice(OfficeID, nodes);
+            loadBillRate(nodes);
+          });
         },
         "bDestroy": true
       });
@@ -300,7 +311,7 @@ var projectResourceTable = (function ($) {
         e.preventDefault();
         projResourceTable.row.add({
           "EmpGradeName": [],
-          "Office": off,
+          "Office": { offices: off },
           "CostCenterName": [],
           "Deliverables": de
         }).draw().node();
@@ -315,18 +326,7 @@ var projectResourceTable = (function ($) {
             // projResourceTable.row( $(this).parents('tr') ).node.remove();
             console.log(projResourceTable.rows());
             projResourceTable.row( $(this).parents('tr') ).remove().draw(false);
-
-           // var data = projResourceTable.row( $(this).parents('tr') ).data();
-           // console.log(data);
-           // data.remove();
-               //alert( data[0] +"'s salary is: "+ data[ 5 ] );
            } );
-
-        // projResourceTable.on( 'click', '.remove', function (e) {
-
-        //   console.log(projResourceTable.row($(this).closest('tr')).remove().draw());
-        //   projResourceTable.row($(this).closest('tr')).remove().draw();
-        // });
 
         // We tell to datatable to refresh the cache with the DOM,
         // like that the filter will find the new data added in the table.

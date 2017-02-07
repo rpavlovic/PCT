@@ -151,6 +151,11 @@ var projectInfoForm = (function ($) {
     });
   }
 
+  select_billing_office.on('change', function(){
+    var url = $('#btn-save').attr('href');
+    $('#btn-save').attr('href', updateQueryString('Office', $(this).val(), url));
+  });
+
   $('#btn-save').on('click', function (event) {
     event.preventDefault();
     console.log("saving form");
@@ -180,12 +185,17 @@ var projectInfoForm = (function ($) {
       method: "POST",
       url: get_data_feed('project', get_unique_id()),
       data: formData
+
+      //todo: this needs to be fixed and actually handle errors properly
     })
       .done(function (msg) {
         console.log("Data Saved: " + msg);
       })
       .fail(function() {
         console.log( "post failed" );
+      })
+      .always(function(){
+        window.location.href = $('#btn-save').attr('href');
       });
   });
 
