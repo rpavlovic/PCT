@@ -36,10 +36,18 @@ var projectResourceTable = (function ($) {
 
       // add a blank
 
+
+      // var myRows = [];
+      // myRows.push({
+      //   "EmpGradeName": [],
+      //   "Office": off,
+      //   "CostCenterName": [],
+      //   "Deliverables": de
+      // });
+
       var projResourceTable = $('#project-resource-table').DataTable({
         "searching": false,
-        //  "data": myRows,
-        "data": "",
+        // "data": myRows,
         "deferRender": true,
         "paging": false,
         "stateSave": true,
@@ -295,17 +303,30 @@ var projectResourceTable = (function ($) {
           "Office": off,
           "CostCenterName": [],
           "Deliverables": de
-        }).draw(false).node();
-        projResourceTable.rows().nodes().to$().last().addClass('new-row').delay(2000).queue(function () {
+        }).draw().node();
+        projResourceTable.rows().nodes().to$().last().addClass('new-row').delay(1000).queue(function () {
             $(this).removeClass("new-row").dequeue();
         });
 
-
         //remove row
-        projResourceTable.on( 'click', '.remove', function (e) {
-          e.preventDefault();
-          $(this).closest('tr').remove();
-        });
+
+        $('#project-resource-table tbody').on( 'click', '.remove', function (e) {
+            e.preventDefault();
+            // projResourceTable.row( $(this).parents('tr') ).node.remove();
+            console.log(projResourceTable.rows());
+            projResourceTable.row( $(this).parents('tr') ).remove().draw(false);
+
+           // var data = projResourceTable.row( $(this).parents('tr') ).data();
+           // console.log(data);
+           // data.remove();
+               //alert( data[0] +"'s salary is: "+ data[ 5 ] );
+           } );
+
+        // projResourceTable.on( 'click', '.remove', function (e) {
+
+        //   console.log(projResourceTable.row($(this).closest('tr')).remove().draw());
+        //   projResourceTable.row($(this).closest('tr')).remove().draw();
+        // });
 
         // We tell to datatable to refresh the cache with the DOM,
         // like that the filter will find the new data added in the table.
