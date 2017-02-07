@@ -7,8 +7,6 @@ var projectResourceTable = (function ($) {
   'use strict';
 
   function initProjectResourceTable() {
-    var myD;
-
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables), function (deliverables) {
         resolve(deliverables.d.results);
@@ -42,10 +40,22 @@ var projectResourceTable = (function ($) {
 
       var myRows = [];
       myRows.push({
-        "EmpGradeName": [],
+        "EmpGradeName": getEmployeeTitles(getParameterByName('Office')),
         "Office": {offices: off, selectedOffice: getParameterByName('Office')},
         "CostCenterName": [],
-        "Deliverables": de
+        "Deliverables": de,
+        "jan": 1,
+        "feb": 2,
+        "mar": 10,
+        "apr": 8,
+        "may": 4,
+        "jun": 4,
+        "jul": 4,
+        "aug": 4,
+        "sep": 4,
+        "oct": 4,
+        "nov": 4,
+        "dec": 4
       });
 
       var projResourceTable = $('#project-resource-table').DataTable({
@@ -101,7 +111,6 @@ var projectResourceTable = (function ($) {
             "render": function (data, type, row, meta) {
               var offices = data.offices;
               var select = "<select class='office' name='Office'>";
-              console.log(data);
               $.each(offices, function (key, val) {
                 var selectString = data.selectedOffice === val.Office ? 'selected="selected"' : '';
                 select += '<option value="' + val.Office + '"'+ selectString +'>' + val.OfficeName + ', ' + val.City + '</option>';
@@ -116,7 +125,16 @@ var projectResourceTable = (function ($) {
             "defaultContent": '',
             "class": 'td-title',
             "render": function (data, type, set) {
-              return "<select class='title' name='EmpGradeName' />";
+              var select = "<select class='title' name='EmpGradeName'>";
+              console.log(data);
+              $.each(data, function (key, val) {
+                console.log(val);
+                select += '<option value="' + val.EmpGradeName + '" ' + 'data-rate="' + val.BillRate +
+                  '" data-class="' + val.Class + '" data-company="' + val.Office + '" ' +
+                  'data-currency="' + val.LocalCurrency + '">' + val.EmpGradeName + '</option>';
+              });
+              select += "</select>";
+              return select;
             }
           },
           {
@@ -187,99 +205,75 @@ var projectResourceTable = (function ($) {
           },
           {
             "title": 'JAN <br/> 16',
-            "data": " ",
+            "data": "jan",
             "defaultContent": '<div contenteditable />',
-            // render : function(data, type, row) {
-            //   return "<div contenteditable />" ;
-            // }
+            render : renderMonth
           },
           {
             "title": 'FEB <br/> 16',
-            "data": " ",
+            "data": "feb",
             "defaultContent": '<div contenteditable />',
-            // render : function(data, type, row) {
-            //   return "<div contenteditable />" ;
-            // }
+            render : renderMonth
           },
           {
             "title": 'MAR <br/> 16',
-            "data": " ",
+            "data": "mar",
             "defaultContent": '<div contenteditable />',
-            // render : function(data, type, row) {
-            //   return "<div contenteditable />" ;
-            // }
+            render : renderMonth
           },
           {
             "title": 'APR <br/> 16',
-            "data": " ",
+            "data": "apr",
             "defaultContent": '<div contenteditable />',
-            // render : function(data, type, row) {
-            //   return "<div contenteditable />" ;
-            // }
+            render : renderMonth
           },
           {
             "title": 'MAY <br/> 16',
-            "data": " ",
+            "data": "may",
             "defaultContent": '<div contenteditable />',
-            // render : function(data, type, row) {
-            //   return "<div contenteditable />" ;
-            // }
+            render : renderMonth
           },
           {
             "title": 'JUN <br/> 16',
-            "data": " ",
+            "data": "jun",
             "defaultContent": '<div contenteditable />',
-            // render : function(data, type, row) {
-            //   return "<div contenteditable />" ;
-            // }
+            render : renderMonth
           },
           {
             "title": 'JUL <br/> 16',
-            "data": " ",
+            "data": "jul",
             "defaultContent": '<div contenteditable />',
-            // render : function(data, type, row) {
-            //   return "<div contenteditable />" ;
-            // }
+            render : renderMonth
           },
           {
             "title": 'AUG <br/> 16',
-            "data": " ",
+            "data": "aug",
             "defaultContent": '<div contenteditable />',
-            // render : function(data, type, row) {
-            //   return "<div contenteditable />" ;
-            // }
+            render : renderMonth
           },
           {
             "title": 'SEP <br/> 16',
-            "data": " ",
+            "data": "sep",
             "defaultContent": '<div contenteditable />',
-            // render : function(data, type, row) {
-            //   return "<div contenteditable />" ;
-            // }
+            render : renderMonth
           },
           {
             "title": 'OCT <br/> 16',
-            "data": " ",
+            "data": "oct",
             "defaultContent": '<div contenteditable />',
-            // render : function(data, type, row) {
-            //   return "<div contenteditable />" ;
-            // }
+            render : renderMonth
           },
           {
             "title": 'NOV <br/> 16',
-            "data": " ",
+            "data": "nov",
             "defaultContent": '<div contenteditable />',
-            // render : function(data, type, row) {
-            //   return "<div contenteditable />" ;
-            // }
+            render : renderMonth
           },
           {
             "title": 'DEC <br/> 16',
-            "data": " ",
+            "data": "dec",
             "defaultContent": '<div contenteditable />',
-            // render : function(data, type, row) {
-            //   return "<div contenteditable />" ;
-            // }
+            render : renderMonth
           }],
         "bFilter": false,
         "select": true,
@@ -292,8 +286,13 @@ var projectResourceTable = (function ($) {
           $('tfoot td').removeClass('center blue-bg rate-override num');
         },
         "drawCallback": function () {
-        },
-        "initComplete": function (settings, json, row) {
+          $("#project-resource-table tbody select.office").on('change', function () {
+            console.log("office changed");
+            var OfficeID = $(this).val(),
+              nodes = $(this);
+            getJobTitle(OfficeID, nodes);
+          });
+
           $("#project-resource-table tbody select.title").on('change', function () {
             console.log("title changed");
             var OfficeID = $(this).find(':selected').data('company');
@@ -302,6 +301,9 @@ var projectResourceTable = (function ($) {
             getPractice(OfficeID, nodes);
             loadBillRate(nodes);
           });
+        },
+        "initComplete": function (settings, json, row) {
+
         },
         "bDestroy": true
       });
@@ -331,22 +333,6 @@ var projectResourceTable = (function ($) {
         // We tell to datatable to refresh the cache with the DOM,
         // like that the filter will find the new data added in the table.
         //projResourceTable.row().invalidate('dom').draw();
-        $("#project-resource-table tbody select.title").on('change', function () {
-          console.log("title changed");
-          var OfficeID = $(this).find(':selected').data('company');
-          var nodes = $(this);
-          getClass(nodes);
-          getPractice(OfficeID, nodes);
-          loadBillRate(nodes);
-        });
-        $("#project-resource-table tbody select.office").on('change', function () {
-          console.log("office changed");
-          var OfficeID = $(this).val(),
-              nodes = $(this);
-
-          console.log(nodes);
-          getJobTitle(OfficeID, nodes);
-        });
       });
 
       function getJobTitle(OfficeID, nodes) {
@@ -367,7 +353,6 @@ var projectResourceTable = (function ($) {
       function getClass(nodes) {
         nodes.closest('tr').find('.td-class div').empty().append(nodes.find(':selected').data('class'));
       }
-
 
       //get deliverables from projectRelatedDeliverables json
       function getPractice(OfficeID, nodes) {
@@ -402,6 +387,26 @@ var projectResourceTable = (function ($) {
         };
         var currency = tems_currency[nodes.closest('tr').find('.title :selected').data('currency')];
         nodes.closest('tr').find('.td-billrate').empty().append(currency + nodes.find(':selected').data('rate'));
+      }
+
+      function getEmployeeTitles(officeId){
+        var employeeTitles = [];
+        employeeTitles.push({ Office: null, EmpGradeName: "Select Title" });
+        rcs.map(function (val) {
+          if (officeId === val.Office) {
+            employeeTitles.push(val);
+          }
+        });
+        return employeeTitles;
+      }
+
+      function renderMonth(data, type, row, meta) {
+        if(data) {
+          return '<div contenteditable>' + data + '</div>';
+        }
+        else{
+          return '<div contenteditable />';
+        }
       }
     });
   }
