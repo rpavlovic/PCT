@@ -5,7 +5,7 @@
 */
 function returnData(new_data, table) {
   var isNum = false;
-  if( $(new_data.element).parent().hasClass('num') &&
+  if( ($(new_data.element).parent().hasClass('num') || $(new_data.element).hasClass('month')) &&
       $(new_data.element).html() != isNaN &&
       $.isNumeric($(new_data.element).html()) &&
       $(new_data.element).html() ) {
@@ -14,18 +14,20 @@ function returnData(new_data, table) {
   }
 
   var error = function() {
-    if( $(new_data.element).parent().hasClass('num') && !isNum &&  $(new_data.element).html()  ) {
+    var REgex = /^[\$]?[0-9\.\,]+[\%]?/g;
+    if( ($(new_data.element).parent().hasClass('num') || $(new_data.element).hasClass('month')) && !isNum && $(new_data.element).html().replace(REgex, '')) {
       $(new_data.element).html('this field accepts numbers only.').addClass('error');
     }
     return true;
   };
   //run error here.
+
   error();
 
   if(table === "#csv-table") {
     if(isNum) {
       var ovd_rate = $(new_data.element).html(),
-          st_rate = $(new_data.element).parent().prevAll('.rate').html().replace(/\D/g, ''),
+          st_rate = $(new_data.element).parent().prevAll('.rate').html().replace(/[^0-9\.]/g,""),
           minus = st_rate - ovd_rate,
           percent = ( (st_rate - ovd_rate) / st_rate) * 100;
       if(st_rate.length > 0) {
@@ -54,6 +56,7 @@ function returnData(new_data, table) {
       $(active_modeling_tabs[1]).addClass('active');
       $(active_modeling_tabs[1]).children('input').prop('checked', true);
     }
+    //formulas for the hours, rates
+    resourceFormulas.initResourceFormulas(new_data);
   }
-
 }

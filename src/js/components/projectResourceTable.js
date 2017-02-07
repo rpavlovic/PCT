@@ -172,7 +172,8 @@ var projectResourceTable = (function ($) {
           {
             "title": 'Total Hours',
             "data": " ",
-            "defaultContent": ''
+            "defaultContent": '',
+            "sClass": "total-hours",
           },
           {
             "title": 'Total Fees',
@@ -182,7 +183,7 @@ var projectResourceTable = (function ($) {
           {
             "title": 'JAN <br/> 16',
             "data": " ",
-            "defaultContent": '<div contenteditable />',
+            "defaultContent": '<div contenteditable class="jan month" />',
             // render : function(data, type, row) {
             //   return "<div contenteditable />" ;
             // }
@@ -190,7 +191,7 @@ var projectResourceTable = (function ($) {
           {
             "title": 'FEB <br/> 16',
             "data": " ",
-            "defaultContent": '<div contenteditable />',
+            "defaultContent": '<div contenteditable class="feb month" />',
             // render : function(data, type, row) {
             //   return "<div contenteditable />" ;
             // }
@@ -198,7 +199,7 @@ var projectResourceTable = (function ($) {
           {
             "title": 'MAR <br/> 16',
             "data": " ",
-            "defaultContent": '<div contenteditable />',
+            "defaultContent": '<div contenteditable class="mar month" />',
             // render : function(data, type, row) {
             //   return "<div contenteditable />" ;
             // }
@@ -206,7 +207,7 @@ var projectResourceTable = (function ($) {
           {
             "title": 'APR <br/> 16',
             "data": " ",
-            "defaultContent": '<div contenteditable />',
+            "defaultContent": '<div contenteditable class="apr month" />',
             // render : function(data, type, row) {
             //   return "<div contenteditable />" ;
             // }
@@ -214,7 +215,7 @@ var projectResourceTable = (function ($) {
           {
             "title": 'MAY <br/> 16',
             "data": " ",
-            "defaultContent": '<div contenteditable />',
+            "defaultContent": '<div contenteditable class="may month" />',
             // render : function(data, type, row) {
             //   return "<div contenteditable />" ;
             // }
@@ -222,7 +223,7 @@ var projectResourceTable = (function ($) {
           {
             "title": 'JUN <br/> 16',
             "data": " ",
-            "defaultContent": '<div contenteditable />',
+            "defaultContent": '<div contenteditable class="jun month" />',
             // render : function(data, type, row) {
             //   return "<div contenteditable />" ;
             // }
@@ -230,7 +231,7 @@ var projectResourceTable = (function ($) {
           {
             "title": 'JUL <br/> 16',
             "data": " ",
-            "defaultContent": '<div contenteditable />',
+            "defaultContent": '<div contenteditable class="jul month" />',
             // render : function(data, type, row) {
             //   return "<div contenteditable />" ;
             // }
@@ -238,7 +239,7 @@ var projectResourceTable = (function ($) {
           {
             "title": 'AUG <br/> 16',
             "data": " ",
-            "defaultContent": '<div contenteditable />',
+            "defaultContent": '<div contenteditable class="aug month" />',
             // render : function(data, type, row) {
             //   return "<div contenteditable />" ;
             // }
@@ -246,7 +247,7 @@ var projectResourceTable = (function ($) {
           {
             "title": 'SEP <br/> 16',
             "data": " ",
-            "defaultContent": '<div contenteditable />',
+            "defaultContent": '<div contenteditable class="sep month" />',
             // render : function(data, type, row) {
             //   return "<div contenteditable />" ;
             // }
@@ -254,7 +255,7 @@ var projectResourceTable = (function ($) {
           {
             "title": 'OCT <br/> 16',
             "data": " ",
-            "defaultContent": '<div contenteditable />',
+            "defaultContent": '<div contenteditable class="oct month" />',
             // render : function(data, type, row) {
             //   return "<div contenteditable />" ;
             // }
@@ -262,7 +263,7 @@ var projectResourceTable = (function ($) {
           {
             "title": 'NOV <br/> 16',
             "data": " ",
-            "defaultContent": '<div contenteditable />',
+            "defaultContent": '<div contenteditable class="nov month" />',
             // render : function(data, type, row) {
             //   return "<div contenteditable />" ;
             // }
@@ -270,7 +271,7 @@ var projectResourceTable = (function ($) {
           {
             "title": 'DEC <br/> 16',
             "data": " ",
-            "defaultContent": '<div contenteditable />',
+            "defaultContent": '<div contenteditable class="dec month" />',
             // render : function(data, type, row) {
             //   return "<div contenteditable />" ;
             // }
@@ -292,6 +293,7 @@ var projectResourceTable = (function ($) {
             $('.project-resources #add-row').trigger('click');
           },10);
         },
+
         "bDestroy": true
       });
 
@@ -304,6 +306,9 @@ var projectResourceTable = (function ($) {
           "CostCenterName": [],
           "Deliverables": de
         }).draw().node();
+        //run the calculation formulas
+        //resourceFormulas.initResourceFormulas();
+
         projResourceTable.rows().nodes().to$().last().addClass('new-row').delay(1000).queue(function () {
             $(this).removeClass("new-row").dequeue();
         });

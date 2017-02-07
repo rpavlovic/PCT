@@ -32,7 +32,9 @@ var expenseTable = (function ($) {
           "title": 'Row',
           "sClass": "center",
           "defaultContent": '',
-          "data": null,
+          "render": function (data, type, row, meta) {
+            return meta.row + 1;
+          }
         },
         {
           "title" : '<i class="fa fa-trash"></i>',
@@ -88,12 +90,6 @@ var expenseTable = (function ($) {
           Deliverable.push($('<option>', { value :key }).text(val._aData.DelvDesc));
         });
         $('.deliverable').empty().append(Deliverable);
-
-        projExpenseTable.on('order.dt', function () {
-          projExpenseTable.column(0, {"order" :"applied", "filter":"applied" }).nodes().each( function (cell, i) {
-            cell.innerHTML = i+1;
-          });
-        }).draw();
       },
     "bDestroy": true,
   });
