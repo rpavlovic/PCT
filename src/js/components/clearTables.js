@@ -12,7 +12,8 @@ $.fn.clearAll = function() {
     clicked_element.on('click', function() {
       confirm("All overrides will be removed?");
       table_row.each(function (key, value) {
-        $('td.contenteditable div').text('');
+        $('table tbody td.contenteditable div, table tbody .can-clear').text('');
+        $('td.low-value, td.high-value').removeClass('low-value high-value');
       });
     });
   });

@@ -13,7 +13,8 @@ var resourceFormulas = (function ($) {
         hours_row = $(data.element).closest('tr'),
         hours = $(data.element);
 
-    $(hours_row).each(function() {
+    $(hours_row).each(function(key, value) {
+      console.log(value);
       $(this).find('.month').each(function() {
         if (!isNaN($(this).text()) && $(this).text().length !== 0) {
           sum += Number($(this).text().replace(/[^0-9\.]/g,""));

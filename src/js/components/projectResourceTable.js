@@ -150,7 +150,7 @@ var projectResourceTable = (function ($) {
             "title": 'Bill Rate',
             "defaultContent": '',
             "data": "BillRate",
-            "class": "td-billrate"
+            "class": "td-billrate can-clear"
           },
           {
             "title": 'Bill Rate <br/> Override',
@@ -173,12 +173,13 @@ var projectResourceTable = (function ($) {
             "title": 'Total Hours',
             "data": " ",
             "defaultContent": '',
-            "sClass": "total-hours",
+            "class": "total-hours  can-clear",
           },
           {
             "title": 'Total Fees',
             "data": " ",
-            "defaultContent": ''
+            "defaultContent": '',
+            "class": "total-fees  can-clear",
           },
           {
             "title": 'JAN <br/> 16',
