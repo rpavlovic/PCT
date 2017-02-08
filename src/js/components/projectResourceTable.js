@@ -37,7 +37,7 @@ var projectResourceTable = (function ($) {
       var de = values[0];
       var off = values[1];
       var rcs = values[2];
-      var rsrc = values[3];
+      var projectResources = values[3];
       var All = [];
 
       off.push({
@@ -46,24 +46,32 @@ var projectResourceTable = (function ($) {
         City: "Select City"
       });
 
+
+
       var myRows = [];
-      myRows.push({
-        "EmpGradeName": getEmployeeTitles(getParameterByName('Office')),
-        "Office": {offices: off, selectedOffice: getParameterByName('Office')},
-        "CostCenterName": [],
-        "Deliverables": de,
-        "jan": 1,
-        "feb": 2,
-        "mar": 10,
-        "apr": 8,
-        "may": 4,
-        "jun": 4,
-        "jul": 4,
-        "aug": 4,
-        "sep": 4,
-        "oct": 4,
-        "nov": 4,
-        "dec": 4
+
+      projectResources.forEach(function (resource){
+        myRows.push({
+          "EmpGradeName": resource,
+          "Office": {offices: off, selectedOffice: getParameterByName('Office')},
+          "Class": resource,
+          "CostCenterName": [],
+          "Role": resource.Role,
+          "Deliverables": de,
+            "jan": 1,
+            "feb": 2,
+            "mar": 10,
+            "apr": 8,
+            "may": 4,
+            "jun": 4,
+            "jul": 4,
+            "aug": 4,
+            "sep": 4,
+            "oct": 4,
+            "nov": 4,
+            "dec": 4
+        });
+
       });
 
       var projResourceTable = $('#project-resource-table').DataTable({
@@ -132,27 +140,14 @@ var projectResourceTable = (function ($) {
             "data": "EmpGradeName",
             "defaultContent": '',
             "class": 'td-title',
-            // "render": function(data, type, set) {
-            //   var select = "<select class='title' name='EmpGradeName'>";
-            //     $.each(set.rows, function (key, val) {
-            //       $.each(data, function(k, v) {
-            //         console.log(v.EmpGradeName);
-            //         if(set.rows[key].Officeid === v.Office) {
-            //           select += '<option data-office="' + v.Office + '" value="'+v.EmpGradeName+'">' + v.EmpGradeName + '</option>';
-            //         }
-            //       });
-            //     });
-            //   select += "</select>";
-            //   return select;
-            // }
             "render": function (data, type, set) {
+              var employeeTitles = getEmployeeTitles(data.Officeid);
               var select = "<select class='title' name='EmpGradeName'>";
-              console.log(data);
-              $.each(data, function (key, val) {
-                console.log(val);
+              $.each(employeeTitles, function (key, val) {
+                var selectString = data.Titleid === val.EmpGradeName ? 'selected="selected"' : '';
                 select += '<option value="' + val.EmpGradeName + '" ' + 'data-rate="' + val.BillRate +
                   '" data-class="' + val.Class + '" data-company="' + val.Office + '" ' +
-                  'data-currency="' + val.LocalCurrency + '">' + val.EmpGradeName + '</option>';
+                  'data-currency="' + val.LocalCurrency + '" '+ selectString +'>' + val.EmpGradeName + '</option>';
               });
               select += "</select>";
               return select;
@@ -160,16 +155,13 @@ var projectResourceTable = (function ($) {
           },
           {
             "title": 'Class',
-            "data": " ",
+            "data": "Class",
             "class": "center td-class",
             "defaultContent": '',
             render: function (data, type, row) {
-              if (data) {
-                return "<div contenteditable />" + data + "</div>";
-              }
-              else {
-                return "<div contenteditable />";
-              }
+              return getEmployeeClass(data);
+
+
             }
           },
           {
@@ -183,8 +175,11 @@ var projectResourceTable = (function ($) {
           },
           {
             "title": 'Role',
-            "data": " ",
+            "data": "Role",
             "defaultContent": '<div contenteditable />',
+            "render": function (data, type, set) {
+              return "<div contenteditable>"+ data +"</div>";
+            }
           },
           {
             "title": 'Proposed <br/> Resource',
@@ -424,6 +419,17 @@ var projectResourceTable = (function ($) {
           }
         });
         return employeeTitles;
+      }
+
+      function getEmployeeClass(employee){
+        var rcElement = rcs.find(function (val) {
+          return val.Office === employee.Officeid && employee.Titleid === val.EmpGradeName;
+        });
+
+        if(rcElement)
+          return rcElement.Class;
+        else
+          return '';
       }
 
       function renderMonth(data, type, row, meta) {
