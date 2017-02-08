@@ -360,14 +360,12 @@ var projectResourceTable = (function ($) {
       //remove row
       $('#project-resource-table tbody').on( 'click', '.remove', function (e) {
         e.preventDefault();
-        // projResourceTable.row( $(this).parents('tr') ).node.remove();
         projResourceTable.row( $(this).parents('tr') ).remove().draw(false);
       } );
 
       function getJobTitle(OfficeID, nodes) {
         var titleSelect = nodes.closest('tr').find('.title'),
             EmpTitle = [];
-        //EmpTitle.push('<option>Select Title</option>');
         rcs.map(function (val) {
           if (OfficeID === val.Office) {
             EmpTitle.push('<option value="' + val.EmpGradeName + '" ' +
@@ -388,7 +386,6 @@ var projectResourceTable = (function ($) {
         console.log(OfficeID);
         var practiceSelect = nodes.closest('tr').find('.practice');
           var Practice = [];
-        //  Practice.push('<option>Select Practice</option>');
           rcs.map(function (val) {
             if (OfficeID === val.Office) {
               Practice.push('<option value="'+ val.CostCenterName+ '" ' +

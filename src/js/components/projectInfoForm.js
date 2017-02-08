@@ -105,6 +105,7 @@ var projectInfoForm = (function ($) {
     data3.d.results.map(function(value) {
       if(value.Projid == getParameterByName('projID')) {
         $('textarea').val(value.Comments);
+        $('form.project-info input[name="name"]').val(value.Clientname);
         $('form.project-info input[name="Preparedby"]').val(value.Preparedby);
         input_duration.val(value.Duration);
         plan_units.val(value.Comptyp);
