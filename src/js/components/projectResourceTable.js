@@ -25,12 +25,20 @@ var projectResourceTable = (function ($) {
       });
     });
 
-    Promise.all([p1, p2, p3]).then(function (values) {
-      ///console.log(values);
+    var p4 = new Promise(function (resolve, reject) {
+      $.getJSON(get_data_feed(feeds.projectResources), function (resource) {
+        resolve(resource.d.results);
+      });
+    });
+
+    Promise.all([p1, p2, p3, p4]).then(function (values) {
+
       //deliverables
       var de = values[0];
       var off = values[1];
       var rcs = values[2];
+      var rsrc = values[3];
+      var All = [];
 
       off.push({
         Office: "Select Office",
@@ -60,7 +68,7 @@ var projectResourceTable = (function ($) {
 
       var projResourceTable = $('#project-resource-table').DataTable({
         "searching": false,
-        "data": myRows,
+        "data":myRows,
         "deferRender": true,
         "paging": false,
         "stateSave": true,
@@ -124,6 +132,19 @@ var projectResourceTable = (function ($) {
             "data": "EmpGradeName",
             "defaultContent": '',
             "class": 'td-title',
+            // "render": function(data, type, set) {
+            //   var select = "<select class='title' name='EmpGradeName'>";
+            //     $.each(set.rows, function (key, val) {
+            //       $.each(data, function(k, v) {
+            //         console.log(v.EmpGradeName);
+            //         if(set.rows[key].Officeid === v.Office) {
+            //           select += '<option data-office="' + v.Office + '" value="'+v.EmpGradeName+'">' + v.EmpGradeName + '</option>';
+            //         }
+            //       });
+            //     });
+            //   select += "</select>";
+            //   return select;
+            // }
             "render": function (data, type, set) {
               var select = "<select class='title' name='EmpGradeName'>";
               console.log(data);
@@ -174,7 +195,7 @@ var projectResourceTable = (function ($) {
             "title": 'Bill Rate',
             "defaultContent": '',
             "data": "BillRate",
-            "class": "td-billrate"
+            "class": "td-billrate can-clear"
           },
           {
             "title": 'Bill Rate <br/> Override',
@@ -197,12 +218,13 @@ var projectResourceTable = (function ($) {
             "title": 'Total Hours',
             "data": " ",
             "defaultContent": '',
-            "sClass": "total-hours",
+            "class": "total-hours  can-clear",
           },
           {
             "title": 'Total Fees',
             "data": " ",
-            "defaultContent": ''
+            "defaultContent": '',
+            "class": "total-fees  can-clear",
           },
           {
             "title": 'JAN <br/> 16',
@@ -304,12 +326,24 @@ var projectResourceTable = (function ($) {
           });
         },
         "initComplete": function (settings, json, row) {
-
         },
 
         "bDestroy": true
       });
-
+      function fillTds() {
+        $(rsrc).each(function(key, value) {
+          $("#project-resource-table tbody select.office option").each(function(k, v) {
+            if($(v).val() === value.Officeid) {
+              $(this).prop('selected', true);
+              //$("#project-resource-table tbody select.title").trigger('change');
+              getJobTitle(value.Officeid, $(this));
+              getClass($("#project-resource-table tbody select.title"));
+              getPractice(value.Officeid, $(this));
+              loadBillRate($("#project-resource-table tbody select.title"));
+            }
+          });
+        });
+      }
       //Add Row
       $('.project-resources').on('click', '#add-row', function (e) {
         e.preventDefault();
@@ -319,35 +353,23 @@ var projectResourceTable = (function ($) {
           "CostCenterName": [],
           "Deliverables": de
         }).draw().node();
-        //run the calculation formulas
-        //resourceFormulas.initResourceFormulas();
-
         projResourceTable.rows().nodes().to$().last().addClass('new-row').delay(1000).queue(function () {
             $(this).removeClass("new-row").dequeue();
         });
-
-        //remove row
-
-        $('#project-resource-table tbody').on( 'click', '.remove', function (e) {
-            e.preventDefault();
-            // projResourceTable.row( $(this).parents('tr') ).node.remove();
-            console.log(projResourceTable.rows());
-            projResourceTable.row( $(this).parents('tr') ).remove().draw(false);
-           } );
-
-        // We tell to datatable to refresh the cache with the DOM,
-        // like that the filter will find the new data added in the table.
-        //projResourceTable.row().invalidate('dom').draw();
       });
+      //remove row
+      $('#project-resource-table tbody').on( 'click', '.remove', function (e) {
+        e.preventDefault();
+        projResourceTable.row( $(this).parents('tr') ).remove().draw(false);
+      } );
 
       function getJobTitle(OfficeID, nodes) {
         var titleSelect = nodes.closest('tr').find('.title'),
             EmpTitle = [];
-        EmpTitle.push('<option>Select Title</option>');
         rcs.map(function (val) {
           if (OfficeID === val.Office) {
             EmpTitle.push('<option value="' + val.EmpGradeName + '" ' +
-              'data-rate="' + val.BillRate + '" data-class="' + val.Class + '" data-company="' + val.Office + '" ' +
+              'data-rate="' + val.BillRate + '" data-class="' + val.Class + '" data-office="' + val.Office + '" ' +
               'data-currency="' + val.LocalCurrency + '">' + val.EmpGradeName + '</option>');
           }
         });
@@ -364,11 +386,10 @@ var projectResourceTable = (function ($) {
         console.log(OfficeID);
         var practiceSelect = nodes.closest('tr').find('.practice');
           var Practice = [];
-          Practice.push('<option>Select Practice</option>');
           rcs.map(function (val) {
             if (OfficeID === val.Office) {
               Practice.push('<option value="'+ val.CostCenterName+ '" ' +
-                      'data-company="'+ val.Office+'">' +
+                      'data-office="'+ val.Office+'">' +
                       val.CostCenterName+'</option>');
             }
           });

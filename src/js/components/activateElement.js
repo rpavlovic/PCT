@@ -38,7 +38,7 @@ $.fn.activateElement = function() {
     });
     //on reset clear active too.
     $('button[type="reset"]').on('click', function() {
-      remove_active(all_active_elements, class_name);
+        //remove_active(all_active_elements, class_name);
     });
   });
 };

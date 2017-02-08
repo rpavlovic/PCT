@@ -57,6 +57,6 @@ function returnData(new_data, table) {
       $(active_modeling_tabs[1]).children('input').prop('checked', true);
     }
     //formulas for the hours, rates
-    resourceFormulas.initResourceFormulas(new_data);
+    resourceFormulas.initResourceFormulas(new_data, table);
   }
 }
