@@ -4,11 +4,11 @@ var feeds = {
   'employee': [ 'data/EmployeeCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection' ],
   'project': [ 'data/ProjectInfoCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection?$filter=Projid eq \'{token}\'&$format=json' ],
   'jobSearch': [ 'data/JobSearchCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/JobNumberCollection/?$filter=SearchString eq \'{token}\'&$format=json' ],
-  'customerSearch': [ 'data/CustomerCollectionByOffice.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/CustomerCollection/?$filter=Office eq \'{token}\'&$format=json' ],
 
   // default rate card by selected office (e.g. 'US01'):
   'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection/?$filter=Plant eq \'{token}\'&$format=json' ],
   'projectDeliverables': [ 'data/ProjectRelatedDeliverables.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection?$format=json' ],
+  'projectResources': [ 'data/ProjectResourcesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection?$filter=Projid eq \'{token}\' and Rowno eq \'{count}\'&$format=json' ],
   'projectExpenses': [ 'data/ProjectExpensesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection/?$filter=Projid eq \'{token}\'&$format=json' ]
 };
 
@@ -18,17 +18,26 @@ var feeds = {
  * @param {String} query string to be used for SAP endpoint
  * @return {String|NULL} local filename; SAP endpoint (or NULL)
  */
-function get_data_feed(feed, query) {
+function get_data_feed(feed, query, count) {
   var json = null;
+
+  // typically the Project ID
   if(typeof query == 'undefined') {
     query = false;
   }
+
+  // Row count for Resources
+  if(typeof count == 'undefined') {
+    count = 1;
+  }
+
   if ($.isArray(feed)) {
     if (location.href.indexOf('localhost') != -1 || location.href.indexOf('10.211.55.2') != -1) {
       json = feed[0];
     }
     else {
       json = feed[1].replace('{token}', query);
+      json = feed[1].replace('{count}', count);
     }
   }
   return json;
