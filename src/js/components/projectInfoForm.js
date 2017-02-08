@@ -29,7 +29,12 @@ var projectInfoForm = (function ($) {
   select_country = $("form.project-info select[name='Country']"),
   input_duration = $("input[name='Duration']"),
   plan_units = $("input[name='PlanUnits']"),
-  selected = false;
+    client_name = $("input[name='name']"),
+    project_name = $("input[name='Projname']"),
+    prepared_by = $('form.project-info input[name="Preparedby"]'),
+    selected = false,
+    compensation_type = $("select[name='compensation']"),
+    comments = $("textarea[name='comments']");
 
   items_currency.map( function(value, key) {
     select_currency.append('<option value="' + value + '">' +  value + '</option>');
@@ -145,6 +150,54 @@ var projectInfoForm = (function ($) {
       console.log( "complete JSON" );
     });
   }
+
+  select_billing_office.on('change', function(){
+    var url = $('#btn-save').attr('href');
+    $('#btn-save').attr('href', updateQueryString('Office', $(this).val(), url));
+  });
+
+  $('#btn-save').on('click', function (event) {
+    event.preventDefault();
+    console.log("saving form");
+    var formData = {
+      "Projid": get_unique_id(),
+      "Plantyp": "OP",
+      "Region": select_region.val(),
+      "Office": select_billing_office.val(),
+      "Currency": select_currency.val(),
+      "Clientname": client_name.val(),
+      "Projname": project_name.val(),
+      "Comptyp": compensation_type.val(),
+      "EstStDate": "\/Date(1484784000000)\/",
+      "Duration": input_duration.val(),
+      "PlanUnits": plan_units.val(),
+      "StartDate": "\/Date(1484784000000)\/",
+      "EstEndDate": "\/Date(1484784000000)\/",
+      "Comments": comments.val(),
+      "Preparedby": prepared_by.val(),
+      "Createdby": prepared_by.val(),
+      "Createdon": "\/Date(1484784000000)\/",
+      "Changedby": prepared_by.val(),
+      "Changedon": "\/Date(1484784000000)\/"
+    };
+
+    $.ajax({
+      method: "POST",
+      url: get_data_feed('project', get_unique_id()),
+      data: formData
+
+      //todo: this needs to be fixed and actually handle errors properly
+    })
+      .done(function (msg) {
+        console.log("Data Saved: " + msg);
+      })
+      .fail(function() {
+        console.log( "post failed" );
+      })
+      .always(function(){
+        window.location.href = $('#btn-save').attr('href');
+      });
+  });
 
   return {
     initProjectInfoForm:initProjectInfoForm
