@@ -313,26 +313,6 @@ var projectResourceTable = (function ($) {
             $(this).removeClass("new-row").dequeue();
         });
 
-        //remove row
-
-        $('#project-resource-table tbody').on( 'click', '.remove', function (e) {
-            e.preventDefault();
-            // projResourceTable.row( $(this).parents('tr') ).node.remove();
-            console.log(projResourceTable.rows());
-            projResourceTable.row( $(this).parents('tr') ).remove().draw(false);
-
-           // var data = projResourceTable.row( $(this).parents('tr') ).data();
-           // console.log(data);
-           // data.remove();
-               //alert( data[0] +"'s salary is: "+ data[ 5 ] );
-           } );
-
-        // projResourceTable.on( 'click', '.remove', function (e) {
-
-        //   console.log(projResourceTable.row($(this).closest('tr')).remove().draw());
-        //   projResourceTable.row($(this).closest('tr')).remove().draw();
-        // });
-
         // We tell to datatable to refresh the cache with the DOM,
         // like that the filter will find the new data added in the table.
         //projResourceTable.row().invalidate('dom').draw();
@@ -352,7 +332,14 @@ var projectResourceTable = (function ($) {
           console.log(nodes);
           getJobTitle(OfficeID, nodes);
         });
-      });
+      }); //END Add Function.
+
+      //remove row
+      $('#project-resource-table tbody').on( 'click', '.remove', function (e) {
+        e.preventDefault();
+        // projResourceTable.row( $(this).parents('tr') ).node.remove();
+        projResourceTable.row( $(this).parents('tr') ).remove().draw(false);
+      } );
 
       function getJobTitle(OfficeID, nodes) {
         var titleSelect = nodes.closest('tr').find('.title'),
@@ -372,7 +359,6 @@ var projectResourceTable = (function ($) {
       function getClass(nodes) {
         nodes.closest('tr').find('.td-class div').empty().append(nodes.find(':selected').data('class'));
       }
-
 
       //get deliverables from projectRelatedDeliverables json
       function getPractice(OfficeID, nodes) {
