@@ -20,6 +20,9 @@ var feeds = {
  */
 function get_data_feed(feed, query) {
   var json = null;
+  if(typeof query == 'undefined') {
+    query = false;
+  }
   if ($.isArray(feed)) {
     if (location.href.indexOf('localhost') != -1 || location.href.indexOf('10.211.55.2') != -1) {
       json = feed[0];
