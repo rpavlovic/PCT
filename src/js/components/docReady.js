@@ -108,7 +108,6 @@ function get_data_feed(feed, query) {
     });
 
     expenseTable.initExpenseTable();
-   //$('#project-resource-table').parent('div').siblings('button[type="reset"]').clearAll();
 
     $('.project-expense button[type="reset"], .project-resources button[type="reset"]').clearAll();
 
