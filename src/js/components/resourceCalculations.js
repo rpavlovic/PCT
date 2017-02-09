@@ -56,9 +56,9 @@ var resourceFormulas = (function ($) {
     if(sum_rate > 0) {
       $(table1.row).find(table1.total_fees).text('$' + sum_rate.toFixed(3).replace(REgex_dollar, "$1,"));
     }
-    // else {
-    //   $(table1.row).find(table1.total_fees).text('');
-    // }
+    else {
+      $(table1.row).find(table1.total_fees).text('');
+    }
 
     //show total in the footer
     table1.total_hours.each(function() {
@@ -67,9 +67,9 @@ var resourceFormulas = (function ($) {
     if(sum_hours > 0) {
       $('tfoot td.total-hours').text(total_hours.toFixed(2));
     }
-    // else {
-    //   $('tfoot td.total-hours').text('');
-    // }
+    else {
+      $('tfoot td.total-hours').text();
+    }
 
     table1.total_fees.each(function() {
       total_rate_sum += Number($(this).text().replace(/[^0-9\.]/g,""));

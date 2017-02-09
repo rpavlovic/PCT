@@ -66,11 +66,13 @@ var expenseTable = (function ($) {
           "data": "",
           "defaultContent": '',
           "render": function(data,  type, set) {
-             var output = '<select class="category">';
-              output += '<option value="Travel">Travel</option><option value="OOPs">OOPs</option>';
-              output += '<option value="3rd Party Costs">3rd Party Costs</option><option value="Freelancers">Freelancers</option>';
-              output += '<option value="Other IPG entities">Other IPG entities</option><option value="Other">Other</option>';
-              output += '</select>';
+            var output = '<select class="category">';
+            $.each(categories, function(key, val){
+               $.each(val, function(k,v) {
+                 output += "<option value=\"" + val[k] + "\">"+val[k]+"</option>";
+               });
+            });
+            output += '</select>';
             return output;
           }
         },
