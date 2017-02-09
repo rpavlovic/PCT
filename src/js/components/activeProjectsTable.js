@@ -14,7 +14,7 @@ var activeTableFunction = (function ($) {
       "sDom": '<"toolbar"><B><tip>',
       "searching": true,
       "ajax" : {
-         "url": get_data_feed( feeds.project ),
+         "url": get_data_feed( feeds.projectList ),
           "dataSrc": "d.results"
        },
       "bServerSide" : false,
