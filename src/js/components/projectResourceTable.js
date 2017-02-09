@@ -32,7 +32,6 @@ var projectResourceTable = (function ($) {
     });
 
     Promise.all([p1, p2, p3, p4]).then(function (values) {
-
       //deliverables
       var deliverables = values[0];
       var offices = values[1];
@@ -51,11 +50,11 @@ var projectResourceTable = (function ($) {
       projectResources.forEach(function (resource) {
         myRows.push({
           "EmpGradeName": resource,
-          "Office": {offices: offices, selectedOffice: getParameterByName('Office')},
-          "Class": resource,
-          "CostCenterName": [],
-          "Role": resource.Role,
           "Deliverables": deliverables,
+          "Office": {offices: offices, selectedOffice: getParameterByName('Office')},
+          "Role": resource.Role,
+          "Class": resource,
+          "CostCenterName": resource,
           "jan": 1,
           "feb": 2,
           "mar": 32,
@@ -165,6 +164,7 @@ var projectResourceTable = (function ($) {
             "defaultContent": '',
             "class": "td-practice",
             "render": function (data, type, set) {
+
               return "<select class='practice' name='CostCenterName' />";
             }
           },
@@ -210,7 +210,12 @@ var projectResourceTable = (function ($) {
             "defaultContent": '',
             "class": "total-hours  can-clear",
             "render": function (data, type, row, meta) {
-              return row.jan + row.feb + row.mar + row.apr + row.may + row.june + row.july + row.aug+ row.sep + row.oct + row.nov + row.dec;
+              var months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+              var sum = 0;
+              months.forEach(function(month){
+                sum += parseFloat(row[month]);
+              });
+              return sum;
             }
           },
           {
@@ -311,7 +316,7 @@ var projectResourceTable = (function ($) {
 
           $("#project-resource-table tbody select.title").on('change', function () {
             console.log("title changed");
-            var OfficeID = $(this).find(':selected').data('company');
+            var OfficeID = $(this).find(':selected').data('office');
             var nodes = $(this);
             getClass(nodes);
             getPractice(OfficeID, nodes);
@@ -324,7 +329,7 @@ var projectResourceTable = (function ($) {
         "bDestroy": true
       });
       function fillTds() {
-        $(rsrc).each(function(key, value) {
+        $(rateCards).each(function(key, value) {
           $("#project-resource-table tbody select.office option").each(function(k, v) {
             if($(v).val() === value.Officeid) {
               $(this).prop('selected', true);
@@ -369,11 +374,15 @@ var projectResourceTable = (function ($) {
           }
         });
 
+        if(EmpTitle.length){
+          EmpTitle.unshift('<option data-class="">Select Title</option>');
+        }
+
         titleSelect.empty().append(EmpTitle);
       }
 
       function getClass(nodes) {
-        nodes.closest('tr').find('.td-class div').empty().append(nodes.find(':selected').data('class'));
+        nodes.closest('tr').find('.td-class').empty().append(nodes.find(':selected').data('class'));
       }
 
       //get deliverables from projectRelatedDeliverables json
@@ -382,6 +391,7 @@ var projectResourceTable = (function ($) {
         var practiceSelect = nodes.closest('tr').find('.practice');
           var Practice = [];
           rateCards.map(function (val) {
+            console.log(val);
             if (OfficeID === val.Office) {
               Practice.push('<option value="'+ val.CostCenterName+ '" ' +
                       'data-office="'+ val.Office+'">' +
