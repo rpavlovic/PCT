@@ -38,7 +38,6 @@ var projectResourceTable = (function ($) {
       var off = values[1];
       var rcs = values[2];
       var rsrc = values[3];
-      var All = [];
 
       off.push({
         Office: "Select Office",
@@ -324,7 +323,8 @@ var projectResourceTable = (function ($) {
             getPractice(OfficeID, nodes);
             loadBillRate(nodes);
           });
-              $("#project-resource-table .month").trigger('blur');
+            //To validate triiger blur on the table.
+            $("#project-resource-table .month").trigger('blur');
         },
         "initComplete": function (settings, json, row) {
         },
