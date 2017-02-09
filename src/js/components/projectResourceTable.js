@@ -34,28 +34,28 @@ var projectResourceTable = (function ($) {
     Promise.all([p1, p2, p3, p4]).then(function (values) {
 
       //deliverables
-      var de = values[0];
-      var off = values[1];
-      var rcs = values[2];
+      var deliverables = values[0];
+      var offices = values[1];
+      var rateCards = values[2];
       var projectResources = values[3];
       var All = [];
 
-      off.push({
+      offices.push({
         Office: "Select Office",
         OfficeName: "Select Office Name",
         City: "Select City"
       });
-      
+
       var myRows = [];
 
       projectResources.forEach(function (resource) {
         myRows.push({
           "EmpGradeName": resource,
-          "Office": {offices: off, selectedOffice: getParameterByName('Office')},
+          "Office": {offices: offices, selectedOffice: getParameterByName('Office')},
           "Class": resource,
           "CostCenterName": [],
           "Role": resource.Role,
-          "Deliverables": de,
+          "Deliverables": deliverables,
           "jan": 1,
           "feb": 2,
           "mar": 32,
@@ -344,9 +344,9 @@ var projectResourceTable = (function ($) {
         e.preventDefault();
         projResourceTable.row.add({
           "EmpGradeName": [],
-          "Office": { offices: off },
+          "Office": { offices: offices },
           "CostCenterName": [],
-          "Deliverables": de
+          "Deliverables": deliverables
         }).draw().node();
         projResourceTable.rows().nodes().to$().last().addClass('new-row').delay(1000).queue(function () {
             $(this).removeClass("new-row").dequeue();
@@ -361,7 +361,7 @@ var projectResourceTable = (function ($) {
       function getJobTitle(OfficeID, nodes) {
         var titleSelect = nodes.closest('tr').find('.title'),
             EmpTitle = [];
-        rcs.map(function (val) {
+        rateCards.map(function (val) {
           if (OfficeID === val.Office) {
             EmpTitle.push('<option value="' + val.EmpGradeName + '" ' +
               'data-rate="' + val.BillRate + '" data-class="' + val.Class + '" data-office="' + val.Office + '" ' +
@@ -381,7 +381,7 @@ var projectResourceTable = (function ($) {
         console.log(OfficeID);
         var practiceSelect = nodes.closest('tr').find('.practice');
           var Practice = [];
-          rcs.map(function (val) {
+          rateCards.map(function (val) {
             if (OfficeID === val.Office) {
               Practice.push('<option value="'+ val.CostCenterName+ '" ' +
                       'data-office="'+ val.Office+'">' +
@@ -413,7 +413,7 @@ var projectResourceTable = (function ($) {
       function getEmployeeTitles(officeId){
         var employeeTitles = [];
         employeeTitles.push({ Office: null, EmpGradeName: "Select Title" });
-        rcs.map(function (val) {
+        rateCards.map(function (val) {
           if (officeId === val.Office) {
             employeeTitles.push(val);
           }
@@ -422,7 +422,7 @@ var projectResourceTable = (function ($) {
       }
 
       function getEmployeeClass(employee){
-        var rcElement = rcs.find(function (val) {
+        var rcElement = rateCards.find(function (val) {
           return val.Office === employee.Officeid && employee.Titleid === val.EmpGradeName;
         });
 
