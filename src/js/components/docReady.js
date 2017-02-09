@@ -59,9 +59,7 @@ function get_data_feed(feed, query, count) {
 
     //if form to be loaded exists.
     if($("form.project-info").length > 0) {
-      projectInfoForm.initProjectInfoForm(get_data_feed(feeds.offices),
-        get_data_feed(feeds.employee),
-        get_data_feed(feeds.project));
+      projectInfoForm.initProjectInfoForm(feeds);
         floatLabel.initfloatLabel();
     }
     //Show Hide elements
@@ -69,7 +67,7 @@ function get_data_feed(feed, query, count) {
 
     //floating label in the input fields.
    // floatLabel.initfloatLabel();
-   if($('form.project-info').length > 0) {
+   if($('form.project-info').length) {
     addRemoveFields.initAddRemoveFields('form.project-info');
    }
 
