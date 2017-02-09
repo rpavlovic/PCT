@@ -157,8 +157,6 @@ var projectResourceTable = (function ($) {
             "defaultContent": '',
             render: function (data, type, row) {
               return getEmployeeClass(data);
-
-
             }
           },
           {
@@ -346,7 +344,9 @@ var projectResourceTable = (function ($) {
           "EmpGradeName": [],
           "Office": { offices: offices },
           "CostCenterName": [],
-          "Deliverables": deliverables
+          "Deliverables": deliverables,
+          "Class": '',
+          "Role": ''
         }).draw().node();
         projResourceTable.rows().nodes().to$().last().addClass('new-row').delay(1000).queue(function () {
             $(this).removeClass("new-row").dequeue();
