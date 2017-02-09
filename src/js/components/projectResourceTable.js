@@ -157,8 +157,6 @@ var projectResourceTable = (function ($) {
             "defaultContent": '',
             render: function (data, type, row) {
               return getEmployeeClass(data);
-
-
             }
           },
           {
@@ -212,15 +210,8 @@ var projectResourceTable = (function ($) {
             "defaultContent": '',
             "class": "total-hours  can-clear",
             "render": function (data, type, row, meta) {
-              // console.log(parseInt(row.jan)* 1 + parseInt(row.feb)* 1 + parseInt(row.mar)*1 + parseInt(row.apr)*1+
-              //   parseInt(row.may)*1 );
-              // console.log(parseInt(row.jun)*1)
-              return parseInt(row.jan)* 1 + parseInt(row.feb)* 1 +
-                      parseInt(row.mar)*1 + parseInt(row.apr)*1 +
-                      parseInt(row.may)*1 + parseInt(row.jun)*1 +
-                      parseInt(row.jul)*1 + parseInt(row.aug)*1+
-                      parseInt(row.sep)* 1 + parseInt(row.oct)*1 +
-                      parseInt(row.nov)*1 + parseInt(row.dec)*1;
+              var total_hours = row.jan + row.feb + row.mar + row.apr + row.may + row.jun + row.jul + row.aug+ row.sep + row.oct + row.nov + row.dec;
+              return total_hours.toFixed(2);
             }
           },
           {
@@ -305,7 +296,7 @@ var projectResourceTable = (function ($) {
         "select": true,
         "rowCallback": function (row, json) {
           $(row).removeClass('odd even');
-          $("td:nth-child(n+6):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", row)
+          $("td:nth-child(n+8):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", row)
             .addClass("contenteditable");
         },
         "createdRow": function (row, data, index) {
@@ -356,7 +347,7 @@ var projectResourceTable = (function ($) {
           "EmpGradeName": [],
           "Office": { offices: offices },
           "CostCenterName": [],
-          "Deliverables": deliverables
+          "Deliverables": deliverables,
         }).draw().node();
         projResourceTable.rows().nodes().to$().last().addClass('new-row').delay(1000).queue(function () {
             $(this).removeClass("new-row").dequeue();
@@ -420,7 +411,7 @@ var projectResourceTable = (function ($) {
         nodes.closest('tr').find('.td-billrate').empty().append(currency + nodes.find(':selected').data('rate'));
       }
 
-      function getEmployeeTitles(officeId){
+      function getEmployeeTitles(officeId) {
         var employeeTitles = [];
         employeeTitles.push({ Office: null, EmpGradeName: "Select Title" });
         rateCards.map(function (val) {
@@ -431,7 +422,7 @@ var projectResourceTable = (function ($) {
         return employeeTitles;
       }
 
-      function getEmployeeClass(employee){
+      function getEmployeeClass(employee) {
         var rcElement = rateCards.find(function (val) {
           return val.Office === employee.Officeid && employee.Titleid === val.EmpGradeName;
         });
@@ -446,7 +437,7 @@ var projectResourceTable = (function ($) {
 
         if(data) {
 
-          return '<div contenteditable class="month">' + parseInt(data)*1 + '</div>';
+          return '<div contenteditable class="month">' + data + '</div>';
         }
         else{
           return '<div contenteditable class="month" />';
