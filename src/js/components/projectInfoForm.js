@@ -36,8 +36,8 @@ var projectInfoForm = (function ($) {
     compensation_type = $("select[name='compensation']"),
     comments = $("textarea[name='comments']");
 
-  items_currency.map(function (value, key) {
-    select_currency.append('<option value="' + value + '">' + value + '</option>');
+  items_currency.forEach(function(currency){
+    select_currency.append('<option value="' + currency + '">' + currency + '</option>');
   });
 
   if (getParameterByName('projName')) {
@@ -66,25 +66,11 @@ var projectInfoForm = (function ($) {
 
   //prepopulate Billing office select with JSON data.
   function prepopulate_Billing_Office_JSON(results) {
-    $.each(results, function (key, val) {
-      for (key in val) {
-        //create office name options.
-        if (key === "Office") {
-          items_business.push('<option value="' + val[key] + '">' + val.OfficeName + ', ' + val.City + ' / ' + val[key] + '</option>');
-        }
-        //create country options.
-        if (key == "Country") {
-          items_country.push('<option value="' + val[key] + '">' + val[key] + '</option>');
-        }
-        //create region options
-        if (key == "Region") {
-          items_region.push('<option value="' + val[key] + '">' + val[key] + '</option>');
-        }
-        //if the currency data is matching to the currency array.
-        if (key == "Currency") {
-          matchOptions(val[key], select_currency[0]);
-        }
-      }
+    results.forEach(function(office){
+      items_business.push('<option value="' + office.Office + '">' + office.OfficeName + ', ' + office.City + ' / ' + office.Office + '</option>');
+      items_country.push('<option value="' + office.Country + '">' + office.Country + '</option>');
+      items_region.push('<option value="' + office.Region + '">' + office.Region + '</option>');
+      matchOptions(office.Currency, select_currency[0]);
     });
 
     select_billing_office.append($.unique(items_business));
@@ -94,21 +80,10 @@ var projectInfoForm = (function ($) {
 
   //match the employee office with list of offices and select the matching one.
   function prepopulate_Employee_Office(results) {
-    $.each(results, function (key, val) {
-      for (key in val) {
-        //select the office for the employee that matches
-        if (key === "Office") {
-          matchOptions(val[key], select_billing_office[0]);
-        }
-        //select the region for the employee that matches
-        if (key === "OfficeRegion") {
-          matchOptions(val[key], select_region[0]);
-        }
-        //select the office country for the employee that matches
-        if (key === "OfficeCountry") {
-          matchOptions(val[key], select_country[0]);
-        }
-      }
+    results.forEach(function(employeeOffice) {
+      matchOptions(employeeOffice.Office, select_billing_office[0]);
+      matchOptions(employeeOffice.OfficeRegion, select_region[0]);
+      matchOptions(employeeOffice.OfficeCountry, select_country[0]);
     });
   }
 
@@ -121,13 +96,16 @@ var projectInfoForm = (function ($) {
   }
 
   function prepopulate_ExtraInfo_JSON(results) {
-    results.map(function (value) {
-      $('textarea').val(value.Comments);
-      $('form.project-info input[name="name"]').val(value.Clientname);
-      $('form.project-info input[name="Preparedby"]').val(value.Preparedby);
-      input_duration.val(value.Duration);
-      plan_units.val(value.Comptyp);
+    var extraProjInfo = results.find(function (value) {
+      return value.Projid === getParameterByName('projID');
     });
+    if(extraProjInfo) {
+      $('textarea').val(extraProjInfo.Comments);
+      $('form.project-info input[name="name"]').val(extraProjInfo.Clientname);
+      $('form.project-info input[name="Preparedby"]').val(extraProjInfo.Preparedby);
+      input_duration.val(extraProjInfo.Duration);
+      plan_units.val(extraProjInfo.Comptyp);
+    }
   }
 
   function get_unique_id() {
