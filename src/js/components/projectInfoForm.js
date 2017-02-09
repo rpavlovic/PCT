@@ -46,8 +46,8 @@ var projectInfoForm = (function ($) {
 
   function prepopulateDeliverables(results) {
     var projId = getParameterByName('projID');
-    results.forEach(function(deliverable) {
-      if(projId === deliverable.Projid) {
+    results.forEach(function (deliverable) {
+      if (projId === deliverable.Projid) {
         if (!$('input[name="deliverable"]').val()) {
           // if the first one is empty, we just fill it in.
           $('input[name="deliverable"]').val(deliverable.DelvDesc);
@@ -122,13 +122,11 @@ var projectInfoForm = (function ($) {
 
   function prepopulate_ExtraInfo_JSON(results) {
     results.map(function (value) {
-      if (value.Projid == getParameterByName('projID')) {
-        $('textarea').val(value.Comments);
-        $('form.project-info input[name="name"]').val(value.Clientname);
-        $('form.project-info input[name="Preparedby"]').val(value.Preparedby);
-        input_duration.val(value.Duration);
-        plan_units.val(value.Comptyp);
-      }
+      $('textarea').val(value.Comments);
+      $('form.project-info input[name="name"]').val(value.Clientname);
+      $('form.project-info input[name="Preparedby"]').val(value.Preparedby);
+      input_duration.val(value.Duration);
+      plan_units.val(value.Comptyp);
     });
   }
 
@@ -150,7 +148,7 @@ var projectInfoForm = (function ($) {
 
   function initProjectInfoForm(feeds) {
     var p1 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectDeliverables), function (deliverables) {
+      $.getJSON(get_data_feed(feeds.projectDeliverables, getParameterByName('projID')), function (deliverables) {
         resolve(deliverables.d.results);
       });
     });
