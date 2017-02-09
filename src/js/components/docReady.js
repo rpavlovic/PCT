@@ -6,7 +6,13 @@ var feeds = {
   'project': [ 'data/ProjectInfoCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection?$filter=Projid eq \'{token}\'&$format=json' ],
   'jobSearch': [ 'data/JobSearchCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/JobNumberCollection/?$filter=SearchString eq \'{token}\'&$format=json' ],
 
-  // margin modeling data, e.g.:  get_data_feed('marginModeling', '100100', 'SRGF')
+  /*
+   * margin modeling data, e.g.:  get_data_feed('marginModeling', '100100', 'SRGF')
+   *  SRBF    Standard Resource Based Fee
+   *  ARBF    Adjusted Resource Based Fee
+   *  TMBF    Target Margin Based Fee
+   *  FFT    Fixed Fee Target
+   */
   'marginModeling': [ 'data/MarginModeling.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection?$filter=Projid eq \'{token}\' and ModelType eq \'{count}\'&$format=json' ],
 
   // Rate Card / Bill Rate / Job Title by Office name, e.g.:  get_data_feed('rateCards', 'US02')
