@@ -28,7 +28,10 @@ var feeds = {
   'plannedHours': [ 'data/PlannedHours.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet?$filter=Projid eq \'1000103\' and Rowno eq \'001\' and Plantyp eq \'WK\' and Cellid eq \'R1\'&$format=json' ],
 
   // Project Expenses by Project ID, e.g.:  get_data_feed('projectExpenses', '100100')
-  'projectExpenses': [ 'data/ProjectExpensesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection/?$filter=Projid eq \'{token}\'&$format=json' ]
+  'projectExpenses': [ 'data/ProjectExpensesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection/?$filter=Projid eq \'{token}\'&$format=json' ],
+
+  // custom bill sheet by employee ID
+  'billSheet': [ 'data/BillSheetCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection?$filter=EmpNumber eq \'{token}\'&$format=json' ]
 };
 
 /**
