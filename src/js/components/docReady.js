@@ -135,6 +135,7 @@ function get_data_feed(feed, query, count) {
     $('.fa-print').click(function() {
       window.print();
     });
+
   });
 
 }( jQuery ));

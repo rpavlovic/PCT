@@ -32,6 +32,7 @@ table {
         background-color: #f9f9f9;
         td {
           border: solid 1px $white;
+          vertical-align: middle;
           &:first-child {
             color: $darker-grey;
             font-family: "EYRegular";
@@ -58,7 +59,7 @@ table {
         &:hover {
           > .sorting_1,
           td {
-            background-color: #eaeaea;
+            background-color: #eaeaea !important;
           }
         }
         &.selected {
@@ -98,19 +99,24 @@ table {
   tbody tr {
     background: #f9f9f9;
     td {
-      &.contenteditable {
-        background-color: #f2f2f2;
+      &.contenteditable,
+      &.sorting_1 {
+        background-color: #f2f2f2 !important;
         position: relative;
         &:focus {
           outline: none;
           background: none;
         }
         div {
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 100%;
-          width: 100%;
+          // position: absolute;
+          // top: 0;
+          // left: 0;
+          // height: 100%;
+          // width: 100%;
+
+          padding: 5px 20px;
+          text-align: center;
+          border: inset 1px lightblue
         }
         div:focus {
           background-color: #e8f1f8;

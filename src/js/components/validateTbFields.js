@@ -21,7 +21,6 @@ function returnData(new_data, table) {
     return true;
   };
   //run error here.
-
   error();
 
   if(table === "#csv-table") {
