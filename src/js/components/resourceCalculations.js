@@ -13,7 +13,8 @@ var resourceFormulas = (function ($) {
       total_fees : $(table + " tbody td.total-fees"),
       months_hours : $(table + " tbody .month"),
       bill_rate : $(table + "tbody td-billrate"),
-      avarage_rate : $("#modeling-table tbody #avg-rate_standard-resource")
+      avarage_rate : $("#modeling-table tbody #avg-rate_standard-resource"),
+      modeling_fees: $("#modeling-table tbody #total-fee_standard-resource")
     };
     var REgex_num = /^[\$]?[0-9\.\,]+[\%]?/g;
     var REgex_dollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
@@ -50,7 +51,7 @@ var resourceFormulas = (function ($) {
       $(table1.row).find(table1.total_hours).text(sum_hours.toFixed(2));
     }
     if(sum_rate > 0) {
-      $(table1.row).find(table1.total_fees).text('$' + sum_rate.toFixed(3));
+      $(table1.row).find(table1.total_fees).text('$' + sum_rate.toFixed(3).replace(REgex_dollar, "$1,"));
     }
 
     //show total in the footer
@@ -65,13 +66,16 @@ var resourceFormulas = (function ($) {
       total_rate_sum += Number($(this).text().replace(/[^0-9\.]/g,""));
     });
     if(sum_rate > 0) {
-      $('tfoot td.total-fees').text("$" + total_rate_sum.toFixed(2).replace(REgex_dollar, "$1,"));
+      var total_fees = "$" + total_rate_sum.toFixed(3).replace(REgex_dollar, "$1,");
+      table1.modeling_fees.text(total_fees);
+      $('tfoot td.total-fees').text(total_fees);
     }
 
     //modeling table populate
     var av_rate =  total_rate_sum/total_hours;
-    table1.avarage_rate.text("$" + av_rate.toFixed(2));
+    table1.avarage_rate.text("$" + av_rate.toFixed(3).replace(REgex_dollar, "$1,"));
 
+   // Contribution Margin (total_rate_sum - total cost) / total_rate_sum + '%';
 
   }
   return {

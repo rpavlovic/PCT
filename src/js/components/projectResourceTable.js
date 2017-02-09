@@ -324,7 +324,6 @@ var projectResourceTable = (function ($) {
         },
         "initComplete": function (settings, json, row) {
         },
-
         "bDestroy": true
       });
 
