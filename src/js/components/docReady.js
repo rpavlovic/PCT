@@ -5,10 +5,19 @@ var feeds = {
   'project': [ 'data/ProjectInfoCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection?$filter=Projid eq \'{token}\'&$format=json' ],
   'jobSearch': [ 'data/JobSearchCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/JobNumberCollection/?$filter=SearchString eq \'{token}\'&$format=json' ],
 
-  // default rate card by selected office (e.g. 'US01'):
+  // Rate Card / Bill Rate / Job Title by Office name, e.g.:  get_data_feed('rateCards', 'US02')
   'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection/?$filter=Plant eq \'{token}\'&$format=json' ],
-  'projectDeliverables': [ 'data/ProjectRelatedDeliverables.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection?$format=json' ],
+
+  // Project Deliverables by Project ID, e.g.:  get_data_feed('projectDeliverables', '100100')
+  'projectDeliverables': [ 'data/ProjectRelatedDeliverables.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection?$filter=Projid eq \'{token}\'&$format=json' ],
+
+  // Project Resources by Project ID and Row Count, e.g.:  get_data_feed('projectResources', '100100', 1)
   'projectResources': [ 'data/ProjectResourcesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection?$filter=Projid eq \'{token}\' and Rowno eq \'{count}\'&$format=json' ],
+
+  // TODO: make dynamic
+  'plannedHours': [ 'data/PlannedHours.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet?$filter=Projid eq \'1000103\' and Rowno eq \'001\' and Plantyp eq \'WK\' and Cellid eq \'R1\'&$format=json' ],
+
+  // Project Expenses by Project ID, e.g.:  get_data_feed('projectExpenses', '100100')
   'projectExpenses': [ 'data/ProjectExpensesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection/?$filter=Projid eq \'{token}\'&$format=json' ]
 };
 

@@ -1,0 +1,18 @@
+{
+  "d" : {
+    "results" : [
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='001',Plantyp='WK',Cellid='R1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='001',Plantyp='WK',Cellid='R1')",
+          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid" : "1000103",
+        "Rowno" : "001",
+        "Plantyp" : "WK",
+        "Cellid" : "R1",
+        "Planhours" : 8
+      }
+    ]
+  }
+}
