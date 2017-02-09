@@ -37,7 +37,7 @@ var projectResourceTable = (function ($) {
       var offices = values[1];
       var rateCards = values[2];
       var projectResources = values[3];
-      var All = [];
+
 
       offices.push({
         Office: "Select Office",
@@ -214,7 +214,7 @@ var projectResourceTable = (function ($) {
               months.forEach(function (month) {
                 sum += parseFloat(row[month]);
               });
-              return sum;
+              return sum.toFixed(2);
             }
           },
           {
@@ -299,7 +299,7 @@ var projectResourceTable = (function ($) {
         "select": true,
         "rowCallback": function (row, json) {
           $(row).removeClass('odd even');
-          $("td:nth-child(n+6):not(:nth-child(7)):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", row)
+          $("td:nth-child(n+8):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", row)
             .addClass("contenteditable");
         },
         "createdRow": function (row, data, index) {
@@ -321,6 +321,8 @@ var projectResourceTable = (function ($) {
             getPractice(OfficeID, nodes);
             loadBillRate(nodes);
           });
+            //To validate triiger blur on the table.
+            //$("#project-resource-table .month").trigger('blur');
         },
         "initComplete": function (settings, json, row) {
         },
@@ -333,7 +335,7 @@ var projectResourceTable = (function ($) {
           $("#project-resource-table tbody select.office option").each(function (k, v) {
             if ($(v).val() === value.Officeid) {
               $(this).prop('selected', true);
-              //$("#project-resource-table tbody select.title").trigger('change');
+
               getJobTitle(value.Officeid, $(this));
               getClass($("#project-resource-table tbody select.title"));
               getPractice(value.Officeid, $(this));
@@ -460,8 +462,8 @@ var projectResourceTable = (function ($) {
         if (data) {
           return '<div contenteditable class="month">' + data + '</div>';
         }
-        else {
-          return '<div contenteditable class="month"/>';
+        else{
+          return '<div contenteditable class="month" />';
         }
       }
     });
