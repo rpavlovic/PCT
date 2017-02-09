@@ -15,7 +15,8 @@ function returnData(new_data, table) {
 
   var error = function() {
     var REgex = /^[\$]?[0-9\.\,]+[\%]?/g;
-    if( ($(new_data.element).parent().hasClass('num') || $(new_data.element).hasClass('month')) && !isNum && $(new_data.element).html().replace(REgex, '')) {
+    if( ($(new_data.element).parent().hasClass('num') || $(new_data.element).hasClass('month')) && !isNum &&
+        $(new_data.element).html().replace(REgex, '')) {
       $(new_data.element).html('this field accepts numbers only.').addClass('error');
     }
     return true;
