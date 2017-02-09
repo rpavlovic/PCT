@@ -107,7 +107,7 @@ table {
           outline: none;
           background: none;
         }
-        div {
+       > div {
           // position: absolute;
           // top: 0;
           // left: 0;
@@ -116,7 +116,8 @@ table {
 
           padding: 5px 20px;
           text-align: center;
-          border: inset 1px lightblue
+          border: inset 1px lightblue;
+          display: inline-block;
         }
         div:focus {
           background-color: #e8f1f8;

@@ -15,6 +15,7 @@ var resourceFormulas = (function ($) {
     table1.row = $(data.element).closest('tr');
     table1.total_fees = $(table + " tbody td.total-fees");
     table1.months_hours = $(table + " tbody .month");
+    table1.bill_rate = $(table + "tbody td-billrate");
     var sum_hours = 0,
         sum_rate = 0,
         total_rate_sum = 0,
@@ -29,10 +30,12 @@ var resourceFormulas = (function ($) {
       });
       $(this).find('.rate-override').each(function(key, value) {
         if ($(this).text().length !== 0) {
-          var dollars =$(this).text().replace(/[^0-9\.]/g,"");
+          var dollars = $(this).text().replace(/[^0-9\.]/g,"");
           sum_rate += Number(sum_hours * dollars);
-          console.log(sum_hours * dollars);
         }
+      });
+      $(this).find('.td-billrate').each(function(key, value) {
+        console.log($(this).text().replace(/[^0-9\.]/g,""));
       });
     });
     if(sum_hours > 0 && !isNaN(sum_hours)) {

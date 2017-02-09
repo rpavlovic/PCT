@@ -318,8 +318,6 @@ var projectResourceTable = (function ($) {
             getPractice(OfficeID, nodes);
             loadBillRate(nodes);
           });
-            //To validate triiger blur on the table.
-            //$("#project-resource-table .month").trigger('blur');
         },
         "initComplete": function (settings, json, row) {
         },
