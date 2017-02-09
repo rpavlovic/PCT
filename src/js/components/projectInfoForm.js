@@ -34,9 +34,10 @@ var projectInfoForm = (function ($) {
     prepared_by = $('form.project-info input[name="Preparedby"]'),
     selected = false,
     compensation_type = $("select[name='compensation']"),
-    comments = $("textarea[name='comments']");
+    comments = $("textarea[name='comments']"),
+    createdOn = null;
 
-  items_currency.forEach(function(currency){
+  items_currency.forEach(function (currency) {
     select_currency.append('<option value="' + currency + '">' + currency + '</option>');
   });
 
@@ -66,7 +67,7 @@ var projectInfoForm = (function ($) {
 
   //prepopulate Billing office select with JSON data.
   function prepopulate_Billing_Office_JSON(results) {
-    results.forEach(function(office){
+    results.forEach(function (office) {
       items_business.push('<option value="' + office.Office + '">' + office.OfficeName + ', ' + office.City + ' / ' + office.Office + '</option>');
       items_country.push('<option value="' + office.Country + '">' + office.Country + '</option>');
       items_region.push('<option value="' + office.Region + '">' + office.Region + '</option>');
@@ -80,7 +81,7 @@ var projectInfoForm = (function ($) {
 
   //match the employee office with list of offices and select the matching one.
   function prepopulate_Employee_Office(results) {
-    results.forEach(function(employeeOffice) {
+    results.forEach(function (employeeOffice) {
       matchOptions(employeeOffice.Office, select_billing_office[0]);
       matchOptions(employeeOffice.OfficeRegion, select_region[0]);
       matchOptions(employeeOffice.OfficeCountry, select_country[0]);
@@ -99,12 +100,13 @@ var projectInfoForm = (function ($) {
     var extraProjInfo = results.find(function (value) {
       return value.Projid === getParameterByName('projID');
     });
-    if(extraProjInfo) {
+    if (extraProjInfo) {
       $('textarea').val(extraProjInfo.Comments);
       $('form.project-info input[name="name"]').val(extraProjInfo.Clientname);
       $('form.project-info input[name="Preparedby"]').val(extraProjInfo.Preparedby);
       input_duration.val(extraProjInfo.Duration);
       plan_units.val(extraProjInfo.Comptyp);
+      createdOn = extraProjInfo.Createdon;
     }
   }
 
@@ -167,6 +169,16 @@ var projectInfoForm = (function ($) {
   $('#btn-save').on('click', function (event) {
     event.preventDefault();
     console.log("saving form");
+    // get val in unix epoch time
+    var EstStDate = new Date($('input.datepicker').val()).getTime();
+    var startDate = new Date($('input[name="weekstart"]').val()).getTime();
+    var EstEndDate = new Date($('input[name="enddate"]').val()).getTime();
+    var changedDate = new Date().getTime();
+
+    if(!createdOn){
+      createdOn = "\/Date("+changedDate+")\/";
+    }
+
     var formData = {
       "Projid": get_unique_id(),
       "Plantyp": "OP",
@@ -176,17 +188,17 @@ var projectInfoForm = (function ($) {
       "Clientname": client_name.val(),
       "Projname": project_name.val(),
       "Comptyp": compensation_type.val(),
-      "EstStDate": "\/Date(1484784000000)\/",
+      "EstStDate": "\/Date("+EstStDate+")\/",
       "Duration": input_duration.val(),
       "PlanUnits": plan_units.val(),
-      "StartDate": "\/Date(1484784000000)\/",
-      "EstEndDate": "\/Date(1484784000000)\/",
+      "StartDate": "\/Date("+startDate+")\/",
+      "EstEndDate": "\/Date("+EstEndDate+")\/",
       "Comments": comments.val(),
       "Preparedby": prepared_by.val(),
       "Createdby": prepared_by.val(),
-      "Createdon": "\/Date(1484784000000)\/",
+      "Createdon": createdOn,
       "Changedby": prepared_by.val(),
-      "Changedon": "\/Date(1484784000000)\/"
+      "Changedon": "\/Date("+changedDate+")\/"
     };
 
     $.ajax({
