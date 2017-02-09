@@ -1,10 +1,19 @@
 // global list of data feeds
 var feeds = {
-  'offices': [ 'data/OfficeCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection' ],
-  'employee': [ 'data/EmployeeCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection' ],
+  'offices': [ 'data/OfficeCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection?$format=json' ],
+  'employee': [ 'data/EmployeeCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection?$format=json' ],
   'projectList': [ 'data/ProjectInfoCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection?$format=json' ],
   'project': [ 'data/ProjectInfoCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection?$filter=Projid eq \'{token}\'&$format=json' ],
   'jobSearch': [ 'data/JobSearchCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/JobNumberCollection/?$filter=SearchString eq \'{token}\'&$format=json' ],
+
+  /*
+   * margin modeling data, e.g.:  get_data_feed('marginModeling', '100100', 'SRGF')
+   *  SRBF    Standard Resource Based Fee
+   *  ARBF    Adjusted Resource Based Fee
+   *  TMBF    Target Margin Based Fee
+   *  FFT    Fixed Fee Target
+   */
+  'marginModeling': [ 'data/MarginModeling.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection?$filter=Projid eq \'{token}\' and ModelType eq \'{count}\'&$format=json' ],
 
   // Rate Card / Bill Rate / Job Title by Office name, e.g.:  get_data_feed('rateCards', 'US02')
   'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection/?$filter=Plant eq \'{token}\'&$format=json' ],
@@ -19,7 +28,10 @@ var feeds = {
   'plannedHours': [ 'data/PlannedHours.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet?$filter=Projid eq \'1000103\' and Rowno eq \'001\' and Plantyp eq \'WK\' and Cellid eq \'R1\'&$format=json' ],
 
   // Project Expenses by Project ID, e.g.:  get_data_feed('projectExpenses', '100100')
-  'projectExpenses': [ 'data/ProjectExpensesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection/?$filter=Projid eq \'{token}\'&$format=json' ]
+  'projectExpenses': [ 'data/ProjectExpensesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection/?$filter=Projid eq \'{token}\'&$format=json' ],
+
+  // custom bill sheet by employee ID
+  'billSheet': [ 'data/BillSheetCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection?$filter=EmpNumber eq \'{token}\'&$format=json' ]
 };
 
 /**

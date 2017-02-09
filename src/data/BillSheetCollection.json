@@ -1,0 +1,26 @@
+{
+  "d" : {
+    "results" : [
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
+          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
+        },
+        "EmpNumber" : "00010500",
+        "Class" : "",
+        "BillsheetId" : "        2",
+        "BillsheetName" : "",
+        "TitleId" : "ABCD",
+        "TitleDesc" : "ABCDEFG",
+        "StandardRate" : "100.000",
+        "OverrideRate" : "100.000",
+        "DiscountPer" : "3.560",
+        "CreatedBy" : "VKANDURI",
+        "CreatedOn" : "\/Date(1482796800000)\/",
+        "ChangedOn" : "\/Date(1482796800000)\/",
+        "ChangedBy" : "VKANDURI"
+      }
+    ]
+  }
+}
