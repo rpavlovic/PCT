@@ -34,8 +34,8 @@ var resourceFormulas = (function ($) {
         }
       });
     });
-
-    if(sum_hours > 0) {
+    console.log(!isNaN(sum_hours));
+    if(sum_hours > 0 && !isNaN(sum_hours)) {
       $(table1.row).find(table1.total_hours).text(sum_hours.toFixed(2));
     }
     if(sum_rate > 0) {
