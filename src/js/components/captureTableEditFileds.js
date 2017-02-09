@@ -6,13 +6,11 @@ var captureEditTd = (function ($) {
   'use strict';
 
   function initCaptureEditTd(table) {
-    //on enter remove value of the cell if error.
     $(table).on('mousedown','td.contenteditable > div', function (event) {
-       if ('this field accepts numbers only.' === $(event.target).html().toLowerCase()) {
-        $(event.target).html('');
+      if ($(event.target).hasClass('error')) {
+       $(event.target).html('').removeClass('error');
       }
     });
-
     $(table).on('blur', 'td.contenteditable > div', function (event) {
       var esc = event.which == 27,
           nl = event.which == 13,
@@ -21,17 +19,23 @@ var captureEditTd = (function ($) {
           input = el.nodeName != 'INPUT' && el.nodeName != 'TEXTAREA' && el.nodeName != 'SELECT',
           data = {};
       if (input) {
-         data = {
-            element : el
-          };
+        if (nl) {
+          event.preventDefault();
+          document.execCommand('insertHTML', false);
+          // prevent the default behaviour of return key pressed
+          return false;
+        }
         if (esc) {
           // restore state
           document.execCommand('undo');
           el.blur();
         }
-          returnData(data, table);
-          el.blur();
-          event.preventDefault();
+        data = {
+          element : el
+        };
+        returnData(data, table);
+        el.blur();
+        event.preventDefault();
       }
       return data;
     });

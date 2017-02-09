@@ -214,7 +214,7 @@ var projectResourceTable = (function ($) {
               months.forEach(function (month) {
                 sum += parseFloat(row[month]);
               });
-              return sum.toFixed(2);
+              return !isNaN(sum) ? sum.toFixed(2) : '';
             }
           },
           {
@@ -321,8 +321,6 @@ var projectResourceTable = (function ($) {
             getPractice(OfficeID, nodes);
             loadBillRate(nodes);
           });
-            //To validate triiger blur on the table.
-            //$("#project-resource-table .month").trigger('blur');
         },
         "initComplete": function (settings, json, row) {
         },
