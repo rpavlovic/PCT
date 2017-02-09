@@ -214,7 +214,7 @@ var projectResourceTable = (function ($) {
               months.forEach(function (month) {
                 sum += parseFloat(row[month]);
               });
-              return sum.toFixed(2);
+              return !isNaN(sum) ? sum.toFixed(2) : '';
             }
           },
           {

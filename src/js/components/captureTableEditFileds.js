@@ -7,8 +7,7 @@ var captureEditTd = (function ($) {
 
   function initCaptureEditTd(table) {
     $(table).on('mousedown','td.contenteditable > div', function (event) {
-      console.log($(event.target).hasClass('error'));
-      if ($(event.target).hasClass('error') === $(event.target).html().toLowerCase()) {
+      if ($(event.target).hasClass('error')) {
        $(event.target).html('').removeClass('error');
       }
     });
