@@ -324,6 +324,7 @@ var projectResourceTable = (function ($) {
             getPractice(OfficeID, nodes);
             loadBillRate(nodes);
           });
+              $("#project-resource-table .month").trigger('blur');
         },
         "initComplete": function (settings, json, row) {
         },
@@ -335,7 +336,7 @@ var projectResourceTable = (function ($) {
           $("#project-resource-table tbody select.office option").each(function(k, v) {
             if($(v).val() === value.Officeid) {
               $(this).prop('selected', true);
-              //$("#project-resource-table tbody select.title").trigger('change');
+
               getJobTitle(value.Officeid, $(this));
               getClass($("#project-resource-table tbody select.title"));
               getPractice(value.Officeid, $(this));
@@ -427,11 +428,13 @@ var projectResourceTable = (function ($) {
       }
 
       function renderMonth(data, type, row, meta) {
+
         if(data) {
-          return '<div contenteditable>' + data + '</div>';
+
+          return '<div contenteditable class="month">' + data + '</div>';
         }
         else{
-          return '<div contenteditable />';
+          return '<div contenteditable class="month" />';
         }
       }
     });

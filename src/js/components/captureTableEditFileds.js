@@ -29,13 +29,6 @@ var captureEditTd = (function ($) {
           document.execCommand('undo');
           el.blur();
         }
-          // TODO when ready we could send an ajax request to update the field
-          // $.ajax({
-          //   url: window.location.toString(),
-          //   data: data,
-          //   type: 'post'
-          // });
-          //log(JSON.stringify(data));
           returnData(data, table);
           el.blur();
           event.preventDefault();
