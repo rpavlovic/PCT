@@ -6,6 +6,9 @@ var feeds = {
   'project': [ 'data/ProjectInfoCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection?$filter=Projid eq \'{token}\'&$format=json' ],
   'jobSearch': [ 'data/JobSearchCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/JobNumberCollection/?$filter=SearchString eq \'{token}\'&$format=json' ],
 
+  // margin modeling data, e.g.:  get_data_feed('marginModeling', '100100', 'SRGF')
+  'marginModeling': [ 'data/MarginModeling.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection?$filter=Projid eq \'{token}\' and ModelType eq \'{count}\'&$format=json' ],
+
   // Rate Card / Bill Rate / Job Title by Office name, e.g.:  get_data_feed('rateCards', 'US02')
   'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection/?$filter=Plant eq \'{token}\'&$format=json' ],
 
