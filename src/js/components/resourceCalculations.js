@@ -27,19 +27,19 @@ var resourceFormulas = (function ($) {
           sum_hours += Number($(this).text());
         }
       });
-
       $(this).find('.rate-override').each(function(key, value) {
-        if (!isNaN($(this).text()) && $(this).text().length !== 0) {
-          sum_rate += Number(sum_hours*$(this).text());
+        if ($(this).text().length !== 0) {
+          var dollars =$(this).text().replace(/[^0-9\.]/g,"");
+          sum_rate += Number(sum_hours * dollars);
+          console.log(sum_hours * dollars);
         }
       });
     });
-    console.log(!isNaN(sum_hours));
     if(sum_hours > 0 && !isNaN(sum_hours)) {
       $(table1.row).find(table1.total_hours).text(sum_hours.toFixed(2));
     }
     if(sum_rate > 0) {
-      $(table1.row).find(table1.total_fees).text('$' + sum_rate.toFixed(2).replace(REgex_dollar, "$1,"));
+      $(table1.row).find(table1.total_fees).text('$' + sum_rate.toFixed(3));
     }
 
     //show total in the footer

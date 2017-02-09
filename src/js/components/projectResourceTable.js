@@ -211,7 +211,7 @@ var projectResourceTable = (function ($) {
             "class": "total-hours  can-clear",
             "render": function (data, type, row, meta) {
               var total_hours = row.jan + row.feb + row.mar + row.apr + row.may + row.jun + row.jul + row.aug+ row.sep + row.oct + row.nov + row.dec;
-              return total_hours.toFixed(2);
+              return !isNaN(total_hours) ? total_hours.toFixed(2) : "";
             }
           },
           {
@@ -348,6 +348,8 @@ var projectResourceTable = (function ($) {
           "Office": { offices: offices },
           "CostCenterName": [],
           "Deliverables": deliverables,
+          "Class": '',
+          "Role": ''
         }).draw().node();
         projResourceTable.rows().nodes().to$().last().addClass('new-row').delay(1000).queue(function () {
             $(this).removeClass("new-row").dequeue();
@@ -434,9 +436,7 @@ var projectResourceTable = (function ($) {
       }
 
       function renderMonth(data, type, row, meta) {
-
         if(data) {
-
           return '<div contenteditable class="month">' + data + '</div>';
         }
         else{
