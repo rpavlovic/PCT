@@ -15,17 +15,17 @@
         "Clientname" : "MORGAN STANLEY",
         "Projname" : "AUX",
         "Comptyp" : "HOURLY",
-        "EstStDate" : "\/Date(1484784000000)\/",
+        "EstStDate" : "1484784000000",
         "Duration" : 50,
         "PlanUnits" : "2",
-        "StartDate" : "\/Date(1484784000000)\/",
-        "EstEndDate" : "\/Date(1484784000000)\/",
+        "StartDate" : "1484784000000",
+        "EstEndDate" : "1484784000000",
         "Comments" : "Test data for the Service",
         "Preparedby" : "RPAVLOVIC",
         "Createdby" : "RPAVLOVIC",
-        "Createdon" : "\/Date(1484784000000)\/",
+        "Createdon" : "1484784000000",
         "Changedby" : "RPAVLOVIC",
-        "Changedon" : "\/Date(1484784000000)\/"
+        "Changedon" : "1484784000000"
       },
       {
         "__metadata" : {
@@ -41,17 +41,17 @@
         "Clientname" : "MORGAN STANLEY",
         "Projname" : "AUX",
         "Comptyp" : "HOURLY",
-        "EstStDate" : "\/Date(1484784000000)\/",
+        "EstStDate" : "1484784000000",
         "Duration" : 50,
         "PlanUnits" : "2",
-        "StartDate" : "\/Date(1484784000000)\/",
-        "EstEndDate" : "\/Date(1484784000000)\/",
+        "StartDate" : "1484784000000",
+        "EstEndDate" : "1484784000000",
         "Comments" : "Test data for the Service",
         "Preparedby" : "RPAVLOVIC",
         "Createdby" : "RPAVLOVIC",
-        "Createdon" : "\/Date(1484784000000)\/",
+        "Createdon" : "1484784000000",
         "Changedby" : "RPAVLOVIC",
-        "Changedon" : "\/Date(1484784000000)\/"
+        "Changedon" : "1484784000000"
       },
       {
         "__metadata" : {
@@ -67,17 +67,17 @@
         "Clientname" : "MORGAN STANLEY",
         "Projname" : "AUX",
         "Comptyp" : "HOURLY",
-        "EstStDate" : "\/Date(1484784000000)\/",
+        "EstStDate" : "1484784000000",
         "Duration" : 50,
         "PlanUnits" : "2",
-        "StartDate" : "\/Date(1484784000000)\/",
-        "EstEndDate" : "\/Date(1484784000000)\/",
+        "StartDate" : "1484784000000",
+        "EstEndDate" : "1484784000000",
         "Comments" : "Test data for the Service",
         "Preparedby" : "RPAVLOVIC",
         "Createdby" : "RPAVLOVIC",
-        "Createdon" : "\/Date(1484784000000)\/",
+        "Createdon" : "1484784000000",
         "Changedby" : "RPAVLOVIC",
-        "Changedon" : "\/Date(1484784000000)\/"
+        "Changedon" : "1484784000000"
       },
       {
         "__metadata" : {
@@ -93,17 +93,17 @@
         "Clientname" : "MORGAN STANLEY",
         "Projname" : "AUX",
         "Comptyp" : "HOURLY",
-        "EstStDate" : "\/Date(1484784000000)\/",
+        "EstStDate" : "1484784000000",
         "Duration" : 50,
         "PlanUnits" : "2",
-        "StartDate" : "\/Date(1484784000000)\/",
-        "EstEndDate" : "\/Date(1484784000000)\/",
+        "StartDate" : "1484784000000",
+        "EstEndDate" : "1484784000000",
         "Comments" : "Test data for the Service",
         "Preparedby" : "RPAVLOVIC",
         "Createdby" : "RPAVLOVIC",
-        "Createdon" : "\/Date(1484784000000)\/",
+        "Createdon" : "1484784000000",
         "Changedby" : "RPAVLOVIC",
-        "Changedon" : "\/Date(1484784000000)\/"
+        "Changedon" : "1484784000000"
       }
     ]
   }
