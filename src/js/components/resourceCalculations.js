@@ -13,7 +13,7 @@ var resourceFormulas = (function ($) {
       total_fees : $(table + " tbody td.total-fees"),
       months_hours : $(table + " tbody .month"),
       bill_rate: $(data).text().replace('$', ''),
-      bill_rate_override:  $(data.element).closest('tr').find('.rate-override').text().replace('$', ''),
+      bill_rate_override:  $(data).closest('tr').find('.rate-override').text().replace('$', ''),
 //|| $(data).closest('tr').find('.td-billrate').text().replace('$', '')
       //modeling table
       fees_std: $("#modeling-table tbody #total-fee_standard-resource"),
@@ -25,8 +25,6 @@ var resourceFormulas = (function ($) {
       contrib_adj: $("#modeling-table tbody #contribution-margin_adjusted-resource"),
     };
 
-    console.log(table1.row);
-
     var REgex_num = /^[\$]?[0-9\.\,]+[\%]?/g;
     var REgex_dollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
 
@@ -36,43 +34,26 @@ var resourceFormulas = (function ($) {
         sum_hours = 0,
         total_hours = 0;
 
-
-
-    $(table1.row).find('.month').each(function(key, value) {
+    $(table1  .row).find('.month').each(function(key, value) {
       if (!isNaN($(this).text()) && $(this).text().length !== 0) {
         sum_hours += Number($(this).text());
       }
     });
-
-    // $(table1.row_1).each(function() {
-    //     sum_hours += Number(table1.total_hours.text());
-    // });
-
-   // $(table1.row).each(function() {
-      //calculate hours
-
-
-      //calculate bill override.
-     // $(table1.row).find('.rate-override').each(function(key, value) {
-
-    //  });
-    // });
-    if(table1.bill_rate_override > 0) {
+    if(table1.bill_rate_override) {
       dollars = table1.bill_rate_override.replace(/[^0-9\.]/g,"");
-    } else {
+    } else if (table1.bill_rate) {
        dollars = table1.bill_rate.replace(/[^0-9\.]/g,"");
+    } else {
+        dollars = table1.row.find('.td-billrate').text().replace(/[^0-9\.]/g,"");
     }
 
     //sum rate from either rates or overrides.
     sum_rate += Number(sum_hours * dollars);
 
     //sum of all hours given
-    //if(sum_hours > 0 && !isNaN(sum_hours)) {
       $(table1.row).find(table1.total_hours).text(sum_hours.toFixed(2));
-    //}
 
     //total fees cell
-    // if(sum_rate > 0) {
       if(table1.row.length > 0) {
         $(table1.row).find(table1.total_fees).text('$' + sum_rate.toFixed(3).replace(REgex_dollar, "$1,"));
       } else {
@@ -103,7 +84,12 @@ var resourceFormulas = (function ($) {
     }
 
    // Contribution Margin (total_rate_sum - total cost) / total_rate_sum + '%';
-
+   //TODO get the COST RATE.
+   var contrib_margin = (total_rate_sum-4000)/total_rate_sum * 100;
+   if(contrib_margin > 0) {
+     table1.contrib_std.text(contrib_margin.toFixed(1) + "%");
+     table1.contrib_adj.text(contrib_margin.toFixed(1) + "%");
+   }
   }
   return {
     initResourceFormulas:initResourceFormulas
