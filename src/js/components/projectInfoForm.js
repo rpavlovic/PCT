@@ -153,6 +153,10 @@ var projectInfoForm = (function ($) {
   $('#btn-save').on('click', function (event) {
     event.preventDefault();
     console.log("saving form");
+
+    var url = $('#btn-save').attr('href');
+    $('#btn-save').attr('href', updateQueryString('projID', getParameterByName('projID'), url));
+    
     // get val in unix epoch time
     var EstStDate = new Date($('input.datepicker').val()).getTime();
     var startDate = new Date($('input[name="weekstart"]').val()).getTime();
@@ -164,7 +168,7 @@ var projectInfoForm = (function ($) {
     }
 
     var formData = {
-      "Projid": get_unique_id(),
+      "Projid": getParameterByName('projID'),
       "Plantyp": "OP",
       "Region": select_region.val(),
       "Office": select_billing_office.val(),
