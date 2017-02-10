@@ -23,7 +23,7 @@ var expenseTable = (function ($) {
       // "dom":'<tip>',
       "searching": false,
       "ajax" : {
-         "url": get_data_feed( feeds.projectExpenses ),
+         "url": get_data_feed( feeds.projectExpenses, getParameterByName('projID') ),
          "dataSrc": "d.results"
        },
       "paging": false,
