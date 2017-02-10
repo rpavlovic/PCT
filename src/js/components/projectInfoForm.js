@@ -107,23 +107,10 @@ var projectInfoForm = (function ($) {
       input_duration.val(extraProjInfo.Duration);
       plan_units.val(extraProjInfo.Comptyp);
       createdOn = extraProjInfo.Createdon;
+      $('input.datepicker').val(calcPrettyDate(extraProjInfo.EstStDate));
+      $('input[name="weekstart"]').val(calcPrettyDate(extraProjInfo.StartDate));
+      $('input[name="enddate"]').val(calcPrettyDate(extraProjInfo.EstEndDate));
     }
-  }
-
-  function get_unique_id() {
-    var d = new Date().getTime();
-
-    //use high-precision timer if available
-    if (window.performance && typeof window.performance.now === "function") {
-      d += performance.now();
-    }
-
-    var ProjID = 'xxxxxxxx-xxxx-4xxx-y'.replace(/[xy]/g, function (c) {
-      var r = (d + Math.random() * 16) % 16 | 0;
-      d = Math.floor(d / 16);
-      return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-    });
-    return ProjID;
   }
 
   function initProjectInfoForm(feeds) {
@@ -134,19 +121,19 @@ var projectInfoForm = (function ($) {
     });
 
     var p2 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.offices), function (offices) {
+      $.getJSON(get_data_feed(feeds.offices, getParameterByName('projID')), function (offices) {
         resolve(offices.d.results);
       });
     });
 
     var p3 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.employee), function (employees) {
+      $.getJSON(get_data_feed(feeds.employee, getParameterByName('projID')), function (employees) {
         resolve(employees.d.results);
       });
     });
 
     var p4 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.project), function (projects) {
+      $.getJSON(get_data_feed(feeds.project, getParameterByName('projID')), function (projects) {
         resolve(projects.d.results);
       });
     });
@@ -169,6 +156,10 @@ var projectInfoForm = (function ($) {
   $('#btn-save').on('click', function (event) {
     event.preventDefault();
     console.log("saving form");
+
+    var url = $('#btn-save').attr('href');
+    $('#btn-save').attr('href', updateQueryString('projID', getParameterByName('projID'), url));
+    
     // get val in unix epoch time
     var EstStDate = new Date($('input.datepicker').val()).getTime();
     var startDate = new Date($('input[name="weekstart"]').val()).getTime();
@@ -180,7 +171,7 @@ var projectInfoForm = (function ($) {
     }
 
     var formData = {
-      "Projid": get_unique_id(),
+      "Projid": getParameterByName('projID'),
       "Plantyp": "OP",
       "Region": select_region.val(),
       "Office": select_billing_office.val(),
@@ -203,9 +194,8 @@ var projectInfoForm = (function ($) {
 
     $.ajax({
       method: "POST",
-      url: get_data_feed('project', get_unique_id()),
+      url: get_data_feed('project', getParameterByName('projID')),
       data: formData
-
       //todo: this needs to be fixed and actually handle errors properly
     })
       .done(function (msg) {
