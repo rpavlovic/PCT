@@ -121,19 +121,19 @@ var projectInfoForm = (function ($) {
     });
 
     var p2 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.offices), function (offices) {
+      $.getJSON(get_data_feed(feeds.offices, getParameterByName('projID')), function (offices) {
         resolve(offices.d.results);
       });
     });
 
     var p3 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.employee), function (employees) {
+      $.getJSON(get_data_feed(feeds.employee, getParameterByName('projID')), function (employees) {
         resolve(employees.d.results);
       });
     });
 
     var p4 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.project), function (projects) {
+      $.getJSON(get_data_feed(feeds.project, getParameterByName('projID')), function (projects) {
         resolve(projects.d.results);
       });
     });
@@ -194,9 +194,8 @@ var projectInfoForm = (function ($) {
 
     $.ajax({
       method: "POST",
-      url: get_data_feed('project', get_unique_id()),
+      url: get_data_feed('project', getParameterByName('projID')()),
       data: formData
-
       //todo: this needs to be fixed and actually handle errors properly
     })
       .done(function (msg) {
