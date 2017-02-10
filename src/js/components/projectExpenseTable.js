@@ -9,6 +9,15 @@ var expenseTable = (function ($) {
 
     var Deliverable = [],
         table = $('#project-expense-table');
+        var categories = [];
+        categories.push({
+          '0': 'Travel',
+          '1': 'OOPs',
+          '2': '3rd Party Costs',
+          '3': 'Freelancers',
+          '4': 'Other IPG entities',
+          '5': 'Other'
+        });
 
     var projExpenseTable = table.DataTable({
       // "dom":'<tip>',
@@ -56,8 +65,15 @@ var expenseTable = (function ($) {
           "title": "Category",
           "data": "",
           "defaultContent": '',
-          "render": function(data) {
-            return "<div contenteditable />" ;
+          "render": function(data,  type, set) {
+            var output = '<select class="category">';
+            $.each(categories, function(key, val){
+               $.each(val, function(k,v) {
+                 output += "<option value=\"" + val[k] + "\">"+val[k]+"</option>";
+               });
+            });
+            output += '</select>';
+            return output;
           }
         },
         {
@@ -80,7 +96,7 @@ var expenseTable = (function ($) {
       "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
         $(nRow).removeClass('odd even');
         $("td:last-child", nRow).addClass('amount num');
-        $("td:nth-child(n+4)", nRow)
+        $("td:nth-last-of-type(-n+2)", nRow)
         // .prop('contenteditable', true)
         .addClass("contenteditable");
       },
