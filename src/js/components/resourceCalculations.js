@@ -64,37 +64,22 @@ var resourceFormulas = (function ($) {
     table1.total_hours.each(function() {
       total_hours += Number($(this).text().replace(/[^0-9\.]/g,""));
     });
-    if(sum_hours > 0) {
-      $('tfoot td.total-hours').text(total_hours.toFixed(2));
-    }
-    else {
-      $('tfoot td.total-hours').text();
-    }
+
+    $('tfoot td.total-hours').text(total_hours.toFixed(2));
 
     table1.total_fees.each(function() {
       total_rate_sum += Number($(this).text().replace(/[^0-9\.]/g,""));
     });
 
-    if(sum_rate > 0) {
       var total_fees = "$" + total_rate_sum.toFixed(3).replace(REgex_dollar, "$1,");
       table1.modeling_fees.text(total_fees);
       table1.adjusted_rate_fees.text(total_fees);
       $('tfoot td.total-fees').text(total_fees);
-    }
-    // else {
-    //   table1.modeling_fees.text('');
-    //   table1.adjusted_rate_fees.text('');
-    //   $('tfoot td.total-fees').text('');
-    // }
+
 
     //modeling avarage fees table populate
-    if(total_rate_sum > 0 && total_hours > 0) {
       var av_rate =  total_rate_sum/total_hours;
       table1.avarage_rate.text("$" + av_rate.toFixed(3).replace(REgex_dollar, "$1,"));
-    }
-    // else {
-    //    table1.avarage_rate.text('');
-    // }
 
 
 
