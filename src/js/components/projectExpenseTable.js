@@ -12,7 +12,7 @@ var expenseTable = (function ($) {
         var categories = [];
         categories.push({
           '0': 'Travel',
-          '1': 'OOPs',
+          '1': 'OOP',
           '2': '3rd Party Costs',
           '3': 'Freelancers',
           '4': 'Other IPG entities',
@@ -23,7 +23,7 @@ var expenseTable = (function ($) {
       // "dom":'<tip>',
       "searching": false,
       "ajax" : {
-         "url": get_data_feed( feeds.projectDeliverables ),
+         "url": get_data_feed( feeds.projectExpenses ),
          "dataSrc": "d.results"
        },
       "paging": false,
@@ -35,7 +35,7 @@ var expenseTable = (function ($) {
       "ordering" : false,
       "columnDefs": [ {
         "orderable": false,
-        "targets": [ 0, 1 ],
+        "targets": [ 0, 1 ]
       } ],
       "columns": [{
           "title": 'Row',
@@ -57,19 +57,23 @@ var expenseTable = (function ($) {
           "data": "DelvDesc",
           "render": function ( data, type, set, meta ) {
             var output = '<select class="deliverable">';
+            output += '<option>' + data + '</option>';
             output += '</select>';
             return output;
           }
         },
         {
           "title": "Category",
-          "data": "",
+          "data": "Category",
           "defaultContent": '',
           "render": function(data,  type, set) {
+
             var output = '<select class="category">';
+
             $.each(categories, function(key, val){
                $.each(val, function(k,v) {
-                 output += "<option value=\"" + val[k] + "\">"+val[k]+"</option>";
+                 var selected = val[k] === data ? 'selected="selected"' : '';
+                 output += '<option value="' + val[k] + '" '+ selected+'>' + val[k] + '</option>';
                });
             });
             output += '</select>';
@@ -78,18 +82,18 @@ var expenseTable = (function ($) {
         },
         {
           "title": "Description",
-          "data": "",
+          "data": "DelvDesc",
           "defaultContent": '',
           "render": function(data) {
-            return "<div contenteditable />" ;
+            return '<div contenteditable>' + data + '</div>' ;
           }
         },
         {
           "title": "Amount",
-          "data": "",
+          "data": "Amount",
           "defaultContent": '',
           "render": function(data) {
-            return "<div contenteditable />" ;
+            return '<div contenteditable>' + data + '</div>' ;
           }
         },
       ],
@@ -101,13 +105,13 @@ var expenseTable = (function ($) {
         .addClass("contenteditable");
       },
       // TODO working on grouping the rows
-      "fnInitComplete": function (nRow, data) {
-        nRow.aoData.map(function(val, key) {
-          Deliverable.push($('<option>', { value :key }).text(val._aData.DelvDesc));
-        });
-        $('.deliverable').empty().append(Deliverable);
-      },
-    "bDestroy": true,
+      // "fnInitComplete": function (nRow, data) {
+      //   nRow.aoData.map(function(val, key) {
+      //     Deliverable.push($('<option>', { value :key }).text(val._aData.DelvDesc));
+      //   });
+      //   $('.deliverable').empty().append(Deliverable);
+      // },
+    "bDestroy": true
   });
 
     //add row

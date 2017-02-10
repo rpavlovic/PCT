@@ -194,7 +194,7 @@ var projectInfoForm = (function ($) {
 
     $.ajax({
       method: "POST",
-      url: get_data_feed('project', getParameterByName('projID')()),
+      url: get_data_feed('project', getParameterByName('projID')),
       data: formData
       //todo: this needs to be fixed and actually handle errors properly
     })
