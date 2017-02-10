@@ -110,22 +110,6 @@ var projectInfoForm = (function ($) {
     }
   }
 
-  function get_unique_id() {
-    var d = new Date().getTime();
-
-    //use high-precision timer if available
-    if (window.performance && typeof window.performance.now === "function") {
-      d += performance.now();
-    }
-
-    var ProjID = 'xxxxxxxx-xxxx-4xxx-y'.replace(/[xy]/g, function (c) {
-      var r = (d + Math.random() * 16) % 16 | 0;
-      d = Math.floor(d / 16);
-      return (c == 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-    });
-    return ProjID;
-  }
-
   function initProjectInfoForm(feeds) {
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, getParameterByName('projID')), function (deliverables) {
@@ -169,6 +153,10 @@ var projectInfoForm = (function ($) {
   $('#btn-save').on('click', function (event) {
     event.preventDefault();
     console.log("saving form");
+
+    var url = $('#btn-save').attr('href');
+    $('#btn-save').attr('href', updateQueryString('projID', getParameterByName('projID'), url));
+    
     // get val in unix epoch time
     var EstStDate = new Date($('input.datepicker').val()).getTime();
     var startDate = new Date($('input[name="weekstart"]').val()).getTime();
@@ -180,7 +168,7 @@ var projectInfoForm = (function ($) {
     }
 
     var formData = {
-      "Projid": get_unique_id(),
+      "Projid": getParameterByName('projID'),
       "Plantyp": "OP",
       "Region": select_region.val(),
       "Office": select_billing_office.val(),
