@@ -37,9 +37,9 @@
         },
         "Projid" : "1000100",
         "ExpRow" : "003",
-        "DelvDesc" : "Some-Deliverable",
-        "Category" : "OOP",
-        "CatDesc" : "Out Of Pocket",
+        "DelvDesc" : "Freelancing",
+        "Category" : "Freelancers",
+        "CatDesc" : "Freelancers",
         "Amount" : "1234.00",
         "Currency" : "USD"
       }
