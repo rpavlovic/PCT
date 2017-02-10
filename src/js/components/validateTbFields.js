@@ -5,19 +5,19 @@
 */
 function returnData(new_data, table) {
   var isNum = false;
-  if( ($(new_data.element).parent().hasClass('num') || $(new_data.element).hasClass('month')) &&
-      $(new_data.element).html() != isNaN &&
-      $.isNumeric($(new_data.element).html()) &&
-      $(new_data.element).html() ) {
-        $(new_data.element).removeClass('error');
+  if( ($(new_data).parent().hasClass('num') || $(new_data).hasClass('month')) &&
+      $(new_data).html() != isNaN &&
+      $.isNumeric($(new_data).html()) &&
+      $(new_data).html() ) {
+        $(new_data).removeClass('error');
         isNum = true;
   }
 
   var error = function() {
     var REgex = /^[\$]?[0-9\.\,]+[\%]?/g;
-    if( ($(new_data.element).parent().hasClass('num') || $(new_data.element).hasClass('month')) && !isNum &&
-        $(new_data.element).html().replace(REgex, '')) {
-      $(new_data.element).html('this field accepts numbers only.').addClass('error');
+    if( ($(new_data).parent().hasClass('num') || $(new_data).hasClass('month')) && !isNum &&
+        $(new_data).html().replace(REgex, '')) {
+      $(new_data).html('this field accepts numbers only.').addClass('error');
     }
     return true;
   };
@@ -26,12 +26,12 @@ function returnData(new_data, table) {
 
   if(table === "#csv-table") {
     if(isNum) {
-      var ovd_rate = $(new_data.element).html(),
-          st_rate = $(new_data.element).parent().prevAll('.rate').html().replace(/[^0-9\.]/g,""),
+      var ovd_rate = $(new_data).html(),
+          st_rate = $(new_data).parent().prevAll('.rate').html().replace(/[^0-9\.]/g,""),
           minus = st_rate - ovd_rate,
           percent = ( (st_rate - ovd_rate) / st_rate) * 100;
       if(st_rate.length > 0) {
-        $(new_data.element).parent().next('td.discount').html(percent.toFixed(2)+ "%");
+        $(new_data).parent().next('td.discount').html(percent.toFixed(2)+ "%");
       }
     }
   }

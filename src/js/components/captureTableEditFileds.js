@@ -33,7 +33,7 @@ var captureEditTd = (function ($) {
         data = {
           element : el
         };
-        returnData(data, table);
+        returnData(el, table);
         el.blur();
         event.preventDefault();
       }

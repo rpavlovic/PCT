@@ -46,8 +46,27 @@ var projectResourceTable = (function ($) {
       });
 
       var myRows = [];
+      var hoursSum = 0;
+
 
       projectResources.forEach(function (resource) {
+        resource.jan = 40;
+        resource.feb = 40;
+        resource.mar = 40;
+        resource.apr = 40;
+        resource.may = 10;
+        resource.jun = 20;
+        resource.jul = 10;
+        resource.aug = 15;
+        resource.sep = 20;
+        resource.oct = 20;
+        resource.nov = 20;
+        resource.dec = 20;
+
+        hoursSum += resource.jan + resource.feb + resource.mar + resource.apr + resource.may +
+                    resource.jun + resource.jul + resource.aug + resource.sep +
+                    resource.oct + resource.nov + resource.dec;
+
         myRows.push({
           "EmpGradeName": resource,
           "Deliverables": deliverables,
@@ -55,18 +74,18 @@ var projectResourceTable = (function ($) {
           "Role": resource.Role,
           "Class": resource,
           "CostCenterName": resource,
-          "jan": 1,
-          "feb": 2,
-          "mar": 32,
-          "apr": 8,
-          "may": 4,
-          "jun": 4,
-          "jul": 4,
-          "aug": 4,
-          "sep": 4,
-          "oct": 4,
-          "nov": 4,
-          "dec": 4
+          "jan": resource.jan,
+          "feb": resource.feb,
+          "mar": resource.mar,
+          "apr": resource.apr,
+          "may": resource.may,
+          "jun": resource.jun,
+          "jul": resource.jul,
+          "aug": resource.aug,
+          "sep": resource.sep,
+          "oct": resource.oct,
+          "nov": resource.nov,
+          "dec": resource.dec
         });
       });
 
@@ -184,11 +203,14 @@ var projectResourceTable = (function ($) {
             "title": 'Bill Rate',
             "defaultContent": '',
             "data": "BillRate",
-            "class": "td-billrate can-clear"
+            "class": "td-billrate can-clear",
+            "render": function (data, type, row, meta) {
+              return data;
+            }
           },
           {
             "title": 'Bill Rate <br/> Override',
-            "defaultContent": '<div contenteditable />',
+            "defaultContent": '<label>$</label><div contenteditable />',
             "sClass": "rate-override num",
             // render : function(data, type, row) {
             //   return "<div contenteditable />" ;
@@ -305,7 +327,7 @@ var projectResourceTable = (function ($) {
         "createdRow": function (row, data, index) {
           $('tfoot td').removeClass('center blue-bg rate-override num');
         },
-        "drawCallback": function () {
+        "drawCallback": function (row) {
           $("#project-resource-table tbody select.office").on('change', function () {
             console.log("office changed");
             var OfficeID = $(this).val(),
@@ -323,6 +345,7 @@ var projectResourceTable = (function ($) {
           });
         },
         "initComplete": function (settings, json, row) {
+          $('tfoot td.total-hours').text(hoursSum.toFixed(2));
         },
         "bDestroy": true
       });
@@ -332,7 +355,6 @@ var projectResourceTable = (function ($) {
           $("#project-resource-table tbody select.office option").each(function (k, v) {
             if ($(v).val() === value.Officeid) {
               $(this).prop('selected', true);
-
               getJobTitle(value.Officeid, $(this));
               getClass($("#project-resource-table tbody select.title"));
               getPractice(value.Officeid, $(this));
@@ -373,11 +395,9 @@ var projectResourceTable = (function ($) {
               'data-currency="' + val.LocalCurrency + '">' + val.EmpGradeName + '</option>');
           }
         });
-
         if (EmpTitle.length) {
           EmpTitle.unshift('<option data-class="">Select Title</option>');
         }
-
         titleSelect.empty().append(EmpTitle);
       }
 
@@ -391,7 +411,6 @@ var projectResourceTable = (function ($) {
         var practiceSelect = nodes.closest('tr').find('.practice');
         var Practice = [];
         rateCards.map(function (val) {
-          console.log(val);
           if (OfficeID === val.Office) {
             Practice.push('<option value="' + val.CostCenterName + '" ' + 'data-office="' + val.Office + '">' + val.CostCenterName + '</option>');
           }
@@ -416,6 +435,7 @@ var projectResourceTable = (function ($) {
         };
         var currency = tems_currency[nodes.closest('tr').find('.title :selected').data('currency')];
         nodes.closest('tr').find('.td-billrate').empty().append(currency + nodes.find(':selected').data('rate'));
+        resourceFormulas.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
       }
 
       function getEmployeeTitles(officeId) {
