@@ -18,3 +18,10 @@ function get_unique_id() {
   });
   return ProjID;
 }
+
+function get_project_id() {
+  if (getParameterByName('projID')) {
+    return getParameterByName('projID');
+  }
+  return get_unique_id();
+}
