@@ -107,6 +107,9 @@ var projectInfoForm = (function ($) {
       input_duration.val(extraProjInfo.Duration);
       plan_units.val(extraProjInfo.Comptyp);
       createdOn = extraProjInfo.Createdon;
+      $('input.datepicker').val(calcPrettyDate(extraProjInfo.EstStDate));
+      $('input[name="weekstart"]').val(calcPrettyDate(extraProjInfo.StartDate));
+      $('input[name="enddate"]').val(calcPrettyDate(extraProjInfo.EstEndDate));
     }
   }
 
