@@ -8,7 +8,7 @@ var projectResourceTable = (function ($) {
 
   function initProjectResourceTable() {
     var p1 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectDeliverables), function (deliverables) {
+      $.getJSON(get_data_feed(feeds.projectDeliverables, getParameterByName('projID')), function (deliverables) {
         resolve(deliverables.d.results);
       });
     });
@@ -20,13 +20,13 @@ var projectResourceTable = (function ($) {
     });
 
     var p3 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.rateCards), function (rateCards) {
+      $.getJSON(get_data_feed(feeds.rateCards, getParameterByName('projID')), function (rateCards) {
         resolve(rateCards.d.results);
       });
     });
 
     var p4 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectResources), function (resource) {
+      $.getJSON(get_data_feed(feeds.projectResources, getParameterByName('projID')), function (resource) {
         resolve(resource.d.results);
       });
     });
