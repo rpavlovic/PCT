@@ -16,7 +16,7 @@ var feeds = {
   'marginModeling': [ 'data/MarginModeling.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection?$filter=Projid eq \'{token}\' and ModelType eq \'{count}\'&$format=json' ],
 
   // Rate Card / Bill Rate / Job Title by Office name, e.g.:  get_data_feed('rateCards', 'US02')
-  'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection/?$filter=Office eq \'{token}\'&$format=json' ],
+  'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection/?$  \'{token}\'&$format=json' ],
 
   // Project Deliverables by Project ID, e.g.:  get_data_feed('projectDeliverables', '100100')
   'projectDeliverables': [ 'data/ProjectRelatedDeliverables.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection?$filter=Projid eq \'{token}\'&$format=json' ],
@@ -114,15 +114,23 @@ function get_data_feed(feed, query, count) {
     }
 
     //show in-place form.
-    editProfileForm.initEditProfileForm('form.form-edit-profile');
+    if ('profile.html' == path[1]) {
+      editProfileForm.initEditProfileForm('form.form-edit-profile');
+    }
 
     //Active Projects on Projects General page.
-    activeTableFunction.initActiveTable();
+    if ('index.html' == path[1] || '' == path[1]) {
+      activeTableFunction.initActiveTable();
+    }
 
     //upload CSV per the user
-    loadCustomBillSheet.initLoadCustomBillSheet();
+    if ('profile.html' == path[1] || 'projectResources.html' == path[1]) {
+      loadCustomBillSheet.initLoadCustomBillSheet();
+    }
 
-    projectResourceTable.initProjectResourceTable();
+    if ('projectResources.html' == path[1]) {
+      projectResourceTable.initProjectResourceTable();
+    }
 
 
     //modeling table highlight headers on radio click
@@ -139,7 +147,9 @@ function get_data_feed(feed, query, count) {
       captureEditTd.initCaptureEditTd(el);
     });
 
-    expenseTable.initExpenseTable();
+    if ('projectExpenses.html' == path[1]) {
+      expenseTable.initExpenseTable();
+    }
 
     $('.project-expense button[type="reset"], .project-resources button[type="reset"]').clearAll();
 
