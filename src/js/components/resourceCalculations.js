@@ -56,8 +56,6 @@ var resourceFormulas = (function ($) {
     //total fees cell
       if(table1.row.length > 0) {
         $(table1.row).find(table1.total_fees).text('$' + sum_rate.toFixed(3).replace(REgex_dollar, "$1,"));
-      } else {
-        $(table1.row_1).find(table1.total_fees).text('$' + sum_rate.toFixed(3).replace(REgex_dollar, "$1,"));
       }
 
 
@@ -73,8 +71,13 @@ var resourceFormulas = (function ($) {
     });
 
     var total_fees = "$" + total_rate_sum.toFixed(3).replace(REgex_dollar, "$1,");
-    table1.fees_std.text(total_fees);
-    table1.fees_adj.text(total_fees);
+    if(table1.bill_rate_override) {
+      console.log(table1.bill_rate_override )
+      table1.fees_adj.text(total_fees);
+    }else {
+      table1.fees_adj.text('');
+      table1.fees_std.text(total_fees);
+    }
     $('tfoot td.total-fees').text(total_fees);
 
   //modeling avarage fees table populate
@@ -88,7 +91,13 @@ var resourceFormulas = (function ($) {
    var contrib_margin = (total_rate_sum-4000)/total_rate_sum * 100;
    if(contrib_margin > 0) {
      table1.contrib_std.text(contrib_margin.toFixed(1) + "%");
-     table1.contrib_adj.text(contrib_margin.toFixed(1) + "%");
+     if(table1.bill_rate_override) {
+       console.log(table1.bill_rate_override)
+       table1.contrib_adj.text(contrib_margin.toFixed(1) + "%");
+     } else {
+       table1.contrib_adj.text('');
+     }
+
    }
   }
   return {

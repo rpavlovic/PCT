@@ -1,3 +1,8 @@
+.dataTables_wrapper {
+  overflow: hidden;
+  overflow-x: scroll;
+  border:solid 2px #e6e6e;
+}
 table {
   width: 100%;
   &.dataTable.display {
