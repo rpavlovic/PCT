@@ -209,7 +209,7 @@ var projectResourceTable = (function ($) {
           },
           {
             "title": 'Bill Rate <br/> Override',
-            "defaultContent": '<label>$</label><div contenteditable />',
+            "defaultContent": '<label>$ </label><div contenteditable />',
             "sClass": "rate-override num",
           },
           {
