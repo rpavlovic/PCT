@@ -7,19 +7,19 @@
     progressNav.initProgressNav('#progress-navigation');
 
     validateDurationPlanBy.initValidateDurationPlanBy();
-
-    //calendars
-    $( ".datepicker" ).datepicker({
-      "nextText": "",
-      "prevText":"",
-      "dateFormat": "MM dd, yy",
-      onSelect: function(dateText, instance) {
-        projectDuration.initProjectDuration('form.project-info', instance, dateText);
-        floatLabel.initfloatLabel();
-        validateDurationPlanBy.initValidateDurationPlanBy();
-      }
-    });
-
+    if ('projectGeneral.html' === path[1]) {
+      //calendars
+      $(".datepicker").datepicker({
+        "nextText": "",
+        "prevText": "",
+        "dateFormat": "MM dd, yy",
+        onSelect: function (dateText, instance) {
+          projectDuration.initProjectDuration('form.project-info', instance, dateText);
+          floatLabel.initfloatLabel();
+          validateDurationPlanBy.initValidateDurationPlanBy();
+        }
+      });
+    }
     if($('form.form-edit-profile').length > 0) {
       fillForm.initFillForm('.form-edit-profile');
     }
