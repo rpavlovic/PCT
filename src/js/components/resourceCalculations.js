@@ -3,7 +3,7 @@
 * @module Draw Data Table for Active Projects.
 * @version
 */
-var resourceFormulas = (function ($) {
+var resourceCalculation = (function ($) {
   'use strict';
 
   function initResourceFormulas(data, table) {
@@ -12,9 +12,9 @@ var resourceFormulas = (function ($) {
       row : $(data).closest('tr'), //if data is entered
       total_fees : $(table + " tbody td.total-fees"),
       months_hours : $(table + " tbody .month"),
-      bill_rate: $(data).text().replace('$', ''),
-      bill_rate_override:  $(data).closest('tr').find('.rate-override').text().replace('$', ''),
-//|| $(data).closest('tr').find('.td-billrate').text().replace('$', '')
+      bill_rate: $(data).hasClass('td-billrate') ? $(data).text().replace('$', '') : '',
+      bill_rate_override:  $(data).closest('tr').find('td.rate-override').text().replace('$', ''),
+
       //modeling table
       fees_std: $("#modeling-table tbody #total-fee_standard-resource"),
       avarage_rate_std : $("#modeling-table tbody #avg-rate_standard-resource"),
@@ -32,16 +32,18 @@ var resourceFormulas = (function ($) {
         total_rate_sum = 0,
         dollars = 0,
         sum_hours = 0,
+        override = [],
         total_hours = 0;
 
-    $(table1  .row).find('.month').each(function(key, value) {
+    $(table1.row).find('div.month').each(function(key, value) {
       if (!isNaN($(this).text()) && $(this).text().length !== 0) {
         sum_hours += Number($(this).text());
       }
     });
-    if(table1.bill_rate_override) {
+    if(table1.bill_rate_override > 0) {
       dollars = table1.bill_rate_override.replace(/[^0-9\.]/g,"");
-    } else if (table1.bill_rate) {
+    }
+     else if (table1.bill_rate > 0) {
        dollars = table1.bill_rate.replace(/[^0-9\.]/g,"");
     } else {
         dollars = table1.row.find('.td-billrate').text().replace(/[^0-9\.]/g,"");
@@ -71,8 +73,8 @@ var resourceFormulas = (function ($) {
     });
 
     var total_fees = "$" + total_rate_sum.toFixed(3).replace(REgex_dollar, "$1,");
-    if(table1.bill_rate_override) {
-      console.log(table1.bill_rate_override )
+
+    if($('td.rate-override').text().replace(/[^0-9\.]/g,"")> 0) {
       table1.fees_adj.text(total_fees);
     }else {
       table1.fees_adj.text('');
@@ -85,14 +87,12 @@ var resourceFormulas = (function ($) {
     if(av_rate > 0) {
       table1.avarage_rate_adj.text("$" + av_rate.toFixed(3).replace(REgex_dollar, "$1,"));
     }
-
    // Contribution Margin (total_rate_sum - total cost) / total_rate_sum + '%';
    //TODO get the COST RATE.
    var contrib_margin = (total_rate_sum-4000)/total_rate_sum * 100;
    if(contrib_margin > 0) {
      table1.contrib_std.text(contrib_margin.toFixed(1) + "%");
-     if(table1.bill_rate_override) {
-       console.log(table1.bill_rate_override)
+     if($(table1.row.find('td.rate-override').text().replace(/[^0-9\.]/g,"") > 0)) {
        table1.contrib_adj.text(contrib_margin.toFixed(1) + "%");
      } else {
        table1.contrib_adj.text('');

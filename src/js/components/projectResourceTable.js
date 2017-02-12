@@ -209,7 +209,7 @@ var projectResourceTable = (function ($) {
           },
           {
             "title": 'Bill Rate <br/> Override',
-            "defaultContent": '<label>$ </label><div contenteditable />',
+            "defaultContent": '<label>$</label><div contenteditable />',
             "sClass": "rate-override num",
           },
           {
@@ -432,7 +432,8 @@ var projectResourceTable = (function ($) {
         var currency = tems_currency[nodes.closest('tr').find('.title :selected').data('currency')];
         nodes.closest('tr').find('.td-billrate').empty().append(currency + nodes.find(':selected').data('rate'));
         //for calculations on resourceCalculation.js file
-        resourceFormulas.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
+        console.log(nodes.closest('tr').find('.td-billrate'));
+        resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
       }
 
       function getEmployeeTitles(officeId) {
