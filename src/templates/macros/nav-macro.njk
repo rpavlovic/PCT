@@ -1,7 +1,7 @@
 {% macro active(activePage='projects') %}
   <nav>
     <ul class="row">
-      {% for i in ['projects', 'reports', 'about', 'profile'] %}
+      {% for i in ['projects', 'about', 'profile'] %}
         {%- if i == 'projects' %}
         <li class="{%if activePage == i %}current {% endif %} {{i}}"><a href="index.html" class="{%if activePage == i %}active {% endif %}"> <span>{{ i | title }}</span></a></li>
         {%- else %}
