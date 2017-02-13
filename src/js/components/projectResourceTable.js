@@ -432,7 +432,6 @@ var projectResourceTable = (function ($) {
         var currency = tems_currency[nodes.closest('tr').find('.title :selected').data('currency')];
         nodes.closest('tr').find('.td-billrate').empty().append(currency + nodes.find(':selected').data('rate'));
         //for calculations on resourceCalculation.js file
-        console.log(nodes.closest('tr').find('.td-billrate'));
         resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
       }
 
