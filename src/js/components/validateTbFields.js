@@ -8,15 +8,17 @@ function returnData(new_data, table) {
   if( ($(new_data).parent().hasClass('num') || $(new_data).hasClass('month')) &&
       $(new_data).html() != isNaN &&
       $.isNumeric($(new_data).html()) &&
-      $(new_data).html() ) {
+      $(new_data).text() !== '' ) {
         $(new_data).removeClass('error');
         isNum = true;
   }
 
   var error = function() {
     var REgex = /^[\$]?[0-9\.\,]+[\%]?/g;
-    if( ($(new_data).parent().hasClass('num') || $(new_data).hasClass('month')) && !isNum &&
-        $(new_data).html().replace(REgex, '')) {
+    if( ($(new_data).parent().hasClass('num') || $(new_data).hasClass('month')) &&
+      !isNum &&
+      $(new_data).html().replace(REgex, '') &&
+      $(new_data).text() !== '') {
       $(new_data).html('this field accepts numbers only.').addClass('error');
     }
     return true;
