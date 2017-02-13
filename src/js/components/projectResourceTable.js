@@ -63,8 +63,10 @@ var projectResourceTable = (function ($) {
         resource.dec = 20;
 
         hoursSum += resource.jan + resource.feb + resource.mar + resource.apr + resource.may +
-                    resource.jun + resource.jul + resource.aug + resource.sep +
-                    resource.oct + resource.nov + resource.dec;
+          resource.jun + resource.jul + resource.aug + resource.sep +
+          resource.oct + resource.nov + resource.dec;
+
+        console.log(resource);
 
         myRows.push({
           "EmpGradeName": resource,
@@ -72,6 +74,7 @@ var projectResourceTable = (function ($) {
           "Office": {offices: offices, selectedOffice: getParameterByName('Office')},
           "Role": resource.Role,
           "Class": resource,
+          "CostRate": resource,
           "CostCenterName": resource,
           "jan": resource.jan,
           "feb": resource.feb,
@@ -124,7 +127,7 @@ var projectResourceTable = (function ($) {
             "title": 'Deliverable / Work&nbsp;Stream',
             "data": "Deliverables",
             "defaultContent": '',
-            "render": function (data, type, set) {
+            "render": function (data, type, row, meta) {
               var select = "<select class='deliverable' name='DelvDesc'>";
               $.each(data, function (key, val) {
                 select += '<option>' + val.DelvDesc + '</option>';
@@ -154,7 +157,7 @@ var projectResourceTable = (function ($) {
             "data": "EmpGradeName",
             "defaultContent": '',
             "class": 'td-title',
-            "render": function (data, type, set) {
+            "render": function (data, type, row, meta) {
               var employeeTitles = getEmployeeTitles(data.Officeid);
               var select = "<select class='title' name='EmpGradeName'>";
               employeeTitles.forEach(function (val) {
@@ -181,7 +184,7 @@ var projectResourceTable = (function ($) {
             "data": "CostCenterName",
             "defaultContent": '',
             "class": "td-practice",
-            "render": function (data, type, set) {
+            "render": function (data, type, row, meta) {
               return getPractices(data);
             }
           },
@@ -189,7 +192,7 @@ var projectResourceTable = (function ($) {
             "title": 'Role',
             "data": "Role",
             "defaultContent": '<div contenteditable />',
-            "render": function (data, type, set) {
+            "render": function (data, type, row, meta) {
               return "<div contenteditable>" + data + "</div>";
             }
           },
@@ -210,15 +213,16 @@ var projectResourceTable = (function ($) {
           {
             "title": 'Bill Rate <br/> Override',
             "defaultContent": '<label>$</label><div contenteditable />',
-            "sClass": "rate-override num",
+            "sClass": "rate-override num"
           },
           {
-            "title": "Cost Bill Rate",
-            "data": "",
-            "defaultContent": '',
-            "visible": false,
-            "render": function (data) {
-              return data;
+            "title": "Cost Rate",
+            "data": "CostRate",
+            "defaultContent": '<div contenteditable />',
+            "visible": getParameterByName('showCostRate'),
+            "render": function (data, type, row, meta) {
+              var costRate = getCostRate(data);
+              return '<div contenteditable>' + costRate + '</div>';
             }
           },
           {
@@ -327,7 +331,7 @@ var projectResourceTable = (function ($) {
           $("#project-resource-table tbody select.office").on('change', function () {
             console.log("office changed");
             var OfficeID = $(this).val(),
-                nodes = $(this);
+              nodes = $(this);
             getJobTitle(OfficeID, nodes);
           });
 
@@ -387,7 +391,7 @@ var projectResourceTable = (function ($) {
         rateCards.map(function (val) {
           if (OfficeID === val.Office) {
             EmpTitle.push('<option value="' + val.EmpGradeName + '" ' +
-              'data-rate="' + val.BillRate + '" data-class="' + val.Class + '" data-office="' + val.Office + '" data-company="'+ val.Company +'"' +
+              'data-rate="' + val.BillRate + '" data-class="' + val.Class + '" data-office="' + val.Office + '" data-company="' + val.Company + '"' +
               'data-currency="' + val.LocalCurrency + '">' + val.EmpGradeName + '</option>');
           }
         });
@@ -459,7 +463,7 @@ var projectResourceTable = (function ($) {
 
       function getPractices(employee) {
         var select = "<select class='practice' name='CostCenterName'>";
-        select+= "<option>Select Practice</option>";
+        select += "<option>Select Practice</option>";
 
         rateCards.forEach(function (val) {
           var selected = '';
@@ -476,9 +480,22 @@ var projectResourceTable = (function ($) {
         if (data) {
           return '<div contenteditable class="month">' + data + '</div>';
         }
-        else{
+        else {
           return '<div contenteditable class="month" />';
         }
+      }
+
+      function getCostRate(resource) {
+        var filteredRates = rateCards.filter(function (val) {
+          return val.Office === resource.Officeid && val.EmpGradeName === resource.Role;
+        });
+
+        console.log(filteredRates[0]);
+        if (filteredRates.length > 1) {
+          console.log("error, resource matched more than one");
+        }
+
+        return filteredRates.pop().CostRate;
       }
     });
   }
