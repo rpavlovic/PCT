@@ -38,10 +38,9 @@ table {
         td {
           border: solid 1px $white;
           vertical-align: middle;
-          text-align: center;
           &:first-child {
             color: $darker-grey;
-            font-family: "EYRegular";
+            font-family: "EYRegular", sans-serif;
           }
           &.win,
           &.loss  {
@@ -151,7 +150,7 @@ table {
         background-color: lighten($red-alert, 40%);
       }
       * {
-        font-family: "EYLight";
+        font-family: "EYLight", sans-serif;
       }
     }
   }
@@ -208,7 +207,8 @@ table {
       }
       span {
         color: $link-color;
-        font-family: "EYBold";
+        font-family: "EYBold", sans-serif;
+        font-weight: bold;
         font-size: rem-calc(12);
       }
     }
