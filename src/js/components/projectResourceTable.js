@@ -31,12 +31,20 @@ var projectResourceTable = (function ($) {
       });
     });
 
-    Promise.all([p1, p2, p3, p4]).then(function (values) {
+    //fees for modeling table targets
+    var t1 = new Promise(function (resolve, reject) {
+      $.getJSON(get_data_feed(feeds.marginModeling, getParameterByName('projID')), function (data) {
+        resolve(data.d.results);
+      });
+    });
+
+    Promise.all([p1, p2, p3, p4, t1]).then(function (values) {
       //deliverables
       var deliverables = values[0];
       var offices = values[1];
       var rateCards = values[2];
       var projectResources = values[3];
+      var marginModeling = values[4];
 
       offices.push({
         Office: "Select Office",
@@ -342,10 +350,21 @@ var projectResourceTable = (function ($) {
         },
         "initComplete": function (settings, json, row) {
           $('tfoot td.total-hours').text(hoursSum.toFixed(2));
+          //calculations for modeling table
+          calculateModelingData();
         },
         "bDestroy": true
       });
-
+      function calculateModelingData() {
+         var REgex_dollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
+        $('#total-fee_target-resource').text("$" + Number(marginModeling[0].Fees).toFixed(2).replace(REgex_dollar, "$1,") );
+        $('.contrib-margin').text( Number(marginModeling[0].CtrMargin) + "%");
+        var total_hours = $('tfoot td.total-hours').text();
+        var avg_rate =  Number(marginModeling[0].Fees)/total_hours;
+        var fee_target = $('.fee-target').text();
+        $('#avg-rate_target-resource > span').text("$" + avg_rate.toFixed(2).replace(REgex_dollar, "$1,") );
+        $('#avg-rate_fixed-resource > span').text("$" + avg_rate.toFixed(2).replace(REgex_dollar, "$1,") );
+      }
       function fillTds() {
         $(rateCards).each(function (key, value) {
           $("#project-resource-table tbody select.office option").each(function (k, v) {
