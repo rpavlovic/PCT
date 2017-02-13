@@ -4,10 +4,19 @@
     var path = window.location.pathname;
     path = path.split("/");
 
+    // app on Fiori lives in sub-directories
+    var current_page = path[path.length-1];
+
+    // remove query string
+    if (current_page.indexOf('?') != -1) {
+      current_page = current_page.substring(0, current_page.indexOf('?'));
+    }
+
     progressNav.initProgressNav('#progress-navigation');
 
     validateDurationPlanBy.initValidateDurationPlanBy();
-    if ('projectGeneral.html' === path[1]) {
+
+    if ('projectGeneral.html' === current_page) {
       //calendars
       $(".datepicker").datepicker({
         "nextText": "",
@@ -27,7 +36,7 @@
     /**
      * Landing page
      */
-    if ('index.html' == path[1] || '' == path[1]) {
+    if ('index.html' == current_page || '' == current_page) {
       
       activeTableFunction.initActiveTable();
       
@@ -38,7 +47,7 @@
     /**
      * Project create/edit page
      */
-    if ('projectGeneral.html' == path[1]) {
+    if ('projectGeneral.html' == current_page) {
 
       //if form to be loaded exists.
       if($("form.project-info").length > 0) {
@@ -55,19 +64,19 @@
     /**
      * Profile page
      */
-    if ('profile.html' == path[1]) {
+    if ('profile.html' == current_page) {
       editProfileForm.initEditProfileForm('form.form-edit-profile');
     }
 
     //upload CSV per the user
-    if ('profile.html' == path[1] || 'projectResources.html' == path[1]) {
+    if ('profile.html' == current_page || 'projectResources.html' == current_page) {
       loadCustomBillSheet.initLoadCustomBillSheet();
     }
 
     /**
      * Resources page
      */
-    if ('projectResources.html' == path[1]) {
+    if ('projectResources.html' == current_page) {
       projectResourceTable.initProjectResourceTable();
 
       //modeling table highlight headers on radio click
@@ -90,7 +99,7 @@
     /**
      * Resources page
      */
-    if ('projectExpenses.html' == path[1]) {
+    if ('projectExpenses.html' == current_page) {
       expenseTable.initExpenseTable();
       $('.project-expense button[type="reset"]').clearAll();
     }
