@@ -23,14 +23,13 @@
     if($('form.form-edit-profile').length > 0) {
       fillForm.initFillForm('.form-edit-profile');
     }
-
     /**
      * Landing page
      */
-    if ('index.html' == path[1] || '' == path[1]) {
-      
+    if ('index.html' === path[1] || '' === path[1]) {
+
       activeTableFunction.initActiveTable();
-      
+
       //Show Hide elements
       showHide.initShowHide();
     }
@@ -38,41 +37,35 @@
     /**
      * Project create/edit page
      */
-    if ('projectGeneral.html' == path[1]) {
+    if ('projectGeneral.html' === path[1]) {
 
       //if form to be loaded exists.
       if($("form.project-info").length > 0) {
         projectInfoForm.initProjectInfoForm(feeds);
         floatLabel.initfloatLabel();
-      }
-
-      //floating label in the input fields.
-      if($('form.project-info').length) {
-        addRemoveFields.initAddRemoveFields('form.project-info');
+         addRemoveFields.initAddRemoveFields('form.project-info');
       }
     }
 
     /**
      * Profile page
      */
-    if ('profile.html' == path[1]) {
+    if ('profile.html' === path[1]) {
       editProfileForm.initEditProfileForm('form.form-edit-profile');
     }
 
     //upload CSV per the user
-    if ('profile.html' == path[1] || 'projectResources.html' == path[1]) {
+    if ('profile.html' === path[1] || 'projectResources.html' == path[1]) {
       loadCustomBillSheet.initLoadCustomBillSheet();
     }
 
     /**
      * Resources page
      */
-    if ('projectResources.html' == path[1]) {
+    if ('projectResources.html' === path[1]) {
       projectResourceTable.initProjectResourceTable();
-
       //modeling table highlight headers on radio click
       $('#modeling-table input[type="radio"]').activateElement();
-
       $('.project-resources button[type="reset"]').clearAll();
     }
 

@@ -97,10 +97,13 @@ var resourceCalculation = (function ($) {
 
    // Contribution Margin (total_rate_sum - total cost) / total_rate_sum + '%';
    //TODO get the COST RATE.
-   var contrib_margin = (total_rate_sum-4000)/total_rate_sum * 100;
+   var standard_fees = $('#total-fee_standard-resource').text().replace(/[^0-9\.]/g,"");
+   var adjusted_fees = $('#total-fee_adjusted-resource').text().replace(/[^0-9\.]/g,"");
+   var contrib_margin = (standard_fees-4000)/standard_fees * 100;
    if(contrib_margin > 0) {
      table1.contrib_std.text(contrib_margin.toFixed(1) + "%");
      if(table1.bill_rate_override > 0  || $('td.rate-override').text().replace(/[^0-9\.]/g,"")> 0) {
+      contrib_margin = (adjusted_fees-4000)/adjusted_fees * 100;
        table1.contrib_adj.text(contrib_margin.toFixed(1) + "%");
      } else {
        table1.contrib_adj.text('');
