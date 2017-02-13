@@ -53,14 +53,13 @@ function get_data_feed(feed, query, count) {
     count = 1;
   }
 
-  if ($.isArray(feed)) {
-    if (location.href.indexOf('localhost') != -1 || location.href.indexOf('10.211.55.2') != -1) {
-      json = feed[0];
-    }
-    else {
-      json = feed[1].replace('{token}', query);
-      json = feed[1].replace('{count}', count);
-    }
+  if (location.href.indexOf('localhost') != -1 || location.href.indexOf('10.211.55.2') != -1) {
+    json = feed[0];
   }
+  else {
+    json = feed[1].replace('{token}', query);
+    json = feed[1].replace('{count}', count);
+  }
+
   return json;
 }

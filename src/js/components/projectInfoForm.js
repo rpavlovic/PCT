@@ -121,13 +121,13 @@ var projectInfoForm = (function ($) {
     });
 
     var p2 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.offices, getParameterByName('projID')), function (offices) {
+      $.getJSON(get_data_feed(feeds.offices), function (offices) {
         resolve(offices.d.results);
       });
     });
 
     var p3 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.employee, getParameterByName('projID')), function (employees) {
+      $.getJSON(get_data_feed(feeds.employee), function (employees) {
         resolve(employees.d.results);
       });
     });
