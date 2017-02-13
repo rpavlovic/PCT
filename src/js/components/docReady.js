@@ -22,6 +22,8 @@
         "nextText": "",
         "prevText": "",
         "dateFormat": "MM dd, yy",
+        "buttonText": "",
+        "showOn": "both",
         onSelect: function (dateText, instance) {
           projectDuration.initProjectDuration('form.project-info', instance, dateText);
           floatLabel.initfloatLabel();

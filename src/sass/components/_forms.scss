@@ -143,13 +143,22 @@ form {
         opacity: 1;
       }
     }
-    .fa-calendar {
+    .ui-datepicker-trigger {
       position: absolute;
       right: 20px;
       top: 50%;
       margin-top: -17px;
       font-size: 25px;
       color: $link-color;
+      border:none;
+      background: transparent;
+      display: inline-block;
+      font-family:FontAwesome;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      &:before {
+        content: "\f073";
+      }
     }
   }
   .radio-group {
