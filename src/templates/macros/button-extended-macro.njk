@@ -29,8 +29,8 @@
   {%- if modifier %} button--{{ modifier }}{%- endif -%}
   {%- if size %} button--{{ size }}{%- endif -%}
   {%- if context %} {{ context }}{% endif -%}"
-  {%- if isDisabled %} disabled{% endif -%}
-  {%- if id %}id="{{id}}"{% endif -%}
+  {%- if isDisabled %} disabled {% endif -%}
+  {%- if id %} id="{{id}}"{% endif -%}
   {%- for name, item in attrs %} {{ name }}="{{ item }}"{% endfor -%}>{{ label }}
 {%- if path -%}
   </a>
