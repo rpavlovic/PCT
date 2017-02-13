@@ -127,12 +127,12 @@ var expenseTable = (function ($) {
       //add row
       $('.project-expense').on('click', '#add-row', function (e) {
         e.preventDefault();
-
         projExpenseTable.rows().nodes().to$().removeClass('new-row');
         projExpenseTable.row.add({
           deliverables: deliverables,
           DelvDesc: '',
-          Amount: ''
+          Amount: '',
+          CatDesc: ''
         }).draw().node();
 
         $('#project-expense-table tr:last-child').addClass('new-row');
@@ -150,21 +150,35 @@ var expenseTable = (function ($) {
         var url = $('#btn-save').attr('href');
         $('#btn-save').attr('href', updateQueryString('projID', getParameterByName('projID'), url));
 
-        console.log(projExpenseTable);
+        var rows = projExpenseTable.rows();
+        var payload = [];
+
+        rows.context[0].aoData.forEach(function (row) {
+          payload.push({
+            "Projid": getParameterByName('projID'),
+            "DelvDesc": $(row.anCells[2]).find('select :selected').val(),
+            "Category": $(row.anCells[3]).find('select :selected').val(),
+            "CatDesc": $(row.anCells[4]).find('div').text(),
+            "Amount": $(row.anCells[5]).find('div').text(),
+            "Currency": "USD"
+          });
+        });
+
+        console.log(payload);
         $.ajax({
           method: "POST",
           url: get_data_feed('projectExpenses', getParameterByName('projID')),
-          data: formData
-          //todo: this needs to be fixed and actually handle errors properly
+          data: payload
         })
           .done(function (msg) {
+            //todo: this needs to be fixed and actually handle errors properly
             console.log("Data Saved: " + msg);
           })
           .fail(function () {
             console.log("post failed");
           })
           .always(function () {
-//          window.location.href = $('#btn-save').attr('href');
+            window.location.href = $('#btn-save').attr('href');
           });
       });
     });
