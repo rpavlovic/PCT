@@ -6,9 +6,9 @@ var captureEditTd = (function ($) {
   'use strict';
 
   function initCaptureEditTd(table) {
-    $(table).on('mousedown','td.contenteditable > div', function (event) {
+    $(table).on('mousedown mouseleave','td.contenteditable > div', function (event) {
       if ($(event.target).hasClass('error')) {
-       $(event.target).html('').removeClass('error');
+       $(event.target).text('').removeClass('error');
       }
     });
     $(table).on('blur', 'td.contenteditable > div', function (event) {
