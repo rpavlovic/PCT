@@ -111,7 +111,7 @@ var expenseTable = (function ($) {
             "data": "Amount",
             "defaultContent": '',
             "render": function (data) {
-              return '<div contenteditable>' + data + '</div>';
+              return '<label>$ </label><div contenteditable>' + data + '</div>';
             }
           },
         ],

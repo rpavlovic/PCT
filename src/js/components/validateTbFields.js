@@ -58,5 +58,5 @@ function returnData(new_data, table) {
     }
     //formulas for the hours, rates
   }
-  resourceFormulas.initResourceFormulas(new_data, table);
+  resourceCalculation.initResourceFormulas(new_data, table);
 }

@@ -38,7 +38,6 @@ var projectResourceTable = (function ($) {
       var rateCards = values[2];
       var projectResources = values[3];
 
-
       offices.push({
         Office: "Select Office",
         OfficeName: "Select Office Name",
@@ -212,17 +211,14 @@ var projectResourceTable = (function ($) {
             "title": 'Bill Rate <br/> Override',
             "defaultContent": '<label>$</label><div contenteditable />',
             "sClass": "rate-override num",
-            // render : function(data, type, row) {
-            //   return "<div contenteditable />" ;
-            // }
           },
           {
             "title": "Cost Bill Rate",
-            "data": "CostRate",
+            "data": "",
             "defaultContent": '',
             "visible": false,
             "render": function (data) {
-              return "$" + data;
+              return data;
             }
           },
           {
@@ -331,7 +327,7 @@ var projectResourceTable = (function ($) {
           $("#project-resource-table tbody select.office").on('change', function () {
             console.log("office changed");
             var OfficeID = $(this).val(),
-              nodes = $(this);
+                nodes = $(this);
             getJobTitle(OfficeID, nodes);
           });
 
@@ -353,7 +349,7 @@ var projectResourceTable = (function ($) {
       function fillTds() {
         $(rateCards).each(function (key, value) {
           $("#project-resource-table tbody select.office option").each(function (k, v) {
-            if ($(v).val() === value.Officeid) {
+            if ($(v).val() === value.Office) {
               $(this).prop('selected', true);
               getJobTitle(value.Officeid, $(this));
               getClass($("#project-resource-table tbody select.title"));
@@ -435,7 +431,9 @@ var projectResourceTable = (function ($) {
         };
         var currency = tems_currency[nodes.closest('tr').find('.title :selected').data('currency')];
         nodes.closest('tr').find('.td-billrate').empty().append(currency + nodes.find(':selected').data('rate'));
-        resourceFormulas.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
+        //for calculations on resourceCalculation.js file
+        console.log(nodes.closest('tr').find('.td-billrate'));
+        resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
       }
 
       function getEmployeeTitles(officeId) {
@@ -453,7 +451,6 @@ var projectResourceTable = (function ($) {
         var rcElement = rateCards.find(function (val) {
           return val.Office === employee.Officeid && employee.Titleid === val.EmpGradeName;
         });
-
         if (rcElement)
           return rcElement.Class;
         else
