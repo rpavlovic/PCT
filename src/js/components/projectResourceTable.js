@@ -42,7 +42,13 @@ var projectResourceTable = (function ($) {
       //deliverables
       var deliverables = values[0];
       var offices = values[1];
-      var rateCards = values[2];
+
+      var rateCards = values[2].filter(function(val){
+        return val;
+        // add in any filtering params if we need them in the future
+        //return val.CostRate > 2;
+      });
+
       var projectResources = values[3];
       var marginModeling = values[4];
 
@@ -226,8 +232,9 @@ var projectResourceTable = (function ($) {
           {
             "title": "Cost Rate",
             "data": "CostRate",
+            "class": 'cost-rate',
             "defaultContent": '<div contenteditable />',
-            "visible": getParameterByName('showCostRate'),
+            "visible": false,
             "render": function (data, type, row, meta) {
               var costRate = getCostRate(data);
               return '<div contenteditable>' + costRate + '</div>';
@@ -504,11 +511,20 @@ var projectResourceTable = (function ($) {
       }
 
       function getCostRate(resource) {
+        if (!resource){
+          return '';
+        }
+
         var filteredRates = rateCards.filter(function (val) {
           return val.Office === resource.Officeid && val.EmpGradeName === resource.Role;
         });
 
         console.log(filteredRates[0]);
+        if(!filteredRates.length)
+        {
+          return '';
+        }
+
         if (filteredRates.length > 1) {
           console.log("error, resource matched more than one");
         }
