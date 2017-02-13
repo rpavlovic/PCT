@@ -90,7 +90,8 @@ table {
       td {
         &:first-child {
           span {
-            font-family: "EYRegular";
+            font-family: "EYBold", sans-serif;
+            font-weight: bold;
           }
           text-align: right;
         }
