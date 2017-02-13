@@ -7,7 +7,7 @@
           "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
         },
-        "EmpNumber" : "00010500",
+        "EmpNumber" : "10000071",
         "Class" : "",
         "BillsheetId" : "        2",
         "BillsheetName" : "",
