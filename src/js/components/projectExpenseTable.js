@@ -5,20 +5,21 @@
 var expenseTable = (function ($) {
   'use strict';
 
-  function initExpenseTable() {
-    var deliverables,
-      expenses,
-      table = $('#project-expense-table');
-    var categories = [];
-    categories.push({
-      '0': 'Travel',
-      '1': 'OOP',
-      '2': '3rd Party Costs',
-      '3': 'Freelancers',
-      '4': 'Other IPG entities',
-      '5': 'Other'
-    });
+  var deliverables,
+    expenses,
+    table = $('#project-expense-table');
 
+  var categories = [];
+  categories.push({
+    '0': 'Travel',
+    '1': 'OOP',
+    '2': '3rd Party Costs',
+    '3': 'Freelancers',
+    '4': 'Other IPG entities',
+    '5': 'Other'
+  });
+
+  function initExpenseTable() {
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, getParameterByName('projID')), function (deliverables) {
         resolve(deliverables.d.results);
@@ -37,7 +38,7 @@ var expenseTable = (function ($) {
       expenses = values[1].filter(matchProjID);
 
       expenses.forEach(function (expense) {
-        expense.deliverables = deliverables;
+        //expense.deliverables = deliverables;
         data.push(expense);
       });
 
@@ -74,14 +75,10 @@ var expenseTable = (function ($) {
           },
           {
             "title": 'Deliverable / Work&nbsp;Stream',
-            "data": "deliverables",
+            "data": "DelvDesc",
+            "defaultContent": '<select class="deliverable">',
             "render": function (data, type, set, meta) {
-              var output = '<select class="deliverable">';
-              data.forEach(function (deliverable) {
-                output += '<option data-delvid="' + deliverable.Delvid + '">' + deliverable.DelvDesc + '</option>';
-              });
-              output += '</select>';
-              return output;
+              return getDeliverablesDropDown(data);
             }
           },
           {
@@ -146,8 +143,41 @@ var expenseTable = (function ($) {
         e.preventDefault();
         projExpenseTable.row($(this).parents('tr')).remove().draw(false);
       });
-    });
 
+      $('.project-expense #btn-save').on('click', function (event) {
+        event.preventDefault();
+        console.log("saving expenses form");
+        var url = $('#btn-save').attr('href');
+        $('#btn-save').attr('href', updateQueryString('projID', getParameterByName('projID'), url));
+
+        console.log(projExpenseTable);
+        $.ajax({
+          method: "POST",
+          url: get_data_feed('projectExpenses', getParameterByName('projID')),
+          data: formData
+          //todo: this needs to be fixed and actually handle errors properly
+        })
+          .done(function (msg) {
+            console.log("Data Saved: " + msg);
+          })
+          .fail(function () {
+            console.log("post failed");
+          })
+          .always(function () {
+//          window.location.href = $('#btn-save').attr('href');
+          });
+      });
+    });
+  }
+
+  function getDeliverablesDropDown(data) {
+    var output = '<select class="deliverable">';
+    deliverables.forEach(function (deliverable) {
+      var selectedText = deliverable.DelvDesc === data ? 'selected="selected"' : '';
+      output += '<option data-delvid="' + deliverable.Delvid + '"' + selectedText + '>' + deliverable.DelvDesc + '</option>';
+    });
+    output += '</select>';
+    return output;
   }
 
   return {

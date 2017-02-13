@@ -153,7 +153,7 @@ var projectInfoForm = (function ($) {
     $('#btn-save').attr('href', updateQueryString('Office', $(this).val(), url));
   });
 
-  $('#btn-save').on('click', function (event) {
+  $('.project-info #btn-save').on('click', function (event) {
     event.preventDefault();
     console.log("saving form");
 
