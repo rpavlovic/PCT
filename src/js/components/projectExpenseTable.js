@@ -32,9 +32,10 @@ var expenseTable = (function ($) {
     });
 
     Promise.all([p1, p2]).then(function (values) {
-      deliverables = values[0];
-      expenses = values[1];
       var data = [];
+      deliverables = values[0].filter(matchProjID);
+      expenses = values[1].filter(matchProjID);
+
       expenses.forEach(function (expense) {
         expense.deliverables = deliverables;
         data.push(expense);
@@ -55,14 +56,15 @@ var expenseTable = (function ($) {
           "orderable": false,
           "targets": [0, 1]
         }],
-        "columns": [{
-          "title": 'Row',
-          "sClass": "center",
-          "defaultContent": '',
-          "render": function (data, type, row, meta) {
-            return meta.row + 1;
-          }
-        },
+        "columns": [
+          {
+            "title": 'Row',
+            "sClass": "center",
+            "defaultContent": '',
+            "render": function (data, type, row, meta) {
+              return meta.row + 1;
+            }
+          },
           {
             "title": '<i class="fa fa-trash"></i>',
             "sClass": "center blue-bg",
@@ -100,7 +102,7 @@ var expenseTable = (function ($) {
           },
           {
             "title": "Description",
-            "data": "DelvDesc",
+            "data": "CatDesc",
             "defaultContent": '',
             "render": function (data) {
               return '<div contenteditable>' + data + '</div>';
@@ -113,7 +115,7 @@ var expenseTable = (function ($) {
             "render": function (data) {
               return '<label>$ </label><div contenteditable>' + data + '</div>';
             }
-          },
+          }
         ],
         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
           $(nRow).removeClass('odd even');
