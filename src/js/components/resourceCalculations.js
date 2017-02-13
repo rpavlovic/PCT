@@ -8,10 +8,10 @@ var resourceCalculation = (function ($) {
 
   function initResourceFormulas(data, table) {
     var table1 = {
-      total_hours : $(table + " tbody td.total-hours"),
+      total_hours : $("#project-resource-table tbody td.total-hours"),
       row : $(data).closest('tr'), //if data is entered
-      total_fees : $(table + " tbody td.total-fees"),
-      months_hours : $(table + " tbody .month"),
+      total_fees : $("#project-resource-table tbody td.total-fees"),
+      months_hours : $("#project-resource-table tbody .month"),
       bill_rate: $(data).hasClass('td-billrate') ? $(data).text().replace('$', '') : '',
       bill_rate_override:  $(data).closest('tr').find('td.rate-override').text().replace('$', ''),
 
@@ -102,9 +102,10 @@ var resourceCalculation = (function ($) {
    var contrib_margin = (standard_fees-4000)/standard_fees * 100;
    if(contrib_margin > 0) {
      table1.contrib_std.text(contrib_margin.toFixed(1) + "%");
-     if(table1.bill_rate_override > 0  || $('td.rate-override').text().replace(/[^0-9\.]/g,"")> 0) {
+     if( adjusted_fees > 0) {
       contrib_margin = (adjusted_fees-4000)/adjusted_fees * 100;
        table1.contrib_adj.text(contrib_margin.toFixed(1) + "%");
+       console.log(adjusted_fees);
      } else {
        table1.contrib_adj.text('');
      }

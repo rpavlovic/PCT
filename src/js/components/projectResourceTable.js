@@ -358,7 +358,7 @@ var projectResourceTable = (function ($) {
       function calculateModelingData() {
          var REgex_dollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
         $('#total-fee_target-resource').text("$" + Number(marginModeling[0].Fees).toFixed(2).replace(REgex_dollar, "$1,") );
-        $('.contrib-margin').text( Number(marginModeling[0].CtrMargin) + "%");
+        $('.contrib-margin').text( Number(marginModeling[0].CtrMargin));
         var total_hours = $('tfoot td.total-hours').text();
         var avg_rate =  Number(marginModeling[0].Fees)/total_hours;
         var fee_target = $('.fee-target').text();
