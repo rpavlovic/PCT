@@ -149,18 +149,18 @@ var projectInfoForm = (function ($) {
       });
   }
 
-  select_billing_office.on('change', function () {
-    var url = $('#btn-save').attr('href');
-    $('#btn-save').attr('href', updateQueryString('Office', $(this).val(), url));
-  });
-
   $('.project-info #btn-save').on('click', function (event) {
     event.preventDefault();
     console.log("saving form");
 
     var url = $('#btn-save').attr('href');
-    $('#btn-save').attr('href', updateQueryString('projID', getParameterByName('projID'), url));
-    
+    url = updateQueryString('projID', getParameterByName('projID'), url);
+    url = updateQueryString('Office', $('select[name="Office"]').val(), url);
+    url = updateQueryString('Duration', $('input[name="Duration"]').val(), url);
+    url = updateQueryString('PlanBy', $('select[name="planby"]').val(), url);
+
+    $('#btn-save').attr('href', url);
+
     // get val in unix epoch time
     var EstStDate = new Date($('input.datepicker').val()).getTime();
     var startDate = new Date($('input[name="weekstart"]').val()).getTime();
