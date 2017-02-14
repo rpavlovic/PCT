@@ -548,71 +548,71 @@ var projectResourceTable = (function ($) {
         }
       }
     });
-$('.project-resources #btn-save').on('click', function (event) {
-  event.preventDefault();
-  console.log("saving form");
+  $('.project-resources #btn-save').on('click', function (event) {
+    event.preventDefault();
+    console.log("saving form");
 
-  var url = $('#btn-save').attr('href');
-  url = updateQueryString('projID', getParameterByName('projID'), url);
-  url = updateQueryString('Office', getParameterByName('Office'), url);
-  url = updateQueryString('Duration', getParameterByName('Duration'), url);
-  url = updateQueryString('PlanBy', getParameterByName('PlanBy'), url);
+    var url = $('#btn-save').attr('href');
+    url = updateQueryString('projID', getParameterByName('projID'), url);
+    url = updateQueryString('Office', getParameterByName('Office'), url);
+    url = updateQueryString('Duration', getParameterByName('Duration'), url);
+    url = updateQueryString('PlanBy', getParameterByName('PlanBy'), url);
 
-  $('#btn-save').attr('href', url);
+    $('#btn-save').attr('href', url);
 
-  // get val in unix epoch time
-  // var EstStDate = new Date($('input.datepicker').val()).getTime();
-  // var startDate = new Date($('input[name="weekstart"]').val()).getTime();
-  // var EstEndDate = new Date($('input[name="enddate"]').val()).getTime();
-  // var changedDate = new Date().getTime();
+    // get val in unix epoch time
+    // var EstStDate = new Date($('input.datepicker').val()).getTime();
+    // var startDate = new Date($('input[name="weekstart"]').val()).getTime();
+    // var EstEndDate = new Date($('input[name="enddate"]').val()).getTime();
+    // var changedDate = new Date().getTime();
 
-  // if(!createdOn){
-  //   createdOn = "\/Date("+changedDate+")\/";
-  // }
+    // if(!createdOn){
+    //   createdOn = "\/Date("+changedDate+")\/";
+    // }
 
-  var formData = {
-    "Projid" : getParameterByName('projID'),
-    "Officeid" : getParameterByName('Office'),
-    // "Projid": getParameterByName('projID'),
-    // "Plantyp": plan_by.val(),
-    // "Region": select_region.val(),
-    // "Office": select_billing_office.val(),
-    // "Currency": select_currency.val(),
-    // "Clientname": client_name.val(),
-    // "Projname": project_name.val(),
-    // "Comptyp": compensation_type.val(),
-    // "EstStDate": "\/Date("+EstStDate+")\/",
-    // "Duration": input_duration.val(),
-    // "PlanUnits": plan_units.val(),
-    // "StartDate": "\/Date("+startDate+")\/",
-    // "EstEndDate": "\/Date("+EstEndDate+")\/",
-    // "Comments": comments.val(),
-    // "Preparedby": prepared_by.val(),
-    // "Createdby": prepared_by.val(),
-    // "Createdon": createdOn,
-    // "Changedby": prepared_by.val(),
-    // "Changedon": "\/Date("+changedDate+")\/"
-  };
+    var formData = {
+      "Projid" : getParameterByName('projID'),
+      "Officeid" : getParameterByName('Office'),
+      // "Projid": getParameterByName('projID'),
+      // "Plantyp": plan_by.val(),
+      // "Region": select_region.val(),
+      // "Office": select_billing_office.val(),
+      // "Currency": select_currency.val(),
+      // "Clientname": client_name.val(),
+      // "Projname": project_name.val(),
+      // "Comptyp": compensation_type.val(),
+      // "EstStDate": "\/Date("+EstStDate+")\/",
+      // "Duration": input_duration.val(),
+      // "PlanUnits": plan_units.val(),
+      // "StartDate": "\/Date("+startDate+")\/",
+      // "EstEndDate": "\/Date("+EstEndDate+")\/",
+      // "Comments": comments.val(),
+      // "Preparedby": prepared_by.val(),
+      // "Createdby": prepared_by.val(),
+      // "Createdon": createdOn,
+      // "Changedby": prepared_by.val(),
+      // "Changedon": "\/Date("+changedDate+")\/"
+    };
 
-  $.ajax({
-    method: "POST",
-    url: get_data_feed('project', getParameterByName('projID')),
-    data: formData
-    //todo: this needs to be fixed and actually handle errors properly
-  })
-    .done(function (msg) {
-      console.log("Data Saved: " + msg);
-      window.location.href = $('#btn-save').attr('href');
+    $.ajax({
+      method: "POST",
+      url: get_data_feed('project', getParameterByName('projID')),
+      data: formData
+      //todo: this needs to be fixed and actually handle errors properly
     })
-    .fail(function (data) {
-      console.log("post failed: " + data);
-    })
-    .always(function () {
-      if ( !is_fiori() ) {
+      .done(function (msg) {
+        console.log("Data Saved: " + msg);
         window.location.href = $('#btn-save').attr('href');
-      }
+      })
+      .fail(function (data) {
+        console.log("post failed: " + data);
+      })
+      .always(function () {
+        if ( !is_fiori() ) {
+          window.location.href = $('#btn-save').attr('href');
+        }
+      });
     });
-});
   }
 
   return {
