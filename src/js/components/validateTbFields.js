@@ -16,8 +16,7 @@ function returnData(new_data, table) {
   var error = function() {
     var REgex = /^[\$]?[0-9\.\,]+[\%]?/g;
     if( ($(new_data).parent().hasClass('num') || $(new_data).hasClass('month')) &&
-      !isNum &&
-      $(new_data).html().replace(REgex, '') &&
+      !isNum && $(new_data).html().replace(REgex, '') &&
       $(new_data).text() !== '') {
       $(new_data).html('this field accepts numbers only.').addClass('error');
     }
@@ -28,6 +27,7 @@ function returnData(new_data, table) {
 
   if(table === "#csv-table") {
     if(isNum) {
+      console.log($(new_data));
       var ovd_rate = $(new_data).html(),
           st_rate = $(new_data).parent().prevAll('.rate').html().replace(/[^0-9\.]/g,""),
           minus = st_rate - ovd_rate,
@@ -58,7 +58,5 @@ function returnData(new_data, table) {
       $(active_modeling_tabs[1]).addClass('active');
       $(active_modeling_tabs[1]).children('input').prop('checked', true);
     }
-    //formulas for the hours, rates
   }
-  //resourceFormulas.initResourceFormulas(new_data, table);
 }
