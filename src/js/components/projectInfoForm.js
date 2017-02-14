@@ -63,7 +63,7 @@ var projectInfoForm = (function ($) {
           }
         }
       }
-    })
+    });
   }
 
   //prepopulate Billing office select with JSON data.
@@ -156,7 +156,7 @@ var projectInfoForm = (function ($) {
     var url = $('#btn-save').attr('href');
     url = updateQueryString('projID', getParameterByName('projID'), url);
     url = updateQueryString('Office', $('select[name="Office"]').val(), url);
-    url = updateQueryString('Duration', $('input[name="Duration"]').val(), url);
+    url = updateQueryString('Duration', $('input[name="Duration"]').val().replace(/\D/g, ''), url);
     url = updateQueryString('PlanBy', $('select[name="planby"]').val(), url);
 
     $('#btn-save').attr('href', url);
