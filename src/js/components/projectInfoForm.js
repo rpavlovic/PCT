@@ -206,7 +206,9 @@ var projectInfoForm = (function ($) {
         console.log("post failed: " + data);
       })
       .always(function () {
-        
+        if ( !is_fiori() ) {
+          window.location.href = $('#btn-save').attr('href');
+        }
       });
   });
 
