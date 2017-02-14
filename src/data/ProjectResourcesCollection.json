@@ -7,7 +7,7 @@
           "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000103',Rowno='001')",
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.Project_Resources"
         },
-        "Projid" : "1000103",
+        "Projid" : "1000100",
         "Duration" : "5",
         "Rowno" : "001",
         "DelvDesc" : "Test1",
@@ -18,8 +18,29 @@
         "ProposedRes" : "Test22",
         "BillRate" : "345.000",
         "BillRateOvride" : "X",
-        "TotalHrs" : 22,
-        "TotalFee" : "2280.000",
+        "TotalHrs" : 24,
+        "TotalFee" : "8280.000",
+        "Plantyp" : "WK"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000103',Rowno='001')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000103',Rowno='001')",
+          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.Project_Resources"
+        },
+        "Projid" : "1000100",
+        "Duration" : "5",
+        "Rowno" : "001",
+        "DelvDesc" : "Test1",
+        "Officeid" : "US01",
+        "Titleid" : "SR.MANAGER",
+        "Practiceid" : "IT",
+        "Role" : "Manager",
+        "ProposedRes" : "Test22",
+        "BillRate" : "250.000",
+        "BillRateOvride" : "X",
+        "TotalHrs" : 28,
+        "TotalFee" : "7000.000",
         "Plantyp" : "WK"
       }
     ]
