@@ -70,6 +70,7 @@ $breakpoint-large: 75em;
   margin: 0 .5%;
   min-height: 0.125rem;
   display: inline-block;
+  vertical-align: top;
   &.relative {
     position: relative;
   }

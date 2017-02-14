@@ -99,11 +99,11 @@ var resourceCalculation = (function ($) {
    //TODO get the COST RATE.
    var standard_fees = $('#total-fee_standard-resource').text().replace(/[^0-9\.]/g,"");
    var adjusted_fees = $('#total-fee_adjusted-resource').text().replace(/[^0-9\.]/g,"");
-   var contrib_margin = (standard_fees-4000)/standard_fees * 100;
+   var contrib_margin = (standard_fees-40)/standard_fees * 100;
    if(contrib_margin > 0) {
      table1.contrib_std.text(contrib_margin.toFixed(1) + "%");
      if( adjusted_fees > 0) {
-      contrib_margin = (adjusted_fees-4000)/adjusted_fees * 100;
+      contrib_margin = (adjusted_fees-40)/adjusted_fees * 100;
        table1.contrib_adj.text(contrib_margin.toFixed(1) + "%");
        console.log(adjusted_fees);
      } else {

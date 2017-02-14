@@ -12,7 +12,7 @@ var captureEditTd = (function ($) {
        $(event.target).text('').removeClass('error');
       }
     });
-    $(table).on('blur keyup', 'td.contenteditable > div', function (event) {
+    $(table).on('blur', 'td.contenteditable > div', function (event) {
             console.log($(event.target));
       var esc = event.which == 27,
           nl = event.which == 13,

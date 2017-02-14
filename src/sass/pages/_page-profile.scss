@@ -12,5 +12,12 @@
       display: block;
       margin-bottom: rem-calc(3);
     }
+    .row {
+      border-bottom: solid 1px #ddd7d7;
+      padding: 15px 0;
+    }
+    + .row {
+      padding: 15px 0;
+    }
   }
 }
