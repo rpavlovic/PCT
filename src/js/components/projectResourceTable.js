@@ -411,7 +411,6 @@ var projectResourceTable = (function ($) {
           EmpTitle = [];
         rateCards.map(function (val) {
           if (OfficeID === val.Office) {
-            console.log(val);
             EmpTitle.push('<option value="' + val.EmpGradeName + '" ' +
               'data-rate="' + val.BillRate + '" data-class="' + val.Class + '" data-office="' + val.Office + '" data-company="'+ val.Company +'"' +
               'data-costrate="' + val.CostRate + 'data-currency="' + val.LocalCurrency + '" >' + val.EmpGradeName + '</option>');
