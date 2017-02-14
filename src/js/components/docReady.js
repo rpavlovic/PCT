@@ -22,6 +22,8 @@
         "nextText": "",
         "prevText": "",
         "dateFormat": "MM dd, yy",
+        "buttonText": "",
+        "showOn": "both",
         onSelect: function (dateText, instance) {
           projectDuration.initProjectDuration('form.project-info', instance, dateText);
           floatLabel.initfloatLabel();
@@ -35,7 +37,7 @@
     /**
      * Landing page
      */
-    if ('index.html' === current_page || '' === current_page) {
+    if ('index.html' == current_page || '' == current_page) {
 
       activeTableFunction.initActiveTable();
 
@@ -47,7 +49,7 @@
      * Project create/edit page
      */
 
-    if ('projectGeneral.html' === current_page) {
+    if ('projectGeneral.html' == current_page) {
 
       //if form to be loaded exists.
       if($("form.project-info").length > 0) {
@@ -61,19 +63,19 @@
      * Profile page
      */
 
-    if ('profile.html' === current_page) {
+    if ('profile.html' == current_page) {
       editProfileForm.initEditProfileForm('form.form-edit-profile');
     }
 
     //upload CSV per the user
-    if ('profile.html' === current_page || 'projectResources.html' === current_page) {
+    if ('customBillSheet.html' == current_page) {
       loadCustomBillSheet.initLoadCustomBillSheet();
     }
 
     /**
      * Resources page
      */
-    if ('projectResources.html' === current_page) {
+    if ('projectResources.html' == current_page) {
       projectResourceTable.initProjectResourceTable();
       //modeling table highlight headers on radio click
       $('#modeling-table input[type="radio"]').activateElement();

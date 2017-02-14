@@ -82,6 +82,7 @@ var loadCustomBillSheet = (function ($) {
     // Upload CSV into a table.
     function uploadTable() {
       $("#uploadTable").on('click', function(event, opt_startByte, opt_stopByte) {
+        console.log(this);
         $("input[type=\"file\"]").trigger('click', function() {
           event.stopPropagation();
         });

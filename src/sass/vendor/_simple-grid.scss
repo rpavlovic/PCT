@@ -66,9 +66,10 @@ $breakpoint-large: 75em;
 }
 
 .row [class^="col"] {
-  float: left;
+  // float: left;
   margin: 0 .5%;
   min-height: 0.125rem;
+  display: inline-block;
   &.relative {
     position: relative;
   }
