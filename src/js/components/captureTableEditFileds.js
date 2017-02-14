@@ -7,11 +7,13 @@ var captureEditTd = (function ($) {
 
   function initCaptureEditTd(table) {
     $(table).on('mousedown mouseleave','td.contenteditable > div', function (event) {
+
       if ($(event.target).hasClass('error')) {
        $(event.target).text('').removeClass('error');
       }
     });
-    $(table).on('blur', 'td.contenteditable > div', function (event) {
+    $(table).on('blur keyup', 'td.contenteditable > div', function (event) {
+            console.log($(event.target));
       var esc = event.which == 27,
           nl = event.which == 13,
           tab = event.which == 9,
@@ -19,16 +21,9 @@ var captureEditTd = (function ($) {
           input = el.nodeName != 'INPUT' && el.nodeName != 'TEXTAREA' && el.nodeName != 'SELECT',
           data = {};
       if (input) {
-        if (nl) {
+        if(nl) {
           event.preventDefault();
-          document.execCommand('insertHTML', false);
-          // prevent the default behaviour of return key pressed
           return false;
-        }
-        if (esc) {
-          // restore state
-          document.execCommand('undo');
-          el.blur();
         }
         data = {
           element : el
