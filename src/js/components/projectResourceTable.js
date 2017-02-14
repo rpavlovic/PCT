@@ -465,7 +465,6 @@ var projectResourceTable = (function ($) {
       function recalculateStuff() {
         var rows = projResourceTable.rows();
         console.log(rows.context[0].aoData);
-
         var tableHoursSum = 0;
         var tableFeeSum = 0;
         // calculate total hours
@@ -525,6 +524,19 @@ var projectResourceTable = (function ($) {
           $("#modeling-table tbody #contribution-margin_adjusted-resource").text('');
           $("#modeling-table tbody #avg-rate_adjusted-resource").text('');
         }
+
+        var targetContributionMargin = parseFloat($('#target-contribution-margin').text());
+        if(targetContributionMargin) {
+          var targetMarginBasedFee = totalCostSum / (1 - (targetContributionMargin/100));
+          $("#modeling-table tbody #total-fee_target-resource").text(targetMarginBasedFee);
+          var targetMarginAvgRate = targetMarginBasedFee/tableHoursSum;
+          $('#avg-rate_target-resource').text(targetMarginAvgRate);
+        }
+        else{
+          $("#modeling-table tbody #total-fee_target-resource").text('');
+          $('#avg-rate_target-resource').text('');
+        }
+
       }
     });
   }
