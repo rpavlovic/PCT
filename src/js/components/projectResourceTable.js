@@ -340,6 +340,7 @@ var projectResourceTable = (function ($) {
             var OfficeID = $(this).val(),
               nodes = $(this);
             getJobTitle(OfficeID, nodes);
+            recalculateStuff();
           });
 
           $("#project-resource-table tbody select.title").on('change', function () {
@@ -349,7 +350,13 @@ var projectResourceTable = (function ($) {
             getClass(nodes);
             getPractice(OfficeID, nodes);
             loadBillRate(nodes);
+            recalculateStuff();
           });
+
+          $('.contenteditable').on('keyup', function(){
+            recalculateStuff();
+          })
+
         },
         "initComplete": function (settings, json, row) {
           $('tfoot td.total-hours').text(hoursSum.toFixed(2));
@@ -530,6 +537,21 @@ var projectResourceTable = (function ($) {
         }
 
         return filteredRates.pop().CostRate;
+      }
+
+      function recalculateStuff(){
+        var rows = projResourceTable.rows();
+        console.log(rows.context[0].aoData);
+        var rowsSum = 0;
+        for(var i = 0; i< rows.context[0].aoData.length; i++) {
+          var sum = 0;
+          for(var j= 14; j< 25; j++) {
+            sum += parseInt($(rows.context[0].aoData[i].anCells[j]).text());
+          }
+          $(rows.context[0].aoData[i].anCells[12]).text(sum);
+          rowsSum += sum;
+        }
+        $('tfoot td.total-hours').text(rowsSum);
       }
     });
   }
