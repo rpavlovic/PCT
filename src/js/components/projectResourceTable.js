@@ -38,7 +38,13 @@ var projectResourceTable = (function ($) {
       });
     });
 
-    Promise.all([p1, p2, p3, p4, t1]).then(function (values) {
+    var p5 = new Promise(function (resolve, reject) {
+      $.getJSON(get_data_feed(feeds.plannedHours, getParameterByName('projID')), function (plan) {
+        resolve(plan.d.results);
+      });
+    });
+
+    Promise.all([p1, p2, p3, p4, t1, p5]).then(function (values) {
       //deliverables
       var deliverables = values[0];
       var offices = values[1];
@@ -55,7 +61,7 @@ var projectResourceTable = (function ($) {
       var myRows = [];
       var hoursSum = 0;
 
-
+      // this is supposed to come from data/PlannedHours.json
       projectResources.forEach(function (resource) {
         resource.jan = 40;
         resource.feb = 40;
