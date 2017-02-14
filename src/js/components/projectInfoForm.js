@@ -158,8 +158,10 @@ var projectInfoForm = (function ($) {
     console.log("saving form");
 
     var url = $('#btn-save').attr('href');
-    $('#btn-save').attr('href', updateQueryString('projID', getParameterByName('projID'), url));
-    
+    url = updateQueryString('projID', getParameterByName('projID'), url);
+    url = updateQueryString('Office', $('select[name="Office"]').val(), url);
+    $('#btn-save').attr('href', url);
+
     // get val in unix epoch time
     var EstStDate = new Date($('input.datepicker').val()).getTime();
     var startDate = new Date($('input[name="weekstart"]').val()).getTime();

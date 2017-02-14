@@ -43,7 +43,7 @@ var projectResourceTable = (function ($) {
       var deliverables = values[0];
       var offices = values[1];
 
-      var rateCards = values[2].filter(function(val){
+      var rateCards = values[2].filter(function (val) {
         return val;
         // add in any filtering params if we need them in the future
         //return val.CostRate > 2;
@@ -90,6 +90,7 @@ var projectResourceTable = (function ($) {
           "Class": resource,
           "CostRate": resource,
           "CostCenterName": resource,
+          "BillRate": resource.BillRate,
           "jan": resource.jan,
           "feb": resource.feb,
           "mar": resource.mar,
@@ -172,16 +173,7 @@ var projectResourceTable = (function ($) {
             "defaultContent": '',
             "class": 'td-title',
             "render": function (data, type, row, meta) {
-              var employeeTitles = getEmployeeTitles(data.Officeid);
-              var select = "<select class='title' name='EmpGradeName'>";
-              employeeTitles.forEach(function (val) {
-                var selectString = data.Titleid === val.EmpGradeName ? 'selected="selected"' : '';
-                select += '<option value="' + val.EmpGradeName + '" ' + 'data-rate="' + val.BillRate +
-                  '" data-class="' + val.Class + '" data-office="' + val.Office + '" ' +
-                  'data-currency="' + val.LocalCurrency + '" ' + selectString + '>' + val.EmpGradeName + '</option>';
-              });
-              select += "</select>";
-              return select;
+              return getEmployeeTitles(data);
             }
           },
           {
@@ -366,36 +358,37 @@ var projectResourceTable = (function ($) {
         },
         "bDestroy": true
       });
+
       function calculateModelingData() {
-         var REgex_dollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
-        $('#total-fee_target-resource').text("$" + Number(marginModeling[0].Fees).toFixed(2).replace(REgex_dollar, "$1,") );
-        $('.contrib-margin').text( Number(marginModeling[0].CtrMargin) + "%");
+        var REgex_dollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
+        $('#total-fee_target-resource').text("$" + Number(marginModeling[0].Fees).toFixed(2).replace(REgex_dollar, "$1,"));
+        $('.contrib-margin').text(Number(marginModeling[0].CtrMargin) + "%");
         var total_hours = $('tfoot td.total-hours').text();
-        var avg_rate =  Number(marginModeling[0].Fees)/total_hours;
+        var avg_rate = Number(marginModeling[0].Fees) / total_hours;
         var fee_target = $('.fee-target').text();
-        $('#avg-rate_target-resource > span').text("$" + avg_rate.toFixed(2).replace(REgex_dollar, "$1,") );
-        $('#avg-rate_fixed-resource > span').text("$" + avg_rate.toFixed(2).replace(REgex_dollar, "$1,") );
+        $('#avg-rate_target-resource > span').text("$" + avg_rate.toFixed(2).replace(REgex_dollar, "$1,"));
+        $('#avg-rate_fixed-resource > span').text("$" + avg_rate.toFixed(2).replace(REgex_dollar, "$1,"));
       }
-      function fillTds() {
-        $(rateCards).each(function (key, value) {
-          $("#project-resource-table tbody select.office option").each(function (k, v) {
-            if ($(v).val() === value.Office) {
-              $(this).prop('selected', true);
-              getJobTitle(value.Officeid, $(this));
-              getClass($("#project-resource-table tbody select.title"));
-              getPractice(value.Officeid, $(this));
-              loadBillRate($("#project-resource-table tbody select.title"));
-            }
-          });
-        });
-      }
+
+      // function fillTds() {
+      //   $(rateCards).each(function (key, value) {
+      //     $("#project-resource-table tbody select.office option").each(function (k, v) {
+      //       if ($(v).val() === value.Office) {
+      //         $(this).prop('selected', true);
+      //         getJobTitle(value.Officeid, $(this));
+      //         getClass($("#project-resource-table tbody select.title"));
+      //         getPractice(value.Officeid, $(this));
+      //         loadBillRate($("#project-resource-table tbody select.title"));
+      //       }
+      //     });
+      //   });
+      // }
 
       //Add Row
       $('.project-resources').on('click', '#add-row', function (e) {
         e.preventDefault();
         projResourceTable.row.add({
-          "EmpGradeName": [],
-          "Office": {offices: offices},
+          "Office": {offices: offices, selectedOffice: getParameterByName('Office')},
           "CostCenterName": [],
           "Deliverables": deliverables,
           "Class": '',
@@ -436,7 +429,10 @@ var projectResourceTable = (function ($) {
         console.log(OfficeID);
         var practiceSelect = nodes.closest('tr').find('.practice');
         var Practice = [];
-        rateCards.map(function (val) {
+        Practice.push('<option>Select Practice</option>');
+        rateCards.filter(function (val) {
+          return val.Office === OfficeID && val.CostCenterName;
+        }).map(function (val) {
           if (OfficeID === val.Office) {
             Practice.push('<option value="' + val.CostCenterName + '" ' + 'data-office="' + val.Office + '">' + val.CostCenterName + '</option>');
           }
@@ -465,15 +461,19 @@ var projectResourceTable = (function ($) {
         resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
       }
 
-      function getEmployeeTitles(officeId) {
-        var employeeTitles = [];
-        employeeTitles.push({Office: null, EmpGradeName: "Select Title"});
-        rateCards.map(function (val) {
-          if (officeId === val.Office) {
-            employeeTitles.push(val);
-          }
+      function getEmployeeTitles(resource) {
+        var select = "<select class='title' name='EmpGradeName'>";
+        select += '<option data-class="">Select Title</option>';
+
+        rateCards.forEach(function (val) {
+          var selectString = resource && resource.Titleid === val.EmpGradeName ? 'selected="selected"' : '';
+          select += '<option value="' + val.EmpGradeName + '" ' + 'data-rate="' + val.BillRate +
+            '" data-class="' + val.Class + '" data-office="' + val.Office + '" ' +
+            'data-currency="' + val.LocalCurrency + '" ' + selectString + '>' + val.EmpGradeName + '</option>';
         });
-        return employeeTitles;
+
+        select += "</select>";
+        return select;
       }
 
       function getEmployeeClass(employee) {
@@ -490,7 +490,9 @@ var projectResourceTable = (function ($) {
         var select = "<select class='practice' name='CostCenterName'>";
         select += "<option>Select Practice</option>";
 
-        rateCards.forEach(function (val) {
+        rateCards.filter(function (val) {
+          return val.Office === employee.Officeid && val.CostCenterName;
+        }).forEach(function (val) {
           var selected = '';
           if (val.Office === employee.Officeid) {
             selected = 'selected="selected" ';
@@ -511,7 +513,7 @@ var projectResourceTable = (function ($) {
       }
 
       function getCostRate(resource) {
-        if (!resource){
+        if (!resource) {
           return '';
         }
 
@@ -519,9 +521,7 @@ var projectResourceTable = (function ($) {
           return val.Office === resource.Officeid && val.EmpGradeName === resource.Role;
         });
 
-        console.log(filteredRates[0]);
-        if(!filteredRates.length)
-        {
+        if (!filteredRates.length) {
           return '';
         }
 
