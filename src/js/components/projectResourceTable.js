@@ -547,9 +547,7 @@ var projectResourceTable = (function ($) {
         }
 
         var fixedFeeTarget = parseFloat($('#fixed-fee-target').text());
-
-        console.log(fixedFeeTarget);
-
+        
         if(!isNaN(fixedFeeTarget)){
           var contributionMarginFixedFee = ((fixedFeeTarget - totalCostSum) / fixedFeeTarget) * 100;
           $('#contribution-margin_fixed-fee').text(contributionMarginFixedFee);
