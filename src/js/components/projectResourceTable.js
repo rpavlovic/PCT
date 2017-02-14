@@ -169,7 +169,7 @@ var projectResourceTable = (function ($) {
           "data": "CostRate",
           "class": 'cost-rate',
           "defaultContent": '<div contenteditable />',
-          "visible": true,
+          "visible": false,
           "render": function (data, type, row, meta) {
             var costRate = getCostRate(data);
             return '<div contenteditable>' + costRate + '</div>';
