@@ -401,7 +401,7 @@ var projectResourceTable = (function ($) {
         select += '<option data-class="">Select Title</option>';
 
         rateCards.forEach(function (val) {
-          var selectString = resource && resource.Titleid === val.EmpGradeName ? 'selected="selected"' : '';
+          var selectString = resource && resource.EmpGradeName === val.EmpGradeName ? 'selected="selected"' : '';
           select += '<option value="' + val.EmpGradeName + '" ' + 'data-rate="' + val.BillRate +
             '" data-class="' + val.Class + '" data-office="' + val.Office + '" ' +
             'data-currency="' + val.LocalCurrency + '" ' + selectString + '>' + val.EmpGradeName + '</option>';
@@ -413,7 +413,7 @@ var projectResourceTable = (function ($) {
 
       function getEmployeeClass(employee) {
         var rcElement = rateCards.find(function (val) {
-          return val.Office === employee.Officeid && employee.Titleid === val.EmpGradeName;
+          return val.Office === employee.Officeid && employee.EmpGradeName === val.EmpGradeName;
         });
         if (rcElement)
           return rcElement.Class;
