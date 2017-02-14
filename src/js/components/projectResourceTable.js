@@ -480,7 +480,6 @@ var projectResourceTable = (function ($) {
           var hoursPerRow = 0;
           for (var j = 14; j < rows.context[0].aoData[i].anCells.length; j++) {
             var hoursCells = parseFloat($(rows.context[0].aoData[i].anCells[j]).text());
-            console.log(hoursCells);
             hoursPerRow += !isNaN(hoursCells) ? hoursCells : 0;
           }
           var rowSum = !isNaN(hoursPerRow) ? hoursPerRow.toFixed(2) : '';
@@ -545,6 +544,19 @@ var projectResourceTable = (function ($) {
         else{
           $("#modeling-table tbody #total-fee_target-resource").text('');
           $('#avg-rate_target-resource').text('');
+        }
+
+        var fixedFeeTarget = parseFloat($('#fixed-fee-target').text());
+        
+        if(!isNaN(fixedFeeTarget)){
+          var contributionMarginFixedFee = ((fixedFeeTarget - totalCostSum) / fixedFeeTarget) * 100;
+          $('#contribution-margin_fixed-fee').text(contributionMarginFixedFee);
+          var avgRateFixedFee = fixedFeeTarget / tableHoursSum ;
+          $('#avg-rate_fixed-resource').text(avgRateFixedFee);
+        }
+        else{
+          $('#contribution-margin_fixed-fee').text('');
+          $('#avg-rate_fixed-resource').text('');
         }
       }
     });
