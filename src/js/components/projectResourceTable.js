@@ -61,7 +61,6 @@ var projectResourceTable = (function ($) {
       var myRows = [];
       var hoursSum = 0;
 
-
       projectResources.forEach(function (resource) {
         resource.jan = 40;
         resource.feb = 40;
@@ -118,7 +117,7 @@ var projectResourceTable = (function ($) {
         "columnDefs": [
           {
             "orderable": false,
-            "targets": [0, 1]
+            "targets": [1]
           }
         ],
         "order": [[3, 'asc']],
@@ -238,19 +237,22 @@ var projectResourceTable = (function ($) {
             "defaultContent": '',
             "class": "total-hours  can-clear",
             "render": function (data, type, row, meta) {
-              var months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
-              var sum = 0;
-              months.forEach(function (month) {
-                sum += parseFloat(row[month]);
-              });
-              return !isNaN(sum) ? sum.toFixed(2) : '';
+              // var months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"];
+              // var sum = 0;
+              // months.forEach(function (month) {
+              //   sum += parseFloat(row[month]);
+              // });
+              //return !isNaN(sum) ? sum.toFixed(2) : '';
             }
           },
           {
             "title": 'Total Fees',
-            "data": " ",
+            "data": "TotalFees",
             "defaultContent": '',
             "class": "total-fees  can-clear",
+            "render": function (data, type, row, meta) {
+              return data;
+            }
           },
           {
             "title": 'JAN <br/> 16',
@@ -361,7 +363,7 @@ var projectResourceTable = (function ($) {
         "initComplete": function (settings, json, row) {
           $('tfoot td.total-hours').text(hoursSum.toFixed(2));
           //calculations for modeling table
-          calculateModelingData();
+          //calculateModelingData();
         },
         "bDestroy": true
       });
@@ -376,20 +378,6 @@ var projectResourceTable = (function ($) {
         $('#avg-rate_target-resource > span').text("$" + avg_rate.toFixed(2).replace(REgex_dollar, "$1,"));
         $('#avg-rate_fixed-resource > span').text("$" + avg_rate.toFixed(2).replace(REgex_dollar, "$1,"));
       }
-
-      // function fillTds() {
-      //   $(rateCards).each(function (key, value) {
-      //     $("#project-resource-table tbody select.office option").each(function (k, v) {
-      //       if ($(v).val() === value.Office) {
-      //         $(this).prop('selected', true);
-      //         getJobTitle(value.Officeid, $(this));
-      //         getClass($("#project-resource-table tbody select.title"));
-      //         getPractice(value.Officeid, $(this));
-      //         loadBillRate($("#project-resource-table tbody select.title"));
-      //       }
-      //     });
-      //   });
-      // }
 
       //Add Row
       $('.project-resources').on('click', '#add-row', function (e) {
@@ -406,6 +394,14 @@ var projectResourceTable = (function ($) {
         });
       });
       //remove row
+
+      $('#project-resource-table tbody').on('click', 'td', function (e) {
+        e.preventDefault();
+        var cell = projResourceTable.cell( this );
+        cell.data( cell.data() + 1 ).draw();
+        recalculateStuff();
+      });
+
       $('#project-resource-table tbody').on('click', '.remove', function (e) {
         e.preventDefault();
         projResourceTable.row($(this).parents('tr')).remove().draw(false);
@@ -552,6 +548,12 @@ var projectResourceTable = (function ($) {
           rowsSum += sum;
         }
         $('tfoot td.total-hours').text(rowsSum);
+      }
+
+      function sumHours(hoursArray){
+        return hoursArray.reduce(function(acc, val){
+          return acc+val;
+        }, 0);
       }
     });
   }
