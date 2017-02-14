@@ -39,8 +39,7 @@
   background: $bg;
   color: $color;
   &:hover,
-  &:focus,
-  &:visited {
+  &:focus {
     background:darken($bg, 8%);
     @include trans(all 0.3s ease);
     border: none;

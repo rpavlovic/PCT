@@ -173,9 +173,9 @@ var projectResourceTable = (function ($) {
               var select = "<select class='title' name='EmpGradeName'>";
               employeeTitles.forEach(function (val) {
                 var selectString = data.Titleid === val.EmpGradeName ? 'selected="selected"' : '';
-                select += '<option value="' + val.EmpGradeName + '" ' + 'data-rate="' + val.BillRate +
-                  '" data-class="' + val.Class + '" data-office="' + val.Office + '" ' +
-                  'data-currency="' + val.LocalCurrency + '" ' + selectString + '>' + val.EmpGradeName + '</option>';
+                select += '<option value="' + val.EmpGradeName + '" ' +
+                'data-rate="' + val.BillRate + '" data-class="' + val.Class + '" data-office="' + val.Office + '" ' +
+                'data-currency="' + val.LocalCurrency + '" ' + 'data-costrate="' + val.CostRate + '" ' + selectString + '>' + val.EmpGradeName + '</option>';
               });
               select += "</select>";
               return select;
@@ -411,9 +411,10 @@ var projectResourceTable = (function ($) {
           EmpTitle = [];
         rateCards.map(function (val) {
           if (OfficeID === val.Office) {
+            console.log(val);
             EmpTitle.push('<option value="' + val.EmpGradeName + '" ' +
               'data-rate="' + val.BillRate + '" data-class="' + val.Class + '" data-office="' + val.Office + '" data-company="'+ val.Company +'"' +
-              'data-currency="' + val.LocalCurrency + '">' + val.EmpGradeName + '</option>');
+              'data-costrate="' + val.CostRate + 'data-currency="' + val.LocalCurrency + '" >' + val.EmpGradeName + '</option>');
           }
         });
         if (EmpTitle.length) {

@@ -8,29 +8,7 @@ var activeTableFunction = (function ($) {
 
   $('#start-project').on('click', function(e){
     e.preventDefault();
-    var new_project_id = get_unique_id();
-    var new_project_endpoint = get_data_feed('project', new_project_id);
-
-    var pProject = new Promise(function(resolve, reject){
-      $.get(get_data_feed('project', new_project_id), function(result){
-        resolve(result);
-      });
-    });
-
-    var pDeliverables = new Promise(function(resolve, reject){
-      $.get(get_data_feed('projectDeliverables', new_project_id), function(result){
-        resolve(result);
-      });
-    });
-
-    Promise.all([pProject, pDeliverables])
-      .then(function(values){
-        // / we assume that both of those were okay.
-        window.location.href = 'projectGeneral.html?projID='+ new_project_id;
-      })
-      .catch(function(err){
-        console.log(err);
-      });
+    window.location.href = 'projectGeneral.html?projID='+ get_project_id();
   });
 
   function initActiveTable() {
