@@ -50,9 +50,8 @@ var projectResourceTable = (function ($) {
       var offices = values[1];
 
       var rateCards = values[2].filter(function (val) {
-        return val;
         // add in any filtering params if we need them in the future
-        // return val.CostRate > 0;
+        return val.CostRate > 0 && val.EmpGradeName;
       });
 
       var projectResources = values[3];
@@ -403,7 +402,7 @@ var projectResourceTable = (function ($) {
         rateCards.forEach(function (val) {
           var selectString = resource && resource.EmpGradeName === val.EmpGradeName ? 'selected="selected"' : '';
           select += '<option value="' + val.EmpGradeName + '" ' + 'data-rate="' + val.BillRate +
-            '" data-class="' + val.Class + '" data-office="' + val.Office + '" ' +
+            '" data-class="' + val.Class + '" data-office="' + val.Office + '" ' + 'data-costrate="' + val.CostRate + '" ' +
             'data-currency="' + val.LocalCurrency + '" ' + selectString + '>' + val.EmpGradeName + '</option>';
         });
 
@@ -448,7 +447,7 @@ var projectResourceTable = (function ($) {
         }
 
         var filteredRates = rateCards.filter(function (val) {
-          return val.Office === resource.Officeid && val.EmpGradeName === resource.Role;
+          return val.Office === resource.Officeid && val.EmpGradeName === resource.EmpGradeName;
         });
 
         if (!filteredRates.length) {
