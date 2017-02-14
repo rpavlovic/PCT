@@ -200,12 +200,13 @@ var projectInfoForm = (function ($) {
     })
       .done(function (msg) {
         console.log("Data Saved: " + msg);
+        window.location.href = $('#btn-save').attr('href');
       })
-      .fail(function () {
-        console.log("post failed");
+      .fail(function (data) {
+        console.log("post failed: " + data);
       })
       .always(function () {
-        window.location.href = $('#btn-save').attr('href');
+        
       });
   });
 
