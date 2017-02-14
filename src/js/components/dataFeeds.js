@@ -44,6 +44,13 @@ var feeds = {
   'billSheet': [ 'data/BillSheetCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection?$filter=EmpNumber eq \'{param1}\'&$format=json' ]
 };
 
+function is_fiori() {
+  if (location.href.indexOf('localhost') != -1 || location.href.indexOf('10.211.55.2') != -1) {
+    return false;
+  }
+  return true;
+}
+
 /**
  * Returns static JSON if local; SAP endpoint, otherwise
  * @param {Array} key name of feed to return data for
@@ -63,7 +70,7 @@ function get_data_feed(feed, param1, param2, param3, param4) {
     param2 = 1;
   }
 
-  if (location.href.indexOf('localhost') != -1 || location.href.indexOf('10.211.55.2') != -1) {
+  if (!is_fiori()) {
     uri = feed[0];
   }
   else {
@@ -76,3 +83,4 @@ function get_data_feed(feed, param1, param2, param3, param4) {
 
   return uri;
 }
+
