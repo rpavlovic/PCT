@@ -50,9 +50,8 @@ var projectResourceTable = (function ($) {
       var offices = values[1];
 
       var rateCards = values[2].filter(function (val) {
-        return val;
         // add in any filtering params if we need them in the future
-        // return val.CostRate > 0;
+        return val.CostRate > 0 && val.EmpGradeName;
       });
 
       var projectResources = values[3];
@@ -401,9 +400,9 @@ var projectResourceTable = (function ($) {
         select += '<option data-class="">Select Title</option>';
 
         rateCards.forEach(function (val) {
-          var selectString = resource && resource.Titleid === val.EmpGradeName ? 'selected="selected"' : '';
+          var selectString = resource && resource.EmpGradeName === val.EmpGradeName ? 'selected="selected"' : '';
           select += '<option value="' + val.EmpGradeName + '" ' + 'data-rate="' + val.BillRate +
-            '" data-class="' + val.Class + '" data-office="' + val.Office + '" ' +
+            '" data-class="' + val.Class + '" data-office="' + val.Office + '" ' + 'data-costrate="' + val.CostRate + '" ' +
             'data-currency="' + val.LocalCurrency + '" ' + selectString + '>' + val.EmpGradeName + '</option>';
         });
 
@@ -413,7 +412,7 @@ var projectResourceTable = (function ($) {
 
       function getEmployeeClass(employee) {
         var rcElement = rateCards.find(function (val) {
-          return val.Office === employee.Officeid && employee.Titleid === val.EmpGradeName;
+          return val.Office === employee.Officeid && employee.EmpGradeName === val.EmpGradeName;
         });
         if (rcElement)
           return rcElement.Class;
@@ -448,7 +447,7 @@ var projectResourceTable = (function ($) {
         }
 
         var filteredRates = rateCards.filter(function (val) {
-          return val.Office === resource.Officeid && val.EmpGradeName === resource.Role;
+          return val.Office === resource.Officeid && val.EmpGradeName === resource.EmpGradeName;
         });
 
         if (!filteredRates.length) {
@@ -465,7 +464,6 @@ var projectResourceTable = (function ($) {
       function recalculateStuff() {
         var rows = projResourceTable.rows();
         console.log(rows.context[0].aoData);
-
         var tableHoursSum = 0;
         var tableFeeSum = 0;
         // calculate total hours
@@ -525,6 +523,19 @@ var projectResourceTable = (function ($) {
           $("#modeling-table tbody #contribution-margin_adjusted-resource").text('');
           $("#modeling-table tbody #avg-rate_adjusted-resource").text('');
         }
+
+        var targetContributionMargin = parseFloat($('#target-contribution-margin').text());
+        if(targetContributionMargin) {
+          var targetMarginBasedFee = totalCostSum / (1 - (targetContributionMargin/100));
+          $("#modeling-table tbody #total-fee_target-resource").text(targetMarginBasedFee);
+          var targetMarginAvgRate = targetMarginBasedFee/tableHoursSum;
+          $('#avg-rate_target-resource').text(targetMarginAvgRate);
+        }
+        else{
+          $("#modeling-table tbody #total-fee_target-resource").text('');
+          $('#avg-rate_target-resource').text('');
+        }
+
       }
     });
 $('.project-resources #btn-save').on('click', function (event) {
