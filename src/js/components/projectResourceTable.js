@@ -438,7 +438,12 @@ var projectResourceTable = (function ($) {
       }
 
       function renderMonth(data, type, row, meta) {
+        if(data) {
           return '<div contenteditable class="month">' + data + '</div>';
+        }
+        else {
+          return '<div contenteditable class="month"></div>';
+        }
       }
 
       function getCostRate(resource) {
@@ -474,18 +479,24 @@ var projectResourceTable = (function ($) {
           // get sum of the hour column per row
           var hoursPerRow = 0;
           for (var j = 14; j < rows.context[0].aoData[i].anCells.length; j++) {
-            hoursPerRow += parseFloat($(rows.context[0].aoData[i].anCells[j]).text());
+            var hoursCells = parseFloat($(rows.context[0].aoData[i].anCells[j]).text());
+            console.log(hoursCells);
+            hoursPerRow += !isNaN(hoursCells) ? hoursCells : 0;
           }
           var rowSum = !isNaN(hoursPerRow) ? hoursPerRow.toFixed(2) : '';
           $(rows.context[0].aoData[i].anCells[12]).text(rowSum);
 
           // calc fee per row
           var billRate = parseFloat($(rows.context[0].aoData[i].anCells[9]).text().replace('$', ''));
+          billRate = !isNaN(billRate) ? billRate : 0;
+
           var billRateOverride = parseFloat($(rows.context[0].aoData[i].anCells[10]).text().replace('$', ''));
+          billRateOverride = !isNaN(billRateOverride) ? billRateOverride : 0;
+
           var rate = billRateOverride ? billRateOverride : billRate;
           var costRate = parseFloat($(rows.context[0].aoData[i].anCells[11]).text().replace('$', ''));
 
-          costRate = costRate ? costRate : 1;
+          costRate = !isNaN(costRate) ? costRate : 0;
 
           if(!isAdjusted && billRateOverride) {
             isAdjusted = true;
@@ -535,7 +546,6 @@ var projectResourceTable = (function ($) {
           $("#modeling-table tbody #total-fee_target-resource").text('');
           $('#avg-rate_target-resource').text('');
         }
-
       }
     });
 $('.project-resources #btn-save').on('click', function (event) {
