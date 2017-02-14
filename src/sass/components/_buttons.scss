@@ -42,6 +42,7 @@
   &:focus {
     background:darken($bg, 8%);
     @include trans(all 0.3s ease);
+    border: none;
   }
   &:active {
     background:darken($bg, 25%);
@@ -187,5 +188,3 @@ button[data-toggle] {
 .fa-caret-down {
   color: $red-alert;
 }
-
-

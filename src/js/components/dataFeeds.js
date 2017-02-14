@@ -20,7 +20,7 @@ var feeds = {
   'marginModeling': [ 'data/MarginModeling.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection?$filter=Projid eq \'{param1}\' and ModelType eq \'{param2}\'&$format=json' ],
 
   // Rate Card / Bill Rate / Job Title by Office name, e.g.:  get_data_feed('rateCards', 'US02')
-  'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection/?$  \'{param1}\'&$format=json' ],
+  'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection/?$filter=Projid eq \'{param1}\'&$format=json' ],
 
   // Project Deliverables by Project ID, e.g.:  get_data_feed('projectDeliverables', '1000100')
   'projectDeliverables': [ 'data/ProjectRelatedDeliverables.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection?$filter=Projid eq \'{param1}\'&$format=json' ],
@@ -32,7 +32,7 @@ var feeds = {
    * planned hours by type, e.g.:  get_data_feed('plannedHours', '1000100', '001', 'WK', 'R1'):
    *  @param {String|Number} project ID
    *  @param {String|Number} row count
-   *  @param {String} plant type: Weekly, Monthly, Summary
+   *  @param {String} plant type: Weekly ("WK"), Monthly ("MN"), Summary ("SM")
    *  @param {String} column/cell count
    */
   'plannedHours': [ 'data/PlannedHours.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet?$filter=Projid eq \'{param1}\' and Rowno eq \'{param2}\' and Plantyp eq \'{param3}\' and Cellid eq \'{param4}\'&$format=json' ],
@@ -43,6 +43,13 @@ var feeds = {
   // custom bill sheet by employee ID
   'billSheet': [ 'data/BillSheetCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection?$filter=EmpNumber eq \'{param1}\'&$format=json' ]
 };
+
+function is_fiori() {
+  if (location.href.indexOf('localhost') != -1 || location.href.indexOf('10.211.55.2') != -1) {
+    return false;
+  }
+  return true;
+}
 
 /**
  * Returns static JSON if local; SAP endpoint, otherwise
@@ -63,7 +70,7 @@ function get_data_feed(feed, param1, param2, param3, param4) {
     param2 = 1;
   }
 
-  if (location.href.indexOf('localhost') != -1 || location.href.indexOf('10.211.55.2') != -1) {
+  if (!is_fiori()) {
     uri = feed[0];
   }
   else {
@@ -76,3 +83,4 @@ function get_data_feed(feed, param1, param2, param3, param4) {
 
   return uri;
 }
+

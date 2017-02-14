@@ -27,6 +27,7 @@ var projectInfoForm = (function ($) {
     select_currency = $("form.project-info select[name='Currency']"),
     select_region = $("form.project-info select[name='Region']"),
     select_country = $("form.project-info select[name='Country']"),
+    plan_by = $("select[name='planby']"),
     input_duration = $("input[name='Duration']"),
     plan_units = $("input[name='PlanUnits']"),
     client_name = $("input[name='name']"),
@@ -172,7 +173,7 @@ var projectInfoForm = (function ($) {
 
     var formData = {
       "Projid": getParameterByName('projID'),
-      "Plantyp": "OP",
+      "Plantyp": plan_by.val(),
       "Region": select_region.val(),
       "Office": select_billing_office.val(),
       "Currency": select_currency.val(),
@@ -200,12 +201,15 @@ var projectInfoForm = (function ($) {
     })
       .done(function (msg) {
         console.log("Data Saved: " + msg);
+        window.location.href = $('#btn-save').attr('href');
       })
-      .fail(function () {
-        console.log("post failed");
+      .fail(function (data) {
+        console.log("post failed: " + data);
       })
       .always(function () {
-        window.location.href = $('#btn-save').attr('href');
+        if ( !is_fiori() ) {
+          window.location.href = $('#btn-save').attr('href');
+        }
       });
   });
 
