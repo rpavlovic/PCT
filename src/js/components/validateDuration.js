@@ -27,10 +27,10 @@ var validateDurationPlanBy = (function ($) {
 
     function compare_plan_duration(planby, duration) {
       if(planby === 'Weekly' && duration > 52) {
-        $("form.project-info input[name='Duration']").val('Please enter less then 52 weeks.').addClass('error');
+        $("form.project-info input[name='Duration']").val('Please enter less than 52 weeks.').addClass('error');
       }
       if(planby === 'Monthly' && duration > 24) {
-         $("form.project-info input[name='Duration']").val('Please enter less then 24 months.').addClass('error');
+         $("form.project-info input[name='Duration']").val('Please enter less than 24 months.').addClass('error');
       }
     }
     validatePlanBy();
