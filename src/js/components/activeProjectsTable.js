@@ -8,7 +8,7 @@ var activeTableFunction = (function ($) {
 
   $('#start-project').on('click', function(e){
     e.preventDefault();
-    window.location.href = 'projectGeneral.html?projID='+ get_project_id();
+    window.location.href = 'projectGeneral.htm?projID='+ get_project_id();
   });
 
   function initActiveTable() {
@@ -35,7 +35,7 @@ var activeTableFunction = (function ($) {
         "sTitle": 'Project Name',
         "data":"Projname",
         "render": function ( data, type, set, meta ) {
-          var output = '<a href="projectGeneral.html?projID='+set.Projid+'&projName='+data+'" title="ProjectName">';
+          var output = '<a href="projectGeneral.htm?projID='+set.Projid+'&projName='+data+'" title="ProjectName">';
               output += data;
               output += '</a>';
           return output;
@@ -79,7 +79,7 @@ var activeTableFunction = (function ($) {
         "data": "Projid",
         "defaultContent": '',
         "render": function ( data, type, set, meta ) {
-         return '<a href="projectGeneral.html?projID='+data+'&projName='+set.Projname+'" class=""><i class="fa fa-files-o"></i></a>';
+         return '<a href="projectGeneral.htm?projID='+data+'&projName='+set.Projname+'" class=""><i class="fa fa-files-o"></i></a>';
         }
       },
       {

@@ -1,5 +1,3 @@
-'use strict';
-
 var gulp = require('gulp'),
     watch = require('gulp-watch'),
     sass = require('gulp-sass'),
@@ -71,12 +69,14 @@ gulp.task('nunjucks', function () {
  return gulp.src('src/templates/**/*.+(html|njk)')
     .pipe(data(getDataForFile))
     // Renders template with nunjucks
-    .pipe(nunjucksRender(defaults))
+    .pipe(nunjucksRender({
+      path: ['src/templates'],
+      ext: '.htm'
+    }))
     .on('error', function(e) {
        console.log(e);
        this.emit('end');
     })
-
     // output files in app folder
     .pipe(gulp.dest('build'))
     .pipe(browserSync.stream());
@@ -117,7 +117,7 @@ gulp.task('serve', ['styles', 'js-watch', 'nunjucks-watch'], function() {
     browserSync.init( ["/css/*.css", "/js/*.js"], {
       server: {
           baseDir: "./build",
-          index: "index.html"
+          index: "index.htm"
       }
     });
     gulp.watch(sassSrc,['styles']);
@@ -155,7 +155,7 @@ var jsLibToMove = [
 gulp.task('move', function() {
   // the base option sets the relative root for the set of files,
   // preserving the folder structure
-  gulp.src("build/pages/*.html")
+  gulp.src("build/pages/*.htm")
   .pipe(gulp.dest('build/'));
 });
 
