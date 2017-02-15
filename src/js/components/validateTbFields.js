@@ -27,7 +27,6 @@ function returnData(new_data, table) {
 
   if(table === "#csv-table") {
     if(isNum) {
-      console.log($(new_data));
       var ovd_rate = $(new_data).html(),
           st_rate = $(new_data).parent().prevAll('.rate').html().replace(/[^0-9\.]/g,""),
           minus = st_rate - ovd_rate,
@@ -35,28 +34,6 @@ function returnData(new_data, table) {
       if(st_rate.length > 0) {
         $(new_data).parent().next('td.discount').html(percent.toFixed(2)+ "%");
       }
-    }
-  }
-  if(table === '#project-resource-table') {
-    //for now only rate-override with values into an array from the #project-resource-table.
-    var RateOverride = [],
-        active_modeling_tabs = $('#modeling-table tr td');
-        active_modeling_tabs.removeClass('active');
-        active_modeling_tabs.children('input').prop('checked', false);
-      //create an array with bill rates, numbers only.
-      $('td.rate-override div').map(function(index, value) {
-        if($(this).text() && $.isNumeric($(this).text())) {
-          return RateOverride.push($(this).text());
-        }
-      });
-    //activate Adjusted Resource Hdr when override is entered.
-    if(RateOverride.length > 0) {
-      $(active_modeling_tabs[2]).addClass('active');
-      $(active_modeling_tabs[2]).children('input').prop('checked', true);
-    }
-    else {
-      $(active_modeling_tabs[1]).addClass('active');
-      $(active_modeling_tabs[1]).children('input').prop('checked', true);
     }
   }
 }
