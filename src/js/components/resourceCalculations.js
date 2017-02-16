@@ -66,7 +66,7 @@ var resourceCalculation = (function ($) {
       total_hours += Number($(this).text().replace(/[^0-9\.]/g,""));
     });
 
-    $('tfoot td.total-hours').text(total_hours.toFixed(2));
+    $('tfoot th.total-hours').text(total_hours.toFixed(2));
 
     table1.total_fees.each(function() {
       total_rate_sum += Number($(this).text().replace(/[^0-9\.]/g,""));
@@ -80,7 +80,7 @@ var resourceCalculation = (function ($) {
       table1.fees_adj.text('');
       table1.fees_std.text(total_fees);
     }
-    $('tfoot td.total-fees').text(total_fees);
+    $('tfoot th.total-fees').text(total_fees);
 
   //modeling avarage fees table populate
     var av_rate =  total_rate_sum/total_hours;

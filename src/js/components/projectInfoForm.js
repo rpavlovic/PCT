@@ -150,7 +150,7 @@ var projectInfoForm = (function ($) {
   }
 
   $('.project-info #btn-save').on('click', function (event) {
-    event.preventDefault();
+    //event.preventDefault();
     console.log("saving form");
 
     var url = $('#btn-save').attr('href');

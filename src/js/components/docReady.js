@@ -80,6 +80,8 @@
       //modeling table highlight headers on radio click
       $('#modeling-table input[type="radio"]').activateElement();
       $('.project-resources button[type="reset"]').clearAll();
+      captureEditTd.initCaptureEditTd('#modeling-table');
+      captureEditTd.initCaptureEditTd('#project-resource-table');
     }
     /**
      * Resources page
@@ -92,7 +94,7 @@
     /**
      * Summary page
      */
-    if ('projectSummary.html' === current_page) {
+    if ('projectSummary.htm' === current_page) {
       projectSummary.initProjectSummary();
     }
 
