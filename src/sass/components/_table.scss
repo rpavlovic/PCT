@@ -86,7 +86,10 @@ table {
     }
     tfoot tr {
       background-color: #f9f9f9;
+      th,
       td {
+        font-weight: normal;
+        font-family: "EYLight", sans-serif;
         &:first-child {
           span {
             font-family: "EYBold", sans-serif;

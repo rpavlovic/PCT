@@ -22,6 +22,7 @@ function returnData(new_data, table) {
     }
     return true;
   };
+  console.log(new_data);
   //run error here.
   error();
 

@@ -37,7 +37,7 @@ var projectSummary = (function ($) {
       console.log(projectDeliverables);
       console.log("mm");
       console.log(marginModeling);
-
+      summaryDelivTable.initSummaryDelivTable(projectDeliverables);
     });
   }
 
