@@ -3,13 +3,14 @@
 * @module Draw Data Table for Active Projects.
 * @version
 */
-var summaryDelivTable = (function ($) {
+var summaryOfficeTable = (function ($) {
   'use strict';
-  function initSummaryDelivTable(data) {
-    var DelierableTable = $("#breakdown-delivery-table");
-    DelierableTable.DataTable({
+  function initSummaryOfficeTable(data) {
+    var byOfficeTable = $("#breakdown-office-table");
+
+    byOfficeTable.DataTable({
       dom:'<tip>',
-      data: data,//TODO CORRECT DATA
+      data: data, //TODO CORRECT DATA
       searching: false,
       paging: false,
       length: false,
@@ -17,37 +18,37 @@ var summaryDelivTable = (function ($) {
       order: [[ 1, 'asc' ]],
       "columns": [
         {
-          "title": "Deliverable/Workstream",
+          "title": "Office",
           "data": null,
-          "defaultContent": "Non-Deliverable Specific",
-          "class": "deliv-name",
+          "defaultContent": "WS Chicago",
+          "class": "office",
           render: function ( data, type, row ) {
             return data;
           }
         },
         {
-          "title": "Project Fees",
+          "title": "Billing Office",
           "data": null,
           "defaultContent": "$350,000.00",
-          "class": "deliv-fees",
+          "class": "office",
           render: function ( data, type, row ) {
             return data;
           }
         },
         {
-          "title": "Expenses",
+          "title": "Proj. Fees",
           "data": null,
           "defaultContent": "$10,000.00",
-          "class": "deliv-expenses",
+          "class": "office-total-fees",
           render: function ( data, type, row ) {
             return data;
           }
         },
         {
-          "title": "Total Budget",
+          "title": "Fees in Local Currency",
           "data": null,
           "render": "$450,000.00",
-          "class": "deliv-budget",
+          "class": "office-total-currency",
           // render: function ( data, type, row ) {
           //   return data;
           // }
@@ -56,16 +57,16 @@ var summaryDelivTable = (function ($) {
           "title": "Hours",
           "data": null,
           "defaultContent": "2,000",
-          "class": "total-hours",
+          "class": "office-total-hours",
           render: function ( data, type, row ) {
             return data;
           }
         },
         {
-          "title": "Hours %",
+          "title": "Staffing Mix",
           "data": null,
           "defaultContent": "30%",
-          "class": "deliv-percent",
+          "class": "office-total-mix",
           render: function ( data, type, row ) {
             return data;
           }
@@ -75,6 +76,6 @@ var summaryDelivTable = (function ($) {
     });
   }
   return {
-    initSummaryDelivTable:initSummaryDelivTable
+    initSummaryOfficeTable:initSummaryOfficeTable
   };
 })($);

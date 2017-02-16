@@ -3,11 +3,13 @@
 * @module Draw Data Table for Active Projects.
 * @version
 */
-var summaryDelivTable = (function ($) {
+var summaryRoleTable = (function ($) {
   'use strict';
-  function initSummaryDelivTable(data) {
-    var DelierableTable = $("#breakdown-delivery-table");
-    DelierableTable.DataTable({
+  function initSummaryRoleTable(data) {
+    console.log(data);
+    var byRoleTable = $("#breakdown-role-table");
+
+    byRoleTable.DataTable({
       dom:'<tip>',
       data: data,//TODO CORRECT DATA
       searching: false,
@@ -17,55 +19,46 @@ var summaryDelivTable = (function ($) {
       order: [[ 1, 'asc' ]],
       "columns": [
         {
-          "title": "Deliverable/Workstream",
+          "title": "Title",
           "data": null,
-          "defaultContent": "Non-Deliverable Specific",
-          "class": "deliv-name",
+          "defaultContent": "President",
+          "class": "office",
           render: function ( data, type, row ) {
             return data;
           }
         },
         {
-          "title": "Project Fees",
+          "title": "Class",
           "data": null,
-          "defaultContent": "$350,000.00",
-          "class": "deliv-fees",
+          "defaultContent": "E1",
+          "class": "office",
           render: function ( data, type, row ) {
             return data;
           }
         },
         {
-          "title": "Expenses",
+          "title": "Proj. Fees",
           "data": null,
           "defaultContent": "$10,000.00",
-          "class": "deliv-expenses",
+          "class": "office-total-fees",
           render: function ( data, type, row ) {
             return data;
           }
-        },
-        {
-          "title": "Total Budget",
-          "data": null,
-          "render": "$450,000.00",
-          "class": "deliv-budget",
-          // render: function ( data, type, row ) {
-          //   return data;
-          // }
         },
         {
           "title": "Hours",
           "data": null,
           "defaultContent": "2,000",
-          "class": "total-hours",
+          "class": "office-total-hours",
           render: function ( data, type, row ) {
             return data;
           }
         },
         {
-          "title": "Hours %",
+          "title": "Staffing Mix",
           "data": null,
           "defaultContent": "30%",
-          "class": "deliv-percent",
+          "class": "office-total-mix",
           render: function ( data, type, row ) {
             return data;
           }
@@ -75,6 +68,6 @@ var summaryDelivTable = (function ($) {
     });
   }
   return {
-    initSummaryDelivTable:initSummaryDelivTable
+    initSummaryRoleTable:initSummaryRoleTable
   };
 })($);
