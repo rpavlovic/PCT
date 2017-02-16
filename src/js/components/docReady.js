@@ -89,6 +89,13 @@
       $('.project-expense button[type="reset"]').clearAll();
     }
 
+    /**
+     * Summary page
+     */
+    if ('projectSummary.html' === current_page) {
+      projectSummary.initProjectSummary();
+    }
+
     //print buttons
     $('.fa-print').click(function() {
       window.print();
