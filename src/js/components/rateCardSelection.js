@@ -58,15 +58,3 @@ var rateCardSelect = (function ($) {
   };
 
 })($);
-
-
-// var p3 = new Promise(function (resolve, reject) {
-//             $.getJSON(get_data_feed(feeds.employee), function (employees) {
-//               resolve(employees.d.results);
-//             });
-//           });
-
-//     select_cards.append($.unique(items_business));
-
-//         var cardRate = get_data_feed('billSheet', '10000071');
-//       console.log(cardRate);
