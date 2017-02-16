@@ -1,5 +1,5 @@
 /**
- * @module Load JSON
+ * @module Load Info Page form input fields.
  * @version
  */
 

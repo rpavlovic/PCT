@@ -68,7 +68,6 @@ var loadCustomBillSheet = (function ($) {
            "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
               $(nRow).removeClass('odd even');
               $("td:nth-child(n+5):not(:last-child)", nRow)
-              // .prop('contenteditable', true)
               .addClass("contenteditable");
               $("td:nth-child(3)", nRow).addClass('rate num');
               $("td:nth-child(6)", nRow).addClass('discount num');
