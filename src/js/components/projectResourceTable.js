@@ -284,27 +284,24 @@ var projectResourceTable = (function ($) {
           $('.contenteditable').on('keyup focusout', function (e) {
             recalculateStuff();
           });
-
         },
         "initComplete": function (settings, json, row) {
           setTimeout(recalculateStuff, 1000);
-          //calculations for modeling table
-          //calculateModelingData();
-          //recalculateStuff();
         },
         "bDestroy": true
       });
 
-      function calculateModelingData() {
-        var REgex_dollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
-        $('#total-fee_target-resource').text("$" + Number(marginModeling[0].Fees).toFixed(2).replace(REgex_dollar, "$1,"));
-        $('.contrib-margin').text(Number(marginModeling[0].CtrMargin));
-        var total_hours = $('tfoot td.total-hours').text();
-        var avg_rate = Number(marginModeling[0].Fees) / total_hours;
-        var fee_target = $('.fee-target').text();
-        $('#avg-rate_target-resource > span').text("$" + avg_rate.toFixed(2).replace(REgex_dollar, "$1,"));
-        $('#avg-rate_fixed-resource > span').text("$" + avg_rate.toFixed(2).replace(REgex_dollar, "$1,"));
-      }
+      // function calculateModelingData() {
+      //   var REgex_dollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
+      //   $('#total-fee_target-resource').text("$" + Number(marginModeling[0].Fees).toFixed(2).replace(REgex_dollar, "$1,"));
+      //   $('.contrib-margin').text(Number(marginModeling[0].CtrMargin));
+      //   var total_hours = $('tfoot td.total-hours').text();
+      //   var avg_rate = Number(marginModeling[0].Fees) / total_hours;
+      //   var fee_target = $('.fee-target').text();
+
+      //   $('#modeling-table  #avg-rate_target-resource > span').text("$" + avg_rate.toFixed(2).replace(REgex_dollar, "$1,"));
+      //   $('#modeling-table  #avg-rate_fixed-resource > span').text("$" + avg_rate.toFixed(2).replace(REgex_dollar, "$1,"));
+      // }
 
       //Add Row
       $('.project-resources').on('click', '#add-row', function (e) {
@@ -320,15 +317,8 @@ var projectResourceTable = (function ($) {
           $(this).removeClass("new-row").dequeue();
         });
       });
-      //remove row
 
-      // $('#project-resource-table tbody').on('click', 'td', function (e) {
-      //   e.preventDefault();
-      //   var cell = projResourceTable.cell(this);
-      //   cell.data(parseFloat(cell.data()) + 1);//.draw();
-      //   recalculateStuff();
-      // });
-
+      //Remove row
       $('#project-resource-table tbody').on('click', '.remove', function (e) {
         e.preventDefault();
         projResourceTable.row($(this).parents('tr')).remove().draw(false);
@@ -471,6 +461,7 @@ var projectResourceTable = (function ($) {
         var standardFeeSum = 0;
         var isAdjusted = false;
         var totalCostSum = 0;
+        var REgex_dollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
         for (var i = 0; i < rows.context[0].aoData.length; i++) {
           // get sum of the hour column per row
           var hoursPerRow = 0;
@@ -492,15 +483,13 @@ var projectResourceTable = (function ($) {
           var costRate = parseFloat($(rows.context[0].aoData[i].anCells[11]).text().replace('$', ''));
 
           costRate = !isNaN(costRate) ? costRate : 0;
-
           if(!isAdjusted && billRateOverride) {
             isAdjusted = true;
-          }
-
+           }
           var totalFeePerRow = parseFloat(hoursPerRow) * rate;
           var totalStandardFeePerRow = parseFloat(hoursPerRow) * billRate;
           var totalCostPerRow = parseFloat(hoursPerRow) * costRate;
-          $(rows.context[0].aoData[i].anCells[13]).text(totalFeePerRow);
+          $(rows.context[0].aoData[i].anCells[13]).text("$" + totalFeePerRow.toFixed(2).replace(REgex_dollar, "$1,"));
 
           totalCostSum += totalCostPerRow;
           tableFeeSum += totalFeePerRow;
@@ -512,44 +501,65 @@ var projectResourceTable = (function ($) {
         var adjustedContributionMargin =  (tableFeeSum - totalCostSum) / tableFeeSum;
         var standardAvgRate = standardFeeSum/tableHoursSum;
         var adjustedAvgRate = tableFeeSum/tableHoursSum;
-        var REgex_dollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
+
+        var modeling_table_strd_fee = $("#modeling-table tbody #total-fee_standard-resource");
+        var modeling_table_strd_contrib = $("#modeling-table tbody #contribution-margin_standard-resource");
+        var modeling_table_strd_avg_rate = $("#modeling-table tbody #avg-rate_standard-resource");
+
+        var modeling_table_adj_fee = $("#modeling-table tbody #total-fee_adjusted-resource");
+        var modeling_table_adj_contrib =  $("#modeling-table tbody #contribution-margin_adjusted-resource");
+        var modeling_table_adj_avg_rate = $("#modeling-table tbody #avg-rate_adjusted-resource");
 
         $('tfoot td.total-fees').text("$" + tableFeeSum.toFixed(2).replace(REgex_dollar, "$1,"));
         $('tfoot td.total-hours').text(tableHoursSum.toFixed(2));
-        $("#modeling-table tbody #total-fee_standard-resource").text("$" + standardFeeSum.toFixed(2).replace(REgex_dollar, "$1,"));
-        $("#modeling-table tbody #contribution-margin_standard-resource").text(standardContribMargin.toFixed(2) * 100 + "%");
-        $("#modeling-table tbody #avg-rate_standard-resource").text("$" + standardAvgRate.toFixed(2).replace(REgex_dollar, "$1,"));
+
+        modeling_table_strd_fee.text("$" + standardFeeSum.toFixed(2).replace(REgex_dollar, "$1,"));
+        modeling_table_strd_contrib.text(standardContribMargin.toFixed(2) * 100 + "%");
+        modeling_table_strd_avg_rate.text("$" + standardAvgRate.toFixed(2).replace(REgex_dollar, "$1,"));
+
+        //To activate adjusted resource Tab.
+        var active_modeling_tabs = $('#modeling-table tr td');
+        active_modeling_tabs.removeClass('active');
+        active_modeling_tabs.children('input').prop('checked', false);
 
         if(isAdjusted) {
-          $("#modeling-table tbody #total-fee_adjusted-resource").text("$" + tableFeeSum.toFixed(2).replace(REgex_dollar, "$1,"));
-          $("#modeling-table tbody #contribution-margin_adjusted-resource").text(adjustedContributionMargin.toFixed(2) * 100 + "%");
-          $("#modeling-table tbody #avg-rate_adjusted-resource").text("$" + adjustedAvgRate.toFixed(2).replace(REgex_dollar, "$1,"));
+          modeling_table_adj_fee.text("$" + tableFeeSum.toFixed(2).replace(REgex_dollar, "$1,"));
+          modeling_table_adj_contrib.text(adjustedContributionMargin.toFixed(2) * 100 + "%");
+          modeling_table_adj_avg_rate.text("$" + adjustedAvgRate.toFixed(2).replace(REgex_dollar, "$1,"));
+
+          //active adjusted tab
+          $(active_modeling_tabs[2]).addClass('active');
+          $(active_modeling_tabs[2]).children('input').prop('checked', true);
         }
         else {
-          $("#modeling-table tbody #total-fee_adjusted-resource").text('');
-          $("#modeling-table tbody #contribution-margin_adjusted-resource").text('');
-          $("#modeling-table tbody #avg-rate_adjusted-resource").text('');
+          modeling_table_adj_fee.text('');
+          modeling_table_adj_contrib.text('');
+          modeling_table_adj_avg_rate.text('');
+
+          //remove Active state on the tab.
+          $(active_modeling_tabs[1]).addClass('active');
+          $(active_modeling_tabs[1]).children('input').prop('checked', true);
         }
 
         var targetContributionMargin = parseFloat($('#target-contribution-margin').text());
         if(targetContributionMargin) {
           var targetMarginBasedFee = totalCostSum / (1 - (targetContributionMargin/100));
-          $("#modeling-table tbody #total-fee_target-resource").text("$" + targetMarginBasedFee.toFixed(2).replace(REgex_dollar, "$1,"));
+          $("#modeling-table #total-fee_target-resource").text("$" + targetMarginBasedFee.toFixed(2).replace(REgex_dollar, "$1,"));
           var targetMarginAvgRate = targetMarginBasedFee/tableHoursSum;
-          $('#avg-rate_target-resource').text("$" + targetMarginAvgRate.toFixed(2).replace(REgex_dollar, "$1,"));
+          $('#modeling-table #avg-rate_target-resource').text("$" + targetMarginAvgRate.toFixed(2).replace(REgex_dollar, "$1,"));
         }
         else{
-          $("#modeling-table tbody #total-fee_target-resource").text('');
-          $('#avg-rate_target-resource').text('');
+          $("#modeling-table #total-fee_target-resource").text('');
+          $('#modeling-table #avg-rate_target-resource').text('');
         }
 
         var fixedFeeTarget = parseFloat($('#fixed-fee-target').text());
 
         if(!isNaN(fixedFeeTarget)){
           var contributionMarginFixedFee = ((fixedFeeTarget - totalCostSum) / fixedFeeTarget) * 100;
-          $('#contribution-margin_fixed-fee').text(contributionMarginFixedFee);
+          $('#contribution-margin_fixed-fee').text(contributionMarginFixedFee.toFixed(2) + "%");
           var avgRateFixedFee = fixedFeeTarget / tableHoursSum ;
-          $('#avg-rate_fixed-resource').text(avgRateFixedFee);
+          $('#avg-rate_fixed-resource').text("$" + avgRateFixedFee.toFixed(2).replace(REgex_dollar, "$1,"));
         }
         else{
           $('#contribution-margin_fixed-fee').text('');

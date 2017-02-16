@@ -12,7 +12,7 @@ var captureEditTd = (function ($) {
       }
     });
 
-     $(table).on('keydown', 'td.contenteditable > div', function (event) {
+     $(table).on('keydown blur', 'td.contenteditable > div', function (event) {
       var esc = event.which == 27,
           nl = event.which == 13,
           tab = event.which == 9,
@@ -21,9 +21,7 @@ var captureEditTd = (function ($) {
           data = {};
       if (input) {
         if(tab) {
-               // // restore state
-               // document.execCommand('undo');
-               el.blur();
+          el.blur();
         }
         if(nl || tab) {
           data = {
