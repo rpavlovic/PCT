@@ -13600,7 +13600,7 @@
         "BillRate" : "375.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990031",
         "LocalCurrency" : "USD"
       },
@@ -13620,7 +13620,7 @@
         "BillRate" : "280.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990029",
         "LocalCurrency" : "USD"
       },
@@ -13640,7 +13640,7 @@
         "BillRate" : "240.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990028",
         "LocalCurrency" : "USD"
       },
@@ -13660,7 +13660,7 @@
         "BillRate" : "200.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990021",
         "LocalCurrency" : "USD"
       },
@@ -13680,7 +13680,7 @@
         "BillRate" : "350.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990020",
         "LocalCurrency" : "USD"
       },
@@ -13700,7 +13700,7 @@
         "BillRate" : "350.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990007",
         "LocalCurrency" : "USD"
       },
@@ -13720,7 +13720,7 @@
         "BillRate" : "425.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990004",
         "LocalCurrency" : "USD"
       },
@@ -13840,7 +13840,7 @@
         "BillRate" : "180.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990052",
         "LocalCurrency" : "USD"
       },
@@ -13920,7 +13920,7 @@
         "BillRate" : "200.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990053",
         "LocalCurrency" : "USD"
       },
@@ -13940,7 +13940,7 @@
         "BillRate" : "210.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990025",
         "LocalCurrency" : "USD"
       },
@@ -13960,7 +13960,7 @@
         "BillRate" : "200.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990022",
         "LocalCurrency" : "USD"
       },
@@ -13980,7 +13980,7 @@
         "BillRate" : "120.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990017",
         "LocalCurrency" : "USD"
       },
@@ -14000,7 +14000,7 @@
         "BillRate" : "350.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990006",
         "LocalCurrency" : "USD"
       },
@@ -14020,7 +14020,7 @@
         "BillRate" : "475.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990003",
         "LocalCurrency" : "USD"
       },
@@ -14040,7 +14040,7 @@
         "BillRate" : "475.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990000",
         "LocalCurrency" : "USD"
       },
@@ -14180,7 +14180,7 @@
         "BillRate" : "50.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990018",
         "LocalCurrency" : "USD"
       },
@@ -14220,7 +14220,7 @@
         "BillRate" : "120.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990016",
         "LocalCurrency" : "USD"
       },
@@ -14260,7 +14260,7 @@
         "BillRate" : "120.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990015",
         "LocalCurrency" : "USD"
       },
@@ -14300,7 +14300,7 @@
         "BillRate" : "135.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990014",
         "LocalCurrency" : "USD"
       },
@@ -14320,7 +14320,7 @@
         "BillRate" : "160.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990013",
         "LocalCurrency" : "USD"
       },
@@ -14360,7 +14360,7 @@
         "BillRate" : "180.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990011",
         "LocalCurrency" : "USD"
       },
@@ -14400,7 +14400,7 @@
         "BillRate" : "200.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990010",
         "LocalCurrency" : "USD"
       },
@@ -14460,7 +14460,7 @@
         "BillRate" : "250.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990012",
         "LocalCurrency" : "USD"
       },
@@ -14500,7 +14500,7 @@
         "BillRate" : "280.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990009",
         "LocalCurrency" : "USD"
       },
@@ -14520,7 +14520,7 @@
         "BillRate" : "350.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990008",
         "LocalCurrency" : "USD"
       },
@@ -14560,7 +14560,7 @@
         "BillRate" : "375.000",
         "CostCenter" : "US99491600",
         "FiscalPeriod" : "2017002",
-        "CostCenterName" : "CHMD - HLTHCR",
+        "CostCenterName" : "WSCHMD - Healthcare",
         "EmpGrade" : "990005",
         "LocalCurrency" : "USD"
       },
@@ -14584,7 +14584,7 @@
         "EmpGrade" : "990005",
         "LocalCurrency" : "USD"
       },
-
+    
       {
         "__metadata" : {
           "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('US04')",

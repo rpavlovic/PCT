@@ -1,5 +1,4 @@
-var $   = require('jquery');
-
+(function ($) {
 /**
  * Packs the given requests into the batch and returns batch contents.
  * @param {Array} data Data to pack.
@@ -72,7 +71,7 @@ var unpack = function (xhr, status, complete) {
     complete.call(this, xhr, status, data);
 }
 
-module.exports = {
+  $.extend($, {
     ajaxBatch: function (params) {
         var boundary = new Date().getTime().toString();
 
@@ -88,4 +87,5 @@ module.exports = {
                 null
         });
     }
-};
+  });
+})(jQuery);
