@@ -33,7 +33,7 @@ var showHide = (function ($) {
     fadeTabs.initFadeTabs();
   }
 
-  $(".project-resources select[name='rate-card']").on("change", function(){
+  $(".project-resources select#rate-card").on("change", function(){
     if($(this).val().indexOf('Standard') === -1) {
       $(".col-9 a.toggle").fadeOut('slow');
     } else {
