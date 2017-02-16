@@ -10,7 +10,7 @@
         "Projid" : "1000100",
         "Rowno" : "001",
         "Plantyp" : "WK",
-        "Cellid" : "R1",
+        "Cellid" : "R1C1",
         "Planhours" : 4
       },
       {
@@ -22,7 +22,7 @@
         "Projid" : "1000100",
         "Rowno" : "001",
         "Plantyp" : "WK",
-        "Cellid" : "R2",
+        "Cellid" : "R1C2",
         "Planhours" : 8
       },
       {
@@ -34,7 +34,7 @@
         "Projid" : "1000100",
         "Rowno" : "001",
         "Plantyp" : "WK",
-        "Cellid" : "R3",
+        "Cellid" : "R1C3",
         "Planhours" : 7
       },
       {
@@ -46,7 +46,7 @@
         "Projid" : "1000100",
         "Rowno" : "001",
         "Plantyp" : "WK",
-        "Cellid" : "R4",
+        "Cellid" : "R1C4",
         "Planhours" : 5
       },
       {
@@ -56,9 +56,9 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
         },
         "Projid" : "1000100",
-        "Rowno" : "002",
+        "Rowno" : "001",
         "Plantyp" : "WK",
-        "Cellid" : "R1",
+        "Cellid" : "R1C5",
         "Planhours" : 7.5
       },
       {
@@ -68,9 +68,9 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
         },
         "Projid" : "1000100",
-        "Rowno" : "002",
+        "Rowno" : "001",
         "Plantyp" : "WK",
-        "Cellid" : "R2",
+        "Cellid" : "R1C6",
         "Planhours" : 8.5
       },
       {
@@ -80,9 +80,9 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
         },
         "Projid" : "1000100",
-        "Rowno" : "002",
+        "Rowno" : "001",
         "Plantyp" : "WK",
-        "Cellid" : "R3",
+        "Cellid" : "R1C7",
         "Planhours" : 5.5
       },
       {
@@ -92,9 +92,9 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
         },
         "Projid" : "1000100",
-        "Rowno" : "002",
+        "Rowno" : "001",
         "Plantyp" : "WK",
-        "Cellid" : "R4",
+        "Cellid" : "R1C7",
         "Planhours" : 6.5
       }
     ]
