@@ -193,24 +193,38 @@ var projectInfoForm = (function ($) {
       "Changedon": "\/Date("+changedDate+")\/"
     };
 
-    $.ajax({
-      method: "POST",
-      url: get_data_feed('project', getParameterByName('projID')),
-      data: formData
-      //todo: this needs to be fixed and actually handle errors properly
-    })
-      .done(function (msg) {
-        console.log("Data Saved: " + msg);
-        window.location.href = $('#btn-save').attr('href');
-      })
-      .fail(function (data) {
-        console.log("post failed: " + data);
-      })
-      .always(function () {
-        if ( !is_fiori() ) {
-          window.location.href = $('#btn-save').attr('href');
+    // $.ajax({
+    //   method: "POST",
+    //   url: get_data_feed('project', getParameterByName('projID')),
+    //   data: formData
+    //   //todo: this needs to be fixed and actually handle errors properly
+    // })
+    //   .done(function (msg) {
+    //     console.log("Data Saved: " + msg);
+    //     window.location.href = $('#btn-save').attr('href');
+    //   })
+    //   .fail(function (data) {
+    //     console.log("post failed: " + data);
+    //   })
+    //   .always(function () {
+    //     if ( !is_fiori() ) {
+    //       window.location.href = $('#btn-save').attr('href');
+    //     }
+    //   });
+
+    $.ajaxBatch({
+      url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
+      data: [
+        {
+          type: 'POST',
+          url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection',
+          data: formData
         }
-      });
+      ],
+      complete: function (xhr, status, data) {
+        console.log(data);
+      }
+    });
   });
 
   return {
