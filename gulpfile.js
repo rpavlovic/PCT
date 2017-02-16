@@ -149,7 +149,8 @@ var jsLibToMove = [
   'src/js/assets/pdfmake.min.js',
   'src/js/assets/jszip.min.js',
   'src/js/assets/aa_jquery-3.1.1.min.js',
-  'src/js/assets/ab_jquery-ui.min.js'
+  'src/js/assets/ab_jquery-ui.min.js',
+  'src/js/assets/batch.js'
 ];
 
 gulp.task('move', function() {
