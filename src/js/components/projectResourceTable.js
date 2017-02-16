@@ -291,18 +291,6 @@ var projectResourceTable = (function ($) {
         "bDestroy": true
       });
 
-      // function calculateModelingData() {
-      //   var REgex_dollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
-      //   $('#total-fee_target-resource').text("$" + Number(marginModeling[0].Fees).toFixed(2).replace(REgex_dollar, "$1,"));
-      //   $('.contrib-margin').text(Number(marginModeling[0].CtrMargin));
-      //   var total_hours = $('tfoot td.total-hours').text();
-      //   var avg_rate = Number(marginModeling[0].Fees) / total_hours;
-      //   var fee_target = $('.fee-target').text();
-
-      //   $('#modeling-table  #avg-rate_target-resource > span').text("$" + avg_rate.toFixed(2).replace(REgex_dollar, "$1,"));
-      //   $('#modeling-table  #avg-rate_fixed-resource > span').text("$" + avg_rate.toFixed(2).replace(REgex_dollar, "$1,"));
-      // }
-
       //Add Row
       $('.project-resources').on('click', '#add-row', function (e) {
         e.preventDefault();

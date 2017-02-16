@@ -39,9 +39,9 @@ var projectDuration = (function ($) {
 
     function estimateEndDate() {
       var daysToAdd = 0;
-      if(plan_by === "Weekly") {
+      if(plan_by === "WK") {
         daysToAdd = 7;
-      } else if (plan_by === "Monthly") {
+      } else if (plan_by === "MN") {
         daysToAdd = daysInMonth(selected_month, selected_year);
       }
       var curr = new Date(dataText), // get selected date
@@ -70,23 +70,21 @@ var projectDuration = (function ($) {
         }
         //remove error if data is selected from validateDuration.js
         $(form + " input[name=\"Duration\"]").removeClass('error');
-
         switch($(this).val()) {
-          case 'Weekly':
+          case 'WK':
             $(form + " input[name=\"Duration\"]").val(duration == 1 ? duration + ' Week': duration + ' Weeks');
             //update the estimate end date  field.
             estimate_end_date_val();
-
             break;
-          case 'Monthly':
+          case 'MN':
             $(form + " input[name=\"Duration\"]").val(duration == 1 ? duration + ' Month': duration + ' Months');
             //update the estimate end date  field.
             estimate_end_date_val();
-
             break;
-          case 'Summary':
-            $(form + " input[name=\"Duration\"]").val(duration + ' Summary');
-            estimate_end_date_val();
+          case 'SM':
+            $(form + " input[name=\"Duration\"]").val('').prop('disabled', true);
+            $(form + " input[name='weekstart']").val('');
+            estimate_end_date.val('');
             break;
           default:
             $(form + " input[name=\"Duration\"]").val(duration == 1 ? duration + ' Week': duration + ' Weeks');
