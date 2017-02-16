@@ -43,7 +43,7 @@ var feeds = {
   // Project Expenses by Project ID, e.g.:  get_data_feed('projectExpenses', '1000100')
   'projectExpenses': [ 'data/ProjectExpensesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection/?$filter=Projid eq \'{param1}\'&$format=json' ],
 
-  // custom bill sheet by employee ID
+  // client rate card by employee ID
   'billSheet': [ 'data/BillSheetCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection?$filter=EmpNumber eq \'{param1}\'&$format=json' ]
 };
 

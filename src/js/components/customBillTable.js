@@ -1,5 +1,5 @@
 /**
-* @module Uploads CSV comma delimetered document into a Custom Bill Sheet.
+* @module Uploads CSV comma delimetered document into a Client Rate Card.
 * @version
 */
 var loadCustomBillSheet = (function ($) {
