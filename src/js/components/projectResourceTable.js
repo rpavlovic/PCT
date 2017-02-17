@@ -104,7 +104,7 @@ var projectResourceTable = (function ($) {
             var select = "<select class='office' name='Office'>";
             $.each(offices, function (key, val) {
               var selectString = data.selectedOffice === val.Office ? 'selected="selected"' : '';
-              select += '<option value="' + val.Office + '"' + selectString + '>' + val.OfficeName + ', ' + val.City + '</option>';
+              select += '<option value="' + val.Office + '"' + selectString + '>' + val.OfficeName + ', ' + val.City + ' (' + val.Office + ')</option>';
             });
             select += "</select>";
             return select;

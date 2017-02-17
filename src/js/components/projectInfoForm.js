@@ -69,7 +69,7 @@ var projectInfoForm = (function ($) {
   //prepopulate Billing office select with JSON data.
   function prepopulate_Billing_Office_JSON(results) {
     results.forEach(function (office) {
-      items_business.push('<option value="' + office.Office + '">' + office.OfficeName + ', ' + office.City + ' / ' + office.Office + '</option>');
+      items_business.push('<option value="' + office.Office + '">' + office.OfficeName + ', ' + office.City + ' (' + office.Office + ')</option>');
       items_country.push('<option value="' + office.Country + '">' + office.Country + '</option>');
       items_region.push('<option value="' + office.Region + '">' + office.Region + '</option>');
       matchOptions(office.Currency, select_currency[0]);
