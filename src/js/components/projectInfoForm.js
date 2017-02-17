@@ -248,7 +248,6 @@ var projectInfoForm = (function ($) {
     //   console.log(html);
     // });
 
-
     var pid = getParameterByName('projID');
     var formData = {
       "__metadata": {
@@ -265,7 +264,7 @@ var projectInfoForm = (function ($) {
       "Projname": project_name.val(),
       "Comptyp": compensation_type.val(),
       "EstStDate": "\/Date(" + EstStDate + ")\/",
-      "Duration": input_duration.val(),
+      "Duration": parseInt(input_duration.val().replace(/\D/g, '')),
       "PlanUnits": plan_units.val().toString().substr(0,3),
       "StartDate": "\/Date(" + startDate + ")\/",
       "EstEndDate": "\/Date(" + EstEndDate + ")\/",
