@@ -251,7 +251,6 @@ var projectInfoForm = (function ($) {
     //   console.log(html);
     // });
 
-
     var isEmpty = false;
     if (input_duration.val() !== '') {
       isEmpty = true;
@@ -271,7 +270,6 @@ var projectInfoForm = (function ($) {
     if(checkValues(input_duration)) {
       return false;
     }
-
     var pid = getParameterByName('projID');
     var formData = {
       "__metadata": {
@@ -288,7 +286,7 @@ var projectInfoForm = (function ($) {
       "Projname": project_name.val(),
       "Comptyp": compensation_type.val(),
       "EstStDate": "\/Date(" + EstStDate + ")\/",
-      "Duration": input_duration.val(),
+      "Duration": parseInt(input_duration.val().replace(/\D/g, '')),
       "PlanUnits": plan_units.val().toString().substr(0,3),
       "StartDate": "\/Date(" + startDate + ")\/",
       "EstEndDate": "\/Date(" + EstEndDate + ")\/",
