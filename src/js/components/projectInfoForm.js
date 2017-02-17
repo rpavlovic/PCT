@@ -136,6 +136,9 @@ var projectInfoForm = (function ($) {
     var p4 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.project, getParameterByName('projID')), function (projects) {
         resolve(projects.d.results);
+      }).fail(function() {
+        // not found, but lets fix this and return empty set
+        resolve([]);
       });
     });
 
@@ -254,7 +257,7 @@ var projectInfoForm = (function ($) {
         "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
       },
       "Projid": getParameterByName('projID'),
-      "Plantyp": plan_by.val(),
+      "Plantyp": plan_by.val().toString().substr(0,2),
       "Region": select_region.val(),
       "Office": select_billing_office.val(),
       "Currency": select_currency.val(),
@@ -263,7 +266,7 @@ var projectInfoForm = (function ($) {
       "Comptyp": compensation_type.val(),
       "EstStDate": "\/Date(" + EstStDate + ")\/",
       "Duration": input_duration.val(),
-      "PlanUnits": plan_units.val(),
+      "PlanUnits": plan_units.val().toString().substr(0,3),
       "StartDate": "\/Date(" + startDate + ")\/",
       "EstEndDate": "\/Date(" + EstEndDate + ")\/",
       "Comments": comments.val(),
@@ -279,7 +282,7 @@ var projectInfoForm = (function ($) {
       url: "/sap/opu/odata/sap/ZUX_PCT_SRV/$metadata",
       beforeSend: function (request) {
         request.setRequestHeader("X-CSRF-Token", "Fetch");
-      },
+      }
     }).then(function (data, status, xhr) {
       var token = xhr.getResponseHeader("X-CSRF-Token");
       console.log(token);
@@ -300,8 +303,8 @@ var projectInfoForm = (function ($) {
 
       $.ajax(settings).done(function (response) {
         console.log(response);
-
         var timeout = getParameterByName('timeout');
+
         console.log("navigating to new window in" + timeout + "seconds");
         timeout = timeout ? timeout : 1;
 
@@ -311,10 +314,9 @@ var projectInfoForm = (function ($) {
 
       });
     }).always(function(){
-
       var timeout = getParameterByName('timeout');
       timeout = timeout ? timeout : 1;
-      var timeout = getParameterByName('timeout');
+
       console.log("navigating to new window in" + timeout + "seconds");
 
       setTimeout(function () {
