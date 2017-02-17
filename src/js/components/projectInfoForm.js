@@ -150,9 +150,9 @@ var projectInfoForm = (function ($) {
   }
 
   $('.project-info #btn-save').on('click', function (event) {
-    //event.preventDefault();
-    console.log("saving form");
+    event.preventDefault();
 
+    console.log("saving form");
     var url = $('#btn-save').attr('href');
     url = updateQueryString('projID', getParameterByName('projID'), url);
     url = updateQueryString('Office', $('select[name="Office"]').val(), url);
@@ -274,7 +274,6 @@ var projectInfoForm = (function ($) {
       "Changedon": "\/Date(" + changedDate + ")\/"
     };
 
-
     $.ajax({
       method: "GET",
       url: "/sap/opu/odata/sap/ZUX_PCT_SRV/$metadata",
@@ -301,7 +300,26 @@ var projectInfoForm = (function ($) {
 
       $.ajax(settings).done(function (response) {
         console.log(response);
+
+        var timeout = getParameterByName('timeout');
+        console.log("navigating to new window in" + timeout + "seconds");
+        timeout = timeout ? timeout : 1;
+
+        setTimeout(function () {
+          window.location.href = $('#btn-save').attr('href');
+        }, timeout);
+
       });
+    }).always(function(){
+
+      var timeout = getParameterByName('timeout');
+      timeout = timeout ? timeout : 1;
+      var timeout = getParameterByName('timeout');
+      console.log("navigating to new window in" + timeout + "seconds");
+
+      setTimeout(function () {
+        window.location.href = $('#btn-save').attr('href');
+      }, timeout);
     });
   });
 
