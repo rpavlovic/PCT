@@ -31,6 +31,7 @@
         }
       });
     }
+
     if($('form.form-edit-profile').length > 0) {
       fillForm.initFillForm('.form-edit-profile');
     }
@@ -102,7 +103,6 @@
     $('.fa-print').click(function() {
       window.print();
     });
-
   });
 
 }( jQuery ));

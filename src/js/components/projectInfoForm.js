@@ -111,6 +111,8 @@ var projectInfoForm = (function ($) {
       $('input.datepicker').val(calcPrettyDate(extraProjInfo.EstStDate));
       $('input[name="weekstart"]').val(calcPrettyDate(extraProjInfo.StartDate));
       $('input[name="enddate"]').val(calcPrettyDate(extraProjInfo.EstEndDate));
+    } else {
+      plan_units.val('HOURLY');
     }
   }
 
@@ -150,13 +152,14 @@ var projectInfoForm = (function ($) {
   }
 
   $('.project-info #btn-save').on('click', function (event) {
+
     event.preventDefault();
 
     console.log("saving form");
     var url = $('#btn-save').attr('href');
     url = updateQueryString('projID', getParameterByName('projID'), url);
     url = updateQueryString('Office', $('select[name="Office"]').val(), url);
-    url = updateQueryString('Duration', $('input[name="Duration"]').val().replace(/\D/g, ''), url);
+    url = updateQueryString('Duration', input_duration.val().replace(/\D/g, ''), url);
     url = updateQueryString('PlanBy', $('select[name="planby"]').val(), url);
 
     $('#btn-save').attr('href', url);
@@ -246,6 +249,26 @@ var projectInfoForm = (function ($) {
     // });
 
 
+    var isEmpty = false;
+    if (input_duration.val() !== '') {
+      isEmpty = true;
+    }
+
+    function checkValues(elem) {
+      if(isEmpty) {
+        elem.removeClass('empty-error');
+        return false;
+      } else {
+        elem.addClass('empty-error').focus();
+        alert("Please set the missing values");
+        return true;
+      }
+    }
+
+    if(checkValues(input_duration)) {
+      return false;
+    }
+
     var pid = getParameterByName('projID');
     var formData = {
       "__metadata": {
@@ -306,22 +329,22 @@ var projectInfoForm = (function ($) {
         timeout = timeout ? timeout : 1;
 
         setTimeout(function () {
-          window.location.href = $('#btn-save').attr('href');
+            window.location.href = $('#btn-save').attr('href');
         }, timeout);
 
       });
-    }).always(function(){
+    }).always(function() {
 
       var timeout = getParameterByName('timeout');
       timeout = timeout ? timeout : 1;
-      var timeout = getParameterByName('timeout');
       console.log("navigating to new window in" + timeout + "seconds");
 
       setTimeout(function () {
         window.location.href = $('#btn-save').attr('href');
       }, timeout);
     });
-  });
+
+  }); //end on click
 
   return {
     initProjectInfoForm: initProjectInfoForm
