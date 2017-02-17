@@ -171,27 +171,27 @@ var projectInfoForm = (function ($) {
       createdOn = "\/Date(" + changedDate + ")\/";
     }
 
-    var formData = {
-      "Projid": getParameterByName('projID'),
-      "Plantyp": plan_by.val(),
-      "Region": select_region.val(),
-      "Office": select_billing_office.val(),
-      "Currency": select_currency.val(),
-      "Clientname": client_name.val(),
-      "Projname": project_name.val(),
-      "Comptyp": compensation_type.val(),
-      "EstStDate": "\/Date(" + EstStDate + ")\/",
-      "Duration": input_duration.val(),
-      "PlanUnits": plan_units.val(),
-      "StartDate": "\/Date(" + startDate + ")\/",
-      "EstEndDate": "\/Date(" + EstEndDate + ")\/",
-      "Comments": comments.val(),
-      "Preparedby": prepared_by.val(),
-      "Createdby": prepared_by.val(),
-      "Createdon": createdOn,
-      "Changedby": prepared_by.val(),
-      "Changedon": "\/Date(" + changedDate + ")\/"
-    };
+    // var formData = {
+    //   "Projid": getParameterByName('projID'),
+    //   "Plantyp": plan_by.val(),
+    //   "Region": select_region.val(),
+    //   "Office": select_billing_office.val(),
+    //   "Currency": select_currency.val(),
+    //   "Clientname": client_name.val(),
+    //   "Projname": project_name.val(),
+    //   "Comptyp": compensation_type.val(),
+    //   "EstStDate": "\/Date(" + EstStDate + ")\/",
+    //   "Duration": input_duration.val(),
+    //   "PlanUnits": plan_units.val(),
+    //   "StartDate": "\/Date(" + startDate + ")\/",
+    //   "EstEndDate": "\/Date(" + EstEndDate + ")\/",
+    //   "Comments": comments.val(),
+    //   "Preparedby": prepared_by.val(),
+    //   "Createdby": prepared_by.val(),
+    //   "Createdon": createdOn,
+    //   "Changedby": prepared_by.val(),
+    //   "Changedon": "\/Date(" + changedDate + ")\/"
+    // };
 
     // $.ajax({
     //   method: "POST",
@@ -214,6 +214,67 @@ var projectInfoForm = (function ($) {
 
     // get the token first.
 
+    // $.ajax({
+    //   method: "GET",
+    //   url: "/sap/opu/odata/sap/ZUX_PCT_SRV/$metadata",
+    //   beforeSend: function (request) {
+    //     request.setRequestHeader("X-CSRF-Token", "Fetch");
+    //   },
+    // }).then(function (data, status, xhr) {
+    //   var token = xhr.getResponseHeader("X-CSRF-Token");
+    //   console.log(xhr.getResponseHeader("X-CSRF-Token"));
+    //
+    //   // then we will post the batch,
+    //   $.ajaxBatch({
+    //     url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
+    //     beforeSend: function (request) {
+    //       request.setRequestHeader("X-CSRF-Token", token);
+    //     },
+    //     data: [
+    //       {
+    //         type: 'POST',
+    //         url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection',
+    //         data: formData
+    //       }
+    //     ],
+    //     complete: function (xhr, status, data) {
+    //       console.log(data);
+    //     }
+    //   });
+    // }).done(function (html) {
+    //   console.log(html);
+    // });
+
+
+    var pid = getParameterByName('projID');
+    var formData = {
+      "__metadata": {
+        "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + pid + "')",
+        "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + pid + "')",
+        "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
+      },
+      "Projid": getParameterByName('projID'),
+      "Plantyp": plan_by.val(),
+      "Region": select_region.val(),
+      "Office": select_billing_office.val(),
+      "Currency": select_currency.val(),
+      "Clientname": client_name.val(),
+      "Projname": project_name.val(),
+      "Comptyp": compensation_type.val(),
+      "EstStDate": "\/Date(" + EstStDate + ")\/",
+      "Duration": input_duration.val(),
+      "PlanUnits": plan_units.val(),
+      "StartDate": "\/Date(" + startDate + ")\/",
+      "EstEndDate": "\/Date(" + EstEndDate + ")\/",
+      "Comments": comments.val(),
+      "Preparedby": prepared_by.val(),
+      "Createdby": prepared_by.val(),
+      "Createdon": createdOn,
+      "Changedby": prepared_by.val(),
+      "Changedon": "\/Date(" + changedDate + ")\/"
+    };
+
+
     $.ajax({
       method: "GET",
       url: "/sap/opu/odata/sap/ZUX_PCT_SRV/$metadata",
@@ -222,31 +283,26 @@ var projectInfoForm = (function ($) {
       },
     }).then(function (data, status, xhr) {
       var token = xhr.getResponseHeader("X-CSRF-Token");
-      console.log(xhr.getResponseHeader("X-CSRF-Token"));
+      console.log(token);
 
-      // then we will post the batch,
-      $.ajaxBatch({
-        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
-        beforeSend: function (request) {
-          request.setRequestHeader("X-CSRF-Token", token);
+      var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection",
+        "method": "POST",
+        "headers": {
+          "x-csrf-token": token,
+          "content-type": "application/json",
+          "cache-control": "no-cache"
         },
-        data: [
-          {
-            type: 'POST',
-            url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection',
-            data: formData
-          }
-        ],
-        complete: function (xhr, status, data) {
-          console.log(data);
-        }
+        "processData": false,
+        "data": JSON.stringify(formData)
+      };
+
+      $.ajax(settings).done(function (response) {
+        console.log(response);
       });
-    }).done(function (html) {
-      console.log(html);
     });
-
-
-
   });
 
   return {
