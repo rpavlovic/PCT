@@ -150,9 +150,8 @@ var projectInfoForm = (function ($) {
   }
 
   $('.project-info #btn-save').on('click', function (event) {
-    //event.preventDefault();
+    event.preventDefault();
     console.log("saving form");
-
     var url = $('#btn-save').attr('href');
     url = updateQueryString('projID', getParameterByName('projID'), url);
     url = updateQueryString('Office', $('select[name="Office"]').val(), url);
