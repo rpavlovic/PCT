@@ -11,7 +11,7 @@ var pack = function (data, boundary) {
         var t = d.type.toUpperCase(), noBody = ['GET', 'DELETE'], idx;
 
         body.push('--' + boundary);
-        body.push('Content-Type: application/http; msgtype=request', '');
+        body.push('Content-Type: multipart/mixed;boundary='+boundary, '');
         body.push(t + ' ' + d.url + ' HTTP/1.1');
 
         /* Don't care about content type for requests that have no body. */
