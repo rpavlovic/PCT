@@ -1,5 +1,5 @@
 /**
-* @module Parse Custom Bill Sheet into a table and save.
+* @module Parse Client Rate Card into a table and save.
 * @version
 */
 

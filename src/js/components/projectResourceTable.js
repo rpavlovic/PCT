@@ -260,7 +260,7 @@ var projectResourceTable = (function ($) {
             .addClass("contenteditable");
         },
         "createdRow": function (row, data, index) {
-          $('tfoot td').removeClass('center blue-bg rate-override num');
+          $('tfoot th').removeClass('center blue-bg rate-override num');
         },
         "drawCallback": function (row) {
           $("#project-resource-table tbody select.office").on('change', function () {
@@ -498,8 +498,8 @@ var projectResourceTable = (function ($) {
         var modeling_table_adj_contrib =  $("#modeling-table tbody #contribution-margin_adjusted-resource");
         var modeling_table_adj_avg_rate = $("#modeling-table tbody #avg-rate_adjusted-resource");
 
-        $('tfoot td.total-fees').text("$" + tableFeeSum.toFixed(2).replace(REgex_dollar, "$1,"));
-        $('tfoot td.total-hours').text(tableHoursSum.toFixed(2));
+        $('tfoot th.total-fees').text("$" + tableFeeSum.toFixed(2).replace(REgex_dollar, "$1,"));
+        $('tfoot th.total-hours').text(tableHoursSum.toFixed(2));
 
         modeling_table_strd_fee.text("$" + standardFeeSum.toFixed(2).replace(REgex_dollar, "$1,"));
         modeling_table_strd_contrib.text(standardContribMargin.toFixed(2) * 100 + "%");
