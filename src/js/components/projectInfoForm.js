@@ -111,6 +111,8 @@ var projectInfoForm = (function ($) {
       $('input.datepicker').val(calcPrettyDate(extraProjInfo.EstStDate));
       $('input[name="weekstart"]').val(calcPrettyDate(extraProjInfo.StartDate));
       $('input[name="enddate"]').val(calcPrettyDate(extraProjInfo.EstEndDate));
+    } else {
+      plan_units.val('HOURLY');
     }
   }
 
@@ -152,6 +154,18 @@ var projectInfoForm = (function ($) {
       });
   }
 
+  function checkValues(elem) {
+    if(elem.val() === '') {
+      elem.addClass('empty-error').focus();
+      alert("Please set the missing values");
+      return true;
+    }
+    else{
+      elem.removeClass('empty-error');
+      return false;
+    }
+  }
+
   $('.project-info #btn-save').on('click', function (event) {
     event.preventDefault();
 
@@ -159,7 +173,7 @@ var projectInfoForm = (function ($) {
     var url = $('#btn-save').attr('href');
     url = updateQueryString('projID', getParameterByName('projID'), url);
     url = updateQueryString('Office', $('select[name="Office"]').val(), url);
-    url = updateQueryString('Duration', $('input[name="Duration"]').val().replace(/\D/g, ''), url);
+    url = updateQueryString('Duration', input_duration.val().replace(/\D/g, ''), url);
     url = updateQueryString('PlanBy', $('select[name="planby"]').val(), url);
 
     $('#btn-save').attr('href', url);
@@ -172,6 +186,10 @@ var projectInfoForm = (function ($) {
 
     if (!createdOn) {
       createdOn = "\/Date(" + changedDate + ")\/";
+    }
+
+    if(checkValues(input_duration)) {
+      return false;
     }
 
     var pid = getParameterByName('projID');
@@ -230,6 +248,16 @@ var projectInfoForm = (function ($) {
             url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection',
             data: formData
           },
+          {
+            type: 'POST',
+            url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectDeliverablesCollection',
+            data: formData
+          },
+          {
+            type: 'POST',
+            url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectDeliverablesCollection',
+            data: formData
+          }
           // {
           //   type: 'POST',
           //   url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection',
@@ -245,57 +273,8 @@ var projectInfoForm = (function ($) {
           console.log(data);
         }
       });
-    // }).done(function (html) {
-    //   console.log(html);
-    // });
-
-    // $.ajax({
-    //   method: "GET",
-    //   url: "/sap/opu/odata/sap/ZUX_PCT_SRV/$metadata",
-    //   beforeSend: function (request) {
-    //     request.setRequestHeader("X-CSRF-Token", "Fetch");
-    //   }
-    // }).then(function (data, status, xhr) {
-    //   var token = xhr.getResponseHeader("X-CSRF-Token");
-    //   console.log(token);
-    //
-    //   var settings = {
-    //     "async": true,
-    //     "crossDomain": true,
-    //     "url": "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection",
-    //     "method": "POST",
-    //     "headers": {
-    //       "x-csrf-token": token,
-    //       "content-type": "application/json",
-    //       "cache-control": "no-cache"
-    //     },
-    //     "processData": false,
-    //     "data": JSON.stringify(formData)
-    //   };
-    //
-    //   $.ajax(settings).done(function (response) {
-    //     console.log(response);
-    //     var timeout = getParameterByName('timeout');
-    //
-    //     console.log("navigating to new window in" + timeout + "seconds");
-    //     timeout = timeout ? timeout : 1;
-    //
-    //     setTimeout(function () {
-    //       window.location.href = $('#btn-save').attr('href');
-    //     }, timeout);
-    //
-    //   });
-    // }).always(function(){
-    //   var timeout = getParameterByName('timeout');
-    //   timeout = timeout ? timeout : 1;
-    //
-    //   console.log("navigating to new window in" + timeout + "seconds");
-    //
-    //   setTimeout(function () {
-    //     window.location.href = $('#btn-save').attr('href');
-    //   }, timeout);
-    // });
   });
+
 
   return {
     initProjectInfoForm: initProjectInfoForm

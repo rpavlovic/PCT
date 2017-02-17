@@ -7,14 +7,18 @@
 var pack = function (data, boundary) {
     var body = [];
 
+    body.push('--' + boundary);
+
+    var changesetboundary = 'changeset_' + rando;
     $.each(data, function (i, d) {
         console.log(d);
         var rando = Math.floor((Math.random() * 100000) + 1);
         var t = d.type.toUpperCase(), noBody = ['GET', 'DELETE'], idx;
-        var changesetboundary = 'changeset_' + rando;
 
-        body.push('--' + boundary);
+
+
         body.push('Content-Type: multipart/mixed; boundary='+changesetboundary, '');
+
         body.push('--' + changesetboundary);
         body.push('Content-Type: application/http');
         body.push('Content-Transfer-Encoding: binary', '');
@@ -39,9 +43,10 @@ var pack = function (data, boundary) {
         }
 
         body.push('', d.data ? JSON.stringify(d.data) : '');
-        body.push('--' + changesetboundary + '--', '');
-    });
+        body.push('--' + changesetboundary);
 
+    });
+    body.push('--' + changesetboundary + '--', '');
     body.push('--' + boundary + '--', '');
 
     return body.join('\r\n');
