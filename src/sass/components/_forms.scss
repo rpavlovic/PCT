@@ -41,6 +41,9 @@ form {
         margin-top: -50px;
       }
     }
+    &.empty-error {
+      outline: red auto 5px;
+    }
   }
   textarea {
     @extend input:not([type=checkbox]):not([type=radio]);
