@@ -35,7 +35,7 @@ var projectInfoForm = (function ($) {
     prepared_by = $('form.project-info input[name="Preparedby"]'),
     selected = false,
     compensation_type = $("select[name='compensation']"),
-    comments = $("textarea[name='comments']"),
+    comments = $("textarea[name='Comments']"),
     createdOn = null;
 
   items_currency.forEach(function (currency) {
@@ -136,7 +136,7 @@ var projectInfoForm = (function ($) {
     var p4 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.project, getParameterByName('projID')), function (projects) {
         resolve(projects.d.results);
-      }).fail(function() {
+      }).fail(function () {
         // not found, but lets fix this and return empty set
         resolve([]);
       });
@@ -174,80 +174,6 @@ var projectInfoForm = (function ($) {
       createdOn = "\/Date(" + changedDate + ")\/";
     }
 
-    // var formData = {
-    //   "Projid": getParameterByName('projID'),
-    //   "Plantyp": plan_by.val(),
-    //   "Region": select_region.val(),
-    //   "Office": select_billing_office.val(),
-    //   "Currency": select_currency.val(),
-    //   "Clientname": client_name.val(),
-    //   "Projname": project_name.val(),
-    //   "Comptyp": compensation_type.val(),
-    //   "EstStDate": "\/Date(" + EstStDate + ")\/",
-    //   "Duration": input_duration.val(),
-    //   "PlanUnits": plan_units.val(),
-    //   "StartDate": "\/Date(" + startDate + ")\/",
-    //   "EstEndDate": "\/Date(" + EstEndDate + ")\/",
-    //   "Comments": comments.val(),
-    //   "Preparedby": prepared_by.val(),
-    //   "Createdby": prepared_by.val(),
-    //   "Createdon": createdOn,
-    //   "Changedby": prepared_by.val(),
-    //   "Changedon": "\/Date(" + changedDate + ")\/"
-    // };
-
-    // $.ajax({
-    //   method: "POST",
-    //   url: get_data_feed('project', getParameterByName('projID')),
-    //   data: formData
-    //   //todo: this needs to be fixed and actually handle errors properly
-    // })
-    //   .done(function (msg) {
-    //     console.log("Data Saved: " + msg);
-    //     window.location.href = $('#btn-save').attr('href');
-    //   })
-    //   .fail(function (data) {
-    //     console.log("post failed: " + data);
-    //   })
-    //   .always(function () {
-    //     if ( !is_fiori() ) {
-    //       window.location.href = $('#btn-save').attr('href');
-    //     }
-    //   });
-
-    // get the token first.
-
-    // $.ajax({
-    //   method: "GET",
-    //   url: "/sap/opu/odata/sap/ZUX_PCT_SRV/$metadata",
-    //   beforeSend: function (request) {
-    //     request.setRequestHeader("X-CSRF-Token", "Fetch");
-    //   },
-    // }).then(function (data, status, xhr) {
-    //   var token = xhr.getResponseHeader("X-CSRF-Token");
-    //   console.log(xhr.getResponseHeader("X-CSRF-Token"));
-    //
-    //   // then we will post the batch,
-    //   $.ajaxBatch({
-    //     url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
-    //     beforeSend: function (request) {
-    //       request.setRequestHeader("X-CSRF-Token", token);
-    //     },
-    //     data: [
-    //       {
-    //         type: 'POST',
-    //         url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection',
-    //         data: formData
-    //       }
-    //     ],
-    //     complete: function (xhr, status, data) {
-    //       console.log(data);
-    //     }
-    //   });
-    // }).done(function (html) {
-    //   console.log(html);
-    // });
-
     var pid = getParameterByName('projID');
     var formData = {
       "__metadata": {
@@ -256,7 +182,7 @@ var projectInfoForm = (function ($) {
         "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
       },
       "Projid": getParameterByName('projID'),
-      "Plantyp": plan_by.val().toString().substr(0,2),
+      "Plantyp": plan_by.val().toString().substr(0, 2),
       "Region": select_region.val(),
       "Office": select_billing_office.val(),
       "Currency": select_currency.val(),
@@ -265,7 +191,7 @@ var projectInfoForm = (function ($) {
       "Comptyp": compensation_type.val(),
       "EstStDate": "\/Date(" + EstStDate + ")\/",
       "Duration": parseInt(input_duration.val().replace(/\D/g, '')),
-      "PlanUnits": plan_units.val().toString().substr(0,3),
+      "PlanUnits": plan_units.val().toString().substr(0, 3),
       "StartDate": "\/Date(" + startDate + ")\/",
       "EstEndDate": "\/Date(" + EstEndDate + ")\/",
       "Comments": comments.val(),
@@ -276,52 +202,99 @@ var projectInfoForm = (function ($) {
       "Changedon": "\/Date(" + changedDate + ")\/"
     };
 
-    $.ajax({
-      method: "GET",
-      url: "/sap/opu/odata/sap/ZUX_PCT_SRV/$metadata",
-      beforeSend: function (request) {
-        request.setRequestHeader("X-CSRF-Token", "Fetch");
-      }
-    }).then(function (data, status, xhr) {
-      var token = xhr.getResponseHeader("X-CSRF-Token");
-      console.log(token);
-
-      var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection",
-        "method": "POST",
-        "headers": {
-          "x-csrf-token": token,
-          "content-type": "application/json",
-          "cache-control": "no-cache"
-        },
-        "processData": false,
-        "data": JSON.stringify(formData)
-      };
-
-      $.ajax(settings).done(function (response) {
-        console.log(response);
-        var timeout = getParameterByName('timeout');
-
-        console.log("navigating to new window in" + timeout + "seconds");
-        timeout = timeout ? timeout : 1;
-
-        setTimeout(function () {
-          window.location.href = $('#btn-save').attr('href');
-        }, timeout);
-
+    // $.ajax({
+    //   method: "GET",
+    //   url: "/sap/opu/odata/sap/ZUX_PCT_SRV/$metadata",
+    //   beforeSend: function (request) {
+    //     request.setRequestHeader("X-CSRF-Token", "Fetch");
+    //   },
+    // }).then(function (data, status, xhr) {
+      // var token = xhr.getResponseHeader("X-CSRF-Token");
+      // console.log(xhr.getResponseHeader("X-CSRF-Token"));
+      var token = "faketoken";
+      $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': token
+        }
       });
-    }).always(function(){
-      var timeout = getParameterByName('timeout');
-      timeout = timeout ? timeout : 1;
 
-      console.log("navigating to new window in" + timeout + "seconds");
+      // then we will post the batch,
+      $.ajaxBatch({
+        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
+        beforeSend: function (request) {
+          request.setRequestHeader("X-CSRF-Token", token);
+        },
+        data: [
+          {
+            type: 'POST',
+            url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection',
+            data: formData
+          },
+          // {
+          //   type: 'POST',
+          //   url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection',
+          //   data: formData
+          // },
+          // {
+          //   type: 'POST',
+          //   url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection',
+          //   data: formData
+          // }
+        ],
+        complete: function (xhr, status, data) {
+          console.log(data);
+        }
+      });
+    // }).done(function (html) {
+    //   console.log(html);
+    // });
 
-      setTimeout(function () {
-        window.location.href = $('#btn-save').attr('href');
-      }, timeout);
-    });
+    // $.ajax({
+    //   method: "GET",
+    //   url: "/sap/opu/odata/sap/ZUX_PCT_SRV/$metadata",
+    //   beforeSend: function (request) {
+    //     request.setRequestHeader("X-CSRF-Token", "Fetch");
+    //   }
+    // }).then(function (data, status, xhr) {
+    //   var token = xhr.getResponseHeader("X-CSRF-Token");
+    //   console.log(token);
+    //
+    //   var settings = {
+    //     "async": true,
+    //     "crossDomain": true,
+    //     "url": "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection",
+    //     "method": "POST",
+    //     "headers": {
+    //       "x-csrf-token": token,
+    //       "content-type": "application/json",
+    //       "cache-control": "no-cache"
+    //     },
+    //     "processData": false,
+    //     "data": JSON.stringify(formData)
+    //   };
+    //
+    //   $.ajax(settings).done(function (response) {
+    //     console.log(response);
+    //     var timeout = getParameterByName('timeout');
+    //
+    //     console.log("navigating to new window in" + timeout + "seconds");
+    //     timeout = timeout ? timeout : 1;
+    //
+    //     setTimeout(function () {
+    //       window.location.href = $('#btn-save').attr('href');
+    //     }, timeout);
+    //
+    //   });
+    // }).always(function(){
+    //   var timeout = getParameterByName('timeout');
+    //   timeout = timeout ? timeout : 1;
+    //
+    //   console.log("navigating to new window in" + timeout + "seconds");
+    //
+    //   setTimeout(function () {
+    //     window.location.href = $('#btn-save').attr('href');
+    //   }, timeout);
+    // });
   });
 
   return {
