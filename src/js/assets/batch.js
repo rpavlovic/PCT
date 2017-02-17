@@ -8,18 +8,25 @@ var pack = function (data, boundary) {
     var body = [];
 
     $.each(data, function (i, d) {
+        console.log(d);
+        var rando = Math.floor((Math.random() * 100000) + 1);
         var t = d.type.toUpperCase(), noBody = ['GET', 'DELETE'], idx;
+        var changesetboundary = 'changeset_' + rando;
 
         body.push('--' + boundary);
-        body.push('Content-Type: multipart/mixed;boundary='+boundary, '');
+        body.push('Content-Type: multipart/mixed; boundary='+changesetboundary, '');
+        body.push('--' + changesetboundary);
+        body.push('Content-Type: application/http');
+        body.push('Content-Transfer-Encoding: binary', '');
+
         body.push(t + ' ' + d.url + ' HTTP/1.1');
 
         /* Don't care about content type for requests that have no body. */
         if (noBody.indexOf(t) < 0) {
-            body.push('Content-Type: ' + (d.contentType || 'application/json; charset=utf-8'));
+            body.push('Content-Type: ' + (d.contentType || 'application/json'));
         }
 
-        body.push('Host: ' + location.host);
+        //body.push('Host: ' + location.host);
 
         // add in custom headers to the batch if there are any
         if (d.hasOwnProperty('headers')) {
@@ -32,6 +39,7 @@ var pack = function (data, boundary) {
         }
 
         body.push('', d.data ? JSON.stringify(d.data) : '');
+        body.push('--' + changesetboundary + '--', '');
     });
 
     body.push('--' + boundary + '--', '');
@@ -81,7 +89,7 @@ var unpack = function (xhr, status, complete) {
             dataType: 'json',
             headers: params.headers,
             data: pack(params.data, boundary),
-            contentType: 'multipart/mixed; boundary="' + boundary + '"',
+            contentType: 'multipart/mixed;boundary=' + boundary,
             complete: params.complete ?
                 function (xnr, status) { unpack(xnr, status, params.complete); } :
                 null
