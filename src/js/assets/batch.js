@@ -12,8 +12,6 @@
     body.push('Content-Type: multipart/mixed; boundary=' + changesetboundary, '');
 
     $.each(data, function (i, d) {
-      console.log(d);
-
       var t = d.type.toUpperCase(), noBody = ['GET', 'DELETE'], idx;
       body.push('--' + changesetboundary);
       body.push('Content-Type: application/http');
@@ -44,7 +42,7 @@
     body.push('--' + boundary + '--', '');
 
     return body.join('\r\n');
-  }
+  };
 
   /**
    * Unpacks the given response and passes the unpacked data to the original callback.
@@ -77,7 +75,7 @@
     });
 
     complete.call(this, xhr, status, data);
-  }
+  };
 
   $.extend($, {
     ajaxBatch: function (params) {
