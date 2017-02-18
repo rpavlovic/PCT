@@ -155,12 +155,12 @@ var projectInfoForm = (function ($) {
   }
 
   function checkValues(elem) {
-    if(elem.val() === '') {
+    if (elem.val() === '') {
       elem.addClass('empty-error').focus();
       alert("Please set the missing values");
       return true;
     }
-    else{
+    else {
       elem.removeClass('empty-error');
       return false;
     }
@@ -188,7 +188,7 @@ var projectInfoForm = (function ($) {
       createdOn = "\/Date(" + changedDate + ")\/";
     }
 
-    if(checkValues(input_duration)) {
+    if (checkValues(input_duration)) {
       return false;
     }
 
@@ -227,52 +227,52 @@ var projectInfoForm = (function ($) {
     //     request.setRequestHeader("X-CSRF-Token", "Fetch");
     //   },
     // }).then(function (data, status, xhr) {
-      // var token = xhr.getResponseHeader("X-CSRF-Token");
-      // console.log(xhr.getResponseHeader("X-CSRF-Token"));
-      var token = "faketoken";
-      $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': token
-        }
-      });
+    // var token = xhr.getResponseHeader("X-CSRF-Token");
+    // console.log(xhr.getResponseHeader("X-CSRF-Token"));
+    var token = "faketoken";
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': token
+      }
+    });
 
-      // then we will post the batch,
-      $.ajaxBatch({
-        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
-        beforeSend: function (request) {
-          request.setRequestHeader("X-CSRF-Token", token);
-        },
-        data: [
-          {
-            type: 'POST',
-            url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection',
-            data: formData
+    var payloads = [];
+    payloads.push({
+      type: 'POST',
+      url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection',
+      data: formData
+    });
+
+    var deliverableId = 1;
+    $('input[name="deliverable"]').each(function (key, value) {
+      payloads.push({
+        type: 'POST',
+        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection',
+        data: {
+          "__metadata": {
+            "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection('" + pid + "')",
+            "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection('" + pid + "')",
+            "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectDeliverables"
           },
-          {
-            type: 'POST',
-            url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection',
-            data: formData
-          },
-          {
-            type: 'POST',
-            url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection',
-            data: formData
-          }
-          // {
-          //   type: 'POST',
-          //   url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection',
-          //   data: formData
-          // },
-          // {
-          //   type: 'POST',
-          //   url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection',
-          //   data: formData
-          // }
-        ],
-        complete: function (xhr, status, data) {
-          console.log(data);
+          "Projid": pid.toString(),
+          "Delvid": deliverableId.toString(),
+          "DelvDesc": $(value).val()
         }
       });
+      deliverableId++;
+    });
+
+    // then we will post the batch,
+    $.ajaxBatch({
+      url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
+      beforeSend: function (request) {
+        request.setRequestHeader("X-CSRF-Token", token);
+      },
+      data: payloads,
+      complete: function (xhr, status, data) {
+        console.log(data);
+      }
+    });
   });
 
 
