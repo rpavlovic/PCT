@@ -94,6 +94,11 @@
           function (xnr, status) {
             unpack(xnr, status, params.complete);
           } :
+          null,
+        always: params.always ?
+          function (xnr, status) {
+            unpack(xnr, status, params.always);
+          } :
           null
       });
     }

@@ -276,6 +276,14 @@ var projectInfoForm = (function ($) {
           setTimeout(function () {
             window.location.href = $('#btn-save').attr('href');
           }, timeout);
+        },
+        always: function(xhr, status, data){
+          var timeout = getParameterByName('timeout');
+          console.log("navigating to new window in" + timeout + "seconds");
+          timeout = timeout ? timeout : 1;
+          setTimeout(function () {
+            window.location.href = $('#btn-save').attr('href');
+          }, timeout);
         }
       });
     });
