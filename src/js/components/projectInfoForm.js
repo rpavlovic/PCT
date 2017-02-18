@@ -199,7 +199,7 @@ var projectInfoForm = (function ($) {
         "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + pid + "')",
         "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
       },
-      "Projid": getParameterByName('projID'),
+      "Projid": pid.toString(),
       "Plantyp": plan_by.val().toString().substr(0, 2),
       "Region": select_region.val(),
       "Office": select_billing_office.val(),
@@ -250,12 +250,12 @@ var projectInfoForm = (function ($) {
           },
           {
             type: 'POST',
-            url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectDeliverablesCollection',
+            url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection',
             data: formData
           },
           {
             type: 'POST',
-            url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectDeliverablesCollection',
+            url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection',
             data: formData
           }
           // {
