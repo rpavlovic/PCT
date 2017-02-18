@@ -24,8 +24,6 @@
         body.push('Content-Type: ' + (d.contentType || 'application/json'));
       }
 
-      //body.push('Host: ' + location.host);
-
       // add in custom headers to the batch if there are any
       if (d.hasOwnProperty('headers')) {
         for (idx in d.headers) {
