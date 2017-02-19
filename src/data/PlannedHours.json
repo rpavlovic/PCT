@@ -75,18 +75,6 @@
       },
       {
         "__metadata" : {
-          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='1',Plantyp='WK',Cellid='R1C6')",
-          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='1',Plantyp='WK',Cellid='R1C6')",
-          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
-        },
-        "Projid" : "1000100",
-        "Rowno" : "1",
-        "Plantyp" : "WK",
-        "Cellid" : "R1C7",
-        "Planhours" : 5.5
-      },
-      {
-        "__metadata" : {
           "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='1',Plantyp='WK',Cellid='R1C7')",
           "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='1',Plantyp='WK',Cellid='R1C7')",
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
@@ -95,7 +83,7 @@
         "Rowno" : "1",
         "Plantyp" : "WK",
         "Cellid" : "R1C7",
-        "Planhours" : 6.5
+        "Planhours" : 5.5
       },
       {
         "__metadata" : {

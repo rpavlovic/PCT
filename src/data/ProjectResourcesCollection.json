@@ -8,7 +8,7 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.Project_Resources"
         },
         "Projid" : "1000100",
-        "Duration" : "5",
+        "Duration" : "8",
         "Rowno" : "1",
         "DelvDesc" : "Test1",
         "Officeid" : "US01",
@@ -29,7 +29,7 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.Project_Resources"
         },
         "Projid" : "1000100",
-        "Duration" : "5",
+        "Duration" : "8",
         "Rowno" : "2",
         "DelvDesc" : "Test1",
         "Officeid" : "US01",
@@ -50,7 +50,7 @@
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.Project_Resources"
         },
         "Projid" : "1000100",
-        "Duration" : "5",
+        "Duration" : "8",
         "Rowno" : "3",
         "DelvDesc" : "Test1",
         "Officeid" : "US01",
