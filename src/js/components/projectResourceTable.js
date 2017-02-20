@@ -81,7 +81,6 @@ var projectResourceTable = (function ($) {
 
       var hrRows = {};
       plannedHours.forEach(function (cell) {
-        console.log(cell);
         if (!hrRows[cell.Rowno]) {
           hrRows[cell.Rowno] = {};
         }
