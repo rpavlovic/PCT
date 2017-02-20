@@ -3,8 +3,8 @@
     "results" : [
       {
         "__metadata" : {
-          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000103',Rowno='1')",
-          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000103',Rowno='1')",
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000100',Rowno='1')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000100',Rowno='1')",
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.Project_Resources"
         },
         "Projid" : "1000100",
@@ -15,7 +15,7 @@
         "EmpGradeName" : "Developer",
         "Practiceid" : "IT",
         "Role" : "Developer",
-        "ProposedRes" : "Test22",
+        "ProposedRes" : "Resource Name 1",
         "BillRate" : "350.000",
         "BillRateOvride" : "X",
         "TotalHrs" : 22,
@@ -24,8 +24,8 @@
       },
       {
         "__metadata" : {
-          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000103',Rowno='2')",
-          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000103',Rowno='2')",
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000100',Rowno='2')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000100',Rowno='2')",
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.Project_Resources"
         },
         "Projid" : "1000100",
@@ -36,7 +36,7 @@
         "EmpGradeName" : "Intern/Grad. Trainee",
         "Practiceid" : "IT",
         "Role" : "Manager1",
-        "ProposedRes" : "Test22",
+        "ProposedRes" : "Resource Name #2",
         "BillRate" : "415.000",
         "BillRateOvride" : "X",
         "TotalHrs" : 24,
@@ -45,8 +45,8 @@
       },
       {
         "__metadata" : {
-          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000103',Rowno='3')",
-          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000103',Rowno='3')",
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000100',Rowno='3')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000100',Rowno='3')",
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.Project_Resources"
         },
         "Projid" : "1000100",
@@ -57,7 +57,7 @@
         "EmpGradeName" : "EVP, Digital",
         "Practiceid" : "IT",
         "Role" : "Manager1",
-        "ProposedRes" : "Test22",
+        "ProposedRes" : "Third Resource",
         "BillRate" : "250.000",
         "BillRateOvride" : "X",
         "TotalHrs" : 28,

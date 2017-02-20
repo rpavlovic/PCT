@@ -27,8 +27,9 @@ var projectInfoForm = (function ($) {
     select_currency = $("form.project-info select[name='Currency']"),
     select_region = $("form.project-info select[name='Region']"),
     select_country = $("form.project-info select[name='Country']"),
-    plan_by = $("select[name='planby']"),
+    select_plan_by = $("select[name='planby']"),
     input_duration = $("input[name='Duration']"),
+    input_deliverable = $('input[name="deliverable"]'),
     plan_units = $("input[name='PlanUnits']"),
     client_name = $("input[name='name']"),
     project_name = $("input[name='Projname']"),
@@ -50,15 +51,15 @@ var projectInfoForm = (function ($) {
     var projId = getParameterByName('projID');
     results.forEach(function (deliverable) {
       if (projId === deliverable.Projid) {
-        if (!$('input[name="deliverable"]').val()) {
+        if (!input_deliverable.val()) {
           // if the first one is empty, we just fill it in.
-          $('input[name="deliverable"]').val(deliverable.DelvDesc);
+          input_deliverable.val(deliverable.DelvDesc);
         }
         else {
           // as we go along, if the last one has a value, we add a row and then fill in the value
-          if ($('input[name="deliverable"]')[$('input[name="deliverable"]').length - 1].value) {
+          if (input_deliverable[input_deliverable.length - 1].value) {
             $('button.add-row').click();
-            var newInput = $('input[name="deliverable"]')[$('input[name="deliverable"]').length - 1];
+            var newInput = input_deliverable[input_deliverable.length - 1];
             $(newInput).val(deliverable.DelvDesc);
           }
         }
@@ -172,9 +173,9 @@ var projectInfoForm = (function ($) {
     console.log("saving form");
     var url = $('#btn-save').attr('href');
     url = updateQueryString('projID', getParameterByName('projID'), url);
-    url = updateQueryString('Office', $('select[name="Office"]').val(), url);
+    url = updateQueryString('Office', select_billing_office.val(), url);
     url = updateQueryString('Duration', input_duration.val().replace(/\D/g, ''), url);
-    url = updateQueryString('PlanBy', $('select[name="planby"]').val(), url);
+    url = updateQueryString('PlanBy', select_plan_by.val(), url);
 
     $('#btn-save').attr('href', url);
 
@@ -200,7 +201,7 @@ var projectInfoForm = (function ($) {
         "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
       },
       "Projid": pid.toString(),
-      "Plantyp": plan_by.val().toString().substr(0, 2),
+      "Plantyp": select_plan_by.val().toString().substr(0, 2),
       "Region": select_region.val(),
       "Office": select_billing_office.val(),
       "Currency": select_currency.val(),
@@ -228,7 +229,7 @@ var projectInfoForm = (function ($) {
     });
 
     var deliverableId = 1;
-    $('input[name="deliverable"]').each(function (key, value) {
+    input_deliverable.each(function (key, value) {
       if($(value).val()) {
         payloads.push({
           type: 'POST',
@@ -251,9 +252,6 @@ var projectInfoForm = (function ($) {
     // then we will post the batch,
     $.ajaxBatch({
       url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
-      beforeSend: function (request) {
-        request.setRequestHeader("X-CSRF-Token", token);
-      },
       data: payloads,
       complete: function (xhr, status, data) {
         console.log(data);
