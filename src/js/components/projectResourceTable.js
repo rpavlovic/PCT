@@ -104,9 +104,14 @@ var projectResourceTable = (function ($) {
           "title": 'Row',
           "class": "center",
           "defaultContent": '',
-          "data": "counter",
+          "data": "Rowno",
           "render": function (data, type, row, meta) {
-            return meta.row + 1;
+            if(data) {
+              return data;
+            }
+            else{
+              return meta.row + 1;
+            }
           }
         },
         {
@@ -176,7 +181,8 @@ var projectResourceTable = (function ($) {
           "data": "Role",
           "defaultContent": '<div contenteditable />',
           "render": function (data, type, row, meta) {
-            return "<div contenteditable>" + data + "</div>";
+            if(data)
+              return "<div contenteditable>" + data + "</div>";
           }
         },
         {
@@ -245,6 +251,7 @@ var projectResourceTable = (function ($) {
         }
 
         var row = {
+          "Rowno": resource.Rowno,
           "EmpGradeName": resource,
           "Deliverables": deliverables,
           "Office": {offices: offices, selectedOffice: office},
