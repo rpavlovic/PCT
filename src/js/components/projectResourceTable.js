@@ -61,9 +61,8 @@ var projectResourceTable = (function ($) {
       console.log(plannedHours);
 
       var tableHrs = {};
-      plannedHours.forEach(function(cell){
+      plannedHours.forEach(function(cell) {
         console.log(cell);
-
         Cellid:"R1C1"
         Planhours:4
         Plantyp:"WK"
@@ -334,7 +333,7 @@ var projectResourceTable = (function ($) {
           if (OfficeID === val.Office) {
             EmpTitle.push('<option value="' + val.EmpGradeName + '" ' +
               'data-rate="' + val.BillRate + '" data-class="' + val.Class + '" data-office="' + val.Office + '" data-company="'+ val.Company +'"' +
-              'data-costrate="' + val.CostRate + 'data-currency="' + val.LocalCurrency + '" >' + val.EmpGradeName + '</option>');
+              'data-costrate="' + val.CostRate + '" data-currency="' + val.LocalCurrency + '" >' + val.EmpGradeName + '</option>');
           }
         });
         if (EmpTitle.length) {
