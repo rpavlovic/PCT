@@ -79,16 +79,14 @@ var projectResourceTable = (function ($) {
         $('#fixed-fee-target').text(convertToDecimal(fixedFeeTarget[0].Fees));
       }
 
-
-      var tableHrs = {};
+      var hrRows = {};
       plannedHours.forEach(function (cell) {
-        //console.log(cell);
-        // Cellid:"R1C1"
-        // Planhours:4
-        // Plantyp:"WK"
-        // Projid:"1000100"
-        // Rowno:"1"
-        // tableHrs
+        if (!hrRows[cell.Rowno]) {
+          hrRows[cell.Rowno] = {};
+        }
+
+        var cellId = cell.Cellid.replace(/R\d+C/g, '');
+        hrRows[cell.Rowno][cellId] = cell.Planhours;
       });
 
       offices.push({
@@ -104,9 +102,14 @@ var projectResourceTable = (function ($) {
           "title": 'Row',
           "class": "center",
           "defaultContent": '',
-          "data": "counter",
+          "data": "Rowno",
           "render": function (data, type, row, meta) {
-            return meta.row + 1;
+            if (data) {
+              return data;
+            }
+            else {
+              return meta.row + 1;
+            }
           }
         },
         {
@@ -176,7 +179,8 @@ var projectResourceTable = (function ($) {
           "data": "Role",
           "defaultContent": '<div contenteditable />',
           "render": function (data, type, row, meta) {
-            return "<div contenteditable>" + data + "</div>";
+            if (data)
+              return "<div contenteditable>" + data + "</div>";
           }
         },
         {
@@ -184,7 +188,8 @@ var projectResourceTable = (function ($) {
           "data": "ProposedResource",
           "defaultContent": '<div contenteditable />',
           "render": function (data, type, row, meta) {
-            return "<div contenteditable>" + data + "</div>";
+            if (data)
+              return "<div contenteditable>" + data + "</div>";
           }
         },
         {
@@ -238,12 +243,8 @@ var projectResourceTable = (function ($) {
 
       // this is supposed to come from data/PlannedHours.json
       projectResources.forEach(function (resource) {
-        resource.hours = [];
-        for (var hrCnt = 1; hrCnt <= duration; hrCnt++) {
-          resource.hours.push(hrCnt);
-        }
-
         var row = {
+          "Rowno": resource.Rowno,
           "EmpGradeName": resource,
           "Deliverables": deliverables,
           "Office": {offices: offices, selectedOffice: office},
@@ -255,9 +256,8 @@ var projectResourceTable = (function ($) {
           "BillRate": resource.BillRate
         };
 
-        var pos = 1;
-        resource.hours.forEach(function (hour) {
-          row['hour-' + pos++] = hour;
+        $.each(hrRows[resource.Rowno], function (k, v) {
+          row['hour-' + k] = v;
         });
         myRows.push(row);
       });
