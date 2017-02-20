@@ -56,6 +56,21 @@ var projectResourceTable = (function ($) {
 
       var projectResources = values[3];
       var marginModeling = values[4];
+      var plannedHours = values[5];
+
+      console.log(plannedHours);
+
+      var tableHrs = {};
+      plannedHours.forEach(function(cell){
+        console.log(cell);
+
+        Cellid:"R1C1"
+        Planhours:4
+        Plantyp:"WK"
+        Projid:"1000100"
+        Rowno:"1"
+        tableHrs
+      });
 
       offices.push({
         Office: "Select Office",
@@ -577,28 +592,11 @@ var projectResourceTable = (function ($) {
     //   createdOn = "\/Date("+changedDate+")\/";
     // }
 
+    buildPayload();
+
     var formData = {
       "Projid" : getParameterByName('projID'),
-      "Officeid" : getParameterByName('Office'),
-      // "Projid": getParameterByName('projID'),
-      // "Plantyp": plan_by.val(),
-      // "Region": select_region.val(),
-      // "Office": select_billing_office.val(),
-      // "Currency": select_currency.val(),
-      // "Clientname": client_name.val(),
-      // "Projname": project_name.val(),
-      // "Comptyp": compensation_type.val(),
-      // "EstStDate": "\/Date("+EstStDate+")\/",
-      // "Duration": input_duration.val(),
-      // "PlanUnits": plan_units.val(),
-      // "StartDate": "\/Date("+startDate+")\/",
-      // "EstEndDate": "\/Date("+EstEndDate+")\/",
-      // "Comments": comments.val(),
-      // "Preparedby": prepared_by.val(),
-      // "Createdby": prepared_by.val(),
-      // "Createdon": createdOn,
-      // "Changedby": prepared_by.val(),
-      // "Changedon": "\/Date("+changedDate+")\/"
+      "Officeid" : getParameterByName('Office')
     };
 
     $.ajax({
@@ -616,10 +614,26 @@ var projectResourceTable = (function ($) {
       })
       .always(function () {
         if ( !is_fiori() ) {
-          window.location.href = $('#btn-save').attr('href');
+        //  window.location.href = $('#btn-save').attr('href');
         }
       });
     });
+  }
+
+  function buildPayload() {
+    var projResourceTable = $('#project-resource-table').DataTable();
+    var rows = projResourceTable.rows();
+
+    var rowIndex = 1;
+    for (var i = 0; i < rows.context[0].aoData.length; i++) {
+      var hoursPerRow = 0;
+      var columnIndex = 1;
+      for (var j = 14; j < rows.context[0].aoData[i].anCells.length; j++) {
+        var value = $(rows.context[0].aoData[i].anCells[j]).text();
+        console.log("r" + rowIndex + "c" + columnIndex++ + ": "+ value);
+      }
+      rowIndex++;
+    }
   }
 
   return {
