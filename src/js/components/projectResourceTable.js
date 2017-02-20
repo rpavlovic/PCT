@@ -74,7 +74,7 @@ var projectResourceTable = (function ($) {
       });
 
       if (fixedFeeTarget.length) {
-        $('#fixed-fee-target').text(fixedFeeTarget[0].Fees);
+        $('#fixed-fee-target').text(convertToDecimal(fixedFeeTarget[0].Fees));
       }
 
 
@@ -493,14 +493,14 @@ var projectResourceTable = (function ($) {
           $(rows.context[0].aoData[i].anCells[12]).text(rowSum);
 
           // calc fee per row
-          var billRate = parseFloat($(rows.context[0].aoData[i].anCells[9]).text().replace('$', ''));
+          var billRate = convertToDecimal($(rows.context[0].aoData[i].anCells[9]).text());
           billRate = !isNaN(billRate) ? billRate : 0;
 
-          var billRateOverride = parseFloat($(rows.context[0].aoData[i].anCells[10]).text().replace('$', ''));
+          var billRateOverride = convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text());
           billRateOverride = !isNaN(billRateOverride) ? billRateOverride : 0;
 
           var rate = billRateOverride ? billRateOverride : billRate;
-          var costRate = parseFloat($(rows.context[0].aoData[i].anCells[11]).text().replace('$', ''));
+          var costRate = convertToDecimal($(rows.context[0].aoData[i].anCells[11]).text());
 
           costRate = !isNaN(costRate) ? costRate : 0;
           if (!isAdjusted && billRateOverride) {
@@ -534,7 +534,7 @@ var projectResourceTable = (function ($) {
         $('tfoot th.total-hours').text(tableHoursSum.toFixed(2));
 
         modeling_table_strd_fee.text(convertToDollar(standardFeeSum));
-        modeling_table_strd_contrib.text(standardContribMargin.toFixed(2) * 100 + "%");
+        modeling_table_strd_contrib.text(convertToPercent(standardContribMargin));
         modeling_table_strd_avg_rate.text(convertToDollar(standardAvgRate));
 
         //To activate adjusted resource Tab.
@@ -544,7 +544,7 @@ var projectResourceTable = (function ($) {
 
         if (isAdjusted) {
           modeling_table_adj_fee.text(convertToDollar(tableFeeSum));
-          modeling_table_adj_contrib.text(adjustedContributionMargin.toFixed(2) * 100 + "%");
+          modeling_table_adj_contrib.text(convertToPercent(adjustedContributionMargin));
           modeling_table_adj_avg_rate.text(convertToDollar(adjustedAvgRate));
 
           //active adjusted tab
@@ -576,8 +576,8 @@ var projectResourceTable = (function ($) {
         var fixedFeeTarget = parseFloat($('#fixed-fee-target').text());
 
         if (!isNaN(fixedFeeTarget)) {
-          var contributionMarginFixedFee = ((fixedFeeTarget - totalCostSum) / fixedFeeTarget) * 100;
-          $('#contribution-margin_fixed-fee').text(contributionMarginFixedFee.toFixed(2) + "%");
+          var contributionMarginFixedFee = ((fixedFeeTarget - totalCostSum) / fixedFeeTarget);
+          $('#contribution-margin_fixed-fee').text(convertToPercent(contributionMarginFixedFee));
           var avgRateFixedFee = fixedFeeTarget / tableHoursSum;
           $('#avg-rate_fixed-resource').text(convertToDollar(avgRateFixedFee));
         }
