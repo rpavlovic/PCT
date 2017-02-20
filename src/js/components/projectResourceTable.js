@@ -767,8 +767,8 @@ var projectResourceTable = (function ($) {
       var columnIndex = 1;
       for (var j = 14; j < rows.context[0].aoData[i].anCells.length; j++) {
         var value = $(rows.context[0].aoData[i].anCells[j]).text();
-        //console.log("r" + rowIndex + "c" + columnIndex++ + ": " + value);
-        var cellId = "r" + rowIndex + "c" + columnIndex;
+        //console.log("R" + rowIndex + "C" + columnIndex++ + ": " + value);
+        var cellId = "R" + rowIndex + "C" + columnIndex;
         payloads.push({
           type: 'POST',
           url: '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet',
