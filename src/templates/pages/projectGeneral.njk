@@ -64,13 +64,13 @@
         <div class="col-4">
           <div class="field-wrapper">
             <label for="name">Client Name</label>
-             <input type="text" name="name" placeholder="Client Name" />
+             <input type="text" name="name" placeholder="Client Name" maxlength="40" />
           </div>
         </div>
         <div class="col-4">
           <div class="field-wrapper">
             <label for="Projname">Project Name</label>
-            <input type="text" name="Projname" placeholder="Project Name" />
+            <input type="text" name="Projname" placeholder="Project Name" maxlength="40" />
           </div>
         </div>
         <div class="col-4">
@@ -109,7 +109,7 @@
         <div class="col-4">
           <div class="field-wrapper">
             <label for="Duration">Duration</label>
-            <input type="text" name="Duration" placeholder="Duration" value="" />
+            <input type="text" name="Duration" placeholder="Duration" value="" maxlength="2" />
           </div>
         </div>
         <div class="col-4">
@@ -121,13 +121,13 @@
         <div class="col-4">
           <div class="field-wrapper">
             <label for="PlanUnits">Planning Units</label>
-            <input type="text" name="PlanUnits" placeholder="Planning Units" value="" />
+            <input type="text" name="PlanUnits" placeholder="Planning Units" value="" maxlength="3" disabled />
           </div>
         </div>
         <div class="col-4">
           <div class="field-wrapper">
             <label for="weekstart">Week Starting</label>
-            <input type="text" name="weekstart" placeholder="Week Starting" value="" disabled />
+            <input type="text" name="weekstart" placeholder="Week Starting" value="" disabled pattern="(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d" />
           </div>
         </div>
         <div class="col-4">
@@ -149,11 +149,11 @@
     <div class="col-9">
       <div class="field-wrapper">
         <label for="Preparedby">Prepared By</label>
-        <input name="Preparedby" placeholder="Prepared By" value="" />
+        <input name="Preparedby" placeholder="Prepared By" value="" maxlength="12" />
       </div>
       <div class="field-wrapper">
         <label for="Comments">Comments and Projects Notes</label>
-        <textarea name="Comments" placeholder="Comments and Projects Notes" value="" rows="4" cols="100"></textarea>
+        <textarea name="Comments" placeholder="Comments and Projects Notes" value="" rows="4" cols="100" maxlength="70"> </textarea>
       </div>
     </div>
   </fieldset>

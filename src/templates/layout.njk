@@ -29,10 +29,9 @@
 
   {% if pgAbout %}
     <body class="about-page">
+  {% elif pgCustomBS %}
+    <body class="projects-page custom-bill-sheet">
   {% elif pgProjects %}
-    {% if pgCustomBS %}
-      <body class="projects-page custom-bill-sheet">
-    {% endif %}
     <body class="projects-page">
   {% elif pgProfile%}
     <body class="profile-page">
