@@ -4,6 +4,10 @@
  */
 
 var projectID = getParameterByName('projID').toString();
+var duration = getParameterByName('Duration');
+var planBy = getParameterByName('PlanBy');
+var office = getParameterByName('Office');
+
 var projectResourceTable = (function ($) {
   'use strict';
 
@@ -59,9 +63,6 @@ var projectResourceTable = (function ($) {
       var marginModeling = values[4];
       var plannedHours = values[5];
 
-      console.log(marginModeling);
-      console.log(plannedHours);
-
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
         return obj.ModelType === 'TMBF';
       });
@@ -81,7 +82,7 @@ var projectResourceTable = (function ($) {
 
       var tableHrs = {};
       plannedHours.forEach(function (cell) {
-        console.log(cell);
+        //console.log(cell);
         // Cellid:"R1C1"
         // Planhours:4
         // Plantyp:"WK"
@@ -180,8 +181,11 @@ var projectResourceTable = (function ($) {
         },
         {
           "title": 'Proposed <br/> Resource',
-          "data": " ",
+          "data": "ProposedResource",
           "defaultContent": '<div contenteditable />',
+          "render": function (data, type, row, meta) {
+            return "<div contenteditable>" + data + "</div>";
+          }
         },
         {
           "title": 'Bill Rate',
@@ -189,7 +193,7 @@ var projectResourceTable = (function ($) {
           "data": "BillRate",
           "class": "td-billrate can-clear",
           "render": function (data, type, row, meta) {
-            if(data)
+            if (data)
               return convertToDollar(parseFloat(data));
           }
         },
@@ -230,9 +234,6 @@ var projectResourceTable = (function ($) {
         }
       ];
 
-      var duration = getParameterByName('Duration');
-      var planBy = getParameterByName('PlanBy');
-
       var planLabel = planBy === 'Weekly' ? 'Week' : 'Month';
 
       // this is supposed to come from data/PlannedHours.json
@@ -245,8 +246,9 @@ var projectResourceTable = (function ($) {
         var row = {
           "EmpGradeName": resource,
           "Deliverables": deliverables,
-          "Office": {offices: offices, selectedOffice: getParameterByName('Office')},
+          "Office": {offices: offices, selectedOffice: office},
           "Role": resource.Role,
+          "ProposedResource": resource.ProposedRes,
           "Class": resource,
           "CostRate": resource,
           "CostCenterName": resource,
@@ -329,7 +331,7 @@ var projectResourceTable = (function ($) {
       $('.project-resources').on('click', '#add-row', function (e) {
         e.preventDefault();
         projResourceTable.row.add({
-          "Office": {offices: offices, selectedOffice: getParameterByName('Office')},
+          "Office": {offices: offices, selectedOffice: office},
           "CostCenterName": [],
           "Deliverables": deliverables,
           "Class": '',
@@ -352,7 +354,7 @@ var projectResourceTable = (function ($) {
         rateCards.map(function (val) {
           if (OfficeID === val.Office) {
             EmpTitle.push('<option value="' + val.EmpGradeName + '" ' +
-              'data-rate="' + val.BillRate + '" data-class="' + val.Class + '" data-office="' + val.Office + '" data-company="'+ val.Company +'"' +
+              'data-rate="' + val.BillRate + '" data-class="' + val.Class + '" data-office="' + val.Office + '" data-company="' + val.Company + '"' +
               'data-costrate="' + val.CostRate + '" data-currency="' + val.LocalCurrency + '" >' + val.EmpGradeName + '</option>');
           }
         });
@@ -594,38 +596,20 @@ var projectResourceTable = (function ($) {
 
       var url = $('#btn-save').attr('href');
       url = updateQueryString('projID', projectID, url);
-      url = updateQueryString('Office', getParameterByName('Office'), url);
-      url = updateQueryString('Duration', getParameterByName('Duration'), url);
-      url = updateQueryString('PlanBy', getParameterByName('PlanBy'), url);
+      url = updateQueryString('Office', office, url);
+      url = updateQueryString('Duration', duration, url);
+      url = updateQueryString('PlanBy', planBy, url);
 
       $('#btn-save').attr('href', url);
 
-      // get val in unix epoch time
-      // $.ajax({
-      //   method: "POST",
-      //   url: get_data_feed('project', projectID),
-      //   data: formData
-      //   //todo: this needs to be fixed and actually handle errors properly
-      // })
-      //   .done(function (msg) {
-      //     console.log("Data Saved: " + msg);
-      //     window.location.href = $('#btn-save').attr('href');
-      //   })
-      //   .fail(function (data) {
-      //     console.log("post failed: " + data);
-      //   })
-      //   .always(function () {
-      //     if (!is_fiori()) {
-      //       //  window.location.href = $('#btn-save').attr('href');
-      //     }
-      //   });
-
-
       var modelingTablePayloads = buildModelingTablePayload();
+      var resourcePayloads = buildResourcePayload();
+      var resourceHours = buildResourceHoursPayload();
 
+      var payloads = modelingTablePayloads.concat(resourcePayloads).concat(resourceHours);
       $.ajaxBatch({
         url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
-        data: modelingTablePayloads,
+        data: payloads,
         complete: function (xhr, status, data) {
           console.log(data);
           var timeout = getParameterByName('timeout');
@@ -651,7 +635,7 @@ var projectResourceTable = (function ($) {
     var arbf = {
       "__metadata": {
         "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='ARBF')",
-        "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='"+ projectID + "',ModelType='ARBF')",
+        "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='ARBF')",
         "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
       },
       "Projid": projectID,
@@ -665,7 +649,7 @@ var projectResourceTable = (function ($) {
     var srbf = {
       "__metadata": {
         "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='SRBF')",
-        "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='"+ projectID + "',ModelType='SRBF')",
+        "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='SRBF')",
         "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
       },
       "Projid": projectID,
@@ -679,7 +663,7 @@ var projectResourceTable = (function ($) {
     var tmbf = {
       "__metadata": {
         "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='TMBF')",
-        "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='"+ projectID + "',ModelType='TMBF')",
+        "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='TMBF')",
         "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
       },
       "Projid": projectID,
@@ -693,7 +677,7 @@ var projectResourceTable = (function ($) {
     var fft = {
       "__metadata": {
         "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='FFT')",
-        "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='"+ projectID + "',ModelType='FFT')",
+        "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='FFT')",
         "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
       },
       "Projid": projectID,
@@ -733,31 +717,79 @@ var projectResourceTable = (function ($) {
     return payloads;
   }
 
-  function buildPayload() {
-    // items to post:
-    // modeling table
-    // SRBF, ARBF, TMBF, FFT
+  function buildResourcePayload() {
+    var projResourceTable = $('#project-resource-table').DataTable();
+    var rows = projResourceTable.rows();
 
+    var rowIndex = 1;
+    var payloads = [];
+    //console.log(rows.context[0].aoData);
+    for (var i = 0; i < rows.context[0].aoData.length; i++) {
+      payloads.push({
+        type: 'POST',
+        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection',
+        data: {
+          "__metadata": {
+            "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + rowIndex + "')",
+            "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + rowIndex + "')",
+            "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+          },
+          "Projid": projectID,
+          "Duration": duration,
+          "Rowno": rowIndex++,
+          "DelvDesc": $(rows.context[0].aoData[i].anCells[2]).find('option:selected').text(),
+          "Officeid": $(rows.context[0].aoData[i].anCells[3]).find('option:selected').val(),
+          "EmpGradeName": $(rows.context[0].aoData[i].anCells[4]).find('option:selected').val(),
+          "Practiceid": $(rows.context[0].aoData[i].anCells[6]).find('option:selected').val(),
+          "Role": $(rows.context[0].aoData[i].anCells[7]).val(),
+          "ProposedRes": $(rows.context[0].aoData[i].anCells[8]).val(),
+          "BillRate": convertToDecimal($(rows.context[0].aoData[i].anCells[9]).text()),
+          "BillRateOvride": convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text()),
+          "TotalHrs": convertToDecimal($(rows.context[0].aoData[i].anCells[12]).text()),
+          "TotalFee": convertToDecimal($(rows.context[0].aoData[i].anCells[13]).text()),
+          "Plantyp": planBy
+        }
+      });
+      rowIndex++;
+    }
+    return payloads;
+  }
 
-
-    // post the resources
-
+  function buildResourceHoursPayload() {
     // post all of the hours cells
     var projResourceTable = $('#project-resource-table').DataTable();
     var rows = projResourceTable.rows();
 
+    var payloads = [];
     var rowIndex = 1;
     for (var i = 0; i < rows.context[0].aoData.length; i++) {
       var hoursPerRow = 0;
       var columnIndex = 1;
       for (var j = 14; j < rows.context[0].aoData[i].anCells.length; j++) {
         var value = $(rows.context[0].aoData[i].anCells[j]).text();
-        console.log("r" + rowIndex + "c" + columnIndex++ + ": " + value);
+        //console.log("r" + rowIndex + "c" + columnIndex++ + ": " + value);
+        var cellId = "r" + rowIndex + "c" + columnIndex;
+        payloads.push({
+          type: 'POST',
+          url: '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet',
+          data: {
+            "__metadata": {
+              "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + rowIndex + "',Plantyp='WK',Cellid='" + cellId + "')",
+              "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + rowIndex + "',Plantyp='WK',Cellid='" + cellId + "')",
+              "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+            },
+            "Projid": projectID,
+            "Rowno": rowIndex.toString(),
+            "Plantyp": planBy,
+            "Cellid": cellId,
+            "Planhours": value
+          }
+        });
+        columnIndex++;
       }
       rowIndex++;
     }
-
-
+    return payloads;
   }
 
   return {
