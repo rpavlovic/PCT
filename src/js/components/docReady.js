@@ -12,6 +12,7 @@
       current_page = current_page.substring(0, current_page.indexOf('?'));
     }
 
+    fetchToken();
     progressNav.initProgressNav('#progress-navigation');
 
     validateDurationPlanBy.initValidateDurationPlanBy();
