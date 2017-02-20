@@ -184,7 +184,8 @@ var projectResourceTable = (function ($) {
           "data": "ProposedResource",
           "defaultContent": '<div contenteditable />',
           "render": function (data, type, row, meta) {
-            return "<div contenteditable>" + data + "</div>";
+            if (data)
+              return "<div contenteditable>" + data + "</div>";
           }
         },
         {
