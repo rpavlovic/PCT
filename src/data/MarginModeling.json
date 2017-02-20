@@ -22,7 +22,7 @@
         },
         "Projid" : "1000103",
         "ModelType" : "FFT",
-        "Fees" : "140.0",
+        "Fees" : "140000.0",
         "CtrMargin" : "25.0",
         "AvgRate" : "110.0",
         "Currency" : "USD"
