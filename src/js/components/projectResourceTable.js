@@ -56,6 +56,21 @@ var projectResourceTable = (function ($) {
 
       var projectResources = values[3];
       var marginModeling = values[4];
+      var plannedHours = values[5];
+
+      console.log(plannedHours);
+
+      var tableHrs = {};
+      plannedHours.forEach(function(cell){
+        console.log(cell);
+
+        Cellid:"R1C1"
+        Planhours:4
+        Plantyp:"WK"
+        Projid:"1000100"
+        Rowno:"1"
+        tableHrs
+      });
 
       offices.push({
         Office: "Select Office",
