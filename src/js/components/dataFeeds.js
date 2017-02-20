@@ -8,7 +8,7 @@ var feeds = {
   'project': [ 'data/ProjectInfoCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection?$filter=Projid eq \'{param1}\'&$format=json' ],
 
   // deprecated (may be used for phase 2)
-  'jobSearch': [ 'data/JobSearchCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/JobNumberCollection/?$filter=SearchString eq \'{param1}\'&$format=json' ],
+  'jobSearch': [ 'data/JobSearchCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/JobNumberCollection?$filter=SearchString eq \'{param1}\'&$format=json' ],
 
   /*
    * margin modeling data, e.g.:  get_data_feed('marginModeling', '1000100', 'SRGF'); key:
@@ -23,7 +23,7 @@ var feeds = {
   'resourceModeling': [ 'data/MarginModeling.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection?$filter=Projid eq \'{param1}\'&$format=json' ],
 
   // Rate Card / Bill Rate / Job Title by Office name, e.g.:  get_data_feed('rateCards', 'US02')
-  'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection/?$filter=Office eq \'{param1}\'&$format=json' ],
+  'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection?$filter=Office eq \'{param1}\'&$format=json' ],
 
   // Project Deliverables by Project ID, e.g.:  get_data_feed('projectDeliverables', '1000100')
   'projectDeliverables': [ 'data/ProjectRelatedDeliverables.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection?$filter=Projid eq \'{param1}\'&$format=json' ],
@@ -41,7 +41,7 @@ var feeds = {
   'plannedHours': [ 'data/PlannedHours.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet?$filter=Projid eq \'{param1}\' and Rowno eq \'{param2}\' and Plantyp eq \'{param3}\' and Cellid eq \'{param4}\'&$format=json' ],
 
   // Project Expenses by Project ID, e.g.:  get_data_feed('projectExpenses', '1000100')
-  'projectExpenses': [ 'data/ProjectExpensesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection/?$filter=Projid eq \'{param1}\'&$format=json' ],
+  'projectExpenses': [ 'data/ProjectExpensesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection?$filter=Projid eq \'{param1}\'&$format=json' ],
 
   // client rate card by employee ID
   'billSheet': [ 'data/BillSheetCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection?$filter=EmpNumber eq \'{param1}\'&$format=json' ]
