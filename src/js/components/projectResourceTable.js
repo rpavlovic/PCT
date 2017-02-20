@@ -188,7 +188,9 @@ var projectResourceTable = (function ($) {
           "data": "BillRate",
           "class": "td-billrate can-clear",
           "render": function (data, type, row, meta) {
-            return "$" + data;
+            if(data) {
+               return "$" + data;
+            }
           }
         },
         {
