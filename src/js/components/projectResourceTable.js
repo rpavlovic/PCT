@@ -58,18 +58,35 @@ var projectResourceTable = (function ($) {
       var marginModeling = values[4];
       var plannedHours = values[5];
 
+      console.log(marginModeling);
       console.log(plannedHours);
 
+      var targetMarginBasedFee = marginModeling.filter(function(obj){
+        return obj.ModelType === 'TMBF';
+      });
+
+      if(targetMarginBasedFee.length) {
+        $('#target-contribution-margin').text(targetMarginBasedFee[0].CtrMargin);
+      }
+
+      var fixedFeeTarget = marginModeling.filter(function(obj){
+        return obj.ModelType === 'FFT';
+      });
+
+      if(fixedFeeTarget.length) {
+        $('#fixed-fee-target').text(fixedFeeTarget[0].CtrMargin);
+      }
+
+      
       var tableHrs = {};
       plannedHours.forEach(function(cell){
         console.log(cell);
-
-        Cellid:"R1C1"
-        Planhours:4
-        Plantyp:"WK"
-        Projid:"1000100"
-        Rowno:"1"
-        tableHrs
+        // Cellid:"R1C1"
+        // Planhours:4
+        // Plantyp:"WK"
+        // Projid:"1000100"
+        // Rowno:"1"
+        // tableHrs
       });
 
       offices.push({
