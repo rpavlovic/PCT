@@ -61,25 +61,25 @@ var projectResourceTable = (function ($) {
       console.log(marginModeling);
       console.log(plannedHours);
 
-      var targetMarginBasedFee = marginModeling.filter(function(obj){
+      var targetMarginBasedFee = marginModeling.filter(function (obj) {
         return obj.ModelType === 'TMBF';
       });
 
-      if(targetMarginBasedFee.length) {
+      if (targetMarginBasedFee.length) {
         $('#target-contribution-margin').text(targetMarginBasedFee[0].CtrMargin);
       }
 
-      var fixedFeeTarget = marginModeling.filter(function(obj){
+      var fixedFeeTarget = marginModeling.filter(function (obj) {
         return obj.ModelType === 'FFT';
       });
 
-      if(fixedFeeTarget.length) {
-        $('#fixed-fee-target').text(fixedFeeTarget[0].Fees);
+      if (fixedFeeTarget.length) {
+        $('#fixed-fee-target').text(convertToDecimal(fixedFeeTarget[0].Fees));
       }
 
 
       var tableHrs = {};
-      plannedHours.forEach(function(cell) {
+      plannedHours.forEach(function (cell) {
         console.log(cell);
         // Cellid:"R1C1"
         // Planhours:4
@@ -188,9 +188,8 @@ var projectResourceTable = (function ($) {
           "data": "BillRate",
           "class": "td-billrate can-clear",
           "render": function (data, type, row, meta) {
-            if(data) {
-               return "$" + data;
-            }
+            if(data)
+              return convertToDollar(parseFloat(data));
           }
         },
         {
@@ -233,12 +232,12 @@ var projectResourceTable = (function ($) {
       var duration = getParameterByName('Duration');
       var planBy = getParameterByName('PlanBy');
 
-      var planLabel = planBy ==='Weekly' ? 'Week' : 'Month';
+      var planLabel = planBy === 'Weekly' ? 'Week' : 'Month';
 
       // this is supposed to come from data/PlannedHours.json
       projectResources.forEach(function (resource) {
         resource.hours = [];
-        for(var hrCnt = 1; hrCnt <= duration; hrCnt++){
+        for (var hrCnt = 1; hrCnt <= duration; hrCnt++) {
           resource.hours.push(hrCnt);
         }
 
@@ -260,7 +259,7 @@ var projectResourceTable = (function ($) {
         myRows.push(row);
       });
 
-      for(var i = 1; i <= duration; i++) {
+      for (var i = 1; i <= duration; i++) {
         columns.push({
           "title": planLabel + ' ' + i,
           "data": 'hour-' + i,
@@ -446,7 +445,7 @@ var projectResourceTable = (function ($) {
       }
 
       function renderMonth(data, type, row, meta) {
-        if(data) {
+        if (data) {
           return '<div contenteditable class="month">' + data + '</div>';
         }
         else {
@@ -476,14 +475,13 @@ var projectResourceTable = (function ($) {
 
       function recalculateStuff() {
         var rows = projResourceTable.rows();
-      //  console.log(rows.context[0].aoData);
+        //  console.log(rows.context[0].aoData);
         var tableHoursSum = 0;
         var tableFeeSum = 0;
         // calculate total hours
         var standardFeeSum = 0;
         var isAdjusted = false;
         var totalCostSum = 0;
-        var REgex_dollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
         for (var i = 0; i < rows.context[0].aoData.length; i++) {
           // get sum of the hour column per row
           var hoursPerRow = 0;
@@ -495,23 +493,23 @@ var projectResourceTable = (function ($) {
           $(rows.context[0].aoData[i].anCells[12]).text(rowSum);
 
           // calc fee per row
-          var billRate = parseFloat($(rows.context[0].aoData[i].anCells[9]).text().replace('$', ''));
+          var billRate = convertToDecimal($(rows.context[0].aoData[i].anCells[9]).text());
           billRate = !isNaN(billRate) ? billRate : 0;
 
-          var billRateOverride = parseFloat($(rows.context[0].aoData[i].anCells[10]).text().replace('$', ''));
+          var billRateOverride = convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text());
           billRateOverride = !isNaN(billRateOverride) ? billRateOverride : 0;
 
           var rate = billRateOverride ? billRateOverride : billRate;
-          var costRate = parseFloat($(rows.context[0].aoData[i].anCells[11]).text().replace('$', ''));
+          var costRate = convertToDecimal($(rows.context[0].aoData[i].anCells[11]).text());
 
           costRate = !isNaN(costRate) ? costRate : 0;
-          if(!isAdjusted && billRateOverride) {
+          if (!isAdjusted && billRateOverride) {
             isAdjusted = true;
-           }
+          }
           var totalFeePerRow = parseFloat(hoursPerRow) * rate;
           var totalStandardFeePerRow = parseFloat(hoursPerRow) * billRate;
           var totalCostPerRow = parseFloat(hoursPerRow) * costRate;
-          $(rows.context[0].aoData[i].anCells[13]).text("$" + totalFeePerRow.toFixed(2).replace(REgex_dollar, "$1,"));
+          $(rows.context[0].aoData[i].anCells[13]).text(convertToDollar(totalFeePerRow));
 
           totalCostSum += totalCostPerRow;
           tableFeeSum += totalFeePerRow;
@@ -520,34 +518,34 @@ var projectResourceTable = (function ($) {
         }
 
         var standardContribMargin = (standardFeeSum - totalCostSum) / standardFeeSum;
-        var adjustedContributionMargin =  (tableFeeSum - totalCostSum) / tableFeeSum;
-        var standardAvgRate = standardFeeSum/tableHoursSum;
-        var adjustedAvgRate = tableFeeSum/tableHoursSum;
+        var adjustedContributionMargin = (tableFeeSum - totalCostSum) / tableFeeSum;
+        var standardAvgRate = standardFeeSum / tableHoursSum;
+        var adjustedAvgRate = tableFeeSum / tableHoursSum;
 
         var modeling_table_strd_fee = $("#modeling-table tbody #total-fee_standard-resource");
         var modeling_table_strd_contrib = $("#modeling-table tbody #contribution-margin_standard-resource");
         var modeling_table_strd_avg_rate = $("#modeling-table tbody #avg-rate_standard-resource");
 
         var modeling_table_adj_fee = $("#modeling-table tbody #total-fee_adjusted-resource");
-        var modeling_table_adj_contrib =  $("#modeling-table tbody #contribution-margin_adjusted-resource");
+        var modeling_table_adj_contrib = $("#modeling-table tbody #contribution-margin_adjusted-resource");
         var modeling_table_adj_avg_rate = $("#modeling-table tbody #avg-rate_adjusted-resource");
 
-        $('tfoot th.total-fees').text("$" + tableFeeSum.toFixed(2).replace(REgex_dollar, "$1,"));
+        $('tfoot th.total-fees').text(convertToDollar(tableFeeSum));
         $('tfoot th.total-hours').text(tableHoursSum.toFixed(2));
 
-        modeling_table_strd_fee.text("$" + standardFeeSum.toFixed(2).replace(REgex_dollar, "$1,"));
-        modeling_table_strd_contrib.text(standardContribMargin.toFixed(2) * 100 + "%");
-        modeling_table_strd_avg_rate.text("$" + standardAvgRate.toFixed(2).replace(REgex_dollar, "$1,"));
+        modeling_table_strd_fee.text(convertToDollar(standardFeeSum));
+        modeling_table_strd_contrib.text(convertToPercent(standardContribMargin));
+        modeling_table_strd_avg_rate.text(convertToDollar(standardAvgRate));
 
         //To activate adjusted resource Tab.
         var active_modeling_tabs = $('#modeling-table tr td');
         active_modeling_tabs.removeClass('active');
         active_modeling_tabs.children('input').prop('checked', false);
 
-        if(isAdjusted) {
-          modeling_table_adj_fee.text("$" + tableFeeSum.toFixed(2).replace(REgex_dollar, "$1,"));
-          modeling_table_adj_contrib.text(adjustedContributionMargin.toFixed(2) * 100 + "%");
-          modeling_table_adj_avg_rate.text("$" + adjustedAvgRate.toFixed(2).replace(REgex_dollar, "$1,"));
+        if (isAdjusted) {
+          modeling_table_adj_fee.text(convertToDollar(tableFeeSum));
+          modeling_table_adj_contrib.text(convertToPercent(adjustedContributionMargin));
+          modeling_table_adj_avg_rate.text(convertToDollar(adjustedAvgRate));
 
           //active adjusted tab
           $(active_modeling_tabs[2]).addClass('active');
@@ -564,82 +562,158 @@ var projectResourceTable = (function ($) {
         }
 
         var targetContributionMargin = parseFloat($('#target-contribution-margin').text());
-        if(targetContributionMargin) {
-          var targetMarginBasedFee = totalCostSum / (1 - (targetContributionMargin/100));
-          $("#modeling-table #total-fee_target-resource").text("$" + targetMarginBasedFee.toFixed(2).replace(REgex_dollar, "$1,"));
-          var targetMarginAvgRate = targetMarginBasedFee/tableHoursSum;
-          $('#modeling-table #avg-rate_target-resource').text("$" + targetMarginAvgRate.toFixed(2).replace(REgex_dollar, "$1,"));
+        if (targetContributionMargin) {
+          var targetMarginBasedFee = totalCostSum / (1 - (targetContributionMargin / 100));
+          $("#modeling-table #total-fee_target-resource").text(convertToDollar(targetMarginBasedFee));
+          var targetMarginAvgRate = targetMarginBasedFee / tableHoursSum;
+          $('#modeling-table #avg-rate_target-resource').text(convertToDollar(targetMarginAvgRate));
         }
-        else{
+        else {
           $("#modeling-table #total-fee_target-resource").text('');
           $('#modeling-table #avg-rate_target-resource').text('');
         }
 
         var fixedFeeTarget = parseFloat($('#fixed-fee-target').text());
 
-        if(!isNaN(fixedFeeTarget)){
-          var contributionMarginFixedFee = ((fixedFeeTarget - totalCostSum) / fixedFeeTarget) * 100;
-          $('#contribution-margin_fixed-fee').text(contributionMarginFixedFee.toFixed(2) + "%");
-          var avgRateFixedFee = fixedFeeTarget / tableHoursSum ;
-          $('#avg-rate_fixed-resource').text("$" + avgRateFixedFee.toFixed(2).replace(REgex_dollar, "$1,"));
+        if (!isNaN(fixedFeeTarget)) {
+          var contributionMarginFixedFee = ((fixedFeeTarget - totalCostSum) / fixedFeeTarget);
+          $('#contribution-margin_fixed-fee').text(convertToPercent(contributionMarginFixedFee));
+          var avgRateFixedFee = fixedFeeTarget / tableHoursSum;
+          $('#avg-rate_fixed-resource').text(convertToDollar(avgRateFixedFee));
         }
-        else{
+        else {
           $('#contribution-margin_fixed-fee').text('');
           $('#avg-rate_fixed-resource').text('');
         }
       }
     });
-  $('.project-resources #btn-save').on('click', function (event) {
-    event.preventDefault();
-    console.log("saving form");
+    $('.project-resources #btn-save').on('click', function (event) {
+      event.preventDefault();
+      console.log("saving form");
 
-    var url = $('#btn-save').attr('href');
-    url = updateQueryString('projID', getParameterByName('projID'), url);
-    url = updateQueryString('Office', getParameterByName('Office'), url);
-    url = updateQueryString('Duration', getParameterByName('Duration'), url);
-    url = updateQueryString('PlanBy', getParameterByName('PlanBy'), url);
+      var url = $('#btn-save').attr('href');
+      url = updateQueryString('projID', getParameterByName('projID'), url);
+      url = updateQueryString('Office', getParameterByName('Office'), url);
+      url = updateQueryString('Duration', getParameterByName('Duration'), url);
+      url = updateQueryString('PlanBy', getParameterByName('PlanBy'), url);
 
-    $('#btn-save').attr('href', url);
+      $('#btn-save').attr('href', url);
 
-    // get val in unix epoch time
-    // var EstStDate = new Date($('input.datepicker').val()).getTime();
-    // var startDate = new Date($('input[name="weekstart"]').val()).getTime();
-    // var EstEndDate = new Date($('input[name="enddate"]').val()).getTime();
-    // var changedDate = new Date().getTime();
+      // get val in unix epoch time
+      // var EstStDate = new Date($('input.datepicker').val()).getTime();
+      // var startDate = new Date($('input[name="weekstart"]').val()).getTime();
+      // var EstEndDate = new Date($('input[name="enddate"]').val()).getTime();
+      // var changedDate = new Date().getTime();
 
-    // if(!createdOn){
-    //   createdOn = "\/Date("+changedDate+")\/";
-    // }
+      // if(!createdOn){
+      //   createdOn = "\/Date("+changedDate+")\/";
+      // }
 
-    buildPayload();
+      buildPayload();
 
-    var formData = {
-      "Projid" : getParameterByName('projID'),
-      "Officeid" : getParameterByName('Office')
-    };
+      var formData = {
+        "Projid": getParameterByName('projID'),
+        "Officeid": getParameterByName('Office')
+      };
 
-    $.ajax({
-      method: "POST",
-      url: get_data_feed('project', getParameterByName('projID')),
-      data: formData
-      //todo: this needs to be fixed and actually handle errors properly
-    })
-      .done(function (msg) {
-        console.log("Data Saved: " + msg);
-        window.location.href = $('#btn-save').attr('href');
+      $.ajax({
+        method: "POST",
+        url: get_data_feed('project', getParameterByName('projID')),
+        data: formData
+        //todo: this needs to be fixed and actually handle errors properly
       })
-      .fail(function (data) {
-        console.log("post failed: " + data);
-      })
-      .always(function () {
-        if ( !is_fiori() ) {
-        //  window.location.href = $('#btn-save').attr('href');
-        }
-      });
+        .done(function (msg) {
+          console.log("Data Saved: " + msg);
+          window.location.href = $('#btn-save').attr('href');
+        })
+        .fail(function (data) {
+          console.log("post failed: " + data);
+        })
+        .always(function () {
+          if (!is_fiori()) {
+            //  window.location.href = $('#btn-save').attr('href');
+          }
+        });
     });
   }
 
+
+  function buildModelingTablePayload() {
+    var modeling_table_adj_fee = $("#modeling-table tbody #total-fee_adjusted-resource");
+    var modeling_table_adj_contrib = $("#modeling-table tbody #contribution-margin_adjusted-resource");
+    var modeling_table_adj_avg_rate = $("#modeling-table tbody #avg-rate_adjusted-resource");
+
+    var arbf = {
+      "__metadata": {
+        "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + getParameterByName('projID') + "',ModelType='ARBF')",
+        "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='"+ getParameterByName('projID') + "',ModelType='ARBF')",
+        "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+      },
+      "Projid": getParameterByName('projID').toString(),
+      "ModelType": "ARBF",
+      "Fees": "110.0",
+      "CtrMargin": "25.0",
+      "AvgRate": "100.0",
+      "Currency": "USD"
+    };
+
+    var fft = {
+      "__metadata": {
+        "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + getParameterByName('projID') + "',ModelType='FFT')",
+        "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='"+ getParameterByName('projID') + "',ModelType='FFT')",
+        "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+      },
+      "Projid": getParameterByName('projID').toString(),
+      "ModelType": "FFT",
+      "Fees": "140000.0",
+      "CtrMargin": "25.0",
+      "AvgRate": "110.0",
+      "Currency": "USD"
+    };
+
+    var srbf = {
+      "__metadata": {
+        "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + getParameterByName('projID') + "',ModelType='SRBF')",
+        "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='"+ getParameterByName('projID') + "',ModelType='SRBF')",
+        "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+      },
+      "Projid": getParameterByName('projID').toString(),
+      "ModelType": "SRBF",
+      "Fees": convertToDecimal($("#modeling-table tbody #total-fee_standard-resource").text()),
+      "CtrMargin": $("#modeling-table tbody #contribution-margin_standard-resource").replace('%', ''),
+      "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()),
+      "Currency": "USD" // need to change this to the correct currency
+    };
+
+    var tmbf = {
+      "__metadata": {
+        "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + getParameterByName('projID') + "',ModelType='TMBF')",
+        "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='"+ getParameterByName('projID') + "',ModelType='TMBF')",
+        "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+      },
+      "Projid": getParameterByName('projID').toString(),
+      "ModelType": "TMBF",
+      "Fees": "120.0",
+      "CtrMargin": "25.0",
+      "AvgRate": "120.0",
+      "Currency": "USD"
+    };
+
+
+  }
+
   function buildPayload() {
+
+    // items to post:
+    // modeling table
+    // SRBF
+    // ARBF
+    // TMBF
+    // FFT
+
+    // post the resources
+
+    // post all of the hours cells
     var projResourceTable = $('#project-resource-table').DataTable();
     var rows = projResourceTable.rows();
 
@@ -649,10 +723,12 @@ var projectResourceTable = (function ($) {
       var columnIndex = 1;
       for (var j = 14; j < rows.context[0].aoData[i].anCells.length; j++) {
         var value = $(rows.context[0].aoData[i].anCells[j]).text();
-        console.log("r" + rowIndex + "c" + columnIndex++ + ": "+ value);
+        console.log("r" + rowIndex + "c" + columnIndex++ + ": " + value);
       }
       rowIndex++;
     }
+
+
   }
 
   return {
