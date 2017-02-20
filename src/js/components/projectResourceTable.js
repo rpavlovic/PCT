@@ -3,13 +3,14 @@
  * @version
  */
 
-var projectID = getParameterByName('projID').toString();
-var duration = getParameterByName('Duration');
-var planBy = getParameterByName('PlanBy');
-var office = getParameterByName('Office');
+
 
 var projectResourceTable = (function ($) {
   'use strict';
+  var projectID = getParameterByName('projID') ? getParameterByName('projID').toString() : '';
+  var duration = getParameterByName('Duration');
+  var planBy = getParameterByName('PlanBy');
+  var office = getParameterByName('Office');
 
   function initProjectResourceTable() {
     var p1 = new Promise(function (resolve, reject) {
