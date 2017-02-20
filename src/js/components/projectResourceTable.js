@@ -74,7 +74,7 @@ var projectResourceTable = (function ($) {
       });
 
       if(fixedFeeTarget.length) {
-        $('#fixed-fee-target').text(fixedFeeTarget[0].CtrMargin);
+        $('#fixed-fee-target').text(fixedFeeTarget[0].Fees);
       }
 
 
