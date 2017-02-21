@@ -63,9 +63,13 @@ var expenseTable = (function ($) {
           {
             "title": 'Row',
             "sClass": "center",
+            "data": "ExpRow",
             "defaultContent": '',
             "render": function (data, type, row, meta) {
-              return meta.row + 1;
+              if(data)
+                return parseInt(data);
+              else
+                return meta.row + 1;
             }
           },
           {
@@ -155,7 +159,6 @@ var expenseTable = (function ($) {
         var rows = projExpenseTable.rows();
         var payloads = [];
 
-        var row = 1;
         rows.context[0].aoData.forEach(function (row) {
           payloads.push({
             type: 'POST',
@@ -166,7 +169,7 @@ var expenseTable = (function ($) {
                 "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('" + projectID + "')",
                 "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
               },
-              "ExpRow": padNumber(row.toString()),
+              "ExpRow": padNumber($(row.anCells[0]).text()),
               "Projid": projectID,
               "DelvDesc": $(row.anCells[2]).find('select :selected').val(),
               "Category": $(row.anCells[3]).find('select :selected').val().substr(0,4),
