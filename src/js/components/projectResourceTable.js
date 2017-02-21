@@ -103,7 +103,7 @@ var projectResourceTable = (function ($) {
           "data": "Rowno",
           "render": function (data, type, row, meta) {
             if (data) {
-              return data;
+              return parseInt(data);
             }
             else {
               return meta.row + 1;
@@ -724,18 +724,19 @@ var projectResourceTable = (function ($) {
     var payloads = [];
     //console.log(rows.context[0].aoData);
     for (var i = 0; i < rows.context[0].aoData.length; i++) {
+      var payloadIndex = padNumber(rowIndex);
       payloads.push({
         type: 'POST',
         url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection',
         data: {
           "__metadata": {
-            "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + rowIndex + "')",
-            "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + rowIndex + "')",
+            "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + payloadIndex + "')",
+            "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + payloadIndex + "')",
             "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
           },
           "Projid": projectID,
           "Duration": duration,
-          "Rowno": rowIndex++,
+          "Rowno": payloadIndex,
           "DelvDesc": $(rows.context[0].aoData[i].anCells[2]).find('option:selected').text(),
           "Officeid": $(rows.context[0].aoData[i].anCells[3]).find('option:selected').val(),
           "EmpGradeName": $(rows.context[0].aoData[i].anCells[4]).find('option:selected').val(),
@@ -764,6 +765,7 @@ var projectResourceTable = (function ($) {
     for (var i = 0; i < rows.context[0].aoData.length; i++) {
       var hoursPerRow = 0;
       var columnIndex = 1;
+      var payloadRowIndex = padNumber(rowIndex);
       for (var j = 14; j < rows.context[0].aoData[i].anCells.length; j++) {
         var value = $(rows.context[0].aoData[i].anCells[j]).text();
         //console.log("R" + rowIndex + "C" + columnIndex++ + ": " + value);
@@ -773,12 +775,12 @@ var projectResourceTable = (function ($) {
           url: '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet',
           data: {
             "__metadata": {
-              "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + rowIndex + "',Plantyp='WK',Cellid='" + cellId + "')",
-              "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + rowIndex + "',Plantyp='WK',Cellid='" + cellId + "')",
+              "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='WK',Cellid='" + cellId + "')",
+              "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='WK',Cellid='" + cellId + "')",
               "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
             },
             "Projid": projectID,
-            "Rowno": rowIndex.toString(),
+            "Rowno": payloadRowIndex,
             "Plantyp": planBy,
             "Cellid": cellId,
             "Planhours": value
