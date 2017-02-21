@@ -5,6 +5,13 @@
 
 var projectInfoForm = (function ($) {
   'use strict';
+
+  var projectId = getParameterByName('projID');
+
+  // no id means there's no url string and we will create a new one.
+  if(!projectId){
+    projectId = get_unique_id();
+  }
   var items_business = [],
     items_country = [],
     items_currency =
@@ -48,10 +55,8 @@ var projectInfoForm = (function ($) {
   }
 
   function prepopulateDeliverables(results) {
-    var projId = getParameterByName('projID');
-    console.log(results);
     results.forEach(function (deliverable) {
-      if (projId === deliverable.Projid) {
+      if (projectId === deliverable.Projid) {
         if (!$('input[name="deliverable"]').val()) {
           // if the first one is empty, we just fill it in.
           $('input[name="deliverable"]').val(deliverable.DelvDesc);
@@ -101,7 +106,7 @@ var projectInfoForm = (function ($) {
 
   function prepopulate_ExtraInfo_JSON(results) {
     var extraProjInfo = results.find(function (value) {
-      return value.Projid === getParameterByName('projID');
+      return value.Projid === projectId;
     });
     if (extraProjInfo) {
       $('textarea').val(extraProjInfo.Comments);
@@ -120,7 +125,7 @@ var projectInfoForm = (function ($) {
 
   function initProjectInfoForm(feeds) {
     var p1 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectDeliverables, getParameterByName('projID')), function (deliverables) {
+      $.getJSON(get_data_feed(feeds.projectDeliverables, projectId), function (deliverables) {
         resolve(deliverables.d.results);
       });
     });
@@ -138,7 +143,7 @@ var projectInfoForm = (function ($) {
     });
 
     var p4 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.project, getParameterByName('projID')), function (projects) {
+      $.getJSON(get_data_feed(feeds.project, projectId), function (projects) {
         resolve(projects.d.results);
       }).fail(function () {
         // not found, but lets fix this and return empty set
@@ -173,7 +178,7 @@ var projectInfoForm = (function ($) {
 
     console.log("saving form");
     var url = $('#btn-save').attr('href');
-    url = updateQueryString('projID', getParameterByName('projID'), url);
+    url = updateQueryString('projID', projectId, url);
     url = updateQueryString('Office', select_billing_office.val(), url);
     url = updateQueryString('Duration', input_duration.val().replace(/\D/g, ''), url);
     url = updateQueryString('PlanBy', select_plan_by.val(), url);
@@ -194,14 +199,13 @@ var projectInfoForm = (function ($) {
       return false;
     }
 
-    var pid = getParameterByName('projID');
     var formData = {
       "__metadata": {
-        "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + pid + "')",
-        "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + pid + "')",
+        "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + projectId + "')",
+        "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + projectId + "')",
         "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
       },
-      "Projid": pid.toString(),
+      "Projid": projectId.toString(),
       "Plantyp": select_plan_by.val().toString().substr(0, 2),
       "Region": select_region.val(),
       "Office": select_billing_office.val(),
@@ -237,11 +241,11 @@ var projectInfoForm = (function ($) {
           url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection',
           data: {
             "__metadata": {
-              "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection('" + pid + "')",
-              "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection('" + pid + "')",
+              "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection('" + projectId + "')",
+              "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection('" + projectId + "')",
               "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectDeliverables"
             },
-            "Projid": pid.toString(),
+            "Projid": projectId.toString(),
             "Delvid": deliverableId.toString(),
             "DelvDesc": $(value).val()
           }
