@@ -512,7 +512,7 @@ var projectResourceTable = (function ($) {
           var costRate = convertToDecimal($(rows.context[0].aoData[i].anCells[11]).text());
 
           costRate = !isNaN(costRate) ? costRate : 0;
-          if (!isAdjusted && billRateOverride) {
+          if (!isAdjusted && parseFloat(billRateOverride)) {
             isAdjusted = true;
           }
           var totalFeePerRow = parseFloat(hoursPerRow) * rate;
