@@ -106,7 +106,7 @@
     });
 
     //Back to previous Page function
-    $('#go-back').on('click', function(){
+    $('#btn-back').on('click', function(){
       window.history.back();
       return false;
     });

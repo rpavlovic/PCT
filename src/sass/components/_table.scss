@@ -112,6 +112,7 @@ table {
       &.sorting_1 {
         background-color: #f2f2f2 !important;
         position: relative;
+        white-space: nowrap;
         &:focus {
           outline: none;
           background: none;
