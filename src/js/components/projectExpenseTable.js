@@ -5,6 +5,8 @@
 var expenseTable = (function ($) {
   'use strict';
 
+  var projectID = getParameterByName('projID') ? getParameterByName('projID').toString() : '';
+
   var deliverables,
     expenses,
     table = $('#project-expense-table');
@@ -61,9 +63,13 @@ var expenseTable = (function ($) {
           {
             "title": 'Row',
             "sClass": "center",
+            "data": "ExpRow",
             "defaultContent": '',
             "render": function (data, type, row, meta) {
-              return meta.row + 1;
+              if(data)
+                return parseInt(data);
+              else
+                return meta.row + 1;
             }
           },
           {
@@ -71,7 +77,7 @@ var expenseTable = (function ($) {
             "sClass": "center blue-bg",
             "targets": [1],
             "data": null,
-            "defaultContent": '<a href=" " class="remove"><i class="fa fa-trash"></i></a>',
+            "defaultContent": '<a href=" " class="remove"><i class="fa fa-trash"></i></a>'
           },
           {
             "title": 'Deliverable / Work&nbsp;Stream',
@@ -148,38 +154,53 @@ var expenseTable = (function ($) {
         event.preventDefault();
         console.log("saving expenses form");
         var url = $('#btn-save').attr('href');
-        $('#btn-save').attr('href', updateQueryString('projID', getParameterByName('projID'), url));
+        $('#btn-save').attr('href', updateQueryString('projID', projectID, url));
 
         var rows = projExpenseTable.rows();
-        var payload = [];
+        var payloads = [];
 
         rows.context[0].aoData.forEach(function (row) {
-          payload.push({
-            "Projid": getParameterByName('projID'),
-            "DelvDesc": $(row.anCells[2]).find('select :selected').val(),
-            "Category": $(row.anCells[3]).find('select :selected').val(),
-            "CatDesc": $(row.anCells[4]).find('div').text(),
-            "Amount": $(row.anCells[5]).find('div').text(),
-            "Currency": "USD"
+          payloads.push({
+            type: 'POST',
+            url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection',
+            data: {
+              "__metadata": {
+                "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('" + projectID + "')",
+                "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('" + projectID + "')",
+                "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+              },
+              "ExpRow": padNumber($(row.anCells[0]).text()),
+              "Projid": projectID,
+              "DelvDesc": $(row.anCells[2]).find('select :selected').val(),
+              "Category": $(row.anCells[3]).find('select :selected').val().substr(0,4),
+              "CatDesc": $(row.anCells[4]).find('div').text(),
+              "Amount": $(row.anCells[5]).find('div').text(),
+              "Currency": "USD"
+            }
           });
+          row++;
         });
-
-        console.log(payload);
-        $.ajax({
-          method: "POST",
-          url: get_data_feed('projectExpenses', getParameterByName('projID')),
-          data: payload
-        })
-          .done(function (msg) {
-            //todo: this needs to be fixed and actually handle errors properly
-            console.log("Data Saved: " + msg);
-          })
-          .fail(function () {
-            console.log("post failed");
-          })
-          .always(function () {
-            window.location.href = $('#btn-save').attr('href');
-          });
+        $.ajaxBatch({
+          url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
+          data: payloads,
+          complete: function (xhr, status, data) {
+            console.log(data);
+            var timeout = getParameterByName('timeout');
+            console.log("navigating to new window in" + timeout + "seconds");
+            timeout = timeout ? timeout : 1;
+            setTimeout(function () {
+              window.location.href = $('#btn-save').attr('href');
+            }, timeout);
+          },
+          always: function (xhr, status, data) {
+            var timeout = getParameterByName('timeout');
+            console.log("navigating to new window in" + timeout + "seconds");
+            timeout = timeout ? timeout : 1;
+            setTimeout(function () {
+              window.location.href = $('#btn-save').attr('href');
+            }, timeout);
+          }
+        });
       });
     });
   }
