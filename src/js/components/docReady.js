@@ -104,6 +104,12 @@
     $('.fa-print').click(function() {
       window.print();
     });
+
+    //Back to previous Page function
+    $('#btn-back').on('click', function(){
+      window.history.back();
+      return false;
+    });
   });
 
 }( jQuery ));
