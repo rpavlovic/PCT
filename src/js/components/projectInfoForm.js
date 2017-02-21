@@ -63,7 +63,6 @@ var projectInfoForm = (function ($) {
         }
         else {
           // as we go along, if the last one has a value, we add a row and then fill in the value
-          console.log($('input[name="deliverable"]')[$('input[name="deliverable"]').length - 1].value);
           if ($('input[name="deliverable"]')[$('input[name="deliverable"]').length - 1].value) {
             $('button.add-row').click();
             $('input[name="deliverable"]')[$('input[name="deliverable"]').length - 1].value = deliverable.DelvDesc;
@@ -246,7 +245,7 @@ var projectInfoForm = (function ($) {
               "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectDeliverables"
             },
             "Projid": projectId.toString(),
-            "Delvid": deliverableId.toString(),
+            "Delvid": padNumber(deliverableId.toString()),
             "DelvDesc": $(value).val()
           }
         });
