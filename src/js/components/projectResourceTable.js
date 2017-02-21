@@ -2,9 +2,6 @@
  * @module Draw Data Table for Preoject Resource page.
  * @version
  */
-
-
-
 var projectResourceTable = (function ($) {
   'use strict';
   var projectID = getParameterByName('projID') ? getParameterByName('projID').toString() : '';
