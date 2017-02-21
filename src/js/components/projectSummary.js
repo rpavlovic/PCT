@@ -61,6 +61,8 @@ var projectSummary = (function ($) {
     $('#office').text(project.Office);
     $('#project-name').text(project.Projname);
     $('#start-date').text(calcPrettyDate(project.EstStDate));
+    $('#duration').text(project.Duration);
+    $('#comp-type').text(project.Comptyp);
 
   }
 
