@@ -241,6 +241,9 @@ var projectResourceTable = (function ($) {
 
       // this is supposed to come from data/PlannedHours.json
       projectResources.forEach(function (resource) {
+
+        resource.Rowno = parseInt(resource.Rowno);
+
         var row = {
           "Rowno": resource.Rowno,
           "EmpGradeName": resource,
