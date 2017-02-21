@@ -38,7 +38,7 @@ var projectSummary = (function ($) {
       var marginModeling = values[2];
       var rateCard = values[3];
 
-      summaryDelivTable.initSummaryDelivTable(projectDeliverables);
+      summaryDeliverablesTable.initSummaryDeliverablesTable(projectDeliverables);
       summaryOfficeTable.initSummaryOfficeTable(rateCard);
       summaryRoleTable.initSummaryRoleTable(rateCard);
     });
