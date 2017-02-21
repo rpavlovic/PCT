@@ -78,6 +78,7 @@ var projectResourceTable = (function ($) {
       }
 
       var hrRows = {};
+      var maxDuration = 0;
       plannedHours.forEach(function (cell) {
         if (!hrRows[cell.Rowno]) {
           hrRows[cell.Rowno] = {};
@@ -85,7 +86,11 @@ var projectResourceTable = (function ($) {
 
         var cellId = cell.Cellid.replace(/R\d+C/g, '');
         hrRows[cell.Rowno][cellId] = cell.Planhours;
+        maxDuration = maxDuration < Object.keys(hrRows[cell.Rowno]).length ? Object.keys(hrRows[cell.Rowno]).length : maxDuration;
       });
+
+      // in case duration not provided
+      duration = maxDuration > duration ? maxDuration : duration;
 
       offices.push({
         Office: "Select Office",
