@@ -444,7 +444,7 @@ var projectResourceTable = (function ($) {
           return val.Office === employee.Officeid && val.CostCenterName;
         }).forEach(function (val) {
           var selected = '';
-          if (val.Office === employee.Officeid) {
+          if (val.CostCenter === employee.Practiceid) {
             selected = 'selected="selected" ';
           }
           select += '<option value="' + val.CostCenter + '" ' + selected + 'data-office="' + val.Office + '">' + val.CostCenterName + '</option>';
