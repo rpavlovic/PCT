@@ -29,7 +29,8 @@ var feeds = {
   'projectDeliverables': [ 'data/ProjectRelatedDeliverables.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection?$filter=Projid eq \'{param1}\'&$format=json' ],
 
   // Project Resources by Project ID and Row Count, e.g.:  get_data_feed('projectResources', '1000100', 1)
-  'projectResources': [ 'data/ProjectResourcesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection?$filter=Projid eq \'{param1}\' and Rowno eq \'{param2}\'&$format=json' ],
+  //'projectResources': [ 'data/ProjectResourcesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection?$filter=Projid eq \'{param1}\' and Rowno eq \'{param2}\'&$format=json' ],
+  'projectResources': [ 'data/ProjectResourcesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection?$filter=Projid eq \'{param1}\' &$format=json' ],
 
   /*
    * planned hours by type, e.g.:  get_data_feed('plannedHours', '1000100', '001', 'WK', 'R1'):

@@ -109,7 +109,8 @@ var projectInfoForm = (function ($) {
     });
     if (extraProjInfo) {
       $('textarea').val(extraProjInfo.Comments);
-      $('form.project-info input[name="name"]').val(extraProjInfo.Clientname);
+      $('form.project-info input[name="Clientname"]').val(extraProjInfo.Clientname);
+      $('form.project-info input[name="Projname"]').val(extraProjInfo.Projname);
       $('form.project-info input[name="Preparedby"]').val(extraProjInfo.Preparedby);
       input_duration.val(extraProjInfo.Duration);
       plan_units.val(extraProjInfo.Comptyp);

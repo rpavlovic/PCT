@@ -78,6 +78,7 @@ var projectResourceTable = (function ($) {
       }
 
       var hrRows = {};
+      var maxDuration = 0;
       plannedHours.forEach(function (cell) {
         if (!hrRows[cell.Rowno]) {
           hrRows[cell.Rowno] = {};
@@ -85,7 +86,11 @@ var projectResourceTable = (function ($) {
 
         var cellId = cell.Cellid.replace(/R\d+C/g, '');
         hrRows[cell.Rowno][cellId] = cell.Planhours;
+        maxDuration = maxDuration < Object.keys(hrRows[cell.Rowno]).length ? Object.keys(hrRows[cell.Rowno]).length : maxDuration;
       });
+
+      // in case duration not provided
+      duration = maxDuration > duration ? maxDuration : duration;
 
       offices.push({
         Office: "Select Office",
@@ -439,10 +444,10 @@ var projectResourceTable = (function ($) {
           return val.Office === employee.Officeid && val.CostCenterName;
         }).forEach(function (val) {
           var selected = '';
-          if (val.Office === employee.Officeid) {
+          if (val.CostCenter === employee.Practiceid) {
             selected = 'selected="selected" ';
           }
-          select += '<option value="' + val.CostCenterName + '" ' + selected + 'data-office="' + val.Office + '">' + val.CostCenterName + '</option>';
+          select += '<option value="' + val.CostCenter + '" ' + selected + 'data-office="' + val.Office + '">' + val.CostCenterName + '</option>';
         });
 
         return select;
@@ -507,7 +512,7 @@ var projectResourceTable = (function ($) {
           var costRate = convertToDecimal($(rows.context[0].aoData[i].anCells[11]).text());
 
           costRate = !isNaN(costRate) ? costRate : 0;
-          if (!isAdjusted && billRateOverride) {
+          if (!isAdjusted && parseFloat(billRateOverride)) {
             isAdjusted = true;
           }
           var totalFeePerRow = parseFloat(hoursPerRow) * rate;
@@ -747,8 +752,8 @@ var projectResourceTable = (function ($) {
           "Role": $(rows.context[0].aoData[i].anCells[7]).text(),
           "ProposedRes": $(rows.context[0].aoData[i].anCells[8]).text(),
           "BillRate": convertToDecimal($(rows.context[0].aoData[i].anCells[9]).text()),
-          "BillRateOvride": convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text()),
-          "TotalHrs": convertToDecimal($(rows.context[0].aoData[i].anCells[12]).text()),
+          "BillRateOvride": convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text()).toString(),
+          "TotalHrs": parseFloat(convertToDecimal($(rows.context[0].aoData[i].anCells[12]).text())) ,
           "TotalFee": convertToDecimal($(rows.context[0].aoData[i].anCells[13]).text()),
           "Plantyp": planBy
         }

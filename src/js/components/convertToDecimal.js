@@ -3,5 +3,6 @@
  * @returns {string}
  */
 function convertToDecimal(amount){
-  return amount.replace('$', '').replace(',', '').replace('%', '').toString();
+  var res = amount.replace('$', '').replace(',', '').replace('%', '').trim();
+  return res ? res : 0.0;
 }
