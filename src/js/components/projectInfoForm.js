@@ -29,7 +29,7 @@ var projectInfoForm = (function ($) {
     select_country = $("form.project-info select[name='Country']"),
     select_plan_by = $("select[name='planby']"),
     input_duration = $("input[name='Duration']"),
-    input_deliverable = $('input[name="deliverable"]'),
+   // input_deliverable = $('input[name="deliverable"]'),
     plan_units = $("input[name='PlanUnits']"),
     client_name = $("input[name='name']"),
     project_name = $("input[name='Projname']"),
@@ -49,18 +49,19 @@ var projectInfoForm = (function ($) {
 
   function prepopulateDeliverables(results) {
     var projId = getParameterByName('projID');
+    console.log(results);
     results.forEach(function (deliverable) {
       if (projId === deliverable.Projid) {
-        if (!input_deliverable.val()) {
+        if (!$('input[name="deliverable"]').val()) {
           // if the first one is empty, we just fill it in.
-          input_deliverable.val(deliverable.DelvDesc);
+          $('input[name="deliverable"]').val(deliverable.DelvDesc);
         }
         else {
           // as we go along, if the last one has a value, we add a row and then fill in the value
-          if (input_deliverable[input_deliverable.length - 1].value) {
+          console.log($('input[name="deliverable"]')[$('input[name="deliverable"]').length - 1].value);
+          if ($('input[name="deliverable"]')[$('input[name="deliverable"]').length - 1].value) {
             $('button.add-row').click();
-            var newInput = input_deliverable[input_deliverable.length - 1];
-            $(newInput).val(deliverable.DelvDesc);
+            $('input[name="deliverable"]')[$('input[name="deliverable"]').length - 1].value = deliverable.DelvDesc;
           }
         }
       }
@@ -229,7 +230,7 @@ var projectInfoForm = (function ($) {
     });
 
     var deliverableId = 1;
-    input_deliverable.each(function (key, value) {
+    $('input[name="deliverable"]').each(function (key, value) {
       if($(value).val()) {
         payloads.push({
           type: 'POST',
