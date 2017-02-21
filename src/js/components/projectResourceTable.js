@@ -447,7 +447,7 @@ var projectResourceTable = (function ($) {
           if (val.Office === employee.Officeid) {
             selected = 'selected="selected" ';
           }
-          select += '<option value="' + val.CostCenterName + '" ' + selected + 'data-office="' + val.Office + '">' + val.CostCenterName + '</option>';
+          select += '<option value="' + val.CostCenter + '" ' + selected + 'data-office="' + val.Office + '">' + val.CostCenterName + '</option>';
         });
 
         return select;
@@ -752,8 +752,8 @@ var projectResourceTable = (function ($) {
           "Role": $(rows.context[0].aoData[i].anCells[7]).text(),
           "ProposedRes": $(rows.context[0].aoData[i].anCells[8]).text(),
           "BillRate": convertToDecimal($(rows.context[0].aoData[i].anCells[9]).text()),
-          "BillRateOvride": convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text()),
-          "TotalHrs": convertToDecimal($(rows.context[0].aoData[i].anCells[12]).text()),
+          "BillRateOvride": convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text()).toString(),
+          "TotalHrs": parseFloat(convertToDecimal($(rows.context[0].aoData[i].anCells[12]).text())) ,
           "TotalFee": convertToDecimal($(rows.context[0].aoData[i].anCells[13]).text()),
           "Plantyp": planBy
         }
