@@ -13,24 +13,40 @@ var projectResourceTable = (function ($) {
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, projectID), function (deliverables) {
         resolve(deliverables.d.results);
+      }).fail(function () {
+        // not found, but lets fix this and return empty set
+        console.log('no project deliverables found.... returning empty set');
+        resolve([]);
       });
     });
 
     var p2 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.offices), function (offices) {
         resolve(offices.d.results);
-      });
+      }).fail(function () {
+        // not found, but lets fix this and return empty set
+        console.log('no offices found.... returning empty set');
+        resolve([]);
+      });;
     });
 
     var p3 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.rateCards, projectID), function (rateCards) {
         resolve(rateCards.d.results);
-      });
+      }).fail(function () {
+        // not found, but lets fix this and return empty set
+        console.log('no rate cards found.... returning empty set');
+        resolve([]);
+      });;
     });
 
     var p4 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
         resolve(resource.d.results);
+      }).fail(function () {
+        // not found, but lets fix this and return empty set
+        console.log('no project resources found.... returning empty set');
+        resolve([]);
       });
     });
 
@@ -38,12 +54,20 @@ var projectResourceTable = (function ($) {
     var t1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.marginModeling, projectID), function (data) {
         resolve(data.d.results);
+      }).fail(function () {
+        // not found, but lets fix this and return empty set
+        console.log('no mm found.... returning empty set');
+        resolve([]);
       });
     });
 
     var p5 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.plannedHours, projectID), function (plan) {
         resolve(plan.d.results);
+      }).fail(function () {
+        // not found, but lets fix this and return empty set
+        console.log('no planned hours found.... returning empty set');
+        resolve([]);
       });
     });
 
