@@ -98,7 +98,7 @@ var projectResourceTable = (function ($) {
 
       var billsheets = {};
       customRateCards.forEach(function (customBillSheet) {
-        if(!billsheets[customBillSheet.BillsheetId]){
+        if (!billsheets[customBillSheet.BillsheetId]) {
           billsheets[customBillSheet.BillsheetId] = [];
         }
         billsheets[customBillSheet.BillsheetId].push(customBillSheet);
@@ -171,12 +171,7 @@ var projectResourceTable = (function ($) {
           "data": "Deliverables",
           "defaultContent": '',
           "render": function (data, type, row, meta) {
-            var select = "<select class='deliverable' name='DelvDesc'>";
-            $.each(data, function (key, val) {
-              select += '<option>' + val.DelvDesc + '</option>';
-            });
-            select += "</select>";
-            return select;
+            return getDeliverables(data);
           }
         },
         {
@@ -291,13 +286,11 @@ var projectResourceTable = (function ($) {
 
       // this is supposed to come from data/PlannedHours.json
       projectResources.forEach(function (resource) {
-
         resource.Rowno = parseInt(resource.Rowno);
-
         var row = {
           "Rowno": resource.Rowno,
           "EmpGradeName": resource,
-          "Deliverables": deliverables,
+          "Deliverables": resource.DelvDesc,
           "Office": {offices: offices, selectedOffice: office},
           "Role": resource.Role,
           "ProposedResource": resource.ProposedRes,
@@ -419,6 +412,16 @@ var projectResourceTable = (function ($) {
         nodes.closest('tr').find('.td-class').empty().append(nodes.find(':selected').data('class'));
       }
 
+      function getDeliverables(data) {
+        var select = "<select class='deliverable' name='DelvDesc'>";
+        $.each(deliverables, function (key, val) {
+          var selected = val.DelvDesc === data ? 'selected="selected" ' : '';
+          select += '<option ' + selected + ' >' + val.DelvDesc + '</option>';
+        });
+        select += "</select>";
+        return select;
+      }
+
       //get deliverables from projectRelatedDeliverables json
       function getPractice(OfficeID, nodes) {
         console.log(OfficeID);
@@ -460,11 +463,19 @@ var projectResourceTable = (function ($) {
         var select = "<select class='title' name='EmpGradeName'>";
         select += '<option data-class="">Select Title</option>';
 
+        var empGrades = [];
+        // remove duplicates
         rateCards.forEach(function (val) {
+          empGrades[val.EmpGrade] = val;
+        });
+
+        empGrades.sort(function (a, b) {
+          return (a.EmpGradeName > b.EmpGradeName) ? 1 : ((b.EmpGradeName > a.EmpGradeName) ? -1 : 0);
+        });
+
+        empGrades.forEach(function (val) {
           var selectString = resource && resource.EmpGradeName === val.EmpGradeName ? 'selected="selected"' : '';
-          select += '<option value="' + val.EmpGradeName + '" ' + 'data-rate="' + val.BillRate +
-            '" data-class="' + val.Class + '" data-office="' + val.Office + '" ' + 'data-costrate="' + val.CostRate + '" ' +
-            'data-currency="' + val.LocalCurrency + '" ' + selectString + '>' + val.EmpGradeName + '</option>';
+          select += '<option value="' + val.EmpGrade + '" data-class="' + val.Class + '" data-currency="' + val.LocalCurrency + '" ' + selectString + '>' + val.EmpGradeName + '</option>';
         });
 
         select += "</select>";
@@ -481,18 +492,30 @@ var projectResourceTable = (function ($) {
           return '';
       }
 
+      // you should filter practices based on employee title/EmpGrade
       function getPractices(employee) {
+        console.log(employee);
         var select = "<select class='practice' name='CostCenterName'>";
         select += "<option>Select Practice</option>";
 
+        var practices = [];
         rateCards.filter(function (val) {
           return val.Office === employee.Officeid && val.CostCenterName;
         }).forEach(function (val) {
+          practices[val.CostCenter] = val;
+        });
+
+        practices = Object.values(practices);
+        practices.sort(function (a, b) {
+          return (a.CostCenterName > b.CostCenterName) ? 1 : ((b.CostCenterName > a.CostCenterName) ? -1 : 0);
+        });
+
+        practices.forEach(function (val) {
           var selected = '';
           if (val.CostCenter === employee.Practiceid) {
             selected = 'selected="selected" ';
           }
-          select += '<option value="' + val.CostCenter + '" ' + selected + 'data-office="' + val.Office + '">' + val.CostCenterName + '</option>';
+          select += '<option value="' + val.CostCenter + '" ' + selected + '>' + val.CostCenterName + '</option>';
         });
 
         return select;
