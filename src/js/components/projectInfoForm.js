@@ -38,7 +38,7 @@ var projectInfoForm = (function ($) {
     input_duration = $("input[name='Duration']"),
    // input_deliverable = $('input[name="deliverable"]'),
     plan_units = $("input[name='PlanUnits']"),
-    client_name = $("input[name='name']"),
+    client_name = $("input[name='Clientname']"),
     project_name = $("input[name='Projname']"),
     prepared_by = $('form.project-info input[name="Preparedby"]'),
     selected = false,
