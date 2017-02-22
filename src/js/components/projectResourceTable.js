@@ -31,6 +31,10 @@ var projectResourceTable = (function ($) {
     var p4 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
         resolve(resource.d.results);
+      }).fail(function () {
+        // not found, but lets fix this and return empty set
+        console.log('no project resources found.... returning empty set');
+        resolve([]);
       });
     });
 
@@ -38,12 +42,20 @@ var projectResourceTable = (function ($) {
     var t1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.marginModeling, projectID), function (data) {
         resolve(data.d.results);
+      }).fail(function () {
+        // not found, but lets fix this and return empty set
+        console.log('no mm found.... returning empty set');
+        resolve([]);
       });
     });
 
     var p5 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.plannedHours, projectID), function (plan) {
         resolve(plan.d.results);
+      }).fail(function () {
+        // not found, but lets fix this and return empty set
+        console.log('no planned hours found.... returning empty set');
+        resolve([]);
       });
     });
 
