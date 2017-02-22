@@ -16,6 +16,54 @@
         "OverrideRate": "100.000",
         "DiscountPer": "3.560",
         "RowId": "001"
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='2',RowId='002')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='2',RowId='002')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
+        },
+        "Class": "M1",
+        "BillsheetId": "2",
+        "BillsheetName": "Custom Bill Sheet",
+        "TitleId": "ABCD",
+        "TitleDesc": "ABCDEFG",
+        "StandardRate": "100.000",
+        "OverrideRate": "100.000",
+        "DiscountPer": "3.560",
+        "RowId": "002"
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='3',RowId='001')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='3',RowId='001')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
+        },
+        "Class": "M1",
+        "BillsheetId": "3",
+        "BillsheetName": "Custom Bill Sheet #2",
+        "TitleId": "ABCD",
+        "TitleDesc": "ABCDEFG",
+        "StandardRate": "100.000",
+        "OverrideRate": "100.000",
+        "DiscountPer": "3.560",
+        "RowId": "001"
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='3',RowId='002')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='3',RowId='002')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
+        },
+        "Class": "M1",
+        "BillsheetId": "3",
+        "BillsheetName": "Custom Bill Sheet #2",
+        "TitleId": "ABCD",
+        "TitleDesc": "ABCDEFG",
+        "StandardRate": "100.000",
+        "OverrideRate": "100.000",
+        "DiscountPer": "3.560",
+        "RowId": "002"
       }
     ]
   }
