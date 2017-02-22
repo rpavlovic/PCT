@@ -67,13 +67,8 @@ var fillForm = (function ($) {
 
         //write JSON into local storage
         localStorage.setItem('storeProfile', jsonString);
-      //  console.log(localStorage.setItem('storeProfile', JSON.stringify(jsonString)));
         //retrieve the object
         var obj = JSON.parse(localStorage.getItem('storeProfile'));
-        //load the new file into the html
-        // if(obj) {
-        //   console.log(obj);
-        // }
       });
     }
   }

@@ -104,13 +104,13 @@ var projectResourceTable = (function ($) {
         billsheets[customBillSheet.BillsheetId].push(customBillSheet);
       });
 
-      console.log(billsheets);
+      //console.log(billsheets);
 
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
         return obj.ModelType === 'TMBF';
       });
 
-      if (targetMarginBasedFee.length) {
+      if (targetMarginBasedFee) {
         $('#target-contribution-margin').text(targetMarginBasedFee[0].CtrMargin);
       }
 
@@ -270,11 +270,7 @@ var projectResourceTable = (function ($) {
           "title": 'Total Hours',
           "data": "TotalHours",
           "defaultContent": '',
-          "class": "total-hours can-clear"//,
-          // "render": function (data, type, row, meta) {
-          //   var sum = sumHours(row);
-          //   return !isNaN(sum) ? sum.toFixed(2) : '';
-          // }
+          "class": "total-hours can-clear"
         },
         {
           "title": 'Total Fees',
@@ -353,9 +349,10 @@ var projectResourceTable = (function ($) {
           $("#project-resource-table tbody select.office").on('change', function () {
             console.log("office changed");
             var OfficeID = $(this).val(),
-              nodes = $(this);
+                nodes = $(this);
             getJobTitle(OfficeID, nodes);
             recalculateStuff();
+            // sortTitles(OfficeID, nodes);
           });
 
           $("#project-resource-table tbody select.title").on('change', function () {
@@ -397,6 +394,7 @@ var projectResourceTable = (function ($) {
       $('#project-resource-table tbody').on('click', '.remove', function (e) {
         e.preventDefault();
         projResourceTable.row($(this).parents('tr')).remove().draw(false);
+        recalculateStuff();
       });
 
       function getJobTitle(OfficeID, nodes) {
@@ -421,7 +419,6 @@ var projectResourceTable = (function ($) {
 
       //get deliverables from projectRelatedDeliverables json
       function getPractice(OfficeID, nodes) {
-        console.log(OfficeID);
         var practiceSelect = nodes.closest('tr').find('.practice');
         var Practice = [];
         Practice.push('<option>Select Practice</option>');
@@ -434,6 +431,13 @@ var projectResourceTable = (function ($) {
         });
         practiceSelect.empty().append(Practice);
       }
+
+      // function sortTitles(OfficeID, nodes) {
+      //   var sort_this = nodes.closest('tr').find('.title');
+      //   sort_this.html(sort_this.find('option').sort(function(x, y) {
+      //       return $(x).text() < $(y).text() ? -1 : 1;
+      //   }));
+      // }
 
       function loadBillRate(nodes) {
         var tems_currency = {
@@ -536,6 +540,7 @@ var projectResourceTable = (function ($) {
         var standardFeeSum = 0;
         var isAdjusted = false;
         var totalCostSum = 0;
+
         for (var i = 0; i < rows.context[0].aoData.length; i++) {
           // get sum of the hour column per row
           var hoursPerRow = 0;
@@ -560,6 +565,7 @@ var projectResourceTable = (function ($) {
           if (!isAdjusted && parseFloat(billRateOverride)) {
             isAdjusted = true;
           }
+
           var totalFeePerRow = parseFloat(hoursPerRow) * rate;
           var totalStandardFeePerRow = parseFloat(hoursPerRow) * billRate;
           var totalCostPerRow = parseFloat(hoursPerRow) * costRate;
@@ -584,12 +590,32 @@ var projectResourceTable = (function ($) {
         var modeling_table_adj_contrib = $("#modeling-table tbody #contribution-margin_adjusted-resource");
         var modeling_table_adj_avg_rate = $("#modeling-table tbody #avg-rate_adjusted-resource");
 
-        $('tfoot th.total-fees').text(convertToDollar(tableFeeSum));
-        $('tfoot th.total-hours').text(tableHoursSum.toFixed(2));
+        if(tableFeeSum) {
+          $('tfoot th.total-fees').text(convertToDollar(tableFeeSum));
+        } else {
+          $('tfoot th.total-fees').text('');
+        }
+        if(tableHoursSum) {
+          $('tfoot th.total-hours').text(tableHoursSum.toFixed(2));
+        } else {
+          $('tfoot th.total-hours').text('');
+        }
 
-        modeling_table_strd_fee.text(convertToDollar(standardFeeSum));
-        modeling_table_strd_contrib.text(convertToPercent(standardContribMargin));
-        modeling_table_strd_avg_rate.text(convertToDollar(standardAvgRate));
+        if(standardFeeSum) {
+          modeling_table_strd_fee.text(convertToDollar(standardFeeSum));
+        } else {
+          modeling_table_strd_fee.text('');
+        }
+        if(standardContribMargin) {
+          modeling_table_strd_contrib.text(convertToPercent(standardContribMargin));
+        } else {
+          modeling_table_strd_contrib.text('');
+        }
+        if(standardAvgRate) {
+          modeling_table_strd_avg_rate.text(convertToDollar(standardAvgRate));
+        } else {
+          modeling_table_strd_avg_rate.text('');
+        }
 
         //To activate adjusted resource Tab.
         var active_modeling_tabs = $('#modeling-table tr td');
@@ -616,7 +642,8 @@ var projectResourceTable = (function ($) {
         }
 
         var targetContributionMargin = parseFloat($('#target-contribution-margin').text());
-        if (targetContributionMargin) {
+
+        if (totalCostSum) {
           var targetMarginBasedFee = totalCostSum / (1 - (targetContributionMargin / 100));
           $("#modeling-table #total-fee_target-resource").text(convertToDollar(targetMarginBasedFee));
           var targetMarginAvgRate = targetMarginBasedFee / tableHoursSum;
@@ -628,8 +655,8 @@ var projectResourceTable = (function ($) {
         }
 
         var fixedFeeTarget = parseFloat($('#fixed-fee-target').text());
-
-        if (!isNaN(fixedFeeTarget)) {
+        console.log("down: "+ tableFeeSum);
+        if (totalCostSum) {
           var contributionMarginFixedFee = ((fixedFeeTarget - totalCostSum) / fixedFeeTarget);
           $('#contribution-margin_fixed-fee').text(convertToPercent(contributionMarginFixedFee));
           var avgRateFixedFee = fixedFeeTarget / tableHoursSum;
@@ -640,6 +667,7 @@ var projectResourceTable = (function ($) {
           $('#avg-rate_fixed-resource').text('');
         }
       }
+
     });
     $('.project-resources #btn-save').on('click', function (event) {
       event.preventDefault();
@@ -662,7 +690,6 @@ var projectResourceTable = (function ($) {
         url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
         data: payloads,
         complete: function (xhr, status, data) {
-          console.log(data);
           var timeout = getParameterByName('timeout');
           console.log("navigating to new window in" + timeout + "seconds");
           timeout = timeout ? timeout : 1;

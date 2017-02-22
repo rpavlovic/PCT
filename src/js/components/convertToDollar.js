@@ -6,5 +6,7 @@
 var RegExDollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
 
 function convertToDollar(amount){
-  return "$" + amount.toFixed(2).replace(RegExDollar, "$1,");
+  if(amount) {
+    return "$" + amount.toFixed(2).replace(RegExDollar, "$1,");
+  }
 }
