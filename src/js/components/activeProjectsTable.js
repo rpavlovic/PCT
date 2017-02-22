@@ -28,17 +28,19 @@ var activeTableFunction = (function ($) {
       "stateSave": true,
       "columnDefs": [ {
         "orderable": false,
-        "targets": [5, 6],
+        "targets": [5, 6]
         }],
       "aoColumns": [
       {
         "sTitle": 'Project Name',
         "data":"Projname",
         "render": function ( data, type, set, meta ) {
-          var output = '<a href="projectGeneral.htm?projID='+set.Projid+'&projName='+data+'" title="ProjectName">';
-              output += data;
-              output += '</a>';
-          return output;
+          if(data) {
+            var output = '<a href="projectGeneral.htm?projID=' + set.Projid + '&projName=' + data + '" title="ProjectName">';
+            output += data;
+            output += '</a>';
+            return output;
+          }
         }
       },
       {
@@ -66,7 +68,7 @@ var activeTableFunction = (function ($) {
       {
         "title": 'Duration',
         "data": "Duration",
-        "defaultContent": '',
+        "defaultContent": ''
       },
       {
         "title": 'Budget',
@@ -79,7 +81,9 @@ var activeTableFunction = (function ($) {
         "data": "Projid",
         "defaultContent": '',
         "render": function ( data, type, set, meta ) {
-         return '<a href="projectGeneral.htm?projID='+data+'&projName='+set.Projname+'" class=""><i class="fa fa-files-o"></i></a>';
+          if(data) {
+            return '<a href="projectGeneral.htm?projID=' + data + '&projName=' + set.Projname + '" class=""><i class="fa fa-files-o"></i></a>';
+          }
         }
       },
       {
