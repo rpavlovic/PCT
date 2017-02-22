@@ -90,7 +90,7 @@ var activeTableFunction = (function ($) {
         "title" : '<i class="fa fa-trash"></i>',
         "sClass": "center blue-bg",
         "data": null,
-        "defaultContent":'<a href="" class="remove"><i class="fa fa-trash"></i></a>',
+        "defaultContent":'<a href="" class="remove"><i class="fa fa-trash"></i></a>'
       }
       ],
       "bFilter": true,

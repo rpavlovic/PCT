@@ -39,6 +39,7 @@ var rateCardSelect = (function ($) {
           }
          });
       });
+      select_cards.append('<option value="">Select Custom Rate Card</option>');
       select_cards.append($.unique(cart_title_items));
     }
 

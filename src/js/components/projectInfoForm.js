@@ -216,11 +216,7 @@ var projectInfoForm = (function ($) {
       "StartDate": "\/Date(" + startDate + ")\/",
       "EstEndDate": "\/Date(" + EstEndDate + ")\/",
       "Comments": comments.val(),
-      "Preparedby": prepared_by.val(),
-      "Createdby": prepared_by.val(),
-      "Createdon": createdOn,
-      "Changedby": prepared_by.val(),
-      "Changedon": "\/Date(" + changedDate + ")\/"
+      "Preparedby": prepared_by.val()
     };
 
     var payloads = [];
