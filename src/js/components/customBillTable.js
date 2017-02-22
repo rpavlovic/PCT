@@ -219,6 +219,46 @@ var loadCustomBillSheet = (function ($) {
       });
     });
     uploadTable();
+
+    $('.project-resources #btn-save').on('click', function (event) {
+      event.preventDefault();
+      console.log("saving form");
+
+      // var url = $('#btn-save').attr('href');
+      // url = updateQueryString('projID', projectID, url);
+      // url = updateQueryString('Office', office, url);
+      // url = updateQueryString('Duration', duration, url);
+      // url = updateQueryString('PlanBy', planBy, url);
+      //
+      // $('#btn-save').attr('href', url);
+      //
+      // var modelingTablePayloads = buildModelingTablePayload();
+      // var resourcePayloads = buildResourcePayload();
+      // var resourceHours = buildResourceHoursPayload();
+      //
+      // var payloads = modelingTablePayloads.concat(resourcePayloads).concat(resourceHours);
+      // $.ajaxBatch({
+      //   url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
+      //   data: payloads,
+      //   complete: function (xhr, status, data) {
+      //     console.log(data);
+      //     var timeout = getParameterByName('timeout');
+      //     console.log("navigating to new window in" + timeout + "seconds");
+      //     timeout = timeout ? timeout : 1;
+      //     setTimeout(function () {
+      //       window.location.href = $('#btn-save').attr('href');
+      //     }, timeout);
+      //   },
+      //   always: function (xhr, status, data) {
+      //     var timeout = getParameterByName('timeout');
+      //     console.log("navigating to new window in" + timeout + "seconds");
+      //     timeout = timeout ? timeout : 1;
+      //     setTimeout(function () {
+      //       window.location.href = $('#btn-save').attr('href');
+      //     }, timeout);
+      //   }
+      // });
+    });
   }
 
   return {
