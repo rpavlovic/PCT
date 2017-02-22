@@ -57,17 +57,14 @@ var projectInfoForm = (function ($) {
   function prepopulateDeliverables(results) {
     results.forEach(function (deliverable) {
       if (projectId === deliverable.Projid) {
-        if (!$('input[name="deliverable"]').val()) {
-          // if the first one is empty, we just fill it in.
-          $('input[name="deliverable"]').val(deliverable.DelvDesc);
-        }
-        else {
-          // as we go along, if the last one has a value, we add a row and then fill in the value
-          if ($('input[name="deliverable"]')[$('input[name="deliverable"]').length - 1].value) {
-            $('button.add-row').click();
-            $('input[name="deliverable"]')[$('input[name="deliverable"]').length - 1].value = deliverable.DelvDesc;
-          }
-        }
+        var test = $('input[name="deliverable"]').length - 1;
+        $('input[name="deliverable"]:eq('+(test)+')').val(deliverable.DelvDesc);
+        $('button.add-row').click();
+      }
+    });
+    $('input[name="deliverable"]').each(function() {
+      if($('.row.deliverables input[name="deliverable"]').last().val() === '' && $('input[name="deliverable"]').length > 1) {
+        $('.row.deliverables input[name="deliverable"]').last().parents().eq(2).detach();
       }
     });
   }
