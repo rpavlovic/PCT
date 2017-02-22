@@ -39,7 +39,8 @@ var feeds = {
    *  @param {String} plant type: Weekly ("WK"), Monthly ("MN"), Summary ("SM")
    *  @param {String} column/cell count
    */
-  'plannedHours': [ 'data/PlannedHours.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet?$filter=Projid eq \'{param1}\' and Rowno eq \'{param2}\' and Plantyp eq \'{param3}\' and Cellid eq \'{param4}\'&$format=json' ],
+  //'plannedHours': [ 'data/PlannedHours.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet?$filter=Projid eq \'{param1}\' and Rowno eq \'{param2}\' and Plantyp eq \'{param3}\' and Cellid eq \'{param4}\'&$format=json' ],
+  'plannedHours': [ 'data/PlannedHours.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet?$filter=Projid eq \'{param1}\' &$format=json' ],
 
   // Project Expenses by Project ID, e.g.:  get_data_feed('projectExpenses', '1000100')
   'projectExpenses': [ 'data/ProjectExpensesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection?$filter=Projid eq \'{param1}\'&$format=json' ],
