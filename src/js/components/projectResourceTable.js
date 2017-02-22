@@ -13,19 +13,31 @@ var projectResourceTable = (function ($) {
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, projectID), function (deliverables) {
         resolve(deliverables.d.results);
+      }).fail(function () {
+        // not found, but lets fix this and return empty set
+        console.log('no project deliverables found.... returning empty set');
+        resolve([]);
       });
     });
 
     var p2 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.offices), function (offices) {
         resolve(offices.d.results);
-      });
+      }).fail(function () {
+        // not found, but lets fix this and return empty set
+        console.log('no offices found.... returning empty set');
+        resolve([]);
+      });;
     });
 
     var p3 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.rateCards, projectID), function (rateCards) {
         resolve(rateCards.d.results);
-      });
+      }).fail(function () {
+        // not found, but lets fix this and return empty set
+        console.log('no rate cards found.... returning empty set');
+        resolve([]);
+      });;
     });
 
     var p4 = new Promise(function (resolve, reject) {
