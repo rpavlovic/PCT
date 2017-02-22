@@ -1,65 +1,125 @@
 {
-  "d" : {
-    "results" : [
+  "d": {
+    "results": [
       {
-        "__metadata" : {
-          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
-          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
-          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
         },
-        "EmpNumber" : "10000071",
-        "Class" : "",
-        "BillsheetId" : "2",
-        "BillsheetName" : "",
-        "TitleId" : "ABCD",
-        "TitleDesc" : "ABCDEFG",
-        "StandardRate" : "100.000",
-        "OverrideRate" : "100.000",
-        "DiscountPer" : "3.560",
-        "CreatedBy" : "VKANDURI",
-        "CreatedOn" : "\/Date(1482796800000)\/",
-        "ChangedOn" : "\/Date(1482796800000)\/",
-        "ChangedBy" : "VKANDURI"
+        "EmpNumber": "10000071",
+        "Class": "",
+        "BillsheetId": "2",
+        "BillsheetName": "Custom Bill Sheet",
+        "TitleId": "ABCD",
+        "TitleDesc": "ABCDEFG",
+        "StandardRate": "100.000",
+        "OverrideRate": "100.000",
+        "DiscountPer": "3.560",
+        "CreatedBy": "VKANDURI",
+        "CreatedOn": "\/Date(1482796800000)\/",
+        "ChangedOn": "\/Date(1482796800000)\/",
+        "ChangedBy": "VKANDURI"
       },
-       {
-        "__metadata" : {
-          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
-          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
-          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
         },
-        "EmpNumber" : "10000071",
-        "Class" : "E1",
-        "BillsheetId" : "2",
-        "BillsheetName" : "",
-        "TitleId" : "ABCD",
-        "TitleDesc" : "Vice President",
-        "StandardRate" : "100.000",
-        "OverrideRate" : "100.000",
-        "DiscountPer" : "3.560",
-        "CreatedBy" : "VKANDURI",
-        "CreatedOn" : "\/Date(1482796800000)\/",
-        "ChangedOn" : "\/Date(1482796800000)\/",
-        "ChangedBy" : "VKANDURI"
+        "EmpNumber": "10000071",
+        "Class": "E1",
+        "BillsheetId": "2",
+        "BillsheetName": "Custom Bill Sheet",
+        "TitleId": "EFGH",
+        "TitleDesc": "Vice President",
+        "StandardRate": "100.000",
+        "OverrideRate": "100.000",
+        "DiscountPer": "3.560",
+        "CreatedBy": "VKANDURI",
+        "CreatedOn": "\/Date(1482796800000)\/",
+        "ChangedOn": "\/Date(1482796800000)\/",
+        "ChangedBy": "VKANDURI"
       },
-       {
-        "__metadata" : {
-          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
-          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
-          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
         },
-        "EmpNumber" : "10000071",
-        "Class" : "E1",
-        "BillsheetId" : "2",
-        "BillsheetName" : "",
-        "TitleId" : "ABCD",
-        "TitleDesc" : "Senior Designer",
-        "StandardRate" : "200.000",
-        "OverrideRate" : "230.000",
-        "DiscountPer" : "3.560",
-        "CreatedBy" : "VKANDURI",
-        "CreatedOn" : "\/Date(1482796800000)\/",
-        "ChangedOn" : "\/Date(1482796800000)\/",
-        "ChangedBy" : "VKANDURI"
+        "EmpNumber": "10000071",
+        "Class": "E1",
+        "BillsheetId": "2",
+        "BillsheetName": "Custom Bill Sheet",
+        "TitleId": "IJKL",
+        "TitleDesc": "Senior Designer",
+        "StandardRate": "200.000",
+        "OverrideRate": "230.000",
+        "DiscountPer": "3.560",
+        "CreatedBy": "VKANDURI",
+        "CreatedOn": "\/Date(1482796800000)\/",
+        "ChangedOn": "\/Date(1482796800000)\/",
+        "ChangedBy": "VKANDURI"
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
+        },
+        "EmpNumber": "10000071",
+        "Class": "",
+        "BillsheetId": "3",
+        "BillsheetName": "Custom Bill Sheet #2",
+        "TitleId": "ABCD",
+        "TitleDesc": "ABCDEFG",
+        "StandardRate": "100.000",
+        "OverrideRate": "100.000",
+        "DiscountPer": "3.560",
+        "CreatedBy": "VKANDURI",
+        "CreatedOn": "\/Date(1482796800000)\/",
+        "ChangedOn": "\/Date(1482796800000)\/",
+        "ChangedBy": "VKANDURI"
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
+        },
+        "EmpNumber": "10000071",
+        "Class": "E1",
+        "BillsheetId": "3",
+        "BillsheetName": "Custom Bill Sheet #2",
+        "TitleId": "ABCD",
+        "TitleDesc": "Vice President",
+        "StandardRate": "100.000",
+        "OverrideRate": "100.000",
+        "DiscountPer": "3.560",
+        "CreatedBy": "VKANDURI",
+        "CreatedOn": "\/Date(1482796800000)\/",
+        "ChangedOn": "\/Date(1482796800000)\/",
+        "ChangedBy": "VKANDURI"
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection('00010500')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
+        },
+        "EmpNumber": "10000071",
+        "Class": "E1",
+        "BillsheetId": "3",
+        "BillsheetName": "Custom Bill Sheet #2",
+        "TitleId": "ABCD",
+        "TitleDesc": "Senior Designer",
+        "StandardRate": "200.000",
+        "OverrideRate": "230.000",
+        "DiscountPer": "3.560",
+        "CreatedBy": "VKANDURI",
+        "CreatedOn": "\/Date(1482796800000)\/",
+        "ChangedOn": "\/Date(1482796800000)\/",
+        "ChangedBy": "VKANDURI"
       }
     ]
   }
