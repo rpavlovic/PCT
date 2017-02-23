@@ -60,20 +60,6 @@ var projectResourceTable = (function ($) {
       });
     });
 
-    var p3 = Promise.resolve(p2)
-      .then(function (offices) {
-        var promiseArray = [];
-        offices.forEach(function (val) {
-          //getRateCard(val.Office);
-          promiseArray.push(loadRateCardFromServer(val.Office));
-        });
-        return Promise.all(promiseArray)
-          .then(function (results) {
-            console.log("rateCards all loaded");
-            return offices;
-          });
-      });
-
     var p4 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
         resolve(resource.d.results);
@@ -83,6 +69,24 @@ var projectResourceTable = (function ($) {
         resolve([]);
       });
     });
+
+    var p3 = Promise.resolve(p4)
+      .then(function (resources) {
+        console.log(resources);
+        var promiseArray = [];
+        var officeIds = {};
+        resources.forEach(function (val) {
+          if(!officeIds[val.Officeid]) {
+            officeIds[val.Officeid] = true;
+            promiseArray.push(loadRateCardFromServer(val.Officeid));
+          }
+        });
+        return Promise.all(promiseArray)
+          .then(function (results) {
+            console.log("rateCard with associated offices are loaded");
+            return resources;
+          });
+      });
 
     //fees for modeling table targets
     var t1 = new Promise(function (resolve, reject) {
@@ -119,6 +123,12 @@ var projectResourceTable = (function ($) {
       //deliverables
       var deliverables = values[0];
       var offices = values[1];
+
+      // preload the rest of the bill rate cards
+      offices.forEach(function (val) {
+        if(!RateCards[val.Office])
+          loadRateCardFromServer(val.Office);
+      });
 
       // go ahead and prefetch the rest of the office rate cards for performance
       //var rateCards = values[2];
