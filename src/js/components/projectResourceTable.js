@@ -12,6 +12,9 @@ var projectResourceTable = (function ($) {
   var RateCards = [];
 
   function getRateCard(OfficeId) {
+    if (!OfficeId) {
+      return [];
+    }
     if (RateCards[OfficeId]) {
       return RateCards[OfficeId];
     } else {
@@ -102,7 +105,7 @@ var projectResourceTable = (function ($) {
       var offices = values[1];
 
       // go ahead and prefetch the rest of the office rate cards for performance
-      offices.forEach(function(val){
+      offices.forEach(function (val) {
         getRateCard(val.Office);
       });
 
@@ -491,9 +494,9 @@ var projectResourceTable = (function ($) {
 
       function getEmployeeTitles(resource) {
         // remove duplicates
+        var select = "<select class='title' name='EmpGradeName'>";
+        select += '<option data-class="">Select Title</option>';
         if (resource) {
-          var select = "<select class='title' name='EmpGradeName'>";
-          select += '<option data-class="">Select Title</option>';
           var empGrades = [];
           var rateCards = getRateCard(resource.Officeid);
           console.log(typeof rateCards);
@@ -511,10 +514,9 @@ var projectResourceTable = (function ($) {
             var selectString = resource && resource.EmpGradeName === val.EmpGradeName ? 'selected="selected"' : '';
             select += '<option value="' + val.EmpGrade + '" data-class="' + val.Class + '" data-currency="' + val.LocalCurrency + '" ' + selectString + '>' + val.EmpGradeName + '</option>';
           });
-
-          select += "</select>";
-          return select;
         }
+        select += "</select>";
+        return select;
       }
 
       function getEmployeeClass(employee) {
@@ -644,28 +646,28 @@ var projectResourceTable = (function ($) {
         var modeling_table_adj_contrib = $("#modeling-table tbody #contribution-margin_adjusted-resource");
         var modeling_table_adj_avg_rate = $("#modeling-table tbody #avg-rate_adjusted-resource");
 
-        if(tableFeeSum) {
+        if (tableFeeSum) {
           $('tfoot th.total-fees').text(convertToDollar(tableFeeSum));
         } else {
           $('tfoot th.total-fees').text('');
         }
-        if(tableHoursSum) {
+        if (tableHoursSum) {
           $('tfoot th.total-hours').text(tableHoursSum.toFixed(2));
         } else {
           $('tfoot th.total-hours').text('');
         }
 
-        if(standardFeeSum) {
+        if (standardFeeSum) {
           modeling_table_strd_fee.text(convertToDollar(standardFeeSum));
         } else {
           modeling_table_strd_fee.text('');
         }
-        if(standardContribMargin) {
+        if (standardContribMargin) {
           modeling_table_strd_contrib.text(convertToPercent(standardContribMargin));
         } else {
           modeling_table_strd_contrib.text('');
         }
-        if(standardAvgRate) {
+        if (standardAvgRate) {
           modeling_table_strd_avg_rate.text(convertToDollar(standardAvgRate));
         } else {
           modeling_table_strd_avg_rate.text('');
