@@ -9,18 +9,28 @@ var loadCustomBillSheet = (function ($) {
     var csv_table = $("#csv-table");
     // get user profile
     var pProfile = new Promise(function(resolve, reject){
-
-
+      $.getJSON(get_data_feed(feeds.employee), function (employees) {
+        resolve(employees.d.results[0].Office);
+      }).fail(function(){
+        console.log("unable to find user profile.");
+        reject("error. cant load profile");
+      });
+    }).then(function(Office){
+      return new Promise(function(resolve, reject){
+        $.getJSON(get_data_feed(feeds.rateCards, Office), function (rcs) {
+          resolve(rcs.d.results);
+        }).fail(function(){
+          console.log("unable to find user rcs.");
+          reject("error. cant load profile");
+        });
+      })
+    }).then(function(res){
+      console.log(res);
     });
 
     // get user home office bill rate card
 
     // go to town...
-
-
-
-
-
 
     var rcs = new Promise(function (resolve, reject) {
       if(getParameterByName('CardId')) {
