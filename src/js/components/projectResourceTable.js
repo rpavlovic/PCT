@@ -9,6 +9,29 @@ var projectResourceTable = (function ($) {
   var planBy = getParameterByName('PlanBy');
   var office = getParameterByName('Office');
 
+  var RateCards = [];
+
+  function getRateCard(OfficeId) {
+    if (RateCards[OfficeId]) {
+      return RateCards[OfficeId];
+    } else {
+      return new Promise(function (resolve, reject) {
+        console.log('RateCard Not found. checking service for OfficeId' + OfficeId);
+        $.getJSON(get_data_feed(feeds.rateCards, OfficeId), function (rateCards) {
+          RateCards[OfficeId] = rateCards.d.results.filter(function (val) {
+            // add in any filtering params if we need them in the future
+            return val.CostRate > 0 && val.EmpGradeName;
+          });
+          resolve(RateCards[OfficeId]);
+        }).fail(function () {
+          // not found, but lets fix this and return empty set
+          console.log('no rate cards found.... returning empty set');
+          resolve([]);
+        });
+      });
+    }
+  }
+
   function initProjectResourceTable() {
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, projectID), function (deliverables) {
@@ -30,15 +53,7 @@ var projectResourceTable = (function ($) {
       });
     });
 
-    var p3 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.rateCards, getParameterByName('Office')), function (rateCards) {
-        resolve(rateCards.d.results);
-      }).fail(function () {
-        // not found, but lets fix this and return empty set
-        console.log('no rate cards found.... returning empty set');
-        resolve([]);
-      });
-    });
+    var p3 = getRateCard(getParameterByName('Office'));
 
     var p4 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
@@ -72,7 +87,7 @@ var projectResourceTable = (function ($) {
     });
 
     var rcs = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.billSheet, getParameterByName('EmpNumber')), function (plan) {
+      $.getJSON(get_data_feed(feeds.billSheet), function (plan) {
         resolve(plan.d.results);
       }).fail(function () {
         // not found, but lets fix this and return empty set
@@ -86,11 +101,7 @@ var projectResourceTable = (function ($) {
       var deliverables = values[0];
       var offices = values[1];
 
-      var rateCards = values[2].filter(function (val) {
-        // add in any filtering params if we need them in the future
-        return val.CostRate > 0 && val.EmpGradeName;
-      });
-
+      //var rateCards = values[2];
       var projectResources = values[3];
       var marginModeling = values[4];
       var plannedHours = values[5];
@@ -103,6 +114,8 @@ var projectResourceTable = (function ($) {
         }
         billsheets[customBillSheet.BillsheetId].push(customBillSheet);
       });
+
+      console.log(customRateCards);
 
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
         return obj.ModelType === 'TMBF';
@@ -434,10 +447,11 @@ var projectResourceTable = (function ($) {
         var Office = nodes.closest('tr').find('.office :selected').val();
         var EmpGradeName = nodes.closest('tr').find('.title :selected').text();
         var CostCenter = nodes.closest('tr').find('.practice :selected').val();
+
+        var rateCards = getRateCard(Office);
         var rates = rateCards.filter(function (val) {
           if (val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter)
             console.log(val);
-
           return val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter;
         });
 
@@ -473,12 +487,13 @@ var projectResourceTable = (function ($) {
       }
 
       function getEmployeeTitles(resource) {
-        var select = "<select class='title' name='EmpGradeName'>";
-        select += '<option data-class="">Select Title</option>';
-
         // remove duplicates
         if (resource) {
+          var select = "<select class='title' name='EmpGradeName'>";
+          select += '<option data-class="">Select Title</option>';
           var empGrades = [];
+          var rateCards = getRateCard(resource.Officeid);
+          console.log(typeof rateCards);
           rateCards.filter(function (val) {
             return val.Office === resource.Officeid;
           }).forEach(function (val) {
@@ -493,12 +508,14 @@ var projectResourceTable = (function ($) {
             var selectString = resource && resource.EmpGradeName === val.EmpGradeName ? 'selected="selected"' : '';
             select += '<option value="' + val.EmpGrade + '" data-class="' + val.Class + '" data-currency="' + val.LocalCurrency + '" ' + selectString + '>' + val.EmpGradeName + '</option>';
           });
+
+          select += "</select>";
+          return select;
         }
-        select += "</select>";
-        return select;
       }
 
       function getEmployeeClass(employee) {
+        var rateCards = getRateCard(employee.Officeid);
         var rcElement = rateCards.find(function (val) {
           return val.Office === employee.Officeid && employee.EmpGradeName === val.EmpGradeName;
         });
@@ -510,9 +527,9 @@ var projectResourceTable = (function ($) {
 
       // you should filter practices based on employee title/EmpGrade
       function getPractices(employee) {
+        var rateCards = getRateCard(employee.Officeid);
         var select = "<select class='practice' name='CostCenterName'>";
         select += "<option>Select Practice</option>";
-
         var practices = [];
         rateCards.filter(function (val) {
           return val.Office === employee.Officeid && val.CostCenterName && employee.EmpGradeName === val.EmpGradeName;
@@ -550,6 +567,7 @@ var projectResourceTable = (function ($) {
           return '';
         }
 
+        var rateCards = getRateCard(resource.Officeid);
         var filteredRates = rateCards.filter(function (val) {
           //Practiceid which is also CostCenter
           return val.Office === resource.Officeid && val.EmpGradeName === resource.EmpGradeName && val.CostCenter === resource.Practiceid;
