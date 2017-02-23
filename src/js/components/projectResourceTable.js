@@ -282,8 +282,7 @@ var projectResourceTable = (function ($) {
           "class": 'td-costrate',
           "visible": false,
           "render": function (data, type, row, meta) {
-            var costRate = getCostRate(data);
-            return costRate;
+            return getCostRate(data);
           }
         },
         {
@@ -901,6 +900,7 @@ var projectResourceTable = (function ($) {
     //console.log(rows.context[0].aoData);
     for (var i = 0; i < rows.context[0].aoData.length; i++) {
       var payloadIndex = padNumber(rowIndex);
+      var brOverRide = convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text()) ? convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text()).toString() : null;
       payloads.push({
         type: 'POST',
         url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection',
@@ -920,7 +920,7 @@ var projectResourceTable = (function ($) {
           "Role": $(rows.context[0].aoData[i].anCells[7]).text(),
           "ProposedRes": $(rows.context[0].aoData[i].anCells[8]).text(),
           "BillRate": convertToDecimal($(rows.context[0].aoData[i].anCells[9]).text()),
-          "BillRateOvride": convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text()).toString(),
+          "BillRateOvride": brOverRide,
           "TotalHrs": parseFloat(convertToDecimal($(rows.context[0].aoData[i].anCells[12]).text())),
           "TotalFee": convertToDecimal($(rows.context[0].aoData[i].anCells[13]).text()),
           "Plantyp": planBy
@@ -944,6 +944,7 @@ var projectResourceTable = (function ($) {
       var payloadRowIndex = padNumber(rowIndex);
       for (var j = 14; j < rows.context[0].aoData[i].anCells.length; j++) {
         var value = $(rows.context[0].aoData[i].anCells[j]).text();
+        value = value ? value : "0.0";
         //console.log("R" + rowIndex + "C" + columnIndex++ + ": " + value);
         var cellId = "R" + rowIndex + "C" + columnIndex;
         payloads.push({
