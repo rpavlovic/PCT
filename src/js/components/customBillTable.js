@@ -7,14 +7,41 @@ var loadCustomBillSheet = (function ($) {
 
   function initLoadCustomBillSheet() {
     var csv_table = $("#csv-table");
+    // get user profile
+    var pProfile = new Promise(function(resolve, reject){
+
+
+    });
+
+    // get user home office bill rate card
+
+    // go to town...
+
+
+
+
+
+
     var rcs = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.billSheet), function (plan) {
-        resolve(plan.d.results);
-      }).fail(function () {
-        // not found, but lets fix this and return empty set
-        console.log('no custom bill sheet found.... returning empty set');
-        resolve([]);
-      });
+      if(getParameterByName('CardId')) {
+        // we have a card we are trying to Edit
+        $.getJSON(get_data_feed(feeds.billSheet, getParameterByName('CardId')), function (plan) {
+          resolve(plan.d.results);
+        }).fail(function () {
+          // not found, but lets fix this and return empty set
+          console.log('no custom bill sheet found.... returning empty set');
+          resolve([]);
+        });
+      }
+      else{
+        $.getJSON(get_data_feed(feeds.billSheet, getParameterByName('CardId')), function (plan) {
+          resolve(plan.d.results);
+        }).fail(function () {
+          // not found, but lets fix this and return empty set
+          console.log('no custom bill sheet found.... returning empty set');
+          resolve([]);
+        });
+      }
     });
 
     Promise.all([rcs]).then(function (values) {
@@ -254,7 +281,7 @@ var loadCustomBillSheet = (function ($) {
         var bsId = getParameterByName('CardID');
         payloads.push({
           type: 'POST',
-          url: '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet',
+          url: '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection',
           data: {
             "__metadata": {
               "id": "https://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId +"',RowId='" + rowId + "')",
