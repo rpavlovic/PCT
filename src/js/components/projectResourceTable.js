@@ -123,6 +123,7 @@ var projectResourceTable = (function ($) {
       var hrRows = {};
       var maxDuration = 0;
       plannedHours.forEach(function (cell) {
+        cell.Rowno = parseInt(cell.Rowno);
         if (!hrRows[cell.Rowno]) {
           hrRows[cell.Rowno] = {};
         }
@@ -830,6 +831,7 @@ var projectResourceTable = (function ($) {
           "DelvDesc": $(rows.context[0].aoData[i].anCells[2]).find('option:selected').text(),
           "Officeid": $(rows.context[0].aoData[i].anCells[3]).find('option:selected').val(),
           "EmpGradeName": $(rows.context[0].aoData[i].anCells[4]).find('option:selected').val(),
+          "Class": $(rows.context[0].aoData[i].anCells[5]).text(),
           "Practiceid": $(rows.context[0].aoData[i].anCells[6]).find('option:selected').val(),
           "Role": $(rows.context[0].aoData[i].anCells[7]).text(),
           "ProposedRes": $(rows.context[0].aoData[i].anCells[8]).text(),
