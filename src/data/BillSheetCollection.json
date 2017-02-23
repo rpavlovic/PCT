@@ -3,67 +3,123 @@
     "results": [
       {
         "__metadata": {
-          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='2',RowId='001')",
-          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='2',RowId='001')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='2',RowId='00002')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='2',RowId='00002')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
         },
         "Class": "M1",
         "BillsheetId": "2",
         "BillsheetName": "Custom Bill Sheet",
-        "TitleId": "ABCD",
-        "TitleDesc": "ABCDEFG",
+        "RowId": "00002",
+        "TitleId": "some title",
+        "TitleDesc": "sfsafdsf",
         "StandardRate": "100.000",
         "OverrideRate": "100.000",
         "DiscountPer": "3.560",
-        "RowId": "001"
+        "CreatedBy": "ADULFAN",
+        "CreatedOn": "/Date(1487721600000)/",
+        "ChangedOn": null,
+        "ChangedBy": ""
       },
       {
         "__metadata": {
-          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='2',RowId='002')",
-          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='2',RowId='002')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='2',RowId='00003')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='2',RowId='00003')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
         },
         "Class": "M1",
         "BillsheetId": "2",
         "BillsheetName": "Custom Bill Sheet",
-        "TitleId": "ABCD",
-        "TitleDesc": "ABCDEFG",
+        "RowId": "00003",
+        "TitleId": "onegsdggfs",
+        "TitleDesc": "sfsafdsf",
         "StandardRate": "100.000",
         "OverrideRate": "100.000",
         "DiscountPer": "3.560",
-        "RowId": "002"
+        "CreatedBy": "ADULFAN",
+        "CreatedOn": "/Date(1487721600000)/",
+        "ChangedOn": null,
+        "ChangedBy": ""
       },
       {
         "__metadata": {
-          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='3',RowId='001')",
-          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='3',RowId='001')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='2',RowId='00004')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='2',RowId='00004')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
+        },
+        "Class": "M1",
+        "BillsheetId": "2",
+        "BillsheetName": "Custom Bill Sheet",
+        "RowId": "00004",
+        "TitleId": "12345",
+        "TitleDesc": "sfsafdsf",
+        "StandardRate": "100.000",
+        "OverrideRate": "100.000",
+        "DiscountPer": "3.560",
+        "CreatedBy": "ADULFAN",
+        "CreatedOn": "/Date(1487721600000)/",
+        "ChangedOn": null,
+        "ChangedBy": ""
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='2',RowId='00005')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='2',RowId='00005')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
+        },
+        "Class": "M1",
+        "BillsheetId": "2",
+        "BillsheetName": "Custom Bill Sheet",
+        "RowId": "00005",
+        "TitleId": "12345",
+        "TitleDesc": "sfsafdsf",
+        "StandardRate": "100.000",
+        "OverrideRate": "100.000",
+        "DiscountPer": "3.560",
+        "CreatedBy": "ADULFAN",
+        "CreatedOn": "/Date(1487721600000)/",
+        "ChangedOn": null,
+        "ChangedBy": ""
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='2',RowId='00006')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='2',RowId='00006')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
+        },
+        "Class": "M1",
+        "BillsheetId": "2",
+        "BillsheetName": "Custom Bill Sheet",
+        "RowId": "00006",
+        "TitleId": "12345",
+        "TitleDesc": "sfsafdsf",
+        "StandardRate": "100.000",
+        "OverrideRate": "100.000",
+        "DiscountPer": "3.560",
+        "CreatedBy": "ADULFAN",
+        "CreatedOn": "/Date(1487721600000)/",
+        "ChangedOn": null,
+        "ChangedBy": ""
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='3',RowId='00001')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='3',RowId='00001')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
         },
         "Class": "M1",
         "BillsheetId": "3",
-        "BillsheetName": "Custom Bill Sheet #2",
-        "TitleId": "ABCD",
-        "TitleDesc": "ABCDEFG",
+        "BillsheetName": "Custom Bill Sheet2",
+        "RowId": "00001",
+        "TitleId": "12345",
+        "TitleDesc": "sfsafdsf",
         "StandardRate": "100.000",
         "OverrideRate": "100.000",
         "DiscountPer": "3.560",
-        "RowId": "001"
-      },
-      {
-        "__metadata": {
-          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='3',RowId='002')",
-          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='3',RowId='002')",
-          "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
-        },
-        "Class": "M1",
-        "BillsheetId": "3",
-        "BillsheetName": "Custom Bill Sheet #2",
-        "TitleId": "ABCD",
-        "TitleDesc": "ABCDEFG",
-        "StandardRate": "100.000",
-        "OverrideRate": "100.000",
-        "DiscountPer": "3.560",
-        "RowId": "002"
+        "CreatedBy": "ADULFAN",
+        "CreatedOn": "/Date(1487721600000)/",
+        "ChangedOn": null,
+        "ChangedBy": ""
       }
     ]
   }
