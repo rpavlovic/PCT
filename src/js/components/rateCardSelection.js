@@ -21,7 +21,7 @@ var rateCardSelect = (function ($) {
         $.each(values, function (key, val) {
             cart_title_items.push('<option value="' + val.BillsheetId + '">' + val.BillsheetName + '</option>');
         });
-        select_cards.append('<option value="0">Office Rate Card</option>');
+        select_cards.append('<option value="0">Office Standard Rate</option>');
         select_cards.append($.unique(cart_title_items));
         //hide on load if the Default is loaded
         if( select_cards[0].selectedIndex === 0) {
