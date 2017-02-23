@@ -393,6 +393,12 @@ var projectResourceTable = (function ($) {
           });
           $('.contenteditable').on('keyup focusout', function (e) {
             recalculateStuff();
+            //lighten the rate when in override mode.
+            if($(this).children('div').text()) {
+              $(this).prev().css('color', 'lightgrey');
+            } else {
+              $(this).prev().css('color', '#5b5b5b');
+            }
           });
         },
         "initComplete": function (settings, json, row) {
