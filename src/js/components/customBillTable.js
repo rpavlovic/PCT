@@ -263,7 +263,7 @@ var loadCustomBillSheet = (function ($) {
             },
             "Class": $(cells[1]).text(),
             "BillsheetId": getParameterByName('CardID'),
-            "BillsheetName": $('#bill-sheet-name').text(),
+            "BillsheetName": $('#bill-sheet-name').val(),
             "RowId": rowId,
             "TitleId": "2334455",
             "TitleDesc": $(cells[0]).text(),
