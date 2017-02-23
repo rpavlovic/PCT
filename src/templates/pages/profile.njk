@@ -5,12 +5,7 @@
 {% import "macros/button-extended-macro.njk" as button %}
 <div class="clearfix page-header">
     <h1>{%set page_title = 'Profile'%} {{page_title}}</h1>
-    <section>
-      {{ button.default(label='Edit Profile', context='btn-blue edit-profile') }}
-      {{ button.submit(label='Submit', context='btn btn-blue submit-profile hide', attr="submit") }}
-    </section>
 </div>
-{# <div id="results"></div> #}
   <div class="row">
     <div class="col-2">
       <img class="profile-image" src="/images/profile_avatar.png" alt="profile name">
@@ -22,8 +17,7 @@
             <strong>Name</strong>
           </div>
           <div class="col-9-sm col-10">
-            <label for="name"></label>
-            <input type="text" data-name="editText" name="name" class="hide" placeholder="Name">
+            <span class="name"></span>
           </div>
         </div>
 
@@ -32,18 +26,7 @@
             <strong>Email Address</strong>
           </div>
           <div class="col-9-sm col-10">
-            <a href="mailto:" title="email"><label for="email"></label></a>
-            <input type="email" data-name="editText" name="email" class="hide" placeholder="Email Address">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-3-sm col-2">
-            <strong>Password</strong>
-          </div>
-          <div class="col-9-sm col-10">
-            <label for="password"></label>
-            <input type="password" data-name="editText" name="password" class="hide" placeholder="Password">
+            <a class="email"></a>
           </div>
         </div>
 
@@ -52,8 +35,7 @@
             <strong>Phone Number</strong>
           </div>
           <div class="col-9-sm col-10">
-            <a href="tel:" title="phone number"><label for="phone"></label></a>
-            <input type="tel" pattern= "\d{3}[\-]\d{3}[\-]\d{4}" data-name="editText" name="phone" class="hide" placeholder="Phone Number">
+            <a class="phone"></a>
           </div>
         </div>
 
@@ -62,8 +44,7 @@
             <strong>Cell Phone Number</strong>
           </div>
           <div class="col-9-sm col-10">
-            <a href="tel:" title="phone number"><label for="mobile"></label></a>
-            <input type="tel" pattern= "\d{3}[\-]\d{3}[\-]\d{4}" data-name="editText" name="mobile" class="hide" placeholder="Cell Phone number">
+            <a href="tel:" title="phone number"><span class="mobile"></span></a>
           </div>
         </div>
 
@@ -74,12 +55,9 @@
           <div class="col-9-sm col-10">
 
             <section>
-              <strong><label for="office_name"></label></strong>
-              <input type="text" data-name="editText" name="office_name" class="hide" placeholder="Name of Office">
-              <label for="street"></label>
-              <input type="text" data-name="editText" name="street" class="hide" placeholder="Building number and Street Name  ">
-              <label for="city"></label>
-              <input type="text" data-name="editText" name="city" class="hide" placeholder="City, State, Zip">
+              <p class="office_name"></p>
+              <p class="street"></p>
+              <p class="city"></p>
             </section>
 
           </div>

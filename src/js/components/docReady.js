@@ -34,7 +34,8 @@
     }
 
     if($('form.form-edit-profile').length > 0) {
-      fillForm.initFillForm('.form-edit-profile');
+      profileInfo.initProfileInfo(feeds);
+      //fillForm.initFillForm('.form-edit-profile');
     }
     /**
      * Landing page
@@ -63,9 +64,9 @@
      * Profile page
      */
 
-    if ('profile.htm' === current_page) {
-      editProfileForm.initEditProfileForm('form.form-edit-profile');
-    }
+    // if ('profile.htm' === current_page) {
+    //   editProfileForm.initEditProfileForm('form.form-edit-profile');
+    // }
 
     //upload CSV per the user
     if ('customBillSheet.htm' === current_page) {
