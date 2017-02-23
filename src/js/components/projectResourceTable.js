@@ -237,7 +237,7 @@ var projectResourceTable = (function ($) {
           "title": 'Bill Rate',
           "defaultContent": '',
           "data": "BillRate",
-          "class": "td-billrate can-clear",
+          "class": "td-billrate",
           "render": function (data, type, row, meta) {
             if (data)
               return convertToDollar(parseFloat(data));
@@ -252,11 +252,10 @@ var projectResourceTable = (function ($) {
           "title": "Cost Rate",
           "data": "CostRate",
           "class": 'td-costrate',
-          "defaultContent": '<div contenteditable />',
           "visible": false,
           "render": function (data, type, row, meta) {
             var costRate = getCostRate(data);
-            return '<div contenteditable>' + costRate + '</div>';
+            return costRate;
           }
         },
         {
