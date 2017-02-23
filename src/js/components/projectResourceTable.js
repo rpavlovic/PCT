@@ -19,7 +19,7 @@ var projectResourceTable = (function ($) {
       return RateCards[OfficeId];
     } else {
       return new Promise(function (resolve, reject) {
-        console.log('RateCard Not found. checking service for OfficeId' + OfficeId);
+        //console.log('RateCard Not found. checking service for OfficeId' + OfficeId);
         $.getJSON(get_data_feed(feeds.rateCards, OfficeId), function (rateCards) {
           RateCards[OfficeId] = rateCards.d.results.filter(function (val) {
             // add in any filtering params if we need them in the future
@@ -514,7 +514,6 @@ var projectResourceTable = (function ($) {
         if (resource) {
           var empGrades = [];
           var rateCards = getRateCard(resource.Officeid);
-          console.log(typeof rateCards);
           rateCards.filter(function (val) {
             return val.Office === resource.Officeid;
           }).forEach(function (val) {
