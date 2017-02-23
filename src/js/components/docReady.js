@@ -110,6 +110,7 @@
       window.history.back();
       return false;
     });
+
   });
 
 }( jQuery ));
