@@ -135,12 +135,6 @@ var projectResourceTable = (function ($) {
       // in case duration not provided
       duration = maxDuration > duration ? maxDuration : duration;
 
-      offices.push({
-        Office: "Select Office",
-        OfficeName: "Select Office Name",
-        City: "Select City"
-      });
-
       var myRows = [];
       var hoursSum = 0;
       var columns = [
@@ -178,14 +172,7 @@ var projectResourceTable = (function ($) {
           "defaultContent": '',
           "class": "td-office",
           "render": function (data, type, row, meta) {
-            var offices = data.offices;
-            var select = "<select class='office' name='Office'>";
-            $.each(offices, function (key, val) {
-              var selectString = data.selectedOffice === val.Office ? 'selected="selected"' : '';
-              select += '<option value="' + val.Office + '"' + selectString + '>' + val.OfficeName + ', ' + val.City + ' (' + val.Office + ')</option>';
-            });
-            select += "</select>";
-            return select;
+            return getOffices(data);
           }
         },
         {
@@ -251,9 +238,9 @@ var projectResourceTable = (function ($) {
         {
           "title": "Cost Rate",
           "data": "CostRate",
-          "class": 'cost-rate',
+          "class": 'td-costrate',
           "defaultContent": '<div contenteditable />',
-          "visible": false,
+          //"visible": false,
           "render": function (data, type, row, meta) {
             var costRate = getCostRate(data);
             return '<div contenteditable>' + costRate + '</div>';
@@ -289,7 +276,7 @@ var projectResourceTable = (function ($) {
           "Rowno": resource.Rowno,
           "EmpGradeName": resource,
           "Deliverables": resource.DelvDesc,
-          "Office": {offices: offices, selectedOffice: office},
+          "Office": resource.Officeid,
           "Role": resource.Role,
           "ProposedResource": resource.ProposedRes,
           "Class": resource,
@@ -343,30 +330,29 @@ var projectResourceTable = (function ($) {
         "drawCallback": function (row) {
           $("#project-resource-table tbody select.office").on('change', function () {
             console.log("office changed");
-            var OfficeID = $(this).val(),
-              nodes = $(this);
-            getJobTitle(OfficeID, nodes);
+            var nodes = $(this);
+            updateEmployeeTitleSelect(nodes);
+            nodes.closest('tr').find('.td-class').empty();
+            nodes.closest('tr').find('.practice').empty();
+            nodes.closest('tr').find('.td-billrate').empty();
+            nodes.closest('tr').find('.td-costrate').empty();
             recalculateStuff();
           });
 
           $("#project-resource-table tbody select.title").on('change', function () {
             console.log("title changed");
-            //var OfficeID = $(this).find(':selected').data('office');
-            // just sending out this so we can modify the same row.
             var nodes = $(this);
             getClass(nodes);
-            getPractice(nodes);
-            loadBillRate(nodes);
+            updatePracticeSelect(nodes);
+            nodes.closest('tr').find('.td-billrate').empty();
+            nodes.closest('tr').find('.td-costrate').empty();
             recalculateStuff();
           });
 
           $("#project-resource-table tbody select.practice").on('change', function () {
             console.log("practice/cost center changed");
-            //var OfficeID = $(this).find(':selected').data('office');
             // just sending out this so we can modify the same row.
             var nodes = $(this);
-            //getClass(nodes);
-            //getPractice(nodes);
             loadBillRate(nodes);
             recalculateStuff();
           });
@@ -384,8 +370,8 @@ var projectResourceTable = (function ($) {
       $('.project-resources').on('click', '#add-row', function (e) {
         e.preventDefault();
         projResourceTable.row.add({
-          "Office": {offices: offices, selectedOffice: office},
-          "CostCenterName": [],
+          "Office": '',
+          "CostCenterName": '',
           "Deliverables": deliverables,
           "Class": '',
           "Role": ''
@@ -400,22 +386,6 @@ var projectResourceTable = (function ($) {
         e.preventDefault();
         projResourceTable.row($(this).parents('tr')).remove().draw(false);
       });
-
-      function getJobTitle(OfficeID, nodes) {
-        var titleSelect = nodes.closest('tr').find('.title'),
-          EmpTitle = [];
-        rateCards.map(function (val) {
-          if (OfficeID === val.Office) {
-            EmpTitle.push('<option value="' + val.EmpGradeName + '" ' +
-              'data-rate="' + val.BillRate + '" data-class="' + val.Class + '" data-office="' + val.Office + '" data-company="' + val.Company + '"' +
-              'data-costrate="' + val.CostRate + '" data-currency="' + val.LocalCurrency + '" >' + val.EmpGradeName + '</option>');
-          }
-        });
-        if (EmpTitle.length) {
-          EmpTitle.unshift('<option data-class="">Select Title</option>');
-        }
-        titleSelect.empty().append(EmpTitle);
-      }
 
       function getClass(nodes) {
         nodes.closest('tr').find('.td-class').empty().append(nodes.find(':selected').data('class'));
@@ -432,7 +402,7 @@ var projectResourceTable = (function ($) {
       }
 
       //get deliverables from projectRelatedDeliverables json
-      function getPractice(nodes) {
+      function updatePracticeSelect(nodes) {
         var practiceSelect = nodes.closest('tr').find('.practice');
         var Officeid = nodes.closest('tr').find('.office :selected').val();
         var EmpGradeName = nodes.closest('tr').find('.title :selected').text();
@@ -464,7 +434,7 @@ var projectResourceTable = (function ($) {
         var EmpGradeName = nodes.closest('tr').find('.title :selected').text();
         var CostCenter = nodes.closest('tr').find('.practice :selected').val();
         var rates = rateCards.filter(function (val) {
-          if(val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter)
+          if (val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter)
             console.log(val);
 
           return val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter;
@@ -473,32 +443,56 @@ var projectResourceTable = (function ($) {
         if (rates.length > 1) {
           console.log("error. more than one matching rate found.")
         }
-        else{
-          nodes.closest('tr').find('.td-billrate').empty().append(currency + rates.pop().BillRate);
+        else if (rates.length === 1) {
+          var selectedRate = rates.pop();
+          nodes.closest('tr').find('.td-billrate').empty().append(currency + selectedRate.BillRate);
+          nodes.closest('tr').find('.td-costrate').empty().append(selectedRate.CostRate);
           //for calculations on resourceCalculation.js file
           resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
         }
+      }
+
+      function getOffices(Officeid) {
+        var select = "<select class='office' name='Office'>";
+        select += "<option>Select Office</option>";
+
+        $.each(offices, function (key, val) {
+          var selectString = Officeid === val.Office ? 'selected="selected"' : '';
+          select += '<option value="' + val.Office + '"' + selectString + '>' + val.OfficeName + ', ' + val.City + ' (' + val.Office + ')</option>';
+        });
+        select += "</select>";
+        return select;
+      }
+
+      function updateEmployeeTitleSelect(nodes) {
+        var employeeTitleSelect = nodes.closest('tr').find('.title');
+        var Officeid = nodes.closest('tr').find('.office :selected').val();
+        var empTitles = getEmployeeTitles({EmpGradeName: '', Officeid: Officeid});
+        employeeTitleSelect.html(empTitles);
       }
 
       function getEmployeeTitles(resource) {
         var select = "<select class='title' name='EmpGradeName'>";
         select += '<option data-class="">Select Title</option>';
 
-        var empGrades = [];
         // remove duplicates
-        rateCards.forEach(function (val) {
-          empGrades[val.EmpGrade] = val;
-        });
+        if (resource) {
+          var empGrades = [];
+          rateCards.filter(function (val) {
+            return val.Office === resource.Officeid;
+          }).forEach(function (val) {
+            empGrades[val.EmpGrade] = val;
+          });
 
-        empGrades.sort(function (a, b) {
-          return (a.EmpGradeName > b.EmpGradeName) ? 1 : ((b.EmpGradeName > a.EmpGradeName) ? -1 : 0);
-        });
+          empGrades.sort(function (a, b) {
+            return (a.EmpGradeName > b.EmpGradeName) ? 1 : ((b.EmpGradeName > a.EmpGradeName) ? -1 : 0);
+          });
 
-        empGrades.forEach(function (val) {
-          var selectString = resource && resource.EmpGradeName === val.EmpGradeName ? 'selected="selected"' : '';
-          select += '<option value="' + val.EmpGrade + '" data-class="' + val.Class + '" data-currency="' + val.LocalCurrency + '" ' + selectString + '>' + val.EmpGradeName + '</option>';
-        });
-
+          empGrades.forEach(function (val) {
+            var selectString = resource && resource.EmpGradeName === val.EmpGradeName ? 'selected="selected"' : '';
+            select += '<option value="' + val.EmpGrade + '" data-class="' + val.Class + '" data-currency="' + val.LocalCurrency + '" ' + selectString + '>' + val.EmpGradeName + '</option>';
+          });
+        }
         select += "</select>";
         return select;
       }
@@ -515,7 +509,6 @@ var projectResourceTable = (function ($) {
 
       // you should filter practices based on employee title/EmpGrade
       function getPractices(employee) {
-        console.log(employee);
         var select = "<select class='practice' name='CostCenterName'>";
         select += "<option>Select Practice</option>";
 
@@ -557,7 +550,8 @@ var projectResourceTable = (function ($) {
         }
 
         var filteredRates = rateCards.filter(function (val) {
-          return val.Office === resource.Officeid && val.EmpGradeName === resource.EmpGradeName;
+          //Practiceid which is also CostCenter
+          return val.Office === resource.Officeid && val.EmpGradeName === resource.EmpGradeName && val.CostCenter === resource.Practiceid;
         });
 
         if (!filteredRates.length) {
@@ -856,7 +850,7 @@ var projectResourceTable = (function ($) {
     // post all of the hours cells
     var projResourceTable = $('#project-resource-table').DataTable();
     var rows = projResourceTable.rows();
-
+    var planBy = getParameterByName('PlanBy');
     var payloads = [];
     var rowIndex = 1;
     for (var i = 0; i < rows.context[0].aoData.length; i++) {
@@ -872,8 +866,8 @@ var projectResourceTable = (function ($) {
           url: '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet',
           data: {
             "__metadata": {
-              "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='WK',Cellid='" + cellId + "')",
-              "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='WK',Cellid='" + cellId + "')",
+              "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='" + planBy + "',Cellid='" + cellId + "')",
+              "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='" + planBy + "',Cellid='" + cellId + "')",
               "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
             },
             "Projid": projectID,
