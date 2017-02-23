@@ -108,7 +108,7 @@ var projectResourceTable = (function ($) {
         return obj.ModelType === 'TMBF';
       });
 
-      if (targetMarginBasedFee.length) {
+      if (targetMarginBasedFee) {
         $('#target-contribution-margin').text(targetMarginBasedFee[0].CtrMargin);
       }
 
@@ -116,7 +116,7 @@ var projectResourceTable = (function ($) {
         return obj.ModelType === 'FFT';
       });
 
-      if (fixedFeeTarget.length) {
+      if (fixedFeeTarget) {
         $('#fixed-fee-target').text(convertToDecimal(fixedFeeTarget[0].Fees));
       }
 
@@ -385,6 +385,7 @@ var projectResourceTable = (function ($) {
       $('#project-resource-table tbody').on('click', '.remove', function (e) {
         e.preventDefault();
         projResourceTable.row($(this).parents('tr')).remove().draw(false);
+        recalculateStuff();
       });
 
       function getClass(nodes) {
@@ -441,7 +442,7 @@ var projectResourceTable = (function ($) {
         });
 
         if (rates.length > 1) {
-          console.log("error. more than one matching rate found.")
+          console.log("error. more than one matching rate found.");
         }
         else if (rates.length === 1) {
           var selectedRate = rates.pop();
@@ -622,12 +623,33 @@ var projectResourceTable = (function ($) {
         var modeling_table_adj_contrib = $("#modeling-table tbody #contribution-margin_adjusted-resource");
         var modeling_table_adj_avg_rate = $("#modeling-table tbody #avg-rate_adjusted-resource");
 
-        $('tfoot th.total-fees').text(convertToDollar(tableFeeSum));
-        $('tfoot th.total-hours').text(tableHoursSum.toFixed(2));
+        if(tableFeeSum) {
+          $('tfoot th.total-fees').text(convertToDollar(tableFeeSum));
+        } else {
+          $('tfoot th.total-fees').text('');
+        }
+        if(tableHoursSum) {
+          $('tfoot th.total-hours').text(tableHoursSum.toFixed(2));
+        } else {
+          $('tfoot th.total-hours').text('');
+        }
 
-        modeling_table_strd_fee.text(convertToDollar(standardFeeSum));
-        modeling_table_strd_contrib.text(convertToPercent(standardContribMargin));
-        modeling_table_strd_avg_rate.text(convertToDollar(standardAvgRate));
+        if(standardFeeSum) {
+          modeling_table_strd_fee.text(convertToDollar(standardFeeSum));
+        } else {
+          modeling_table_strd_fee.text('');
+        }
+        if(standardContribMargin) {
+          modeling_table_strd_contrib.text(convertToPercent(standardContribMargin));
+        } else {
+          modeling_table_strd_contrib.text('');
+        }
+        if(standardAvgRate) {
+          modeling_table_strd_avg_rate.text(convertToDollar(standardAvgRate));
+        } else {
+          modeling_table_strd_avg_rate.text('');
+        }
+
 
         //To activate adjusted resource Tab.
         var active_modeling_tabs = $('#modeling-table tr td');
@@ -654,7 +676,7 @@ var projectResourceTable = (function ($) {
         }
 
         var targetContributionMargin = parseFloat($('#target-contribution-margin').text());
-        if (targetContributionMargin) {
+        if (targetContributionMargin && totalCostSum || tableHoursSum) {
           var targetMarginBasedFee = totalCostSum / (1 - (targetContributionMargin / 100));
           $("#modeling-table #total-fee_target-resource").text(convertToDollar(targetMarginBasedFee));
           var targetMarginAvgRate = targetMarginBasedFee / tableHoursSum;
@@ -667,9 +689,10 @@ var projectResourceTable = (function ($) {
 
         var fixedFeeTarget = parseFloat($('#fixed-fee-target').text());
 
-        if (!isNaN(fixedFeeTarget)) {
+        if (!isNaN(fixedFeeTarget) && tableHoursSum || totalCostSum) {
           var contributionMarginFixedFee = ((fixedFeeTarget - totalCostSum) / fixedFeeTarget);
           $('#contribution-margin_fixed-fee').text(convertToPercent(contributionMarginFixedFee));
+
           var avgRateFixedFee = fixedFeeTarget / tableHoursSum;
           $('#avg-rate_fixed-resource').text(convertToDollar(avgRateFixedFee));
         }
