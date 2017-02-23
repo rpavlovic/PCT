@@ -6,10 +6,9 @@ var loadCustomBillSheet = (function ($) {
   'use strict';
 
   function initLoadCustomBillSheet() {
-
     var csv_table = $("#csv-table");
     var rcs = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.billSheet, getParameterByName('EmpNumber')), function (plan) {
+      $.getJSON(get_data_feed(feeds.billSheet), function (plan) {
         resolve(plan.d.results);
       }).fail(function () {
         // not found, but lets fix this and return empty set
@@ -40,7 +39,6 @@ var loadCustomBillSheet = (function ($) {
     //   "ChangedBy": "VKANDURI"
     function populateTable(titles, rows, isUploaded) {
       var columns;
-
       if (isUploaded) {
         columns = [
           {
@@ -205,11 +203,6 @@ var loadCustomBillSheet = (function ($) {
       });
     }
 
-    //save the csv on the desktop
-    //TODO: save to server and Profile page
-    $('.arrowpointer').on('click', function () {
-      csv_table.tableToCSV();
-    });
     //TODO delete from Server and Profile page.
     $('#DeleteCustomBillSheet').on('click', function () {
       confirm("The template will be deleted and Overrides removed?");
@@ -220,45 +213,69 @@ var loadCustomBillSheet = (function ($) {
     });
     uploadTable();
 
-    $('.project-resources #btn-save').on('click', function (event) {
+    $('.custom-bill-sheet #btn-save').on('click', function (event) {
       event.preventDefault();
       console.log("saving form");
 
-      // var url = $('#btn-save').attr('href');
-      // url = updateQueryString('projID', projectID, url);
-      // url = updateQueryString('Office', office, url);
-      // url = updateQueryString('Duration', duration, url);
-      // url = updateQueryString('PlanBy', planBy, url);
-      //
-      // $('#btn-save').attr('href', url);
-      //
-      // var modelingTablePayloads = buildModelingTablePayload();
-      // var resourcePayloads = buildResourcePayload();
-      // var resourceHours = buildResourceHoursPayload();
-      //
-      // var payloads = modelingTablePayloads.concat(resourcePayloads).concat(resourceHours);
-      // $.ajaxBatch({
-      //   url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
-      //   data: payloads,
-      //   complete: function (xhr, status, data) {
-      //     console.log(data);
-      //     var timeout = getParameterByName('timeout');
-      //     console.log("navigating to new window in" + timeout + "seconds");
-      //     timeout = timeout ? timeout : 1;
-      //     setTimeout(function () {
-      //       window.location.href = $('#btn-save').attr('href');
-      //     }, timeout);
-      //   },
-      //   always: function (xhr, status, data) {
-      //     var timeout = getParameterByName('timeout');
-      //     console.log("navigating to new window in" + timeout + "seconds");
-      //     timeout = timeout ? timeout : 1;
-      //     setTimeout(function () {
-      //       window.location.href = $('#btn-save').attr('href');
-      //     }, timeout);
-      //   }
-      // });
+      var payloads = buildBillSheetPayload();
+      $.ajaxBatch({
+        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
+        data: payloads,
+        complete: function (xhr, status, data) {
+          console.log(data);
+          var timeout = getParameterByName('timeout');
+          console.log("navigating to new window in" + timeout + "seconds");
+          timeout = timeout ? timeout : 1;
+          setTimeout(function () {
+            //window.location.href = $('#btn-save').attr('href');
+          }, timeout);
+        },
+        always: function (xhr, status, data) {
+          var timeout = getParameterByName('timeout');
+          console.log("navigating to new window in" + timeout + "seconds");
+          timeout = timeout ? timeout : 1;
+          setTimeout(function () {
+            //window.location.href = $('#btn-save').attr('href');
+          }, timeout);
+        }
+      });
     });
+
+    function buildBillSheetPayload() {
+      var csv_table = $("#csv-table").DataTable();
+      var rows = csv_table.rows();
+      var payloads = [];
+      var rowIndex = 1;
+      for (var i = 0; i < rows.context[0].aoData.length; i++) {
+        var hoursPerRow = 0;
+        var payloadRowIndex = padNumber(rowIndex);
+        var cells = $(rows.context[0].aoData[i].anCells);
+        console.log(cells);
+        var rowId = padNumber(rowIndex);
+        payloads.push({
+          type: 'POST',
+          url: '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet',
+          data: {
+            "__metadata": {
+              "id": "https://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + +"',RowId='" + rowId + "')",
+              "uri": "https://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + +"',RowId='00003')",
+              "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
+            },
+            "Class": $(cells[1]).text(),
+            "BillsheetId": getParameterByName('CardID'),
+            "BillsheetName": $('#bill-sheet-name').text(),
+            "RowId": rowId,
+            "TitleId": "2334455",
+            "TitleDesc": $(cells[0]).text(),
+            "StandardRate": convertToDecimal($(cells[2]).text()),
+            "OverrideRate": convertToDecimal($(cells[4]).text()),
+            "DiscountPer": convertToDecimal($(cells[5]).text())
+          }
+        });
+        rowIndex++;
+      }
+      return payloads;
+    }
   }
 
   return {

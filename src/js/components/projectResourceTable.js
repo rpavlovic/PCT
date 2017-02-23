@@ -18,21 +18,25 @@ var projectResourceTable = (function ($) {
     if (RateCards[OfficeId]) {
       return RateCards[OfficeId];
     } else {
-      return new Promise(function (resolve, reject) {
-        //console.log('RateCard Not found. checking service for OfficeId' + OfficeId);
-        $.getJSON(get_data_feed(feeds.rateCards, OfficeId), function (rateCards) {
-          RateCards[OfficeId] = rateCards.d.results.filter(function (val) {
-            // add in any filtering params if we need them in the future
-            return val.CostRate > 0 && val.EmpGradeName;
-          });
-          resolve(RateCards[OfficeId]);
-        }).fail(function () {
-          // not found, but lets fix this and return empty set
-          console.log('no rate cards found.... returning empty set');
-          resolve([]);
-        });
-      });
+      return [];
     }
+  }
+
+  function loadRateCardFromServer(OfficeId) {
+    return new Promise(function (resolve, reject) {
+      //console.log('RateCard Not found. checking service for OfficeId' + OfficeId);
+      $.getJSON(get_data_feed(feeds.rateCards, OfficeId), function (rateCards) {
+        RateCards[OfficeId] = rateCards.d.results.filter(function (val) {
+          // add in any filtering params if we need them in the future
+          return val.CostRate > 0 && val.EmpGradeName;
+        });
+        resolve(RateCards[OfficeId]);
+      }).fail(function () {
+        // not found, but lets fix this and return empty set
+        console.log('no rate cards found.... returning empty set');
+        resolve([]);
+      });
+    });
   }
 
   function initProjectResourceTable() {
@@ -56,36 +60,29 @@ var projectResourceTable = (function ($) {
       });
     });
 
-    var p3 = getRateCard(getParameterByName('Office'));
-
-    var p4 = Promise.resolve(projectID)
-      .then(function (projectId) {
-        return new Promise(function (resolve, reject) {
-          $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
-            resolve(resource.d.results);
-          }).fail(function () {
-            // not found, but lets fix this and return empty set
-            console.log('no project resources found.... returning empty set');
-            resolve([]);
-          });
-        });
-      })
-      .then(function(resources){
-        var offices = [];
-        resources.forEach(function(resource){
-          offices[resource.Officeid] = {};
-        });
-        offices = Object.keys(offices);
-        if(!$.inArray(office, offices)){
-          offices.push(office);
-        }
-        // prepopulating any other rate cards we need
+    var p3 = Promise.resolve(p2)
+      .then(function (offices) {
+        var promiseArray = [];
         offices.forEach(function (val) {
-          getRateCard(val.Office);
+          //getRateCard(val.Office);
+          promiseArray.push(loadRateCardFromServer(val.Office));
         });
-
-        return resources;
+        return Promise.all(promiseArray)
+          .then(function (results) {
+            console.log("rateCards all loaded");
+            return offices;
+          });
       });
+
+    var p4 = new Promise(function (resolve, reject) {
+      $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
+        resolve(resource.d.results);
+      }).fail(function () {
+        // not found, but lets fix this and return empty set
+        console.log('no project resources found.... returning empty set');
+        resolve([]);
+      });
+    });
 
     //fees for modeling table targets
     var t1 = new Promise(function (resolve, reject) {
@@ -124,10 +121,6 @@ var projectResourceTable = (function ($) {
       var offices = values[1];
 
       // go ahead and prefetch the rest of the office rate cards for performance
-      offices.forEach(function(val){
-        getRateCard(val.Office);
-      });
-
       //var rateCards = values[2];
       var projectResources = values[3];
       var marginModeling = values[4];
@@ -470,9 +463,7 @@ var projectResourceTable = (function ($) {
 
         var rateCards = getRateCard(Office);
         var rates = rateCards.filter(function (val) {
-          if (val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter)
-            console.log(val);
-          return val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter;
+            return val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter;
         });
 
         if (rates.length > 1) {
@@ -639,7 +630,7 @@ var projectResourceTable = (function ($) {
           var totalStandardFeePerRow = parseFloat(hoursPerRow) * billRate;
           var totalCostPerRow = parseFloat(hoursPerRow) * costRate;
 
-          if(totalFeePerRow) {
+          if (totalFeePerRow) {
             $(rows.context[0].aoData[i].anCells[13]).text(convertToDollar(totalFeePerRow));
           } else {
             $(rows.context[0].aoData[i].anCells[13]).text('');
@@ -701,28 +692,30 @@ var projectResourceTable = (function ($) {
             if (isAdjusted && tableFeeSum) {
               $(active_modeling_tabs[2]).addClass('active');
               $(active_modeling_tabs[2]).children('input').prop('checked', true);
-             }
-             else {
+            }
+            else {
               $(active_modeling_tabs[1]).addClass('active');
               $(active_modeling_tabs[1]).children('input').prop('checked', true);
-             }
-           }
-           activateStates();
+            }
+          }
+
+          activateStates();
         }
+
         modelingTableTabActive();
 
         if (isAdjusted) {
-          if(tableFeeSum) {
+          if (tableFeeSum) {
             modeling_table_adj_fee.text(convertToDollar(tableFeeSum));
           } else {
             modeling_table_adj_fee.text('');
             modeling_table_adj_contrib.text('');
             modeling_table_adj_avg_rate.text('');
           }
-          if(adjustedContributionMargin) {
+          if (adjustedContributionMargin) {
             modeling_table_adj_contrib.text(convertToPercent(adjustedContributionMargin));
           }
-          if(adjustedAvgRate) {
+          if (adjustedAvgRate) {
             modeling_table_adj_avg_rate.text(convertToDollar(adjustedAvgRate));
           }
         }
@@ -748,7 +741,7 @@ var projectResourceTable = (function ($) {
 
         if (!isNaN(fixedFeeTarget) && tableHoursSum || totalCostSum) {
           var contributionMarginFixedFee = ((fixedFeeTarget - totalCostSum) / fixedFeeTarget);
-          if(!isNaN(contributionMarginFixedFee)) {
+          if (!isNaN(contributionMarginFixedFee)) {
             $('#contribution-margin_fixed-fee').text(convertToPercent(contributionMarginFixedFee));
 
           }
