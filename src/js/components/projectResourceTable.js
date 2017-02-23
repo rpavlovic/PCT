@@ -56,7 +56,7 @@ var projectResourceTable = (function ($) {
         resolve(data.d.results);
       }).fail(function () {
         // not found, but lets fix this and return empty set
-        console.log('no mm found.... returning empty set');
+        console.log('no margin modeling found.... returning empty set');
         resolve([]);
       });
     });
@@ -103,8 +103,6 @@ var projectResourceTable = (function ($) {
         }
         billsheets[customBillSheet.BillsheetId].push(customBillSheet);
       });
-
-      console.log(billsheets);
 
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
         return obj.ModelType === 'TMBF';
@@ -353,14 +351,25 @@ var projectResourceTable = (function ($) {
 
           $("#project-resource-table tbody select.title").on('change', function () {
             console.log("title changed");
-            var OfficeID = $(this).find(':selected').data('office');
+            //var OfficeID = $(this).find(':selected').data('office');
+            // just sending out this so we can modify the same row.
             var nodes = $(this);
             getClass(nodes);
-            getPractice(OfficeID, nodes);
+            getPractice(nodes);
             loadBillRate(nodes);
             recalculateStuff();
           });
 
+          $("#project-resource-table tbody select.practice").on('change', function () {
+            console.log("practice/cost center changed");
+            //var OfficeID = $(this).find(':selected').data('office');
+            // just sending out this so we can modify the same row.
+            var nodes = $(this);
+            //getClass(nodes);
+            //getPractice(nodes);
+            loadBillRate(nodes);
+            recalculateStuff();
+          });
           $('.contenteditable').on('keyup focusout', function (e) {
             recalculateStuff();
           });
@@ -423,19 +432,15 @@ var projectResourceTable = (function ($) {
       }
 
       //get deliverables from projectRelatedDeliverables json
-      function getPractice(OfficeID, nodes) {
-        console.log(OfficeID);
+      function getPractice(nodes) {
         var practiceSelect = nodes.closest('tr').find('.practice');
-        var Practice = [];
-        Practice.push('<option>Select Practice</option>');
-        rateCards.filter(function (val) {
-          return val.Office === OfficeID && val.CostCenterName;
-        }).map(function (val) {
-          if (OfficeID === val.Office) {
-            Practice.push('<option value="' + val.CostCenterName + '" ' + 'data-office="' + val.Office + '">' + val.CostCenterName + '</option>');
-          }
+        var Officeid = nodes.closest('tr').find('.office :selected').val();
+        var EmpGradeName = nodes.closest('tr').find('.title :selected').text();
+        var practices = getPractices({
+          EmpGradeName: EmpGradeName,
+          Officeid: Officeid
         });
-        practiceSelect.empty().append(Practice);
+        practiceSelect.html(practices);
       }
 
       function loadBillRate(nodes) {
@@ -454,9 +459,25 @@ var projectResourceTable = (function ($) {
           'USD': '$'
         };
         var currency = tems_currency[nodes.closest('tr').find('.title :selected').data('currency')];
-        nodes.closest('tr').find('.td-billrate').empty().append(currency + nodes.find(':selected').data('rate'));
-        //for calculations on resourceCalculation.js file
-        resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
+        // the officeId, US01, US12, etc
+        var Office = nodes.closest('tr').find('.office :selected').val();
+        var EmpGradeName = nodes.closest('tr').find('.title :selected').text();
+        var CostCenter = nodes.closest('tr').find('.practice :selected').val();
+        var rates = rateCards.filter(function (val) {
+          if(val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter)
+            console.log(val);
+
+          return val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter;
+        });
+
+        if (rates.length > 1) {
+          console.log("error. more than one matching rate found.")
+        }
+        else{
+          nodes.closest('tr').find('.td-billrate').empty().append(currency + rates.pop().BillRate);
+          //for calculations on resourceCalculation.js file
+          resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
+        }
       }
 
       function getEmployeeTitles(resource) {
@@ -500,7 +521,7 @@ var projectResourceTable = (function ($) {
 
         var practices = [];
         rateCards.filter(function (val) {
-          return val.Office === employee.Officeid && val.CostCenterName;
+          return val.Office === employee.Officeid && val.CostCenterName && employee.EmpGradeName === val.EmpGradeName;
         }).forEach(function (val) {
           practices[val.CostCenter] = val;
         });
@@ -517,7 +538,7 @@ var projectResourceTable = (function ($) {
           }
           select += '<option value="' + val.CostCenter + '" ' + selected + '>' + val.CostCenterName + '</option>';
         });
-
+        select += "</select>";
         return select;
       }
 
