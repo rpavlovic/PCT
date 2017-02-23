@@ -101,6 +101,11 @@ var projectResourceTable = (function ($) {
       var deliverables = values[0];
       var offices = values[1];
 
+      // go ahead and prefetch the rest of the office rate cards for performance
+      offices.forEach(function(val){
+        getRateCard(val.Office);
+      });
+
       //var rateCards = values[2];
       var projectResources = values[3];
       var marginModeling = values[4];
@@ -114,8 +119,6 @@ var projectResourceTable = (function ($) {
         }
         billsheets[customBillSheet.BillsheetId].push(customBillSheet);
       });
-
-      console.log(customRateCards);
 
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
         return obj.ModelType === 'TMBF';
