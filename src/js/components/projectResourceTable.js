@@ -123,6 +123,7 @@ var projectResourceTable = (function ($) {
       var hrRows = {};
       var maxDuration = 0;
       plannedHours.forEach(function (cell) {
+        cell.Rowno = parseInt(cell.Rowno);
         if (!hrRows[cell.Rowno]) {
           hrRows[cell.Rowno] = {};
         }
