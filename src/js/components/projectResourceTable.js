@@ -101,11 +101,6 @@ var projectResourceTable = (function ($) {
       var deliverables = values[0];
       var offices = values[1];
 
-      // go ahead and prefetch the rest of the office rate cards for performance
-      offices.forEach(function(val){
-        getRateCard(val.Office);
-      });
-
       //var rateCards = values[2];
       var projectResources = values[3];
       var marginModeling = values[4];
@@ -119,6 +114,8 @@ var projectResourceTable = (function ($) {
         }
         billsheets[customBillSheet.BillsheetId].push(customBillSheet);
       });
+
+      console.log(customRateCards);
 
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
         return obj.ModelType === 'TMBF';
@@ -515,7 +512,7 @@ var projectResourceTable = (function ($) {
 
       function getEmployeeClass(employee) {
         var rateCards = getRateCard(employee.Officeid);
-        var rcElement = rateCards.find(function (val) {
+        var rcElement = $(rateCards).find(function (val) {
           return val.Office === employee.Officeid && employee.EmpGradeName === val.EmpGradeName;
         });
         if (rcElement)
@@ -530,9 +527,9 @@ var projectResourceTable = (function ($) {
         var select = "<select class='practice' name='CostCenterName'>";
         select += "<option>Select Practice</option>";
         var practices = [];
-        rateCards.filter(function (val) {
+        $(rateCards).filter(function (val) {
           return val.Office === employee.Officeid && val.CostCenterName && employee.EmpGradeName === val.EmpGradeName;
-        }).forEach(function (val) {
+        }).each(function (val) {
           practices[val.CostCenter] = val;
         });
 
@@ -672,11 +669,25 @@ var projectResourceTable = (function ($) {
           modeling_table_strd_avg_rate.text('');
         }
 
-
         //To activate adjusted resource Tab.
         var active_modeling_tabs = $('#modeling-table tr td');
-        active_modeling_tabs.removeClass('active');
-        active_modeling_tabs.children('input').prop('checked', false);
+
+        function modelingTableTabActive() {
+          active_modeling_tabs.removeClass('active');
+          active_modeling_tabs.children('input').prop('checked', false);
+          function activateStates() {
+            if (isAdjusted && tableFeeSum) {
+              $(active_modeling_tabs[2]).addClass('active');
+              $(active_modeling_tabs[2]).children('input').prop('checked', true);
+             }
+             else {
+              $(active_modeling_tabs[1]).addClass('active');
+              $(active_modeling_tabs[1]).children('input').prop('checked', true);
+             }
+           }
+           activateStates();
+        }
+        modelingTableTabActive();
 
         if (isAdjusted) {
           if(tableFeeSum) {
@@ -685,11 +696,6 @@ var projectResourceTable = (function ($) {
             modeling_table_adj_fee.text('');
             modeling_table_adj_contrib.text('');
             modeling_table_adj_avg_rate.text('');
-            $(active_modeling_tabs).activateElement();
-            //remove_active($(active_modeling_tabs[2]), active);
-            //remove Active state on the tab.
-            // $(active_modeling_tabs[1]).addClass('active');
-            // $(active_modeling_tabs[1]).children('input').prop('checked', true);
           }
           if(adjustedContributionMargin) {
             modeling_table_adj_contrib.text(convertToPercent(adjustedContributionMargin));
@@ -697,18 +703,11 @@ var projectResourceTable = (function ($) {
           if(adjustedAvgRate) {
             modeling_table_adj_avg_rate.text(convertToDollar(adjustedAvgRate));
           }
-          //active adjusted tab
-          $(active_modeling_tabs[2]).addClass('active');
-          $(active_modeling_tabs[2]).children('input').prop('checked', true);
         }
         else {
           modeling_table_adj_fee.text('');
           modeling_table_adj_contrib.text('');
           modeling_table_adj_avg_rate.text('');
-
-          //remove Active state on the tab.
-          $(active_modeling_tabs[1]).addClass('active');
-          $(active_modeling_tabs[1]).children('input').prop('checked', true);
         }
 
         var targetContributionMargin = parseFloat($('#target-contribution-margin').text());
