@@ -12,11 +12,14 @@ var projectResourceTable = (function ($) {
   var RateCards = [];
 
   function getRateCard(OfficeId) {
+    if (!OfficeId) {
+      return [];
+    }
     if (RateCards[OfficeId]) {
       return RateCards[OfficeId];
     } else {
       return new Promise(function (resolve, reject) {
-        console.log('RateCard Not found. checking service for OfficeId' + OfficeId);
+        //console.log('RateCard Not found. checking service for OfficeId' + OfficeId);
         $.getJSON(get_data_feed(feeds.rateCards, OfficeId), function (rateCards) {
           RateCards[OfficeId] = rateCards.d.results.filter(function (val) {
             // add in any filtering params if we need them in the future
@@ -55,15 +58,34 @@ var projectResourceTable = (function ($) {
 
     var p3 = getRateCard(getParameterByName('Office'));
 
-    var p4 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
-        resolve(resource.d.results);
-      }).fail(function () {
-        // not found, but lets fix this and return empty set
-        console.log('no project resources found.... returning empty set');
-        resolve([]);
+    var p4 = Promise.resolve(projectID)
+      .then(function (projectId) {
+        return new Promise(function (resolve, reject) {
+          $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
+            resolve(resource.d.results);
+          }).fail(function () {
+            // not found, but lets fix this and return empty set
+            console.log('no project resources found.... returning empty set');
+            resolve([]);
+          });
+        });
+      })
+      .then(function(resources){
+        var offices = [];
+        resources.forEach(function(resource){
+          offices[resource.Officeid] = {};
+        });
+        offices = Object.keys(offices);
+        if(!$.inArray(office, offices)){
+          offices.push(office);
+        }
+        // prepopulating any other rate cards we need
+        offices.forEach(function (val) {
+          getRateCard(val.Office);
+        });
+
+        return resources;
       });
-    });
 
     //fees for modeling table targets
     var t1 = new Promise(function (resolve, reject) {
@@ -101,6 +123,11 @@ var projectResourceTable = (function ($) {
       var deliverables = values[0];
       var offices = values[1];
 
+      // go ahead and prefetch the rest of the office rate cards for performance
+      offices.forEach(function(val){
+        getRateCard(val.Office);
+      });
+
       //var rateCards = values[2];
       var projectResources = values[3];
       var marginModeling = values[4];
@@ -114,8 +141,6 @@ var projectResourceTable = (function ($) {
         }
         billsheets[customBillSheet.BillsheetId].push(customBillSheet);
       });
-
-      console.log(customRateCards);
 
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
         return obj.ModelType === 'TMBF';
@@ -483,12 +508,11 @@ var projectResourceTable = (function ($) {
 
       function getEmployeeTitles(resource) {
         // remove duplicates
+        var select = "<select class='title' name='EmpGradeName'>";
+        select += '<option data-class="">Select Title</option>';
         if (resource) {
-          var select = "<select class='title' name='EmpGradeName'>";
-          select += '<option data-class="">Select Title</option>';
           var empGrades = [];
           var rateCards = getRateCard(resource.Officeid);
-          console.log(typeof rateCards);
           rateCards.filter(function (val) {
             return val.Office === resource.Officeid;
           }).forEach(function (val) {
@@ -503,15 +527,14 @@ var projectResourceTable = (function ($) {
             var selectString = resource && resource.EmpGradeName === val.EmpGradeName ? 'selected="selected"' : '';
             select += '<option value="' + val.EmpGrade + '" data-class="' + val.Class + '" data-currency="' + val.LocalCurrency + '" ' + selectString + '>' + val.EmpGradeName + '</option>';
           });
-
-          select += "</select>";
-          return select;
         }
+        select += "</select>";
+        return select;
       }
 
       function getEmployeeClass(employee) {
         var rateCards = getRateCard(employee.Officeid);
-        var rcElement = $(rateCards).find(function (val) {
+        var rcElement = rateCards.find(function (val) {
           return val.Office === employee.Officeid && employee.EmpGradeName === val.EmpGradeName;
         });
         if (rcElement)
@@ -526,9 +549,9 @@ var projectResourceTable = (function ($) {
         var select = "<select class='practice' name='CostCenterName'>";
         select += "<option>Select Practice</option>";
         var practices = [];
-        $(rateCards).filter(function (val) {
+        rateCards.filter(function (val) {
           return val.Office === employee.Officeid && val.CostCenterName && employee.EmpGradeName === val.EmpGradeName;
-        }).each(function (val) {
+        }).forEach(function (val) {
           practices[val.CostCenter] = val;
         });
 
@@ -641,28 +664,28 @@ var projectResourceTable = (function ($) {
         var modeling_table_adj_contrib = $("#modeling-table tbody #contribution-margin_adjusted-resource");
         var modeling_table_adj_avg_rate = $("#modeling-table tbody #avg-rate_adjusted-resource");
 
-        if(tableFeeSum) {
+        if (tableFeeSum) {
           $('tfoot th.total-fees').text(convertToDollar(tableFeeSum));
         } else {
           $('tfoot th.total-fees').text('');
         }
-        if(tableHoursSum) {
+        if (tableHoursSum) {
           $('tfoot th.total-hours').text(tableHoursSum.toFixed(2));
         } else {
           $('tfoot th.total-hours').text('');
         }
 
-        if(standardFeeSum) {
+        if (standardFeeSum) {
           modeling_table_strd_fee.text(convertToDollar(standardFeeSum));
         } else {
           modeling_table_strd_fee.text('');
         }
-        if(standardContribMargin) {
+        if (standardContribMargin) {
           modeling_table_strd_contrib.text(convertToPercent(standardContribMargin));
         } else {
           modeling_table_strd_contrib.text('');
         }
-        if(standardAvgRate) {
+        if (standardAvgRate) {
           modeling_table_strd_avg_rate.text(convertToDollar(standardAvgRate));
         } else {
           modeling_table_strd_avg_rate.text('');
