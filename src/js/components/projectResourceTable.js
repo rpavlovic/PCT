@@ -263,11 +263,7 @@ var projectResourceTable = (function ($) {
           "title": 'Total Hours',
           "data": "TotalHours",
           "defaultContent": '',
-          "class": "total-hours can-clear"//,
-          // "render": function (data, type, row, meta) {
-          //   var sum = sumHours(row);
-          //   return !isNaN(sum) ? sum.toFixed(2) : '';
-          // }
+          "class": "total-hours can-clear"
         },
         {
           "title": 'Total Fees',
