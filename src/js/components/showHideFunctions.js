@@ -34,13 +34,12 @@ var showHide = (function ($) {
   }
 
   $(".project-resources select#rate-card").on("change", function(){
-    if($(this).val().indexOf('Standard') === -1) {
-      $(".col-9 a.toggle").fadeOut('slow');
+    if($(this)[0].selectedIndex === 0) {
+      $(".col-9 a.view-card-rate").fadeOut('slow').addClass('hide');
     } else {
-      $(".col-9 a.toggle").fadeIn('slow');
+      $(".col-9 a.view-card-rate").fadeIn('slow').removeClass('hide');
     }
   });
-
 
   return {
     initShowHide:initShowHide

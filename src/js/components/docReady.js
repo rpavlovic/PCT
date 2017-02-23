@@ -32,10 +32,8 @@
         }
       });
     }
-
     if($('form.form-edit-profile').length > 0) {
       profileInfo.initProfileInfo(feeds);
-      //fillForm.initFillForm('.form-edit-profile');
     }
     /**
      * Landing page
@@ -49,9 +47,7 @@
     /**
      * Project create/edit page
      */
-
     if ('projectGeneral.htm' === current_page) {
-
       //if form to be loaded exists.
       if($("form.project-info").length > 0) {
         projectInfoForm.initProjectInfoForm(feeds);
@@ -59,14 +55,6 @@
          addRemoveFields.initAddRemoveFields('form.project-info');
       }
     }
-
-    /**
-     * Profile page
-     */
-
-    // if ('profile.htm' === current_page) {
-    //   editProfileForm.initEditProfileForm('form.form-edit-profile');
-    // }
 
     //upload CSV per the user
     if ('customBillSheet.htm' === current_page) {
