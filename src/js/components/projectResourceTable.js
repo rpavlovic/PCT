@@ -134,7 +134,6 @@ var projectResourceTable = (function ($) {
 
       // in case duration not provided
       duration = maxDuration > duration ? maxDuration : duration;
-
       var myRows = [];
       var hoursSum = 0;
       var columns = [
@@ -240,7 +239,7 @@ var projectResourceTable = (function ($) {
           "data": "CostRate",
           "class": 'td-costrate',
           "defaultContent": '<div contenteditable />',
-          //"visible": false,
+          "visible": false,
           "render": function (data, type, row, meta) {
             var costRate = getCostRate(data);
             return '<div contenteditable>' + costRate + '</div>';
