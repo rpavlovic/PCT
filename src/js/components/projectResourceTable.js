@@ -124,7 +124,7 @@ var projectResourceTable = (function ($) {
       var offices = values[1];
 
       // go ahead and prefetch the rest of the office rate cards for performance
-      offices.forEach(function (val) {
+      offices.forEach(function(val){
         getRateCard(val.Office);
       });
 
@@ -262,7 +262,7 @@ var projectResourceTable = (function ($) {
           "title": 'Bill Rate',
           "defaultContent": '',
           "data": "BillRate",
-          "class": "td-billrate can-clear",
+          "class": "td-billrate",
           "render": function (data, type, row, meta) {
             if (data)
               return convertToDollar(parseFloat(data));
@@ -277,11 +277,10 @@ var projectResourceTable = (function ($) {
           "title": "Cost Rate",
           "data": "CostRate",
           "class": 'td-costrate',
-          "defaultContent": '<div contenteditable />',
           "visible": false,
           "render": function (data, type, row, meta) {
             var costRate = getCostRate(data);
-            return '<div contenteditable>' + costRate + '</div>';
+            return costRate;
           }
         },
         {
@@ -692,11 +691,25 @@ var projectResourceTable = (function ($) {
           modeling_table_strd_avg_rate.text('');
         }
 
-
         //To activate adjusted resource Tab.
         var active_modeling_tabs = $('#modeling-table tr td');
-        active_modeling_tabs.removeClass('active');
-        active_modeling_tabs.children('input').prop('checked', false);
+
+        function modelingTableTabActive() {
+          active_modeling_tabs.removeClass('active');
+          active_modeling_tabs.children('input').prop('checked', false);
+          function activateStates() {
+            if (isAdjusted && tableFeeSum) {
+              $(active_modeling_tabs[2]).addClass('active');
+              $(active_modeling_tabs[2]).children('input').prop('checked', true);
+             }
+             else {
+              $(active_modeling_tabs[1]).addClass('active');
+              $(active_modeling_tabs[1]).children('input').prop('checked', true);
+             }
+           }
+           activateStates();
+        }
+        modelingTableTabActive();
 
         if (isAdjusted) {
           if(tableFeeSum) {
@@ -705,11 +718,6 @@ var projectResourceTable = (function ($) {
             modeling_table_adj_fee.text('');
             modeling_table_adj_contrib.text('');
             modeling_table_adj_avg_rate.text('');
-            $(active_modeling_tabs).activateElement();
-            //remove_active($(active_modeling_tabs[2]), active);
-            //remove Active state on the tab.
-            // $(active_modeling_tabs[1]).addClass('active');
-            // $(active_modeling_tabs[1]).children('input').prop('checked', true);
           }
           if(adjustedContributionMargin) {
             modeling_table_adj_contrib.text(convertToPercent(adjustedContributionMargin));
@@ -717,18 +725,11 @@ var projectResourceTable = (function ($) {
           if(adjustedAvgRate) {
             modeling_table_adj_avg_rate.text(convertToDollar(adjustedAvgRate));
           }
-          //active adjusted tab
-          $(active_modeling_tabs[2]).addClass('active');
-          $(active_modeling_tabs[2]).children('input').prop('checked', true);
         }
         else {
           modeling_table_adj_fee.text('');
           modeling_table_adj_contrib.text('');
           modeling_table_adj_avg_rate.text('');
-
-          //remove Active state on the tab.
-          $(active_modeling_tabs[1]).addClass('active');
-          $(active_modeling_tabs[1]).children('input').prop('checked', true);
         }
 
         var targetContributionMargin = parseFloat($('#target-contribution-margin').text());
