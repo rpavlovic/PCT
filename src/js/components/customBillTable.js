@@ -248,21 +248,21 @@ var loadCustomBillSheet = (function ($) {
       var rowIndex = 1;
       for (var i = 0; i < rows.context[0].aoData.length; i++) {
         var hoursPerRow = 0;
-        var payloadRowIndex = padNumber(rowIndex);
         var cells = $(rows.context[0].aoData[i].anCells);
         console.log(cells);
-        var rowId = padNumber(rowIndex);
+        var rowId = padNumber(rowIndex, 5);
+        var bsId = getParameterByName('CardID');
         payloads.push({
           type: 'POST',
           url: '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet',
           data: {
             "__metadata": {
-              "id": "https://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + +"',RowId='" + rowId + "')",
-              "uri": "https://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + +"',RowId='00003')",
+              "id": "https://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId +"',RowId='" + rowId + "')",
+              "uri": "https://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId +"',RowId='" + rowId + "')",
               "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
             },
             "Class": $(cells[1]).text(),
-            "BillsheetId": getParameterByName('CardID'),
+            "BillsheetId": bsId,
             "BillsheetName": $('#bill-sheet-name').val(),
             "RowId": rowId,
             "TitleId": "2334455",
