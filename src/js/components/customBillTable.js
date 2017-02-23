@@ -207,7 +207,7 @@ var loadCustomBillSheet = (function ($) {
     $('#DeleteCustomBillSheet').on('click', function () {
       confirm("The template will be deleted and Overrides removed?");
       $("#csv-table tr").each(function (key, value) {
-        $(this).find('td.rate-override').empty();
+        $(this).find('td.contenteditable div').empty();
         $(this).find('td.discount').empty();
       });
     });
