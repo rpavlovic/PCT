@@ -58,15 +58,34 @@ var projectResourceTable = (function ($) {
 
     var p3 = getRateCard(getParameterByName('Office'));
 
-    var p4 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
-        resolve(resource.d.results);
-      }).fail(function () {
-        // not found, but lets fix this and return empty set
-        console.log('no project resources found.... returning empty set');
-        resolve([]);
+    var p4 = Promise.resolve(projectID)
+      .then(function (projectId) {
+        return new Promise(function (resolve, reject) {
+          $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
+            resolve(resource.d.results);
+          }).fail(function () {
+            // not found, but lets fix this and return empty set
+            console.log('no project resources found.... returning empty set');
+            resolve([]);
+          });
+        });
+      })
+      .then(function(resources){
+        var offices = [];
+        resources.forEach(function(resource){
+          offices[resource.Officeid] = {};
+        });
+        offices = Object.keys(offices);
+        if(!$.inArray(office, offices)){
+          offices.push(office);
+        }
+        // prepopulating any other rate cards we need
+        offices.forEach(function (val) {
+          getRateCard(val.Office);
+        });
+
+        return resources;
       });
-    });
 
     //fees for modeling table targets
     var t1 = new Promise(function (resolve, reject) {
