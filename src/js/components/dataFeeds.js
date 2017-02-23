@@ -46,7 +46,8 @@ var feeds = {
   'projectExpenses': [ 'data/ProjectExpensesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection?$filter=Projid eq \'{param1}\'&$format=json' ],
 
   // client rate card by employee ID
-  'billSheet': [ 'data/BillSheetCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection?$filter=BillsheetId eq \'{param1}\'&$format=json' ]
+//  'billSheet': [ 'data/BillSheetCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection?$filter=BillsheetId eq \'{param1}\'&$format=json' ]
+  'billSheet': [ 'data/BillSheetCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection?$format=json' ]
 };
 
 function is_fiori() {
