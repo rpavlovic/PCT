@@ -831,6 +831,7 @@ var projectResourceTable = (function ($) {
           "DelvDesc": $(rows.context[0].aoData[i].anCells[2]).find('option:selected').text(),
           "Officeid": $(rows.context[0].aoData[i].anCells[3]).find('option:selected').val(),
           "EmpGradeName": $(rows.context[0].aoData[i].anCells[4]).find('option:selected').val(),
+          "Class": $(rows.context[0].aoData[i].anCells[5]).text(),
           "Practiceid": $(rows.context[0].aoData[i].anCells[6]).find('option:selected').val(),
           "Role": $(rows.context[0].aoData[i].anCells[7]).text(),
           "ProposedRes": $(rows.context[0].aoData[i].anCells[8]).text(),
