@@ -69,8 +69,13 @@ var loadCustomBillSheet = (function ($) {
     else {
       var rcs = new Promise(function (resolve, reject) {
         // we have a card we are trying to Edit
-        $.getJSON(get_data_feed(feeds.billSheet, getParameterByName('CardID')), function (plan) {
-          resolve(plan.d.results);
+        var BillsheetId = getParameterByName('CardID');
+        $.getJSON(get_data_feed(feeds.billSheet, BillsheetId), function (plan) {
+          var rcs = plan.d.results.filter(function(val){
+            return val.BillsheetId === BillsheetId;
+          });
+
+          resolve(rcs);
         }).fail(function () {
           // not found, but lets fix this and return empty set
           console.log('no custom bill sheet found.... returning empty set');
@@ -335,6 +340,7 @@ var loadCustomBillSheet = (function ($) {
         console.log(cells);
         var rowId = padNumber(rowIndex, 5);
         var bsId = getParameterByName('CardID');
+        bsId = bsId ? bsId : get_unique_id();
         payloads.push({
           type: 'POST',
           url: '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection',
