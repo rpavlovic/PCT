@@ -53,6 +53,8 @@ var loadCustomBillSheet = (function ($) {
                 Currency: obj.LocalCurrency,
                 DiscountPer: ''
               };
+            }).sort(function (a, b) {
+              return (a.TitleDesc > b.TitleDesc) ? 1 : ((b.TitleDesc > a.TitleDesc) ? -1 : 0);
             });
             resolve(uniqRcs);
           }).fail(function () {
@@ -341,6 +343,10 @@ var loadCustomBillSheet = (function ($) {
         var rowId = padNumber(rowIndex, 5);
         var bsId = getParameterByName('CardID');
         bsId = bsId ? bsId : get_unique_id();
+        var StandardRate = convertToDecimal($(cells[2]).text()) ? convertToDecimal($(cells[2]).text()) : "0.0";
+        var OverrideRate = convertToDecimal($(cells[4]).text()) ? convertToDecimal($(cells[4]).text()) : "0.0";
+        var DiscountPer = convertToDecimal($(cells[5]).text()) ? convertToDecimal($(cells[5]).text()) : "0.0";
+
         payloads.push({
           type: 'POST',
           url: '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection',
@@ -356,9 +362,9 @@ var loadCustomBillSheet = (function ($) {
             "RowId": rowId,
             "TitleId": "2334455",
             "TitleDesc": $(cells[0]).text(),
-            "StandardRate": convertToDecimal($(cells[2]).text()),
-            "OverrideRate": convertToDecimal($(cells[4]).text()),
-            "DiscountPer": convertToDecimal($(cells[5]).text())
+            "StandardRate": StandardRate,
+            "OverrideRate": OverrideRate,
+            "DiscountPer": DiscountPer
           }
         });
         rowIndex++;
