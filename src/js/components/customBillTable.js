@@ -73,10 +73,12 @@ var loadCustomBillSheet = (function ($) {
         // we have a card we are trying to Edit
         var BillsheetId = getParameterByName('CardID');
         $.getJSON(get_data_feed(feeds.billSheet, BillsheetId), function (plan) {
+          console.log(plan);
           var rcs = plan.d.results.filter(function(val){
             return val.BillsheetId === BillsheetId;
           });
 
+          console.log(rcs);
           resolve(rcs);
         }).fail(function () {
           // not found, but lets fix this and return empty set
@@ -336,13 +338,15 @@ var loadCustomBillSheet = (function ($) {
       var rows = csv_table.rows();
       var payloads = [];
       var rowIndex = 1;
+
+      var bsId = getParameterByName('CardID');
+      bsId = bsId ? bsId : get_unique_id();
+
       for (var i = 0; i < rows.context[0].aoData.length; i++) {
         var hoursPerRow = 0;
         var cells = $(rows.context[0].aoData[i].anCells);
         console.log(cells);
         var rowId = padNumber(rowIndex, 5);
-        var bsId = getParameterByName('CardID');
-        bsId = bsId ? bsId : get_unique_id();
         var StandardRate = convertToDecimal($(cells[2]).text()) ? convertToDecimal($(cells[2]).text()) : "0.0";
         var OverrideRate = convertToDecimal($(cells[4]).text()) ? convertToDecimal($(cells[4]).text()) : "0.0";
         var DiscountPer = convertToDecimal($(cells[5]).text()) ? convertToDecimal($(cells[5]).text()) : "0.0";

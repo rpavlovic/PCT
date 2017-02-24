@@ -110,7 +110,7 @@ var projectResourceTable = (function ($) {
     });
 
     var rcs = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.billSheet), function (plan) {
+      $.getJSON(get_data_feed(feeds.billSheet, ' '), function (plan) {
         resolve(plan.d.results);
       }).fail(function () {
         // not found, but lets fix this and return empty set
