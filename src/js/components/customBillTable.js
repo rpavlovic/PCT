@@ -53,6 +53,8 @@ var loadCustomBillSheet = (function ($) {
                 Currency: obj.LocalCurrency,
                 DiscountPer: ''
               };
+            }).sort(function (a, b) {
+              return (a.TitleDesc > b.TitleDesc) ? 1 : ((b.TitleDesc > a.TitleDesc) ? -1 : 0);
             });
             resolve(uniqRcs);
           }).fail(function () {
@@ -71,10 +73,12 @@ var loadCustomBillSheet = (function ($) {
         // we have a card we are trying to Edit
         var BillsheetId = getParameterByName('CardID');
         $.getJSON(get_data_feed(feeds.billSheet, BillsheetId), function (plan) {
+          console.log(plan);
           var rcs = plan.d.results.filter(function(val){
             return val.BillsheetId === BillsheetId;
           });
 
+          console.log(rcs);
           resolve(rcs);
         }).fail(function () {
           // not found, but lets fix this and return empty set
@@ -348,13 +352,19 @@ var loadCustomBillSheet = (function ($) {
       var rows = csv_table.rows();
       var payloads = [];
       var rowIndex = 1;
+
+      var bsId = getParameterByName('CardID');
+      bsId = bsId ? bsId : get_unique_id();
+
       for (var i = 0; i < rows.context[0].aoData.length; i++) {
         var hoursPerRow = 0;
         var cells = $(rows.context[0].aoData[i].anCells);
         console.log(cells);
         var rowId = padNumber(rowIndex, 5);
-        var bsId = getParameterByName('CardID');
-        bsId = bsId ? bsId : get_unique_id();
+        var StandardRate = convertToDecimal($(cells[2]).text()) ? convertToDecimal($(cells[2]).text()) : "0.0";
+        var OverrideRate = convertToDecimal($(cells[4]).text()) ? convertToDecimal($(cells[4]).text()) : "0.0";
+        var DiscountPer = convertToDecimal($(cells[5]).text()) ? convertToDecimal($(cells[5]).text()) : "0.0";
+
         payloads.push({
           type: 'POST',
           url: '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection',
@@ -368,11 +378,11 @@ var loadCustomBillSheet = (function ($) {
             "BillsheetId": bsId,
             "BillsheetName": $('#bill-sheet-name').val(),
             "RowId": rowId,
-            "TitleId": "2334455",
+            "TitleId": "000000",
             "TitleDesc": $(cells[0]).text(),
-            "StandardRate": convertToDecimal($(cells[2]).text()),
-            "OverrideRate": convertToDecimal($(cells[4]).text()),
-            "DiscountPer": convertToDecimal($(cells[5]).text())
+            "StandardRate": StandardRate,
+            "OverrideRate": OverrideRate,
+            "DiscountPer": DiscountPer
           }
         });
         rowIndex++;
