@@ -393,6 +393,13 @@ var projectResourceTable = (function ($) {
           });
           $('.contenteditable').on('keyup focusout', function (e) {
             recalculateStuff();
+            //lighten the rate when in override mode.
+            var rate_td = $(this);
+            if(rate_td.children('div').text() && rate_td.hasClass('rate-override')) {
+              rate_td.prev().css('color', 'lightgrey');
+            } else {
+              rate_td.prev().css('color', '#5b5b5b');
+            }
           });
         },
         "initComplete": function (settings, json, row) {
