@@ -3,26 +3,25 @@
 * on the table cells.
 * @version
 */
-function returnData(new_data, table) {
-  var isNum = false;
-  if( ($(new_data).parent().hasClass('num') || $(new_data).hasClass('month')) &&
-      $(new_data).html() != isNaN &&
-      $.isNumeric($(new_data).html()) &&
-      $(new_data).text() !== '' ) {
-        $(new_data).removeClass('error');
-        isNum = true;
-  }
 
-  var error = function() {
-    var REgex = /^[\$]?[0-9\.\,]+[\%]?/g;
-    if( ($(new_data).parent().hasClass('num') || $(new_data).hasClass('month')) &&
-      !isNum && $(new_data).html().replace(REgex, '') &&
-      $(new_data).text() !== '') {
-      $(new_data).html('this field accepts numbers only.').addClass('error');
+function error(table) {
+  $(table).on('keyup focusout', function (e) {
+     var REgex = /^[\$]?[0-9\.\,]+[\%]?/g;
+     if( ($(e.target).parent().hasClass('num') || $(e.target).hasClass('month')) &&
+       !$.isNumeric(e.target) && $(e.target).html().replace(REgex, '') &&
+       $(e.target).text() !== '') {
+       $(e.target).html('this field accepts numbers only.').addClass('error');
+     }
+  });
+  $(table).on('keypress', 'td.contenteditable > div', function (e) {
+    if (e.which == 13) {
+      $(e.target).blur();
+      return false;
     }
-    return true;
-  };
-  //run error here.
-  error();
+  });
+  $(table).on('focus blur','td.contenteditable > div', function (e) {
+    if ($(e.target).hasClass('error')) {
+      $(e.target).text('').removeClass('error');
+    }
+  });
 }
-
