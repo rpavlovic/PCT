@@ -7,21 +7,104 @@ var loadCustomBillSheet = (function ($) {
 
   function initLoadCustomBillSheet() {
     var csv_table = $("#csv-table");
-    var rcs = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.billSheet), function (plan) {
-        resolve(plan.d.results);
-      }).fail(function () {
-        // not found, but lets fix this and return empty set
-        console.log('no custom bill sheet found.... returning empty set');
-        resolve([]);
-      });
-    });
+    // get user profile
 
-    Promise.all([rcs]).then(function (values) {
-      console.log(values);
-      var titles = ['Title', 'Grade', 'Rate', 'Currency', 'Upload / Override', 'Discount'];
-      populateTable(titles, values[0], false);
-    });
+    if (!getParameterByName('CardID')) {
+      var pProfile = new Promise(function (resolve, reject) {
+        $.getJSON(get_data_feed(feeds.employee), function (employees) {
+          resolve(employees.d.results[0].Office);
+        }).fail(function () {
+          console.log("unable to find user profile.");
+          reject("error. cant load profile");
+        });
+      }).then(function (Office) {
+        return new Promise(function (resolve, reject) {
+          $.getJSON(get_data_feed(feeds.rateCards, Office), function (rcs) {
+            var rateCards = rcs.d.results.filter(function (rc) {
+              return rc.Office === Office && rc.EmpGradeName;
+            });
+
+            var uniqRcs = {};
+            rateCards.forEach(function (rc) {
+              uniqRcs[rc.EmpGrade] = rc;
+            });
+            uniqRcs = Object.values(uniqRcs);
+
+            /*  "Class" : "E2",
+             "OfficeName" : "WS St. Louis",
+             "Office" : "US04",
+             "Company" : "US10",
+             "CostRate" : "2.000",
+             "EmpGradeName" : "Assoc Creative Dir",
+             "FiscalYear" : "2017",
+             "BillRate" : "260.000",
+             "CostCenter" : "US99419900",
+             "FiscalPeriod" : "2017002",
+             "CostCenterName" : "",
+             "EmpGrade" : "990020",
+             "LocalCurrency" : "USD"
+             */
+            uniqRcs = uniqRcs.map(function(obj){
+              return {
+                TitleDesc: obj.EmpGradeName,
+                TitleId: obj.EmpGrade,
+                Class: obj.Class,
+                StandardRate: obj.BillRate,
+                Currency: obj.LocalCurrency,
+                DiscountPer: ''
+              };
+            });
+            resolve(uniqRcs);
+          }).fail(function () {
+            console.log("unable to find user rcs.");
+            reject("error. cant load profile");
+          });
+        })
+      }).then(function (res) {
+        console.log(res);
+        var titles = ['Title', 'Grade', 'Rate', 'Currency', 'Upload / Override', 'Discount'];
+        populateTable(titles, res, false);
+      });
+    }
+    else {
+      var rcs = new Promise(function (resolve, reject) {
+        // we have a card we are trying to Edit
+        $.getJSON(get_data_feed(feeds.billSheet, getParameterByName('CardID')), function (plan) {
+          resolve(plan.d.results);
+        }).fail(function () {
+          // not found, but lets fix this and return empty set
+          console.log('no custom bill sheet found.... returning empty set');
+
+          resolve([]);
+        });
+
+      });
+
+      Promise.all([rcs]).then(function (values) {
+        console.log(values);
+        var titles = ['Title', 'Grade', 'Rate', 'Currency', 'Upload / Override', 'Discount'];
+        /*
+         BillsheetId:"2"
+         BillsheetName:"Custom Bill Sheet"
+         ChangedBy:""
+         ChangedOn:null
+         Class:"M1"
+         CreatedBy:"ADULFAN"
+         CreatedOn:"/Date(1487721600000)/"
+         DiscountPer:"3.560"
+         OverrideRate:"100.000"
+         RowId:"00002"
+         StandardRate:"100.000"
+         TitleDesc:"sfsafdsf"
+         TitleId:"some title"
+         */
+        populateTable(titles, values[0], false);
+      });
+    }
+
+    // get user home office bill rate card
+
+    // go to town...
 
 
     // "EmpNumber": "10000071",
@@ -122,7 +205,7 @@ var loadCustomBillSheet = (function ($) {
         searching: false,
         paging: false,
         length: false,
-        order: [[1, 'asc']],
+        order: [[0, 'asc']],
         columns: columns,
         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
           $(nRow).removeClass('odd even');
@@ -254,11 +337,11 @@ var loadCustomBillSheet = (function ($) {
         var bsId = getParameterByName('CardID');
         payloads.push({
           type: 'POST',
-          url: '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet',
+          url: '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection',
           data: {
             "__metadata": {
-              "id": "https://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId +"',RowId='" + rowId + "')",
-              "uri": "https://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId +"',RowId='" + rowId + "')",
+              "id": "https://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId + "',RowId='" + rowId + "')",
+              "uri": "https://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId + "',RowId='" + rowId + "')",
               "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
             },
             "Class": $(cells[1]).text(),
