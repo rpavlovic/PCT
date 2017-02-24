@@ -15,9 +15,10 @@ function error(table) {
   });
 
   $(table).on('keypress', 'td.contenteditable > div', function (e) {
-    // console.log($(e.target).closest());
+
     if (e.which == 13) {
       $(e.target).blur();
+      $(this).parent().nextAll(".contenteditable div").first().children('div').focus(true);
       return false;
     }
   });
