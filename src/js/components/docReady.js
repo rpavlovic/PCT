@@ -1,6 +1,7 @@
 
 (function ($) {
   $(function () {
+
     var path = window.location.pathname;
     path = path.split("/");
 
@@ -61,7 +62,6 @@
       loadCustomBillSheet.initLoadCustomBillSheet();
       captureEditTd.initCaptureEditTd('#csv-table');
     }
-
     /**
      * Resources page
      */

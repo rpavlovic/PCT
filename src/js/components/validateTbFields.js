@@ -24,16 +24,5 @@ function returnData(new_data, table) {
   };
   //run error here.
   error();
-
-  if(table === "#csv-table") {
-    if(isNum) {
-      var ovd_rate = $(new_data).html(),
-          st_rate = $(new_data).parent().prevAll('.rate').html().replace(/[^0-9\.]/g,""),
-          minus = st_rate - ovd_rate,
-          percent = ( (st_rate - ovd_rate) / st_rate) * 100;
-      if(st_rate.length > 0) {
-        $(new_data).parent().next('td.discount').html(percent.toFixed(2)+ "%");
-      }
-    }
-  }
 }
+
