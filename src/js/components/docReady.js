@@ -82,6 +82,7 @@
     if ('projectExpenses.htm' === current_page) {
       expenseTable.initExpenseTable();
       $('.project-expense button[type="reset"]').clearAll();
+      error('#project-expense-table');
     }
 
     /**
