@@ -61,7 +61,7 @@ var loadCustomBillSheet = (function ($) {
             console.log("unable to find user rcs.");
             reject("error. cant load profile");
           });
-        })
+        });
       }).then(function (res) {
         console.log(res);
         var titles = ['Title', 'Grade', 'Rate', 'Currency', 'Upload / Override', 'Discount'];
@@ -223,6 +223,20 @@ var loadCustomBillSheet = (function ($) {
           $("td:nth-child(3)", nRow).addClass('rate num');
           $("td:nth-child(6)", nRow).addClass('discount num');
           $("td:nth-child(5)", nRow).addClass('rate-override num');
+
+          //Calculate percentage for the discount.
+          $("td:nth-child(5) div", nRow).on('keyup focusout', function (e) {
+            if($.isNumeric($(e.target).text()) && $(e.target).text().length > 0) {
+              var ovd_rate = $(e.target).text(),
+                  st_rate = $(e.target).parent().prevAll('.rate').text().replace(/[^0-9\.]/g,""),
+                  minus = st_rate - ovd_rate,
+                  percent = ( (st_rate - ovd_rate) / st_rate) * 100;
+                  $(e.target).parent().next('.discount').html(percent.toFixed(2)+ "%");
+            }
+            else {
+              $(e.target).parent().next('.discount').empty();
+            }
+          });
         },
         bDestroy: true
       });
