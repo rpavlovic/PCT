@@ -364,7 +364,7 @@ var loadCustomBillSheet = (function ($) {
             "BillsheetId": bsId,
             "BillsheetName": $('#bill-sheet-name').val(),
             "RowId": rowId,
-            "TitleId": "2334455",
+            "TitleId": "000000",
             "TitleDesc": $(cells[0]).text(),
             "StandardRate": StandardRate,
             "OverrideRate": OverrideRate,

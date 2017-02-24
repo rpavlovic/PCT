@@ -44,27 +44,6 @@ var rateCardSelect = (function ($) {
       url = updateQueryString('CardID', CardID, url);
       $(this).attr('href', url);
     });
-
-    $('#rate-card').on('change', function (event) {
-      var url = $(this).attr('href');
-      var CardID = $(this).find(':selected').val();
-      url = updateQueryString('CardID', CardID, url);
-      var p = new Promise(function (resolve, reject) {
-
-        $.getJSON(get_data_feed(feeds.billSheet, CardID), function (cards) {
-          var cardResults = cards.d.results;
-          cardResults = cardResults.filter(function(val){
-            return val.BillsheetId === CardID;
-          });
-          resolve(cardResults);
-        });
-      }).then(function(cardResults){
-        console.log(cardResults);
-        // iterate over the whole table and insert the overridden values
-      });
-
-
-    });
   }
 
   return {

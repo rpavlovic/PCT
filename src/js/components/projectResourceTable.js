@@ -76,7 +76,7 @@ var projectResourceTable = (function ($) {
         var promiseArray = [];
         var officeIds = {};
         resources.forEach(function (val) {
-          if(!officeIds[val.Officeid]) {
+          if (!officeIds[val.Officeid]) {
             officeIds[val.Officeid] = true;
             promiseArray.push(loadRateCardFromServer(val.Officeid));
           }
@@ -126,7 +126,7 @@ var projectResourceTable = (function ($) {
 
       // preload the rest of the bill rate cards
       offices.forEach(function (val) {
-        if(!RateCards[val.Office])
+        if (!RateCards[val.Office])
           loadRateCardFromServer(val.Office);
       });
 
@@ -395,7 +395,7 @@ var projectResourceTable = (function ($) {
             recalculateStuff();
             //lighten the rate when in override mode.
             var rate_td = $(this);
-            if(rate_td.children('div').text() && rate_td.hasClass('rate-override')) {
+            if (rate_td.children('div').text() && rate_td.hasClass('rate-override')) {
               rate_td.prev().css('color', 'lightgrey');
             } else {
               rate_td.prev().css('color', '#5b5b5b');
@@ -428,6 +428,44 @@ var projectResourceTable = (function ($) {
         e.preventDefault();
         projResourceTable.row($(this).parents('tr')).remove().draw(false);
         recalculateStuff();
+      });
+
+// maybe move this into that
+      $('#rate-card').on('change', function (event) {
+        var url = $(this).attr('href');
+        var CardID = $(this).find(':selected').val();
+        url = updateQueryString('CardID', CardID, url);
+        var p = new Promise(function (resolve, reject) {
+
+          $.getJSON(get_data_feed(feeds.billSheet, CardID), function (cards) {
+            var cardResults = cards.d.results;
+            cardResults = cardResults.filter(function (val) {
+              return val.BillsheetId === CardID;
+            });
+            resolve(cardResults);
+          });
+        }).then(function (cardResults) {
+          //console.log(cardResults);
+          var projResourceTable = $('#project-resource-table').DataTable();
+          var rows = projResourceTable.rows();
+          for (var i = 0; i < rows.context[0].aoData.length; i++) {
+            // employee title
+            //console.log($(rows.context[0].aoData[i].anCells[4]).find(':selected').text());
+            var title = $(rows.context[0].aoData[i].anCells[4]).find(':selected').text();
+            // bill rate override
+            //console.log($(rows.context[0].aoData[i].anCells[10]).find('div'));
+
+            var foundCard = cardResults.filter(function (val) {
+              return val.TitleDesc === title;
+            });
+
+            if (foundCard[0] && parseInt(foundCard[0].OverrideRate)) {
+              $(rows.context[0].aoData[i].anCells[10]).find('div').text(foundCard[0].OverrideRate);
+            }
+          }
+
+          recalculateStuff();
+        });
       });
 
       function getClass(nodes) {
@@ -479,7 +517,7 @@ var projectResourceTable = (function ($) {
 
         var rateCards = getRateCard(Office);
         var rates = rateCards.filter(function (val) {
-            return val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter;
+          return val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter;
         });
 
         if (rates.length > 1) {
