@@ -335,6 +335,7 @@ var loadCustomBillSheet = (function ($) {
         console.log(cells);
         var rowId = padNumber(rowIndex, 5);
         var bsId = getParameterByName('CardID');
+        bsId = bsId ? bsId : get_unique_id();
         payloads.push({
           type: 'POST',
           url: '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection',
