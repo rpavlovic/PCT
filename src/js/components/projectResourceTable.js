@@ -8,8 +8,9 @@ var projectResourceTable = (function ($) {
   var duration = getParameterByName('Duration');
   var planBy = getParameterByName('PlanBy');
   var office = getParameterByName('Office');
-
   var RateCards = [];
+  var projectResources = [];
+  var deletePayloads = [];
 
   function getRateCard(OfficeId) {
     if (!OfficeId) {
@@ -132,7 +133,7 @@ var projectResourceTable = (function ($) {
 
       // go ahead and prefetch the rest of the office rate cards for performance
       //var rateCards = values[2];
-      var projectResources = values[3];
+      projectResources = values[3];
       var marginModeling = values[4];
       var plannedHours = values[5];
       var customRateCards = values[6];
@@ -824,7 +825,13 @@ var projectResourceTable = (function ($) {
       var resourcePayloads = buildResourcePayload();
       var resourceHours = buildResourceHoursPayload();
 
-      var payloads = modelingTablePayloads.concat(resourcePayloads).concat(resourceHours);
+      deleteResources();
+
+      var payloads = modelingTablePayloads
+        .concat(deletePayloads)
+        .concat(resourcePayloads)
+        .concat(resourceHours);
+
       $.ajaxBatch({
         url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
         data: payloads,
@@ -1015,30 +1022,58 @@ var projectResourceTable = (function ($) {
     return payloads;
   }
 
-  function buildResourceHoursDeletePayload() {
+  function deleteResources() {
     // post all of the hours cells
-    var projResourceTable = $('#project-resource-table').DataTable();
-    var rows = projResourceTable.rows();
-    var planBy = getParameterByName('PlanBy');
-    var payloads = [];
-    var rowIndex = 1;
-    for (var i = 0; i < rows.context[0].aoData.length; i++) {
-      var hoursPerRow = 0;
-      var columnIndex = 1;
-      var payloadRowIndex = padNumber(rowIndex);
-      for (var j = 14; j < rows.context[0].aoData[i].anCells.length; j++) {
-        var value = $(rows.context[0].aoData[i].anCells[j]).text();
-        var cellId = "R" + rowIndex + "C" + columnIndex;
-        payloads.push({
+    deletePayloads = [];
+    var resourceLength = projectResources.length;
+    while (resourceLength > $("#project-resource-table tbody tr").length) {
+      var resourceId = resourceLength;
+      var targetUrl = "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + padNumber(resourceId) + "')";
+      var lookupPayload = deletePayloads.filter(function (val) {
+        return val.url === targetUrl;
+      });
+      // just make sure we don't keep adding the delete payloads.
+      if (lookupPayload.length === 0) {
+        deletePayloads.push({
           type: 'DELETE',
-          url: "/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='" + planBy + "',Cellid='" + cellId + "')"
+          url: targetUrl
         });
-        columnIndex++;
       }
-      rowIndex++;
+
+      for (var j = 1; j <= duration; j++) {
+        var cellId = "R" + resourceId + "C" + j;
+        deletePayloads.push({
+          type: 'DELETE',
+          url: "/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + padNumber(resourceId) + "',Plantyp='" + planBy + "',Cellid='" + cellId + "')"
+        });
+      }
+      resourceLength--;
     }
-    return payloads;
   }
+
+
+  // var projResourceTable = $('#project-resource-table').DataTable();
+  // var rows = projResourceTable.rows();
+  // var planBy = getParameterByName('PlanBy');
+  // var payloads = [];
+  // var rowIndex = 1;
+  // for (var i = 0; i < rows.context[0].aoData.length; i++) {
+  //   var hoursPerRow = 0;
+  //   var columnIndex = 1;
+  //   var payloadRowIndex = padNumber(rowIndex);
+  //   for (var j = 14; j < rows.context[0].aoData[i].anCells.length; j++) {
+  //     var value = $(rows.context[0].aoData[i].anCells[j]).text();
+  //     var cellId = "R" + rowIndex + "C" + columnIndex;
+  //     payloads.push({
+  //       type: 'DELETE',
+  //       url: "/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='" + planBy + "',Cellid='" + cellId + "')"
+  //     });
+  //     columnIndex++;
+  //   }
+  //   rowIndex++;
+  // }
+  // return payloads;
+  //}
 
   return {
     initProjectResourceTable: initProjectResourceTable
