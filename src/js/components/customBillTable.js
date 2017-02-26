@@ -64,8 +64,8 @@ var loadCustomBillSheet = (function ($) {
         });
       }).then(function (res) {
         console.log(res);
-        var titles = ['Title', 'Grade', 'Rate', 'Currency', 'Upload / Override', 'Discount'];
-        populateTable(titles, res, false);
+        //var titles = ['Title', 'Grade', 'Rate', 'Currency', 'Upload / Override', 'Discount'];
+        populateTable(res, false);
       });
     }
     else {
@@ -77,82 +77,54 @@ var loadCustomBillSheet = (function ($) {
           var rcs = plan.d.results.filter(function(val){
             return val.BillsheetId === BillsheetId;
           });
-
           console.log(rcs);
           resolve(rcs);
         }).fail(function () {
           // not found, but lets fix this and return empty set
           console.log('no custom bill sheet found.... returning empty set');
-
           resolve([]);
         });
 
       });
 
       Promise.all([rcs]).then(function (values) {
-        console.log(values);
-        var titles = ['Title', 'Grade', 'Rate', 'Currency', 'Upload / Override', 'Discount'];
-        /*
-         BillsheetId:"2"
-         BillsheetName:"Custom Bill Sheet"
-         ChangedBy:""
-         ChangedOn:null
-         Class:"M1"
-         CreatedBy:"ADULFAN"
-         CreatedOn:"/Date(1487721600000)/"
-         DiscountPer:"3.560"
-         OverrideRate:"100.000"
-         RowId:"00002"
-         StandardRate:"100.000"
-         TitleDesc:"sfsafdsf"
-         TitleId:"some title"
-         */
-        populateTable(titles, values[0], false);
+        populateTable(values[0], false);
       });
     }
 
-    // get user home office bill rate card
+    function populateTable(rows, isUploaded) {
 
-    // go to town...
+      console.log(rows);
 
 
-    // "EmpNumber": "10000071",
-    //   "Class": "E1",
-    //   "BillsheetId": "3",
-    //   "BillsheetName": "Custom Bill Sheet #2",
-    //   "TitleId": "ABCD",
-    //   "TitleDesc": "Vice President",
-    //   "StandardRate": "100.000",
-    //   "OverrideRate": "100.000",
-    //   "DiscountPer": "3.560",
-    //   "CreatedBy": "VKANDURI",
-    //   "CreatedOn": "\/Date(1482796800000)\/",
-    //   "ChangedOn": "\/Date(1482796800000)\/",
-    //   "ChangedBy": "VKANDURI"
-    function populateTable(titles, rows, isUploaded) {
       var columns;
       if (isUploaded) {
         columns = [
           {
-            name: "TitleDesc",
-            title: titles[0]
+            name: "Title",
+            title: "Title"
+          },
+          {
+            name: "TitleId",
+            visible: false,
+            title: "TitleId"
           },
           {
             name: "Class",
-            title: titles[1]
+            title: "Class"
           },
           {
             name: "StandardRate",
-            title: titles[2]
+            title: "Standard Rate"
           },
           {
             name: "Currency",
             defaultContent: "USD",
-            title: titles[3]
+            title: "Currency"
           },
           {
             name: "OverrideRate",
-            title: titles[4],
+            title: "Upload / Override",
             defaultContent: "<div contenteditable></div>",
             render: function (data, type, row) {
               if (data) {
@@ -161,46 +133,53 @@ var loadCustomBillSheet = (function ($) {
             }
           },
           {
-            title: titles[5]
+            name: "Discount",
+            title: "Discount"
           }
         ];
       }
       else {
         columns = [
           {
-            name: "TitleDesc",
+            name: "Title",
             data: "TitleDesc",
-            title: titles[0]
+            title: "Title"
+          },
+          {
+            name: "Title Id",
+            data: "TitleId",
+            visible: true,
+            title: "Title Id"
           },
           {
             name: "Class",
             data: "Class",
-            title: titles[1]
+            title: "Class"
           },
           {
             name: "StandardRate",
             data: "StandardRate",
-            title: titles[2]
+            title: "Rate"
           },
           {
             name: "Currency",
             defaultContent: "USD",
-            title: titles[3]
+            title: "Currency"
           },
           {
             name: "OverrideRate",
             data: "OverrideRate",
-            title: titles[4],
+            title: "Upload / Override",
             defaultContent: "<div contenteditable></div>",
             render: function (data, type, row) {
-              if (data) {
+              if (parseFloat(data)) {
                 return "<div contenteditable>" + data + "</div>";
               }
             }
           },
           {
             data: "DiscountPer",
-            title: titles[5]
+            title: "Discount"
           }
         ];
       }
@@ -257,9 +236,6 @@ var loadCustomBillSheet = (function ($) {
               //get titles from the Excel.
               titles[0] = titles[0].replace(/"/g, ",");
               titles[titles.length - 1] = titles[titles.length - 1].replace(/"/g, ",");
-            } else {
-              //if not preset to defaults.
-              titles = ['Title', 'Grade', 'Rate', 'Currency', 'Upload / Override', 'Discount'];
             }
           }
         }
@@ -274,7 +250,7 @@ var loadCustomBillSheet = (function ($) {
         if ($.trim(rows["0"]["0"]) === 'Title') {
           rows.shift();
         }
-        populateTable(titles, rows, true);
+        populateTable(rows, true);
       }
     }
 
@@ -361,9 +337,9 @@ var loadCustomBillSheet = (function ($) {
         var cells = $(rows.context[0].aoData[i].anCells);
         console.log(cells);
         var rowId = padNumber(rowIndex, 5);
-        var StandardRate = convertToDecimal($(cells[2]).text()) ? convertToDecimal($(cells[2]).text()) : "0.0";
-        var OverrideRate = convertToDecimal($(cells[4]).text()) ? convertToDecimal($(cells[4]).text()) : "0.0";
-        var DiscountPer = convertToDecimal($(cells[5]).text()) ? convertToDecimal($(cells[5]).text()) : "0.0";
+        var StandardRate = convertToDecimal($(cells[3]).text()) ? convertToDecimal($(cells[3]).text()) : "0.0";
+        var OverrideRate = convertToDecimal($(cells[5]).text()) ? convertToDecimal($(cells[5]).text()) : "0.0";
+        var DiscountPer = convertToDecimal($(cells[6]).text()) ? convertToDecimal($(cells[6]).text()) : "0.0";
 
         payloads.push({
           type: 'POST',
@@ -374,11 +350,11 @@ var loadCustomBillSheet = (function ($) {
               "uri": "https://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId + "',RowId='" + rowId + "')",
               "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
             },
-            "Class": $(cells[1]).text(),
+            "Class": $(cells[2]).text(),
             "BillsheetId": bsId,
             "BillsheetName": $('#bill-sheet-name').val(),
             "RowId": rowId,
-            "TitleId": "000000",
+            "TitleId": $(cells[1]).text(),
             "TitleDesc": $(cells[0]).text(),
             "StandardRate": StandardRate,
             "OverrideRate": OverrideRate,
