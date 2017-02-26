@@ -28,23 +28,8 @@ var loadCustomBillSheet = (function ($) {
             rateCards.forEach(function (rc) {
               uniqRcs[rc.EmpGrade] = rc;
             });
-            uniqRcs = Object.values(uniqRcs);
 
-            /*  "Class" : "E2",
-             "OfficeName" : "WS St. Louis",
-             "Office" : "US04",
-             "Company" : "US10",
-             "CostRate" : "2.000",
-             "EmpGradeName" : "Assoc Creative Dir",
-             "FiscalYear" : "2017",
-             "BillRate" : "260.000",
-             "CostCenter" : "US99419900",
-             "FiscalPeriod" : "2017002",
-             "CostCenterName" : "",
-             "EmpGrade" : "990020",
-             "LocalCurrency" : "USD"
-             */
-            uniqRcs = uniqRcs.map(function(obj){
+            uniqRcs = Object.values(uniqRcs).map(function (obj) {
               return {
                 TitleDesc: obj.EmpGradeName,
                 TitleId: obj.EmpGrade,
@@ -63,8 +48,6 @@ var loadCustomBillSheet = (function ($) {
           });
         });
       }).then(function (res) {
-        console.log(res);
-        //var titles = ['Title', 'Grade', 'Rate', 'Currency', 'Upload / Override', 'Discount'];
         populateTable(res, false);
       });
     }
@@ -74,7 +57,7 @@ var loadCustomBillSheet = (function ($) {
         var BillsheetId = getParameterByName('CardID');
         $.getJSON(get_data_feed(feeds.billSheet, BillsheetId), function (plan) {
           console.log(plan);
-          var rcs = plan.d.results.filter(function(val){
+          var rcs = plan.d.results.filter(function (val) {
             return val.BillsheetId === BillsheetId;
           });
           console.log(rcs);
@@ -93,10 +76,7 @@ var loadCustomBillSheet = (function ($) {
     }
 
     function populateTable(rows, isUploaded) {
-
       console.log(rows);
-
-
       var columns;
       if (isUploaded) {
         columns = [
@@ -205,12 +185,12 @@ var loadCustomBillSheet = (function ($) {
 
           //Calculate percentage for the discount.
           $("td:nth-child(5) div", nRow).on('keyup focusout', function (e) {
-            if($.isNumeric($(e.target).text()) && $(e.target).text().length > 0) {
+            if ($.isNumeric($(e.target).text()) && $(e.target).text().length > 0) {
               var ovd_rate = $(e.target).text(),
-                  st_rate = $(e.target).parent().prevAll('.rate').text().replace(/[^0-9\.]/g,""),
-                  minus = st_rate - ovd_rate,
-                  percent = ( (st_rate - ovd_rate) / st_rate) * 100;
-                  $(e.target).parent().next('.discount').html(percent.toFixed(2)+ "%");
+                st_rate = $(e.target).parent().prevAll('.rate').text().replace(/[^0-9\.]/g, ""),
+                minus = st_rate - ovd_rate,
+                percent = ( (st_rate - ovd_rate) / st_rate) * 100;
+              $(e.target).parent().next('.discount').html(percent.toFixed(2) + "%");
             }
             else {
               $(e.target).parent().next('.discount').empty();
@@ -255,45 +235,41 @@ var loadCustomBillSheet = (function ($) {
     }
 
     // Upload CSV into a table.
-    function uploadTable() {
-      $("#uploadTable").on('click', function (event, opt_startByte, opt_stopByte) {
-        console.log(this);
-        $("input[type=\"file\"]").trigger('click', function () {
-          event.stopPropagation();
-        });
-
-        $("input[type=\"file\"]").on('change', function (evt) {
-
-          var files = evt.target.files,
-            file = files[0],
-            file_name = file.name,
-            start = parseInt(opt_startByte) || 0,
-            stop = parseInt(opt_stopByte) || file.size - 1,
-            reader = new FileReader();
-
-          reader.onloadend = function (event) {
-            if (event.target.readyState == FileReader.DONE) {
-              uploadCSV(event.target.result);
-            }
-          };
-          var blob = file.slice(start, stop + 1);
-
-          reader.readAsBinaryString(blob);
-          $('#bill-sheet-name').val(file_name.slice(0, -4));
-        });
+    $("#uploadTable").on('click', function (event, opt_startByte, opt_stopByte) {
+      console.log(this);
+      $("input[type=\"file\"]").trigger('click', function () {
         event.stopPropagation();
       });
-    }
 
-    //TODO delete from Server and Profile page.
-    $('#DeleteCustomBillSheet').on('click', function () {
-      confirm("The template will be deleted and Overrides removed?");
-      $("#csv-table tr").each(function (key, value) {
-        $(this).find('td.contenteditable div').empty();
-        $(this).find('td.discount').empty();
+      $("input[type=\"file\"]").on('change', function (evt) {
+
+        var files = evt.target.files,
+          file = files[0],
+          file_name = file.name,
+          start = parseInt(opt_startByte) || 0,
+          stop = parseInt(opt_stopByte) || file.size - 1,
+          reader = new FileReader();
+
+        reader.onloadend = function (event) {
+          if (event.target.readyState == FileReader.DONE) {
+            uploadCSV(event.target.result);
+          }
+        };
+        var blob = file.slice(start, stop + 1);
+
+        reader.readAsBinaryString(blob);
+        $('#bill-sheet-name').val(file_name.slice(0, -4));
       });
+      event.stopPropagation();
     });
-    uploadTable();
+
+    $('#DeleteCustomBillSheet').on('click', function () {
+      var confirmDelete = confirm("Are you sure you want to delete this Custom Rate Card?");
+      if (confirmDelete) {
+        console.log("deleting this sheet");
+        deleteBillSheet();
+      }
+    });
 
     $('.custom-bill-sheet #btn-save').on('click', function (event) {
       event.preventDefault();
@@ -309,6 +285,7 @@ var loadCustomBillSheet = (function ($) {
           console.log("navigating to new window in" + timeout + "seconds");
           timeout = timeout ? timeout : 1;
           setTimeout(function () {
+            // where do they go after they save a sheet?
             //window.location.href = $('#btn-save').attr('href');
           }, timeout);
         },
@@ -365,6 +342,43 @@ var loadCustomBillSheet = (function ($) {
       }
       return payloads;
     }
+  }
+
+  function deleteBillSheet() {
+    var bsId = getParameterByName('CardID');
+
+    var deletePayloads = [];
+    for (var i = 1; i <= $("#csv-table tbody tr").length; i++) {
+      var rowId = padNumber(i, 5);
+      var targetUrl = "/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId + "',RowId='" + rowId + "')";
+      // just make sure we don't keep adding the delete payloads.
+      deletePayloads.push({
+        type: 'DELETE',
+        url: targetUrl
+      });
+    }
+
+    $.ajaxBatch({
+      url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
+      data: deletePayloads,
+      complete: function (xhr, status, data) {
+        console.log(data);
+        var timeout = getParameterByName('timeout');
+        console.log("navigating to new window in" + timeout + "seconds");
+        timeout = timeout ? timeout : 1;
+        setTimeout(function () {
+          window.location.href = 'customBillSheet.htm';
+        }, timeout);
+      },
+      always: function (xhr, status, data) {
+        var timeout = getParameterByName('timeout');
+        console.log("navigating to new window in" + timeout + "seconds");
+        timeout = timeout ? timeout : 1;
+        setTimeout(function () {
+          window.location.href = 'customBillSheet.htm';
+        }, timeout);
+      }
+    });
   }
 
   return {
