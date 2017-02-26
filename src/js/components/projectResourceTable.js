@@ -5,9 +5,9 @@
 var projectResourceTable = (function ($) {
   'use strict';
   var projectID = getParameterByName('projID') ? getParameterByName('projID').toString() : '';
-  var duration = getParameterByName('Duration');
-  var planBy = getParameterByName('PlanBy');
-  var office = getParameterByName('Office');
+  var duration;
+  var planBy;
+  var office;
   var RateCards = [];
   var projectResources = [];
   var deletePayloads = [];
@@ -120,7 +120,15 @@ var projectResourceTable = (function ($) {
       });
     });
 
-    Promise.all([p1, p2, p3, p4, t1, p5, rcs]).then(function (values) {
+    var pInfo = new Promise(function (resolve, reject) {
+      $.getJSON(get_data_feed(feeds.project, projectID), function (projects) {
+        resolve(projects.d.results);
+      }).fail(function () {
+        resolve([]);
+      });
+    });
+
+    Promise.all([p1, p2, p3, p4, t1, p5, rcs, pInfo]).then(function (values) {
       //deliverables
       var deliverables = values[0];
       var offices = values[1];
@@ -137,6 +145,16 @@ var projectResourceTable = (function ($) {
       var marginModeling = values[4];
       var plannedHours = values[5];
       var customRateCards = values[6];
+      var projectInfo = values[7];
+
+      projectInfo = projectInfo.find(function(val){
+        return val.Projid === projectID;
+      });
+
+      console.log(projectInfo);
+      duration = projectInfo.Duration;
+      office = projectInfo.Office;
+      planBy = projectInfo.Plantyp;
 
       var billsheets = {};
       customRateCards.forEach(function (customBillSheet) {
@@ -303,7 +321,7 @@ var projectResourceTable = (function ($) {
         }
       ];
 
-      var planLabel = planBy === 'Weekly' ? 'Week' : 'Month';
+      var planLabel = planBy === 'WK' ? 'Week' : 'Month';
 
       // this is supposed to come from data/PlannedHours.json
       projectResources.forEach(function (resource) {
