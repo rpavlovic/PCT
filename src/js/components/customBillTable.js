@@ -177,14 +177,14 @@ var loadCustomBillSheet = (function ($) {
         columns: columns,
         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
           $(nRow).removeClass('odd even');
-          $("td:nth-child(n+5):not(:last-child)", nRow)
+          $("td:nth-child(n+6):not(:last-child)", nRow)
             .addClass("contenteditable");
-          $("td:nth-child(3)", nRow).addClass('rate num');
-          $("td:nth-child(6)", nRow).addClass('discount num');
-          $("td:nth-child(5)", nRow).addClass('rate-override num');
+          $("td:nth-child(4)", nRow).addClass('rate num');
+          $("td:nth-child(7)", nRow).addClass('discount num');
+          $("td:nth-child(6)", nRow).addClass('rate-override num');
 
           //Calculate percentage for the discount.
-          $("td:nth-child(5) div", nRow).on('keyup focusout', function (e) {
+          $("td:nth-child(6) div", nRow).on('keyup focusout', function (e) {
             if ($.isNumeric($(e.target).text()) && $(e.target).text().length > 0) {
               var ovd_rate = $(e.target).text(),
                 st_rate = $(e.target).parent().prevAll('.rate').text().replace(/[^0-9\.]/g, ""),
