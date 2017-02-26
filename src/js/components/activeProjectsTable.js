@@ -154,20 +154,20 @@ var activeTableFunction = (function ($) {
     // $( '.buttons-page-length' ).insertAfter('#active-projects_wrapperarchived-projects_wrapper').wrap("<div class=\"dt-buttons\" />").addClass('float-right');
     $('#active-projects tbody').on('click', '.remove', function (e) {
       e.preventDefault();
-
-      console.log($(this));
-      console.log($(this).data('projid'));
-      var projectId = $(this).data('projid');
-      $.ajax({
-        url: "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" +  projectId + "')",
-        type: 'DELETE',
-        success: function (result) {
-          // Do something with the result
-          activeTable.row($(this).parents('tr')).remove().draw();
-        }
-      });
-
-
+      //console.log($(this));
+      //console.log($(this).data('projid'));
+      var r = confirm("Are you sure you want to delete this project?");
+      if (r === true) {
+        var projectId = $(this).data('projid');
+        $.ajax({
+          url: "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + projectId + "')",
+          type: 'DELETE',
+          success: function (result) {
+            // Do something with the result
+            activeTable.row($(this).parents('tr')).remove().draw();
+          }
+        });
+      }
     });
   }
 
