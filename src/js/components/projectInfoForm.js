@@ -118,6 +118,7 @@ var projectInfoForm = (function ($) {
       $('form.project-info input[name="Clientname"]').val(extraProjInfo.Clientname);
       $('form.project-info input[name="Projname"]').val(extraProjInfo.Projname);
       $('form.project-info input[name="Preparedby"]').val(extraProjInfo.Preparedby);
+      select_plan_by.val(extraProjInfo.Plantyp);
       input_duration.val(extraProjInfo.Duration);
       plan_units.val(extraProjInfo.Comptyp);
       createdOn = extraProjInfo.Createdon;
