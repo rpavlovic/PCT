@@ -90,7 +90,7 @@ var projectResourceTable = (function ($) {
 
     //fees for modeling table targets
     var t1 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.marginModeling, projectID), function (data) {
+      $.getJSON(get_data_feed(feeds.marginModeling, projectID, ' '), function (data) {
         resolve(data.d.results);
       }).fail(function () {
         // not found, but lets fix this and return empty set
@@ -1007,6 +1007,31 @@ var projectResourceTable = (function ($) {
             "Cellid": cellId,
             "Planhours": value
           }
+        });
+        columnIndex++;
+      }
+      rowIndex++;
+    }
+    return payloads;
+  }
+
+  function buildResourceHoursDeletePayload() {
+    // post all of the hours cells
+    var projResourceTable = $('#project-resource-table').DataTable();
+    var rows = projResourceTable.rows();
+    var planBy = getParameterByName('PlanBy');
+    var payloads = [];
+    var rowIndex = 1;
+    for (var i = 0; i < rows.context[0].aoData.length; i++) {
+      var hoursPerRow = 0;
+      var columnIndex = 1;
+      var payloadRowIndex = padNumber(rowIndex);
+      for (var j = 14; j < rows.context[0].aoData[i].anCells.length; j++) {
+        var value = $(rows.context[0].aoData[i].anCells[j]).text();
+        var cellId = "R" + rowIndex + "C" + columnIndex;
+        payloads.push({
+          type: 'DELETE',
+          url: "/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='" + planBy + "',Cellid='" + cellId + "')"
         });
         columnIndex++;
       }

@@ -7,14 +7,16 @@ var projectInfoForm = (function ($) {
   'use strict';
 
   var projectId = getParameterByName('projID');
-
   // no id means there's no url string and we will create a new one.
-  if(!projectId){
+  if (!projectId) {
     projectId = get_unique_id();
   }
-  var items_business = [],
-    items_country = [],
-    items_currency =
+
+  var deletePayloads = [];
+  var isNewProject = false;
+
+  var projectDeliverables = [];
+  var items_currency =
       [
         'AUD',
         'CAD',
@@ -36,7 +38,6 @@ var projectInfoForm = (function ($) {
     select_country = $("form.project-info select[name='Country']"),
     select_plan_by = $("select[name='planby']"),
     input_duration = $("input[name='Duration']"),
-   // input_deliverable = $('input[name="deliverable"]'),
     plan_units = $("input[name='PlanUnits']"),
     client_name = $("input[name='Clientname']"),
     project_name = $("input[name='Projname']"),
@@ -55,15 +56,17 @@ var projectInfoForm = (function ($) {
   }
 
   function prepopulateDeliverables(results) {
+    projectDeliverables = results;
+
     results.forEach(function (deliverable) {
       if (projectId === deliverable.Projid) {
         var test = $('input[name="deliverable"]').length - 1;
-        $('input[name="deliverable"]:eq('+(test)+')').val(deliverable.DelvDesc);
+        $('input[name="deliverable"]:eq(' + (test) + ')').val(deliverable.DelvDesc);
         $('button.add-row').click();
       }
     });
-    $('input[name="deliverable"]').each(function() {
-      if($('.row.deliverables input[name="deliverable"]').last().val() === '' && $('input[name="deliverable"]').length > 1) {
+    $('input[name="deliverable"]').each(function () {
+      if ($('.row.deliverables input[name="deliverable"]').last().val() === '' && $('input[name="deliverable"]').length > 1) {
         $('.row.deliverables input[name="deliverable"]').last().parents().eq(2).detach();
       }
     });
@@ -71,16 +74,19 @@ var projectInfoForm = (function ($) {
 
   //prepopulate Billing office select with JSON data.
   function prepopulate_Billing_Office_JSON(results) {
+    var offices = [];
+    var countries = [];
+    var regions = [];
     results.forEach(function (office) {
-      items_business.push('<option value="' + office.Office + '">' + office.OfficeName + ', ' + office.City + ' (' + office.Office + ')</option>');
-      items_country.push('<option value="' + office.Country + '">' + office.Country + '</option>');
-      items_region.push('<option value="' + office.Region + '">' + office.Region + '</option>');
+      offices.push('<option value="' + office.Office + '">' + office.OfficeName + ', ' + office.City + ' (' + office.Office + ')</option>');
+      countries.push('<option value="' + office.Country + '">' + office.Country + '</option>');
+      regions.push('<option value="' + office.Region + '">' + office.Region + '</option>');
       matchOptions(office.Currency, select_currency[0]);
     });
 
-    select_billing_office.append($.unique(items_business));
-    select_country.append($.unique(items_country));
-    select_region.append($.unique(items_region));
+    select_billing_office.append($.unique(offices.sort()));
+    select_country.append($.unique(countries.sort()));
+    select_region.append($.unique(regions.sort()));
   }
 
   //match the employee office with list of offices and select the matching one.
@@ -106,6 +112,9 @@ var projectInfoForm = (function ($) {
     });
     if (extraProjInfo) {
       $('textarea').val(extraProjInfo.Comments);
+      $('select[name="Region"]').val(extraProjInfo.Region);
+      $('select[name="Currency"]').val(extraProjInfo.Currency);
+      $('select[name="Office"]').val(extraProjInfo.Office);
       $('form.project-info input[name="Clientname"]').val(extraProjInfo.Clientname);
       $('form.project-info input[name="Projname"]').val(extraProjInfo.Projname);
       $('form.project-info input[name="Preparedby"]').val(extraProjInfo.Preparedby);
@@ -144,6 +153,9 @@ var projectInfoForm = (function ($) {
         resolve(projects.d.results);
       }).fail(function () {
         // not found, but lets fix this and return empty set
+        // setting the flag here so we know if they hit delete for a deliverable
+        // we need to run delete payload commands
+        isNewProject = true;
         resolve([]);
       });
     });
@@ -170,9 +182,31 @@ var projectInfoForm = (function ($) {
     }
   }
 
+  function deleteDeliverables() {
+    // if we had more deliverables than we did inputs, then delete the last few
+    while (projectDeliverables.length > $('input[name="deliverable"]').length) {
+      var deliverableId = projectDeliverables.length;
+      $('input[name="deliverable"]').each(function (key, value) {
+        if ($(value).val()) {
+          var targetUrl = "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection(Projid='" + projectId.toString() + "',Delvid='" + padNumber(deliverableId.toString()) + "')";
+          var lookupPayload = deletePayloads.filter(function (val) {
+            return val.url === targetUrl
+          });
+          // just make sure we don't keep adding the delete payloads.
+          if (lookupPayload.length === 0) {
+            deletePayloads.push({
+              type: 'DELETE',
+              url: targetUrl
+            });
+          }
+        }
+      });
+      projectDeliverables.length--;
+    }
+  }
+
   $('.project-info #btn-save').on('click', function (event) {
     event.preventDefault();
-
     console.log("saving form");
     var url = $('#btn-save').attr('href');
     url = updateQueryString('projID', projectId, url);
@@ -219,6 +253,9 @@ var projectInfoForm = (function ($) {
       "Preparedby": prepared_by.val()
     };
 
+    // update deliverables if necessary
+    deleteDeliverables();
+
     var payloads = [];
     payloads.push({
       type: 'POST',
@@ -226,9 +263,11 @@ var projectInfoForm = (function ($) {
       data: formData
     });
 
+    payloads = payloads.concat(deletePayloads);
+
     var deliverableId = 1;
     $('input[name="deliverable"]').each(function (key, value) {
-      if($(value).val()) {
+      if ($(value).val()) {
         payloads.push({
           type: 'POST',
           url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection',
