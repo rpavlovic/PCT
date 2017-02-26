@@ -215,7 +215,7 @@ var expenseTable = (function ($) {
       var expenseId = expLength;
       var targetUrl = "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='" + projectID.toString() + "',ExpRow='" + padNumber(expenseId.toString()) + "')";
       var lookupPayload = deletePayloads.filter(function (val) {
-        return val.url === targetUrl
+        return val.url === targetUrl;
       });
       // just make sure we don't keep adding the delete payloads.
       if (lookupPayload.length === 0) {
