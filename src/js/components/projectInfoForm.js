@@ -184,24 +184,21 @@ var projectInfoForm = (function ($) {
 
   function deleteDeliverables() {
     // if we had more deliverables than we did inputs, then delete the last few
-    while (projectDeliverables.length > $('input[name="deliverable"]').length) {
-      var deliverableId = projectDeliverables.length;
-      $('input[name="deliverable"]').each(function (key, value) {
-        if ($(value).val()) {
-          var targetUrl = "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection(Projid='" + projectId.toString() + "',Delvid='" + padNumber(deliverableId.toString()) + "')";
-          var lookupPayload = deletePayloads.filter(function (val) {
-            return val.url === targetUrl
-          });
-          // just make sure we don't keep adding the delete payloads.
-          if (lookupPayload.length === 0) {
-            deletePayloads.push({
-              type: 'DELETE',
-              url: targetUrl
-            });
-          }
-        }
+    var deliverableLength = projectDeliverables.length;
+    while (deliverableLength > $('input[name="deliverable"]').length) {
+      var deliverableId = deliverableLength;
+      var targetUrl = "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection(Projid='" + projectId.toString() + "',Delvid='" + padNumber(deliverableId.toString()) + "')";
+      var lookupPayload = deletePayloads.filter(function (val) {
+        return val.url === targetUrl
       });
-      projectDeliverables.length--;
+      // just make sure we don't keep adding the delete payloads.
+      if (lookupPayload.length === 0) {
+        deletePayloads.push({
+          type: 'DELETE',
+          url: targetUrl
+        });
+      }
+      deliverableLength--;
     }
   }
 

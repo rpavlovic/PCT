@@ -11,6 +11,7 @@ var expenseTable = (function ($) {
     expenses,
     table = $('#project-expense-table');
 
+  var deletePayloads = [];
   var categories = [];
   categories.push({
     '0': 'Travel',
@@ -66,7 +67,7 @@ var expenseTable = (function ($) {
             "data": "ExpRow",
             "defaultContent": '',
             "render": function (data, type, row, meta) {
-              if(data)
+              if (data)
                 return parseInt(data);
               else
                 return meta.row + 1;
@@ -159,6 +160,9 @@ var expenseTable = (function ($) {
         var rows = projExpenseTable.rows();
         var payloads = [];
 
+        deleteExpenses();
+        payloads = payloads.concat(deletePayloads);
+
         rows.context[0].aoData.forEach(function (row) {
           payloads.push({
             type: 'POST',
@@ -172,7 +176,7 @@ var expenseTable = (function ($) {
               "ExpRow": padNumber($(row.anCells[0]).text()),
               "Projid": projectID,
               "DelvDesc": $(row.anCells[2]).find('select :selected').val(),
-              "Category": $(row.anCells[3]).find('select :selected').val().substr(0,4),
+              "Category": $(row.anCells[3]).find('select :selected').val().substr(0, 4),
               "CatDesc": $(row.anCells[4]).find('div').text(),
               "Amount": $(row.anCells[5]).find('div').text(),
               "Currency": "USD"
@@ -203,6 +207,25 @@ var expenseTable = (function ($) {
         });
       });
     });
+  }
+
+  function deleteExpenses() {
+    var expLength = expenses.length;
+    while (expLength > $('#project-expense-table tbody tr').length) {
+      var expenseId = expLength;
+      var targetUrl = "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='" + projectID.toString() + "',ExpRow='" + padNumber(expenseId.toString()) + "')";
+      var lookupPayload = deletePayloads.filter(function (val) {
+        return val.url === targetUrl
+      });
+      // just make sure we don't keep adding the delete payloads.
+      if (lookupPayload.length === 0) {
+        deletePayloads.push({
+          type: 'DELETE',
+          url: targetUrl
+        });
+      }
+      expLength--;
+    }
   }
 
   function getDeliverablesDropDown(data) {
