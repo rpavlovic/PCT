@@ -470,12 +470,12 @@ var projectResourceTable = (function ($) {
           for (var i = 0; i < rows.context[0].aoData.length; i++) {
             // employee title
             //console.log($(rows.context[0].aoData[i].anCells[4]).find(':selected').text());
-            var title = $(rows.context[0].aoData[i].anCells[4]).find(':selected').text();
+            var EmpGrade = $(rows.context[0].aoData[i].anCells[4]).find(':selected').val();
             // bill rate override
             //console.log($(rows.context[0].aoData[i].anCells[10]).find('div'));
 
             var foundCard = cardResults.filter(function (val) {
-              return val.TitleDesc === title;
+              return val.TitleId === EmpGrade;
             });
 
             if (foundCard[0] && parseInt(foundCard[0].OverrideRate)) {
