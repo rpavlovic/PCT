@@ -1051,30 +1051,6 @@ var projectResourceTable = (function ($) {
     }
   }
 
-
-  // var projResourceTable = $('#project-resource-table').DataTable();
-  // var rows = projResourceTable.rows();
-  // var planBy = getParameterByName('PlanBy');
-  // var payloads = [];
-  // var rowIndex = 1;
-  // for (var i = 0; i < rows.context[0].aoData.length; i++) {
-  //   var hoursPerRow = 0;
-  //   var columnIndex = 1;
-  //   var payloadRowIndex = padNumber(rowIndex);
-  //   for (var j = 14; j < rows.context[0].aoData[i].anCells.length; j++) {
-  //     var value = $(rows.context[0].aoData[i].anCells[j]).text();
-  //     var cellId = "R" + rowIndex + "C" + columnIndex;
-  //     payloads.push({
-  //       type: 'DELETE',
-  //       url: "/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='" + planBy + "',Cellid='" + cellId + "')"
-  //     });
-  //     columnIndex++;
-  //   }
-  //   rowIndex++;
-  // }
-  // return payloads;
-  //}
-
   return {
     initProjectResourceTable: initProjectResourceTable
   };
