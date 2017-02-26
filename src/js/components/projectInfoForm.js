@@ -185,6 +185,7 @@ var projectInfoForm = (function ($) {
   function deleteDeliverables() {
     // if we had more deliverables than we did inputs, then delete the last few
     var deliverableLength = projectDeliverables.length;
+    deletePayloads = [];
     while (deliverableLength > $('input[name="deliverable"]').length) {
       var deliverableId = deliverableLength;
       var targetUrl = "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection(Projid='" + projectId.toString() + "',Delvid='" + padNumber(deliverableId.toString()) + "')";
