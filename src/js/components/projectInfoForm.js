@@ -15,6 +15,7 @@ var projectInfoForm = (function ($) {
   var deletePayloads = [];
   var isNewProject = false;
 
+  var projectDeliverables = [];
   var items_currency =
       [
         'AUD',
@@ -55,6 +56,8 @@ var projectInfoForm = (function ($) {
   }
 
   function prepopulateDeliverables(results) {
+    projectDeliverables = results;
+
     results.forEach(function (deliverable) {
       if (projectId === deliverable.Projid) {
         var test = $('input[name="deliverable"]').length - 1;
@@ -180,37 +183,27 @@ var projectInfoForm = (function ($) {
   }
 
   function deleteDeliverables() {
-    var deliverableId = 1;
-    $('input[name="deliverable"]').each(function (key, value) {
-      if ($(value).val()) {
-        var targetUrl =  "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection(Projid='" + projectId.toString() + "',Delvid='" + padNumber(deliverableId.toString()) + "')";
-        var lookupPayload = deletePayloads.filter(function(val){
-          return val.url === targetUrl
-        });
-        // just make sure we don't keep adding the delete payloads.
-        if(lookupPayload.length === 0) {
-          deletePayloads.push({
-            type: 'DELETE',
-            url: targetUrl
+    // if we had more deliverables than we did inputs, then delete the last few
+    while (projectDeliverables.length > $('input[name="deliverable"]').length) {
+      var deliverableId = projectDeliverables.length;
+      $('input[name="deliverable"]').each(function (key, value) {
+        if ($(value).val()) {
+          var targetUrl = "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection(Projid='" + projectId.toString() + "',Delvid='" + padNumber(deliverableId.toString()) + "')";
+          var lookupPayload = deletePayloads.filter(function (val) {
+            return val.url === targetUrl
           });
+          // just make sure we don't keep adding the delete payloads.
+          if (lookupPayload.length === 0) {
+            deletePayloads.push({
+              type: 'DELETE',
+              url: targetUrl
+            });
+          }
         }
-        deliverableId++;
-      }
-    });
+      });
+      projectDeliverables.length--;
+    }
   }
-
-  $('button.fa-trash').on('click', function (event) {
-    console.log($('input[name="deliverable"]'));
-    if (isNewProject) {
-      console.log("new project. ignore this delete")
-    }
-    else {
-      console.log('deleting deliverable, adding to delete payload');
-      console.log($(this));
-      // updating delete deliverables payload
-      deleteDeliverables();
-    }
-  });
 
   $('.project-info #btn-save').on('click', function (event) {
     event.preventDefault();
@@ -259,6 +252,9 @@ var projectInfoForm = (function ($) {
       "Comments": comments.val(),
       "Preparedby": prepared_by.val()
     };
+
+    // update deliverables if necessary
+    deleteDeliverables();
 
     var payloads = [];
     payloads.push({
