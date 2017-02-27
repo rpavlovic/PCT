@@ -7,6 +7,7 @@
           "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('1000100')",
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
         },
+        "BillsheetId": "2",
         "Projid" : "1000100",
         "Plantyp" : "WK",
         "Region" : "NY",
@@ -33,6 +34,7 @@
           "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('1000101')",
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
         },
+        "BillsheetId": "3",
         "Projid" : "1000101",
         "Plantyp" : "WK",
         "Region" : "AUS",
@@ -59,6 +61,7 @@
           "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('1000102')",
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
         },
+        "BillsheetId": "2",
         "Projid" : "1000102",
         "Plantyp" : "WK",
         "Region" : "USA",
