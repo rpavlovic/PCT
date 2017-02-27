@@ -33,30 +33,34 @@ var projectSummary = (function ($) {
       });
     });
 
-    Promise.all([p1, p2, p3, p4]).then(function (values) {
+    var p5 = projectSummaryCalculations.calculateFinancialSummary(projectId);
+
+    Promise.all([p1, p2, p3, p4, p5]).then(function (values) {
       //deliverables
       var projectInfo = values[0];
       var projectDeliverables = values[1];
       var marginModeling = values[2];
       var rateCard = values[3];
 
+      var financialSummary = values[4];
+
+      console.log(financialSummary);
+
       fillProjectInfoSummary(projectInfo);
+      financialSummaryTable(financialSummary);
       summaryDeliverablesTable.initSummaryDeliverablesTable(projectDeliverables);
       summaryOfficeTable.initSummaryOfficeTable(rateCard);
       summaryRoleTable.initSummaryRoleTable(rateCard);
     });
   }
 
-  function fillProjectInfoSummary(projectInfo){
-    var project = projectInfo.filter(function(project){
+  function fillProjectInfoSummary(projectInfo) {
+    var project = projectInfo.filter(function (project) {
       return project.Projid === projectId;
     });
 
-    if(project.length){
+    if (project.length) {
       project = project.pop();
-    }
-    console.log(project);
-    if(project.length > 0) {
       $('#client-name').text(project.Clientname);
       $('#country').text(project.Region);
       $('#office').text(project.Office);
@@ -64,8 +68,17 @@ var projectSummary = (function ($) {
       $('#start-date').text(calcPrettyDate(project.EstStDate));
       $('#duration').text(project.Duration);
       $('#comp-type').text(project.Comptyp);
+      $('#rate-card').text(project.BillsheetId);
     }
+  }
 
+  function financialSummaryTable(summary){
+    $('#total-budget').text(summary.budget);
+    $('#expenses').text("$(" + summary.expenses + ")");
+    $('#total-hours').text(summary.totalHours);
+    $('#oop-fees').text(summary.oopFees);
+    $('#avg-rate').text(summary.blendedAverage);
+    $('#net-revenue').text(summary.netRevenue);
   }
 
   return {
