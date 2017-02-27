@@ -58,9 +58,9 @@ var loadCustomBillSheet = (function ($) {
         $.getJSON(get_data_feed(feeds.billSheet, BillsheetId), function (plan) {
           console.log(plan);
           var rcs = plan.d.results.filter(function (val) {
+
             return val.BillsheetId === BillsheetId;
           });
-          console.log(rcs);
           resolve(rcs);
         }).fail(function () {
           // not found, but lets fix this and return empty set
@@ -139,7 +139,8 @@ var loadCustomBillSheet = (function ($) {
           {
             name: "StandardRate",
             data: "StandardRate",
-            title: "Rate"
+            title: "Rate",
+            class: 'rate num'
           },
           {
             name: "Currency",
@@ -148,6 +149,7 @@ var loadCustomBillSheet = (function ($) {
           },
           {
             name: "OverrideRate",
+            class: 'rate-override num',
             data: "OverrideRate",
             title: "Upload / Override",
             defaultContent: "<div contenteditable></div>",
@@ -159,7 +161,14 @@ var loadCustomBillSheet = (function ($) {
           },
           {
             data: "DiscountPer",
-            title: "Discount"
+            title: "Discount",
+            class: 'discount num',
+            render: function (data, type, row) {
+              if(data) {
+                return data + "%";
+              }
+              return data;
+            }
           }
         ];
       }
@@ -179,9 +188,22 @@ var loadCustomBillSheet = (function ($) {
           $(nRow).removeClass('odd even');
           $("td:nth-child(n+6):not(:last-child)", nRow)
             .addClass("contenteditable");
-          $("td:nth-child(4)", nRow).addClass('rate num');
-          $("td:nth-child(7)", nRow).addClass('discount num');
-          $("td:nth-child(6)", nRow).addClass('rate-override num');
+
+          //populate input field with Billsheet Name.
+          if(aData.BillsheetName) {
+            $('#bill-sheet-name').val(aData.BillsheetName);
+            $('#btn-save').prop('disabled', false);
+          } else {
+            $('#btn-save').prop('disabled', true);
+          }
+
+          $('#bill-sheet-name').on('focusout keypress', function(e) {
+            if($('#bill-sheet-name').val()) {
+              $('#btn-save').prop('disabled', false);
+            } else {
+              $('#btn-save').prop('disabled', true);
+            }
+          });
 
           //Calculate percentage for the discount.
           $("td:nth-child(6) div", nRow).on('keyup focusout', function (e) {
@@ -190,7 +212,7 @@ var loadCustomBillSheet = (function ($) {
                 st_rate = $(e.target).parent().prevAll('.rate').text().replace(/[^0-9\.]/g, ""),
                 minus = st_rate - ovd_rate,
                 percent = ( (st_rate - ovd_rate) / st_rate) * 100;
-              $(e.target).parent().next('.discount').html(percent.toFixed(2) + "%");
+              $(e.target).parent().next('.discount').html(percent.toFixed(3) + "%");
             }
             else {
               $(e.target).parent().next('.discount').empty();

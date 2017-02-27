@@ -64,6 +64,11 @@
   }
   &:disabled {
     @include button-bg($disabled-btn, #ccc);
+    pointer-events: none;
+    &.arrowpointer:before,
+    &.arrowpointer:after {
+      border-left-color: #b5b5b5;
+    }
   }
   &-light-grey {
     @include button-bg(#ececec, #999999, #ececec);

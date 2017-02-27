@@ -31,7 +31,6 @@ var rateCardSelect = (function ($) {
         //   rateCardTitles.push('<option value="' + val.BillsheetId + '">' + val.BillsheetName + '</option>');
         // });
         select_cards.append(rateCardTitles);
-        
         //hide on load if the Default is loaded
         if (select_cards[0].selectedIndex === 0) {
           $(".col-9 a.view-card-rate").addClass('hide');
