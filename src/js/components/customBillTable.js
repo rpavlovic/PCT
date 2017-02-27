@@ -220,7 +220,7 @@ var loadCustomBillSheet = (function ($) {
           }
         }
         rows = rows.map(function (row, index) {
-          var columns = row.split(",");
+          var columns = row.split('","');
           columns[0] = columns[0].replace(/"/g, "");
           columns[columns.length - 1] = columns[columns.length - 1].replace(/"/g, " ");
           return columns;
@@ -233,6 +233,10 @@ var loadCustomBillSheet = (function ($) {
         populateTable(rows, true);
       }
     }
+
+    $('#downloadTemplate').on('click', function(e){
+        csv_table.tableToCSV();
+    });
 
     // Upload CSV into a table.
     $("#uploadTable").on('click', function (event, opt_startByte, opt_stopByte) {
