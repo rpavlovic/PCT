@@ -68,7 +68,7 @@
      */
     if ('projectResources.htm' === current_page) {
       projectResourceTable.initProjectResourceTable();
-      rateCardSelect.initRateCardSelect(feeds);
+      //rateCardSelect.initRateCardSelect(feeds);
       //modeling table highlight headers on radio click
       $('#modeling-table input[type="radio"]').activateElement();
       $('.project-resources button[type="reset"]').clearAll();

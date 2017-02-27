@@ -21,9 +21,6 @@ var projectSummaryCalculations = (function ($) {
     return Promise.all([pExpenses, pResources]).then(function (values) {
       var expenses = values[0];
       var resources = values[1];
-      console.log(expenses);
-      console.log(resources);
-
       var expenseTotal = expenses.reduce(function(acc, val){
         return parseFloat(acc) + parseFloat(val.Amount);
       }, 0);
@@ -31,7 +28,6 @@ var projectSummaryCalculations = (function ($) {
       var resourceTotalFee = resources.reduce(function(acc, val){
         return parseFloat(acc) + parseFloat(val.TotalFee);
       }, 0);
-      console.log(expenseTotal);
 
       return expenseTotal + resourceTotalFee;
     });
