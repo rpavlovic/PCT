@@ -77,10 +77,10 @@ var activeTableFunction = (function ($) {
             "title": 'Budget',
             "data": 'Projid',
             "defaultContent": '',
+            "sClass": 'budget',
             "render": function (data, type, set, meta) {
               if (data) {
-                return data;
-               // return '<a href="projectGeneral.htm?projID=' + data + '&projName=' + set.Projname + '" class=""><i class="fa fa-files-o"></i></a>';
+                return '<div data-val="' + data + '"></div>';
               }
             }
 
@@ -151,6 +151,14 @@ var activeTableFunction = (function ($) {
             }
           });
           $('.toolbar').hide();
+
+          // calculate the budget after the fact
+          $('#active-projects tbody td.budget').each(function (k, v) {
+            var p = projectSummaryCalculations.calculateBudget($(v).text());
+            p.then(function (budget) {
+              $(v).text(budget);
+            });
+          });
         },
         "bDestroy": true
       });
