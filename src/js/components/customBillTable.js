@@ -76,7 +76,7 @@ var loadCustomBillSheet = (function ($) {
     }
 
     function populateTable(rows, isUploaded) {
-      console.log(rows);
+      //console.log(rows);
       var columns;
       if (isUploaded) {
         columns = [
