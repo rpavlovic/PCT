@@ -40,17 +40,15 @@ var projectSummary = (function ($) {
       var projectInfo = values[0];
       var projectDeliverables = values[1];
       var marginModeling = values[2];
-      var rateCard = values[3];
-
+      var projectResources = values[3];
       var financialSummary = values[4];
 
-      console.log(financialSummary);
 
       fillProjectInfoSummary(projectInfo);
-      financialSummaryTable(financialSummary);
-      summaryDeliverablesTable.initSummaryDeliverablesTable(projectDeliverables);
-      summaryOfficeTable.initSummaryOfficeTable(rateCard);
-      summaryRoleTable.initSummaryRoleTable(rateCard);
+      financialSummaryTable(financialSummary, marginModeling);
+      summaryDeliverablesTable.initSummaryDeliverablesTable(projectResources);
+      summaryOfficeTable.initSummaryOfficeTable(projectResources);
+      summaryRoleTable.initSummaryRoleTable(projectResources);
     });
   }
 
@@ -72,7 +70,21 @@ var projectSummary = (function ($) {
     }
   }
 
-  function financialSummaryTable(summary){
+  function financialSummaryTable(summary, marginModeling){
+
+    console.log(summary);
+    console.log(marginModeling);
+
+    var ARBF = marginModeling.find(function(val){
+      return val.ModelType === 'ARBF';
+    });
+    var SRBF = marginModeling.find(function(val){
+      return val.ModelType === 'SRBF';
+    });
+
+    console.log(ARBF);
+    console.log(SRBF);
+
     $('#total-budget').text(summary.budget);
     $('#expenses').text("$(" + summary.expenses + ")");
     $('#total-hours').text(summary.totalHours);
