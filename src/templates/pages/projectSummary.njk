@@ -17,7 +17,7 @@
   </div>
   <div class="col-12">
 {#     {{ button.default(label='',  context='fa fa-save btn-blue') }} #}
-    {{ button.default(label='',  context='fa fa-files-o btn-blue') }}
+{#     {{ button.default(label='',  context='fa fa-files-o btn-blue') }} #}
 {#     {{ button.default(label='',  context='fa fa-table btn-blue') }} #}
     {{ button.default(label='',  context='fa fa-print btn-blue') }}
   </div>
@@ -63,7 +63,6 @@
 
     <div class="row button-row">
       <div class="col-12">
-        {{ button.default(label='Complete and Continue', path='projectGeneral.htm', context='btn btn-green arrowpointer float-right') }}
         {{ button.default(label='Back to Expense Information', id='btn-back', context='btn-light-grey float-right') }}
         {{ button.reset(attr="reset", label='Cancel',  context='btn btn-light-grey float-left') }}
       </div>

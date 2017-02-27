@@ -3,6 +3,14 @@
   overflow-x: scroll;
   margin-bottom: rem-calc(20);
 }
+.dataTables_wrapper {
+  @media screen and (max-width: $breakpoint-med) {
+    overflow: hidden;
+    overflow-x: scroll;
+    margin-bottom: rem-calc(20);
+  }
+
+}
 table {
   width: 100%;
   &.dataTable.display {
@@ -91,17 +99,18 @@ table {
       td {
         font-weight: normal;
         font-family: "EYLight", sans-serif;
+        text-align: right;
         &:first-child {
           span {
             font-family: "EYBold", sans-serif;
             font-weight: bold;
           }
-          text-align: right;
         }
         background-color: transparent;
         border: solid 1px $white;
         border-top: 1px solid #111;
         padding: 8px 10px;
+
       }
     }
   }
@@ -205,6 +214,7 @@ table {
         background-color: #e6e6e6;
         text-align: left;
         border-bottom: solid 2px $light-grey;
+        white-space: nowrap;
         &.active {
           background-color: $yellow;
           span {color: $black;}
@@ -225,6 +235,12 @@ table {
   }
 }
 .project-summary {
+  #summary-info-table,
+  #financial-summary-table {
+    td {
+      width: 50%;
+    }
+  }
   table {
     tbody {
       tr {

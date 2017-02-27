@@ -188,7 +188,7 @@ var loadCustomBillSheet = (function ($) {
           $(nRow).removeClass('odd even');
           $("td:nth-child(n+6):not(:last-child)", nRow)
             .addClass("contenteditable");
-
+            floatLabel.initfloatLabel();
           //populate input field with Billsheet Name.
           if(aData.BillsheetName) {
             $('#bill-sheet-name').val(aData.BillsheetName);

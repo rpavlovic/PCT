@@ -1,3 +1,10 @@
+
+// grid
+$width: 98%;
+$gutter: 2%;
+$breakpoint-small: 26em;
+$breakpoint-med: 46em;
+$breakpoint-large: 75em;
 .left {
   text-align: left;
 }
@@ -28,14 +35,6 @@
     padding-bottom: 0;
   }
 }
-// grid
-
-$width: 98%;
-$gutter: 2%;
-$breakpoint-small: 26em;
-$breakpoint-med: 462em;
-$breakpoint-large: 75em;
-
 .container {
   width: 100%;
   padding-left: rem-calc(20);

@@ -41,6 +41,7 @@
      */
     if ('index.htm' === current_page || '' === current_page) {
       activeTableFunction.initActiveTable();
+      floatLabel.initfloatLabel();
       //Show Hide elements
       showHide.initShowHide();
     }
@@ -53,7 +54,7 @@
       if($("form.project-info").length > 0) {
         projectInfoForm.initProjectInfoForm(feeds);
         floatLabel.initfloatLabel();
-         addRemoveFields.initAddRemoveFields('form.project-info');
+        addRemoveFields.initAddRemoveFields('form.project-info');
       }
     }
 

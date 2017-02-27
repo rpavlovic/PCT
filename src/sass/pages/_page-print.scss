@@ -7,8 +7,17 @@
   a.toggle {
     display: none;
   }
+  table {
+    &.dataTable.display tfoot tr th:not(:first-child),
+    &.dataTable.display tfoot tr td:not(:first-child),
+    td:not(:first-child),
+    th:not(:first-child) {
+      text-align: left;
+    }
+  }
   * {
     background-color: $white;
     color: $black;
+    text-align: left;
   }
 }

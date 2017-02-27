@@ -29,7 +29,7 @@ var summaryOfficeTable = (function ($) {
         {
           "title": "Billing Office",
           "data": null,
-          "defaultContent": "$350,000.00",
+          "defaultContent": "WS Chicago",
           "class": "office",
           render: function (data, type, row) {
             if (data)
