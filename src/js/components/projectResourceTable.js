@@ -11,6 +11,7 @@ var projectResourceTable = (function ($) {
   var RateCards = [];
   var projectResources = [];
   var deletePayloads = [];
+  var projectInfo;
 
   function getRateCard(OfficeId) {
     if (!OfficeId) {
@@ -110,15 +111,15 @@ var projectResourceTable = (function ($) {
       });
     });
 
-    var rcs = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.billSheet, ' '), function (plan) {
-        resolve(plan.d.results);
-      }).fail(function () {
-        // not found, but lets fix this and return empty set
-        console.log('no custom bill sheet found.... returning empty set');
-        resolve([]);
-      });
-    });
+    // var rcs = new Promise(function (resolve, reject) {
+    //   $.getJSON(get_data_feed(feeds.billSheet, ' '), function (plan) {
+    //     resolve(plan.d.results);
+    //   }).fail(function () {
+    //     // not found, but lets fix this and return empty set
+    //     console.log('no custom bill sheet found.... returning empty set');
+    //     resolve([]);
+    //   });
+    // });
 
     var pInfo = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.project, projectID), function (projects) {
@@ -128,7 +129,7 @@ var projectResourceTable = (function ($) {
       });
     });
 
-    Promise.all([p1, p2, p3, p4, t1, p5, rcs, pInfo]).then(function (values) {
+    Promise.all([p1, p2, p3, p4, t1, p5, pInfo]).then(function (values) {
       //deliverables
       var deliverables = values[0];
       var offices = values[1];
@@ -144,8 +145,8 @@ var projectResourceTable = (function ($) {
       projectResources = values[3];
       var marginModeling = values[4];
       var plannedHours = values[5];
-      var customRateCards = values[6];
-      var projectInfo = values[7];
+      //var customRateCards = values[6];
+      projectInfo = values[6];
 
       projectInfo = projectInfo.find(function(val){
         return val.Projid === projectID;
@@ -155,14 +156,16 @@ var projectResourceTable = (function ($) {
       duration = projectInfo.Duration;
       office = projectInfo.Office;
       planBy = projectInfo.Plantyp;
+      console.log('init billsheet');
+      rateCardSelect.initRateCardSelect(projectInfo.BillsheetId);
 
-      var billsheets = {};
-      customRateCards.forEach(function (customBillSheet) {
-        if (!billsheets[customBillSheet.BillsheetId]) {
-          billsheets[customBillSheet.BillsheetId] = [];
-        }
-        billsheets[customBillSheet.BillsheetId].push(customBillSheet);
-      });
+      // var billsheets = {};
+      // customRateCards.forEach(function (customBillSheet) {
+      //   if (!billsheets[customBillSheet.BillsheetId]) {
+      //     billsheets[customBillSheet.BillsheetId] = [];
+      //   }
+      //   billsheets[customBillSheet.BillsheetId].push(customBillSheet);
+      // });
 
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
         return obj.ModelType === 'TMBF';
@@ -845,7 +848,16 @@ var projectResourceTable = (function ($) {
 
       deleteResources();
 
+      projectInfo.BillsheetId = $('#rate-card').val();
+
+      var updateProjectInfo = {
+        type: 'POST',
+        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection',
+        data: projectInfo
+      };
+
       var payloads = modelingTablePayloads
+        .concat(updateProjectInfo)
         .concat(deletePayloads)
         .concat(resourcePayloads)
         .concat(resourceHours);

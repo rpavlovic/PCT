@@ -9,7 +9,7 @@ var rateCardSelect = (function ($) {
   var select_cards = $('select#rate-card'),
     rateCardTitles = [];
 
-  function initRateCardSelect(feeds) {
+  function initRateCardSelect(BillsheetId) {
     var rateCard = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.billSheet, ' '), function (cards) {
         resolve(cards.d.results);
@@ -21,15 +21,15 @@ var rateCardSelect = (function ($) {
         select_cards.append('<option value="0">Office Standard Rate</option>');
 
         var bsIds = [];
-        values.forEach(function(val){
-          if(-1 === $.inArray(val.BillsheetId, bsIds)){
-            rateCardTitles.push('<option value="' + val.BillsheetId + '">' + val.BillsheetName + '</option>');
+        values.forEach(function (val) {
+          if (-1 === $.inArray(val.BillsheetId, bsIds)) {
+            console.log(BillsheetId);
+            console.log(val.BillsheetId);
+            var selected = (val.BillsheetId === BillsheetId) ? 'selected="selected"' : '';
+            rateCardTitles.push('<option value="' + val.BillsheetId + '" ' + selected + '>' + val.BillsheetName + '</option>');
             bsIds.push(val.BillsheetId);
           }
         });
-        // $.each(values, function (key, val) {
-        //   rateCardTitles.push('<option value="' + val.BillsheetId + '">' + val.BillsheetName + '</option>');
-        // });
         select_cards.append(rateCardTitles);
         //hide on load if the Default is loaded
         if (select_cards[0].selectedIndex === 0) {
