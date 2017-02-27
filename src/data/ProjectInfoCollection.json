@@ -88,6 +88,7 @@
           "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('1000103')",
           "type" : "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
         },
+        "BillsheetId": "3",
         "Projid" : "1000103",
         "Plantyp" : "MN",
         "Region" : "USA",
