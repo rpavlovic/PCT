@@ -234,6 +234,10 @@ var loadCustomBillSheet = (function ($) {
       }
     }
 
+    $('#downloadTemplate').on('click', function(e){
+        csv_table.tableToCSV();
+    });
+
     // Upload CSV into a table.
     $("#uploadTable").on('click', function (event, opt_startByte, opt_stopByte) {
       console.log(this);
