@@ -56,13 +56,15 @@ var projectSummary = (function ($) {
       project = project.pop();
     }
     console.log(project);
-    $('#client-name').text(project.Clientname);
-    $('#country').text(project.Region);
-    $('#office').text(project.Office);
-    $('#project-name').text(project.Projname);
-    $('#start-date').text(calcPrettyDate(project.EstStDate));
-    $('#duration').text(project.Duration);
-    $('#comp-type').text(project.Comptyp);
+    if(project.length > 0) {
+      $('#client-name').text(project.Clientname);
+      $('#country').text(project.Region);
+      $('#office').text(project.Office);
+      $('#project-name').text(project.Projname);
+      $('#start-date').text(calcPrettyDate(project.EstStDate));
+      $('#duration').text(project.Duration);
+      $('#comp-type').text(project.Comptyp);
+    }
 
   }
 
