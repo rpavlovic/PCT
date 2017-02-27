@@ -75,6 +75,10 @@ var projectSummary = (function ($) {
   function financialSummaryTable(summary){
     $('#total-budget').text(summary.budget);
     $('#expenses').text("$(" + summary.expenses + ")");
+    $('#total-hours').text(summary.totalHours);
+    $('#oop-fees').text(summary.oopFees);
+    $('#avg-rate').text(summary.blendedAverage);
+    $('#net-revenue').text(summary.netRevenue);
   }
 
   return {

@@ -21,11 +21,11 @@ var projectSummaryCalculations = (function ($) {
     return Promise.all([pExpenses, pResources]).then(function (values) {
       var expenses = values[0];
       var resources = values[1];
-      var expenseTotal = expenses.reduce(function(acc, val){
+      var expenseTotal = expenses.reduce(function (acc, val) {
         return parseFloat(acc) + parseFloat(val.Amount);
       }, 0);
 
-      var resourceTotalFee = resources.reduce(function(acc, val){
+      var resourceTotalFee = resources.reduce(function (acc, val) {
         return parseFloat(acc) + parseFloat(val.TotalFee);
       }, 0);
 
@@ -49,17 +49,28 @@ var projectSummaryCalculations = (function ($) {
     return Promise.all([pExpenses, pResources]).then(function (values) {
       var expenses = values[0];
       var resources = values[1];
-      var expenseTotal = expenses.reduce(function(acc, val){
+      var expenseTotal = expenses.reduce(function (acc, val) {
         return parseFloat(acc) + parseFloat(val.Amount);
       }, 0);
 
-      var resourceTotalFee = resources.reduce(function(acc, val){
+      var resourceTotalFee = resources.reduce(function (acc, val) {
         return parseFloat(acc) + parseFloat(val.TotalFee);
       }, 0);
 
+      var resourceTotalHours = resources.reduce(function (acc, val) {
+        return parseFloat(acc) + parseFloat(val.TotalHrs);
+      }, 0);
+
+
       var summary = {
         budget: expenseTotal + resourceTotalFee,
-        expenses: expenseTotal
+        expenses: expenseTotal,
+        totalHours: resourceTotalHours,
+        //todo: these values need to be calculated
+        oopFees: expenseTotal / resourceTotalFee,
+        contributionMargin: '', // Margin Value / Net Revenue
+        netRevenue: '', // total Revenue - total expense
+        blendedAverage: '' // netrevenue/total hours
       };
 
       return summary;
