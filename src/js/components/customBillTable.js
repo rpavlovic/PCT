@@ -290,7 +290,7 @@ var loadCustomBillSheet = (function ($) {
           timeout = timeout ? timeout : 1;
           setTimeout(function () {
             // where do they go after they save a sheet?
-            //window.location.href = $('#btn-save').attr('href');
+            window.location.href = 'customBillSheet.htm?CardID=' + bsId;
           }, timeout);
         },
         always: function (xhr, status, data) {
@@ -298,25 +298,26 @@ var loadCustomBillSheet = (function ($) {
           console.log("navigating to new window in" + timeout + "seconds");
           timeout = timeout ? timeout : 1;
           setTimeout(function () {
-            //window.location.href = $('#btn-save').attr('href');
+            window.location.href = 'customBillSheet.htm?CardID=' + bsId;
           }, timeout);
         }
       });
     });
 
+    var bsId;
     function buildBillSheetPayload() {
       var csv_table = $("#csv-table").DataTable();
       var rows = csv_table.rows();
       var payloads = [];
       var rowIndex = 1;
 
-      var bsId = getParameterByName('CardID');
+      bsId = getParameterByName('CardID');
       bsId = bsId ? bsId : get_unique_id();
 
       for (var i = 0; i < rows.context[0].aoData.length; i++) {
         var hoursPerRow = 0;
         var cells = $(rows.context[0].aoData[i].anCells);
-        console.log(cells);
+        //console.log(cells);
         var rowId = padNumber(rowIndex, 5);
         var StandardRate = convertToDecimal($(cells[3]).text()) ? convertToDecimal($(cells[3]).text()) : "0.0";
         var OverrideRate = convertToDecimal($(cells[5]).text()) ? convertToDecimal($(cells[5]).text()) : "0.0";
