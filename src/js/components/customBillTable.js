@@ -184,7 +184,20 @@ var loadCustomBillSheet = (function ($) {
           $("td:nth-child(6)", nRow).addClass('rate-override num');
 
           //populate input field with Billsheet Name.
-          $('#bill-sheet-name').val(aData.BillsheetName);
+          if(aData.BillsheetName) {
+            $('#bill-sheet-name').val(aData.BillsheetName);
+            $('#btn-save').prop('disabled', false);
+          } else {
+            $('#btn-save').prop('disabled', true);
+          }
+
+          $('#bill-sheet-name').on('focusout keyup', function(e) {
+            if($('#bill-sheet-name').val()) {
+              $('#btn-save').prop('disabled', false);
+            } else {
+              $('#btn-save').prop('disabled', true);
+            }
+          });
 
           //Calculate percentage for the discount.
           $("td:nth-child(6) div", nRow).on('keyup focusout', function (e) {
