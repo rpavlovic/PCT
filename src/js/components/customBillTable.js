@@ -58,9 +58,9 @@ var loadCustomBillSheet = (function ($) {
         $.getJSON(get_data_feed(feeds.billSheet, BillsheetId), function (plan) {
           console.log(plan);
           var rcs = plan.d.results.filter(function (val) {
+
             return val.BillsheetId === BillsheetId;
           });
-          console.log(rcs);
           resolve(rcs);
         }).fail(function () {
           // not found, but lets fix this and return empty set
@@ -182,6 +182,9 @@ var loadCustomBillSheet = (function ($) {
           $("td:nth-child(4)", nRow).addClass('rate num');
           $("td:nth-child(7)", nRow).addClass('discount num');
           $("td:nth-child(6)", nRow).addClass('rate-override num');
+
+          //populate input field with Billsheet Name.
+          $('#bill-sheet-name').val(aData.BillsheetName);
 
           //Calculate percentage for the discount.
           $("td:nth-child(6) div", nRow).on('keyup focusout', function (e) {
