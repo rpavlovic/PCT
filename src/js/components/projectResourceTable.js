@@ -5,11 +5,12 @@
 var projectResourceTable = (function ($) {
   'use strict';
   var projectID = getParameterByName('projID') ? getParameterByName('projID').toString() : '';
-  var duration = getParameterByName('Duration');
-  var planBy = getParameterByName('PlanBy');
-  var office = getParameterByName('Office');
-
+  var duration;
+  var planBy;
+  var office;
   var RateCards = [];
+  var projectResources = [];
+  var deletePayloads = [];
 
   function getRateCard(OfficeId) {
     if (!OfficeId) {
@@ -90,7 +91,7 @@ var projectResourceTable = (function ($) {
 
     //fees for modeling table targets
     var t1 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.marginModeling, projectID), function (data) {
+      $.getJSON(get_data_feed(feeds.marginModeling, projectID, ' '), function (data) {
         resolve(data.d.results);
       }).fail(function () {
         // not found, but lets fix this and return empty set
@@ -119,7 +120,15 @@ var projectResourceTable = (function ($) {
       });
     });
 
-    Promise.all([p1, p2, p3, p4, t1, p5, rcs]).then(function (values) {
+    var pInfo = new Promise(function (resolve, reject) {
+      $.getJSON(get_data_feed(feeds.project, projectID), function (projects) {
+        resolve(projects.d.results);
+      }).fail(function () {
+        resolve([]);
+      });
+    });
+
+    Promise.all([p1, p2, p3, p4, t1, p5, rcs, pInfo]).then(function (values) {
       //deliverables
       var deliverables = values[0];
       var offices = values[1];
@@ -132,10 +141,20 @@ var projectResourceTable = (function ($) {
 
       // go ahead and prefetch the rest of the office rate cards for performance
       //var rateCards = values[2];
-      var projectResources = values[3];
+      projectResources = values[3];
       var marginModeling = values[4];
       var plannedHours = values[5];
       var customRateCards = values[6];
+      var projectInfo = values[7];
+
+      projectInfo = projectInfo.find(function(val){
+        return val.Projid === projectID;
+      });
+
+      console.log(projectInfo);
+      duration = projectInfo.Duration;
+      office = projectInfo.Office;
+      planBy = projectInfo.Plantyp;
 
       var billsheets = {};
       customRateCards.forEach(function (customBillSheet) {
@@ -302,7 +321,7 @@ var projectResourceTable = (function ($) {
         }
       ];
 
-      var planLabel = planBy === 'Weekly' ? 'Week' : 'Month';
+      var planLabel = planBy === 'WK' ? 'Week' : 'Month';
 
       // this is supposed to come from data/PlannedHours.json
       projectResources.forEach(function (resource) {
@@ -451,12 +470,12 @@ var projectResourceTable = (function ($) {
           for (var i = 0; i < rows.context[0].aoData.length; i++) {
             // employee title
             //console.log($(rows.context[0].aoData[i].anCells[4]).find(':selected').text());
-            var title = $(rows.context[0].aoData[i].anCells[4]).find(':selected').text();
+            var EmpGrade = $(rows.context[0].aoData[i].anCells[4]).find(':selected').val();
             // bill rate override
             //console.log($(rows.context[0].aoData[i].anCells[10]).find('div'));
 
             var foundCard = cardResults.filter(function (val) {
-              return val.TitleDesc === title;
+              return val.TitleId === EmpGrade;
             });
 
             if (foundCard[0] && parseInt(foundCard[0].OverrideRate)) {
@@ -824,7 +843,13 @@ var projectResourceTable = (function ($) {
       var resourcePayloads = buildResourcePayload();
       var resourceHours = buildResourceHoursPayload();
 
-      var payloads = modelingTablePayloads.concat(resourcePayloads).concat(resourceHours);
+      deleteResources();
+
+      var payloads = modelingTablePayloads
+        .concat(deletePayloads)
+        .concat(resourcePayloads)
+        .concat(resourceHours);
+
       $.ajaxBatch({
         url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
         data: payloads,
@@ -1013,6 +1038,35 @@ var projectResourceTable = (function ($) {
       rowIndex++;
     }
     return payloads;
+  }
+
+  function deleteResources() {
+    // post all of the hours cells
+    deletePayloads = [];
+    var resourceLength = projectResources.length;
+    while (resourceLength > $("#project-resource-table tbody tr").length) {
+      var resourceId = resourceLength;
+      var targetUrl = "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + padNumber(resourceId) + "')";
+      var lookupPayload = deletePayloads.filter(function (val) {
+        return val.url === targetUrl;
+      });
+      // just make sure we don't keep adding the delete payloads.
+      if (lookupPayload.length === 0) {
+        deletePayloads.push({
+          type: 'DELETE',
+          url: targetUrl
+        });
+      }
+
+      for (var j = 1; j <= duration; j++) {
+        var cellId = "R" + resourceId + "C" + j;
+        deletePayloads.push({
+          type: 'DELETE',
+          url: "/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + padNumber(resourceId) + "',Plantyp='" + planBy + "',Cellid='" + cellId + "')"
+        });
+      }
+      resourceLength--;
+    }
   }
 
   return {
