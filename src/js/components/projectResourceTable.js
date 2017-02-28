@@ -1038,7 +1038,7 @@ var projectResourceTable = (function ($) {
     // post all of the hours cells
     deletePayloads = [];
     var resourceLength = projectResources.length;
-    while (resourceLength > $("#project-resource-table tbody tr").length) {
+    while (resourceLength > $('select.deliverable').length) {
       var resourceId = resourceLength;
       var targetUrl = "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + padNumber(resourceId) + "')";
       var lookupPayload = deletePayloads.filter(function (val) {
