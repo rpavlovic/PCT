@@ -148,7 +148,12 @@ var projectInfoForm = (function ($) {
       }
     ];
 
+    var regionsOptions = ['APAC', 'EMEA', 'NA'];
     var regions = [];
+
+    regionsOptions.forEach(function(val){
+      regions.push('<option value="' + val + '">' + val + '</option>');
+    });
 
     countryOptions.forEach(function(val) {
       countries.push('<option value="' + val.Code + '">' + val.Country + '</option>');
@@ -156,7 +161,6 @@ var projectInfoForm = (function ($) {
 
     results.forEach(function (office) {
       offices.push('<option value="' + office.Office + '">' + office.OfficeName + ', ' + office.City + ' (' + office.Office + ')</option>');
-      regions.push('<option value="' + office.Region + '">' + office.Region + '</option>');
       matchOptions(office.Currency, select_currency[0]);
     });
 
