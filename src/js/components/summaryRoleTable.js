@@ -4,16 +4,25 @@
  */
 var summaryRoleTable = (function ($) {
   'use strict';
-  function initSummaryRoleTable(projectResources) {
+  function initSummaryRoleTable(projectResources, rateCards) {
     var byRoleTable = $("#breakdown-role-table");
     var rows = {};
 
     projectResources.forEach(function(resource){
       if(!rows[resource.EmpGradeName]){
+
+        var officeRateCards = rateCards.find(function (val) {
+          return val.OfficeId === resource.Officeid;
+        });
+
+        var rc = officeRateCards.rateCards.find(function (val) {
+          return val.OfficeId === resource.OfficeId && val.CostCenter === resource.Practiceid;
+        });
+
         rows[resource.EmpGradeName] = {
           title: resource.EmpGradeName,
           fees: 0,
-          class: resource.Class,
+          class: rc.Class,
           hours: 0
         };
       }

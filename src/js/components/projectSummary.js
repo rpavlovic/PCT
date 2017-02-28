@@ -99,7 +99,7 @@ var projectSummary = (function ($) {
       financialSummaryTable(marginModeling, projectResources, projectExpenses);
       summaryDeliverablesTable.initSummaryDeliverablesTable(projectDeliverables, projectResources, projectExpenses);
       summaryOfficeTable.initSummaryOfficeTable(projectResources, offices, rateCards);
-      summaryRoleTable.initSummaryRoleTable(projectResources);
+      summaryRoleTable.initSummaryRoleTable(projectResources, rateCards);
     });
   }
 
