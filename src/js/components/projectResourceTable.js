@@ -282,7 +282,7 @@ var projectResourceTable = (function ($) {
         {
           "title": "Cost Rate",
           "data": "CostRate",
-          "class": 'td-costrate hidden',
+          "class": 'td-costrate hide',
           "visible": true,
           "render": function (data, type, row, meta) {
             return getCostRate(data);
