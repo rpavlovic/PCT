@@ -49,7 +49,7 @@ var projectSummary = (function ($) {
 
       fillProjectInfoSummary(projectInfo);
       financialSummaryTable(marginModeling, projectResources, projectExpenses);
-      summaryDeliverablesTable.initSummaryDeliverablesTable(projectResources);
+      summaryDeliverablesTable.initSummaryDeliverablesTable(projectDeliverables, projectResources, projectExpenses);
       summaryOfficeTable.initSummaryOfficeTable(projectResources);
       summaryRoleTable.initSummaryRoleTable(projectResources);
     });
@@ -88,9 +88,9 @@ var projectSummary = (function ($) {
     var totalExpenses = projectExpenses.reduce(function (acc, val) {
       return acc + parseFloat(val.Amount);
     }, 0);
-    console.log(totalExpenses);
-    console.log(ARBF.Fees);
-    console.log(SRBF.Fees);
+    // console.log(totalExpenses);
+    // console.log(ARBF.Fees);
+    // console.log(SRBF.Fees);
     var totalFees = ARBF.Fees ? ARBF.Fees : SRBF.Fees;
     var contributionMargin = ARBF.CtrMargin ? ARBF.CtrMargin : SRBF.CtrMargin;
 
