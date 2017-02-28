@@ -433,7 +433,7 @@ var projectResourceTable = (function ($) {
         recalculateStuff();
       });
 
-// maybe move this into that
+      // maybe move this into that
       $('#rate-card').on('change', function (event) {
         var url = $(this).attr('href');
         var CardID = $(this).find(':selected').val();
@@ -461,9 +461,14 @@ var projectResourceTable = (function ($) {
             var foundCard = cardResults.filter(function (val) {
               return val.TitleId === EmpGrade;
             });
-
+            $(rows.context[0].aoData[i].anCells[10]).find('div').text('');
             if (foundCard[0] && parseInt(foundCard[0].OverrideRate)) {
               $(rows.context[0].aoData[i].anCells[10]).find('div').text(foundCard[0].OverrideRate);
+              console.log($(rows.context[0].aoData[i].anCells[9]));
+              $(rows.context[0].aoData[i].anCells[9]).css('color', 'lightgrey');
+            } else {
+
+              $(rows.context[0].aoData[i].anCells[9]).css('color', '#5b5b5b');
             }
           }
 
