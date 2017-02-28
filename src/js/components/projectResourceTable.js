@@ -44,7 +44,10 @@ var projectResourceTable = (function ($) {
   function initProjectResourceTable() {
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, projectID), function (deliverables) {
-        resolve(deliverables.d.results);
+        var deliv = deliverables.d.results.filter(function(val){
+          return val.Projid === projectID;
+        });
+        resolve(deliv);
       }).fail(function () {
         // not found, but lets fix this and return empty set
         console.log('no project deliverables found.... returning empty set');
@@ -64,7 +67,10 @@ var projectResourceTable = (function ($) {
 
     var p4 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
-        resolve(resource.d.results);
+        var projectRes = resource.d.results.filter(function(val){
+          return val.Projid === projectID;
+        });
+        resolve(projectRes);
       }).fail(function () {
         // not found, but lets fix this and return empty set
         console.log('no project resources found.... returning empty set');
@@ -785,7 +791,8 @@ var projectResourceTable = (function ($) {
         }
 
         var targetContributionMargin = parseFloat($('#target-contribution-margin').text());
-        if (targetContributionMargin && totalCostSum || tableHoursSum) {
+        if (!isNaN(targetContributionMargin) && (totalCostSum || tableHoursSum)) {
+
           var targetMarginBasedFee = totalCostSum / (1 - (targetContributionMargin / 100));
           $("#modeling-table #total-fee_target-resource").text(convertToDollar(targetMarginBasedFee));
           var targetMarginAvgRate = targetMarginBasedFee / tableHoursSum;
@@ -798,7 +805,7 @@ var projectResourceTable = (function ($) {
 
         var fixedFeeTarget = parseFloat($('#fixed-fee-target').text());
 
-        if (!isNaN(fixedFeeTarget) && tableHoursSum || totalCostSum) {
+        if (!isNaN(fixedFeeTarget) && (tableHoursSum || totalCostSum)) {
           var contributionMarginFixedFee = ((fixedFeeTarget - totalCostSum) / fixedFeeTarget);
           if (!isNaN(contributionMarginFixedFee)) {
             $('#contribution-margin_fixed-fee').text(convertToPercent(contributionMarginFixedFee));
