@@ -169,8 +169,8 @@ var expenseTable = (function ($) {
             url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection',
             data: {
               "__metadata": {
-                "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('" + projectID + "')",
-                "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('" + projectID + "')",
+                "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('" + projectID + "')",
+                "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('" + projectID + "')",
                 "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
               },
               "ExpRow": padNumber($(row.anCells[0]).text()),

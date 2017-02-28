@@ -1,7 +1,6 @@
 
 (function ($) {
   $(function () {
-
     var path = window.location.pathname;
     path = path.split("/");
 

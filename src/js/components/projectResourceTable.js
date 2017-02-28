@@ -894,8 +894,8 @@ var projectResourceTable = (function ($) {
       url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
       data: {
         "__metadata": {
-          "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='ARBF')",
-          "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='ARBF')",
+          "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='ARBF')",
+          "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='ARBF')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
         },
         "Projid": projectID,
@@ -912,8 +912,8 @@ var projectResourceTable = (function ($) {
       url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
       data: {
         "__metadata": {
-          "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='SRBF')",
-          "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='SRBF')",
+          "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='SRBF')",
+          "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='SRBF')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
         },
         "Projid": projectID,
@@ -930,8 +930,8 @@ var projectResourceTable = (function ($) {
       url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
       data: {
         "__metadata": {
-          "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='FFT')",
-          "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='FFT')",
+          "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='FFT')",
+          "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='FFT')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
         },
         "Projid": projectID,
@@ -947,8 +947,8 @@ var projectResourceTable = (function ($) {
       url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
       data: {
         "__metadata": {
-          "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='TMBF')",
-          "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='TMBF')",
+          "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='TMBF')",
+          "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='TMBF')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
         },
         "Projid": projectID,
@@ -978,8 +978,8 @@ var projectResourceTable = (function ($) {
         url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection',
         data: {
           "__metadata": {
-            "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + payloadIndex + "')",
-            "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + payloadIndex + "')",
+            "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + payloadIndex + "')",
+            "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + payloadIndex + "')",
             "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
           },
           "Projid": projectID,
@@ -1024,8 +1024,8 @@ var projectResourceTable = (function ($) {
           url: '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet',
           data: {
             "__metadata": {
-              "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='" + planBy + "',Cellid='" + cellId + "')",
-              "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='" + planBy + "',Cellid='" + cellId + "')",
+              "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='" + planBy + "',Cellid='" + cellId + "')",
+              "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='" + planBy + "',Cellid='" + cellId + "')",
               "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
             },
             "Projid": projectID,
