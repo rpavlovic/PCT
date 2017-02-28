@@ -30,7 +30,7 @@ var projectResourceTable = (function ($) {
       $.getJSON(get_data_feed(feeds.rateCards, OfficeId), function (rateCards) {
         RateCards[OfficeId] = rateCards.d.results.filter(function (val) {
           // add in any filtering params if we need them in the future
-          return val.CostRate > 0 && val.EmpGradeName;
+          return parseInt(val.CostRate) > 0 && val.EmpGradeName;
         });
         resolve(RateCards[OfficeId]);
       }).fail(function () {
@@ -111,16 +111,6 @@ var projectResourceTable = (function ($) {
       });
     });
 
-    // var rcs = new Promise(function (resolve, reject) {
-    //   $.getJSON(get_data_feed(feeds.billSheet, ' '), function (plan) {
-    //     resolve(plan.d.results);
-    //   }).fail(function () {
-    //     // not found, but lets fix this and return empty set
-    //     console.log('no custom bill sheet found.... returning empty set');
-    //     resolve([]);
-    //   });
-    // });
-
     var pInfo = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.project, projectID), function (projects) {
         resolve(projects.d.results);
@@ -141,7 +131,6 @@ var projectResourceTable = (function ($) {
       });
 
       // go ahead and prefetch the rest of the office rate cards for performance
-      //var rateCards = values[2];
       projectResources = values[3];
       var marginModeling = values[4];
       var plannedHours = values[5];
@@ -912,7 +901,7 @@ var projectResourceTable = (function ($) {
         "ModelType": "SRBF",
         "Fees": convertToDecimal($("#modeling-table tbody #total-fee_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #total-fee_standard-resource").text()) : "0.0",
         "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_standard-resource").text()) : "0.0",
-        "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text())? convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()) : "0.0",
+        "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()) : "0.0",
         "Currency": "USD" // need to change this to the correct currency
       }
     });
@@ -930,7 +919,7 @@ var projectResourceTable = (function ($) {
         "ModelType": "FFT",
         "Fees": convertToDecimal($("#modeling-table tbody #fixed-fee-target").text()) ? convertToDecimal($("#modeling-table tbody #fixed-fee-target").text()) : "0.0",
         "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_fixed-fee").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_fixed-fee").text()) : "0.0",
-        "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()) ?  convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()) : "0.0",
+        "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()) : "0.0",
         "Currency": "USD"
       }
     });
