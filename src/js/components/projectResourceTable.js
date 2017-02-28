@@ -399,7 +399,7 @@ var projectResourceTable = (function ($) {
             //lighten the rate when in override mode.
             var rate_td = $(this);
             if (rate_td.children('div').text() && rate_td.hasClass('rate-override')) {
-              rate_td.prev().css('color', 'lightgrey');
+              rate_td.prev().css('color', 'f');
             } else {
               rate_td.prev().css('color', '#5b5b5b');
             }
@@ -467,7 +467,6 @@ var projectResourceTable = (function ($) {
               console.log($(rows.context[0].aoData[i].anCells[9]));
               $(rows.context[0].aoData[i].anCells[9]).css('color', 'lightgrey');
             } else {
-
               $(rows.context[0].aoData[i].anCells[9]).css('color', '#5b5b5b');
             }
           }
@@ -789,7 +788,7 @@ var projectResourceTable = (function ($) {
 
         var targetContributionMargin = parseFloat($('#target-contribution-margin').text());
         if (targetContributionMargin && totalCostSum || tableHoursSum) {
-          var targetMarginBasedFee = totalCostSum / (1 - (targetContributionMargin / 100));
+          var targetMarginBasedFee = totalCostSum / ((targetContributionMargin / 100));
           $("#modeling-table #total-fee_target-resource").text(convertToDollar(targetMarginBasedFee));
           var targetMarginAvgRate = targetMarginBasedFee / tableHoursSum;
           $('#modeling-table #avg-rate_target-resource').text(convertToDollar(targetMarginAvgRate));
