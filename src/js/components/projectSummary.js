@@ -28,29 +28,35 @@ var projectSummary = (function ($) {
     });
 
     var p4 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectResources, projectId), function (rateCard) {
-        resolve(rateCard.d.results);
+      $.getJSON(get_data_feed(feeds.projectResources, projectId), function (projectResources) {
+        resolve(projectResources.d.results);
       });
     });
 
     var p5 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectExpenses, projectId), function (rateCard) {
-        resolve(rateCard.d.results);
+      $.getJSON(get_data_feed(feeds.projectExpenses, projectId), function (projectExpenses) {
+        resolve(projectExpenses.d.results);
       });
     });
 
-    Promise.all([p1, p2, p3, p4, p5]).then(function (values) {
+    var p6 = new Promise(function (resolve, reject) {
+      $.getJSON(get_data_feed(feeds.offices), function (offices) {
+        resolve(offices.d.results);
+      });
+    });
+    Promise.all([p1, p2, p3, p4, p5, p6]).then(function (values) {
       //deliverables
       var projectInfo = values[0];
       var projectDeliverables = values[1];
       var marginModeling = values[2];
       var projectResources = values[3];
       var projectExpenses = values[4];
+      var offices = values[5];
 
       fillProjectInfoSummary(projectInfo);
       financialSummaryTable(marginModeling, projectResources, projectExpenses);
       summaryDeliverablesTable.initSummaryDeliverablesTable(projectDeliverables, projectResources, projectExpenses);
-      summaryOfficeTable.initSummaryOfficeTable(projectResources);
+      summaryOfficeTable.initSummaryOfficeTable(projectResources, offices);
       summaryRoleTable.initSummaryRoleTable(projectResources);
     });
   }

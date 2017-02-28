@@ -25,10 +25,7 @@ var summaryDeliverablesTable = (function ($) {
       item.TotalHrs += parseFloat(data.TotalHrs);
     });
 
-    console.log(deliverables);
-
     expenses.forEach(function (data) {
-      console.log(data);
       var item = deliverables.find(function (val) {
         return val.DelvDesc === data.DelvDesc;
       });
@@ -38,16 +35,13 @@ var summaryDeliverablesTable = (function ($) {
       }
       item.TotalExpenses += parseFloat(data.Amount);
     });
-    console.log(deliverables);
+
     var totalProjectHours = 0;
     deliverables.forEach(function (d) {
       d.Budget = d.TotalExpenses + d.TotalFee;
-
       if (d.TotalHrs)
         totalProjectHours += parseFloat(d.TotalHrs);
     });
-
-    console.log(totalProjectHours);
 
     deliverables.forEach(function (d) {
       if (d.TotalHrs) {
