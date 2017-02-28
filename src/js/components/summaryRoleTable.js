@@ -16,7 +16,9 @@ var summaryRoleTable = (function ($) {
         });
 
         var rc = officeRateCards.rateCards.find(function (val) {
-          return val.OfficeId === resource.OfficeId && val.CostCenter === resource.Practiceid;
+          return val.OfficeId === resource.OfficeId
+            && val.CostCenter === resource.Practiceid
+            && val.EmpGradeName === resource.EmpGradeName;
         });
 
         rows[resource.EmpGradeName] = {
