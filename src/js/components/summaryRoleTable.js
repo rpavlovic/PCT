@@ -33,15 +33,12 @@ var summaryRoleTable = (function ($) {
     });
 
     rows = Object.values(rows);
-    console.log(rows);
 
     var totalHrs = rows.reduce(function (acc, val){
       return acc + parseFloat(val.hours);
     }, 0);
 
-    console.log(totalHrs);
     rows.forEach(function(row){
-      console.log(row);
       row.staffMix = row.hours / totalHrs * 100;
     });
 
