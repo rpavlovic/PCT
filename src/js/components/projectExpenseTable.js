@@ -212,7 +212,7 @@ var expenseTable = (function ($) {
   function deleteExpenses() {
     var expLength = expenses.length;
     deletePayloads = [];
-    while (expLength > $('#project-expense-table tbody tr').length) {
+    while (expLength > $('select.deliverable').length) {
       var expenseId = expLength;
       var targetUrl = "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='" + projectID.toString() + "',ExpRow='" + padNumber(expenseId.toString()) + "')";
       var lookupPayload = deletePayloads.filter(function (val) {
