@@ -1,47 +1,103 @@
 {
-  "d" : {
-    "results" : [
+  "d": {
+    "results": [
       {
-        "__metadata" : {
-          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
-          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
-          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
         },
-        "Projid" : "1000100",
-        "ExpRow" : "001",
-        "DelvDesc" : "Software Project",
-        "Category" : "OOP",
-        "CatDesc" : "Out Of Pocket",
-        "Amount" : "2134.00",
-        "Currency" : "USD"
+        "Projid": "1000100",
+        "ExpRow": "001",
+        "DelvDesc": "Software Project",
+        "Category": "OOP",
+        "CatDesc": "Out Of Pocket",
+        "Amount": "2134.00",
+        "Currency": "USD"
       },
       {
-        "__metadata" : {
-          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
-          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
-          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
         },
-        "Projid" : "1000100",
-        "ExpRow" : "002",
-        "DelvDesc" : "UI Design",
-        "Category" : "Travel",
-        "CatDesc" : "Travel",
-        "Amount" : "1004.00",
-        "Currency" : "USD"
+        "Projid": "1000100",
+        "ExpRow": "002",
+        "DelvDesc": "UI Design",
+        "Category": "Travel",
+        "CatDesc": "Travel",
+        "Amount": "1004.00",
+        "Currency": "USD"
       },
       {
-        "__metadata" : {
-          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
-          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
-          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
         },
-        "Projid" : "1000100",
-        "ExpRow" : "003",
-        "DelvDesc" : "QA Work",
-        "Category" : "Freelancers",
-        "CatDesc" : "Freelancers",
-        "Amount" : "400.00",
-        "Currency" : "USD"
+        "Projid": "1000100",
+        "ExpRow": "003",
+        "DelvDesc": "QA Work",
+        "Category": "Freelancers",
+        "CatDesc": "Freelancers",
+        "Amount": "400.00",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='7bf809e5-3543-4e5d-9',ExpRow='001')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='7bf809e5-3543-4e5d-9',ExpRow='001')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+        },
+        "Projid": "7bf809e5-3543-4e5d-9",
+        "ExpRow": "001",
+        "DelvDesc": "SLICE",
+        "Category": "Trav",
+        "CatDesc": "hello",
+        "Amount": "100.00",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='7bf809e5-3543-4e5d-9',ExpRow='002')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='7bf809e5-3543-4e5d-9',ExpRow='002')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+        },
+        "Projid": "7bf809e5-3543-4e5d-9",
+        "ExpRow": "002",
+        "DelvDesc": "TOP",
+        "Category": "Trav",
+        "CatDesc": "car",
+        "Amount": "10.00",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='7bf809e5-3543-4e5d-9',ExpRow='003')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='7bf809e5-3543-4e5d-9',ExpRow='003')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+        },
+        "Projid": "7bf809e5-3543-4e5d-9",
+        "ExpRow": "003",
+        "DelvDesc": "DELIVER",
+        "Category": "OOP",
+        "CatDesc": "gas",
+        "Amount": "75.00",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='7bf809e5-3543-4e5d-9',ExpRow='004')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='7bf809e5-3543-4e5d-9',ExpRow='004')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+        },
+        "Projid": "7bf809e5-3543-4e5d-9",
+        "ExpRow": "004",
+        "DelvDesc": "TOP",
+        "Category": "3rd",
+        "CatDesc": "freebie",
+        "Amount": "80.00",
+        "Currency": "USD"
       }
     ]
   }
