@@ -282,8 +282,8 @@ var projectResourceTable = (function ($) {
         {
           "title": "Cost Rate",
           "data": "CostRate",
-          "class": 'td-costrate',
-          "visible": false,
+          "class": 'td-costrate hidden',
+          "visible": true,
           "render": function (data, type, row, meta) {
             return getCostRate(data);
           }
@@ -521,7 +521,6 @@ var projectResourceTable = (function ($) {
         var Office = nodes.closest('tr').find('.office :selected').val();
         var EmpGradeName = nodes.closest('tr').find('.title :selected').text();
         var CostCenter = nodes.closest('tr').find('.practice :selected').val();
-
         var rateCards = getRateCard(Office);
         var rates = rateCards.filter(function (val) {
           return val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter;
@@ -533,7 +532,10 @@ var projectResourceTable = (function ($) {
         else if (rates.length === 1) {
           var selectedRate = rates.pop();
           nodes.closest('tr').find('.td-billrate').empty().append(currency + selectedRate.BillRate);
+          //this doesn't work bc costrate is hidden
           nodes.closest('tr').find('.td-costrate').empty().append(selectedRate.CostRate);
+          //console.log(nodes.closest('tr').find('.td-costrate').length);
+
           //for calculations on resourceCalculation.js file
           resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
         }
@@ -938,9 +940,9 @@ var projectResourceTable = (function ($) {
         },
         "Projid": projectID,
         "ModelType": "TMBF",
-        "Fees": convertToDecimal($("#modeling-table tbody #total-fee_target-resource").text()),
-        "CtrMargin": convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()),
-        "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()),
+        "Fees": convertToDecimal($("#modeling-table tbody #total-fee_target-resource").text()) ? convertToDecimal($("#modeling-table tbody #total-fee_target-resource").text()) : "0.0",
+        "CtrMargin": convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()) ? convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()) : "0.0",
+        "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()) : "0.0",
         "Currency": "USD"
       }
     });
