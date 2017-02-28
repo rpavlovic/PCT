@@ -71,7 +71,6 @@ var projectSummary = (function ($) {
     }
     var p7 = Promise.resolve(p4)
       .then(function (resources) {
-        console.log(resources);
         var promiseArray = [];
         var officeIds = {};
         resources.forEach(function (val) {
@@ -86,9 +85,8 @@ var projectSummary = (function ($) {
             return rateCards;
           });
       });
-    
+
     Promise.all([p1, p2, p3, p4, p5, p6, p7]).then(function (values) {
-      //deliverables
       var projectInfo = values[0];
       var projectDeliverables = values[1];
       var marginModeling = values[2];

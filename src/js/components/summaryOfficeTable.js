@@ -36,7 +36,7 @@ var summaryOfficeTable = (function ($) {
     var sumHours = rows.reduce(function (acc, val) {
       return acc + parseFloat(val.hours);
     }, 0);
-
+    
     rows.forEach(function (row) {
       row.staffMix = row.hours / sumHours * 100;
     });
