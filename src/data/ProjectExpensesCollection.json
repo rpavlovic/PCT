@@ -12,7 +12,7 @@
         "DelvDesc" : "Software Project",
         "Category" : "OOP",
         "CatDesc" : "Out Of Pocket",
-        "Amount" : "1234.00",
+        "Amount" : "2134.00",
         "Currency" : "USD"
       },
       {
@@ -23,10 +23,10 @@
         },
         "Projid" : "1000100",
         "ExpRow" : "002",
-        "DelvDesc" : "Non-Deliverable",
+        "DelvDesc" : "UI Design",
         "Category" : "Travel",
         "CatDesc" : "Travel",
-        "Amount" : "1234.00",
+        "Amount" : "1004.00",
         "Currency" : "USD"
       },
       {
@@ -40,7 +40,7 @@
         "DelvDesc" : "QA Work",
         "Category" : "Freelancers",
         "CatDesc" : "Freelancers",
-        "Amount" : "1234.00",
+        "Amount" : "400.00",
         "Currency" : "USD"
       }
     ]

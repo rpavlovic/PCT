@@ -4,25 +4,61 @@
  */
 var summaryDeliverablesTable = (function ($) {
   'use strict';
-  function initSummaryDeliverablesTable(data) {
+  function initSummaryDeliverablesTable(deliverables, resources, expenses) {
     var DeliverablesTable = $("#breakdown-delivery-table");
     var deliverablesBreakdown = {};
 
-    data.forEach(function(data){
-      if(!deliverablesBreakdown[data.DelvDesc]){
-        deliverablesBreakdown[data.DelvDesc] = {};
-        deliverablesBreakdown[data.DelvDesc].TotalFee = 0;
-        deliverablesBreakdown[data.DelvDesc].TotalHrs = 0;
+
+    resources.forEach(function (data) {
+      var item = deliverables.find(function (val) {
+        return val.DelvDesc === data.DelvDesc;
+      });
+
+      if (!item.TotalFee) {
+        item.TotalFee = 0;
       }
-      deliverablesBreakdown[data.DelvDesc].TotalFee += parseFloat(data.TotalFee);
-      deliverablesBreakdown[data.DelvDesc].TotalHrs += parseFloat(data.TotalHrs);
+      item.TotalFee += parseFloat(data.TotalFee);
+
+      if (!item.TotalHrs) {
+        item.TotalHrs = 0;
+      }
+      item.TotalHrs += parseFloat(data.TotalHrs);
     });
 
-    console.log(deliverablesBreakdown);
+    console.log(deliverables);
+
+    expenses.forEach(function (data) {
+      console.log(data);
+      var item = deliverables.find(function (val) {
+        return val.DelvDesc === data.DelvDesc;
+      });
+
+      if (!item.TotalExpenses) {
+        item.TotalExpenses = 0;
+      }
+      item.TotalExpenses += parseFloat(data.Amount);
+    });
+    console.log(deliverables);
+    var totalProjectHours = 0;
+    deliverables.forEach(function (d) {
+      d.Budget = d.TotalExpenses + d.TotalFee;
+
+      if (d.TotalHrs)
+        totalProjectHours += parseFloat(d.TotalHrs);
+    });
+
+    console.log(totalProjectHours);
+
+    deliverables.forEach(function (d) {
+      if (d.TotalHrs) {
+        d.HoursPercentage = d.TotalHrs / totalProjectHours * 100;
+      } else
+        d.HoursPercentage = 0;
+    });
 
     DeliverablesTable.DataTable({
       dom: '<tip>',
-      data: deliverablesBreakdown,
+      data: deliverables,
       searching: false,
       paging: false,
       length: false,
@@ -42,41 +78,41 @@ var summaryDeliverablesTable = (function ($) {
         },
         {
           "title": "Project Fees",
-          "data": null,
-          "defaultContent": "$350,000.00",
+          "data": 'TotalFee',
+          "defaultContent": "$0",
           "class": "deliv-fees",
           render: function (data, type, row) {
             if (data) {
-              return data;
+              return '$' + data;
             }
           }
         },
         {
           "title": "Expenses",
-          "data": null,
-          "defaultContent": "$10,000.00",
+          "data": "TotalExpenses",
+          "defaultContent": "$0",
           "class": "deliv-expenses",
           render: function (data, type, row) {
             if (data) {
-              return data;
+              return '$' + data;
             }
           }
         },
         {
           "title": "Total Budget",
-          "data": null,
-          "defaultContent": "$450,000.00",
+          "data": 'Budget',
+          "defaultContent": "$0",
           "class": "deliv-budget",
           render: function (data, type, row) {
             if (data) {
-              return data;
+              return '$' + data;
             }
           }
         },
         {
           "title": "Hours",
-          "data": null,
-          "defaultContent": "2,000",
+          "data": 'TotalHrs',
+          "defaultContent": "0",
           "class": "total-hours",
           render: function (data, type, row) {
             if (data) {
@@ -86,12 +122,12 @@ var summaryDeliverablesTable = (function ($) {
         },
         {
           "title": "Hours %",
-          "data": null,
-          "defaultContent": "30%",
+          "data": 'HoursPercentage',
+          "defaultContent": "%",
           "class": "deliv-percent",
           render: function (data, type, row) {
             if (data) {
-              return data;
+              return data + '%';
             }
           }
         }
