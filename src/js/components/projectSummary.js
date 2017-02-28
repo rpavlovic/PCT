@@ -8,7 +8,9 @@ var projectSummary = (function ($) {
 
   var projectId = getParameterByName('projID');
 
+
   function initProjectSummary() {
+
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.project, projectId), function (projects) {
         resolve(projects.d.results);
@@ -44,19 +46,59 @@ var projectSummary = (function ($) {
         resolve(offices.d.results);
       });
     });
-    Promise.all([p1, p2, p3, p4, p5, p6]).then(function (values) {
-      //deliverables
+
+    function loadRateCardFromServer(OfficeId) {
+      return new Promise(function (resolve, reject) {
+        //console.log('RateCard Not found. checking service for OfficeId' + OfficeId);
+        $.getJSON(get_data_feed(feeds.rateCards, OfficeId), function (rateCards) {
+          var rcs = rateCards.d.results.filter(function (val) {
+            // add in any filtering params if we need them in the future
+            return parseInt(val.CostRate) > 0 && val.EmpGradeName;
+          });
+
+          var rc = {
+            OfficeId: OfficeId,
+            rateCards: rateCards.d.results
+          };
+
+          resolve(rc);
+        }).fail(function () {
+          // not found, but lets fix this and return empty set
+          console.log('no rate cards found.... returning empty set');
+          resolve([]);
+        });
+      });
+    }
+    var p7 = Promise.resolve(p4)
+      .then(function (resources) {
+        var promiseArray = [];
+        var officeIds = {};
+        resources.forEach(function (val) {
+          if (!officeIds[val.Officeid]) {
+            officeIds[val.Officeid] = true;
+            promiseArray.push(loadRateCardFromServer(val.Officeid));
+          }
+        });
+        return Promise.all(promiseArray)
+          .then(function (rateCards) {
+            console.log("rateCard with associated offices are loaded");
+            return rateCards;
+          });
+      });
+
+    Promise.all([p1, p2, p3, p4, p5, p6, p7]).then(function (values) {
       var projectInfo = values[0];
       var projectDeliverables = values[1];
       var marginModeling = values[2];
       var projectResources = values[3];
       var projectExpenses = values[4];
       var offices = values[5];
+      var rateCards = values[6];
 
       fillProjectInfoSummary(projectInfo);
       financialSummaryTable(marginModeling, projectResources, projectExpenses);
       summaryDeliverablesTable.initSummaryDeliverablesTable(projectDeliverables, projectResources, projectExpenses);
-      summaryOfficeTable.initSummaryOfficeTable(projectResources, offices);
+      summaryOfficeTable.initSummaryOfficeTable(projectResources, offices, rateCards);
       summaryRoleTable.initSummaryRoleTable(projectResources);
     });
   }

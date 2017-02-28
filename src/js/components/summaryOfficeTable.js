@@ -4,16 +4,25 @@
  */
 var summaryOfficeTable = (function ($) {
   'use strict';
-  function initSummaryOfficeTable(projectResources, offices) {
+  function initSummaryOfficeTable(projectResources, offices, rateCards) {
     var byOfficeTable = $("#breakdown-office-table");
-
-    console.log(projectResources);
     var rows = {};
     projectResources.forEach(function (resource) {
       if (!rows[resource.Officeid + resource.Practiceid]) {
+        var officeRateCards = rateCards.find(function (val) {
+          return val.OfficeId === resource.Officeid;
+        });
+
+        var office = {};
+        if (officeRateCards) {
+          office = officeRateCards.rateCards.find(function (val) {
+            return val.OfficeId === resource.OfficeId && val.CostCenter === resource.Practiceid;
+          });
+        }
+
         rows[resource.Officeid + resource.Practiceid] = {
-          office: resource.Officeid,
-          practice: resource.Practiceid,
+          office: office.OfficeName ? office.OfficeName : resource.Officeid,
+          practice: office.CostCenterName ? office.CostCenterName : resource.Practiceid,
           fees: 0,
           hours: 0,
           staffMix: 0
@@ -24,11 +33,11 @@ var summaryOfficeTable = (function ($) {
     });
 
     rows = Object.values(rows);
-    var sumHours = rows.reduce(function(acc, val){
+    var sumHours = rows.reduce(function (acc, val) {
       return acc + parseFloat(val.hours);
     }, 0);
-
-    rows.forEach(function(row){
+    
+    rows.forEach(function (row) {
       row.staffMix = row.hours / sumHours * 100;
     });
 
