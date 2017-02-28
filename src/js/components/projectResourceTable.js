@@ -934,9 +934,9 @@ var projectResourceTable = (function ($) {
         },
         "Projid": projectID,
         "ModelType": "TMBF",
-        "Fees": convertToDecimal($("#modeling-table tbody #total-fee_target-resource").text()),
-        "CtrMargin": convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()),
-        "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()),
+        "Fees": convertToDecimal($("#modeling-table tbody #total-fee_target-resource").text()) ? convertToDecimal($("#modeling-table tbody #total-fee_target-resource").text()) : "0.0",
+        "CtrMargin": convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()) ? convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()) : "0.0",
+        "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()) : "0.0",
         "Currency": "USD"
       }
     });
