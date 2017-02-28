@@ -36,10 +36,25 @@ var summaryOfficeTable = (function ($) {
     var sumHours = rows.reduce(function (acc, val) {
       return acc + parseFloat(val.hours);
     }, 0);
-    
+
     rows.forEach(function (row) {
       row.staffMix = row.hours / sumHours * 100;
     });
+
+    var totalFees = rows.reduce(function (acc, val) {
+      if (val.fees)
+        return acc + parseFloat(val.fees);
+      else return acc;
+    }, 0);
+    $('#office-total-fees').text(convertToDollar(totalFees));
+    $('#office-total-currency').text(convertToDollar(totalFees));
+
+    var totalHours = rows.reduce(function (acc, val) {
+      if (val.hours)
+        return acc + parseFloat(val.hours);
+      else return acc;
+    }, 0);
+    $('#office-total-hours').text(totalHours);
 
     byOfficeTable.DataTable({
       dom: '<tip>',

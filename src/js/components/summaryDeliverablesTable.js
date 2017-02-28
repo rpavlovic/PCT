@@ -50,6 +50,43 @@ var summaryDeliverablesTable = (function ($) {
         d.HoursPercentage = 0;
     });
 
+    var totalDeliverableFees = deliverables.reduce(function (acc, val) {
+      if (parseFloat(val.TotalFee))
+        return acc + parseFloat(val.TotalFee);
+      else
+        return acc;
+    }, 0);
+
+    $('#total-deliv-fees').text(convertToDollar(totalDeliverableFees));
+
+    var totalExpenses = deliverables.reduce(function (acc, val) {
+      if (val.TotalExpenses)
+        return acc + parseFloat(val.TotalExpenses);
+      else
+        return acc;
+    }, 0);
+
+    $('#total-deliv-expenses').text(convertToDollar(totalExpenses));
+
+    var totalBudget = deliverables.reduce(function (acc, val) {
+      if (val.Budget)
+        return acc + parseFloat(val.Budget);
+      else
+        return acc;
+    }, 0);
+
+    $('#total-deliv-budget').text(convertToDollar(totalBudget));
+
+    var totalHours = deliverables.reduce(function (acc, val) {
+      console.log(val.TotalHrs);
+      if (val.TotalHrs)
+        return acc + parseFloat(val.TotalHrs);
+      else
+        return acc;
+    }, 0);
+
+    $('#total-deliv-hours').text(totalHours);
+
     DeliverablesTable.DataTable({
       dom: '<tip>',
       data: deliverables,
