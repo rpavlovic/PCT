@@ -467,7 +467,6 @@ var projectResourceTable = (function ($) {
               console.log($(rows.context[0].aoData[i].anCells[9]));
               $(rows.context[0].aoData[i].anCells[9]).css('color', 'lightgrey');
             } else {
-
               $(rows.context[0].aoData[i].anCells[9]).css('color', '#5b5b5b');
             }
           }
