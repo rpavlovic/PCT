@@ -311,8 +311,8 @@ var projectInfoForm = (function ($) {
 
     var formData = {
       "__metadata": {
-        "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + projectId + "')",
-        "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + projectId + "')",
+        "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + projectId + "')",
+        "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + projectId + "')",
         "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
       },
       "Projid": projectId.toString(),
@@ -352,8 +352,8 @@ var projectInfoForm = (function ($) {
           url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection',
           data: {
             "__metadata": {
-              "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection('" + projectId + "')",
-              "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection('" + projectId + "')",
+              "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection('" + projectId + "')",
+              "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection('" + projectId + "')",
               "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectDeliverables"
             },
             "Projid": projectId.toString(),
