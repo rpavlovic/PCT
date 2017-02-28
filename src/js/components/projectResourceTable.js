@@ -790,7 +790,7 @@ var projectResourceTable = (function ($) {
 
         var targetContributionMargin = parseFloat($('#target-contribution-margin').text());
         if (targetContributionMargin && totalCostSum || tableHoursSum) {
-          var targetMarginBasedFee = totalCostSum / ((targetContributionMargin / 100));
+          var targetMarginBasedFee = totalCostSum / (1 - (targetContributionMargin / 100));
           $("#modeling-table #total-fee_target-resource").text(convertToDollar(targetMarginBasedFee));
           var targetMarginAvgRate = targetMarginBasedFee / tableHoursSum;
           $('#modeling-table #avg-rate_target-resource').text(convertToDollar(targetMarginAvgRate));
