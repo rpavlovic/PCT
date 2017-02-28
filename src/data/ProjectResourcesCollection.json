@@ -73,8 +73,8 @@
           "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='4ec3f9a3-233f-4fca-8',Rowno='001')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
         },
-        "BillRateOvride": "0.000",
-        "Duration": "4",
+        "BillRateOvride": "80.000",
+        "Duration": "8",
         "EmpGradeName": "Account Coordinator",
         "Projid": "4ec3f9a3-233f-4fca-8",
         "Rowno": "001",
@@ -84,8 +84,8 @@
         "Role": "aaa",
         "ProposedRes": "aaa",
         "BillRate": "115.000",
-        "TotalHrs": 4,
-        "TotalFee": "460.000",
+        "TotalHrs": 32,
+        "TotalFee": "2560.000",
         "Plantyp": "WK"
       },
       {
@@ -94,8 +94,8 @@
           "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='4ec3f9a3-233f-4fca-8',Rowno='002')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
         },
-        "BillRateOvride": "0.000",
-        "Duration": "4",
+        "BillRateOvride": "190.000",
+        "Duration": "8",
         "EmpGradeName": "Copywriter",
         "Projid": "4ec3f9a3-233f-4fca-8",
         "Rowno": "002",
@@ -105,8 +105,8 @@
         "Role": "bbb",
         "ProposedRes": "bbb",
         "BillRate": "200.000",
-        "TotalHrs": 4,
-        "TotalFee": "800.000",
+        "TotalHrs": 32,
+        "TotalFee": "6080.000",
         "Plantyp": "WK"
       }
     ]

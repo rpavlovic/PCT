@@ -44,7 +44,7 @@ var projectResourceTable = (function ($) {
   function initProjectResourceTable() {
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, projectID), function (deliverables) {
-        var deliv = deliverables.d.results.filter(function(val){
+        var deliv = deliverables.d.results.filter(function (val) {
           return val.Projid === projectID;
         });
         resolve(deliv);
@@ -67,7 +67,7 @@ var projectResourceTable = (function ($) {
 
     var p4 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
-        var projectRes = resource.d.results.filter(function(val){
+        var projectRes = resource.d.results.filter(function (val) {
           return val.Projid === projectID;
         });
         resolve(projectRes);
@@ -99,7 +99,11 @@ var projectResourceTable = (function ($) {
     //fees for modeling table targets
     var t1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.marginModeling, projectID, ' '), function (data) {
-        resolve(data.d.results);
+        var modeling = data.d.results.filter(function (val) {
+          return val.Projid === projectID;
+        });
+
+        resolve(modeling);
       }).fail(function () {
         // not found, but lets fix this and return empty set
         console.log('no margin modeling found.... returning empty set');
@@ -282,8 +286,13 @@ var projectResourceTable = (function ($) {
         },
         {
           "title": 'Bill Rate <br/> Override',
+          "data": "BillRateOvride",
           "defaultContent": '<label>$ </label><div contenteditable />',
-          "sClass": "rate-override num"
+          "sClass": "rate-override num",
+          "render": function (data, type, row, meta) {
+            if (data)
+              return '<label>$ </label><div contenteditable>' + parseFloat(data) + '</div>';
+          }
         },
         {
           "title": "Cost Rate",
@@ -326,7 +335,8 @@ var projectResourceTable = (function ($) {
           "Class": resource,
           "CostRate": resource,
           "CostCenterName": resource,
-          "BillRate": resource.BillRate
+          "BillRate": resource.BillRate,
+          "BillRateOvride": resource.BillRateOvride
         };
 
         $.each(hrRows[resource.Rowno], function (k, v) {
