@@ -162,7 +162,7 @@ var projectResourceTable = (function ($) {
         return obj.ModelType === 'TMBF';
       });
 
-      if (targetMarginBasedFee.length) {
+      if (targetMarginBasedFee.length && parseFloat(targetMarginBasedFee[0].CtrMargin)) {
         $('#target-contribution-margin').text(targetMarginBasedFee[0].CtrMargin);
       }
 
@@ -170,7 +170,7 @@ var projectResourceTable = (function ($) {
         return obj.ModelType === 'FFT';
       });
 
-      if (fixedFeeTarget.length) {
+      if (fixedFeeTarget.length && parseFloat(fixedFeeTarget[0].Fees)) {
         $('#fixed-fee-target').text(convertToDecimal(fixedFeeTarget[0].Fees));
       }
 
