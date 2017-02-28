@@ -21,6 +21,11 @@ var activeTableFunction = (function ($) {
         resolve([]);
       });
     }).then(function (projects) {
+      projects.forEach(function (proj) {
+        var planType = proj.Plantyp === 'WK' ? ' Weeks' : ' Months';
+        proj.Duration = proj.Duration + planType;
+      });
+
       var activeTable = table.DataTable({
         "sDom": '<"toolbar"><B><tip>',
         "searching": true,
