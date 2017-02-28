@@ -11,7 +11,7 @@ var summaryRoleTable = (function ($) {
 
     byRoleTable.DataTable({
       dom:'<tip>',
-      data: data,//TODO CORRECT DATA
+      data: data,
       searching: false,
       paging: false,
       length: false,

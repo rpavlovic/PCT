@@ -76,8 +76,10 @@ var summaryDeliverablesTable = (function ($) {
           "defaultContent": "$0",
           "class": "deliv-fees",
           render: function (data, type, row) {
-            if (data) {
-              return '$' + data;
+            if (data || isNaN(data)) {
+              return convertToDollar(data);
+            } else {
+              return data;
             }
           }
         },
@@ -87,8 +89,10 @@ var summaryDeliverablesTable = (function ($) {
           "defaultContent": "$0",
           "class": "deliv-expenses",
           render: function (data, type, row) {
-            if (data) {
-              return '$' + data;
+            if (data || isNaN(data)) {
+              return convertToDollar(data);
+            } else {
+              return data;
             }
           }
         },
@@ -98,8 +102,10 @@ var summaryDeliverablesTable = (function ($) {
           "defaultContent": "$0",
           "class": "deliv-budget",
           render: function (data, type, row) {
-            if (data) {
-              return '$' + data;
+            if (data || isNaN(data)) {
+              return convertToDollar(data);
+            } else {
+              return data;
             }
           }
         },
@@ -120,8 +126,10 @@ var summaryDeliverablesTable = (function ($) {
           "defaultContent": "%",
           "class": "deliv-percent",
           render: function (data, type, row) {
-            if (data) {
-              return data + '%';
+            if (data || isNaN(data)) {
+              return data.toFixed(2) + '%';
+            } else {
+              return data + "%";
             }
           }
         }

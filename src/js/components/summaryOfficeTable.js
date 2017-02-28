@@ -67,8 +67,11 @@ var summaryOfficeTable = (function ($) {
           "defaultContent": "$0",
           "class": "office-total-fees",
           render: function (data, type, row) {
-            if (data)
+            if (data || isNaN(data)) {
+              return convertToDollar(data);
+            } else {
               return data;
+            }
           }
         },
         {
@@ -77,8 +80,11 @@ var summaryOfficeTable = (function ($) {
           "defaultContent": "$0",
           "class": "office-total-currency",
           render: function (data, type, row) {
-            if (data)
+            if (data || isNaN(data)) {
+              return convertToDollar(data);
+            } else {
               return data;
+            }
           }
         },
         {
@@ -97,8 +103,11 @@ var summaryOfficeTable = (function ($) {
           "defaultContent": "0%",
           "class": "office-total-mix",
           render: function (data, type, row) {
-            if (data)
-              return data + '%';
+            if (data) {
+              return data.toFixed(2) + '%';
+            } else {
+              return data + "%";
+            }
           }
         }
       ],
