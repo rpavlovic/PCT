@@ -104,6 +104,58 @@
         "CtrMargin": "80.00",
         "AvgRate": "154.90",
         "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='7bf809e5-3543-4e5d-9',ModelType='ARBF')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='7bf809e5-3543-4e5d-9',ModelType='ARBF')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": "7bf809e5-3543-4e5d-9",
+        "ModelType": "ARBF",
+        "Fees": "860.00",
+        "CtrMargin": "79.00",
+        "AvgRate": "107.50",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='7bf809e5-3543-4e5d-9',ModelType='FFT')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='7bf809e5-3543-4e5d-9',ModelType='FFT')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": "7bf809e5-3543-4e5d-9",
+        "ModelType": "FFT",
+        "Fees": "0.00",
+        "CtrMargin": "0.00",
+        "AvgRate": "0.00",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='7bf809e5-3543-4e5d-9',ModelType='SRBF')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='7bf809e5-3543-4e5d-9',ModelType='SRBF')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": "7bf809e5-3543-4e5d-9",
+        "ModelType": "SRBF",
+        "Fees": "940.00",
+        "CtrMargin": "80.00",
+        "AvgRate": "117.50",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='7bf809e5-3543-4e5d-9',ModelType='TMBF')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='7bf809e5-3543-4e5d-9',ModelType='TMBF')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": "7bf809e5-3543-4e5d-9",
+        "ModelType": "TMBF",
+        "Fees": "0.00",
+        "CtrMargin": "0.00",
+        "AvgRate": "0.00",
+        "Currency": "USD"
       }
     ]
   }

@@ -135,6 +135,33 @@
         "Createdon": "\/Date(1488240000000)\/",
         "Changedby": "",
         "Changedon": null
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('7bf809e5-3543-4e5d-9')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('7bf809e5-3543-4e5d-9')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
+        },
+        "Projid": "7bf809e5-3543-4e5d-9",
+        "BillsheetId": "0",
+        "Plantyp": "WK",
+        "Region": "GA",
+        "Office": "US12",
+        "Currency": "USD",
+        "Clientname": "PIZZA HUT",
+        "Projname": "CHEESY",
+        "Comptyp": "Commission",
+        "EstStDate": "\/Date(1488067200000)\/",
+        "Duration": 4,
+        "PlanUnits": "Com",
+        "StartDate": "\/Date(1487980800000)\/",
+        "EstEndDate": "\/Date(1490486400000)\/",
+        "Comments": " CCC",
+        "Preparedby": "AAA",
+        "Createdby": "RPAVLOVIC",
+        "Createdon": "\/Date(1488240000000)\/",
+        "Changedby": "",
+        "Changedon": null
       }
     ]
   }
