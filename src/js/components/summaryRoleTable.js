@@ -8,8 +8,8 @@ var summaryRoleTable = (function ($) {
     var byRoleTable = $("#breakdown-role-table");
     var rows = {};
 
-    projectResources.forEach(function(resource){
-      if(!rows[resource.EmpGradeName]){
+    projectResources.forEach(function (resource) {
+      if (!rows[resource.EmpGradeName]) {
 
         var officeRateCards = rateCards.find(function (val) {
           return val.OfficeId === resource.Officeid;
@@ -34,13 +34,23 @@ var summaryRoleTable = (function ($) {
 
     rows = Object.values(rows);
 
-    var totalHrs = rows.reduce(function (acc, val){
+    var totalHrs = rows.reduce(function (acc, val) {
       return acc + parseFloat(val.hours);
     }, 0);
 
-    rows.forEach(function(row){
+    $('#roles-total-hours').text(totalHrs);
+
+    rows.forEach(function (row) {
       row.staffMix = row.hours / totalHrs * 100;
     });
+
+    var rolesTotalFee = rows.reduce(function (acc, val) {
+      if (val.fees)
+        return acc + parseFloat(val.fees);
+      else return acc;
+    }, 0);
+
+    $('#roles-total').text(convertToDollar(rolesTotalFee));
 
     byRoleTable.DataTable({
       dom: '<tip>',
@@ -54,7 +64,7 @@ var summaryRoleTable = (function ($) {
         {
           "title": "Title",
           "data": 'title',
-          "defaultContent": "President",
+          "defaultContent": "",
           "class": "office",
           render: function (data, type, row) {
             return data;
