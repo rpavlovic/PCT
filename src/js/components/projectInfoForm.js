@@ -76,11 +76,91 @@ var projectInfoForm = (function ($) {
   function prepopulate_Billing_Office_JSON(results) {
     var offices = [];
     var countries = [];
+    var countryOptions = [
+      {
+        Code: 'AU',
+        Country: 'Australia'
+      },
+      {
+        Code: 'CN',
+        Country: 'China'
+      },
+      {
+        Code: 'HK',
+        Country: 'Hong Kong'
+      },
+      {
+        Code: 'JP',
+        Country: 'Japan'
+      },
+      {
+        Code: 'MY',
+        Country: 'Malaysia'
+      },
+      {
+        Code: 'SG',
+        Country: 'Singapore'
+      },
+      {
+        Code: 'BE',
+        Country: 'Belgium'
+      },
+      {
+        Code: 'FR',
+        Country: 'France'
+      },
+      {
+        Code: 'DE',
+        Country: 'Germany'
+      },
+      {
+        Code: 'GB',
+        Country: 'Great Britain'
+      },
+      {
+        Code: 'IE',
+        Country: 'Ireland'
+      },
+      {
+        Code: 'IT',
+        Country: 'Italy'
+      },
+      {
+        Code: 'NL',
+        Country: 'Netherlands'
+      },
+      {
+        Code: 'ES',
+        Country: 'Spain'
+      },
+      {
+        Code: 'CH',
+        Country: 'Switzerland'
+      },
+
+      {
+        Code: 'CA',
+        Country: 'Canada'
+      },
+      {
+        Code: 'US',
+        Country: 'The United States'
+      }
+    ];
+
+    var regionsOptions = ['APAC', 'EMEA', 'NA'];
     var regions = [];
+
+    regionsOptions.forEach(function(val){
+      regions.push('<option value="' + val + '">' + val + '</option>');
+    });
+
+    countryOptions.forEach(function(val) {
+      countries.push('<option value="' + val.Code + '">' + val.Country + '</option>');
+    });
+
     results.forEach(function (office) {
       offices.push('<option value="' + office.Office + '">' + office.OfficeName + ', ' + office.City + ' (' + office.Office + ')</option>');
-      countries.push('<option value="' + office.Country + '">' + office.Country + '</option>');
-      regions.push('<option value="' + office.Region + '">' + office.Region + '</option>');
       matchOptions(office.Currency, select_currency[0]);
     });
 
