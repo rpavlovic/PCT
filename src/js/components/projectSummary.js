@@ -18,13 +18,13 @@ var projectSummary = (function ($) {
     });
 
     var p2 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectDeliverables), function (projectDeliverables) {
+      $.getJSON(get_data_feed(feeds.projectDeliverables, projectId), function (projectDeliverables) {
         resolve(projectDeliverables.d.results);
       });
     });
 
     var p3 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.marginModeling, projectId), function (marginModeling) {
+      $.getJSON(get_data_feed(feeds.marginModeling, projectId, ' '), function (marginModeling) {
         resolve(marginModeling.d.results);
       });
     });

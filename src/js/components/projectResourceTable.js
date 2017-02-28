@@ -44,7 +44,10 @@ var projectResourceTable = (function ($) {
   function initProjectResourceTable() {
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, projectID), function (deliverables) {
-        resolve(deliverables.d.results);
+        var deliv = deliverables.d.results.filter(function (val) {
+          return val.Projid === projectID;
+        });
+        resolve(deliv);
       }).fail(function () {
         // not found, but lets fix this and return empty set
         console.log('no project deliverables found.... returning empty set');
@@ -64,7 +67,10 @@ var projectResourceTable = (function ($) {
 
     var p4 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
-        resolve(resource.d.results);
+        var projectRes = resource.d.results.filter(function (val) {
+          return val.Projid === projectID;
+        });
+        resolve(projectRes);
       }).fail(function () {
         // not found, but lets fix this and return empty set
         console.log('no project resources found.... returning empty set');
@@ -93,7 +99,11 @@ var projectResourceTable = (function ($) {
     //fees for modeling table targets
     var t1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.marginModeling, projectID, ' '), function (data) {
-        resolve(data.d.results);
+        var modeling = data.d.results.filter(function (val) {
+          return val.Projid === projectID;
+        });
+
+        resolve(modeling);
       }).fail(function () {
         // not found, but lets fix this and return empty set
         console.log('no margin modeling found.... returning empty set');
@@ -152,7 +162,7 @@ var projectResourceTable = (function ($) {
         return obj.ModelType === 'TMBF';
       });
 
-      if (targetMarginBasedFee.length) {
+      if (targetMarginBasedFee.length && parseFloat(targetMarginBasedFee[0].CtrMargin)) {
         $('#target-contribution-margin').text(targetMarginBasedFee[0].CtrMargin);
       }
 
@@ -160,7 +170,7 @@ var projectResourceTable = (function ($) {
         return obj.ModelType === 'FFT';
       });
 
-      if (fixedFeeTarget.length) {
+      if (fixedFeeTarget.length && parseFloat(fixedFeeTarget[0].Fees)) {
         $('#fixed-fee-target').text(convertToDecimal(fixedFeeTarget[0].Fees));
       }
 
@@ -276,8 +286,13 @@ var projectResourceTable = (function ($) {
         },
         {
           "title": 'Bill Rate <br/> Override',
+          "data": "BillRateOvride",
           "defaultContent": '<label>$ </label><div contenteditable />',
-          "sClass": "rate-override num"
+          "sClass": "rate-override num",
+          "render": function (data, type, row, meta) {
+            if (parseFloat(data))
+              return '<label>$ </label><div contenteditable>' + parseFloat(data) + '</div>';
+          }
         },
         {
           "title": "Cost Rate",
@@ -320,7 +335,8 @@ var projectResourceTable = (function ($) {
           "Class": resource,
           "CostRate": resource,
           "CostCenterName": resource,
-          "BillRate": resource.BillRate
+          "BillRate": resource.BillRate,
+          "BillRateOvride": resource.BillRateOvride
         };
 
         $.each(hrRows[resource.Rowno], function (k, v) {
@@ -789,7 +805,8 @@ var projectResourceTable = (function ($) {
         }
 
         var targetContributionMargin = parseFloat($('#target-contribution-margin').text());
-        if (targetContributionMargin && totalCostSum || tableHoursSum) {
+        if (!isNaN(targetContributionMargin) && (totalCostSum || tableHoursSum)) {
+
           var targetMarginBasedFee = totalCostSum / (1 - (targetContributionMargin / 100));
           $("#modeling-table #total-fee_target-resource").text(convertToDollar(targetMarginBasedFee));
           var targetMarginAvgRate = targetMarginBasedFee / tableHoursSum;
@@ -802,7 +819,7 @@ var projectResourceTable = (function ($) {
 
         var fixedFeeTarget = parseFloat($('#fixed-fee-target').text());
 
-        if (!isNaN(fixedFeeTarget) && tableHoursSum || totalCostSum) {
+        if (!isNaN(fixedFeeTarget) && (tableHoursSum || totalCostSum)) {
           var contributionMarginFixedFee = ((fixedFeeTarget - totalCostSum) / fixedFeeTarget);
           if (!isNaN(contributionMarginFixedFee)) {
             $('#contribution-margin_fixed-fee').text(convertToPercent(contributionMarginFixedFee));
