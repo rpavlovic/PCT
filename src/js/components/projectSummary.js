@@ -24,7 +24,7 @@ var projectSummary = (function ($) {
     });
 
     var p3 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.marginModeling, projectId), function (marginModeling) {
+      $.getJSON(get_data_feed(feeds.marginModeling, projectId, ' '), function (marginModeling) {
         resolve(marginModeling.d.results);
       });
     });
