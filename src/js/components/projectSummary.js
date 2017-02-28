@@ -33,24 +33,25 @@ var projectSummary = (function ($) {
       });
     });
 
-    var p5 = projectSummaryCalculations.calculateFinancialSummary(projectId);
+    var p5 = new Promise(function (resolve, reject) {
+      $.getJSON(get_data_feed(feeds.projectExpenses, projectId), function (rateCard) {
+        resolve(rateCard.d.results);
+      });
+    });
 
     Promise.all([p1, p2, p3, p4, p5]).then(function (values) {
       //deliverables
       var projectInfo = values[0];
       var projectDeliverables = values[1];
       var marginModeling = values[2];
-      var rateCard = values[3];
-
-      var financialSummary = values[4];
-
-      console.log(financialSummary);
+      var projectResources = values[3];
+      var projectExpenses = values[4];
 
       fillProjectInfoSummary(projectInfo);
-      financialSummaryTable(financialSummary);
-      summaryDeliverablesTable.initSummaryDeliverablesTable(projectDeliverables);
-      summaryOfficeTable.initSummaryOfficeTable(rateCard);
-      summaryRoleTable.initSummaryRoleTable(rateCard);
+      financialSummaryTable(marginModeling, projectResources, projectExpenses);
+      summaryDeliverablesTable.initSummaryDeliverablesTable(projectResources);
+      summaryOfficeTable.initSummaryOfficeTable(projectResources);
+      summaryRoleTable.initSummaryRoleTable(projectResources);
     });
   }
 
@@ -72,13 +73,47 @@ var projectSummary = (function ($) {
     }
   }
 
-  function financialSummaryTable(summary){
-    $('#total-budget').text(summary.budget);
-    $('#expenses').text("$(" + summary.expenses + ")");
-    $('#total-hours').text(summary.totalHours);
-    $('#oop-fees').text(summary.oopFees);
-    $('#avg-rate').text(summary.blendedAverage);
-    $('#net-revenue').text(summary.netRevenue);
+  function financialSummaryTable(marginModeling, projectResources, projectExpenses) {
+    // console.log(marginModeling);
+    // console.log(projectResources);
+    // console.log(projectExpenses);
+
+    var ARBF = marginModeling.find(function (val) {
+      return val.ModelType === 'ARBF';
+    });
+    var SRBF = marginModeling.find(function (val) {
+      return val.ModelType === 'SRBF';
+    });
+
+    var totalExpenses = projectExpenses.reduce(function (acc, val) {
+      return acc + parseFloat(val.Amount);
+    }, 0);
+    console.log(totalExpenses);
+    console.log(ARBF.Fees);
+    console.log(SRBF.Fees);
+    var totalFees = ARBF.Fees ? ARBF.Fees : SRBF.Fees;
+    var contributionMargin = ARBF.CtrMargin ? ARBF.CtrMargin : SRBF.CtrMargin;
+
+    var budget = parseFloat(totalFees) + totalExpenses;
+
+    var resourceTotalHours = projectResources.reduce(function (acc, val) {
+      return parseFloat(acc) + parseFloat(val.TotalHrs);
+    }, 0);
+
+    var netRevenue = budget - totalExpenses;
+    var blendedAvg = netRevenue/resourceTotalHours;
+    var oopFees = totalExpenses/totalFees;
+
+    // budget = ARBF or SRBF + Expenses
+    $('#total-budget').text(budget);
+    $('#expenses').text("$(" + totalExpenses + ")");
+    $('#net-revenue').text(netRevenue);
+    $('#contribution-margin').text(contributionMargin + '%');
+
+    $('#oop-fees').text(oopFees + '%');
+    $('#total-hours').text(resourceTotalHours);
+    $('#avg-rate').text(blendedAvg);
+
   }
 
   return {

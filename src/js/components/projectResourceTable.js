@@ -148,7 +148,7 @@ var projectResourceTable = (function ($) {
       //var customRateCards = values[6];
       projectInfo = values[6];
 
-      projectInfo = projectInfo.find(function(val){
+      projectInfo = projectInfo.find(function (val) {
         return val.Projid === projectID;
       });
 
@@ -156,16 +156,8 @@ var projectResourceTable = (function ($) {
       duration = projectInfo.Duration;
       office = projectInfo.Office;
       planBy = projectInfo.Plantyp;
-      console.log('init billsheet');
-      rateCardSelect.initRateCardSelect(projectInfo.BillsheetId);
 
-      // var billsheets = {};
-      // customRateCards.forEach(function (customBillSheet) {
-      //   if (!billsheets[customBillSheet.BillsheetId]) {
-      //     billsheets[customBillSheet.BillsheetId] = [];
-      //   }
-      //   billsheets[customBillSheet.BillsheetId].push(customBillSheet);
-      // });
+      rateCardSelect.initRateCardSelect(projectInfo.BillsheetId);
 
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
         return obj.ModelType === 'TMBF';
@@ -889,86 +881,76 @@ var projectResourceTable = (function ($) {
   function buildModelingTablePayload() {
     var payloads = [];
 
-    if ($("#modeling-table tbody #total-fee_adjusted-resource").text() && $("#modeling-table tbody #contribution-margin_adjusted-resource").text() && $("#modeling-table tbody #avg-rate_adjusted-resource").text()) {
-      payloads.push({
-        type: 'POST',
-        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
-        data: {
-          "__metadata": {
-            "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='ARBF')",
-            "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='ARBF')",
-            "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
-          },
-          "Projid": projectID,
-          "ModelType": "ARBF",
-          "Fees": convertToDecimal($("#modeling-table tbody #total-fee_adjusted-resource").text()),
-          "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_adjusted-resource").text()),
-          "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_adjusted-resource").text()),
-          "Currency": "USD"
-        }
-      });
-    }
+    payloads.push({
+      type: 'POST',
+      url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
+      data: {
+        "__metadata": {
+          "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='ARBF')",
+          "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='ARBF')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": projectID,
+        "ModelType": "ARBF",
+        "Fees": convertToDecimal($("#modeling-table tbody #total-fee_adjusted-resource").text()) ? convertToDecimal($("#modeling-table tbody #total-fee_adjusted-resource").text()) : "0.0",
+        "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_adjusted-resource").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_adjusted-resource").text()) : "0.0",
+        "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_adjusted-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_adjusted-resource").text()) : "0.0",
+        "Currency": "USD"
+      }
+    });
 
+    payloads.push({
+      type: 'POST',
+      url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
+      data: {
+        "__metadata": {
+          "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='SRBF')",
+          "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='SRBF')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": projectID,
+        "ModelType": "SRBF",
+        "Fees": convertToDecimal($("#modeling-table tbody #total-fee_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #total-fee_standard-resource").text()) : "0.0",
+        "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_standard-resource").text()) : "0.0",
+        "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text())? convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()) : "0.0",
+        "Currency": "USD" // need to change this to the correct currency
+      }
+    });
 
-    if ($("#modeling-table tbody #total-fee_standard-resource").text() && $("#modeling-table tbody #contribution-margin_standard-resource").text() && $("#modeling-table tbody #avg-rate_standard-resource").text()) {
-      payloads.push({
-        type: 'POST',
-        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
-        data: {
-          "__metadata": {
-            "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='SRBF')",
-            "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='SRBF')",
-            "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
-          },
-          "Projid": projectID,
-          "ModelType": "SRBF",
-          "Fees": convertToDecimal($("#modeling-table tbody #total-fee_standard-resource").text()),
-          "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_standard-resource").text()),
-          "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()),
-          "Currency": "USD" // need to change this to the correct currency
-        }
-      });
-    }
-
-    if ($("#modeling-table tbody #fixed-fee-target").text() && $("#modeling-table tbody #contribution-margin_fixed-fee").text() && $("#modeling-table tbody #avg-rate_fixed-resource").text()) {
-      payloads.push({
-        type: 'POST',
-        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
-        data: {
-          "__metadata": {
-            "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='FFT')",
-            "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='FFT')",
-            "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
-          },
-          "Projid": projectID,
-          "ModelType": "FFT",
-          "Fees": convertToDecimal($("#modeling-table tbody #fixed-fee-target").text()),
-          "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_fixed-fee").text()),
-          "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()),
-          "Currency": "USD"
-        }
-      });
-    }
-
-    if ($("#modeling-table tbody #total-fee_target-resource").text() && $("#modeling-table tbody #target-contribution-margin").text() && $("#modeling-table tbody #avg-rate_target-resource").text()) {
-      payloads.push({
-        type: 'POST',
-        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
-        data: {
-          "__metadata": {
-            "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='TMBF')",
-            "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='TMBF')",
-            "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
-          },
-          "Projid": projectID,
-          "ModelType": "TMBF",
-          "Fees": convertToDecimal($("#modeling-table tbody #total-fee_target-resource").text()),
-          "CtrMargin": convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()),
-          "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()),
-          "Currency": "USD"
-        }
-      });
-    }
+    payloads.push({
+      type: 'POST',
+      url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
+      data: {
+        "__metadata": {
+          "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='FFT')",
+          "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='FFT')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": projectID,
+        "ModelType": "FFT",
+        "Fees": convertToDecimal($("#modeling-table tbody #fixed-fee-target").text()) ? convertToDecimal($("#modeling-table tbody #fixed-fee-target").text()) : "0.0",
+        "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_fixed-fee").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_fixed-fee").text()) : "0.0",
+        "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()) ?  convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()) : "0.0",
+        "Currency": "USD"
+      }
+    });
+    payloads.push({
+      type: 'POST',
+      url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
+      data: {
+        "__metadata": {
+          "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='TMBF')",
+          "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='TMBF')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": projectID,
+        "ModelType": "TMBF",
+        "Fees": convertToDecimal($("#modeling-table tbody #total-fee_target-resource").text()),
+        "CtrMargin": convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()),
+        "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()),
+        "Currency": "USD"
+      }
+    });
 
     return payloads;
   }
@@ -993,7 +975,7 @@ var projectResourceTable = (function ($) {
             "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
           },
           "Projid": projectID,
-          "Duration": duration,
+          "Duration": duration.toString(),
           "Rowno": payloadIndex,
           "DelvDesc": $(rows.context[0].aoData[i].anCells[2]).find('option:selected').text(),
           "Officeid": $(rows.context[0].aoData[i].anCells[3]).find('option:selected').val(),
