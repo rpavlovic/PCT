@@ -80,7 +80,7 @@ var activeTableFunction = (function ($) {
             "sClass": 'budget',
             "render": function (data, type, set, meta) {
               if (data) {
-                return '<div data-val="' + data + '"></div>';
+                return '<div data-val="' + data + '">' + data + '</div>';
               }
             }
 
