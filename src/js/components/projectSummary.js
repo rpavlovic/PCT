@@ -136,6 +136,7 @@ var projectSummary = (function ($) {
     var totalExpenses = projectExpenses.reduce(function (acc, val) {
       return acc + parseFloat(val.Amount);
     }, 0);
+
     // console.log(totalExpenses);
     // console.log(ARBF.Fees);
     // console.log(SRBF.Fees);
@@ -152,15 +153,24 @@ var projectSummary = (function ($) {
     var blendedAvg = netRevenue/resourceTotalHours;
     var oopFees = totalExpenses/totalFees;
 
-    // budget = ARBF or SRBF + Expenses
-    $('#total-budget').text(budget);
-    $('#expenses').text("$(" + totalExpenses + ")");
-    $('#net-revenue').text(netRevenue);
-    $('#contribution-margin').text(contributionMargin + '%');
+    var class_name = '';
 
-    $('#oop-fees').text(oopFees + '%');
+    if(contributionMargin > 65) {
+      class_name="high-value";
+    } else {
+      class_name = "low-value";
+    }
+
+    // budget = ARBF or SRBF + Expenses
+    $('#total-budget').text(convertToDollar(budget));
+    $('#expenses').text(convertToDollar( totalExpenses )).addClass("low-value");
+    $('#net-revenue').text(convertToDollar(netRevenue));
+
+    $('#contribution-margin').text(contributionMargin + '%').addClass(class_name);
+
+    $('#oop-fees').text(oopFees.toFixed(2) + "%");
     $('#total-hours').text(resourceTotalHours);
-    $('#avg-rate').text(blendedAvg);
+    $('#avg-rate').text(convertToDollar(blendedAvg));
 
   }
 
