@@ -290,7 +290,7 @@ var projectResourceTable = (function ($) {
           "defaultContent": '<label>$ </label><div contenteditable />',
           "sClass": "rate-override num",
           "render": function (data, type, row, meta) {
-            if (data)
+            if (parseFloat(data))
               return '<label>$ </label><div contenteditable>' + parseFloat(data) + '</div>';
           }
         },
