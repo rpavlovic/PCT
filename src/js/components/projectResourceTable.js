@@ -295,8 +295,8 @@ var projectResourceTable = (function ($) {
         },
         {
           "title": 'Bill Rate <br/> Override',
-          "defaultContent": '<label>$ </label><div contenteditable />',
-          "sClass": "rate-override num"
+          "defaultContent": '<div contenteditable class="dollar-sign" />',
+          "class": "rate-override num"
         },
         {
           "title": "Cost Rate",
@@ -480,9 +480,13 @@ var projectResourceTable = (function ($) {
             var foundCard = cardResults.filter(function (val) {
               return val.TitleId === EmpGrade;
             });
-
+            $(rows.context[0].aoData[i].anCells[10]).find('div').text('');
             if (foundCard[0] && parseInt(foundCard[0].OverrideRate)) {
               $(rows.context[0].aoData[i].anCells[10]).find('div').text(foundCard[0].OverrideRate);
+              $(rows.context[0].aoData[i].anCells[9]).css('color','lightgrey');
+            }
+            else {
+              $(rows.context[0].aoData[i].anCells[9]).css('color','#5b5b5b');
             }
           }
 

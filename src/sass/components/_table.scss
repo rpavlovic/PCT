@@ -120,36 +120,33 @@ table {
       &.contenteditable,
       &.sorting_1 {
         background-color: #f2f2f2 !important;
-        position: relative;
         white-space: nowrap;
         &:focus {
           outline: none;
           background: none;
         }
        > div {
-          padding: 5px 20px;
-          // text-align: center;
+          padding: 5px 25px;
           border: inset 1px lightblue;
-          ~ label {
-            right: 15px;
+          position: relative;
+          &.dollar-sign:before {
+            content: "$";
+            left: 5px;
+            position: absolute;
+            top: 50%;
+            margin-top: -10px;
+          }
+          &.percent-sign:after {
+            content: "%";
+            right: 5px;
+            position: absolute;
+            top: 50%;
+            margin-top: -10px;
           }
         }
         div:focus {
           background-color: #e8f1f8;
           outline: solid 1px #3498db;
-        }
-        label {
-          position: absolute;
-          top: 50%;
-          display: inline;
-          -ms-transform: translateY(-50%);
-          -webkit-transform: translateY(-50%);
-          -moz-transform: translateY(-50%);
-          -o-transform: translateY(-50%);
-          transform: translateY(-50%);
-          &:first-child {
-            left: 15px;
-          }
         }
       }
       input,
