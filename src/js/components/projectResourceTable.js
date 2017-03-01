@@ -289,7 +289,7 @@ var projectResourceTable = (function ($) {
         {
           "title": "Cost Rate",
           "data": "CostRate",
-          "class": 'td-costrate hidden',
+          "class": 'td-costrate hide',
           "visible": true,
           "render": function (data, type, row, meta) {
             return getCostRate(data);
@@ -373,7 +373,7 @@ var projectResourceTable = (function ($) {
             .addClass("contenteditable");
         },
         "createdRow": function (row, data, index) {
-          $('tfoot th').removeClass('center blue-bg rate-override num');
+          $('tfoot th').removeClass('center blue-bg rate-override num hide td-office td-title td-class td-practice td-billrate td-costrate');
         },
         "drawCallback": function (row) {
           $("#project-resource-table tbody select.office").on('change', function () {
