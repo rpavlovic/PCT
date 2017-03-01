@@ -691,7 +691,13 @@ var projectResourceTable = (function ($) {
 
           var billRateOverride = convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text());
           billRateOverride = !isNaN(billRateOverride) ? billRateOverride : 0;
-
+          //highlight the rate is override is present.
+          if(!isNaN(billRateOverride) && billRateOverride > 0) {
+            $(rows.context[0].aoData[i].anCells[9]).css('color','lightgrey');
+          }
+          else {
+            $(rows.context[0].aoData[i].anCells[9]).css('color','#5b5b5b');
+          }
           var rate = billRateOverride ? billRateOverride : billRate;
           var costRate = convertToDecimal($(rows.context[0].aoData[i].anCells[11]).text());
 
@@ -828,6 +834,7 @@ var projectResourceTable = (function ($) {
         }
       }
     });
+
     $('.project-resources #btn-save').on('click', function (event) {
       event.preventDefault();
       console.log("saving form");
