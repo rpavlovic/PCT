@@ -312,8 +312,6 @@ var projectResourceTable = (function ($) {
         }
       ];
 
-      var planLabel = planBy === 'WK' ? 'Week' : 'Month';
-
       // this is supposed to come from data/PlannedHours.json
       projectResources.forEach(function (resource) {
         resource.Rowno = parseInt(resource.Rowno);
@@ -337,13 +335,17 @@ var projectResourceTable = (function ($) {
         myRows.push(row);
       });
 
+      var planLabel = planBy === 'WK' ? 'Week' : 'Month';
+
+      var startDate = projectInfo.EstStDate;
       for (var i = 1; i <= duration; i++) {
         columns.push({
-          "title": planLabel + ' ' + i,
+          "title": planLabel === 'Month' ? calcMonthHeader(startDate) : 'Week ' + i,
           "data": 'hour-' + i,
           "defaultContent": '<div contenteditable />',
           render: renderMonth
         });
+        startDate = addMonthsUTC(startDate, 1);
       }
 
       var projResourceTable = $('#project-resource-table').DataTable({
