@@ -24,14 +24,14 @@ var expenseTable = (function ($) {
 
   function initExpenseTable() {
     var p1 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectDeliverables, getParameterByName('projID')), function (deliverables) {
-        resolve(deliverables.d.results);
+      $.getJSON(get_data_feed(feeds.projectDeliverables, projectID), function (deliverables) {
+        resolve(deliverables.d.results.filter(filterByProjectId, projectID));
       });
     });
 
     var p2 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectExpenses, getParameterByName('projID')), function (expenses) {
-        resolve(expenses.d.results);
+      $.getJSON(get_data_feed(feeds.projectExpenses, projectID), function (expenses) {
+        resolve(expenses.d.results.filter(filterByProjectId, projectID));
       });
     });
 

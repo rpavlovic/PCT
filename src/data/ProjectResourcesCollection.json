@@ -115,7 +115,7 @@
           "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='7bf809e5-3543-4e5d-9',Rowno='001')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
         },
-        "BillRateOvride": "0.000",
+        "BillRateOvride": "100.000",
         "Duration": "4",
         "EmpGradeName": "Account Coordinator",
         "Projid": "7bf809e5-3543-4e5d-9",
@@ -127,7 +127,7 @@
         "ProposedRes": "BOB",
         "BillRate": "115.000",
         "TotalHrs": 4,
-        "TotalFee": "460.000",
+        "TotalFee": "400.000",
         "Plantyp": "WK"
       },
       {
@@ -149,6 +149,27 @@
         "BillRate": "120.000",
         "TotalHrs": 4,
         "TotalFee": "400.000",
+        "Plantyp": "WK"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='7bf809e5-3543-4e5d-9',Rowno='003')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='7bf809e5-3543-4e5d-9',Rowno='003')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "BillRateOvride": "0.000",
+        "Duration": "4",
+        "EmpGradeName": "Chairman",
+        "Projid": "7bf809e5-3543-4e5d-9",
+        "Rowno": "003",
+        "DelvDesc": "DELIVER",
+        "Officeid": "US09",
+        "Practiceid": "US99251600",
+        "Role": "ujm",
+        "ProposedRes": "anna",
+        "BillRate": "450.000",
+        "TotalHrs": 4,
+        "TotalFee": "1800.000",
         "Plantyp": "WK"
       }
     ]
