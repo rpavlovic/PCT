@@ -279,11 +279,11 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Bill Rate <br/> Override',
           "data": "BillRateOvride",
-          "defaultContent": '<label>$ </label><div contenteditable />',
+          "defaultContent": '<div contenteditable class="dollar-sign" />',
           "sClass": "rate-override num",
           "render": function (data, type, row, meta) {
             if (parseFloat(data))
-              return '<label>$ </label><div contenteditable>' + parseFloat(data) + '</div>';
+              return '<div contenteditable class="dollar-sign">' + parseFloat(data) + '</div>';
           }
         },
         {
@@ -474,10 +474,10 @@ var projectResourceTable = (function ($) {
             $(rows.context[0].aoData[i].anCells[10]).find('div').text('');
             if (foundCard[0] && parseInt(foundCard[0].OverrideRate)) {
               $(rows.context[0].aoData[i].anCells[10]).find('div').text(foundCard[0].OverrideRate);
-              console.log($(rows.context[0].aoData[i].anCells[9]));
-              $(rows.context[0].aoData[i].anCells[9]).css('color', 'lightgrey');
-            } else {
-              $(rows.context[0].aoData[i].anCells[9]).css('color', '#5b5b5b');
+              $(rows.context[0].aoData[i].anCells[9]).css('color','lightgrey');
+            }
+            else {
+              $(rows.context[0].aoData[i].anCells[9]).css('color','#5b5b5b');
             }
           }
 
