@@ -8,7 +8,6 @@ var projectResourceTable = (function ($) {
   var duration;
   var planBy;
   var office;
-  var RateCards = [];
   var projectResources = [];
   var deletePayloads = [];
   var projectInfo;
@@ -17,8 +16,9 @@ var projectResourceTable = (function ($) {
     if (!OfficeId) {
       return [];
     }
-    if (RateCards[OfficeId]) {
-      return RateCards[OfficeId];
+    var rc = sessionStorage.getItem('RateCard' + OfficeId);
+    if (rc) {
+      return JSON.parse(rc);
     } else {
       return [];
     }
@@ -28,11 +28,12 @@ var projectResourceTable = (function ($) {
     return new Promise(function (resolve, reject) {
       //console.log('RateCard Not found. checking service for OfficeId' + OfficeId);
       $.getJSON(get_data_feed(feeds.rateCards, OfficeId), function (rateCards) {
-        RateCards[OfficeId] = rateCards.d.results.filter(function (val) {
+        var rateCard = rateCards.d.results.filter(function (val) {
           // add in any filtering params if we need them in the future
-          return parseInt(val.CostRate) > 0 && val.EmpGradeName;
+          return parseInt(val.CostRate) > 0 && val.EmpGradeName && OfficeId === val.Office;
         });
-        resolve(RateCards[OfficeId]);
+        sessionStorage.setItem('RateCard' + OfficeId, JSON.stringify(rateCard));
+        resolve(rateCard);
       }).fail(function () {
         // not found, but lets fix this and return empty set
         console.log('no rate cards found.... returning empty set');
@@ -82,10 +83,8 @@ var projectResourceTable = (function ($) {
       .then(function (resources) {
         console.log(resources);
         var promiseArray = [];
-        var officeIds = {};
         resources.forEach(function (val) {
-          if (!officeIds[val.Officeid]) {
-            officeIds[val.Officeid] = true;
+          if (!sessionStorage.getItem('RateCard' + val.Officeid)) {
             promiseArray.push(loadRateCardFromServer(val.Officeid));
           }
         });
@@ -136,7 +135,7 @@ var projectResourceTable = (function ($) {
 
       // preload the rest of the bill rate cards
       offices.forEach(function (val) {
-        if (!RateCards[val.Office])
+        if (!sessionStorage.getItem('RateCard' + val.Office))
           loadRateCardFromServer(val.Office);
       });
 
