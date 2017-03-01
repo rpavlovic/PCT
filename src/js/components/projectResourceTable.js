@@ -45,9 +45,7 @@ var projectResourceTable = (function ($) {
   function initProjectResourceTable() {
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, projectID), function (deliverables) {
-        var deliv = deliverables.d.results.filter(function (val) {
-          return val.Projid === projectID;
-        });
+        var deliv = deliverables.d.results.filter(filterByProjectId, projectID);
         resolve(deliv);
       }).fail(function () {
         // not found, but lets fix this and return empty set
@@ -68,9 +66,7 @@ var projectResourceTable = (function ($) {
 
     var p4 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
-        var projectRes = resource.d.results.filter(function (val) {
-          return val.Projid === projectID;
-        });
+        var projectRes = resource.d.results.filter(filterByProjectId, projectID);
         resolve(projectRes);
       }).fail(function () {
         // not found, but lets fix this and return empty set
@@ -81,7 +77,6 @@ var projectResourceTable = (function ($) {
 
     var p3 = Promise.resolve(p4)
       .then(function (resources) {
-        console.log(resources);
         var promiseArray = [];
         resources.forEach(function (val) {
           if (!sessionStorage.getItem('RateCard' + val.Officeid)) {
@@ -98,10 +93,7 @@ var projectResourceTable = (function ($) {
     //fees for modeling table targets
     var t1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.marginModeling, projectID, ' '), function (data) {
-        var modeling = data.d.results.filter(function (val) {
-          return val.Projid === projectID;
-        });
-
+        var modeling = data.d.results.filter(filterByProjectId, projectID);
         resolve(modeling);
       }).fail(function () {
         // not found, but lets fix this and return empty set
@@ -112,7 +104,8 @@ var projectResourceTable = (function ($) {
 
     var p5 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.plannedHours, projectID), function (plan) {
-        resolve(plan.d.results);
+        var ph = plan.d.results.filter(filterByProjectId, projectID);
+        resolve(ph);
       }).fail(function () {
         // not found, but lets fix this and return empty set
         console.log('no planned hours found.... returning empty set');
@@ -122,7 +115,8 @@ var projectResourceTable = (function ($) {
 
     var pInfo = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.project, projectID), function (projects) {
-        resolve(projects.d.results);
+        var p = projects.d.results.filter(filterByProjectId, projectID);
+        resolve(p);
       }).fail(function () {
         resolve([]);
       });
@@ -150,7 +144,6 @@ var projectResourceTable = (function ($) {
         return val.Projid === projectID;
       });
 
-      console.log(projectInfo);
       duration = projectInfo.Duration;
       office = projectInfo.Office;
       planBy = projectInfo.Plantyp;
