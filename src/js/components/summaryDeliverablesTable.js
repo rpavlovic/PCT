@@ -25,7 +25,7 @@ var summaryDeliverablesTable = (function ($) {
     });
 
     expenses.forEach(function (data) {
-      var item = expenses.find(function (val) {
+      var item = deliverables.find(function (val) {
         return val.DelvDesc === data.DelvDesc;
       });
       if (!item.TotalExpenses) {
