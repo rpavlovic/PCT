@@ -162,6 +162,33 @@
         "Createdon": "\/Date(1488240000000)\/",
         "Changedby": "",
         "Changedon": null
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('62b5a229-51b4-48a5-a')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('62b5a229-51b4-48a5-a')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
+        },
+        "BillsheetId": "",
+        "Projid": "62b5a229-51b4-48a5-a",
+        "Plantyp": "MN",
+        "Region": "EMEA",
+        "Office": "US12",
+        "Currency": "USD",
+        "Clientname": "Monthly Client",
+        "Projname": "Monthly Project",
+        "Comptyp": "Commission",
+        "EstStDate": "\/Date(1488326400000)\/",
+        "Duration": 4,
+        "PlanUnits": "HOU",
+        "StartDate": "\/Date(1488153600000)\/",
+        "EstEndDate": "\/Date(1498003200000)\/",
+        "Comments": "Smith",
+        "Preparedby": "Mike",
+        "Createdby": "RPAVLOVIC",
+        "Createdon": "\/Date(1488326400000)\/",
+        "Changedby": "",
+        "Changedon": null
       }
     ]
   }
