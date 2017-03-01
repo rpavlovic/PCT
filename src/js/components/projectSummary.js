@@ -13,31 +13,31 @@ var projectSummary = (function ($) {
 
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.project, projectId), function (projects) {
-        resolve(projects.d.results);
+        resolve(projects.d.results.filter(filterByProjectId, projectId));
       });
     });
 
     var p2 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, projectId), function (projectDeliverables) {
-        resolve(projectDeliverables.d.results);
+        resolve(projectDeliverables.d.results.filter(filterByProjectId, projectId));
       });
     });
 
     var p3 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.marginModeling, projectId, ' '), function (marginModeling) {
-        resolve(marginModeling.d.results);
+        resolve(marginModeling.d.results.filter(filterByProjectId, projectId));
       });
     });
 
     var p4 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectResources, projectId), function (projectResources) {
-        resolve(projectResources.d.results);
+        resolve(projectResources.d.results.filter(filterByProjectId, projectId));
       });
     });
 
     var p5 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectExpenses, projectId), function (projectExpenses) {
-        resolve(projectExpenses.d.results);
+        resolve(projectExpenses.d.results.filter(filterByProjectId, projectId));
       });
     });
 
