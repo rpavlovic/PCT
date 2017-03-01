@@ -12,8 +12,6 @@ function calcPrettyDate(dateVal) {
 
 function calcMonthHeader(dateVal) {
   var date = new Date(parseFloat(dateVal.substr(6)));
-  console.log(date);
-  console.log(date.getMonth());
   return (months[date.getMonth()]) + " " + date.getFullYear();
 }
 
