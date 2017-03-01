@@ -8,7 +8,6 @@ var projectResourceTable = (function ($) {
   var duration;
   var planBy;
   var office;
-  var RateCards = [];
   var projectResources = [];
   var deletePayloads = [];
   var projectInfo;
@@ -17,8 +16,9 @@ var projectResourceTable = (function ($) {
     if (!OfficeId) {
       return [];
     }
-    if (RateCards[OfficeId]) {
-      return RateCards[OfficeId];
+    var rc = sessionStorage.getItem('RateCard' + OfficeId);
+    if (rc) {
+      return JSON.parse(rc);
     } else {
       return [];
     }
@@ -28,11 +28,12 @@ var projectResourceTable = (function ($) {
     return new Promise(function (resolve, reject) {
       //console.log('RateCard Not found. checking service for OfficeId' + OfficeId);
       $.getJSON(get_data_feed(feeds.rateCards, OfficeId), function (rateCards) {
-        RateCards[OfficeId] = rateCards.d.results.filter(function (val) {
+        var rateCard = rateCards.d.results.filter(function (val) {
           // add in any filtering params if we need them in the future
-          return parseInt(val.CostRate) > 0 && val.EmpGradeName;
+          return parseInt(val.CostRate) > 0 && val.EmpGradeName && OfficeId === val.Office;
         });
-        resolve(RateCards[OfficeId]);
+        sessionStorage.setItem('RateCard' + OfficeId, JSON.stringify(rateCard));
+        resolve(rateCard);
       }).fail(function () {
         // not found, but lets fix this and return empty set
         console.log('no rate cards found.... returning empty set');
@@ -44,9 +45,7 @@ var projectResourceTable = (function ($) {
   function initProjectResourceTable() {
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, projectID), function (deliverables) {
-        var deliv = deliverables.d.results.filter(function (val) {
-          return val.Projid === projectID;
-        });
+        var deliv = deliverables.d.results.filter(filterByProjectId, projectID);
         resolve(deliv);
       }).fail(function () {
         // not found, but lets fix this and return empty set
@@ -67,9 +66,7 @@ var projectResourceTable = (function ($) {
 
     var p4 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
-        var projectRes = resource.d.results.filter(function (val) {
-          return val.Projid === projectID;
-        });
+        var projectRes = resource.d.results.filter(filterByProjectId, projectID);
         resolve(projectRes);
       }).fail(function () {
         // not found, but lets fix this and return empty set
@@ -80,12 +77,9 @@ var projectResourceTable = (function ($) {
 
     var p3 = Promise.resolve(p4)
       .then(function (resources) {
-        console.log(resources);
         var promiseArray = [];
-        var officeIds = {};
         resources.forEach(function (val) {
-          if (!officeIds[val.Officeid]) {
-            officeIds[val.Officeid] = true;
+          if (!sessionStorage.getItem('RateCard' + val.Officeid)) {
             promiseArray.push(loadRateCardFromServer(val.Officeid));
           }
         });
@@ -99,10 +93,7 @@ var projectResourceTable = (function ($) {
     //fees for modeling table targets
     var t1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.marginModeling, projectID, ' '), function (data) {
-        var modeling = data.d.results.filter(function (val) {
-          return val.Projid === projectID;
-        });
-
+        var modeling = data.d.results.filter(filterByProjectId, projectID);
         resolve(modeling);
       }).fail(function () {
         // not found, but lets fix this and return empty set
@@ -113,7 +104,8 @@ var projectResourceTable = (function ($) {
 
     var p5 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.plannedHours, projectID), function (plan) {
-        resolve(plan.d.results);
+        var ph = plan.d.results.filter(filterByProjectId, projectID);
+        resolve(ph);
       }).fail(function () {
         // not found, but lets fix this and return empty set
         console.log('no planned hours found.... returning empty set');
@@ -123,7 +115,8 @@ var projectResourceTable = (function ($) {
 
     var pInfo = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.project, projectID), function (projects) {
-        resolve(projects.d.results);
+        var p = projects.d.results.filter(filterByProjectId, projectID);
+        resolve(p);
       }).fail(function () {
         resolve([]);
       });
@@ -136,7 +129,7 @@ var projectResourceTable = (function ($) {
 
       // preload the rest of the bill rate cards
       offices.forEach(function (val) {
-        if (!RateCards[val.Office])
+        if (!sessionStorage.getItem('RateCard' + val.Office))
           loadRateCardFromServer(val.Office);
       });
 
@@ -151,7 +144,6 @@ var projectResourceTable = (function ($) {
         return val.Projid === projectID;
       });
 
-      console.log(projectInfo);
       duration = projectInfo.Duration;
       office = projectInfo.Office;
       planBy = projectInfo.Plantyp;
@@ -320,8 +312,6 @@ var projectResourceTable = (function ($) {
         }
       ];
 
-      var planLabel = planBy === 'WK' ? 'Week' : 'Month';
-
       // this is supposed to come from data/PlannedHours.json
       projectResources.forEach(function (resource) {
         resource.Rowno = parseInt(resource.Rowno);
@@ -345,13 +335,17 @@ var projectResourceTable = (function ($) {
         myRows.push(row);
       });
 
+      var planLabel = planBy === 'WK' ? 'Week' : 'Month';
+
+      var startDate = projectInfo.EstStDate;
       for (var i = 1; i <= duration; i++) {
         columns.push({
-          "title": planLabel + ' ' + i,
+          "title": planLabel === 'Month' ? calcMonthHeader(startDate) : 'Week ' + i,
           "data": 'hour-' + i,
           "defaultContent": '<div contenteditable />',
           render: renderMonth
         });
+        startDate = addMonthsUTC(startDate, 1);
       }
 
       var projResourceTable = $('#project-resource-table').DataTable({

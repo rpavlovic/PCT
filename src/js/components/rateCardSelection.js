@@ -23,8 +23,6 @@ var rateCardSelect = (function ($) {
         var bsIds = [];
         values.forEach(function (val) {
           if (-1 === $.inArray(val.BillsheetId, bsIds)) {
-            console.log(BillsheetId);
-            console.log(val.BillsheetId);
             var selected = (val.BillsheetId === BillsheetId) ? 'selected="selected"' : '';
             rateCardTitles.push('<option value="' + val.BillsheetId + '" ' + selected + '>' + val.BillsheetName + '</option>');
             bsIds.push(val.BillsheetId);

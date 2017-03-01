@@ -151,11 +151,11 @@ var projectInfoForm = (function ($) {
     var regionsOptions = ['APAC', 'EMEA', 'NA'];
     var regions = [];
 
-    regionsOptions.forEach(function(val){
+    regionsOptions.forEach(function (val) {
       regions.push('<option value="' + val + '">' + val + '</option>');
     });
 
-    countryOptions.forEach(function(val) {
+    countryOptions.forEach(function (val) {
       countries.push('<option value="' + val.Code + '">' + val.Country + '</option>');
     });
 
@@ -213,7 +213,7 @@ var projectInfoForm = (function ($) {
   function initProjectInfoForm(feeds) {
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, projectId), function (deliverables) {
-        resolve(deliverables.d.results);
+        resolve(deliverables.d.results.filter(filterByProjectId, projectId));
       });
     });
 
@@ -231,7 +231,7 @@ var projectInfoForm = (function ($) {
 
     var p4 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.project, projectId), function (projects) {
-        resolve(projects.d.results);
+        resolve(projects.d.results.filter(filterByProjectId, projectId));
       }).fail(function () {
         // not found, but lets fix this and return empty set
         // setting the flag here so we know if they hit delete for a deliverable
