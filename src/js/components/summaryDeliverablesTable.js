@@ -4,11 +4,92 @@
  */
 var summaryDeliverablesTable = (function ($) {
   'use strict';
-  function initSummaryDeliverablesTable(data) {
+  function initSummaryDeliverablesTable(deliverables, resources, expenses) {
     var DeliverablesTable = $("#breakdown-delivery-table");
+    var deliverablesBreakdown = {};
+
+
+    resources.forEach(function (data) {
+      var item = deliverables.find(function (val) {
+        return val.DelvDesc === data.DelvDesc;
+      });
+
+      if (!item.TotalFee) {
+        item.TotalFee = 0;
+      }
+      item.TotalFee += parseFloat(data.TotalFee);
+
+      if (!item.TotalHrs) {
+        item.TotalHrs = 0;
+      }
+      item.TotalHrs += parseFloat(data.TotalHrs);
+    });
+
+    expenses.forEach(function (data) {
+      var item = deliverables.find(function (val) {
+        return val.DelvDesc === data.DelvDesc;
+      });
+
+      if (!item.TotalExpenses) {
+        item.TotalExpenses = 0;
+      }
+      item.TotalExpenses += parseFloat(data.Amount);
+    });
+
+    var totalProjectHours = 0;
+    deliverables.forEach(function (d) {
+      d.Budget = d.TotalExpenses + d.TotalFee;
+      if (d.TotalHrs)
+        totalProjectHours += parseFloat(d.TotalHrs);
+    });
+
+    deliverables.forEach(function (d) {
+      if (d.TotalHrs) {
+        d.HoursPercentage = d.TotalHrs / totalProjectHours * 100;
+      } else
+        d.HoursPercentage = 0;
+    });
+
+    var totalDeliverableFees = deliverables.reduce(function (acc, val) {
+      if (parseFloat(val.TotalFee))
+        return acc + parseFloat(val.TotalFee);
+      else
+        return acc;
+    }, 0);
+
+    $('#total-deliv-fees').text(convertToDollar(totalDeliverableFees));
+
+    var totalExpenses = deliverables.reduce(function (acc, val) {
+      if (val.TotalExpenses)
+        return acc + parseFloat(val.TotalExpenses);
+      else
+        return acc;
+    }, 0);
+
+    $('#total-deliv-expenses').text(convertToDollar(totalExpenses));
+
+    var totalBudget = deliverables.reduce(function (acc, val) {
+      if (val.Budget)
+        return acc + parseFloat(val.Budget);
+      else
+        return acc;
+    }, 0);
+
+    $('#total-deliv-budget').text(convertToDollar(totalBudget));
+
+    var totalHours = deliverables.reduce(function (acc, val) {
+      console.log(val.TotalHrs);
+      if (val.TotalHrs)
+        return acc + parseFloat(val.TotalHrs);
+      else
+        return acc;
+    }, 0);
+
+    $('#total-deliv-hours').text(totalHours);
+
     DeliverablesTable.DataTable({
       dom: '<tip>',
-      data: data,//TODO CORRECT DATA
+      data: deliverables,
       searching: false,
       paging: false,
       length: false,
@@ -17,7 +98,7 @@ var summaryDeliverablesTable = (function ($) {
       "columns": [
         {
           "title": "Deliverable/Workstream",
-          "data": null,
+          "data": 'DelvDesc',
           "defaultContent": "Non-Deliverable Specific",
           "class": "deliv-name",
           render: function (data, type, row) {
@@ -28,41 +109,47 @@ var summaryDeliverablesTable = (function ($) {
         },
         {
           "title": "Project Fees",
-          "data": null,
-          "defaultContent": "$350,000.00",
+          "data": 'TotalFee',
+          "defaultContent": "$0",
           "class": "deliv-fees",
           render: function (data, type, row) {
-            if (data) {
+            if (data || isNaN(data)) {
+              return convertToDollar(data);
+            } else {
               return data;
             }
           }
         },
         {
           "title": "Expenses",
-          "data": null,
-          "defaultContent": "$10,000.00",
+          "data": "TotalExpenses",
+          "defaultContent": "$0",
           "class": "deliv-expenses",
           render: function (data, type, row) {
-            if (data) {
+            if (data || isNaN(data)) {
+              return convertToDollar(data);
+            } else {
               return data;
             }
           }
         },
         {
           "title": "Total Budget",
-          "data": null,
-          "defaultContent": "$450,000.00",
+          "data": 'Budget',
+          "defaultContent": "$0",
           "class": "deliv-budget",
           render: function (data, type, row) {
-            if (data) {
+            if (data || isNaN(data)) {
+              return convertToDollar(data);
+            } else {
               return data;
             }
           }
         },
         {
           "title": "Hours",
-          "data": null,
-          "defaultContent": "2,000",
+          "data": 'TotalHrs',
+          "defaultContent": "0",
           "class": "total-hours",
           render: function (data, type, row) {
             if (data) {
@@ -72,12 +159,14 @@ var summaryDeliverablesTable = (function ($) {
         },
         {
           "title": "Hours %",
-          "data": null,
-          "defaultContent": "30%",
+          "data": 'HoursPercentage',
+          "defaultContent": "%",
           "class": "deliv-percent",
           render: function (data, type, row) {
-            if (data) {
-              return data;
+            if (data || isNaN(data)) {
+              return data.toFixed(2) + '%';
+            } else {
+              return data + "%";
             }
           }
         }

@@ -1,73 +1,125 @@
-
 /**
-* @module Draw Data Table for Active Projects.
-* @version
-*/
+ * @module Draw Data Table for Active Projects.
+ * @version
+ */
 var summaryRoleTable = (function ($) {
   'use strict';
-  function initSummaryRoleTable(data) {
-    console.log(data);
+  function initSummaryRoleTable(projectResources, rateCards) {
     var byRoleTable = $("#breakdown-role-table");
+    var rows = {};
+
+    projectResources.forEach(function (resource) {
+      if (!rows[resource.EmpGradeName]) {
+
+        var officeRateCards = rateCards.find(function (val) {
+          return val.OfficeId === resource.Officeid;
+        });
+
+        var rc = officeRateCards.rateCards.find(function (val) {
+          return val.OfficeId === resource.OfficeId
+            && val.CostCenter === resource.Practiceid
+            && val.EmpGradeName === resource.EmpGradeName;
+        });
+
+        rows[resource.EmpGradeName] = {
+          title: resource.EmpGradeName,
+          fees: 0,
+          class: rc.Class,
+          hours: 0
+        };
+      }
+      rows[resource.EmpGradeName].fees += parseFloat(resource.TotalFee);
+      rows[resource.EmpGradeName].hours += parseFloat(resource.TotalHrs);
+    });
+
+    rows = Object.values(rows);
+
+    var totalHrs = rows.reduce(function (acc, val) {
+      return acc + parseFloat(val.hours);
+    }, 0);
+
+    $('#roles-total-hours').text(totalHrs);
+
+    rows.forEach(function (row) {
+      row.staffMix = row.hours / totalHrs * 100;
+    });
+
+    var rolesTotalFee = rows.reduce(function (acc, val) {
+      if (val.fees)
+        return acc + parseFloat(val.fees);
+      else return acc;
+    }, 0);
+
+    $('#roles-total').text(convertToDollar(rolesTotalFee));
 
     byRoleTable.DataTable({
-      dom:'<tip>',
-      data: data,//TODO CORRECT DATA
+      dom: '<tip>',
+      data: rows,
       searching: false,
       paging: false,
       length: false,
       info: false,
-      order: [[ 1, 'asc' ]],
+      order: [[1, 'asc']],
       "columns": [
         {
           "title": "Title",
-          "data": null,
-          "defaultContent": "President",
+          "data": 'title',
+          "defaultContent": "",
           "class": "office",
-          render: function ( data, type, row ) {
+          render: function (data, type, row) {
             return data;
           }
         },
         {
           "title": "Class",
-          "data": null,
-          "defaultContent": "E1",
+          "data": 'class',
+          "defaultContent": "0",
           "class": "office",
-          render: function ( data, type, row ) {
+          render: function (data, type, row) {
             return data;
           }
         },
         {
           "title": "Proj. Fees",
-          "data": null,
-          "defaultContent": "$10,000.00",
+          "data": 'fees',
+          "defaultContent": "$0",
           "class": "office-total-fees",
-          render: function ( data, type, row ) {
-            return data;
+          render: function (data, type, row) {
+            if (data || isNaN(data)) {
+              return convertToDollar(data);
+            } else {
+              return data;
+            }
           }
         },
         {
           "title": "Hours",
-          "data": null,
-          "defaultContent": "2,000",
+          "data": 'hours',
+          "defaultContent": "0",
           "class": "office-total-hours",
-          render: function ( data, type, row ) {
+          render: function (data, type, row) {
             return data;
           }
         },
         {
           "title": "Staffing Mix",
-          "data": null,
-          "defaultContent": "30%",
+          "data": 'staffMix',
+          "defaultContent": "0%",
           "class": "office-total-mix",
-          render: function ( data, type, row ) {
-            return data;
+          render: function (data, type, row) {
+            if (data) {
+              return data.toFixed(2) + '%';
+            } else {
+              return data + "%";
+            }
           }
         }
       ],
-      bDestroy: true,
+      bDestroy: true
     });
   }
+
   return {
-    initSummaryRoleTable:initSummaryRoleTable
+    initSummaryRoleTable: initSummaryRoleTable
   };
 })($);

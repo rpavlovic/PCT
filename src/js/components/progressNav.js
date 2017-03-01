@@ -22,8 +22,8 @@ var progressNav = (function ($) {
       radio.on('click', function(event) {
         event.preventDefault();
         //go to the pages via radio checkboxes.
-       // var href = $(form + ' input[type=radio]:checked').val();
-       window.history.back();
+        var href = $(form + ' input[type=radio]:checked').val();
+        window.location =  href +'?projID='+ getParameterByName('projID');
       });
     }
     return {

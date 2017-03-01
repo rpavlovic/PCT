@@ -169,8 +169,8 @@ var expenseTable = (function ($) {
             url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection',
             data: {
               "__metadata": {
-                "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('" + projectID + "')",
-                "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('" + projectID + "')",
+                "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('" + projectID + "')",
+                "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('" + projectID + "')",
                 "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
               },
               "ExpRow": padNumber($(row.anCells[0]).text()),
@@ -212,7 +212,7 @@ var expenseTable = (function ($) {
   function deleteExpenses() {
     var expLength = expenses.length;
     deletePayloads = [];
-    while (expLength > $('#project-expense-table tbody tr').length) {
+    while (expLength > $('select.deliverable').length) {
       var expenseId = expLength;
       var targetUrl = "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='" + projectID.toString() + "',ExpRow='" + padNumber(expenseId.toString()) + "')";
       var lookupPayload = deletePayloads.filter(function (val) {

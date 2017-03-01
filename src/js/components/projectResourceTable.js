@@ -30,7 +30,7 @@ var projectResourceTable = (function ($) {
       $.getJSON(get_data_feed(feeds.rateCards, OfficeId), function (rateCards) {
         RateCards[OfficeId] = rateCards.d.results.filter(function (val) {
           // add in any filtering params if we need them in the future
-          return val.CostRate > 0 && val.EmpGradeName;
+          return parseInt(val.CostRate) > 0 && val.EmpGradeName;
         });
         resolve(RateCards[OfficeId]);
       }).fail(function () {
@@ -44,7 +44,10 @@ var projectResourceTable = (function ($) {
   function initProjectResourceTable() {
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, projectID), function (deliverables) {
-        resolve(deliverables.d.results);
+        var deliv = deliverables.d.results.filter(function (val) {
+          return val.Projid === projectID;
+        });
+        resolve(deliv);
       }).fail(function () {
         // not found, but lets fix this and return empty set
         console.log('no project deliverables found.... returning empty set');
@@ -64,7 +67,10 @@ var projectResourceTable = (function ($) {
 
     var p4 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
-        resolve(resource.d.results);
+        var projectRes = resource.d.results.filter(function (val) {
+          return val.Projid === projectID;
+        });
+        resolve(projectRes);
       }).fail(function () {
         // not found, but lets fix this and return empty set
         console.log('no project resources found.... returning empty set');
@@ -93,7 +99,11 @@ var projectResourceTable = (function ($) {
     //fees for modeling table targets
     var t1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.marginModeling, projectID, ' '), function (data) {
-        resolve(data.d.results);
+        var modeling = data.d.results.filter(function (val) {
+          return val.Projid === projectID;
+        });
+
+        resolve(modeling);
       }).fail(function () {
         // not found, but lets fix this and return empty set
         console.log('no margin modeling found.... returning empty set');
@@ -110,16 +120,6 @@ var projectResourceTable = (function ($) {
         resolve([]);
       });
     });
-
-    // var rcs = new Promise(function (resolve, reject) {
-    //   $.getJSON(get_data_feed(feeds.billSheet, ' '), function (plan) {
-    //     resolve(plan.d.results);
-    //   }).fail(function () {
-    //     // not found, but lets fix this and return empty set
-    //     console.log('no custom bill sheet found.... returning empty set');
-    //     resolve([]);
-    //   });
-    // });
 
     var pInfo = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.project, projectID), function (projects) {
@@ -141,14 +141,13 @@ var projectResourceTable = (function ($) {
       });
 
       // go ahead and prefetch the rest of the office rate cards for performance
-      //var rateCards = values[2];
       projectResources = values[3];
       var marginModeling = values[4];
       var plannedHours = values[5];
       //var customRateCards = values[6];
       projectInfo = values[6];
 
-      projectInfo = projectInfo.find(function(val){
+      projectInfo = projectInfo.find(function (val) {
         return val.Projid === projectID;
       });
 
@@ -156,22 +155,14 @@ var projectResourceTable = (function ($) {
       duration = projectInfo.Duration;
       office = projectInfo.Office;
       planBy = projectInfo.Plantyp;
-      console.log('init billsheet');
-      rateCardSelect.initRateCardSelect(projectInfo.BillsheetId);
 
-      // var billsheets = {};
-      // customRateCards.forEach(function (customBillSheet) {
-      //   if (!billsheets[customBillSheet.BillsheetId]) {
-      //     billsheets[customBillSheet.BillsheetId] = [];
-      //   }
-      //   billsheets[customBillSheet.BillsheetId].push(customBillSheet);
-      // });
+      rateCardSelect.initRateCardSelect(projectInfo.BillsheetId);
 
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
         return obj.ModelType === 'TMBF';
       });
 
-      if (targetMarginBasedFee.length) {
+      if (targetMarginBasedFee.length && parseFloat(targetMarginBasedFee[0].CtrMargin)) {
         $('#target-contribution-margin').text(targetMarginBasedFee[0].CtrMargin);
       }
 
@@ -179,7 +170,7 @@ var projectResourceTable = (function ($) {
         return obj.ModelType === 'FFT';
       });
 
-      if (fixedFeeTarget.length) {
+      if (fixedFeeTarget.length && parseFloat(fixedFeeTarget[0].Fees)) {
         $('#fixed-fee-target').text(convertToDecimal(fixedFeeTarget[0].Fees));
       }
 
@@ -295,14 +286,19 @@ var projectResourceTable = (function ($) {
         },
         {
           "title": 'Bill Rate <br/> Override',
+          "data": "BillRateOvride",
           "defaultContent": '<div contenteditable class="dollar-sign" />',
-          "class": "rate-override num"
+          "sClass": "rate-override num",
+          "render": function (data, type, row, meta) {
+            if (parseFloat(data))
+              return '<div contenteditable class="dollar-sign">' + parseFloat(data) + '</div>';
+          }
         },
         {
           "title": "Cost Rate",
           "data": "CostRate",
-          "class": 'td-costrate',
-          "visible": false,
+          "class": 'td-costrate hidden',
+          "visible": true,
           "render": function (data, type, row, meta) {
             return getCostRate(data);
           }
@@ -339,7 +335,8 @@ var projectResourceTable = (function ($) {
           "Class": resource,
           "CostRate": resource,
           "CostCenterName": resource,
-          "BillRate": resource.BillRate
+          "BillRate": resource.BillRate,
+          "BillRateOvride": resource.BillRateOvride
         };
 
         $.each(hrRows[resource.Rowno], function (k, v) {
@@ -452,7 +449,7 @@ var projectResourceTable = (function ($) {
         recalculateStuff();
       });
 
-// maybe move this into that
+      // maybe move this into that
       $('#rate-card').on('change', function (event) {
         var url = $(this).attr('href');
         var CardID = $(this).find(':selected').val();
@@ -540,7 +537,6 @@ var projectResourceTable = (function ($) {
         var Office = nodes.closest('tr').find('.office :selected').val();
         var EmpGradeName = nodes.closest('tr').find('.title :selected').text();
         var CostCenter = nodes.closest('tr').find('.practice :selected').val();
-
         var rateCards = getRateCard(Office);
         var rates = rateCards.filter(function (val) {
           return val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter;
@@ -552,7 +548,10 @@ var projectResourceTable = (function ($) {
         else if (rates.length === 1) {
           var selectedRate = rates.pop();
           nodes.closest('tr').find('.td-billrate').empty().append(currency + selectedRate.BillRate);
+          //this doesn't work bc costrate is hidden
           nodes.closest('tr').find('.td-costrate').empty().append(selectedRate.CostRate);
+          //console.log(nodes.closest('tr').find('.td-costrate').length);
+
           //for calculations on resourceCalculation.js file
           resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
         }
@@ -806,7 +805,8 @@ var projectResourceTable = (function ($) {
         }
 
         var targetContributionMargin = parseFloat($('#target-contribution-margin').text());
-        if (targetContributionMargin && totalCostSum || tableHoursSum) {
+        if (!isNaN(targetContributionMargin) && (totalCostSum || tableHoursSum)) {
+
           var targetMarginBasedFee = totalCostSum / (1 - (targetContributionMargin / 100));
           $("#modeling-table #total-fee_target-resource").text(convertToDollar(targetMarginBasedFee));
           var targetMarginAvgRate = targetMarginBasedFee / tableHoursSum;
@@ -819,7 +819,7 @@ var projectResourceTable = (function ($) {
 
         var fixedFeeTarget = parseFloat($('#fixed-fee-target').text());
 
-        if (!isNaN(fixedFeeTarget) && tableHoursSum || totalCostSum) {
+        if (!isNaN(fixedFeeTarget) && (tableHoursSum || totalCostSum)) {
           var contributionMarginFixedFee = ((fixedFeeTarget - totalCostSum) / fixedFeeTarget);
           if (!isNaN(contributionMarginFixedFee)) {
             $('#contribution-margin_fixed-fee').text(convertToPercent(contributionMarginFixedFee));
@@ -893,86 +893,76 @@ var projectResourceTable = (function ($) {
   function buildModelingTablePayload() {
     var payloads = [];
 
-    if ($("#modeling-table tbody #total-fee_adjusted-resource").text() && $("#modeling-table tbody #contribution-margin_adjusted-resource").text() && $("#modeling-table tbody #avg-rate_adjusted-resource").text()) {
-      payloads.push({
-        type: 'POST',
-        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
-        data: {
-          "__metadata": {
-            "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='ARBF')",
-            "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='ARBF')",
-            "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
-          },
-          "Projid": projectID,
-          "ModelType": "ARBF",
-          "Fees": convertToDecimal($("#modeling-table tbody #total-fee_adjusted-resource").text()),
-          "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_adjusted-resource").text()),
-          "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_adjusted-resource").text()),
-          "Currency": "USD"
-        }
-      });
-    }
+    payloads.push({
+      type: 'POST',
+      url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
+      data: {
+        "__metadata": {
+          "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='ARBF')",
+          "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='ARBF')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": projectID,
+        "ModelType": "ARBF",
+        "Fees": convertToDecimal($("#modeling-table tbody #total-fee_adjusted-resource").text()) ? convertToDecimal($("#modeling-table tbody #total-fee_adjusted-resource").text()) : "0.0",
+        "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_adjusted-resource").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_adjusted-resource").text()) : "0.0",
+        "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_adjusted-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_adjusted-resource").text()) : "0.0",
+        "Currency": "USD"
+      }
+    });
 
+    payloads.push({
+      type: 'POST',
+      url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
+      data: {
+        "__metadata": {
+          "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='SRBF')",
+          "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='SRBF')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": projectID,
+        "ModelType": "SRBF",
+        "Fees": convertToDecimal($("#modeling-table tbody #total-fee_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #total-fee_standard-resource").text()) : "0.0",
+        "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_standard-resource").text()) : "0.0",
+        "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()) : "0.0",
+        "Currency": "USD" // need to change this to the correct currency
+      }
+    });
 
-    if ($("#modeling-table tbody #total-fee_standard-resource").text() && $("#modeling-table tbody #contribution-margin_standard-resource").text() && $("#modeling-table tbody #avg-rate_standard-resource").text()) {
-      payloads.push({
-        type: 'POST',
-        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
-        data: {
-          "__metadata": {
-            "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='SRBF')",
-            "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='SRBF')",
-            "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
-          },
-          "Projid": projectID,
-          "ModelType": "SRBF",
-          "Fees": convertToDecimal($("#modeling-table tbody #total-fee_standard-resource").text()),
-          "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_standard-resource").text()),
-          "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()),
-          "Currency": "USD" // need to change this to the correct currency
-        }
-      });
-    }
-
-    if ($("#modeling-table tbody #fixed-fee-target").text() && $("#modeling-table tbody #contribution-margin_fixed-fee").text() && $("#modeling-table tbody #avg-rate_fixed-resource").text()) {
-      payloads.push({
-        type: 'POST',
-        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
-        data: {
-          "__metadata": {
-            "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='FFT')",
-            "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='FFT')",
-            "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
-          },
-          "Projid": projectID,
-          "ModelType": "FFT",
-          "Fees": convertToDecimal($("#modeling-table tbody #fixed-fee-target").text()),
-          "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_fixed-fee").text()),
-          "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()),
-          "Currency": "USD"
-        }
-      });
-    }
-
-    if ($("#modeling-table tbody #total-fee_target-resource").text() && $("#modeling-table tbody #target-contribution-margin").text() && $("#modeling-table tbody #avg-rate_target-resource").text()) {
-      payloads.push({
-        type: 'POST',
-        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
-        data: {
-          "__metadata": {
-            "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='TMBF')",
-            "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='TMBF')",
-            "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
-          },
-          "Projid": projectID,
-          "ModelType": "TMBF",
-          "Fees": convertToDecimal($("#modeling-table tbody #total-fee_target-resource").text()),
-          "CtrMargin": convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()),
-          "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()),
-          "Currency": "USD"
-        }
-      });
-    }
+    payloads.push({
+      type: 'POST',
+      url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
+      data: {
+        "__metadata": {
+          "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='FFT')",
+          "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='FFT')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": projectID,
+        "ModelType": "FFT",
+        "Fees": convertToDecimal($("#modeling-table tbody #fixed-fee-target").text()) ? convertToDecimal($("#modeling-table tbody #fixed-fee-target").text()) : "0.0",
+        "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_fixed-fee").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_fixed-fee").text()) : "0.0",
+        "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()) : "0.0",
+        "Currency": "USD"
+      }
+    });
+    payloads.push({
+      type: 'POST',
+      url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection',
+      data: {
+        "__metadata": {
+          "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='TMBF')",
+          "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='" + projectID + "',ModelType='TMBF')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": projectID,
+        "ModelType": "TMBF",
+        "Fees": convertToDecimal($("#modeling-table tbody #total-fee_target-resource").text()) ? convertToDecimal($("#modeling-table tbody #total-fee_target-resource").text()) : "0.0",
+        "CtrMargin": convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()) ? convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()) : "0.0",
+        "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()) : "0.0",
+        "Currency": "USD"
+      }
+    });
 
     return payloads;
   }
@@ -992,12 +982,12 @@ var projectResourceTable = (function ($) {
         url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection',
         data: {
           "__metadata": {
-            "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + payloadIndex + "')",
-            "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + payloadIndex + "')",
+            "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + payloadIndex + "')",
+            "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + payloadIndex + "')",
             "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
           },
           "Projid": projectID,
-          "Duration": duration,
+          "Duration": duration.toString(),
           "Rowno": payloadIndex,
           "DelvDesc": $(rows.context[0].aoData[i].anCells[2]).find('option:selected').text(),
           "Officeid": $(rows.context[0].aoData[i].anCells[3]).find('option:selected').val(),
@@ -1038,8 +1028,8 @@ var projectResourceTable = (function ($) {
           url: '/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet',
           data: {
             "__metadata": {
-              "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='" + planBy + "',Cellid='" + cellId + "')",
-              "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='" + planBy + "',Cellid='" + cellId + "')",
+              "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='" + planBy + "',Cellid='" + cellId + "')",
+              "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='" + projectID + "',Rowno='" + payloadRowIndex + "',Plantyp='" + planBy + "',Cellid='" + cellId + "')",
               "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
             },
             "Projid": projectID,
@@ -1060,7 +1050,7 @@ var projectResourceTable = (function ($) {
     // post all of the hours cells
     deletePayloads = [];
     var resourceLength = projectResources.length;
-    while (resourceLength > $("#project-resource-table tbody tr").length) {
+    while (resourceLength > $('select.deliverable').length) {
       var resourceId = resourceLength;
       var targetUrl = "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='" + projectID + "',Rowno='" + padNumber(resourceId) + "')";
       var lookupPayload = deletePayloads.filter(function (val) {

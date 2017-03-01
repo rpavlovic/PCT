@@ -350,8 +350,8 @@ var loadCustomBillSheet = (function ($) {
           url: '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection',
           data: {
             "__metadata": {
-              "id": "https://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId + "',RowId='" + rowId + "')",
-              "uri": "https://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId + "',RowId='" + rowId + "')",
+              "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId + "',RowId='" + rowId + "')",
+              "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId + "',RowId='" + rowId + "')",
               "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
             },
             "Class": $(cells[2]).text(),
