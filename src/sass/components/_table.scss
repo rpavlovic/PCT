@@ -129,6 +129,7 @@ table {
           padding: 5px 25px;
           border: inset 1px lightblue;
           position: relative;
+          min-height: 20px;
           &.dollar-sign:before {
             content: "$";
             left: 5px;
