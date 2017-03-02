@@ -143,7 +143,6 @@ var projectResourceTable = (function ($) {
       projectInfo = projectInfo.find(function (val) {
         return val.Projid === projectID;
       });
-
       duration = projectInfo.Duration;
       office = projectInfo.Office;
       planBy = projectInfo.Plantyp;
