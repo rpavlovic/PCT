@@ -199,7 +199,13 @@ var projectInfoForm = (function ($) {
       $('form.project-info input[name="Projname"]').val(extraProjInfo.Projname);
       $('form.project-info input[name="Preparedby"]').val(extraProjInfo.Preparedby);
       select_plan_by.val(extraProjInfo.Plantyp);
-      input_duration.val(extraProjInfo.Duration);
+      var plan_by;
+      if(extraProjInfo.Plantyp === "WK") {
+        plan_by = "Weeks";
+      } else {
+        plan_by = "Months";
+      }
+      input_duration.val(extraProjInfo.Duration + " " +  plan_by);
       plan_units.val(extraProjInfo.Comptyp);
       createdOn = extraProjInfo.Createdon;
       $('input.datepicker').val(calcPrettyDate(extraProjInfo.EstStDate));
