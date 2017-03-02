@@ -105,12 +105,14 @@ var projectSummary = (function ($) {
 
   function fillProjectInfoSummary(projectInfo) {
     var project = projectInfo.filter(function (project) {
+      console.log(project)
       return project.Projid === projectId;
     });
 
     if (project.length) {
       project = project.pop();
       $('#client-name').text(project.Clientname);
+
       $('#country').text(project.Region);
       $('#office').text(project.Office);
       $('#project-name').text(project.Projname);
