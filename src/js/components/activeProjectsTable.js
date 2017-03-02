@@ -34,7 +34,6 @@ var activeTableFunction = (function ($) {
         var offices = values[0];
         var projects = values[1];
         projects.forEach(function (proj) {
-
           var office = offices.find(function(val){
             return val.Office === proj.Office;
           });
@@ -100,17 +99,16 @@ var activeTableFunction = (function ($) {
               "title": 'Budget',
               "data": 'Projid',
               "defaultContent": '',
-              "sClass": 'budget',
+              "class": 'budget',
               "render": function (data, type, set, meta) {
                 if (data) {
                   return '<div data-val="' + data + '">' + data + '</div>';
                 }
               }
-
             },
             {
               "title": '<i class="fa fa-files-o"></i>',
-              "sClass": "center blue-bg",
+              "class": "center blue-bg",
               "data": "Projid",
               "defaultContent": '',
               "render": function (data, type, set, meta) {
@@ -121,7 +119,7 @@ var activeTableFunction = (function ($) {
             },
             {
               "title": '<i class="fa fa-trash"></i>',
-              "sClass": "center blue-bg",
+              "class": "center blue-bg",
               "data": "Projid",
               "defaultContent": '<a href="" class="remove"><i class="fa fa-trash"></i></a>',
               "render": function (data, type, set, meta) {
@@ -177,9 +175,10 @@ var activeTableFunction = (function ($) {
 
             // calculate the budget after the fact
             $('#active-projects tbody td.budget').each(function (k, v) {
+
               var p = projectSummaryCalculations.calculateBudget($(v).text());
               p.then(function (budget) {
-                $(v).text(budget);
+                  $(v).text(convertToDollar(budget));
               });
             });
           },
@@ -193,8 +192,6 @@ var activeTableFunction = (function ($) {
         // $( '.buttons-page-length' ).insertAfter('#active-projects_wrapperarchived-projects_wrapper').wrap("<div class=\"dt-buttons\" />").addClass('float-right');
         $('#active-projects tbody').on('click', '.remove', function (e) {
           e.preventDefault();
-          //console.log($(this));
-          //console.log($(this).data('projid'));
           var r = confirm("Are you sure you want to delete this project?");
           var currentRow = $(this);
           if (r === true) {

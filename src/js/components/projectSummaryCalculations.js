@@ -24,16 +24,14 @@ var projectSummaryCalculations = (function ($) {
       var expenseTotal = expenses.reduce(function (acc, val) {
         return parseFloat(acc) + parseFloat(val.Amount);
       }, 0);
-
       var resourceTotalFee = resources.reduce(function (acc, val) {
         return parseFloat(acc) + parseFloat(val.TotalFee);
       }, 0);
-
       return expenseTotal + resourceTotalFee;
     });
 
   }
-  
+
   return {
     calculateBudget: calculateBudget
   };
