@@ -32,9 +32,7 @@ var summaryRoleTable = (function ($) {
       rows[resource.EmpGradeName].hours += parseFloat(resource.TotalHrs);
     });
 
-    rows = $.map(rows, function (val, key) {
-      return val;
-    });
+    rows = Object.values(rows);
 
     var totalHrs = rows.reduce(function (acc, val) {
       return acc + parseFloat(val.hours);
