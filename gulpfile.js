@@ -10,6 +10,7 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     newer = require('gulp-newer'),
     flatten = require('gulp-flatten'),
+    sequence = require('run-sequence'),
     del = require('del');
 
 // paths
@@ -169,6 +170,10 @@ gulp.task('moveJS', function() {
 
 // Build
 gulp.task('build', ['data', 'nunjucks', 'styles', 'js',  'fonts', 'imagemin', 'move', 'moveJS']);
+
+gulp.task('compile', function(cb) {
+  sequence('build', 'move', 'moveJS', cb);
+});
 
 gulp.task('default', ['serve', 'build']);
 
