@@ -29,7 +29,11 @@ var loadCustomBillSheet = (function ($) {
               uniqRcs[rc.EmpGrade] = rc;
             });
 
-            uniqRcs = Object.values(uniqRcs).map(function (obj) {
+            uniqRcs = $.map(uniqRcs, function (val, key) {
+              return val;
+            });
+
+            uniqRcs =uniqRcs.map(function (obj) {
               return {
                 TitleDesc: obj.EmpGradeName,
                 TitleId: obj.EmpGrade,

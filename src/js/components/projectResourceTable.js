@@ -473,10 +473,10 @@ var projectResourceTable = (function ($) {
             $(rows.context[0].aoData[i].anCells[10]).find('div').text('');
             if (foundCard[0] && parseInt(foundCard[0].OverrideRate)) {
               $(rows.context[0].aoData[i].anCells[10]).find('div').text(foundCard[0].OverrideRate);
-              $(rows.context[0].aoData[i].anCells[9]).css('color','lightgrey');
+              $(rows.context[0].aoData[i].anCells[9]).css('color', 'lightgrey');
             }
             else {
-              $(rows.context[0].aoData[i].anCells[9]).css('color','#5b5b5b');
+              $(rows.context[0].aoData[i].anCells[9]).css('color', '#5b5b5b');
             }
           }
 
@@ -618,7 +618,10 @@ var projectResourceTable = (function ($) {
           practices[val.CostCenter] = val;
         });
 
-        practices = Object.values(practices);
+        practices = $.map(practices, function (val, key) {
+          return val;
+        });
+
         practices.sort(function (a, b) {
           return (a.CostCenterName > b.CostCenterName) ? 1 : ((b.CostCenterName > a.CostCenterName) ? -1 : 0);
         });
@@ -691,11 +694,11 @@ var projectResourceTable = (function ($) {
           var billRateOverride = convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text());
           billRateOverride = !isNaN(billRateOverride) ? billRateOverride : 0;
           //highlight the rate is override is present.
-          if(!isNaN(billRateOverride) && billRateOverride > 0) {
-            $(rows.context[0].aoData[i].anCells[9]).css('color','lightgrey');
+          if (!isNaN(billRateOverride) && billRateOverride > 0) {
+            $(rows.context[0].aoData[i].anCells[9]).css('color', 'lightgrey');
           }
           else {
-            $(rows.context[0].aoData[i].anCells[9]).css('color','#5b5b5b');
+            $(rows.context[0].aoData[i].anCells[9]).css('color', '#5b5b5b');
           }
           var rate = billRateOverride ? billRateOverride : billRate;
           var costRate = convertToDecimal($(rows.context[0].aoData[i].anCells[11]).text());
