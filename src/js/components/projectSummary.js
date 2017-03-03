@@ -105,7 +105,6 @@ var projectSummary = (function ($) {
 
   function fillProjectInfoSummary(projectInfo) {
     var project = projectInfo.filter(function (project) {
-      console.log(project)
       return project.Projid === projectId;
     });
 
@@ -141,8 +140,9 @@ var projectSummary = (function ($) {
     }, 0);
 
     // console.log(totalExpenses);
-    // console.log(ARBF.Fees);
-    // console.log(SRBF.Fees);
+    // console.log(ARBF);
+    // console.log(SRBF);
+
     var totalFees = ARBF.Fees ? ARBF.Fees : SRBF.Fees;
     var contributionMargin = ARBF.CtrMargin ? ARBF.CtrMargin : SRBF.CtrMargin;
 
@@ -155,7 +155,9 @@ var projectSummary = (function ($) {
     var netRevenue = budget - totalExpenses;
     var blendedAvg = netRevenue/resourceTotalHours;
     var oopFees = totalExpenses/totalFees;
-
+    if(totalFees <=0) {
+      oopFees = 0;
+    }
     var class_name = '';
 
     if(contributionMargin > 65) {
