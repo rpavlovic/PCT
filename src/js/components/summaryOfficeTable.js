@@ -31,11 +31,8 @@ var summaryOfficeTable = (function ($) {
       rows[resource.Officeid + resource.Practiceid].fees += parseFloat(resource.TotalFee);
       rows[resource.Officeid + resource.Practiceid].hours += parseFloat(resource.TotalHrs);
     });
-    
-    rows = $.map(rows, function (val, key) {
-      return val;
-    });
 
+    rows = Object.values(rows);
     var sumHours = rows.reduce(function (acc, val) {
       return acc + parseFloat(val.hours);
     }, 0);
