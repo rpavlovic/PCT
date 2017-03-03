@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     newer = require('gulp-newer'),
     flatten = require('gulp-flatten'),
     sequence = require('run-sequence'),
+    zip = require('gulp-zip'),
     del = require('del');
 
 // paths
@@ -168,11 +169,17 @@ gulp.task('moveJS', function() {
   .pipe(gulp.dest('build/js/'));
 });
 
+gulp.task('zip', function() {
+  gulp.src('./build/*')
+    .pipe(zip('html_build_' + new Date().toISOString().slice(0, 10) + '.zip'))
+    .pipe(gulp.dest('build'))
+});
+
 // Build
 gulp.task('build', ['data', 'nunjucks', 'styles', 'js',  'fonts', 'imagemin', 'move', 'moveJS']);
 
-gulp.task('compile', function(cb) {
-  sequence('build', 'move', 'moveJS', cb);
+gulp.task('ipg', function(cb) {
+  sequence('build', 'move', 'moveJS', 'zip', cb);
 });
 
 gulp.task('default', ['serve', 'build']);

@@ -8,6 +8,6 @@ A static gulp site
 
 To manually output a static build for the IPG team:
 
-`gulp compile`
+`gulp ipg`
 
-That will generate flat HTML in the ./build directory. To generate a build for the IPG team, cd into ./build, zip everything up, and post it to the IPG team in Slack.
+That will generate flat HTML in the ./build directory, and zip it up. If your build directory is already complete (via `gulp` or `gulp build`), you can just run `gulp zip`, which is way faster.
