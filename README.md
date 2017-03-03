@@ -11,3 +11,9 @@ To manually output a static build for the IPG team:
 `gulp ipg`
 
 That will generate flat HTML in the ./build directory, and zip it up. If your build directory is already complete (via `gulp` or `gulp build`), you can just run `gulp zip`, which is way faster.
+
+## Forking Workflow
+
+Fork the repo, push to your fork, and submit pull requests. Keep your commits clean:
+
+`git fetch upstream master && git rebase -p upstream/master`
