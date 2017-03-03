@@ -9,3 +9,5 @@ A static gulp site
 To manually output a static build for the IPG team:
 
 `gulp build && gulp move && gulp moveJS`
+
+That will generate flat HTML in the ./build directory. To generate a build for the IPG team, cd into ./build, zip everything up, and post it to the IPG team in Slack.
