@@ -257,18 +257,6 @@ var projectInfoForm = (function ($) {
       });
   }
 
-  function checkValues(elem) {
-    if (elem.val() === '') {
-      elem.addClass('empty-error').focus();
-      alert("Please set the missing values");
-      return true;
-    }
-    else {
-      elem.removeClass('empty-error');
-      return false;
-    }
-  }
-
   function deleteDeliverables() {
     // if we had more deliverables than we did inputs, then delete the last few
     var deliverableLength = projectDeliverables.length;
@@ -290,16 +278,32 @@ var projectInfoForm = (function ($) {
     }
   }
 
+  function checkValues() {
+    var i, len;
+    var args = Array.prototype.slice.call(arguments);
+    var args = [].slice.call(arguments);
+    for (i = 0, len = args.length; i < len; i++) {
+      if (args[i].val() === '') {
+          args[i].addClass('empty-error').focus();
+          alert("Please set the missing values");
+          return true;
+      }
+      if(args[i].hasClass('empty-error') && args[i].val() !== '') {
+        args[i].removeClass().blur();
+      }
+    }
+    return false;
+  }
+
   $('.project-info #btn-save').on('click', function (event) {
     event.preventDefault();
-    console.log("saving form");
-    var url = $('#btn-save').attr('href');
+    var url = $(this).attr('href');
     url = updateQueryString('projID', projectId, url);
     url = updateQueryString('Office', select_billing_office.val(), url);
     url = updateQueryString('Duration', input_duration.val().replace(/\D/g, ''), url);
     url = updateQueryString('PlanBy', select_plan_by.val(), url);
 
-    $('#btn-save').attr('href', url);
+    $(this).attr('href', url);
 
     // get val in unix epoch time
     var EstStDate = new Date($('input.datepicker').val()).getTime();
@@ -310,11 +314,9 @@ var projectInfoForm = (function ($) {
     if (!createdOn) {
       createdOn = "\/Date(" + changedDate + ")\/";
     }
-
-    if (checkValues(input_duration)) {
-      return false;
+    if (checkValues(input_duration, project_name, client_name)) {
+      return true;
     }
-
     var formData = {
       "__metadata": {
         "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + projectId + "')",
@@ -393,6 +395,7 @@ var projectInfoForm = (function ($) {
         }, timeout);
       }
     });
+
   });
 
   return {

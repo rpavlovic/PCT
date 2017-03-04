@@ -20,7 +20,7 @@
         "FiscalPeriod" : "2017002",
         "CostCenterName" : "WS Minn Admin",
         "EmpGrade" : "990020",
-        "LocalCurrency" : "USD"
+        "LocalCurrency" : "CAN"
       },
       {
         "__metadata" : {
@@ -14584,7 +14584,7 @@
         "EmpGrade" : "990005",
         "LocalCurrency" : "USD"
       },
-    
+
       {
         "__metadata" : {
           "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('US04')",
@@ -30249,7 +30249,7 @@
         "EmpGrade" : "990023",
         "LocalCurrency" : "USD"
       },
-   
+
       {
         "__metadata" : {
           "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('US10')",

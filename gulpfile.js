@@ -12,7 +12,7 @@ var gulp = require('gulp'),
     flatten = require('gulp-flatten'),
     sequence = require('run-sequence'),
     zip = require('gulp-zip'),
-    babel   = require('gulp-babel'),
+   // babel   = require('gulp-babel'),
     del = require('del');
 
 
@@ -49,7 +49,7 @@ gulp.task('styles', function() {
 gulp.task('js', function () {
     return gulp.src(jsSrc)
     .pipe(sourcemaps.init())
-    .pipe(babel())
+  //  .pipe(babel())
     .pipe(uglify()
       .on('error', function(e) {
          console.log(e);
@@ -175,7 +175,7 @@ gulp.task('moveJS', function() {
 gulp.task('zip', function() {
   gulp.src('./build/*')
     .pipe(zip('html_build_' + new Date().toISOString().slice(0, 10) + '.zip'))
-    .pipe(gulp.dest('build'))
+    .pipe(gulp.dest('build'));
 });
 
 // Build
@@ -186,4 +186,3 @@ gulp.task('ipg', function(cb) {
 });
 
 gulp.task('default', ['serve', 'build']);
-
