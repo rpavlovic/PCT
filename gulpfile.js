@@ -13,6 +13,7 @@ var gulp = require('gulp'),
     sequence = require('run-sequence'),
     zip = require('gulp-zip'),
     babel   = require('gulp-babel'),
+    csso = require('gulp-csso'),
     del = require('del');
 
 
@@ -40,6 +41,9 @@ gulp.task('styles', function() {
   gulp.src(sassSrc)
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
+    .pipe(csso({
+      sourceMap: true
+    }))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(sassDest))
     .pipe(browserSync.stream());
