@@ -40,10 +40,8 @@ gulp.task('fonts', function() {
 gulp.task('styles', function() {
   gulp.src(sassSrc)
     .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
-    .pipe(csso({
-      sourceMap: true
-    }))
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(csso())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(sassDest))
     .pipe(browserSync.stream());
