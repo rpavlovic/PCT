@@ -12,6 +12,7 @@ var projectResourceTable = (function ($) {
   var deletePayloads = [];
   var projectInfo;
   var currency;
+
   function getRateCard(OfficeId) {
     if (!OfficeId) {
       return [];
@@ -33,6 +34,7 @@ var projectResourceTable = (function ($) {
           return parseInt(val.CostRate) > 0 && val.EmpGradeName && OfficeId === val.Office;
         });
         sessionStorage.setItem('RateCard' + OfficeId, JSON.stringify(rateCard));
+
         resolve(rateCard);
       }).fail(function () {
         // not found, but lets fix this and return empty set
@@ -89,6 +91,7 @@ var projectResourceTable = (function ($) {
             return resources;
           });
       });
+
 
     //fees for modeling table targets
     var t1 = new Promise(function (resolve, reject) {
@@ -149,6 +152,7 @@ var projectResourceTable = (function ($) {
       planBy = projectInfo.Plantyp;
 
       rateCardSelect.initRateCardSelect(projectInfo.BillsheetId);
+      currencyStyles.initCurrencyStyles(projectInfo.Currency);
 
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
         return obj.ModelType === 'TMBF';
@@ -544,7 +548,7 @@ var projectResourceTable = (function ($) {
         else if (rates.length === 1) {
           var selectedRate = rates.pop();
           nodes.closest('tr').find('.td-billrate').empty().append(currency + selectedRate.BillRate);
-          console.log(currency)
+
           //this doesn't work if costrate is hidden
           nodes.closest('tr').find('.td-costrate').empty().append(selectedRate.CostRate);
           //for calculations on resourceCalculation.js file
@@ -552,7 +556,6 @@ var projectResourceTable = (function ($) {
         }
       }
 
-      currencyStyles.initCurrencyStyles(t1);
 
       function getOffices(Officeid) {
         var select = "<select class='office' name='Office'>";
@@ -864,6 +867,7 @@ var projectResourceTable = (function ($) {
         data: projectInfo
       };
 
+
       var payloads = modelingTablePayloads
         .concat(updateProjectInfo)
         .concat(deletePayloads)
@@ -893,6 +897,8 @@ var projectResourceTable = (function ($) {
     });
   }
 
+
+//Posting the Table to JSON
   function buildModelingTablePayload() {
     var payloads = [];
 

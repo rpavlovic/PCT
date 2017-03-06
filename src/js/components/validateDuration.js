@@ -14,7 +14,6 @@ var validateDurationPlanBy = (function ($) {
         if($("form.project-info input[name='Duration']").hasClass('error')) {
           $("form.project-info input[name='Duration']").val('').removeClass('error');
         }
-        compare_plan_duration(planby, $("form.project-info input[name='Duration']").val().replace(/\D/g, ''));
       });
     }
 
