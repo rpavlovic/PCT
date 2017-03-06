@@ -6,6 +6,7 @@
 var RegExDollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
 
 function convertToDollar(amount){
+
   if(amount && $.isNumeric(amount)) {
     return "$" + amount.toFixed(2).replace(RegExDollar, "$1,");
   }  else {

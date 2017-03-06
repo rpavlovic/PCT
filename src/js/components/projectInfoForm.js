@@ -216,6 +216,8 @@ var projectInfoForm = (function ($) {
     }
   }
 
+
+
   function initProjectInfoForm(feeds) {
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, projectId), function (deliverables) {
@@ -279,7 +281,6 @@ var projectInfoForm = (function ($) {
   }
 
   function checkValues() {
-
     var array_inpt  = [];
     $(arguments).each(function() {
       if(!$.trim($(this).val())) {
@@ -290,7 +291,6 @@ var projectInfoForm = (function ($) {
       }
     });
     return array_inpt.length == 0
-
   }
 
   $('.project-info #btn-save').on('click', function (event) {

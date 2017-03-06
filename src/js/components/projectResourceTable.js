@@ -152,7 +152,6 @@ var projectResourceTable = (function ($) {
       planBy = projectInfo.Plantyp;
 
       rateCardSelect.initRateCardSelect(projectInfo.BillsheetId);
-      currencyStyles.initCurrencyStyles(projectInfo.Currency);
 
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
         return obj.ModelType === 'TMBF';
@@ -275,15 +274,16 @@ var projectResourceTable = (function ($) {
           "data": "BillRate",
           "class": "td-billrate",
           "render": function (data, type, row, meta) {
-            if (data)
+            if (data) {
               return convertToDollar(parseFloat(data));
+            }
           }
         },
         {
           "title": 'Bill Rate <br/> Override',
           "data": "BillRateOvride",
           "defaultContent": '<div contenteditable class="currency-sign usd" />',
-          "sClass": "rate-override num",
+          "class": "rate-override num",
           "render": function (data, type, row, meta) {
             if (parseFloat(data))
               return '<div contenteditable class="currency-sign usd">' + parseFloat(data) + '</div>';
@@ -331,8 +331,9 @@ var projectResourceTable = (function ($) {
           "CostCenterName": resource,
           "BillRate": resource.BillRate,
           "BillRateOvride": resource.BillRateOvride,
-          "Currency":resource.Currency
+          "Currency":projectInfo.Currency //from projectInfo
         };
+
         $.each(hrRows[resource.Rowno], function (k, v) {
           row['hour-' + k] = v;
         });
@@ -381,6 +382,7 @@ var projectResourceTable = (function ($) {
           $('tfoot th').removeClass('center blue-bg rate-override num hide td-office td-title td-class td-practice td-billrate td-costrate');
         },
         "drawCallback": function (row) {
+
           $("#project-resource-table tbody select.office").on('change', function () {
             console.log("office changed");
             var nodes = $(this);
@@ -420,12 +422,13 @@ var projectResourceTable = (function ($) {
           });
         },
         "initComplete": function (settings, json, row) {
+          //change currency class names.
+          currencyStyles.initCurrencyStyles(projectInfo.Currency);
           //$( '#add-row').trigger( 'click');
           setTimeout(recalculateStuff, 1000);
         },
         "bDestroy": true
       });
-
 
       //Add Row
       $('.project-resources').on('click', '#add-row', function (e) {
@@ -532,6 +535,7 @@ var projectResourceTable = (function ($) {
           'SGD': '$',
           'USD': '$'
         };
+
         var currency = tems_currency[nodes.closest('tr').find('.title :selected').data('currency')];
 
         // the officeId, US01, US12, etc
