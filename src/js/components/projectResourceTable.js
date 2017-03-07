@@ -129,7 +129,6 @@ var projectResourceTable = (function ($) {
       //deliverables
       var deliverables = values[0];
       var offices = values[1];
-
       // preload the rest of the bill rate cards
       offices.forEach(function (val) {
         if (!sessionStorage.getItem('RateCard' + val.Office))
@@ -146,6 +145,8 @@ var projectResourceTable = (function ($) {
       projectInfo = projectInfo.find(function (val) {
         return val.Projid === projectID;
       });
+
+console.log(projectInfo);
 
       duration = projectInfo.Duration;
       office = projectInfo.Office;
