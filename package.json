@@ -4,7 +4,8 @@
   "description": "weber-shandwick project",
   "main": "index.js",
   "scripts": {
-    "dev": "gulp build && gulp move && gulp"
+    "dev": "gulp build && gulp move && gulp",
+    "build": "gulp ipg && gulp zip"   
   },
   "repository": {
     "type": "git",
