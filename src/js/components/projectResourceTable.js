@@ -362,6 +362,9 @@ var projectResourceTable = (function ($) {
         "info": false,
         "bAutoWidth": false,
         "ordering": true,
+        // "language": {
+        //   "emptyTable":"To add resource click on Add Resource button"
+        // },
         "columnDefs": [
           {
             "orderable": false,
@@ -378,10 +381,14 @@ var projectResourceTable = (function ($) {
             .addClass("contenteditable");
         },
         "createdRow": function (row, data, index) {
+          if(row) {
+            console.log(data)
+          } else {
+            console.log(data)
+          }
           $('tfoot th').removeClass('center blue-bg rate-override num hide td-office td-title td-class td-practice td-billrate td-costrate');
         },
         "drawCallback": function (row) {
-
           $("#project-resource-table tbody select.office").on('change', function () {
             console.log("office changed");
             var nodes = $(this);
@@ -420,7 +427,7 @@ var projectResourceTable = (function ($) {
             }
           });
         },
-        "initComplete": function (settings, json, row) {
+        "initComplete": function (settings, json) {
           //change currency class names.
           currencyStyles.initCurrencyStyles(projectInfo.Currency);
           //$( '#add-row').trigger( 'click');
@@ -428,17 +435,23 @@ var projectResourceTable = (function ($) {
         },
         "bDestroy": true
       });
-
-      //Add Row
-      $('.project-resources').on('click', '#add-row', function (e) {
-        e.preventDefault();
-        projResourceTable.row.add({
+      function addRow() {
+        //if there is no data add one empty row.
+        projResourceTable.row.add( {
           "Office": '',
           "CostCenterName": '',
           "Deliverables": deliverables,
           "Class": '',
           "Role": ''
         }).draw().node();
+      }
+      if( ! projResourceTable.data().count()) {
+        addRow();
+      }
+      //Add Row
+      $('.project-resources').on('click', '#add-row', function (e) {
+        e.preventDefault();
+        addRow();
         projResourceTable.rows().nodes().to$().last().addClass('new-row').delay(1000).queue(function () {
           $(this).removeClass("new-row").dequeue();
         });
@@ -475,7 +488,6 @@ var projectResourceTable = (function ($) {
             var EmpGrade = $(rows.context[0].aoData[i].anCells[4]).find(':selected').val();
             // bill rate override
             //console.log($(rows.context[0].aoData[i].anCells[10]).find('div'));
-
             var foundCard = cardResults.filter(function (val) {
               return val.TitleId === EmpGrade;
             });
@@ -558,7 +570,6 @@ var projectResourceTable = (function ($) {
           resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
         }
       }
-
 
       function getOffices(Officeid) {
         var select = "<select class='office' name='Office'>";
