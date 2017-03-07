@@ -1,6 +1,6 @@
 function filterByProjectId(element) {
-  var projectId = $.map($(this), function (val, key) {
-    return val;
-  }).join('');
-  return element.Projid === projectId;
+   Object.keys(element).map(function(key) {
+     return element[key];
+  }).join();
+  return element === element;
 }

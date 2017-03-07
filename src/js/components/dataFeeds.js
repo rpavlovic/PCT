@@ -88,4 +88,3 @@ function get_data_feed(feed, param1, param2, param3, param4) {
 
   return uri;
 }
-

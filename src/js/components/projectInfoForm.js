@@ -187,6 +187,7 @@ var projectInfoForm = (function ($) {
   }
 
   function prepopulate_ExtraInfo_JSON(results) {
+    console.log(results)
     var extraProjInfo = results.find(function (value) {
       return value.Projid === projectId;
     });
