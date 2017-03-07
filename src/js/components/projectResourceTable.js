@@ -11,6 +11,7 @@ var projectResourceTable = (function ($) {
   var projectResources = [];
   var deletePayloads = [];
   var projectInfo;
+  var currency;
 
   function getRateCard(OfficeId) {
     if (!OfficeId) {
@@ -33,6 +34,7 @@ var projectResourceTable = (function ($) {
           return parseInt(val.CostRate) > 0 && val.EmpGradeName && OfficeId === val.Office;
         });
         sessionStorage.setItem('RateCard' + OfficeId, JSON.stringify(rateCard));
+
         resolve(rateCard);
       }).fail(function () {
         // not found, but lets fix this and return empty set
@@ -90,6 +92,7 @@ var projectResourceTable = (function ($) {
           });
       });
 
+
     //fees for modeling table targets
     var t1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.marginModeling, projectID, ' '), function (data) {
@@ -143,6 +146,7 @@ var projectResourceTable = (function ($) {
       projectInfo = projectInfo.find(function (val) {
         return val.Projid === projectID;
       });
+
       duration = projectInfo.Duration;
       office = projectInfo.Office;
       planBy = projectInfo.Plantyp;
@@ -164,7 +168,6 @@ var projectResourceTable = (function ($) {
       if (fixedFeeTarget.length && parseFloat(fixedFeeTarget[0].Fees)) {
         $('#fixed-fee-target').text(convertToDecimal(fixedFeeTarget[0].Fees));
       }
-
       var hrRows = {};
       var maxDuration = 0;
       plannedHours.forEach(function (cell) {
@@ -271,18 +274,19 @@ var projectResourceTable = (function ($) {
           "data": "BillRate",
           "class": "td-billrate",
           "render": function (data, type, row, meta) {
-            if (data)
+            if (data) {
               return convertToDollar(parseFloat(data));
+            }
           }
         },
         {
           "title": 'Bill Rate <br/> Override',
           "data": "BillRateOvride",
-          "defaultContent": '<div contenteditable class="dollar-sign" />',
-          "sClass": "rate-override num",
+          "defaultContent": '<div contenteditable class="currency-sign usd" />',
+          "class": "rate-override num",
           "render": function (data, type, row, meta) {
             if (parseFloat(data))
-              return '<div contenteditable class="dollar-sign">' + parseFloat(data) + '</div>';
+              return '<div contenteditable class="currency-sign usd">' + parseFloat(data) + '</div>';
           }
         },
         {
@@ -313,6 +317,7 @@ var projectResourceTable = (function ($) {
 
       // this is supposed to come from data/PlannedHours.json
       projectResources.forEach(function (resource) {
+
         resource.Rowno = parseInt(resource.Rowno);
         var row = {
           "Rowno": resource.Rowno,
@@ -325,7 +330,8 @@ var projectResourceTable = (function ($) {
           "CostRate": resource,
           "CostCenterName": resource,
           "BillRate": resource.BillRate,
-          "BillRateOvride": resource.BillRateOvride
+          "BillRateOvride": resource.BillRateOvride,
+          "Currency":projectInfo.Currency //from projectInfo
         };
 
         $.each(hrRows[resource.Rowno], function (k, v) {
@@ -347,6 +353,7 @@ var projectResourceTable = (function ($) {
         startDate = addMonthsUTC(startDate, 1);
       }
 
+      //Project Resource Table Datatable starts.
       var projResourceTable = $('#project-resource-table').DataTable({
         "searching": false,
         "data": myRows,
@@ -375,6 +382,7 @@ var projectResourceTable = (function ($) {
           $('tfoot th').removeClass('center blue-bg rate-override num hide td-office td-title td-class td-practice td-billrate td-costrate');
         },
         "drawCallback": function (row) {
+
           $("#project-resource-table tbody select.office").on('change', function () {
             console.log("office changed");
             var nodes = $(this);
@@ -385,7 +393,6 @@ var projectResourceTable = (function ($) {
             nodes.closest('tr').find('.td-costrate').empty();
             recalculateStuff();
           });
-
           $("#project-resource-table tbody select.title").on('change', function () {
             console.log("title changed");
             var nodes = $(this);
@@ -415,6 +422,9 @@ var projectResourceTable = (function ($) {
           });
         },
         "initComplete": function (settings, json, row) {
+          //change currency class names.
+          currencyStyles.initCurrencyStyles(projectInfo.Currency);
+          //$( '#add-row').trigger( 'click');
           setTimeout(recalculateStuff, 1000);
         },
         "bDestroy": true
@@ -525,7 +535,9 @@ var projectResourceTable = (function ($) {
           'SGD': '$',
           'USD': '$'
         };
+
         var currency = tems_currency[nodes.closest('tr').find('.title :selected').data('currency')];
+
         // the officeId, US01, US12, etc
         var Office = nodes.closest('tr').find('.office :selected').val();
         var EmpGradeName = nodes.closest('tr').find('.title :selected').text();
@@ -534,21 +546,20 @@ var projectResourceTable = (function ($) {
         var rates = rateCards.filter(function (val) {
           return val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter;
         });
-
         if (rates.length > 1) {
           console.log("error. more than one matching rate found.");
         }
         else if (rates.length === 1) {
           var selectedRate = rates.pop();
           nodes.closest('tr').find('.td-billrate').empty().append(currency + selectedRate.BillRate);
-          //this doesn't work bc costrate is hidden
-          nodes.closest('tr').find('.td-costrate').empty().append(selectedRate.CostRate);
-          //console.log(nodes.closest('tr').find('.td-costrate').length);
 
+          //this doesn't work if costrate is hidden
+          nodes.closest('tr').find('.td-costrate').empty().append(selectedRate.CostRate);
           //for calculations on resourceCalculation.js file
           resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
         }
       }
+
 
       function getOffices(Officeid) {
         var select = "<select class='office' name='Office'>";
@@ -860,6 +871,7 @@ var projectResourceTable = (function ($) {
         data: projectInfo
       };
 
+
       var payloads = modelingTablePayloads
         .concat(updateProjectInfo)
         .concat(deletePayloads)
@@ -870,7 +882,6 @@ var projectResourceTable = (function ($) {
         url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
         data: payloads,
         complete: function (xhr, status, data) {
-          console.log(data);
           var timeout = getParameterByName('timeout');
           console.log("navigating to new window in" + timeout + "seconds");
           timeout = timeout ? timeout : 1;
@@ -890,6 +901,8 @@ var projectResourceTable = (function ($) {
     });
   }
 
+
+//Posting the Table to JSON
   function buildModelingTablePayload() {
     var payloads = [];
 

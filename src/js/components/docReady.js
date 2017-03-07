@@ -44,7 +44,6 @@
       //Show Hide elements
       showHide.initShowHide();
     }
-
     /**
      * Project create/edit page
      */
@@ -67,12 +66,9 @@
      */
     if ('projectResources.htm' === current_page) {
       projectResourceTable.initProjectResourceTable();
-      //rateCardSelect.initRateCardSelect(feeds);
       //modeling table highlight headers on radio click
       $('#modeling-table input[type="radio"]').activateElement();
       $('.project-resources button[type="reset"]').clearAll();
-      // captureEditTd.initCaptureEditTd('#modeling-table');
-      // captureEditTd.initCaptureEditTd('#project-resource-table');
       error('#project-resource-table');
       error('#modeling-table');
     }

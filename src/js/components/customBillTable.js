@@ -152,10 +152,10 @@ var loadCustomBillSheet = (function ($) {
             class: 'rate-override num',
             data: "OverrideRate",
             title: "Upload / Override",
-            defaultContent: "<div contenteditable class='dollar-sign'></div>",
+            defaultContent: "<div contenteditable class='currency-sign usd'></div>",
             render: function (data, type, row) {
               if (parseFloat(data)) {
-                return "<div contenteditable class='dollar-sign'>" + data + "</div>";
+                return "<div contenteditable class='currency-sign usd'>" + data + "</div>";
               }
             }
           },

@@ -117,7 +117,7 @@ var expenseTable = (function ($) {
             "data": "Amount",
             "defaultContent": '',
             "render": function (data) {
-              return '<div contenteditable class="dollar-sign">' + data + '</div>';
+              return '<div contenteditable class="currency-sign usd">' + data + '</div>';
             }
           }
         ],

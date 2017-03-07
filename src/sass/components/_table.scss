@@ -130,12 +130,37 @@ table {
           border: inset 1px lightblue;
           position: relative;
           min-height: 20px;
-          &.dollar-sign:before {
-            content: "$";
+          &.currency-sign:before {
             left: 5px;
             position: absolute;
             top: 50%;
             margin-top: -10px;
+          }
+          &.currency-sign {
+            &.usd:before,
+            &.aud:before,
+            &.cad:before,
+            &.hkd:before,
+            &.nzd:before,
+            &.sgd:before {
+              content: "$";
+            }
+            &.chf:before {
+              content: "chf";
+            }
+            &.cny:before,
+            &.jpy:before {
+              content: "¥";
+            }
+            &.eur:before {
+              content: "€";
+            }
+            &.gbp:before {
+              content: "£";
+            }
+            &.myr:before {
+              content: "rm";
+            }
           }
           &.percent-sign:after {
             content: "%";
