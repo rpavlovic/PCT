@@ -50,7 +50,7 @@ var activeTableFunction = (function ($) {
           "bServerSide": false,
           "iDisplayLength": 10,
           "bAutoWidth": false,
-          "stateSave": true,
+          "stateSave": false,
           "columnDefs": [{
             "orderable": false,
             "targets": [5, 6]
