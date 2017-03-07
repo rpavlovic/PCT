@@ -146,8 +146,6 @@ var projectResourceTable = (function ($) {
         return val.Projid === projectID;
       });
 
-console.log(projectInfo);
-
       duration = projectInfo.Duration;
       office = projectInfo.Office;
       planBy = projectInfo.Plantyp;
