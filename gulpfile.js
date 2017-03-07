@@ -51,7 +51,7 @@ gulp.task('styles', function() {
 gulp.task('js', function () {
     return gulp.src(jsSrc)
     .pipe(sourcemaps.init())
-  //  .pipe(babel())
+    .pipe(babel())
     .pipe(uglify()
       .on('error', function(e) {
          console.log(e);

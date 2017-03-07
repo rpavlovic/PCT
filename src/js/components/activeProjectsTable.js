@@ -55,9 +55,9 @@ var activeTableFunction = (function ($) {
             "orderable": false,
             "targets": [5, 6]
           }],
-          "aoColumns": [
+          "columns": [
             {
-              "sTitle": 'Project Name',
+              "title": 'Project Name',
               "data": "Projname",
               "render": function (data, type, set, meta) {
                 if (data) {
