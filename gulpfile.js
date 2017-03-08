@@ -175,7 +175,7 @@ gulp.task('moveJS', function() {
 });
 
 gulp.task('zip', function() {
-  gulp.src('./build/*')
+  gulp.src('./build/**/*')
     .pipe(zip('html_build_' + new Date().toISOString().slice(0, 10) + '.zip'))
     .pipe(gulp.dest('build'));
 });
