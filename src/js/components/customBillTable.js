@@ -152,10 +152,10 @@ var loadCustomBillSheet = (function ($) {
             class: 'rate-override num',
             data: "OverrideRate",
             title: "Upload / Override",
-            defaultContent: "<div contenteditable></div>",
+            defaultContent: "<div contenteditable class='currency-sign usd'></div>",
             render: function (data, type, row) {
               if (parseFloat(data)) {
-                return "<div contenteditable>" + data + "</div>";
+                return "<div contenteditable class='currency-sign usd'>" + data + "</div>";
               }
             }
           },
@@ -350,8 +350,8 @@ var loadCustomBillSheet = (function ($) {
           url: '/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection',
           data: {
             "__metadata": {
-              "id": "https://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId + "',RowId='" + rowId + "')",
-              "uri": "https://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId + "',RowId='" + rowId + "')",
+              "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId + "',RowId='" + rowId + "')",
+              "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/BillSheetCollection(BillsheetId='" + bsId + "',RowId='" + rowId + "')",
               "type": "ZUX_EMPLOYEE_DETAILS_SRV.BillsheetDetails"
             },
             "Class": $(cells[2]).text(),

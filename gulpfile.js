@@ -10,7 +10,12 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     newer = require('gulp-newer'),
     flatten = require('gulp-flatten'),
+    sequence = require('run-sequence'),
+    zip = require('gulp-zip'),
+    babel = require('gulp-babel'),
+    csso = require('gulp-csso'),
     del = require('del');
+
 
 // paths
 var sassSrc = 'src/sass/**/*.scss',
@@ -35,7 +40,8 @@ gulp.task('fonts', function() {
 gulp.task('styles', function() {
   gulp.src(sassSrc)
     .pipe(sourcemaps.init())
-    .pipe(sass().on('error', sass.logError))
+    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(csso())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(sassDest))
     .pipe(browserSync.stream());
@@ -45,6 +51,7 @@ gulp.task('styles', function() {
 gulp.task('js', function () {
     return gulp.src(jsSrc)
     .pipe(sourcemaps.init())
+    .pipe(babel())
     .pipe(uglify()
       .on('error', function(e) {
          console.log(e);
@@ -167,8 +174,17 @@ gulp.task('moveJS', function() {
   .pipe(gulp.dest('build/js/'));
 });
 
+gulp.task('zip', function() {
+  gulp.src('./build/**/*')
+    .pipe(zip('html_build_' + new Date().toISOString().slice(0, 10) + '.zip'))
+    .pipe(gulp.dest('build'));
+});
+
 // Build
 gulp.task('build', ['data', 'nunjucks', 'styles', 'js',  'fonts', 'imagemin', 'move', 'moveJS']);
 
-gulp.task('default', ['serve', 'build']);
+gulp.task('ipg', function(cb) {
+  sequence('build', 'move', 'moveJS', 'zip', cb);
+});
 
+gulp.task('default', ['serve', 'build']);

@@ -9,12 +9,12 @@ var projectSummaryCalculations = (function ($) {
   function calculateBudget(projectId) {
     var pExpenses = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectExpenses, projectId), function (projectDeliverables) {
-        resolve(projectDeliverables.d.results);
+        resolve(projectDeliverables.d.results.filter(filterByProjectId, projectId));
       });
     });
     var pResources = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectResources, projectId), function (rateCard) {
-        resolve(rateCard.d.results);
+        resolve(rateCard.d.results.filter(filterByProjectId, projectId));
       });
     });
 
@@ -24,16 +24,14 @@ var projectSummaryCalculations = (function ($) {
       var expenseTotal = expenses.reduce(function (acc, val) {
         return parseFloat(acc) + parseFloat(val.Amount);
       }, 0);
-
       var resourceTotalFee = resources.reduce(function (acc, val) {
         return parseFloat(acc) + parseFloat(val.TotalFee);
       }, 0);
-
       return expenseTotal + resourceTotalFee;
     });
 
   }
-  
+
   return {
     calculateBudget: calculateBudget
   };

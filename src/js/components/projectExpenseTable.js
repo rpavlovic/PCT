@@ -24,14 +24,14 @@ var expenseTable = (function ($) {
 
   function initExpenseTable() {
     var p1 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectDeliverables, getParameterByName('projID')), function (deliverables) {
-        resolve(deliverables.d.results);
+      $.getJSON(get_data_feed(feeds.projectDeliverables, projectID), function (deliverables) {
+        resolve(deliverables.d.results.filter(filterByProjectId, projectID));
       });
     });
 
     var p2 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectExpenses, getParameterByName('projID')), function (expenses) {
-        resolve(expenses.d.results);
+      $.getJSON(get_data_feed(feeds.projectExpenses, projectID), function (expenses) {
+        resolve(expenses.d.results.filter(filterByProjectId, projectID));
       });
     });
 
@@ -117,7 +117,7 @@ var expenseTable = (function ($) {
             "data": "Amount",
             "defaultContent": '',
             "render": function (data) {
-              return '<label>$ </label><div contenteditable>' + data + '</div>';
+              return '<div contenteditable class="currency-sign usd">' + data + '</div>';
             }
           }
         ],
@@ -169,8 +169,8 @@ var expenseTable = (function ($) {
             url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection',
             data: {
               "__metadata": {
-                "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('" + projectID + "')",
-                "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('" + projectID + "')",
+                "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('" + projectID + "')",
+                "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('" + projectID + "')",
                 "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
               },
               "ExpRow": padNumber($(row.anCells[0]).text()),

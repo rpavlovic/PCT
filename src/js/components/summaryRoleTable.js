@@ -4,16 +4,27 @@
  */
 var summaryRoleTable = (function ($) {
   'use strict';
-  function initSummaryRoleTable(projectResources) {
+  function initSummaryRoleTable(projectResources, rateCards) {
     var byRoleTable = $("#breakdown-role-table");
     var rows = {};
 
-    projectResources.forEach(function(resource){
-      if(!rows[resource.EmpGradeName]){
+    projectResources.forEach(function (resource) {
+      if (!rows[resource.EmpGradeName]) {
+
+        var officeRateCards = rateCards.find(function (val) {
+          return val.OfficeId === resource.Officeid;
+        });
+
+        var rc = officeRateCards.rateCards.find(function (val) {
+          return val.OfficeId === resource.OfficeId
+            && val.CostCenter === resource.Practiceid
+            && val.EmpGradeName === resource.EmpGradeName;
+        });
+
         rows[resource.EmpGradeName] = {
           title: resource.EmpGradeName,
           fees: 0,
-          class: resource.Class,
+          class: rc.Class,
           hours: 0
         };
       }
@@ -22,17 +33,24 @@ var summaryRoleTable = (function ($) {
     });
 
     rows = Object.values(rows);
-    console.log(rows);
 
-    var totalHrs = rows.reduce(function (acc, val){
+    var totalHrs = rows.reduce(function (acc, val) {
       return acc + parseFloat(val.hours);
     }, 0);
 
-    console.log(totalHrs);
-    rows.forEach(function(row){
-      console.log(row);
+    $('#roles-total-hours').text(totalHrs);
+
+    rows.forEach(function (row) {
       row.staffMix = row.hours / totalHrs * 100;
     });
+
+    var rolesTotalFee = rows.reduce(function (acc, val) {
+      if (val.fees)
+        return acc + parseFloat(val.fees);
+      else return acc;
+    }, 0);
+
+    $('#roles-total').text(convertToDollar(rolesTotalFee));
 
     byRoleTable.DataTable({
       dom: '<tip>',
@@ -46,7 +64,7 @@ var summaryRoleTable = (function ($) {
         {
           "title": "Title",
           "data": 'title',
-          "defaultContent": "President",
+          "defaultContent": "",
           "class": "office",
           render: function (data, type, row) {
             return data;

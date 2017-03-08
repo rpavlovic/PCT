@@ -7,9 +7,9 @@
     <h1>{%set page_title = 'Profile'%} {{page_title}}</h1>
 </div>
   <div class="row">
-    <div class="col-2">
+{#     <div class="col-2">
       <img class="profile-image" src="/images/profile_avatar.png" alt="profile name">
-    </div>
+    </div> #}
     <div class="col-10">
       <form class="form-edit-profile" name="edit-profile" action="#" method="POST">
         <div class="row">
@@ -68,7 +68,7 @@
           <strong>Client Rate Cards</strong>
         </div>
         <div class="col-9-sm col-10">
-          <section>
+          <section id="profile-rate-cards">
             <ul>
               <li><a href="customBillSheet.htm" title="Custom Bill">Custom Bill</a></li>
             </ul>

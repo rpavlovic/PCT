@@ -3,10 +3,10 @@
  * @returns {string}
  */
 function convertToPercent(amount){
-  if(amount) {
+  if(amount && $.isNumeric(amount)) {
     return amount.toFixed(2) * 100 + '%';
   }
   else {
-    return 0;
+    return 0 + "%";
   }
 }

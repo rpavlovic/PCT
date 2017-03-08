@@ -8,7 +8,6 @@ var summaryDeliverablesTable = (function ($) {
     var DeliverablesTable = $("#breakdown-delivery-table");
     var deliverablesBreakdown = {};
 
-
     resources.forEach(function (data) {
       var item = deliverables.find(function (val) {
         return val.DelvDesc === data.DelvDesc;
@@ -29,7 +28,6 @@ var summaryDeliverablesTable = (function ($) {
       var item = deliverables.find(function (val) {
         return val.DelvDesc === data.DelvDesc;
       });
-
       if (!item.TotalExpenses) {
         item.TotalExpenses = 0;
       }
@@ -49,6 +47,42 @@ var summaryDeliverablesTable = (function ($) {
       } else
         d.HoursPercentage = 0;
     });
+
+    var totalDeliverableFees = deliverables.reduce(function (acc, val) {
+      if (parseFloat(val.TotalFee))
+        return acc + parseFloat(val.TotalFee);
+      else
+        return acc;
+    }, 0);
+
+    $('#total-deliv-fees').text(convertToDollar(totalDeliverableFees));
+
+    var totalExpenses = deliverables.reduce(function (acc, val) {
+      if (val.TotalExpenses)
+        return acc + parseFloat(val.TotalExpenses);
+      else
+        return acc;
+    }, 0);
+
+    $('#total-deliv-expenses').text(convertToDollar(totalExpenses));
+
+    var totalBudget = deliverables.reduce(function (acc, val) {
+      if (val.Budget)
+        return acc + parseFloat(val.Budget);
+      else
+        return acc;
+    }, 0);
+
+    $('#total-deliv-budget').text(convertToDollar(totalBudget));
+
+    var totalHours = deliverables.reduce(function (acc, val) {
+      if (val.TotalHrs)
+        return acc + parseFloat(val.TotalHrs);
+      else
+        return acc;
+    }, 0);
+
+    $('#total-deliv-hours').text(totalHours);
 
     DeliverablesTable.DataTable({
       dom: '<tip>',

@@ -1,7 +1,6 @@
 
 (function ($) {
   $(function () {
-
     var path = window.location.pathname;
     path = path.split("/");
 
@@ -17,6 +16,9 @@
     progressNav.initProgressNav('#progress-navigation');
 
     validateDurationPlanBy.initValidateDurationPlanBy();
+
+    //Fix for Object.values()
+    ObjValuesFix();
 
     if ('projectGeneral.htm' === current_page) {
       //calendars
@@ -45,7 +47,6 @@
       //Show Hide elements
       showHide.initShowHide();
     }
-
     /**
      * Project create/edit page
      */
@@ -68,7 +69,6 @@
      */
     if ('projectResources.htm' === current_page) {
       projectResourceTable.initProjectResourceTable();
-      //rateCardSelect.initRateCardSelect(feeds);
       //modeling table highlight headers on radio click
       $('#modeling-table input[type="radio"]').activateElement();
       $('.project-resources button[type="reset"]').clearAll();

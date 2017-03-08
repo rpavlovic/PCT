@@ -7,7 +7,8 @@ var rateCardSelect = (function ($) {
   'use strict';
 
   var select_cards = $('select#rate-card'),
-    rateCardTitles = [];
+      view_card_link = $('.project-resources .view-card-rate'),
+      rateCardTitles = [];
 
   function initRateCardSelect(BillsheetId) {
     var rateCard = new Promise(function (resolve, reject) {
@@ -17,31 +18,35 @@ var rateCardSelect = (function ($) {
     });
 
     Promise.resolve(rateCard)
-      .then(function (values) {
-        select_cards.append('<option value="0">Office Standard Rate</option>');
-
-        var bsIds = [];
-        values.forEach(function (val) {
-          if (-1 === $.inArray(val.BillsheetId, bsIds)) {
-            console.log(BillsheetId);
-            console.log(val.BillsheetId);
-            var selected = (val.BillsheetId === BillsheetId) ? 'selected="selected"' : '';
-            rateCardTitles.push('<option value="' + val.BillsheetId + '" ' + selected + '>' + val.BillsheetName + '</option>');
-            bsIds.push(val.BillsheetId);
+    .then(function (values) {
+      select_cards.append('<option value="0">Office Standard Rate</option>');
+      var bsIds = [];
+      values.forEach(function (val) {
+        if (-1 === $.inArray(val.BillsheetId, bsIds)) {
+          var selected = (val.BillsheetId === BillsheetId) ? 'selected="selected"' : '';
+          rateCardTitles.push('<option value="' + val.BillsheetId + '" ' + selected + '>' + val.BillsheetName + '</option>');
+          bsIds.push(val.BillsheetId);
+          if(val.BillsheetId === BillsheetId) {
+            view_card_link.text("View/Edit " + val.BillsheetName);
           }
-        });
-        select_cards.append(rateCardTitles);
-        //hide on load if the Default is loaded
-        if (select_cards[0].selectedIndex === 0) {
-          $(".col-9 a.view-card-rate").addClass('hide');
         }
       });
+
+      select_cards.append(rateCardTitles);
+
+    });
+
+    //on select change the Card Title for the View Edit link
+    select_cards.on('change', function() {
+      view_card_link.text("View/Edit " + $("option:selected", this).text());
+    });
 
     $('.project-resources .view-card-rate').on('click', function (event) {
       var url = $(this).attr('href');
       var CardID = select_cards.find(':selected').val();
       url = updateQueryString('CardID', CardID, url);
       $(this).attr('href', url);
+
     });
   }
 

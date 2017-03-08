@@ -76,11 +76,91 @@ var projectInfoForm = (function ($) {
   function prepopulate_Billing_Office_JSON(results) {
     var offices = [];
     var countries = [];
+    var countryOptions = [
+      {
+        Code: 'AU',
+        Country: 'Australia'
+      },
+      {
+        Code: 'CN',
+        Country: 'China'
+      },
+      {
+        Code: 'HK',
+        Country: 'Hong Kong'
+      },
+      {
+        Code: 'JP',
+        Country: 'Japan'
+      },
+      {
+        Code: 'MY',
+        Country: 'Malaysia'
+      },
+      {
+        Code: 'SG',
+        Country: 'Singapore'
+      },
+      {
+        Code: 'BE',
+        Country: 'Belgium'
+      },
+      {
+        Code: 'FR',
+        Country: 'France'
+      },
+      {
+        Code: 'DE',
+        Country: 'Germany'
+      },
+      {
+        Code: 'GB',
+        Country: 'Great Britain'
+      },
+      {
+        Code: 'IE',
+        Country: 'Ireland'
+      },
+      {
+        Code: 'IT',
+        Country: 'Italy'
+      },
+      {
+        Code: 'NL',
+        Country: 'Netherlands'
+      },
+      {
+        Code: 'ES',
+        Country: 'Spain'
+      },
+      {
+        Code: 'CH',
+        Country: 'Switzerland'
+      },
+
+      {
+        Code: 'CA',
+        Country: 'Canada'
+      },
+      {
+        Code: 'US',
+        Country: 'The United States'
+      }
+    ];
+
+    var regionsOptions = ['APAC', 'EMEA', 'NA'];
     var regions = [];
+
+    regionsOptions.forEach(function (val) {
+      regions.push('<option value="' + val + '">' + val + '</option>');
+    });
+
+    countryOptions.forEach(function (val) {
+      countries.push('<option value="' + val.Code + '">' + val.Country + '</option>');
+    });
+
     results.forEach(function (office) {
       offices.push('<option value="' + office.Office + '">' + office.OfficeName + ', ' + office.City + ' (' + office.Office + ')</option>');
-      countries.push('<option value="' + office.Country + '">' + office.Country + '</option>');
-      regions.push('<option value="' + office.Region + '">' + office.Region + '</option>');
       matchOptions(office.Currency, select_currency[0]);
     });
 
@@ -119,7 +199,13 @@ var projectInfoForm = (function ($) {
       $('form.project-info input[name="Projname"]').val(extraProjInfo.Projname);
       $('form.project-info input[name="Preparedby"]').val(extraProjInfo.Preparedby);
       select_plan_by.val(extraProjInfo.Plantyp);
-      input_duration.val(extraProjInfo.Duration);
+      var plan_by;
+      if(extraProjInfo.Plantyp === "WK") {
+        plan_by = "Weeks";
+      } else {
+        plan_by = "Months";
+      }
+      input_duration.val(extraProjInfo.Duration + " " +  plan_by);
       plan_units.val(extraProjInfo.Comptyp);
       createdOn = extraProjInfo.Createdon;
       $('input.datepicker').val(calcPrettyDate(extraProjInfo.EstStDate));
@@ -130,10 +216,12 @@ var projectInfoForm = (function ($) {
     }
   }
 
+
+
   function initProjectInfoForm(feeds) {
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, projectId), function (deliverables) {
-        resolve(deliverables.d.results);
+        resolve(deliverables.d.results.filter(filterByProjectId, projectId));
       });
     });
 
@@ -151,7 +239,7 @@ var projectInfoForm = (function ($) {
 
     var p4 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.project, projectId), function (projects) {
-        resolve(projects.d.results);
+        resolve(projects.d.results.filter(filterByProjectId, projectId));
       }).fail(function () {
         // not found, but lets fix this and return empty set
         // setting the flag here so we know if they hit delete for a deliverable
@@ -169,18 +257,6 @@ var projectInfoForm = (function ($) {
         prepopulate_ExtraInfo_JSON(values[3]);
         floatLabel.initfloatLabel();
       });
-  }
-
-  function checkValues(elem) {
-    if (elem.val() === '') {
-      elem.addClass('empty-error').focus();
-      alert("Please set the missing values");
-      return true;
-    }
-    else {
-      elem.removeClass('empty-error');
-      return false;
-    }
   }
 
   function deleteDeliverables() {
@@ -204,109 +280,122 @@ var projectInfoForm = (function ($) {
     }
   }
 
+  function checkValues() {
+    var array_inpt  = [];
+    $(arguments).each(function() {
+      if(!$.trim($(this).val())) {
+        $(this).addClass('empty-error');
+        array_inpt.push($(this));
+      } else {
+        $(this).removeClass('empty-error');
+      }
+    });
+    return array_inpt.length == 0
+  }
+
   $('.project-info #btn-save').on('click', function (event) {
     event.preventDefault();
-    console.log("saving form");
-    var url = $('#btn-save').attr('href');
-    url = updateQueryString('projID', projectId, url);
-    url = updateQueryString('Office', select_billing_office.val(), url);
-    url = updateQueryString('Duration', input_duration.val().replace(/\D/g, ''), url);
-    url = updateQueryString('PlanBy', select_plan_by.val(), url);
 
-    $('#btn-save').attr('href', url);
+    //if Input fields fileld in are filled then continue to the next page.
+    if (checkValues(input_duration, client_name, project_name, $('input.datepicker'))) {
 
-    // get val in unix epoch time
-    var EstStDate = new Date($('input.datepicker').val()).getTime();
-    var startDate = new Date($('input[name="weekstart"]').val()).getTime();
-    var EstEndDate = new Date($('input[name="enddate"]').val()).getTime();
-    var changedDate = new Date().getTime();
+      var url = $(this).attr('href');
+      url = updateQueryString('projID', projectId, url);
+      url = updateQueryString('Office', select_billing_office.val(), url);
+      url = updateQueryString('Duration', input_duration.val().replace(/\D/g, ''), url);
+      url = updateQueryString('PlanBy', select_plan_by.val(), url);
 
-    if (!createdOn) {
-      createdOn = "\/Date(" + changedDate + ")\/";
-    }
+      $(this).attr('href', url);
 
-    if (checkValues(input_duration)) {
-      return false;
-    }
 
-    var formData = {
-      "__metadata": {
-        "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + projectId + "')",
-        "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + projectId + "')",
-        "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
-      },
-      "Projid": projectId.toString(),
-      "Plantyp": select_plan_by.val().toString().substr(0, 2),
-      "Region": select_region.val(),
-      "Office": select_billing_office.val(),
-      "Currency": select_currency.val(),
-      "Clientname": client_name.val(),
-      "Projname": project_name.val(),
-      "Comptyp": compensation_type.val(),
-      "EstStDate": "\/Date(" + EstStDate + ")\/",
-      "Duration": parseInt(input_duration.val().replace(/\D/g, '')),
-      "PlanUnits": plan_units.val().toString().substr(0, 3),
-      "StartDate": "\/Date(" + startDate + ")\/",
-      "EstEndDate": "\/Date(" + EstEndDate + ")\/",
-      "Comments": comments.val(),
-      "Preparedby": prepared_by.val()
-    };
+      // get val in unix epoch time
+      var EstStDate = new Date($('input.datepicker').val()).getTime();
+      var startDate = new Date($('input[name="weekstart"]').val()).getTime();
+      var EstEndDate = new Date($('input[name="enddate"]').val()).getTime();
+      var changedDate = new Date().getTime();
 
-    // update deliverables if necessary
-    deleteDeliverables();
-
-    var payloads = [];
-    payloads.push({
-      type: 'POST',
-      url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection',
-      data: formData
-    });
-
-    payloads = payloads.concat(deletePayloads);
-
-    var deliverableId = 1;
-    $('input[name="deliverable"]').each(function (key, value) {
-      if ($(value).val()) {
-        payloads.push({
-          type: 'POST',
-          url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection',
-          data: {
-            "__metadata": {
-              "id": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection('" + projectId + "')",
-              "uri": "http://fioridev.interpublic.com/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection('" + projectId + "')",
-              "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectDeliverables"
-            },
-            "Projid": projectId.toString(),
-            "Delvid": padNumber(deliverableId.toString()),
-            "DelvDesc": $(value).val()
-          }
-        });
-        deliverableId++;
+      if (!createdOn) {
+        createdOn = "\/Date(" + changedDate + ")\/";
       }
-    });
 
-    // then we will post the batch,
-    $.ajaxBatch({
-      url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
-      data: payloads,
-      complete: function (xhr, status, data) {
-        console.log(data);
-        var timeout = getParameterByName('timeout');
-        console.log("navigating to new window in" + timeout + "seconds");
-        timeout = timeout ? timeout : 1;
-        setTimeout(function () {
+      var formData = {
+        "__metadata": {
+          "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + projectId + "')",
+          "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + projectId + "')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
+        },
+        "Projid": projectId.toString(),
+        "Plantyp": select_plan_by.val().toString().substr(0, 2),
+        "Region": select_region.val(),
+        "Office": select_billing_office.val(),
+        "Currency": select_currency.val(),
+        "Clientname": client_name.val(),
+        "Projname": project_name.val(),
+        "Comptyp": compensation_type.val(),
+        "EstStDate": "\/Date(" + EstStDate + ")\/",
+        "Duration": parseInt(input_duration.val().replace(/\D/g, '')),
+        "PlanUnits": plan_units.val().toString().substr(0, 3),
+        "StartDate": "\/Date(" + startDate + ")\/",
+        "EstEndDate": "\/Date(" + EstEndDate + ")\/",
+        "Comments": comments.val(),
+        "Preparedby": prepared_by.val()
+      };
+
+      // update deliverables if necessary
+      deleteDeliverables();
+
+      var payloads = [];
+      payloads.push({
+        type: 'POST',
+        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection',
+        data: formData
+      });
+
+      payloads = payloads.concat(deletePayloads);
+
+      var deliverableId = 1;
+      $('input[name="deliverable"]').each(function (key, value) {
+        if ($(value).val()) {
+          payloads.push({
+            type: 'POST',
+            url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection',
+            data: {
+              "__metadata": {
+                "id": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection('" + projectId + "')",
+                "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection('" + projectId + "')",
+                "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectDeliverables"
+              },
+              "Projid": projectId.toString(),
+              "Delvid": padNumber(deliverableId.toString()),
+              "DelvDesc": $(value).val()
+            }
+          });
+          deliverableId++;
+        }
+      });
+
+      // then we will post the batch,
+      $.ajaxBatch({
+        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
+        data: payloads,
+        complete: function (xhr, status, data) {
+          var timeout = getParameterByName('timeout');
+          console.log("navigating to new window in" + timeout + "seconds");
+          timeout = timeout ? timeout : 1;
+          setTimeout(function () {
+         window.location.href = $('#btn-save').attr('href');
+          }, timeout);
+        },
+        always: function (xhr, status, data) {
+          var timeout = getParameterByName('timeout');
+          console.log("navigating to new window in" + timeout + "seconds");
+          timeout = timeout ? timeout : 1;
+          setTimeout(function () {
           window.location.href = $('#btn-save').attr('href');
-        }, timeout);
-      },
-      always: function (xhr, status, data) {
-        var timeout = getParameterByName('timeout');
-        console.log("navigating to new window in" + timeout + "seconds");
-        timeout = timeout ? timeout : 1;
-        setTimeout(function () {
-          window.location.href = $('#btn-save').attr('href');
-        }, timeout);
-      }
-    });
+          }, timeout);
+        }
+      });
+    } //end if
   });
 
   return {

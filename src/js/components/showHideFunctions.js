@@ -27,13 +27,13 @@ var showHide = (function ($) {
     $('.toggle').on('click', function() {
       $('.toolbar').fadeToggle('slow');
        $(this).html($(this)
-              .html() == '- Hide Options' ? '+ Advanced Search Options' : '- Hide Options');
+        .html() == '- Hide Options' ? '+ Advanced Search Options' : '- Hide Options');
     });
     //open the tabs
     fadeTabs.initFadeTabs();
   }
 
-  $(".project-resources select#rate-card").on("change", function(){
+  $(".project-resources select#rate-card").on("change", function() {
     if($(this)[0].selectedIndex === 0) {
       $(".col-9 a.view-card-rate").fadeOut('slow').addClass('hide');
     } else {

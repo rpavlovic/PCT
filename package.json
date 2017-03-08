@@ -4,7 +4,8 @@
   "description": "weber-shandwick project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "gulp build && gulp move && gulp",
+    "build": "gulp ipg && gulp zip"
   },
   "repository": {
     "type": "git",
@@ -17,9 +18,13 @@
   },
   "homepage": "https://github.com/northpoint/weber-shandwick#readme",
   "devDependencies": {
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-latest": "^6.22.0",
     "browser-sync": "^2.17.5",
     "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
+    "gulp-csso": "^2.0.0",
     "gulp-data": "^1.2.1",
     "gulp-flatten": "^0.3.1",
     "gulp-nunjucks-render": "^2.0.0",
@@ -31,6 +36,8 @@
   "dependencies": {
     "del": "^2.2.2",
     "gulp-imagemin": "^3.1.1",
-    "gulp-newer": "^1.3.0"
+    "gulp-newer": "^1.3.0",
+    "gulp-zip": "^4.0.0",
+    "run-sequence": "^1.2.2"
   }
 }

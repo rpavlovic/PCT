@@ -13,31 +13,31 @@ var projectSummary = (function ($) {
 
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.project, projectId), function (projects) {
-        resolve(projects.d.results);
+        resolve(projects.d.results.filter(filterByProjectId, projectId));
       });
     });
 
     var p2 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, projectId), function (projectDeliverables) {
-        resolve(projectDeliverables.d.results);
+        resolve(projectDeliverables.d.results.filter(filterByProjectId, projectId));
       });
     });
 
     var p3 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.marginModeling, projectId, ' '), function (marginModeling) {
-        resolve(marginModeling.d.results);
+        resolve(marginModeling.d.results.filter(filterByProjectId, projectId));
       });
     });
 
     var p4 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectResources, projectId), function (projectResources) {
-        resolve(projectResources.d.results);
+        resolve(projectResources.d.results.filter(filterByProjectId, projectId));
       });
     });
 
     var p5 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectExpenses, projectId), function (projectExpenses) {
-        resolve(projectExpenses.d.results);
+        resolve(projectExpenses.d.results.filter(filterByProjectId, projectId));
       });
     });
 
@@ -99,7 +99,7 @@ var projectSummary = (function ($) {
       financialSummaryTable(marginModeling, projectResources, projectExpenses);
       summaryDeliverablesTable.initSummaryDeliverablesTable(projectDeliverables, projectResources, projectExpenses);
       summaryOfficeTable.initSummaryOfficeTable(projectResources, offices, rateCards);
-      summaryRoleTable.initSummaryRoleTable(projectResources);
+      summaryRoleTable.initSummaryRoleTable(projectResources, rateCards);
     });
   }
 
@@ -111,6 +111,7 @@ var projectSummary = (function ($) {
     if (project.length) {
       project = project.pop();
       $('#client-name').text(project.Clientname);
+
       $('#country').text(project.Region);
       $('#office').text(project.Office);
       $('#project-name').text(project.Projname);
@@ -118,6 +119,7 @@ var projectSummary = (function ($) {
       $('#duration').text(project.Duration);
       $('#comp-type').text(project.Comptyp);
       $('#rate-card').text(project.BillsheetId);
+      $('textarea[name="comments"]').text(project.Comments)
     }
   }
 
@@ -138,8 +140,9 @@ var projectSummary = (function ($) {
     }, 0);
 
     // console.log(totalExpenses);
-    // console.log(ARBF.Fees);
-    // console.log(SRBF.Fees);
+    // console.log(ARBF);
+    // console.log(SRBF);
+
     var totalFees = ARBF.Fees ? ARBF.Fees : SRBF.Fees;
     var contributionMargin = ARBF.CtrMargin ? ARBF.CtrMargin : SRBF.CtrMargin;
 
@@ -152,7 +155,9 @@ var projectSummary = (function ($) {
     var netRevenue = budget - totalExpenses;
     var blendedAvg = netRevenue/resourceTotalHours;
     var oopFees = totalExpenses/totalFees;
-
+    if(totalFees <=0) {
+      oopFees = 0;
+    }
     var class_name = '';
 
     if(contributionMargin > 65) {
