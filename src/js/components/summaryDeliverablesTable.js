@@ -76,7 +76,6 @@ var summaryDeliverablesTable = (function ($) {
     $('#total-deliv-budget').text(convertToDollar(totalBudget));
 
     var totalHours = deliverables.reduce(function (acc, val) {
-      console.log(val.TotalHrs);
       if (val.TotalHrs)
         return acc + parseFloat(val.TotalHrs);
       else
