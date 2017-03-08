@@ -42,9 +42,7 @@ form {
       }
     }
     &.empty-error {
-    outline: 2px solid;
-    outline: auto -webkit-focus-ring-color;
-    outline-color: red;
+    outline:2px solid red;
     }
   }
   textarea {
