@@ -17,6 +17,9 @@
 
     validateDurationPlanBy.initValidateDurationPlanBy();
 
+    //Fix for Object.values()
+    ObjValuesFix();
+
     if ('projectGeneral.htm' === current_page) {
       //calendars
       $(".datepicker").datepicker({

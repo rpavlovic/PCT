@@ -381,11 +381,6 @@ var projectResourceTable = (function ($) {
             .addClass("contenteditable");
         },
         "createdRow": function (row, data, index) {
-          if(row) {
-            console.log(data)
-          } else {
-            console.log(data)
-          }
           $('tfoot th').removeClass('center blue-bg rate-override num hide td-office td-title td-class td-practice td-billrate td-costrate');
         },
         "drawCallback": function (row) {
@@ -445,7 +440,7 @@ var projectResourceTable = (function ($) {
           "Role": ''
         }).draw().node();
       }
-      if( ! projResourceTable.data().count()) {
+      if(!projResourceTable.data().count()) {
         addRow();
       }
       //Add Row
@@ -500,7 +495,6 @@ var projectResourceTable = (function ($) {
               $(rows.context[0].aoData[i].anCells[9]).css('color','#5b5b5b');
             }
           }
-
           recalculateStuff();
         });
       });
@@ -638,7 +632,6 @@ var projectResourceTable = (function ($) {
         }).forEach(function (val) {
           practices[val.CostCenter] = val;
         });
-
         practices = Object.values(practices);
         practices.sort(function (a, b) {
           return (a.CostCenterName > b.CostCenterName) ? 1 : ((b.CostCenterName > a.CostCenterName) ? -1 : 0);
@@ -687,6 +680,7 @@ var projectResourceTable = (function ($) {
       }
 
       function recalculateStuff() {
+        console.log("calcuations called");
         var rows = projResourceTable.rows();
         //  console.log(rows.context[0].aoData);
         var tableHoursSum = 0;
