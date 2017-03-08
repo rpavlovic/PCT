@@ -2,6 +2,7 @@
  * @module Draw Data Table for Preoject Resource page.
  * @version
  */
+
 var projectResourceTable = (function ($) {
   'use strict';
   var projectID = getParameterByName('projID') ? getParameterByName('projID').toString() : '';
@@ -24,7 +25,6 @@ var projectResourceTable = (function ($) {
       return [];
     }
   }
-
   function loadRateCardFromServer(OfficeId) {
     return new Promise(function (resolve, reject) {
       //console.log('RateCard Not found. checking service for OfficeId' + OfficeId);
@@ -91,7 +91,6 @@ var projectResourceTable = (function ($) {
             return resources;
           });
       });
-
 
     //fees for modeling table targets
     var t1 = new Promise(function (resolve, reject) {
@@ -680,7 +679,6 @@ var projectResourceTable = (function ($) {
       }
 
       function recalculateStuff() {
-        console.log("calcuations called");
         var rows = projResourceTable.rows();
         //  console.log(rows.context[0].aoData);
         var tableHoursSum = 0;
@@ -906,7 +904,7 @@ var projectResourceTable = (function ($) {
   }
 
 
-//Posting the Table to JSON
+ //Posting the Table to JSON
   function buildModelingTablePayload() {
     var payloads = [];
 

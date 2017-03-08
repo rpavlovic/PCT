@@ -187,7 +187,6 @@ var projectInfoForm = (function ($) {
   }
 
   function prepopulate_ExtraInfo_JSON(results) {
-    console.log(results)
     var extraProjInfo = results.find(function (value) {
       return value.Projid === projectId;
     });
@@ -380,7 +379,6 @@ var projectInfoForm = (function ($) {
         url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
         data: payloads,
         complete: function (xhr, status, data) {
-          console.log(data);
           var timeout = getParameterByName('timeout');
           console.log("navigating to new window in" + timeout + "seconds");
           timeout = timeout ? timeout : 1;

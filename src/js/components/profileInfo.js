@@ -15,6 +15,7 @@ var profileInfo = (function ($) {
     city = profile_form.find('.city');
 
   function initProfileInfo(feeds) {
+
     $.getJSON(get_data_feed(feeds.employee), function (employees) {
       var val = employees.d.results[0];
       name.text(val.EmployeeFullName);
@@ -26,7 +27,6 @@ var profileInfo = (function ($) {
       city.text(val.OfficeCity + ", " + val.OfficeRegion + ", " + val.OfficePostalcode);
     });
   }
-
   return {
     initProfileInfo: initProfileInfo
   };
