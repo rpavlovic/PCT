@@ -2,6 +2,21 @@
 * @module Style Currency for all places where it's displayed.
 * @version
 */
+var tems_currency = {
+  'AUD': '$',
+  'CAD': '$',
+  'CHF': 'CHF',
+  'CNY': '¥',
+  'EUR': '€',
+  'GBP': '£',
+  'HKD': '$',
+  'JPY': '¥',
+  'MYR': 'RM',
+  'NZD': '$',
+  'SGD': '$',
+  'USD': '$'
+};
+
 var currencyStyles = (function ($) {
   'use strict';
 

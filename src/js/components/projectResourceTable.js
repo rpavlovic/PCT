@@ -525,21 +525,6 @@ var projectResourceTable = (function ($) {
       }
 
       function loadBillRate(nodes) {
-        var tems_currency = {
-          'AUD': '$',
-          'CAD': '$',
-          'CHF': 'CHF',
-          'CNY': '¥',
-          'EUR': '€',
-          'GBP': '£',
-          'HKD': '$',
-          'JPY': '¥',
-          'MYR': 'RM',
-          'NZD': '$',
-          'SGD': '$',
-          'USD': '$'
-        };
-
         var currency = tems_currency[nodes.closest('tr').find('.title :selected').data('currency')];
 
         // the officeId, US01, US12, etc
