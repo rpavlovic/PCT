@@ -24,6 +24,9 @@ var currencyStyles = (function ($) {
   function initCurrencyStyles(currency) {
     var class_name = currency.toLowerCase();
     $('.currency-sign').removeClass('usd').addClass(class_name);
+    tems_currency.map(function(val, key) {
+      console.log(val)
+    })
   }
   return {
     initCurrencyStyles:initCurrencyStyles

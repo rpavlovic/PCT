@@ -541,7 +541,6 @@ var projectResourceTable = (function ($) {
         else if (rates.length === 1) {
           var selectedRate = rates.pop();
           nodes.closest('tr').find('.td-billrate').empty().append(currency + selectedRate.BillRate);
-
           //this doesn't work if costrate is hidden
           nodes.closest('tr').find('.td-costrate').empty().append(selectedRate.CostRate);
           //for calculations on resourceCalculation.js file
