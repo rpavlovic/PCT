@@ -109,8 +109,6 @@ var projectSummary = (function ($) {
     var project = projectInfo.filter(function (project) {
       return project.Projid === projectId;
     });
-    console.log(projectInfo)
-
 
     if (project.length) {
       project = project.pop();
