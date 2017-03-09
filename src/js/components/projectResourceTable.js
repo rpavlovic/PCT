@@ -685,6 +685,7 @@ var projectResourceTable = (function ($) {
 
           var billRateOverride = convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text());
           billRateOverride = !isNaN(billRateOverride) ? billRateOverride : 0;
+
           //highlight the rate is override is present.
           if(!isNaN(billRateOverride) && billRateOverride > 0) {
             $(rows.context[0].aoData[i].anCells[9]).css('color','lightgrey');
