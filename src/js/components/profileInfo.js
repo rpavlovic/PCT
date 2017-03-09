@@ -28,31 +28,25 @@ var profileInfo = (function ($) {
         street.text(val.OfficeHousenum + " " + val.OfficeStreet + ", " + val.OfficeFloor);
         city.text(val.OfficeCity + ", " + val.OfficeRegion + ", " + val.OfficePostalcode);
       });
-
-    $.getJSON(get_data_feed(feeds.billSheet), function (cards) {
-      $(cards).map(function(key, val) {
-        var cardName = val.d.results.filter(function( value ) {
-          console.log(value.BillsheetName);
-          return value.BillsheetName;
-        });
-
-      });
-    });
-
-    var p2 = new Promise(function (resolve, reject) {
+    function sort_unique(arr) {
+    if (arr.length === 0) return arr;
+    arr = arr.sort(function (a, b) { return a.BillsheetId - b.BillsheetId; });
+    var ret = [arr[0]];
+    for (var i = 1; i < arr.length; i++) { // start loop at 1 as element 0 can never be a duplicate
+      if (arr[i-1].BillsheetId !== arr[i].BillsheetId) {
+         ret.push(arr[i]);
+      }
+    }
+       return ret;
+    }
+      var card_names= [];
       $.getJSON(get_data_feed(feeds.billSheet), function (cards) {
-        resolve(cards.d.results);
-      }).fail(function () {
-        // not found, but lets fix this and return empty set
-        console.log('no offices found.... returning empty set');
-        resolve([]);
+        // debugger;
+        card_names = sort_unique(cards.d.results);
+        card_names.map(function(v, k) {
+          $('#profile-rate-cards ul').append('<li><a href="customBillSheet.htm?CardID='+v.BillsheetId+'">'+v.BillsheetName+'</a></li>');
+        });
       });
-    });
-
-    console.log(p2)
-
-
-
   }
 
   return {
