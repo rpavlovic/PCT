@@ -2,7 +2,7 @@
 * @module Style Currency for all places where it's displayed.
 * @version
 */
-var tems_currency = {
+var terms_currency = {
   'AUD': '$',
   'CAD': '$',
   'CHF': 'CHF',
@@ -17,18 +17,23 @@ var tems_currency = {
   'USD': '$'
 };
 
+var lastCall = '';
 var currencyStyles = (function ($) {
   'use strict';
 
-  //1. find currency from json endpont projectInfo/projectList
+  //1. find currency from json endpont ProjectInfoCollection.json
   function initCurrencyStyles(currency) {
     var class_name = currency.toLowerCase();
     $('.currency-sign').removeClass('usd').addClass(class_name);
-    tems_currency.map(function(val, key) {
-      console.log(val)
-    })
+    lastCall = currency;
   }
+
+  function currSymbol() {
+    return terms_currency[lastCall];
+  }
+
   return {
+    currSymbol:currSymbol,
     initCurrencyStyles:initCurrencyStyles
   };
 })($);

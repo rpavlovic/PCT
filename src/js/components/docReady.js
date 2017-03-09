@@ -11,7 +11,6 @@
     if (current_page.indexOf('?') != -1) {
       current_page = current_page.substring(0, current_page.indexOf('?'));
     }
-
     fetchToken();
     progressNav.initProgressNav('#progress-navigation');
 

@@ -272,6 +272,9 @@ var projectResourceTable = (function ($) {
           "data": "BillRate",
           "class": "td-billrate",
           "render": function (data, type, row, meta) {
+            if(row.Currency) {
+            currencyStyles.initCurrencyStyles(row.Currency);
+            }
             if (data) {
               return convertToDollar(parseFloat(data));
             }
@@ -331,7 +334,6 @@ var projectResourceTable = (function ($) {
           "BillRateOvride": resource.BillRateOvride,
           "Currency":projectInfo.Currency //from projectInfo
         };
-
         $.each(hrRows[resource.Rowno], function (k, v) {
           row['hour-' + k] = v;
         });
@@ -357,13 +359,10 @@ var projectResourceTable = (function ($) {
         "data": myRows,
         "deferRender": true,
         "paging": false,
-        "stateSave": true,
+        "stateSave": false,
         "info": false,
         "bAutoWidth": false,
         "ordering": true,
-        // "language": {
-        //   "emptyTable":"To add resource click on Add Resource button"
-        // },
         "columnDefs": [
           {
             "orderable": false,
@@ -423,9 +422,8 @@ var projectResourceTable = (function ($) {
         },
         "initComplete": function (settings, json) {
           //change currency class names.
-          currencyStyles.initCurrencyStyles(projectInfo.Currency);
-          //$( '#add-row').trigger( 'click');
           setTimeout(recalculateStuff, 1000);
+          currencyStyles.initCurrencyStyles(projectInfo.Currency);
         },
         "bDestroy": true
       });
@@ -438,6 +436,7 @@ var projectResourceTable = (function ($) {
           "Class": '',
           "Role": ''
         }).draw().node();
+        currencyStyles.initCurrencyStyles(projectInfo.Currency);
       }
       if(!projResourceTable.data().count()) {
         addRow();
@@ -525,8 +524,7 @@ var projectResourceTable = (function ($) {
       }
 
       function loadBillRate(nodes) {
-        var currency = tems_currency[nodes.closest('tr').find('.title :selected').data('currency')];
-
+        currency = currencyStyles.currSymbol();
         // the officeId, US01, US12, etc
         var Office = nodes.closest('tr').find('.office :selected').val();
         var EmpGradeName = nodes.closest('tr').find('.title :selected').text();

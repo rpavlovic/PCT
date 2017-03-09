@@ -13,6 +13,7 @@ var expenseTable = (function ($) {
 
   var deletePayloads = [];
   var categories = [];
+  var curr;
   categories.push({
     '0': 'Travel',
     '1': 'OOP',
@@ -41,7 +42,7 @@ var expenseTable = (function ($) {
       expenses = values[1].filter(matchProjID);
 
       expenses.forEach(function (expense) {
-        //expense.deliverables = deliverables;
+        curr = expense.Currency;
         data.push(expense);
       });
 
@@ -50,7 +51,7 @@ var expenseTable = (function ($) {
         "searching": false,
         "data": data,
         "paging": false,
-        "stateSave": true,
+        "stateSave": false,
         "info": false,
         "length": false,
         "bFilter": false,
@@ -116,17 +117,15 @@ var expenseTable = (function ($) {
             "title": "Amount",
             "data": "Amount",
             "defaultContent": '',
-            "render": function (data) {
-              return '<div contenteditable class="currency-sign usd">' + data + '</div>';
+            "render": function (data, type, set, meta) {
+              return '<div contenteditable class="currency-sign '+ curr.toLowerCase() +'">' + data + '</div>';
             }
           }
         ],
         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
           $(nRow).removeClass('odd even');
           $("td:last-child", nRow).addClass('amount num');
-          $("td:nth-last-of-type(-n+2)", nRow)
-          // .prop('contenteditable', true)
-            .addClass("contenteditable");
+          $("td:nth-last-of-type(-n+2)", nRow).addClass("contenteditable");
         },
         "bDestroy": true
       });
@@ -141,7 +140,6 @@ var expenseTable = (function ($) {
           Amount: '',
           CatDesc: ''
         }).draw().node();
-
         $('#project-expense-table tr:last-child').addClass('new-row');
       });
 
