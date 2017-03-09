@@ -8,8 +8,8 @@ var RegExDollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
 function convertToDollar(amount){
 
   if(amount && $.isNumeric(amount)) {
-    return "$" + amount.toFixed(2).replace(RegExDollar, "$1,");
-  }  else {
-    return "$" + 0.00;
+    return currencyStyles.currSymbol() + amount.toFixed(2).replace(RegExDollar, "$1,");
+  } else {
+    return currencyStyles.currSymbol() + 0.00;
   }
 }

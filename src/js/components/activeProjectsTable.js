@@ -31,16 +31,18 @@ var activeTableFunction = (function ($) {
 
     Promise.all([p1, p2])
       .then(function (values) {
+        var curr;
         var offices = values[0];
         var projects = values[1];
         projects.forEach(function (proj) {
-          var office = offices.find(function(val){
+          var office = offices.find(function(val) {
             return val.Office === proj.Office;
           });
           var officeName = office ? office.OfficeName : proj.Office;
           var planType = proj.Plantyp === 'WK' ? ' Weeks' : ' Months';
           proj.Duration = proj.Duration + planType;
           proj.Office = officeName
+          curr = proj.Currency;
         });
 
         var activeTable = table.DataTable({
@@ -101,6 +103,7 @@ var activeTableFunction = (function ($) {
               "defaultContent": '',
               "class": 'budget',
               "render": function (data, type, set, meta) {
+                currencyStyles.initCurrencyStyles(set.Currency);
                 if (data) {
                   return '<div data-val="' + data + '">' + data + '</div>';
                 }
@@ -142,7 +145,8 @@ var activeTableFunction = (function ($) {
             $(nRow).removeClass('odd even');
           },
           //when json is loaded add the filters to the toolbar div.
-          "fnInitComplete": function (nRow) {
+          "initComplete": function (nRow) {
+            // currencyStyles.initCurrencyStyles(curr);
             this.api().columns().every(function (index, fn) {
               var column = this;
               var field_wrapper = $('<div class="field-wrapper"></div>');
@@ -175,9 +179,9 @@ var activeTableFunction = (function ($) {
 
             // calculate the budget after the fact
             $('#active-projects tbody td.budget').each(function (k, v) {
-
               var p = projectSummaryCalculations.calculateBudget($(v).text());
               p.then(function (budget) {
+                //currencyStyles.initCurrencyStyles(aData.Currency);
                   $(v).text(convertToDollar(budget));
               });
             });

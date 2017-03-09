@@ -100,7 +100,9 @@ var projectSummary = (function ($) {
       summaryDeliverablesTable.initSummaryDeliverablesTable(projectDeliverables, projectResources, projectExpenses);
       summaryOfficeTable.initSummaryOfficeTable(projectResources, offices, rateCards);
       summaryRoleTable.initSummaryRoleTable(projectResources, rateCards);
+
     });
+
   }
 
   function fillProjectInfoSummary(projectInfo) {
@@ -110,8 +112,8 @@ var projectSummary = (function ($) {
 
     if (project.length) {
       project = project.pop();
+      currencyStyles.initCurrencyStyles(project.Currency);
       $('#client-name').text(project.Clientname);
-
       $('#country').text(project.Region);
       $('#office').text(project.Office);
       $('#project-name').text(project.Projname);
@@ -165,7 +167,6 @@ var projectSummary = (function ($) {
     } else {
       class_name = "low-value";
     }
-
     // budget = ARBF or SRBF + Expenses
     $('#total-budget').text(convertToDollar(budget));
     $('#expenses').text(convertToDollar( totalExpenses )).addClass("low-value");
