@@ -153,7 +153,6 @@ var expenseTable = (function ($) {
         console.log(projExpenseTable);
         var rows = projExpenseTable.rows();
         var rowSum = 0;
-        var tableFeeSum = 0;
 
         for (var i = 0; i < rows.context[0].aoData.length; i++) {
           // get sum of the hour column per row

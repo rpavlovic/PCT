@@ -813,7 +813,7 @@ var projectResourceTable = (function ($) {
           $('#modeling-table #avg-rate_target-resource').text('');
         }
 
-        var fixedFeeTarget = parseFloat($('#fixed-fee-target').text());
+        var fixedFeeTarget = parseFloat(convertToDecimal($('#fixed-fee-target').text()));
 
         if (!isNaN(fixedFeeTarget) && (tableHoursSum || totalCostSum)) {
           var contributionMarginFixedFee = ((fixedFeeTarget - totalCostSum) / fixedFeeTarget);
