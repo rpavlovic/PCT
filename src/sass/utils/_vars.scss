@@ -53,7 +53,7 @@ $breakpoints: (
   font-family: normal italic “EYLightItalic”, Arial;
 }
 .hide {
-  display: none;
+  display: none !important;
 }
 .show {
   display: inherit;
