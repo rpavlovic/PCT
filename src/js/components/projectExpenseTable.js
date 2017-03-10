@@ -118,8 +118,6 @@ var expenseTable = (function ($) {
             "data": "Amount",
             "defaultContent": '',
             "render": function (data, type, set, meta) {
-              console.log(set);
-              console.log(curr);
               if(curr) {
                 return '<div contenteditable class="currency-sign '+ curr.toLowerCase() +'">' + data + '</div>';
               } else {
@@ -134,8 +132,46 @@ var expenseTable = (function ($) {
           $("td:last-child", nRow).addClass('amount num');
           $("td:nth-last-of-type(-n+2)", nRow).addClass("contenteditable");
         },
+        "drawCallback": function(row) {
+          $('.contenteditable').on('keyup focusout', function (e) {
+            recalculateStuff();
+          });
+        },
+        "createdRow": function (row, data, index) {
+          $('tfoot th').removeClass('center');
+        },
+         "initComplete": function (settings, json) {
+            setTimeout(recalculateStuff, 1000);
+            if(curr) {
+              currencyStyles.initCurrencyStyles(curr);
+            }
+         },
         "bDestroy": true
       });
+
+      function recalculateStuff() {
+        console.log(projExpenseTable);
+        var rows = projExpenseTable.rows();
+        var rowSum = 0;
+        var tableFeeSum = 0;
+
+        for (var i = 0; i < rows.context[0].aoData.length; i++) {
+          // get sum of the hour column per row
+          var amtPerRow = 0;
+          for (var j = 5; j < rows.context[0].aoData[i].anCells.length; j++) {
+
+            var amtCells = parseFloat($(rows.context[0].aoData[i].anCells[j]).text());
+            amtPerRow += (!isNaN(amtCells) && amtCells.length !== 0) ? amtCells : 0;
+            rowSum += amtPerRow;
+           }
+        }
+
+        if (rowSum) {
+          $('tfoot th.total-fees').text(convertToDollar(rowSum));
+        } else {
+          $('tfoot th.total-fees').text('');
+        }
+      }
 
       //add row
       $('.project-expense').on('click', '#add-row', function (e) {
@@ -197,7 +233,6 @@ var expenseTable = (function ($) {
           url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
           data: payloads,
           complete: function (xhr, status, data) {
-            console.log(data);
             var timeout = getParameterByName('timeout');
             console.log("navigating to new window in" + timeout + "seconds");
             timeout = timeout ? timeout : 1;
