@@ -126,9 +126,7 @@ var projectSummary = (function ($) {
   }
 
   function financialSummaryTable(marginModeling, projectResources, projectExpenses) {
-    // console.log(marginModeling);
-    // console.log(projectResources);
-    // console.log(projectExpenses);
+    var ModelType;
 
     var ARBF = marginModeling.find(function (val) {
       return val.ModelType === 'ARBF';
@@ -137,16 +135,38 @@ var projectSummary = (function ($) {
       return val.ModelType === 'SRBF';
     });
 
+    var TMBF = marginModeling.find(function (val) {
+      return val.ModelType === 'TMBF';
+    });
+    var FFT = marginModeling.find(function (val) {
+      return val.ModelType === 'FFT';
+    });
+
     var totalExpenses = projectExpenses.reduce(function (acc, val) {
       return acc + parseFloat(val.Amount);
     }, 0);
 
-    // console.log(totalExpenses);
-    // console.log(ARBF);
-    // console.log(SRBF);
+    var totalFees;
+    var contributionMargin;
+    if(FFT.Fees > 0) {
+      totalFees = FFT.Fees;
+    } else if(TMBF.Fees > 0) {
+      totalFees = TMBF.Fees;
+    } else if(ARBF.Fees > 0) {
+      totalFees = ARBF.Fees;
+    } else if(SRBF.Fees > 0) {
+      totalFees = SRBF.Fees;
+    }
 
-    var totalFees = ARBF.Fees ? ARBF.Fees : SRBF.Fees;
-    var contributionMargin = ARBF.CtrMargin ? ARBF.CtrMargin : SRBF.CtrMargin;
+    if(FFT.CtrMargin > 0) {
+      contributionMargin = FFT.CtrMargin;
+    } else if(TMBF.CtrMargin > 0) {
+      contributionMargin = TMBF.CtrMargin;
+    } else if(ARBF.CtrMargin > 0) {
+      contributionMargin = ARBF.CtrMargin;
+    } else if(SRBF.CtrMargin > 0) {
+      contributionMargin = SRBF.CtrMargin;
+    }
 
     var budget = parseFloat(totalFees) + totalExpenses;
 

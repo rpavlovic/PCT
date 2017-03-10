@@ -43,7 +43,6 @@ var projectResourceTable = (function ($) {
       });
     });
   }
-
   function initProjectResourceTable() {
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, projectID), function (deliverables) {
@@ -871,7 +870,7 @@ var projectResourceTable = (function ($) {
           console.log("navigating to new window in" + timeout + "seconds");
           timeout = timeout ? timeout : 1;
           setTimeout(function () {
-            window.location.href = $('#btn-save').attr('href');
+           window.location.href = $('#btn-save').attr('href');
           }, timeout);
         },
         always: function (xhr, status, data) {
@@ -879,13 +878,16 @@ var projectResourceTable = (function ($) {
           console.log("navigating to new window in" + timeout + "seconds");
           timeout = timeout ? timeout : 1;
           setTimeout(function () {
-            window.location.href = $('#btn-save').attr('href');
+           window.location.href = $('#btn-save').attr('href');
           }, timeout);
         }
       });
     });
   }
-
+var selected_modeling_tab;
+$("#modeling-table input[type=\"radio\"]").on('change', function() {
+  selected_modeling_tab = $(this).attr('id');
+});
 
  //Posting the Table to JSON
   function buildModelingTablePayload() {
@@ -905,7 +907,8 @@ var projectResourceTable = (function ($) {
         "Fees": convertToDecimal($("#modeling-table tbody #total-fee_adjusted-resource").text()) ? convertToDecimal($("#modeling-table tbody #total-fee_adjusted-resource").text()) : "0.0",
         "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_adjusted-resource").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_adjusted-resource").text()) : "0.0",
         "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_adjusted-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_adjusted-resource").text()) : "0.0",
-        "Currency": "USD"
+        "Currency": "USD",
+        "TabSelected": selected_modeling_tab
       }
     });
 
@@ -923,7 +926,8 @@ var projectResourceTable = (function ($) {
         "Fees": convertToDecimal($("#modeling-table tbody #total-fee_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #total-fee_standard-resource").text()) : "0.0",
         "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_standard-resource").text()) : "0.0",
         "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()) : "0.0",
-        "Currency": "USD" // need to change this to the correct currency
+        "Currency": "USD", // need to change this to the correct currency
+        "TabSelected": selected_modeling_tab
       }
     });
 
@@ -941,7 +945,8 @@ var projectResourceTable = (function ($) {
         "Fees": convertToDecimal($("#modeling-table tbody #fixed-fee-target").text()) ? convertToDecimal($("#modeling-table tbody #fixed-fee-target").text()) : "0.0",
         "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_fixed-fee").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_fixed-fee").text()) : "0.0",
         "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()) : "0.0",
-        "Currency": "USD"
+        "Currency": "USD",
+        "TabSelected": selected_modeling_tab
       }
     });
     payloads.push({
@@ -958,10 +963,11 @@ var projectResourceTable = (function ($) {
         "Fees": convertToDecimal($("#modeling-table tbody #total-fee_target-resource").text()) ? convertToDecimal($("#modeling-table tbody #total-fee_target-resource").text()) : "0.0",
         "CtrMargin": convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()) ? convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()) : "0.0",
         "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()) : "0.0",
-        "Currency": "USD"
+        "Currency": "USD",
+        "TabSelected": selected_modeling_tab
       }
     });
-
+console.log(payloads)
     return payloads;
   }
 
