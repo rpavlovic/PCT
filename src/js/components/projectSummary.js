@@ -148,6 +148,7 @@ var projectSummary = (function ($) {
 
     var totalFees;
     var contributionMargin;
+
     if(FFT.Fees > 0) {
       totalFees = FFT.Fees;
     } else if(TMBF.Fees > 0) {
