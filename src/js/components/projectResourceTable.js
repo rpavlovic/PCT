@@ -967,7 +967,6 @@ $("#modeling-table input[type=\"radio\"]").on('change', function() {
         "TabSelected": selected_modeling_tab
       }
     });
-console.log(payloads)
     return payloads;
   }
 
