@@ -273,7 +273,7 @@ var projectResourceTable = (function ($) {
           "class": "td-billrate",
           "render": function (data, type, row, meta) {
             if(row.Currency) {
-            currencyStyles.initCurrencyStyles(row.Currency);
+              currencyStyles.initCurrencyStyles(row.Currency);
             }
             if (data) {
               return convertToDollar(parseFloat(data));

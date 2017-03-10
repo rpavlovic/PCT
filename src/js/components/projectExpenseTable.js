@@ -118,7 +118,14 @@ var expenseTable = (function ($) {
             "data": "Amount",
             "defaultContent": '',
             "render": function (data, type, set, meta) {
-              return '<div contenteditable class="currency-sign '+ curr.toLowerCase() +'">' + data + '</div>';
+              console.log(set);
+              console.log(curr);
+              if(curr) {
+                return '<div contenteditable class="currency-sign '+ curr.toLowerCase() +'">' + data + '</div>';
+              } else {
+                return '<div contenteditable class="currency-sign usd">' + data + '</div>';
+              }
+
             }
           }
         ],
@@ -141,6 +148,10 @@ var expenseTable = (function ($) {
           CatDesc: ''
         }).draw().node();
         $('#project-expense-table tr:last-child').addClass('new-row');
+        if(curr) {
+          currencyStyles.initCurrencyStyles(curr);
+        }
+
       });
 
       //remove row

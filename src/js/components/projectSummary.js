@@ -121,7 +121,7 @@ var projectSummary = (function ($) {
       $('#duration').text(project.Duration);
       $('#comp-type').text(project.Comptyp);
       $('#rate-card').text(project.BillsheetId);
-      $('textarea[name="comments"]').text(project.Comments)
+      $('textarea[name="comments"]').text(project.Comments);
     }
   }
 
