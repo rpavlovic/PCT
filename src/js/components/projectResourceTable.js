@@ -161,9 +161,11 @@ var projectResourceTable = (function ($) {
       var fixedFeeTarget = marginModeling.filter(function (obj) {
         return obj.ModelType === 'FFT';
       });
-
+      var Comma = /(\d)(?=(\d\d\d)+(?!\d))/g;
       if (fixedFeeTarget.length && parseFloat(fixedFeeTarget[0].Fees)) {
-        $('#fixed-fee-target').text(convertToDecimal(fixedFeeTarget[0].Fees));
+        var fixedFee = parseFloat(convertToDecimal(fixedFeeTarget[0].Fees)).toFixed(2);
+
+        $('#fixed-fee-target').text(fixedFee.replace(Comma, "1,"));
       }
       var hrRows = {};
       var maxDuration = 0;
@@ -811,7 +813,7 @@ var projectResourceTable = (function ($) {
           $('#modeling-table #avg-rate_target-resource').text('');
         }
 
-        var fixedFeeTarget = parseFloat($('#fixed-fee-target').text());
+        var fixedFeeTarget = parseFloat(convertToDecimal($('#fixed-fee-target').text()));
 
         if (!isNaN(fixedFeeTarget) && (tableHoursSum || totalCostSum)) {
           var contributionMarginFixedFee = ((fixedFeeTarget - totalCostSum) / fixedFeeTarget);
