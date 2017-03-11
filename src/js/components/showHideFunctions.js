@@ -36,9 +36,9 @@ var showHide = (function ($) {
   $(".project-resources select#rate-card").on("change", function() {
     console.log($(this)[0].selectedIndex)
     if($(this)[0].selectedIndex === 0) {
-      $(".col-2 a.view-card-rate").fadeOut('slow').addClass('hide');
+      $(".col-4 a.view-card-rate").fadeOut('slow').addClass('hide');
     } else {
-      $(".col-2 a.view-card-rate").fadeIn('slow').removeClass('hide');
+      $(".col-4 a.view-card-rate").fadeIn('slow').removeClass('hide');
     }
   });
 
