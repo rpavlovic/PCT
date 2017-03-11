@@ -193,6 +193,7 @@ var expenseTable = (function ($) {
       $('#project-expense-table tbody').on('click', '.remove', function (e) {
         e.preventDefault();
         projExpenseTable.row($(this).parents('tr')).remove().draw(false);
+        recalculateStuff();
       });
 
       $('.project-expense #btn-save').on('click', function (event) {

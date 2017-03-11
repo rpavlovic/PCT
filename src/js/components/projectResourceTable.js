@@ -161,11 +161,11 @@ var projectResourceTable = (function ($) {
       var fixedFeeTarget = marginModeling.filter(function (obj) {
         return obj.ModelType === 'FFT';
       });
-      var Comma = /(\d)(?=(\d\d\d)+(?!\d))/g;
+      var comma = /(\d)(?=(\d\d\d)+(?!\d))/g;
       if (fixedFeeTarget.length && parseFloat(fixedFeeTarget[0].Fees)) {
         var fixedFee = parseFloat(convertToDecimal(fixedFeeTarget[0].Fees)).toFixed(2);
 
-        $('#fixed-fee-target').text(fixedFee.replace(Comma, "1,"));
+        $('#fixed-fee-target').text(fixedFee.replace(comma, "1,"));
       }
       var hrRows = {};
       var maxDuration = 0;
@@ -462,7 +462,7 @@ var projectResourceTable = (function ($) {
       $('#rate-card').on('change', function (event) {
         var url = $(this).attr('href');
         var CardID = $(this).find(':selected').val();
-        url = updateQueryString('CardID', CardID, url);
+            url = updateQueryString('CardID', CardID, url);
         var p = new Promise(function (resolve, reject) {
 
           $.getJSON(get_data_feed(feeds.billSheet, CardID), function (cards) {
@@ -701,6 +701,7 @@ var projectResourceTable = (function ($) {
           if (!isAdjusted && parseFloat(billRateOverride)) {
             isAdjusted = true;
           }
+
           var totalFeePerRow = parseFloat(hoursPerRow) * rate;
           var totalStandardFeePerRow = parseFloat(hoursPerRow) * billRate;
           var totalCostPerRow = parseFloat(hoursPerRow) * costRate;
@@ -772,6 +773,14 @@ var projectResourceTable = (function ($) {
               $(active_modeling_tabs[1]).addClass('active');
               $(active_modeling_tabs[1]).children('input').prop('checked', true);
             }
+            // if(parseFloat($('#fixed-fee-target').text())) {
+            //   $(active_modeling_tabs[4]).addClass('active');
+            //   $(active_modeling_tabs[4]).children('input').prop('checked', true);
+            //   $(active_modeling_tabs[2]).removeClass('active');
+            //   $(active_modeling_tabs[2]).children('input').prop('checked', false);
+            //   $(active_modeling_tabs[1]).removeClass('active');
+            //   $(active_modeling_tabs[1]).children('input').prop('checked', false);
+            // }
           }
 
           activateStates();
