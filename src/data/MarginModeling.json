@@ -1,18 +1,20 @@
 {
   "d": {
-    "results": [ {
-      "__metadata": {
-        "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='1000103',ModelType='ARBF')",
-        "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='1000103',ModelType='ARBF')",
-        "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+    "results": [
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='1000103',ModelType='ARBF')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='1000103',ModelType='ARBF')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": "1000100",
+        "ModelType": "ARBF",
+        "Fees": "110.0",
+        "CtrMargin": "25.0",
+        "AvgRate": "100.0",
+        "Currency": "USD",
+        "Selected" : "false"
       },
-      "Projid": "1000100",
-      "ModelType": "ARBF",
-      "Fees": "110.0",
-      "CtrMargin": "25.0",
-      "AvgRate": "100.0",
-      "Currency": "USD"
-    },
       {
         "__metadata": {
           "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='1000103',ModelType='FFT')",
@@ -24,7 +26,8 @@
         "Fees": "140000.0",
         "CtrMargin": "25.0",
         "AvgRate": "110.0",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "true"
       },
       {
         "__metadata": {
@@ -37,7 +40,8 @@
         "Fees": "500.0",
         "CtrMargin": "50.0",
         "AvgRate": "250.0",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -50,7 +54,8 @@
         "Fees": "120.0",
         "CtrMargin": "25.0",
         "AvgRate": "120.0",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -63,7 +68,8 @@
         "Fees": "110.0",
         "CtrMargin": "25.0",
         "AvgRate": "100.0",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -76,7 +82,8 @@
         "Fees": "140000.0",
         "CtrMargin": "25.0",
         "AvgRate": "110.0",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -89,7 +96,8 @@
         "Fees": "500.0",
         "CtrMargin": "50.0",
         "AvgRate": "250.0",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -102,7 +110,8 @@
         "Fees": "120.0",
         "CtrMargin": "25.0",
         "AvgRate": "120.0",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -115,7 +124,8 @@
         "Fees": "0.00",
         "CtrMargin": "0.00",
         "AvgRate": "0.00",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -128,7 +138,8 @@
         "Fees": "9913.60",
         "CtrMargin": "80.00",
         "AvgRate": "154.90",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -141,7 +152,8 @@
         "Fees": "10080.00",
         "CtrMargin": "80.00",
         "AvgRate": "157.50",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -154,7 +166,8 @@
         "Fees": "9913.60",
         "CtrMargin": "80.00",
         "AvgRate": "154.90",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -167,7 +180,8 @@
         "Fees": "2600.00",
         "CtrMargin": "93.00",
         "AvgRate": "216.67",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -180,7 +194,8 @@
         "Fees": "1800.00",
         "CtrMargin": "90.00",
         "AvgRate": "150.00",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -193,7 +208,8 @@
         "Fees": "2740.00",
         "CtrMargin": "93.00",
         "AvgRate": "228.33",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -206,7 +222,8 @@
         "Fees": "1880.00",
         "CtrMargin": "90.00",
         "AvgRate": "156.67",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -219,7 +236,8 @@
         "Fees": "16460.00",
         "CtrMargin": "91.00",
         "AvgRate": "153.83",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -232,7 +250,8 @@
         "Fees": "0.00",
         "CtrMargin": "0.00",
         "AvgRate": "0.00",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -245,7 +264,8 @@
         "Fees": "26060.00",
         "CtrMargin": "94.00",
         "AvgRate": "243.55",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       },
       {
         "__metadata": {
@@ -258,7 +278,8 @@
         "Fees": "0.00",
         "CtrMargin": "0.00",
         "AvgRate": "0.00",
-        "Currency": "USD"
+        "Currency": "USD",
+        "Selected" : "false"
       }
     ]
   }
