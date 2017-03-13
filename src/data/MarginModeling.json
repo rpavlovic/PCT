@@ -97,7 +97,7 @@
         "CtrMargin": "50.0",
         "AvgRate": "250.0",
         "Currency": "USD",
-        "Selected" : "false"
+        "Selected" : "true"
       },
       {
         "__metadata": {
@@ -153,7 +153,7 @@
         "CtrMargin": "80.00",
         "AvgRate": "157.50",
         "Currency": "USD",
-        "Selected" : "false"
+        "Selected" : "true"
       },
       {
         "__metadata": {
@@ -223,7 +223,7 @@
         "CtrMargin": "90.00",
         "AvgRate": "156.67",
         "Currency": "USD",
-        "Selected" : "false"
+        "Selected" : "true"
       },
       {
         "__metadata": {
@@ -251,7 +251,7 @@
         "CtrMargin": "0.00",
         "AvgRate": "0.00",
         "Currency": "USD",
-        "Selected" : "false"
+        "Selected" : "true"
       },
       {
         "__metadata": {
