@@ -36,13 +36,21 @@ var expenseTable = (function ($) {
       });
     });
 
-    Promise.all([p1, p2]).then(function (values) {
+    var p3 = new Promise(function (resolve, reject) {
+      $.getJSON(get_data_feed(feeds.project, projectID), function (projects) {
+        resolve(projects.d.results.find(filterByProjectId, projectID));
+      });
+    });
+
+    Promise.all([p1, p2, p3]).then(function (values) {
       var data = [];
       deliverables = values[0].filter(matchProjID);
       expenses = values[1].filter(matchProjID);
+      var projectInfo = values[2];
+
+      curr = projectInfo.Currency ? projectInfo.Currency : 'USD';
 
       expenses.forEach(function (expense) {
-        curr = expense.Currency;
         data.push(expense);
       });
 
@@ -118,12 +126,7 @@ var expenseTable = (function ($) {
             "data": "Amount",
             "defaultContent": '',
             "render": function (data, type, set, meta) {
-              if(curr) {
-                return '<div contenteditable class="currency-sign '+ curr.toLowerCase() +'">' + data + '</div>';
-              } else {
-                return '<div contenteditable class="currency-sign usd">' + data + '</div>';
-              }
-
+              return '<div contenteditable class="currency-sign '+ curr.toLowerCase() +'">' + data + '</div>';
             }
           }
         ],
@@ -142,9 +145,7 @@ var expenseTable = (function ($) {
         },
          "initComplete": function (settings, json) {
             setTimeout(recalculateStuff, 1000);
-            if(curr) {
-              currencyStyles.initCurrencyStyles(curr);
-            }
+            currencyStyles.initCurrencyStyles(curr);
          },
         "bDestroy": true
       });
@@ -166,7 +167,7 @@ var expenseTable = (function ($) {
         }
 
         if (rowSum) {
-          $('tfoot th.total-fees').text(convertToDollar(rowSum));
+          $('tfoot th.total-fees').text(convertToDollar(projectInfo.Currency, rowSum));
         } else {
           $('tfoot th.total-fees').text('');
         }
@@ -183,10 +184,7 @@ var expenseTable = (function ($) {
           CatDesc: ''
         }).draw().node();
         $('#project-expense-table tr:last-child').addClass('new-row');
-        if(curr) {
-          currencyStyles.initCurrencyStyles(curr);
-        }
-
+        currencyStyles.initCurrencyStyles(curr);
       });
 
       //remove row

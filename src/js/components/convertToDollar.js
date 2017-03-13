@@ -5,11 +5,11 @@
 
 var RegExDollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
 
-function convertToDollar(amount){
-
+function convertToDollar(symbol, amount){
+  symbol = terms_currency[symbol];
   if(amount && $.isNumeric(amount)) {
-    return currencyStyles.currSymbol() + amount.toFixed(2).replace(RegExDollar, "$1,");
+    return symbol + amount.toFixed(2).replace(RegExDollar, "$1,");
   } else {
-    return currencyStyles.currSymbol() + 0.00;
+    return symbol + 0.00;
   }
 }

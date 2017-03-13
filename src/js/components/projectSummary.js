@@ -8,12 +8,11 @@ var projectSummary = (function ($) {
 
   var projectId = getParameterByName('projID');
 
-
   function initProjectSummary() {
 
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.project, projectId), function (projects) {
-        resolve(projects.d.results.filter(filterByProjectId, projectId));
+        resolve(projects.d.results.find(filterByProjectId, projectId));
       });
     });
 
@@ -69,6 +68,7 @@ var projectSummary = (function ($) {
         });
       });
     }
+
     var p7 = Promise.resolve(p4)
       .then(function (resources) {
         var promiseArray = [];
@@ -96,50 +96,29 @@ var projectSummary = (function ($) {
       var rateCards = values[6];
 
       fillProjectInfoSummary(projectInfo);
-      financialSummaryTable(marginModeling, projectResources, projectExpenses);
-      summaryDeliverablesTable.initSummaryDeliverablesTable(projectDeliverables, projectResources, projectExpenses);
-      summaryOfficeTable.initSummaryOfficeTable(projectResources, offices, rateCards);
-      summaryRoleTable.initSummaryRoleTable(projectResources, rateCards);
-
+      financialSummaryTable(projectInfo, marginModeling, projectResources, projectExpenses);
+      summaryDeliverablesTable.initSummaryDeliverablesTable(projectInfo, projectDeliverables, projectResources, projectExpenses);
+      summaryOfficeTable.initSummaryOfficeTable(projectInfo, projectResources, offices, rateCards);
+      summaryRoleTable.initSummaryRoleTable(projectInfo, projectResources, rateCards);
     });
-
   }
 
   function fillProjectInfoSummary(projectInfo) {
-    var project = projectInfo.filter(function (project) {
-      return project.Projid === projectId;
-    });
-
-    if (project.length) {
-      project = project.pop();
-      currencyStyles.initCurrencyStyles(project.Currency);
-      $('#client-name').text(project.Clientname);
-      $('#country').text(project.Region);
-      $('#office').text(project.Office);
-      $('#project-name').text(project.Projname);
-      $('#start-date').text(calcPrettyDate(project.EstStDate));
-      $('#duration').text(project.Duration);
-      $('#comp-type').text(project.Comptyp);
-      $('#rate-card').text(project.BillsheetId);
-      $('textarea[name="comments"]').text(project.Comments);
-    }
+    currencyStyles.initCurrencyStyles(projectInfo.Currency);
+    $('#client-name').text(projectInfo.Clientname);
+    $('#country').text(projectInfo.Region);
+    $('#office').text(projectInfo.Office);
+    $('#project-name').text(projectInfo.Projname);
+    $('#start-date').text(calcPrettyDate(projectInfo.EstStDate));
+    $('#duration').text(projectInfo.Duration);
+    $('#comp-type').text(projectInfo.Comptyp);
+    $('#rate-card').text(projectInfo.BillsheetId);
+    $('textarea[name="comments"]').text(projectInfo.Comments);
   }
 
-  function financialSummaryTable(marginModeling, projectResources, projectExpenses) {
-    var ModelType;
-
-    var ARBF = marginModeling.find(function (val) {
-      return val.ModelType === 'ARBF';
-    });
-    var SRBF = marginModeling.find(function (val) {
-      return val.ModelType === 'SRBF';
-    });
-
-    var TMBF = marginModeling.find(function (val) {
-      return val.ModelType === 'TMBF';
-    });
-    var FFT = marginModeling.find(function (val) {
-      return val.ModelType === 'FFT';
+  function financialSummaryTable(projectInfo, marginModeling, projectResources, projectExpenses) {
+    var selectedModel = marginModeling.find(function (val) {
+      return val.Selected === '1';
     });
 
     var totalExpenses = projectExpenses.reduce(function (acc, val) {
@@ -149,24 +128,10 @@ var projectSummary = (function ($) {
     var totalFees;
     var contributionMargin;
 
-    if(FFT.Fees > 0) {
-      totalFees = FFT.Fees;
-    } else if(TMBF.Fees > 0) {
-      totalFees = TMBF.Fees;
-    } else if(ARBF.Fees > 0) {
-      totalFees = ARBF.Fees;
-    } else if(SRBF.Fees > 0) {
-      totalFees = SRBF.Fees;
-    }
-
-    if(FFT.CtrMargin > 0) {
-      contributionMargin = FFT.CtrMargin;
-    } else if(TMBF.CtrMargin > 0) {
-      contributionMargin = TMBF.CtrMargin;
-    } else if(ARBF.CtrMargin > 0) {
-      contributionMargin = ARBF.CtrMargin;
-    } else if(SRBF.CtrMargin > 0) {
-      contributionMargin = SRBF.CtrMargin;
+    // do math based on the selected model tab..
+    if (selectedModel) {
+      totalFees = selectedModel.Fees;
+      contributionMargin = selectedModel.CtrMargin;
     }
 
     var budget = parseFloat(totalFees) + totalExpenses;
@@ -176,28 +141,24 @@ var projectSummary = (function ($) {
     }, 0);
 
     var netRevenue = budget - totalExpenses;
-    var blendedAvg = netRevenue/resourceTotalHours;
-    var oopFees = totalExpenses/totalFees;
-    if(totalFees <=0) {
+    var blendedAvg = netRevenue / resourceTotalHours;
+    var oopFees = totalExpenses / totalFees;
+    if (totalFees <= 0) {
       oopFees = 0;
     }
-    var class_name = '';
 
-    if(contributionMargin > 65) {
-      class_name="high-value";
-    } else {
-      class_name = "low-value";
-    }
+    var class_name = (contributionMargin > 65) ? "high-value" : "low-value";
+
     // budget = ARBF or SRBF + Expenses
-    $('#total-budget').text(convertToDollar(budget));
-    $('#expenses').text(convertToDollar( totalExpenses )).addClass("low-value");
-    $('#net-revenue').text(convertToDollar(netRevenue));
+    $('#total-budget').text(convertToDollar(projectInfo.Currency, budget));
+    $('#expenses').text(convertToDollar(projectInfo.Currency, totalExpenses)).addClass("low-value");
+    $('#net-revenue').text(convertToDollar(projectInfo.Currency, netRevenue));
 
     $('#contribution-margin').text(contributionMargin + '%').addClass(class_name);
 
     $('#oop-fees').text(oopFees.toFixed(2) + "%");
     $('#total-hours').text(resourceTotalHours);
-    $('#avg-rate').text(convertToDollar(blendedAvg));
+    $('#avg-rate').text(convertToDollar(projectInfo.Currency, blendedAvg));
 
   }
 

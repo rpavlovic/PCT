@@ -7,6 +7,13 @@ var projectSummaryCalculations = (function ($) {
   'use strict';
 
   function calculateBudget(projectId) {
+    var projectInfo = new Promise(function (resolve, reject) {
+      $.getJSON(get_data_feed(feeds.project, projectId), function (projects) {
+        // return only 1 project info
+        resolve(projects.d.results.find(filterByProjectId, projectId));
+      });
+    });
+
     var pExpenses = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectExpenses, projectId), function (projectDeliverables) {
         resolve(projectDeliverables.d.results.filter(filterByProjectId, projectId));
@@ -18,18 +25,24 @@ var projectSummaryCalculations = (function ($) {
       });
     });
 
-    return Promise.all([pExpenses, pResources]).then(function (values) {
-      var expenses = values[0];
-      var resources = values[1];
+    return Promise.all([projectInfo, pExpenses, pResources]).then(function (values) {
+      var projInfo = values[0];
+      var expenses = values[1];
+      var resources = values[2];
+
       var expenseTotal = expenses.reduce(function (acc, val) {
         return parseFloat(acc) + parseFloat(val.Amount);
       }, 0);
+
       var resourceTotalFee = resources.reduce(function (acc, val) {
         return parseFloat(acc) + parseFloat(val.TotalFee);
       }, 0);
-      return expenseTotal + resourceTotalFee;
-    });
 
+      return {
+        currency: projInfo.Currency,
+        budget: expenseTotal + resourceTotalFee
+      };
+    });
   }
 
   return {

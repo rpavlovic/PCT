@@ -4,7 +4,7 @@
  */
 var summaryRoleTable = (function ($) {
   'use strict';
-  function initSummaryRoleTable(projectResources, rateCards) {
+  function initSummaryRoleTable(projectInfo, projectResources, rateCards) {
     var byRoleTable = $("#breakdown-role-table");
     var rows = {};
 
@@ -50,7 +50,7 @@ var summaryRoleTable = (function ($) {
       else return acc;
     }, 0);
 
-    $('#roles-total').text(convertToDollar(rolesTotalFee));
+    $('#roles-total').text(convertToDollar(projectInfo.Currency, rolesTotalFee));
 
     byRoleTable.DataTable({
       dom: '<tip>',
@@ -86,7 +86,7 @@ var summaryRoleTable = (function ($) {
           "class": "office-total-fees",
           render: function (data, type, row) {
             if (data || isNaN(data)) {
-              return convertToDollar(data);
+              return convertToDollar(projectInfo.Currency, data);
             } else {
               return data;
             }

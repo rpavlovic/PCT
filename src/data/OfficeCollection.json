@@ -1620,6 +1620,33 @@
         "Telextens" : "",
         "Faxnumber" : "310-854-8101",
         "Currency" : "USD"
+      },
+      {
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('JP01')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('JP01')",
+          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
+        },
+        "Brand" : "WBJP",
+        "Company" : "JP10",
+        "Compname" : "Webe",
+        "Office" : "JP01",
+        "OfficeName" : "WS Japan",
+        "City" : "Tokyo",
+        "District" : "",
+        "Postalcode" : "55402",
+        "Pobox" : "",
+        "Street" : "Marquette Ave.",
+        "Housenum" : "510",
+        "Street2" : "",
+        "Building" : "",
+        "Floor" : "",
+        "Country" : "US",
+        "Region" : "MN",
+        "Telnumber" : "952-832-5000",
+        "Telextens" : "",
+        "Faxnumber" : "952-831-8241",
+        "Currency" : "JPY"
       }
     ]
   }

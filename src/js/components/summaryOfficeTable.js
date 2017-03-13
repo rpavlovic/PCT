@@ -4,7 +4,7 @@
  */
 var summaryOfficeTable = (function ($) {
   'use strict';
-  function initSummaryOfficeTable(projectResources, offices, rateCards) {
+  function initSummaryOfficeTable(projectInfo, projectResources, offices, rateCards) {
     var byOfficeTable = $("#breakdown-office-table");
     var rows = {};
     projectResources.forEach(function (resource) {
@@ -46,8 +46,8 @@ var summaryOfficeTable = (function ($) {
         return acc + parseFloat(val.fees);
       else return acc;
     }, 0);
-    $('#office-total-fees').text(convertToDollar(totalFees));
-    $('#office-total-currency').text(convertToDollar(totalFees));
+    $('#office-total-fees').text(convertToDollar(projectInfo.Currency, totalFees));
+    $('#office-total-currency').text(convertToDollar(projectInfo.Currency, totalFees));
 
     var totalHours = rows.reduce(function (acc, val) {
       if (val.hours)
@@ -92,7 +92,7 @@ var summaryOfficeTable = (function ($) {
           "class": "office-total-fees",
           render: function (data, type, row) {
             if (data || isNaN(data)) {
-              return convertToDollar(data);
+              return convertToDollar(projectInfo.Currency, data);
             } else {
               return data;
             }
@@ -105,7 +105,7 @@ var summaryOfficeTable = (function ($) {
           "class": "office-total-currency",
           render: function (data, type, row) {
             if (data || isNaN(data)) {
-              return convertToDollar(data);
+              return convertToDollar(projectInfo.Currency, data);
             } else {
               return data;
             }
