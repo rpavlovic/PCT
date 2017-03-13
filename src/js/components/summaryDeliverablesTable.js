@@ -158,7 +158,7 @@ var summaryDeliverablesTable = (function ($) {
           }
         },
         {
-          "title": "Hours %",
+          "title": "% of Total",
           "data": 'HoursPercentage',
           "defaultContent": "%",
           "class": "deliv-percent",
