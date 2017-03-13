@@ -4,7 +4,7 @@
  */
 var summaryDeliverablesTable = (function ($) {
   'use strict';
-  function initSummaryDeliverablesTable(deliverables, resources, expenses) {
+  function initSummaryDeliverablesTable(projectInfo, deliverables, resources, expenses) {
     var DeliverablesTable = $("#breakdown-delivery-table");
     var deliverablesBreakdown = {};
 
@@ -55,7 +55,7 @@ var summaryDeliverablesTable = (function ($) {
         return acc;
     }, 0);
 
-    $('#total-deliv-fees').text(convertToDollar(totalDeliverableFees));
+    $('#total-deliv-fees').text(convertToDollar(projectInfo.Currency, totalDeliverableFees));
 
     var totalExpenses = deliverables.reduce(function (acc, val) {
       if (val.TotalExpenses)
@@ -64,7 +64,7 @@ var summaryDeliverablesTable = (function ($) {
         return acc;
     }, 0);
 
-    $('#total-deliv-expenses').text(convertToDollar(totalExpenses));
+    $('#total-deliv-expenses').text(convertToDollar(projectInfo.Currency, totalExpenses));
 
     var totalBudget = deliverables.reduce(function (acc, val) {
       if (val.Budget)
@@ -73,7 +73,7 @@ var summaryDeliverablesTable = (function ($) {
         return acc;
     }, 0);
 
-    $('#total-deliv-budget').text(convertToDollar(totalBudget));
+    $('#total-deliv-budget').text(convertToDollar(projectInfo.Currency, totalBudget));
 
     var totalHours = deliverables.reduce(function (acc, val) {
       if (val.TotalHrs)
@@ -111,7 +111,7 @@ var summaryDeliverablesTable = (function ($) {
           "class": "deliv-fees",
           render: function (data, type, row) {
             if (data || isNaN(data)) {
-              return convertToDollar(data);
+              return convertToDollar(projectInfo.Currency, data);
             } else {
               return data;
             }
@@ -124,7 +124,7 @@ var summaryDeliverablesTable = (function ($) {
           "class": "deliv-expenses",
           render: function (data, type, row) {
             if (data || isNaN(data)) {
-              return convertToDollar(data);
+              return convertToDollar(projectInfo.Currency, data);
             } else {
               return data;
             }
@@ -137,7 +137,7 @@ var summaryDeliverablesTable = (function ($) {
           "class": "deliv-budget",
           render: function (data, type, row) {
             if (data || isNaN(data)) {
-              return convertToDollar(data);
+              return convertToDollar(projectInfo.Currency, data);
             } else {
               return data;
             }

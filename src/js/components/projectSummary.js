@@ -97,10 +97,10 @@ var projectSummary = (function ($) {
       var rateCards = values[6];
 
       fillProjectInfoSummary(projectInfo);
-      financialSummaryTable(marginModeling, projectResources, projectExpenses);
-      summaryDeliverablesTable.initSummaryDeliverablesTable(projectDeliverables, projectResources, projectExpenses);
-      summaryOfficeTable.initSummaryOfficeTable(projectResources, offices, rateCards);
-      summaryRoleTable.initSummaryRoleTable(projectResources, rateCards);
+      financialSummaryTable(projectInfo, marginModeling, projectResources, projectExpenses);
+      summaryDeliverablesTable.initSummaryDeliverablesTable(projectInfo, projectDeliverables, projectResources, projectExpenses);
+      summaryOfficeTable.initSummaryOfficeTable(projectInfo, projectResources, offices, rateCards);
+      summaryRoleTable.initSummaryRoleTable(projectInfo, projectResources, rateCards);
     });
   }
 
@@ -117,7 +117,7 @@ var projectSummary = (function ($) {
     $('textarea[name="comments"]').text(projectInfo.Comments);
   }
 
-  function financialSummaryTable(marginModeling, projectResources, projectExpenses) {
+  function financialSummaryTable(projectInfo, marginModeling, projectResources, projectExpenses) {
     var ModelType;
 
     var ARBF = marginModeling.find(function (val) {
@@ -181,15 +181,15 @@ var projectSummary = (function ($) {
       class_name = "low-value";
     }
     // budget = ARBF or SRBF + Expenses
-    $('#total-budget').text(convertToDollar(budget));
-    $('#expenses').text(convertToDollar(totalExpenses)).addClass("low-value");
-    $('#net-revenue').text(convertToDollar(netRevenue));
+    $('#total-budget').text(convertToDollar(projectInfo.Currency, budget));
+    $('#expenses').text(convertToDollar(projectInfo.Currency, totalExpenses)).addClass("low-value");
+    $('#net-revenue').text(convertToDollar(projectInfo.Currency, netRevenue));
 
     $('#contribution-margin').text(contributionMargin + '%').addClass(class_name);
 
     $('#oop-fees').text(oopFees.toFixed(2) + "%");
     $('#total-hours').text(resourceTotalHours);
-    $('#avg-rate').text(convertToDollar(blendedAvg));
+    $('#avg-rate').text(convertToDollar(projectInfo.Currency, blendedAvg));
 
   }
 
