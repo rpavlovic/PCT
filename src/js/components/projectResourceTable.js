@@ -279,12 +279,12 @@ var projectResourceTable = (function ($) {
           "data": "BillRate",
           "class": "td-billrate",
           "render": function (data, type, row, meta) {
-            if (row.Currency) {
-              currencyStyles.initCurrencyStyles(row.Currency);
-            }
-            if (data) {
-              return convertToDollar(projectInfo.Currency, parseFloat(data));
-            }
+            var rateCards = getRateCard(data.Officeid);
+            var rc = rateCards.find(function (val) {
+              return val.EmpGradeName === data.EmpGradeName && val.CostCenter === data.Practiceid;
+            });
+
+            return convertToDollar(rc.LocalCurrency, parseFloat(data.BillRate));
           }
         },
         {
@@ -337,9 +337,8 @@ var projectResourceTable = (function ($) {
           "Class": resource,
           "CostRate": resource,
           "CostCenterName": resource,
-          "BillRate": resource.BillRate,
-          "BillRateOvride": resource.BillRateOvride,
-          "Currency": projectInfo.Currency //from projectInfo
+          "BillRate": resource,
+          "BillRateOvride": resource.BillRateOvride
         };
         $.each(hrRows[resource.Rowno], function (k, v) {
           row['hour-' + k] = v;
@@ -533,7 +532,7 @@ var projectResourceTable = (function ($) {
       }
 
       function loadBillRate(nodes) {
-        currency = currencyStyles.currSymbol();
+//        currency = currencyStyles.currSymbol();
         // the officeId, US01, US12, etc
         var Office = nodes.closest('tr').find('.office :selected').val();
         var EmpGradeName = nodes.closest('tr').find('.title :selected').text();
@@ -547,13 +546,15 @@ var projectResourceTable = (function ($) {
         }
         else if (rates.length === 1) {
           var selectedRate = rates.pop();
-          nodes.closest('tr').find('.td-billrate').empty().append(currency + selectedRate.BillRate);
+          nodes.closest('tr').find('.td-billrate').empty().append(convertToDollar(selectedRate.LocalCurrency, parseFloat(selectedRate.BillRate)));
           //this doesn't work if costrate is hidden
           nodes.closest('tr').find('.td-costrate').empty().append(selectedRate.CostRate);
           //for calculations on resourceCalculation.js file
           resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
         }
       }
+
+
 
       function getOffices(Officeid) {
         var select = "<select class='office' name='Office'>";

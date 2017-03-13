@@ -135,6 +135,28 @@
       },
       {
         "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000101',Rowno='4')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000101',Rowno='4')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "Projid": "1000101",
+        "Duration": "8",
+        "Rowno": "004",
+        "DelvDesc": "Test Delv desc 4",
+        "Officeid": "US01",
+        "Class": "E4",
+        "EmpGradeName": "EVP, Digital",
+        "Practiceid": "US99313600",
+        "Role": "Manager1",
+        "ProposedRes": "Fourth Resource",
+        "BillRate": "400.000",
+        "BillRateOvride": "665.00",
+        "TotalHrs": 28,
+        "TotalFee": "7000.000",
+        "Plantyp": "WK"
+      },
+      {
+        "__metadata": {
           "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='4ec3f9a3-233f-4fca-8',Rowno='001')",
           "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='4ec3f9a3-233f-4fca-8',Rowno='001')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
