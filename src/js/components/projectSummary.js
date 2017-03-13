@@ -13,7 +13,7 @@ var projectSummary = (function ($) {
 
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.project, projectId), function (projects) {
-        resolve(projects.d.results.filter(filterByProjectId, projectId));
+        resolve(projects.d.results.find(filterByProjectId, projectId));
       });
     });
 
@@ -69,6 +69,7 @@ var projectSummary = (function ($) {
         });
       });
     }
+
     var p7 = Promise.resolve(p4)
       .then(function (resources) {
         var promiseArray = [];
@@ -100,29 +101,20 @@ var projectSummary = (function ($) {
       summaryDeliverablesTable.initSummaryDeliverablesTable(projectDeliverables, projectResources, projectExpenses);
       summaryOfficeTable.initSummaryOfficeTable(projectResources, offices, rateCards);
       summaryRoleTable.initSummaryRoleTable(projectResources, rateCards);
-
     });
-
   }
 
   function fillProjectInfoSummary(projectInfo) {
-    var project = projectInfo.filter(function (project) {
-      return project.Projid === projectId;
-    });
-
-    if (project.length) {
-      project = project.pop();
-      currencyStyles.initCurrencyStyles(project.Currency);
-      $('#client-name').text(project.Clientname);
-      $('#country').text(project.Region);
-      $('#office').text(project.Office);
-      $('#project-name').text(project.Projname);
-      $('#start-date').text(calcPrettyDate(project.EstStDate));
-      $('#duration').text(project.Duration);
-      $('#comp-type').text(project.Comptyp);
-      $('#rate-card').text(project.BillsheetId);
-      $('textarea[name="comments"]').text(project.Comments);
-    }
+    currencyStyles.initCurrencyStyles(projectInfo.Currency);
+    $('#client-name').text(projectInfo.Clientname);
+    $('#country').text(projectInfo.Region);
+    $('#office').text(projectInfo.Office);
+    $('#project-name').text(projectInfo.Projname);
+    $('#start-date').text(calcPrettyDate(projectInfo.EstStDate));
+    $('#duration').text(projectInfo.Duration);
+    $('#comp-type').text(projectInfo.Comptyp);
+    $('#rate-card').text(projectInfo.BillsheetId);
+    $('textarea[name="comments"]').text(projectInfo.Comments);
   }
 
   function financialSummaryTable(marginModeling, projectResources, projectExpenses) {
@@ -149,23 +141,23 @@ var projectSummary = (function ($) {
     var totalFees;
     var contributionMargin;
 
-    if(FFT.Fees > 0) {
+    if (FFT.Fees > 0) {
       totalFees = FFT.Fees;
-    } else if(TMBF.Fees > 0) {
+    } else if (TMBF.Fees > 0) {
       totalFees = TMBF.Fees;
-    } else if(ARBF.Fees > 0) {
+    } else if (ARBF.Fees > 0) {
       totalFees = ARBF.Fees;
-    } else if(SRBF.Fees > 0) {
+    } else if (SRBF.Fees > 0) {
       totalFees = SRBF.Fees;
     }
 
-    if(FFT.CtrMargin > 0) {
+    if (FFT.CtrMargin > 0) {
       contributionMargin = FFT.CtrMargin;
-    } else if(TMBF.CtrMargin > 0) {
+    } else if (TMBF.CtrMargin > 0) {
       contributionMargin = TMBF.CtrMargin;
-    } else if(ARBF.CtrMargin > 0) {
+    } else if (ARBF.CtrMargin > 0) {
       contributionMargin = ARBF.CtrMargin;
-    } else if(SRBF.CtrMargin > 0) {
+    } else if (SRBF.CtrMargin > 0) {
       contributionMargin = SRBF.CtrMargin;
     }
 
@@ -176,21 +168,21 @@ var projectSummary = (function ($) {
     }, 0);
 
     var netRevenue = budget - totalExpenses;
-    var blendedAvg = netRevenue/resourceTotalHours;
-    var oopFees = totalExpenses/totalFees;
-    if(totalFees <=0) {
+    var blendedAvg = netRevenue / resourceTotalHours;
+    var oopFees = totalExpenses / totalFees;
+    if (totalFees <= 0) {
       oopFees = 0;
     }
     var class_name = '';
 
-    if(contributionMargin > 65) {
-      class_name="high-value";
+    if (contributionMargin > 65) {
+      class_name = "high-value";
     } else {
       class_name = "low-value";
     }
     // budget = ARBF or SRBF + Expenses
     $('#total-budget').text(convertToDollar(budget));
-    $('#expenses').text(convertToDollar( totalExpenses )).addClass("low-value");
+    $('#expenses').text(convertToDollar(totalExpenses)).addClass("low-value");
     $('#net-revenue').text(convertToDollar(netRevenue));
 
     $('#contribution-margin').text(contributionMargin + '%').addClass(class_name);
