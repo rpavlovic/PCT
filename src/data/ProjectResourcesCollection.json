@@ -85,8 +85,8 @@
         "ProposedRes": "Resource Name 1",
         "BillRate": "36.000",
         "BillRateOvride": "75.00",
-        "TotalHrs": 22,
-        "TotalFee": "2280.000",
+        "TotalHrs": 52,
+        "TotalFee": "3900.00",
         "Plantyp": "WK"
       },
       {
@@ -107,8 +107,8 @@
         "ProposedRes": "Resource Name #2",
         "BillRate": "50.000",
         "BillRateOvride": "75.00",
-        "TotalHrs": 24,
-        "TotalFee": "8280.000",
+        "TotalHrs": 52,
+        "TotalFee": "3900.00",
         "Plantyp": "WK"
       },
       {
@@ -129,8 +129,8 @@
         "ProposedRes": "Third Resource",
         "BillRate": "400.000",
         "BillRateOvride": "665.00",
-        "TotalHrs": 28,
-        "TotalFee": "7000.000",
+        "TotalHrs": 52,
+        "TotalFee": "34580.00",
         "Plantyp": "WK"
       },
       {
@@ -152,7 +152,7 @@
         "BillRate": "400.000",
         "BillRateOvride": "665.00",
         "TotalHrs": 28,
-        "TotalFee": "7000.000",
+        "TotalFee": "18620.00",
         "Plantyp": "WK"
       },
       {

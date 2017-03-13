@@ -579,6 +579,102 @@
       },
       {
         "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='002',Plantyp='WK',Cellid='R2C1')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='002',Plantyp='WK',Cellid='R2C1')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "1000101",
+        "Rowno": "004",
+        "Plantyp": "WK",
+        "Cellid": "R4C1",
+        "Planhours": 4
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='002',Plantyp='WK',Cellid='R2C2')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='002',Plantyp='WK',Cellid='R2C2')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "1000101",
+        "Rowno": "004",
+        "Plantyp": "WK",
+        "Cellid": "R2C2",
+        "Planhours": 8
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='002',Plantyp='WK',Cellid='R2C3')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='002',Plantyp='WK',Cellid='R2C3')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "1000101",
+        "Rowno": "004",
+        "Plantyp": "WK",
+        "Cellid": "R4C3",
+        "Planhours": 8
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='002',Plantyp='WK',Cellid='R2C4')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='002',Plantyp='WK',Cellid='R2C4')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "1000101",
+        "Rowno": "004",
+        "Plantyp": "WK",
+        "Cellid": "R4C4",
+        "Planhours": 4
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='002',Plantyp='WK',Cellid='R2C5')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='002',Plantyp='WK',Cellid='R2C5')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "1000101",
+        "Rowno": "004",
+        "Plantyp": "WK",
+        "Cellid": "R4C5",
+        "Planhours": 4
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='002',Plantyp='WK',Cellid='R2C6')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='002',Plantyp='WK',Cellid='R2C6')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "1000101",
+        "Rowno": "004",
+        "Plantyp": "WK",
+        "Cellid": "R4C6",
+        "Planhours": 0
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='002',Plantyp='WK',Cellid='R2C7')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='002',Plantyp='WK',Cellid='R2C7')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "1000101",
+        "Rowno": "004",
+        "Plantyp": "WK",
+        "Cellid": "R4C7",
+        "Planhours": 0
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='002',Plantyp='WK',Cellid='R2C8')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='1000103',Rowno='002',Plantyp='WK',Cellid='R2C8')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "1000101",
+        "Rowno": "004",
+        "Plantyp": "WK",
+        "Cellid": "R4C8",
+        "Planhours": 0
+      },
+      {
+        "__metadata": {
           "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='4ec3f9a3-233f-4fca-8',Rowno='001',Plantyp='WK',Cellid='R1C1')",
           "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='4ec3f9a3-233f-4fca-8',Rowno='001',Plantyp='WK',Cellid='R1C1')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
