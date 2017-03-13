@@ -386,7 +386,7 @@ var projectResourceTable = (function ($) {
             .addClass("contenteditable");
         },
         "createdRow": function (row, data, index) {
-          $('tfoot th').removeClass('center blue-bg rate-override num hide td-office td-title td-class td-practice td-billrate td-costrate');
+          $('tfoot th').removeClass('center blue-bg total-hours total-fees rate-override td-costrate num hide td-office td-title td-class td-practice td-billrate');
         },
         "drawCallback": function (row) {
           $("#project-resource-table tbody select.office").on('change', function () {
@@ -767,14 +767,14 @@ var projectResourceTable = (function ($) {
         var modeling_table_adj_avg_rate = $("#modeling-table tbody #avg-rate_adjusted-resource");
 
         if (tableFeeSum) {
-          $('tfoot th.total-fees').text(convertToDollar(projectInfo.Currency, tableFeeSum));
+          $('tfoot th:eq(2)').text(convertToDollar(projectInfo.Currency, tableFeeSum));
         } else {
-          $('tfoot th.total-fees').text('');
+          $('tfoot th:eq(2)').text('');
         }
         if (tableHoursSum) {
-          $('tfoot th.total-hours').text(tableHoursSum.toFixed(2));
+          $('tfoot th:eq(1)').text(tableHoursSum.toFixed(2));
         } else {
-          $('tfoot th.total-hours').text('');
+          $('tfoot th:eq(1)').text('');
         }
 
         if (standardFeeSum) {
