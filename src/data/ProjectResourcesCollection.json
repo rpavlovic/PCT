@@ -69,6 +69,94 @@
       },
       {
         "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000100',Rowno='1')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000100',Rowno='1')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "Projid": "1000101",
+        "Duration": "8",
+        "Rowno": "001",
+        "DelvDesc": "Software Project",
+        "Officeid": "JP01",
+        "Class": "M1",
+        "EmpGradeName": "Sr. Developer",
+        "Practiceid": "JP99334000",
+        "Role": "Developer",
+        "ProposedRes": "Resource Name 1",
+        "BillRate": "36.000",
+        "BillRateOvride": "75.00",
+        "TotalHrs": 22,
+        "TotalFee": "2280.000",
+        "Plantyp": "WK"
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000100',Rowno='2')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000100',Rowno='2')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "Projid": "1000101",
+        "Duration": "8",
+        "Rowno": "002",
+        "DelvDesc": "QA Work",
+        "Officeid": "JP01",
+        "Class": "S1",
+        "EmpGradeName": "Senior Designer",
+        "Practiceid": "JP99334400",
+        "Role": "Manager1",
+        "ProposedRes": "Resource Name #2",
+        "BillRate": "50.000",
+        "BillRateOvride": "75.00",
+        "TotalHrs": 24,
+        "TotalFee": "8280.000",
+        "Plantyp": "WK"
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000100',Rowno='3')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000100',Rowno='3')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "Projid": "1000101",
+        "Duration": "8",
+        "Rowno": "003",
+        "DelvDesc": "Test Delv desc 4",
+        "Officeid": "JP01",
+        "Class": "E4",
+        "EmpGradeName": "Sr Acct Manager",
+        "Practiceid": "JP99334400",
+        "Role": "Manager1",
+        "ProposedRes": "Third Resource",
+        "BillRate": "400.000",
+        "BillRateOvride": "665.00",
+        "TotalHrs": 28,
+        "TotalFee": "7000.000",
+        "Plantyp": "WK"
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000101',Rowno='4')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000101',Rowno='4')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "Projid": "1000101",
+        "Duration": "8",
+        "Rowno": "004",
+        "DelvDesc": "Test Delv desc 4",
+        "Officeid": "US01",
+        "Class": "E4",
+        "EmpGradeName": "EVP, Digital",
+        "Practiceid": "US99313600",
+        "Role": "Manager1",
+        "ProposedRes": "Fourth Resource",
+        "BillRate": "400.000",
+        "BillRateOvride": "665.00",
+        "TotalHrs": 28,
+        "TotalFee": "7000.000",
+        "Plantyp": "WK"
+      },
+      {
+        "__metadata": {
           "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='4ec3f9a3-233f-4fca-8',Rowno='001')",
           "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='4ec3f9a3-233f-4fca-8',Rowno='001')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"

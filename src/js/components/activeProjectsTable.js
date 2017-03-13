@@ -35,13 +35,13 @@ var activeTableFunction = (function ($) {
         var offices = values[0];
         var projects = values[1];
         projects.forEach(function (proj) {
-          var office = offices.find(function(val) {
+          var office = offices.find(function (val) {
             return val.Office === proj.Office;
           });
           var officeName = office ? office.OfficeName : proj.Office;
           var planType = proj.Plantyp === 'WK' ? ' Weeks' : ' Months';
           proj.Duration = proj.Duration + planType;
-          proj.Office = officeName
+          proj.Office = officeName;
           curr = proj.Currency;
         });
 
@@ -180,9 +180,8 @@ var activeTableFunction = (function ($) {
             // calculate the budget after the fact
             $('#active-projects tbody td.budget').each(function (k, v) {
               var p = projectSummaryCalculations.calculateBudget($(v).text());
-              p.then(function (budget) {
-                //currencyStyles.initCurrencyStyles(aData.Currency);
-                  $(v).text(convertToDollar(budget));
+              p.then(function (results) {
+                $(v).text(convertToDollar(results.currency, results.budget));
               });
             });
           },

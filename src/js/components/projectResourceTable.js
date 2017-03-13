@@ -279,12 +279,12 @@ var projectResourceTable = (function ($) {
           "data": "BillRate",
           "class": "td-billrate",
           "render": function (data, type, row, meta) {
-            if (row.Currency) {
-              currencyStyles.initCurrencyStyles(row.Currency);
-            }
-            if (data) {
-              return convertToDollar(parseFloat(data));
-            }
+            var rateCards = getRateCard(data.Officeid);
+            var rc = rateCards.find(function (val) {
+              return val.EmpGradeName === data.EmpGradeName && val.CostCenter === data.Practiceid;
+            });
+
+            return convertToDollar(rc.LocalCurrency, parseFloat(data.BillRate));
           }
         },
         {
@@ -337,9 +337,8 @@ var projectResourceTable = (function ($) {
           "Class": resource,
           "CostRate": resource,
           "CostCenterName": resource,
-          "BillRate": resource.BillRate,
-          "BillRateOvride": resource.BillRateOvride,
-          "Currency": projectInfo.Currency //from projectInfo
+          "BillRate": resource,
+          "BillRateOvride": resource.BillRateOvride
         };
         $.each(hrRows[resource.Rowno], function (k, v) {
           row['hour-' + k] = v;
@@ -533,7 +532,7 @@ var projectResourceTable = (function ($) {
       }
 
       function loadBillRate(nodes) {
-        currency = currencyStyles.currSymbol();
+//        currency = currencyStyles.currSymbol();
         // the officeId, US01, US12, etc
         var Office = nodes.closest('tr').find('.office :selected').val();
         var EmpGradeName = nodes.closest('tr').find('.title :selected').text();
@@ -547,13 +546,15 @@ var projectResourceTable = (function ($) {
         }
         else if (rates.length === 1) {
           var selectedRate = rates.pop();
-          nodes.closest('tr').find('.td-billrate').empty().append(currency + selectedRate.BillRate);
+          nodes.closest('tr').find('.td-billrate').empty().append(convertToDollar(selectedRate.LocalCurrency, parseFloat(selectedRate.BillRate)));
           //this doesn't work if costrate is hidden
           nodes.closest('tr').find('.td-costrate').empty().append(selectedRate.CostRate);
           //for calculations on resourceCalculation.js file
           resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
         }
       }
+
+
 
       function getOffices(Officeid) {
         var select = "<select class='office' name='Office'>";
@@ -742,7 +743,7 @@ var projectResourceTable = (function ($) {
           var totalCostPerRow = parseFloat(hoursPerRow) * costRate;
 
           if (totalFeePerRow) {
-            $(rows.context[0].aoData[i].anCells[13]).text(convertToDollar(totalFeePerRow));
+            $(rows.context[0].aoData[i].anCells[13]).text(convertToDollar(projectInfo.Currency, totalFeePerRow));
           } else {
             $(rows.context[0].aoData[i].anCells[13]).text('');
           }
@@ -767,7 +768,7 @@ var projectResourceTable = (function ($) {
         var modeling_table_adj_avg_rate = $("#modeling-table tbody #avg-rate_adjusted-resource");
 
         if (tableFeeSum) {
-          $('tfoot th.total-fees').text(convertToDollar(tableFeeSum));
+          $('tfoot th.total-fees').text(convertToDollar(projectInfo.Currency, tableFeeSum));
         } else {
           $('tfoot th.total-fees').text('');
         }
@@ -778,7 +779,7 @@ var projectResourceTable = (function ($) {
         }
 
         if (standardFeeSum) {
-          modeling_table_strd_fee.text(convertToDollar(standardFeeSum));
+          modeling_table_strd_fee.text(convertToDollar(projectInfo.Currency, standardFeeSum));
         } else {
           modeling_table_strd_fee.text('');
         }
@@ -788,14 +789,14 @@ var projectResourceTable = (function ($) {
           modeling_table_strd_contrib.text('');
         }
         if (standardAvgRate) {
-          modeling_table_strd_avg_rate.text(convertToDollar(standardAvgRate));
+          modeling_table_strd_avg_rate.text(convertToDollar(projectInfo.Currency, standardAvgRate));
         } else {
           modeling_table_strd_avg_rate.text('');
         }
 
         if (isAdjusted) {
           if (tableFeeSum) {
-            modeling_table_adj_fee.text(convertToDollar(tableFeeSum));
+            modeling_table_adj_fee.text(convertToDollar(projectInfo.Currency, tableFeeSum));
           } else {
             modeling_table_adj_fee.text('');
             modeling_table_adj_contrib.text('');
@@ -805,7 +806,7 @@ var projectResourceTable = (function ($) {
             modeling_table_adj_contrib.text(convertToPercent(adjustedContributionMargin));
           }
           if (adjustedAvgRate) {
-            modeling_table_adj_avg_rate.text(convertToDollar(adjustedAvgRate));
+            modeling_table_adj_avg_rate.text(convertToDollar(projectInfo.Currency, adjustedAvgRate));
           }
         }
         else {
@@ -818,9 +819,9 @@ var projectResourceTable = (function ($) {
         if (!isNaN(targetContributionMargin) && (totalCostSum || tableHoursSum)) {
 
           var targetMarginBasedFee = totalCostSum / (1 - (targetContributionMargin / 100));
-          $("#modeling-table #total-fee_target-resource").text(convertToDollar(targetMarginBasedFee));
+          $("#modeling-table #total-fee_target-resource").text(convertToDollar(projectInfo.Currency, targetMarginBasedFee));
           var targetMarginAvgRate = targetMarginBasedFee / tableHoursSum;
-          $('#modeling-table #avg-rate_target-resource').text(convertToDollar(targetMarginAvgRate));
+          $('#modeling-table #avg-rate_target-resource').text(convertToDollar(projectInfo.Currency, targetMarginAvgRate));
         }
         else {
           $("#modeling-table #total-fee_target-resource").text('');
@@ -836,7 +837,7 @@ var projectResourceTable = (function ($) {
 
           }
           var avgRateFixedFee = fixedFeeTarget / tableHoursSum;
-          $('#avg-rate_fixed-resource').text(convertToDollar(avgRateFixedFee));
+          $('#avg-rate_fixed-resource').text(convertToDollar(projectInfo.Currency, avgRateFixedFee));
         }
         else {
           $('#contribution-margin_fixed-fee').text('');
