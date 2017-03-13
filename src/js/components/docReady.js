@@ -28,7 +28,9 @@
         "buttonText": "",
         "showOn": "both",
         onSelect: function (dateText, instance) {
-          projectDuration.initProjectDuration('form.project-info', instance, dateText);
+          var date = $(this).datepicker('getDate');
+          var week = new Date(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay() + 5);
+          projectDuration.initProjectDuration('form.project-info', instance, dateText, week);
           floatLabel.initfloatLabel();
           validateDurationPlanBy.initValidateDurationPlanBy();
         }
