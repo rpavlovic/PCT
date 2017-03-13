@@ -153,24 +153,11 @@ var projectResourceTable = (function ($) {
       rateCardSelect.initRateCardSelect(projectInfo.BillsheetId);
 
       var selectedModel = marginModeling.find(function (obj) {
-        return obj.Selected === 'true';
+        return obj.Selected === '1';
       });
 
-      //console.log("seledcted model is==>");
-      //console.log(selectedModel);
-      switch (selectedModel.ModelType) {
-        case 'SRBF':
-          $('#mt_1').prop("checked", true);
-          break;
-        case 'ARBF':
-          $('#mt_2').prop("checked", true);
-          break;
-        case 'TMBF':
-          $('#mt_3').prop("checked", true);
-          break;
-        case 'FFT':
-          $('#mt_4').prop("checked", true);
-          break;
+      if(selectedModel) {
+        $('#' + selectedModel.ModelType).prop("checked", true);
       }
 
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
@@ -921,14 +908,11 @@ var projectResourceTable = (function ($) {
     });
   }
 
-  var selected_modeling_tab;
-  $("#modeling-table input[type=\"radio\"]").on('change', function () {
-    selected_modeling_tab = $(this).attr('id');
-  });
-
   //Posting the Table to JSON
   function buildModelingTablePayload() {
     var payloads = [];
+    var selectedModelId = $('#modeling-table input:checked').attr('id');
+    // arbf, srbf, etc
 
     payloads.push({
       type: 'POST',
@@ -945,7 +929,7 @@ var projectResourceTable = (function ($) {
         "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_adjusted-resource").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_adjusted-resource").text()) : "0.0",
         "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_adjusted-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_adjusted-resource").text()) : "0.0",
         "Currency": "USD",
-        "TabSelected": selected_modeling_tab
+        "Selected": selectedModelId === 'ARBF' ? '1' : '0'
       }
     });
 
@@ -964,7 +948,7 @@ var projectResourceTable = (function ($) {
         "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_standard-resource").text()) : "0.0",
         "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()) : "0.0",
         "Currency": "USD", // need to change this to the correct currency
-        "TabSelected": selected_modeling_tab
+        "Selected": selectedModelId === 'SRBF' ? '1' : '0'
       }
     });
 
@@ -983,7 +967,7 @@ var projectResourceTable = (function ($) {
         "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_fixed-fee").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_fixed-fee").text()) : "0.0",
         "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()) : "0.0",
         "Currency": "USD",
-        "TabSelected": selected_modeling_tab
+        "Selected": selectedModelId === 'FFT' ? '1' : '0'
       }
     });
     payloads.push({
@@ -1001,7 +985,7 @@ var projectResourceTable = (function ($) {
         "CtrMargin": convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()) ? convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()) : "0.0",
         "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()) : "0.0",
         "Currency": "USD",
-        "TabSelected": selected_modeling_tab
+        "Selected": selectedModelId === 'TMBF' ? '1' : '0'
       }
     });
     return payloads;
