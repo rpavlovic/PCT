@@ -156,10 +156,6 @@ var projectResourceTable = (function ($) {
         return obj.Selected === '1';
       });
 
-      if(selectedModel) {
-        $('#' + selectedModel.ModelType).prop("checked", true);
-      }
-
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
         return obj.ModelType === 'TMBF';
       });
@@ -673,6 +669,33 @@ var projectResourceTable = (function ($) {
         return filteredRates.pop().CostRate;
       }
 
+      //To activate adjusted resource Tab.
+       var active_modeling_tabs = $('#modeling-table tr td');
+
+       function modelingTableTabActive() {
+         active_modeling_tabs.removeClass('active');
+         active_modeling_tabs.children('input').prop('checked', false);
+         function activateStates() {
+           // if (isAdjusted && tableFeeSum) {
+           //   $(active_modeling_tabs[2]).addClass('active');
+           //   $(active_modeling_tabs[2]).children('input').prop('checked', true);
+           // }
+           // else {
+           //   $(active_modeling_tabs[1]).addClass('active');
+           //   $(active_modeling_tabs[1]).children('input').prop('checked', true);
+           // }
+           if(selectedModel) {
+             active_modeling_tabs.removeClass('active');
+             $('#' + selectedModel.ModelType).prop("checked", true);
+             $('#' + selectedModel.ModelType).parent().addClass('active');
+           }
+         }
+
+         activateStates();
+       }
+
+       modelingTableTabActive();
+
       function recalculateStuff() {
         var rows = projResourceTable.rows();
         //  console.log(rows.context[0].aoData);
@@ -769,36 +792,6 @@ var projectResourceTable = (function ($) {
         } else {
           modeling_table_strd_avg_rate.text('');
         }
-
-        //To activate adjusted resource Tab.
-        // var active_modeling_tabs = $('#modeling-table tr td');
-        //
-        // function modelingTableTabActive() {
-        //   active_modeling_tabs.removeClass('active');
-        //   active_modeling_tabs.children('input').prop('checked', false);
-        //   function activateStates() {
-        //     if (isAdjusted && tableFeeSum) {
-        //       $(active_modeling_tabs[2]).addClass('active');
-        //       $(active_modeling_tabs[2]).children('input').prop('checked', true);
-        //     }
-        //     else {
-        //       $(active_modeling_tabs[1]).addClass('active');
-        //       $(active_modeling_tabs[1]).children('input').prop('checked', true);
-        //     }
-        //     // if(parseFloat($('#fixed-fee-target').text())) {
-        //     //   $(active_modeling_tabs[4]).addClass('active');
-        //     //   $(active_modeling_tabs[4]).children('input').prop('checked', true);
-        //     //   $(active_modeling_tabs[2]).removeClass('active');
-        //     //   $(active_modeling_tabs[2]).children('input').prop('checked', false);
-        //     //   $(active_modeling_tabs[1]).removeClass('active');
-        //     //   $(active_modeling_tabs[1]).children('input').prop('checked', false);
-        //     // }
-        //   }
-        //
-        //   activateStates();
-        // }
-        //
-        // modelingTableTabActive();
 
         if (isAdjusted) {
           if (tableFeeSum) {
