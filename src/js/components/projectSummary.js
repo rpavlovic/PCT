@@ -8,7 +8,6 @@ var projectSummary = (function ($) {
 
   var projectId = getParameterByName('projID');
 
-
   function initProjectSummary() {
 
     var p1 = new Promise(function (resolve, reject) {
@@ -118,20 +117,8 @@ var projectSummary = (function ($) {
   }
 
   function financialSummaryTable(projectInfo, marginModeling, projectResources, projectExpenses) {
-    var ModelType;
-
-    var ARBF = marginModeling.find(function (val) {
-      return val.ModelType === 'ARBF';
-    });
-    var SRBF = marginModeling.find(function (val) {
-      return val.ModelType === 'SRBF';
-    });
-
-    var TMBF = marginModeling.find(function (val) {
-      return val.ModelType === 'TMBF';
-    });
-    var FFT = marginModeling.find(function (val) {
-      return val.ModelType === 'FFT';
+    var selectedModel = marginModeling.find(function (val) {
+      return val.Selected === '1';
     });
 
     var totalExpenses = projectExpenses.reduce(function (acc, val) {
@@ -141,24 +128,10 @@ var projectSummary = (function ($) {
     var totalFees;
     var contributionMargin;
 
-    if (FFT.Fees > 0) {
-      totalFees = FFT.Fees;
-    } else if (TMBF.Fees > 0) {
-      totalFees = TMBF.Fees;
-    } else if (ARBF.Fees > 0) {
-      totalFees = ARBF.Fees;
-    } else if (SRBF.Fees > 0) {
-      totalFees = SRBF.Fees;
-    }
-
-    if (FFT.CtrMargin > 0) {
-      contributionMargin = FFT.CtrMargin;
-    } else if (TMBF.CtrMargin > 0) {
-      contributionMargin = TMBF.CtrMargin;
-    } else if (ARBF.CtrMargin > 0) {
-      contributionMargin = ARBF.CtrMargin;
-    } else if (SRBF.CtrMargin > 0) {
-      contributionMargin = SRBF.CtrMargin;
+    // do math based on the selected model tab..
+    if (selectedModel) {
+      totalFees = selectedModel.Fees;
+      contributionMargin = selectedModel.CtrMargin;
     }
 
     var budget = parseFloat(totalFees) + totalExpenses;
@@ -173,13 +146,9 @@ var projectSummary = (function ($) {
     if (totalFees <= 0) {
       oopFees = 0;
     }
-    var class_name = '';
 
-    if (contributionMargin > 65) {
-      class_name = "high-value";
-    } else {
-      class_name = "low-value";
-    }
+    var class_name = (contributionMargin > 65) ? "high-value" : "low-value";
+
     // budget = ARBF or SRBF + Expenses
     $('#total-budget').text(convertToDollar(projectInfo.Currency, budget));
     $('#expenses').text(convertToDollar(projectInfo.Currency, totalExpenses)).addClass("low-value");
