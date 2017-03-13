@@ -25,6 +25,7 @@ var projectResourceTable = (function ($) {
       return [];
     }
   }
+
   function loadRateCardFromServer(OfficeId) {
     return new Promise(function (resolve, reject) {
       //console.log('RateCard Not found. checking service for OfficeId' + OfficeId);
@@ -43,6 +44,7 @@ var projectResourceTable = (function ($) {
       });
     });
   }
+
   function initProjectResourceTable() {
     var p1 = new Promise(function (resolve, reject) {
       $.getJSON(get_data_feed(feeds.projectDeliverables, projectID), function (deliverables) {
@@ -149,6 +151,14 @@ var projectResourceTable = (function ($) {
       planBy = projectInfo.Plantyp;
 
       rateCardSelect.initRateCardSelect(projectInfo.BillsheetId);
+
+      var selectedModel = marginModeling.find(function (obj) {
+        return obj.Selected === '1';
+      });
+
+      if(selectedModel) {
+        $('#' + selectedModel.ModelType).prop("checked", true);
+      }
 
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
         return obj.ModelType === 'TMBF';
@@ -273,7 +283,7 @@ var projectResourceTable = (function ($) {
           "data": "BillRate",
           "class": "td-billrate",
           "render": function (data, type, row, meta) {
-            if(row.Currency) {
+            if (row.Currency) {
               currencyStyles.initCurrencyStyles(row.Currency);
             }
             if (data) {
@@ -333,7 +343,7 @@ var projectResourceTable = (function ($) {
           "CostCenterName": resource,
           "BillRate": resource.BillRate,
           "BillRateOvride": resource.BillRateOvride,
-          "Currency":projectInfo.Currency //from projectInfo
+          "Currency": projectInfo.Currency //from projectInfo
         };
         $.each(hrRows[resource.Rowno], function (k, v) {
           row['hour-' + k] = v;
@@ -428,9 +438,10 @@ var projectResourceTable = (function ($) {
         },
         "bDestroy": true
       });
+
       function addRow() {
         //if there is no data add one empty row.
-        projResourceTable.row.add( {
+        projResourceTable.row.add({
           "Office": '',
           "CostCenterName": '',
           "Deliverables": deliverables,
@@ -439,7 +450,8 @@ var projectResourceTable = (function ($) {
         }).draw().node();
         currencyStyles.initCurrencyStyles(projectInfo.Currency);
       }
-      if(!projResourceTable.data().count()) {
+
+      if (!projResourceTable.data().count()) {
         addRow();
       }
       //Add Row
@@ -462,7 +474,7 @@ var projectResourceTable = (function ($) {
       $('#rate-card').on('change', function (event) {
         var url = $(this).attr('href');
         var CardID = $(this).find(':selected').val();
-            url = updateQueryString('CardID', CardID, url);
+        url = updateQueryString('CardID', CardID, url);
         var p = new Promise(function (resolve, reject) {
 
           $.getJSON(get_data_feed(feeds.billSheet, CardID), function (cards) {
@@ -488,10 +500,10 @@ var projectResourceTable = (function ($) {
             $(rows.context[0].aoData[i].anCells[10]).find('div').text('');
             if (foundCard[0] && parseInt(foundCard[0].OverrideRate)) {
               $(rows.context[0].aoData[i].anCells[10]).find('div').text(foundCard[0].OverrideRate);
-              $(rows.context[0].aoData[i].anCells[9]).css('color','lightgrey');
+              $(rows.context[0].aoData[i].anCells[9]).css('color', 'lightgrey');
             }
             else {
-              $(rows.context[0].aoData[i].anCells[9]).css('color','#5b5b5b');
+              $(rows.context[0].aoData[i].anCells[9]).css('color', '#5b5b5b');
             }
           }
           recalculateStuff();
@@ -688,11 +700,11 @@ var projectResourceTable = (function ($) {
           billRateOverride = !isNaN(billRateOverride) ? billRateOverride : 0;
 
           //highlight the rate is override is present.
-          if(!isNaN(billRateOverride) && billRateOverride > 0) {
-            $(rows.context[0].aoData[i].anCells[9]).css('color','lightgrey');
+          if (!isNaN(billRateOverride) && billRateOverride > 0) {
+            $(rows.context[0].aoData[i].anCells[9]).css('color', 'lightgrey');
           }
           else {
-            $(rows.context[0].aoData[i].anCells[9]).css('color','#5b5b5b');
+            $(rows.context[0].aoData[i].anCells[9]).css('color', '#5b5b5b');
           }
           var rate = billRateOverride ? billRateOverride : billRate;
           var costRate = convertToDecimal($(rows.context[0].aoData[i].anCells[11]).text());
@@ -759,34 +771,34 @@ var projectResourceTable = (function ($) {
         }
 
         //To activate adjusted resource Tab.
-        var active_modeling_tabs = $('#modeling-table tr td');
-
-        function modelingTableTabActive() {
-          active_modeling_tabs.removeClass('active');
-          active_modeling_tabs.children('input').prop('checked', false);
-          function activateStates() {
-            if (isAdjusted && tableFeeSum) {
-              $(active_modeling_tabs[2]).addClass('active');
-              $(active_modeling_tabs[2]).children('input').prop('checked', true);
-            }
-            else {
-              $(active_modeling_tabs[1]).addClass('active');
-              $(active_modeling_tabs[1]).children('input').prop('checked', true);
-            }
-            // if(parseFloat($('#fixed-fee-target').text())) {
-            //   $(active_modeling_tabs[4]).addClass('active');
-            //   $(active_modeling_tabs[4]).children('input').prop('checked', true);
-            //   $(active_modeling_tabs[2]).removeClass('active');
-            //   $(active_modeling_tabs[2]).children('input').prop('checked', false);
-            //   $(active_modeling_tabs[1]).removeClass('active');
-            //   $(active_modeling_tabs[1]).children('input').prop('checked', false);
-            // }
-          }
-
-          activateStates();
-        }
-
-        modelingTableTabActive();
+        // var active_modeling_tabs = $('#modeling-table tr td');
+        //
+        // function modelingTableTabActive() {
+        //   active_modeling_tabs.removeClass('active');
+        //   active_modeling_tabs.children('input').prop('checked', false);
+        //   function activateStates() {
+        //     if (isAdjusted && tableFeeSum) {
+        //       $(active_modeling_tabs[2]).addClass('active');
+        //       $(active_modeling_tabs[2]).children('input').prop('checked', true);
+        //     }
+        //     else {
+        //       $(active_modeling_tabs[1]).addClass('active');
+        //       $(active_modeling_tabs[1]).children('input').prop('checked', true);
+        //     }
+        //     // if(parseFloat($('#fixed-fee-target').text())) {
+        //     //   $(active_modeling_tabs[4]).addClass('active');
+        //     //   $(active_modeling_tabs[4]).children('input').prop('checked', true);
+        //     //   $(active_modeling_tabs[2]).removeClass('active');
+        //     //   $(active_modeling_tabs[2]).children('input').prop('checked', false);
+        //     //   $(active_modeling_tabs[1]).removeClass('active');
+        //     //   $(active_modeling_tabs[1]).children('input').prop('checked', false);
+        //     // }
+        //   }
+        //
+        //   activateStates();
+        // }
+        //
+        // modelingTableTabActive();
 
         if (isAdjusted) {
           if (tableFeeSum) {
@@ -881,7 +893,7 @@ var projectResourceTable = (function ($) {
           console.log("navigating to new window in" + timeout + "seconds");
           timeout = timeout ? timeout : 1;
           setTimeout(function () {
-           window.location.href = $('#btn-save').attr('href');
+            window.location.href = $('#btn-save').attr('href');
           }, timeout);
         },
         always: function (xhr, status, data) {
@@ -889,20 +901,18 @@ var projectResourceTable = (function ($) {
           console.log("navigating to new window in" + timeout + "seconds");
           timeout = timeout ? timeout : 1;
           setTimeout(function () {
-           window.location.href = $('#btn-save').attr('href');
+            window.location.href = $('#btn-save').attr('href');
           }, timeout);
         }
       });
     });
   }
-var selected_modeling_tab;
-$("#modeling-table input[type=\"radio\"]").on('change', function() {
-  selected_modeling_tab = $(this).attr('id');
-});
 
- //Posting the Table to JSON
+  //Posting the Table to JSON
   function buildModelingTablePayload() {
     var payloads = [];
+    var selectedModelId = $('#modeling-table input:checked').attr('id');
+    // arbf, srbf, etc
 
     payloads.push({
       type: 'POST',
@@ -919,7 +929,7 @@ $("#modeling-table input[type=\"radio\"]").on('change', function() {
         "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_adjusted-resource").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_adjusted-resource").text()) : "0.0",
         "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_adjusted-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_adjusted-resource").text()) : "0.0",
         "Currency": "USD",
-        "TabSelected": selected_modeling_tab
+        "Selected": selectedModelId === 'ARBF' ? '1' : '0'
       }
     });
 
@@ -938,7 +948,7 @@ $("#modeling-table input[type=\"radio\"]").on('change', function() {
         "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_standard-resource").text()) : "0.0",
         "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()) : "0.0",
         "Currency": "USD", // need to change this to the correct currency
-        "TabSelected": selected_modeling_tab
+        "Selected": selectedModelId === 'SRBF' ? '1' : '0'
       }
     });
 
@@ -957,7 +967,7 @@ $("#modeling-table input[type=\"radio\"]").on('change', function() {
         "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_fixed-fee").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_fixed-fee").text()) : "0.0",
         "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()) : "0.0",
         "Currency": "USD",
-        "TabSelected": selected_modeling_tab
+        "Selected": selectedModelId === 'FFT' ? '1' : '0'
       }
     });
     payloads.push({
@@ -975,7 +985,7 @@ $("#modeling-table input[type=\"radio\"]").on('change', function() {
         "CtrMargin": convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()) ? convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()) : "0.0",
         "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()) : "0.0",
         "Currency": "USD",
-        "TabSelected": selected_modeling_tab
+        "Selected": selectedModelId === 'TMBF' ? '1' : '0'
       }
     });
     return payloads;
