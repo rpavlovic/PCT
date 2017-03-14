@@ -20,7 +20,7 @@
         "BillRate": "450.000",
         "BillRateOvride": "400.000",
         "TotalHrs": 52,
-        "TotalFee": "10400.000",
+        "TotalFee": "20800.00",
         "Plantyp": "WK"
       },
       {
@@ -42,7 +42,7 @@
         "BillRate": "425.000",
         "BillRateOvride": "400.00",
         "TotalHrs": 52,
-        "TotalFee": "10400.000",
+        "TotalFee": "20,800.00",
         "Plantyp": "WK"
       },
       {
@@ -64,7 +64,7 @@
         "BillRate": "375.000",
         "BillRateOvride": "300.00",
         "TotalHrs": 52,
-        "TotalFee": "13000.000",
+        "TotalFee": "15,600.00",
         "Plantyp": "WK"
       },
       {
