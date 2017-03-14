@@ -178,12 +178,7 @@ var activeTableFunction = (function ($) {
             $('.toolbar').hide();
 
             // calculate the budget after the fact
-            $('#active-projects tbody td.budget').each(function (k, v) {
-              var p = projectSummaryCalculations.calculateBudget($(v).text());
-              p.then(function (results) {
-                $(v).text(convertToDollar(results.currency, results.budget));
-              });
-            });
+            calculateBudgets();
           },
           "bDestroy": true
         });
@@ -209,7 +204,24 @@ var activeTableFunction = (function ($) {
             });
           }
         });
+
+        $('#active-projects').on('draw.dt', function () {
+          calculateBudgets();
+        });
+
       });
+
+    function calculateBudgets() {
+      $('#active-projects tbody td.budget div').each(function (k, v) {
+        if ($(v).data('val')) {
+          var p = projectSummaryCalculations.calculateBudget($(v).data('val').toString());
+          p.then(function (results) {
+            $(v).data('val', '');
+            $(v).text(convertToDollar(results.currency, results.budget));
+          });
+        }
+      });
+    }
   }
 
   return {
