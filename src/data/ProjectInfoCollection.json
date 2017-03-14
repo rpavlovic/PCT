@@ -42,7 +42,7 @@
         "Currency": "JPY",
         "Clientname": "MORGAN STANLEY Tokyo",
         "Projname": "Japanese Project",
-        "Comptyp": "HOURLY",
+        "Comptyp": "Fixed Fee",
         "EstStDate": "\/Date(1484784000000)\/",
         "Duration": 8,
         "PlanUnits": "2",
