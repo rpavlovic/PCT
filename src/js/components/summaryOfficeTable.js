@@ -8,12 +8,13 @@ var summaryOfficeTable = (function ($) {
     var byOfficeTable = $("#breakdown-office-table");
     var rows = {};
     projectResources.forEach(function (resource) {
+      // just the rate card we need to find to get the SourceBillRate
+      var office = {};
       if (!rows[resource.Officeid + resource.Practiceid]) {
         var officeRateCards = rateCards.find(function (val) {
           return val.OfficeId === resource.Officeid;
         });
 
-        var office = {};
         if (officeRateCards) {
           office = officeRateCards.rateCards.find(function (val) {
             return val.OfficeId === resource.OfficeId && val.CostCenter === resource.Practiceid;
@@ -23,11 +24,14 @@ var summaryOfficeTable = (function ($) {
         rows[resource.Officeid + resource.Practiceid] = {
           office: office.OfficeName ? office.OfficeName : resource.Officeid,
           practice: office.CostCenterName ? office.CostCenterName : resource.Practiceid,
+          localFees: 0,
           fees: 0,
           hours: 0,
           staffMix: 0
         };
       }
+
+      rows[resource.Officeid + resource.Practiceid].localFees += parseFloat(resource.TotalHrs) * parseFloat(office.SourceBillrate);
       rows[resource.Officeid + resource.Practiceid].fees += parseFloat(resource.TotalFee);
       rows[resource.Officeid + resource.Practiceid].hours += parseFloat(resource.TotalHrs);
     });
@@ -46,8 +50,15 @@ var summaryOfficeTable = (function ($) {
         return acc + parseFloat(val.fees);
       else return acc;
     }, 0);
+
+    var localFees = rows.reduce(function (acc, val) {
+      if (val.localFees)
+        return acc + parseFloat(val.localFees);
+      else return acc;
+    }, 0);
+
     $('#office-total-fees').text(convertToDollar(projectInfo.Currency, totalFees));
-    $('#office-total-currency').text(convertToDollar(projectInfo.Currency, totalFees));
+    $('#office-total-currency').text(convertToDollar(projectInfo.Currency, localFees));
 
     var totalHours = rows.reduce(function (acc, val) {
       if (val.hours)
@@ -100,7 +111,7 @@ var summaryOfficeTable = (function ($) {
         },
         {
           "title": "Fees in Local Currency",
-          "data": 'fees',
+          "data": 'localFees',
           "defaultContent": "$0",
           "class": "office-total-currency",
           render: function (data, type, row) {
