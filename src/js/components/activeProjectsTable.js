@@ -199,6 +199,8 @@ var activeTableFunction = (function ($) {
             $('.toolbar').hide();
             
           },
+          "drawCallback": function( settings ) {
+          },
           "bDestroy": true
         });
 
@@ -206,7 +208,6 @@ var activeTableFunction = (function ($) {
           activeTable.search(this.value).draw();
         });
 
-        // $( '.buttons-page-length' ).insertAfter('#active-projects_wrapperarchived-projects_wrapper').wrap("<div class=\"dt-buttons\" />").addClass('float-right');
         $('#active-projects tbody').on('click', '.remove', function (e) {
           e.preventDefault();
           var r = confirm("Are you sure you want to delete this project?");
@@ -223,9 +224,7 @@ var activeTableFunction = (function ($) {
             });
           }
         });
-
       });
-
   }
 
   return {
