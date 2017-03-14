@@ -180,6 +180,9 @@ var activeTableFunction = (function ($) {
             // calculate the budget after the fact
             calculateBudgets();
           },
+          "drawCallback": function( settings ) {
+            calculateBudgets();
+          },
           "bDestroy": true
         });
 
@@ -187,7 +190,6 @@ var activeTableFunction = (function ($) {
           activeTable.search(this.value).draw();
         });
 
-        // $( '.buttons-page-length' ).insertAfter('#active-projects_wrapperarchived-projects_wrapper').wrap("<div class=\"dt-buttons\" />").addClass('float-right');
         $('#active-projects tbody').on('click', '.remove', function (e) {
           e.preventDefault();
           var r = confirm("Are you sure you want to delete this project?");
@@ -204,11 +206,6 @@ var activeTableFunction = (function ($) {
             });
           }
         });
-
-        $('#active-projects').on('draw.dt', function () {
-          calculateBudgets();
-        });
-
       });
 
     function calculateBudgets() {
