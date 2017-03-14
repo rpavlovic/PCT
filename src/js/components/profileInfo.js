@@ -37,7 +37,7 @@ var profileInfo = (function ($) {
       return ret;
     }
     var card_names= [];
-    $.getJSON(get_data_feed(feeds.billSheet), function (cards) {
+    $.getJSON(get_data_feed(feeds.billSheet, ' '), function (cards) {
       // debugger;
       card_names = sort_unique(cards.d.results);
       card_names.map(function(v, k) {
