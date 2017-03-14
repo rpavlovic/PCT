@@ -171,7 +171,7 @@ var projectResourceTable = (function ($) {
       if (fixedFeeTarget.length && parseFloat(fixedFeeTarget[0].Fees)) {
         var fixedFee = parseFloat(convertToDecimal(fixedFeeTarget[0].Fees)).toFixed(2);
 
-        $('#fixed-fee-target').text(fixedFee.replace(comma, "1,"));
+        $('#fixed-fee-target').text(fixedFee);
       }
       var hrRows = {};
       var maxDuration = 0;
