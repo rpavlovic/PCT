@@ -36,6 +36,7 @@ var summaryDeliverablesTable = (function ($) {
 
     var totalProjectHours = 0;
     deliverables.forEach(function (d) {
+      d.TotalFee = d.TotalFee ? d.TotalFee : 0;
       d.Budget = d.TotalExpenses + d.TotalFee;
       if (d.TotalHrs)
         totalProjectHours += parseFloat(d.TotalHrs);
