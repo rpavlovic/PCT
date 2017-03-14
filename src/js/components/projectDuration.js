@@ -19,47 +19,47 @@ var projectDuration = (function ($) {
           "July", "August", "September", "October", "November", "December"
         ];
 
-    var first_day_week = new Date(dataText);
-    var friday = new Date(dataText);
-    var index = first_day_week.getDay();
-
-    var weekto = $.datepicker.iso8601Week(first_day_week);
-
     function weekStarting() {
+      var first_day_week = new Date(dataText),
+          index = first_day_week.getDay();
 
       if(index === 0) {
        first_day_week.setDate(first_day_week.getDate() - 6);
-       friday.setDate(friday.getDate() - 2);
       }
-      else if(index === 1) {
-        first_day_week.setDate(first_day_week.getDate());
-        friday.setDate(friday.getDate()+4);
+
+      else if(index == 1) {
+       first_day_week.setDate(first_day_week.getDate());
       }
+
       else if(index != 1 && index > 0) {
         first_day_week.setDate(first_day_week.getDate() - (index - 1));
-        friday.setDate(friday.getDate() + (index + 1));
       }
-      console.log('Week number::'+ weekto);
-       console.log("End date::"+ friday);
       return monthNames[first_day_week.getMonth()] + ' ' + first_day_week.getDate() + ', '+ first_day_week.getFullYear();
     }
 
-
-
     function estimateEndDate() {
       var daysToAdd = 0;
-      if(plan_by === "WK") {
+      var curr = new Date(dataText); // get selected date
+      var first = curr.getDate();
+
+      if (plan_by === "WK") {
         daysToAdd = 7;
+        // if duration is 1 week, then just add days til the end of the week or Friday
+        // add x days
+        // if duration is 2 weeks, then add days til the end of the week + 7 days per week.
+        // add x days + 7 * duration -1
+
+        var last = first + 5 - curr.getDay() + (daysToAdd * (parseInt(duration) - 1));
+        var lastday = new Date(curr.setDate(last));
+        return monthNames[lastday.getMonth()] + ' ' + lastday.getDate() + ', ' + lastday.getFullYear();
       } else if (plan_by === "MN") {
         daysToAdd = daysInMonth(selected_month, selected_year);
+
+        var last = first + (daysToAdd * parseInt(duration));
+        var lastday = new Date(curr.setDate(last));
+
+        return monthNames[lastday.getMonth()] + ' ' + lastday.getDate() + ', ' + lastday.getFullYear();
       }
-
-      var first_day_week = new Date(dataText), // get selected date
-          first = first_day_week.getDate(),
-          last = first + (daysToAdd * parseInt(duration)),
-          lastday = new Date(first_day_week.setDate(last));
-
-      return monthNames[lastday.getMonth()] + ' ' + lastday.getDate() + ', ' + lastday.getFullYear();
     }
 
     function daysInMonth(month, year) {
