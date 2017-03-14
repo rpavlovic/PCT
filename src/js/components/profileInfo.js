@@ -38,7 +38,6 @@ var profileInfo = (function ($) {
     }
     var card_names= [];
     $.getJSON(get_data_feed(feeds.billSheet), function (cards) {
-      // debugger;
       card_names = sort_unique(cards.d.results);
       card_names.map(function(v, k) {
         $('#profile-rate-cards ul').append('<li><a href="customBillSheet.htm?CardID='+v.BillsheetId+'">'+v.BillsheetName+'</a></li>');
