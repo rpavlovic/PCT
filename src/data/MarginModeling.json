@@ -24,8 +24,8 @@
         "Projid": "1000100",
         "ModelType": "FFT",
         "Fees": "60000.00",
-        "CtrMargin": "36.0",
-        "AvgRate": "384.62",
+        "CtrMargin": "37.0",
+        "AvgRate": "391.03",
         "Currency": "USD",
         "Selected" : "1"
       },
@@ -91,7 +91,7 @@
           "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='1000103',ModelType='SRBF')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
         },
-        "Projid": "1000100",
+        "Projid": "1000101",
         "ModelType": "SRBF",
         "Fees": "500.0",
         "CtrMargin": "50.0",
@@ -105,7 +105,7 @@
           "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='1000103',ModelType='TMBF')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
         },
-        "Projid": "1000100",
+        "Projid": "1000101",
         "ModelType": "TMBF",
         "Fees": "120.0",
         "CtrMargin": "25.0",
