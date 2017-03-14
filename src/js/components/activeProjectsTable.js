@@ -134,13 +134,14 @@ var activeTableFunction = (function ($) {
           ],
           "bFilter": true,
           "select": true,
-          "buttons": [
-            'copy', 'csv', 'excel',
-            {
-              "extend": 'pdf',
-              "download": 'open'
-            }
-          ],
+          "buttons": [],
+          //   [
+          //   'copy', 'csv', 'excel',
+          //   {
+          //     "extend": 'pdf',
+          //     "download": 'open'
+          //   }
+          // ],
           "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
             $(nRow).removeClass('odd even');
           },
