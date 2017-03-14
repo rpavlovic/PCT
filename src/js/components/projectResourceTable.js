@@ -32,7 +32,7 @@ var projectResourceTable = (function ($) {
       $.getJSON(get_data_feed(feeds.rateCards, OfficeId), function (rateCards) {
         var rateCard = rateCards.d.results.filter(function (val) {
           // add in any filtering params if we need them in the future
-          return parseInt(val.CostRate) > 0 && val.EmpGradeName && OfficeId === val.Office;
+          return parseInt(val.CostRate) > 2 && val.EmpGradeName && OfficeId === val.Office;
         });
         sessionStorage.setItem('RateCard' + OfficeId, JSON.stringify(rateCard));
 
