@@ -29,11 +29,31 @@ var activeTableFunction = (function ($) {
       });
     });
 
-    Promise.all([p1, p2])
+    var p3 = Promise.resolve(p2)
+      .then(function (projects) {
+        var pArray = [];
+        projects.forEach(function (proj) {
+          var p = projectSummaryCalculations.calculateBudget(proj.Projid);
+
+          p.then(function (results) {
+            proj.budget = convertToDollar(results.currency, results.budget);
+          });
+
+          pArray.push(p);
+        });
+
+        return Promise.all(pArray)
+          .then(function () {
+            return projects;
+          });
+      });
+
+    Promise.all([p1, p3])
       .then(function (values) {
         var curr;
         var offices = values[0];
         var projects = values[1];
+
         projects.forEach(function (proj) {
           var office = offices.find(function (val) {
             return val.Office === proj.Office;
@@ -43,6 +63,7 @@ var activeTableFunction = (function ($) {
           proj.Duration = proj.Duration + planType;
           proj.Office = officeName;
           curr = proj.Currency;
+
         });
 
         var activeTable = table.DataTable({
@@ -99,13 +120,13 @@ var activeTableFunction = (function ($) {
             },
             {
               "title": 'Budget',
-              "data": 'Projid',
+              "data": 'budget',
               "defaultContent": '',
               "class": 'budget',
               "render": function (data, type, set, meta) {
                 currencyStyles.initCurrencyStyles(set.Currency);
                 if (data) {
-                  return '<div data-val="' + data + '">' + data + '</div>';
+                  return data;
                 }
               }
             },
@@ -134,14 +155,13 @@ var activeTableFunction = (function ($) {
           ],
           "bFilter": true,
           "select": true,
-          "buttons": [],
-          //   [
-          //   'copy', 'csv', 'excel',
-          //   {
-          //     "extend": 'pdf',
-          //     "download": 'open'
-          //   }
-          // ],
+          "buttons": [
+            'copy', 'csv', 'excel',
+            {
+              "extend": 'pdf',
+              "download": 'open'
+            }
+          ],
           "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
             $(nRow).removeClass('odd even');
           },
@@ -177,9 +197,7 @@ var activeTableFunction = (function ($) {
               }
             });
             $('.toolbar').hide();
-
-            // calculate the budget after the fact
-            calculateBudgets();
+            
           },
           "bDestroy": true
         });
@@ -206,23 +224,8 @@ var activeTableFunction = (function ($) {
           }
         });
 
-        $('#active-projects').on('draw.dt', function () {
-          calculateBudgets();
-        });
-
       });
 
-    function calculateBudgets() {
-      $('#active-projects tbody td.budget div').each(function (k, v) {
-        if ($(v).data('val')) {
-          var p = projectSummaryCalculations.calculateBudget($(v).data('val').toString());
-          p.then(function (results) {
-            $(v).data('val', '');
-            $(v).text(convertToDollar(results.currency, results.budget));
-          });
-        }
-      });
-    }
   }
 
   return {
