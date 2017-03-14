@@ -191,10 +191,12 @@ var projectInfoForm = (function ($) {
       return value.Projid === projectId;
     });
     if (extraProjInfo) {
+      //console.log(extraProjInfo);
       $('textarea').val(extraProjInfo.Comments);
       $('select[name="Region"]').val(extraProjInfo.Region);
       $('select[name="Currency"]').val(extraProjInfo.Currency);
       $('select[name="Office"]').val(extraProjInfo.Office);
+      $('select[name="compensation"]').val(extraProjInfo.Comptyp);
       $('form.project-info input[name="Clientname"]').val(extraProjInfo.Clientname);
       $('form.project-info input[name="Projname"]').val(extraProjInfo.Projname);
       $('form.project-info input[name="Preparedby"]').val(extraProjInfo.Preparedby);
