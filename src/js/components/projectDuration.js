@@ -41,6 +41,8 @@ var projectDuration = (function ($) {
       var daysToAdd = 0;
       var curr = new Date(dataText); // get selected date
       var first = curr.getDate();
+      var last;
+      var lastday;
 
       if (plan_by === "WK") {
         daysToAdd = 7;
@@ -49,14 +51,15 @@ var projectDuration = (function ($) {
         // if duration is 2 weeks, then add days til the end of the week + 7 days per week.
         // add x days + 7 * duration -1
 
-        var last = first + 5 - curr.getDay() + (daysToAdd * (parseInt(duration) - 1));
-        var lastday = new Date(curr.setDate(last));
+        last = first + 5 - curr.getDay() + (daysToAdd * (parseInt(duration) - 1));
+        lastday = new Date(curr.setDate(last));
+
         return monthNames[lastday.getMonth()] + ' ' + lastday.getDate() + ', ' + lastday.getFullYear();
+
       } else if (plan_by === "MN") {
         daysToAdd = daysInMonth(selected_month, selected_year);
-
-        var last = first + (daysToAdd * parseInt(duration));
-        var lastday = new Date(curr.setDate(last));
+        last = first + (daysToAdd * parseInt(duration));
+        lastday = new Date(curr.setDate(last));
 
         return monthNames[lastday.getMonth()] + ' ' + lastday.getDate() + ', ' + lastday.getFullYear();
       }
