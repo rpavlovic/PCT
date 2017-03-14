@@ -4,13 +4,16 @@
  */
 var summaryRoleTable = (function ($) {
   'use strict';
-  function initSummaryRoleTable(projectInfo, projectResources, rateCards) {
+  function initSummaryRoleTable(projectInfo, projectResources, rateCards, marginModeling) {
     var byRoleTable = $("#breakdown-role-table");
     var rows = {};
 
+    var selectedModel = marginModeling.find(function (val) {
+      return val.Selected === '1';
+    });
+
     projectResources.forEach(function (resource) {
       if (!rows[resource.EmpGradeName]) {
-
         var officeRateCards = rateCards.find(function (val) {
           return val.OfficeId === resource.Officeid;
         });
@@ -32,6 +35,8 @@ var summaryRoleTable = (function ($) {
       rows[resource.EmpGradeName].hours += parseFloat(resource.TotalHrs);
     });
 
+    // compare the fees per role / total fee to get the ratio.
+    // use this ratio against fft or tmbf
     rows = Object.values(rows);
 
     var totalHrs = rows.reduce(function (acc, val) {
@@ -39,7 +44,6 @@ var summaryRoleTable = (function ($) {
     }, 0);
 
     $('#roles-total-hours').text(totalHrs);
-
     rows.forEach(function (row) {
       row.staffMix = row.hours / totalHrs * 100;
     });
@@ -49,8 +53,19 @@ var summaryRoleTable = (function ($) {
         return acc + parseFloat(val.fees);
       else return acc;
     }, 0);
-
-    $('#roles-total').text(convertToDollar(projectInfo.Currency, rolesTotalFee));
+    // only need to messwith the numbers if we have selected one of these models
+    if (selectedModel.ModelType === 'FFT' || selectedModel.ModelType === 'TMBF') {
+      // need to calculate the ratios here...
+      rows.forEach(function (row) {
+        console.log(row);
+        var ratio = row.fees / rolesTotalFee;
+        row.fees = ratio * selectedModel.Fees;
+      });
+      // now we actually override withthe  total fee from the selected model.
+      $('#roles-total').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
+    } else {
+      $('#roles-total').text(convertToDollar(projectInfo.Currency, rolesTotalFee));
+    }
 
     byRoleTable.DataTable({
       dom: '<tip>',
