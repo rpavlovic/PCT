@@ -169,8 +169,7 @@ var projectResourceTable = (function ($) {
       });
       var comma = /(\d)(?=(\d\d\d)+(?!\d))/g;
       if (fixedFeeTarget.length && parseFloat(fixedFeeTarget[0].Fees)) {
-        var fixedFee = parseFloat(convertToDecimal(fixedFeeTarget[0].Fees)).toFixed(2);
-
+        var fixedFee = convertDecimalToFixed(fixedFeeTarget[0].Fees);
         $('#fixed-fee-target').text(fixedFee);
       }
       var hrRows = {};

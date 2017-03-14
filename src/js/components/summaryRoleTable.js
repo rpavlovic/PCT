@@ -57,7 +57,6 @@ var summaryRoleTable = (function ($) {
     if (selectedModel.ModelType === 'FFT' || selectedModel.ModelType === 'TMBF') {
       // need to calculate the ratios here...
       rows.forEach(function (row) {
-        console.log(row);
         var ratio = row.fees / rolesTotalFee;
         row.fees = ratio * selectedModel.Fees;
       });
