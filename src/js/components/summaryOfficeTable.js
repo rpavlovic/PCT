@@ -4,9 +4,14 @@
  */
 var summaryOfficeTable = (function ($) {
   'use strict';
-  function initSummaryOfficeTable(projectInfo, projectResources, offices, rateCards) {
+  function initSummaryOfficeTable(projectInfo, projectResources, offices, rateCards, marginModeling) {
     var byOfficeTable = $("#breakdown-office-table");
     var rows = {};
+
+    var selectedModel = marginModeling.find(function (val) {
+      return val.Selected === '1';
+    });
+
     projectResources.forEach(function (resource) {
       // just the rate card we need to find to get the SourceBillRate
       var office = {};
@@ -57,7 +62,6 @@ var summaryOfficeTable = (function ($) {
       else return acc;
     }, 0);
 
-    $('#office-total-fees').text(convertToDollar(projectInfo.Currency, totalFees));
     $('#office-total-currency').text(convertToDollar(projectInfo.Currency, localFees));
 
     var totalHours = rows.reduce(function (acc, val) {
@@ -65,7 +69,21 @@ var summaryOfficeTable = (function ($) {
         return acc + parseFloat(val.hours);
       else return acc;
     }, 0);
+
     $('#office-total-hours').text(totalHours);
+
+    // only need to messwith the numbers if we have selected one of these models
+    if (selectedModel.ModelType === 'FFT' || selectedModel.ModelType === 'TMBF') {
+      // need to calculate the ratios here...
+      rows.forEach(function (row) {
+        var ratio = row.fees / totalFees;
+        row.fees = ratio * selectedModel.Fees;
+      });
+      // now we actually override withthe  total fee from the selected model.
+      $('#office-total-fees').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
+    } else {
+      $('#office-total-fees').text(convertToDollar(projectInfo.Currency, totalFees));
+    }
 
     byOfficeTable.DataTable({
       dom: '<tip>',
