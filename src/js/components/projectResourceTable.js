@@ -153,7 +153,7 @@ var projectResourceTable = (function ($) {
       rateCardSelect.initRateCardSelect(projectInfo.BillsheetId);
 
       var selectedModel = marginModeling.find(function (obj) {
-        return obj.Selected === '1';
+          return obj.Selected === '1';
       });
 
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
@@ -685,12 +685,13 @@ var projectResourceTable = (function ($) {
            //   $(active_modeling_tabs[1]).children('input').prop('checked', true);
            // }
            if(selectedModel) {
-             active_modeling_tabs.removeClass('active');
              $('#' + selectedModel.ModelType).prop("checked", true);
              $('#' + selectedModel.ModelType).parent().addClass('active');
+           } else {
+             $(active_modeling_tabs[1]).addClass('active');
+              $(active_modeling_tabs[1]).children('input').prop('checked', true);
            }
          }
-
          activateStates();
        }
 
