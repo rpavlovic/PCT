@@ -137,7 +137,7 @@ var activeTableFunction = (function ($) {
               "defaultContent": '',
               "render": function (data, type, set, meta) {
                 if (data) {
-                  return '<a href="projectGeneral.htm?projID=' + data + set.Projname + '" class=""><i class="fa fa-files-o"></i></a>';
+                  return '<a href="projectGeneral.htm?projID=' + data + '" class=""><i class="fa fa-files-o"></i></a>';
                 }
               }
             },

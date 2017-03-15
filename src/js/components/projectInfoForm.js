@@ -51,10 +51,6 @@ var projectInfoForm = (function ($) {
     select_currency.append('<option value="' + currency + '">' + currency + '</option>');
   });
 
-  if (getParameterByName('projName')) {
-    $('form.project-info input[name="Projname"]').val(getParameterByName('projName'));
-  }
-
   function prepopulateDeliverables(results) {
     projectDeliverables = results;
 
