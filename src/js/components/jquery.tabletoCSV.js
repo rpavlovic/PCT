@@ -5,57 +5,63 @@
 
 $.fn.tableToCSV = function() {
 
-	var clean_text = function(text) {
+  var clean_text = function(text) {
     text = text.replace(/"/g, ',');
     return '"' + text + '"';
-	};
+  };
 
-	$(this).each(function() {
-		var table = $(this);
-		var caption = $(this).find('caption').text();
-		var title = [];
-		var rows = [];
-		$(this).find('tr').each(function() {
-			var data = [];
-			$(this).find('th').each(function() {
-		    var text = clean_text($(this).text());
-				title.push(text);
-			});
+  $(this).each(function() {
+    var table = $(this);
+    var caption = $(this).find('caption').text();
+    var title = [];
+    var rows = [];
+    $(this).find('tr').each(function() {
+      var data = [];
+      $(this).find('th').each(function() {
+        var text = clean_text($(this).text());
+        title.push(text);
+      });
 
-			$(this).find('td').each(function() {
-				var text = clean_text($(this).text());
-				data.push(text);
-			});
+      $(this).find('td').each(function() {
+        var text = clean_text($(this).text());
+        data.push(text);
+      });
 
-			data = data.join(",");
-			rows.push(data);
-		});
+      data = data.join(",");
+      rows.push(data);
+    });
 
-		title = title.join(',');
-		rows = rows.join('\n').replace(/\n\n/g, '\n');
+    title = title.join(',');
+    rows = rows.join('\n').replace(/\n\n/g, '\n');
 
-		var csv = title.trim() + '\n' + rows.trim();
-		var uri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
-		var download_link = document.createElement('a');
+    var csv = title.trim() + '\n' + rows.trim();
+    var uri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+    var download_link = document.createElement('a');
 
-		var blob = new Blob([csv], {type: "text/csv;charset=utf-8;"});
+    var blob = new Blob([csv], {type: "text/csv;charset=utf-8;"});
 
-		download_link.href = uri;
-		var ts = new Date().getTime();
-		var input_title = $('#bill-sheet-name').val();
-		if(caption === ""){
-			download_link.download = input_title + "_"+ ts+".csv";
-		} else {
-			download_link.download = caption+"-"+ts+".csv";
-		}
+    download_link.href = uri;
+    var ts = new Date();
+    function d2( n ) {
+      return (n < 10 ? "0" : "") + n;
+    }
+    var ddmmyy = d2(ts.getMonth() + 1) + "_" + ts.getDate() + "_" + ts.getFullYear();
+    var formatted_time = new Date().toTimeString().split(' ')[0];
+    var input_title = $('#bill-sheet-name').val();
 
-		if (navigator.msSaveBlob) { // IE 10+
-			navigator.msSaveBlob(blob, input_title + "_"+ ts+".csv");
-		} else {
-			document.body.appendChild(download_link);
-			download_link.click();
-			document.body.removeChild(download_link);
-		}
-	});
+    if(caption === "") {
+      download_link.download = input_title + "_"+ ddmmyy+ "(" + formatted_time + ")" +".csv";
+    } else {
+      download_link.download = caption+"-"+ddmmyy+".csv";
+    }
+
+    if (navigator.msSaveBlob) { // IE 10+
+      navigator.msSaveBlob(blob, input_title + "_"+ ddmmyy+ "(" + formatted_time + ")" +".csv");
+    } else {
+      document.body.appendChild(download_link);
+      download_link.click();
+      document.body.removeChild(download_link);
+    }
+  });
 
 };
