@@ -51,10 +51,6 @@ var projectInfoForm = (function ($) {
     select_currency.append('<option value="' + currency + '">' + currency + '</option>');
   });
 
-  if (getParameterByName('projName')) {
-    $('form.project-info input[name="Projname"]').val(getParameterByName('projName'));
-  }
-
   function prepopulateDeliverables(results) {
     projectDeliverables = results;
 
@@ -305,9 +301,6 @@ var projectInfoForm = (function ($) {
 
       var url = $(this).attr('href');
       url = updateQueryString('projID', projectId, url);
-      url = updateQueryString('Office', select_billing_office.val(), url);
-      url = updateQueryString('Duration', input_duration.val().replace(/\D/g, ''), url);
-      url = updateQueryString('PlanBy', select_plan_by.val(), url);
 
       $(this).attr('href', url);
 

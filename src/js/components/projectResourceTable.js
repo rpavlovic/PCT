@@ -851,9 +851,6 @@ var projectResourceTable = (function ($) {
 
       var url = $('#btn-save').attr('href');
       url = updateQueryString('projID', projectID, url);
-      url = updateQueryString('Office', office, url);
-      url = updateQueryString('Duration', duration, url);
-      url = updateQueryString('PlanBy', planBy, url);
 
       $('#btn-save').attr('href', url);
 
