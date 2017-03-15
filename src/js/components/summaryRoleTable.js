@@ -4,13 +4,9 @@
  */
 var summaryRoleTable = (function ($) {
   'use strict';
-  function initSummaryRoleTable(projectInfo, projectResources, rateCards, marginModeling) {
+  function initSummaryRoleTable(projectInfo, projectResources, rateCards, selectedModel) {
     var byRoleTable = $("#breakdown-role-table");
     var rows = {};
-
-    var selectedModel = marginModeling.find(function (val) {
-      return val.Selected === '1';
-    });
 
     projectResources.forEach(function (resource) {
       if (!rows[resource.EmpGradeName]) {
@@ -54,7 +50,7 @@ var summaryRoleTable = (function ($) {
       else return acc;
     }, 0);
     // only need to messwith the numbers if we have selected one of these models
-    if (selectedModel.ModelType === 'FFT' || selectedModel.ModelType === 'TMBF') {
+    if (selectedModel && (selectedModel.ModelType === 'FFT' || selectedModel.ModelType === 'TMBF')) {
       // need to calculate the ratios here...
       rows.forEach(function (row) {
         var ratio = row.fees / rolesTotalFee;

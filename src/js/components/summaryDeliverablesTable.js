@@ -4,9 +4,10 @@
  */
 var summaryDeliverablesTable = (function ($) {
   'use strict';
-  function initSummaryDeliverablesTable(projectInfo, deliverables, resources, expenses) {
+  function initSummaryDeliverablesTable(projectInfo, deliverables, resources, expenses, selectedModel) {
     var DeliverablesTable = $("#breakdown-delivery-table");
     var deliverablesBreakdown = {};
+    var totalProjectHours = 0;
 
     resources.forEach(function (data) {
       var item = deliverables.find(function (val) {
@@ -34,7 +35,6 @@ var summaryDeliverablesTable = (function ($) {
       item.TotalExpenses += parseFloat(data.Amount);
     });
 
-    var totalProjectHours = 0;
     deliverables.forEach(function (d) {
       d.TotalFee = d.TotalFee ? d.TotalFee : 0;
       d.TotalExpenses = d.TotalExpenses ? d.TotalExpenses : 0;
@@ -51,14 +51,12 @@ var summaryDeliverablesTable = (function ($) {
         d.HoursPercentage = 0;
     });
 
-    var totalDeliverableFees = deliverables.reduce(function (acc, val) {
+    var totalProjectFees = deliverables.reduce(function (acc, val) {
       if (parseFloat(val.TotalFee))
         return acc + parseFloat(val.TotalFee);
       else
         return acc;
     }, 0);
-
-    $('#total-deliv-fees').text(convertToDollar(projectInfo.Currency, totalDeliverableFees));
 
     var totalExpenses = deliverables.reduce(function (acc, val) {
       if (val.TotalExpenses)
@@ -67,16 +65,12 @@ var summaryDeliverablesTable = (function ($) {
         return acc;
     }, 0);
 
-    $('#total-deliv-expenses').text(convertToDollar(projectInfo.Currency, totalExpenses));
-
     var totalBudget = deliverables.reduce(function (acc, val) {
       if (val.Budget)
         return acc + parseFloat(val.Budget);
       else
         return acc;
     }, 0);
-
-    $('#total-deliv-budget').text(convertToDollar(projectInfo.Currency, totalBudget));
 
     var totalHours = deliverables.reduce(function (acc, val) {
       if (val.TotalHrs)
@@ -85,6 +79,34 @@ var summaryDeliverablesTable = (function ($) {
         return acc;
     }, 0);
 
+    if (selectedModel && (selectedModel.ModelType === 'FFT' || selectedModel.ModelType === 'TMBF')) {
+      // need to figure out the appropropriate ratios
+      // Fixed fee is 60,000
+      // expenses and resources should be appropriate
+      var adjTotalProjectFees = 0;
+      var adjTotalExpenses = 0;
+      deliverables.forEach(function (row) {
+        var ratioProjectFee = row.TotalFee / (totalProjectFees + totalExpenses);
+        var ratioExpenseFee = row.TotalExpenses / (totalProjectFees + totalExpenses);
+
+        row.TotalFee = ratioProjectFee * selectedModel.Fees;
+        adjTotalProjectFees += row.TotalFee;
+
+        row.TotalExpenses = ratioExpenseFee * selectedModel.Fees;
+        adjTotalExpenses += row.TotalExpenses;
+
+        row.Budget = row.TotalFee + row.TotalExpenses;
+      });
+
+      totalProjectFees = adjTotalProjectFees;
+      totalExpenses = adjTotalExpenses;
+      // total Budget should be the exact same as the selected modeling table budget...
+      totalBudget = parseFloat(selectedModel.Fees);
+    }
+
+    $('#total-deliv-fees').text(convertToDollar(projectInfo.Currency, totalProjectFees));
+    $('#total-deliv-expenses').text(convertToDollar(projectInfo.Currency, totalExpenses));
+    $('#total-deliv-budget').text(convertToDollar(projectInfo.Currency, totalBudget));
     $('#total-deliv-hours').text(totalHours);
 
     DeliverablesTable.DataTable({
