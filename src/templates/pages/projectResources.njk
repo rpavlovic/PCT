@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row rate-card-selects">
       <div class="col-3">
         <div class="field-wrapper">
           <label for="rate-card">Rate Card</label>
@@ -32,10 +32,10 @@
           </select>
         </div>
       </div>
-      <div class="col-4">
-        <a href="customBillSheet.htm" title="Custom Bill" style="line-height:45px" class="view-card-rate"></a>
+      <div class="col-2">
+        {{ button.default(label='View/Edit Rate Card', path="customBillSheet.htm", context='btn-blue view-card-rate') }}
       </div>
-      <div class="col-2" style="line-height:45px">
+      <div class="col-2">
        {{ button.default(label='Add Client Rate Card', path="customBillSheet.htm", context='btn-blue') }}
       </div>
     </div>
