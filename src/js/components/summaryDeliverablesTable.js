@@ -84,24 +84,17 @@ var summaryDeliverablesTable = (function ($) {
       // Fixed fee is 60,000
       // expenses and resources should be appropriate
       var adjTotalProjectFees = 0;
-      var adjTotalExpenses = 0;
       deliverables.forEach(function (row) {
-        var ratioProjectFee = row.TotalFee / (totalProjectFees + totalExpenses);
-        var ratioExpenseFee = row.TotalExpenses / (totalProjectFees + totalExpenses);
-
+        var ratioProjectFee = row.TotalFee / (totalProjectFees);
         row.TotalFee = ratioProjectFee * selectedModel.Fees;
         adjTotalProjectFees += row.TotalFee;
-
-        row.TotalExpenses = ratioExpenseFee * selectedModel.Fees;
-        adjTotalExpenses += row.TotalExpenses;
 
         row.Budget = row.TotalFee + row.TotalExpenses;
       });
 
       totalProjectFees = adjTotalProjectFees;
-      totalExpenses = adjTotalExpenses;
       // total Budget should be the exact same as the selected modeling table budget...
-      totalBudget = parseFloat(selectedModel.Fees);
+      totalBudget = parseFloat(selectedModel.Fees) + totalExpenses;
     }
 
     $('#total-deliv-fees').text(convertToDollar(projectInfo.Currency, totalProjectFees));
