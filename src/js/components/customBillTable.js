@@ -56,7 +56,6 @@ var loadCustomBillSheet = (function ($) {
         // we have a card we are trying to Edit
         var BillsheetId = getParameterByName('CardID');
         $.getJSON(get_data_feed(feeds.billSheet, BillsheetId), function (plan) {
-          console.log(plan);
           var rcs = plan.d.results.filter(function (val) {
 
             return val.BillsheetId === BillsheetId;
@@ -262,7 +261,6 @@ var loadCustomBillSheet = (function ($) {
 
     // Upload CSV into a table.
     $("#uploadTable").on('click', function (event, opt_startByte, opt_stopByte) {
-      console.log(this);
       $("input[type=\"file\"]").trigger('click', function () {
         event.stopPropagation();
       });
@@ -306,7 +304,6 @@ var loadCustomBillSheet = (function ($) {
         url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
         data: payloads,
         complete: function (xhr, status, data) {
-          console.log(data);
           var timeout = getParameterByName('timeout');
           console.log("navigating to new window in" + timeout + "seconds");
           timeout = timeout ? timeout : 1;
@@ -389,7 +386,6 @@ var loadCustomBillSheet = (function ($) {
       url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
       data: deletePayloads,
       complete: function (xhr, status, data) {
-        console.log(data);
         var timeout = getParameterByName('timeout');
         console.log("navigating to new window in" + timeout + "seconds");
         timeout = timeout ? timeout : 1;
