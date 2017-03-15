@@ -33,6 +33,7 @@ var rateCardSelect = (function ($) {
       });
 
       select_cards.append(rateCardTitles);
+
       if($(".project-resources select#rate-card :selected").val() === '0') {
         $(".view-card-rate").parent().fadeOut('slow').addClass('hide');
       }
