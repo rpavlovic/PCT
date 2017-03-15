@@ -35,9 +35,9 @@ var showHide = (function ($) {
   //Show/Hide view edit custom rate card link.
   $(".project-resources select#rate-card").on("change", function() {
     if($(this)[0].selectedIndex === 0) {
-      $(".col-4 a.view-card-rate").fadeOut('slow').addClass('hide');
+      $(".view-card-rate").parent().fadeOut('slow').addClass('hide');
     } else {
-      $(".col-4 a.view-card-rate").fadeIn('slow').removeClass('hide');
+      $(".view-card-rate").parent().fadeIn('slow').removeClass('hide').css('display', 'inline-block');
     }
   });
 
