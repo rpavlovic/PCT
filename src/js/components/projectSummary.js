@@ -96,7 +96,11 @@ var projectSummary = (function ($) {
       var rateCards = values[6];
 
       fillProjectInfoSummary(projectInfo);
-      financialSummaryTable(projectInfo, marginModeling, projectResources, projectExpenses);
+      if(projectResources.length) {
+        financialSummaryTable(projectInfo, marginModeling, projectResources, projectExpenses);
+      }
+
+
       summaryDeliverablesTable.initSummaryDeliverablesTable(projectInfo, projectDeliverables, projectResources, projectExpenses);
       summaryOfficeTable.initSummaryOfficeTable(projectInfo, projectResources, offices, rateCards, marginModeling);
       summaryRoleTable.initSummaryRoleTable(projectInfo, projectResources, rateCards, marginModeling);

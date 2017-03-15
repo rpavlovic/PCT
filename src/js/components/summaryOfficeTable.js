@@ -73,7 +73,7 @@ var summaryOfficeTable = (function ($) {
     $('#office-total-hours').text(totalHours);
 
     // only need to messwith the numbers if we have selected one of these models
-    if (selectedModel.ModelType === 'FFT' || selectedModel.ModelType === 'TMBF') {
+    if (selectedModel && (selectedModel.ModelType === 'FFT' || selectedModel.ModelType === 'TMBF')) {
       // need to calculate the ratios here...
       rows.forEach(function (row) {
         var ratio = row.fees / totalFees;
