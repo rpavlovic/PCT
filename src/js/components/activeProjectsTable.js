@@ -84,7 +84,7 @@ var activeTableFunction = (function ($) {
               "data": "Projname",
               "render": function (data, type, set, meta) {
                 if (data) {
-                  var output = '<a href="projectGeneral.htm?projID=' + set.Projid + '&projName=' + data + '" title="ProjectName">';
+                  var output = '<a href="projectGeneral.htm?projID=' + set.Projid  + '" title="ProjectName">';
                   output += data;
                   output += '</a>';
                   return output;
@@ -137,7 +137,7 @@ var activeTableFunction = (function ($) {
               "defaultContent": '',
               "render": function (data, type, set, meta) {
                 if (data) {
-                  return '<a href="projectGeneral.htm?projID=' + data + '&projName=' + set.Projname + '" class=""><i class="fa fa-files-o"></i></a>';
+                  return '<a href="projectGeneral.htm?projID=' + data + set.Projname + '" class=""><i class="fa fa-files-o"></i></a>';
                 }
               }
             },
