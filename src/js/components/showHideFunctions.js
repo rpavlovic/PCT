@@ -7,7 +7,6 @@ var showHide = (function ($) {
   'use strict';
 
   $("#show2, #show3").hide();
-  // $('button.login').prop('disabled', false);
 
   function initShowHide() {
 
@@ -33,8 +32,8 @@ var showHide = (function ($) {
     fadeTabs.initFadeTabs();
   }
 
+  //Show/Hide view edit custom rate card link.
   $(".project-resources select#rate-card").on("change", function() {
-    console.log($(this)[0].selectedIndex)
     if($(this)[0].selectedIndex === 0) {
       $(".col-4 a.view-card-rate").fadeOut('slow').addClass('hide');
     } else {
