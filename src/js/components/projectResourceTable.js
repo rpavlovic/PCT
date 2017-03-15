@@ -1028,7 +1028,6 @@ var projectResourceTable = (function ($) {
     // post all of the hours cells
     var projResourceTable = $('#project-resource-table').DataTable();
     var rows = projResourceTable.rows();
-    var planBy = getParameterByName('PlanBy');
     var payloads = [];
     var rowIndex = 1;
     for (var i = 0; i < rows.context[0].aoData.length; i++) {
