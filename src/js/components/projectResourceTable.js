@@ -849,8 +849,12 @@ var projectResourceTable = (function ($) {
       event.preventDefault();
       console.log("saving form");
 
-      var url = $('#btn-save').attr('href');
-      url = updateQueryString('projID', projectID, url);
+      var url = $('#btn-save').attr('href'),
+          date = new Date(),
+          timeStamp = date.getTime();
+
+      url = updateQueryString('projID', projectID, url) + "&" + timeStamp;
+      console.log(timeStamp)
 
       $('#btn-save').attr('href', url);
 

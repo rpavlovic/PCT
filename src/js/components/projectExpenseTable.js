@@ -197,8 +197,11 @@ var expenseTable = (function ($) {
       $('.project-expense #btn-save').on('click', function (event) {
         event.preventDefault();
         console.log("saving expenses form");
-        var url = $('#btn-save').attr('href');
-        $('#btn-save').attr('href', updateQueryString('projID', projectID, url));
+        var url = $('#btn-save').attr('href'),
+            date = new Date(),
+            timeStamp = date.getTime();
+            
+        $('#btn-save').attr('href', updateQueryString('projID', projectID, url) + "&" + timeStamp);
 
         var rows = projExpenseTable.rows();
         var payloads = [];
