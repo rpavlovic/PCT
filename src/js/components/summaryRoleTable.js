@@ -50,17 +50,13 @@ var summaryRoleTable = (function ($) {
       else return acc;
     }, 0);
     // only need to messwith the numbers if we have selected one of these models
-    if (selectedModel && (selectedModel.ModelType === 'FFT' || selectedModel.ModelType === 'TMBF')) {
-      // need to calculate the ratios here...
-      rows.forEach(function (row) {
-        var ratio = row.fees / rolesTotalFee;
-        row.fees = ratio * selectedModel.Fees;
-      });
-      // now we actually override withthe  total fee from the selected model.
-      $('#roles-total').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
-    } else {
-      $('#roles-total').text(convertToDollar(projectInfo.Currency, rolesTotalFee));
-    }
+    // need to calculate the ratios here...
+    rows.forEach(function (row) {
+      var ratio = row.fees / rolesTotalFee;
+      row.fees = ratio * selectedModel.Fees;
+    });
+    // now we actually override withthe  total fee from the selected model.
+    $('#roles-total').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
 
     byRoleTable.DataTable({
       dom: '<tip>',
