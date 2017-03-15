@@ -126,7 +126,7 @@ var expenseTable = (function ($) {
             "data": "Amount",
             "defaultContent": '',
             "render": function (data, type, set, meta) {
-              return '<div contenteditable class="currency-sign '+ curr.toLowerCase() +'">' + data + '</div>';
+              return '<div contenteditable class="currency-sign '+ curr.toLowerCase() +'">' +convertDecimalToFixed(data) + '</div>';
             }
           }
         ],
@@ -160,7 +160,7 @@ var expenseTable = (function ($) {
           var amtPerRow = 0;
           for (var j = 5; j < rows.context[0].aoData[i].anCells.length; j++) {
 
-            var amtCells = parseFloat($(rows.context[0].aoData[i].anCells[j]).text());
+            var amtCells = parseFloat(convertToDecimal($(rows.context[0].aoData[i].anCells[j]).text()));
             amtPerRow += (!isNaN(amtCells) && amtCells.length !== 0) ? amtCells : 0;
             rowSum += amtPerRow;
            }
