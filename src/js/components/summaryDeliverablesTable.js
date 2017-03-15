@@ -79,23 +79,20 @@ var summaryDeliverablesTable = (function ($) {
         return acc;
     }, 0);
 
-    if (selectedModel && (selectedModel.ModelType === 'FFT' || selectedModel.ModelType === 'TMBF')) {
-      // need to figure out the appropropriate ratios
-      // Fixed fee is 60,000
-      // expenses and resources should be appropriate
-      var adjTotalProjectFees = 0;
-      deliverables.forEach(function (row) {
-        var ratioProjectFee = row.TotalFee / (totalProjectFees);
-        row.TotalFee = ratioProjectFee * selectedModel.Fees;
-        adjTotalProjectFees += row.TotalFee;
+    // need to figure out the appropropriate ratios
+    // Fixed fee is 60,000
+    // expenses and resources should be appropriate
+    var adjTotalProjectFees = 0;
+    deliverables.forEach(function (row) {
+      var ratioProjectFee = row.TotalFee / (totalProjectFees);
+      row.TotalFee = ratioProjectFee * selectedModel.Fees;
+      adjTotalProjectFees += row.TotalFee;
+      row.Budget = row.TotalFee + row.TotalExpenses;
+    });
 
-        row.Budget = row.TotalFee + row.TotalExpenses;
-      });
-
-      totalProjectFees = adjTotalProjectFees;
-      // total Budget should be the exact same as the selected modeling table budget...
-      totalBudget = parseFloat(selectedModel.Fees) + totalExpenses;
-    }
+    totalProjectFees = adjTotalProjectFees;
+    // total Budget should be the exact same as the selected modeling table budget...
+    totalBudget = parseFloat(selectedModel.Fees) + totalExpenses;
 
     $('#total-deliv-fees').text(convertToDollar(projectInfo.Currency, totalProjectFees));
     $('#total-deliv-expenses').text(convertToDollar(projectInfo.Currency, totalExpenses));
