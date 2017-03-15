@@ -34,6 +34,10 @@ var rateCardSelect = (function ($) {
 
       select_cards.append(rateCardTitles);
 
+      if($(".project-resources select#rate-card :selected").val() === '0') {
+        $(".view-card-rate").parent().fadeOut('slow').addClass('hide');
+      }
+
     });
 
     //on select change the Card Title for the View Edit link
@@ -46,7 +50,6 @@ var rateCardSelect = (function ($) {
       var CardID = select_cards.find(':selected').val();
       url = updateQueryString('CardID', CardID, url);
       $(this).attr('href', url);
-
     });
   }
 

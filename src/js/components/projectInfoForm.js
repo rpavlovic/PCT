@@ -290,7 +290,7 @@ var projectInfoForm = (function ($) {
         $(this).removeClass('empty-error');
       }
     });
-    return array_inpt.length == 0
+    return array_inpt.length === 0;
   }
 
   $('.project-info #btn-save').on('click', function (event) {
@@ -303,7 +303,6 @@ var projectInfoForm = (function ($) {
           date = new Date(),
           timeStamp = date.getTime();
 
-      console.log(`this is the timeStamp: `, timeStamp),
       url = updateQueryString('projID', projectId, url) + "&" + timeStamp;
 
       $(this).attr('href', url);
