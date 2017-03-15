@@ -25,17 +25,26 @@ var profileInfo = (function ($) {
         street.text(val.OfficeHousenum + " " + val.OfficeStreet + ", " + val.OfficeFloor);
         city.text(val.OfficeCity + ", " + val.OfficeRegion + ", " + val.OfficePostalcode);
       });
+
     function sort_unique(arr) {
       if (arr.length === 0) return arr;
-      arr = arr.sort(function (a, b) { return a.BillsheetId - b.BillsheetId; });
-      var ret = [arr[0]];
-      for (var i = 1; i < arr.length; i++) { // start loop at 1 as element 0 can never be a duplicate
-        if (arr[i-1].BillsheetId !== arr[i].BillsheetId) {
-           ret.push(arr[i]);
+
+      var customRateCards = {};
+      for (var i = 0; i < arr.length; i++) { // start loop at 1 as element 0 can never be a duplicate
+        if (!customRateCards[arr[i].BillsheetId]) {
+          customRateCards[arr[i].BillsheetId] = arr[i];
         }
       }
-      return ret;
+      customRateCards = Object.values(customRateCards).sort(function (a, b) {
+        if (a.BillsheetName < b.BillsheetName)
+          return -1;
+        if (a.BillsheetName > b.BillsheetName)
+          return 1;
+        return 0;
+      });
+      return customRateCards;
     }
+
     var card_names= [];
 
     $.getJSON(get_data_feed(feeds.billSheet, ' '), function (cards) {
