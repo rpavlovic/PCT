@@ -61,9 +61,6 @@ $breakpoints: (
 .float-left {
   float: left;
   text-align:left;
-  //@include breakpoint("small") {
-  //  float: none;
-  //}
 }
 .float-right {
   float: right;
@@ -72,7 +69,6 @@ $breakpoints: (
     float: right !important;
   }
 }
-
 .error {
   color: $red-alert;
   outline-color: $red-alert;

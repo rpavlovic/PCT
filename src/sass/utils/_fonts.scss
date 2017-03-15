@@ -2,10 +2,6 @@ a {
   color: $link-color;
   text-decoration: none;
   font: normal 1rem/1.2rem "EYRegular", Arial, sans-serif;
-  &.active,
-  &:focus {
-    // color: $default-grey;
-  }
 }
 h1 {
   font: normal bold 3.75rem/4.5rem "EYBold", Arial, sans-serif;

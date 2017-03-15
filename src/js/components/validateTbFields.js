@@ -15,13 +15,13 @@ function error(table) {
   });
 
   $(table).on('keypress', 'td.contenteditable > div', function (e) {
-
     if (e.which == 13) {
       $(e.target).blur();
       $(this).parent().nextAll(".contenteditable div").first().children('div').focus(true);
       return false;
     }
   });
+
   $(table).on('focus blur','td.contenteditable > div', function (e) {
     if ($(e.target).hasClass('error')) {
       $(e.target).text('').removeClass('error');
