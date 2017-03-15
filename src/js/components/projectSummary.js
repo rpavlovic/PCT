@@ -40,12 +40,6 @@ var projectSummary = (function ($) {
       });
     });
 
-    var p6 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.offices), function (offices) {
-        resolve(offices.d.results);
-      });
-    });
-
     function loadRateCardFromServer(OfficeId) {
       return new Promise(function (resolve, reject) {
         //console.log('RateCard Not found. checking service for OfficeId' + OfficeId);
@@ -69,7 +63,7 @@ var projectSummary = (function ($) {
       });
     }
 
-    var p7 = Promise.resolve(p4)
+    var p6 = Promise.resolve(p4)
       .then(function (resources) {
         var promiseArray = [];
         var officeIds = {};
@@ -86,23 +80,27 @@ var projectSummary = (function ($) {
           });
       });
 
-    Promise.all([p1, p2, p3, p4, p5, p6, p7]).then(function (values) {
+    Promise.all([p1, p2, p3, p4, p5, p6]).then(function (values) {
       var projectInfo = values[0];
       var projectDeliverables = values[1];
       var marginModeling = values[2];
       var projectResources = values[3];
       var projectExpenses = values[4];
-      var offices = values[5];
-      var rateCards = values[6];
+      var rateCards = values[5];
 
       fillProjectInfoSummary(projectInfo);
+
+      var selectedModel = marginModeling.find(function (val) {
+        return val.Selected === '1';
+      });
+
       if(projectResources.length) {
-        financialSummaryTable(projectInfo, marginModeling, projectResources, projectExpenses);
+        financialSummaryTable(projectInfo, selectedModel, projectResources, projectExpenses);
       }
 
-      summaryDeliverablesTable.initSummaryDeliverablesTable(projectInfo, projectDeliverables, projectResources, projectExpenses);
-      summaryOfficeTable.initSummaryOfficeTable(projectInfo, projectResources, offices, rateCards, marginModeling);
-      summaryRoleTable.initSummaryRoleTable(projectInfo, projectResources, rateCards, marginModeling);
+      summaryDeliverablesTable.initSummaryDeliverablesTable(projectInfo, projectDeliverables, projectResources, projectExpenses, selectedModel);
+      summaryOfficeTable.initSummaryOfficeTable(projectInfo, projectResources, rateCards, selectedModel);
+      summaryRoleTable.initSummaryRoleTable(projectInfo, projectResources, rateCards, selectedModel);
     });
   }
 
@@ -119,11 +117,7 @@ var projectSummary = (function ($) {
     $('textarea[name="comments"]').text(projectInfo.Comments);
   }
 
-  function financialSummaryTable(projectInfo, marginModeling, projectResources, projectExpenses) {
-    var selectedModel = marginModeling.find(function (val) {
-      return val.Selected === '1';
-    });
-
+  function financialSummaryTable(projectInfo, selectedModel, projectResources, projectExpenses) {
     var totalExpenses = projectExpenses.reduce(function (acc, val) {
       return acc + parseFloat(val.Amount);
     }, 0);

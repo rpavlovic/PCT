@@ -4,13 +4,9 @@
  */
 var summaryRoleTable = (function ($) {
   'use strict';
-  function initSummaryRoleTable(projectInfo, projectResources, rateCards, marginModeling) {
+  function initSummaryRoleTable(projectInfo, projectResources, rateCards, selectedModel) {
     var byRoleTable = $("#breakdown-role-table");
     var rows = {};
-
-    var selectedModel = marginModeling.find(function (val) {
-      return val.Selected === '1';
-    });
 
     projectResources.forEach(function (resource) {
       if (!rows[resource.EmpGradeName]) {
