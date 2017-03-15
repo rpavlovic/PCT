@@ -195,6 +195,7 @@ var projectInfoForm = (function ($) {
       $('textarea').val(extraProjInfo.Comments);
       $('select[name="Region"]').val(extraProjInfo.Region);
       $('select[name="Currency"]').val(extraProjInfo.Currency);
+      $('select[name="Currency"]').prop( "disabled", true );
       $('select[name="Office"]').val(extraProjInfo.Office);
       $('select[name="compensation"]').val(extraProjInfo.Comptyp);
       $('form.project-info input[name="Clientname"]').val(extraProjInfo.Clientname);
