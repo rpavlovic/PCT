@@ -15,7 +15,6 @@ $.fn.tableToCSV = function() {
 		var caption = $(this).find('caption').text();
 		var title = [];
 		var rows = [];
-
 		$(this).find('tr').each(function() {
 			var data = [];
 			$(this).find('th').each(function() {
@@ -38,6 +37,9 @@ $.fn.tableToCSV = function() {
 		var csv = title.trim() + '\n' + rows.trim();
 		var uri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
 		var download_link = document.createElement('a');
+
+		var blob = new Blob([csv], {type: "text/csv;charset=utf-8;"});
+
 		download_link.href = uri;
 		var ts = new Date().getTime();
 		var input_title = $('#bill-sheet-name').val();
@@ -46,9 +48,14 @@ $.fn.tableToCSV = function() {
 		} else {
 			download_link.download = caption+"-"+ts+".csv";
 		}
-		document.body.appendChild(download_link);
-		download_link.click();
-		document.body.removeChild(download_link);
+
+		if (navigator.msSaveBlob) { // IE 10+
+			navigator.msSaveBlob(blob, input_title + "_"+ ts+".csv");
+		} else {
+			document.body.appendChild(download_link);
+			download_link.click();
+			document.body.removeChild(download_link);
+		}
 	});
 
 };

@@ -8,7 +8,7 @@ form {
   input:not([type=checkbox]):not([type=radio]) {
     background-color: $form-grey;
     border: solid 1px #dfdfdf;
-    padding: rem-calc(14 10);
+    padding: rem-calc(14 0 10 14);
     margin-bottom: rem-calc(10);
     width: 100%;
     display: inline-block;
