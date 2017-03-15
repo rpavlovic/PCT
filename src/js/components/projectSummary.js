@@ -100,7 +100,6 @@ var projectSummary = (function ($) {
         financialSummaryTable(projectInfo, marginModeling, projectResources, projectExpenses);
       }
 
-
       summaryDeliverablesTable.initSummaryDeliverablesTable(projectInfo, projectDeliverables, projectResources, projectExpenses);
       summaryOfficeTable.initSummaryOfficeTable(projectInfo, projectResources, offices, rateCards, marginModeling);
       summaryRoleTable.initSummaryRoleTable(projectInfo, projectResources, rateCards, marginModeling);
