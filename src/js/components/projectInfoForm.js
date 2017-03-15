@@ -299,8 +299,12 @@ var projectInfoForm = (function ($) {
     //if Input fields fileld in are filled then continue to the next page.
     if (checkValues(input_duration, client_name, project_name, $('input.datepicker'))) {
 
-      var url = $(this).attr('href');
-      url = updateQueryString('projID', projectId, url);
+      var url = $(this).attr('href'),
+          date = new Date(),
+          timeStamp = date.getTime();
+
+      console.log(`this is the timeStamp: `, timeStamp),
+      url = updateQueryString('projID', projectId, url) + "&" + timeStamp;
 
       $(this).attr('href', url);
 
