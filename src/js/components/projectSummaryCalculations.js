@@ -19,29 +19,36 @@ var projectSummaryCalculations = (function ($) {
         resolve(projectDeliverables.d.results.filter(filterByProjectId, projectId));
       });
     });
-    var pResources = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectResources, projectId), function (rateCard) {
-        resolve(rateCard.d.results.filter(filterByProjectId, projectId));
+
+    var pModels = new Promise(function (resolve, reject) {
+      $.getJSON(get_data_feed(feeds.marginModeling, projectId, ' '), function (marginModeling) {
+        resolve(marginModeling.d.results.filter(filterByProjectId, projectId));
       });
     });
 
-    return Promise.all([projectInfo, pExpenses, pResources]).then(function (values) {
+    return Promise.all([projectInfo, pExpenses, pModels]).then(function (values) {
       var projInfo = values[0];
       var expenses = values[1];
-      var resources = values[2];
+      var marginModels = values[2];
 
       var expenseTotal = expenses.reduce(function (acc, val) {
         return parseFloat(acc) + parseFloat(val.Amount);
       }, 0);
 
-      var resourceTotalFee = resources.reduce(function (acc, val) {
-        return parseFloat(acc) + parseFloat(val.TotalFee);
-      }, 0);
+      var selectedModel = getMarginModel(marginModels);
 
-      return {
-        currency: projInfo.Currency,
-        budget: expenseTotal + resourceTotalFee
-      };
+      if(selectedModel) {
+        return {
+          currency: projInfo.Currency,
+          budget: expenseTotal + parseFloat(selectedModel.Fees)
+        };
+      }
+      else{
+        return {
+          currency: 'USD',
+          budget: 1.0
+        };
+      }
     });
   }
 
