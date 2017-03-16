@@ -31,7 +31,7 @@ var projectSummaryCalculations = (function ($) {
       else{
         return {
           currency: 'USD',
-          budget: 1.0
+          budget: 0.0
         };
       }
     });

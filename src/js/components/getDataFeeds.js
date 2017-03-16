@@ -123,9 +123,12 @@ function getBillSheet(cardId) {
   });
 }
 
-function getRateCard(officeId) {
+function getRateCard(officeId, currency) {
+  if(!currency)
+    currency = ' ';
+  
   return new Promise(function (resolve, reject) {
-    $.getJSON(get_data_feed(feeds.rateCards, officeId), function (rcs) {
+    $.getJSON(get_data_feed(feeds.rateCards, officeId, currency), function (rcs) {
       var rateCards = rcs.d.results.filter(function (rc) {
         return parseInt(rc.CostRate) > 0 && rc.Office === officeId && rc.EmpGradeName;
       });
