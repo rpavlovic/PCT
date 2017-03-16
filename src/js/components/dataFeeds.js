@@ -23,7 +23,7 @@ var feeds = {
   'resourceModeling': [ 'data/MarginModeling.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection?$filter=Projid eq \'{param1}\'&$format=json' ],
 
   // Rate Card / Bill Rate / Job Title by Office name, e.g.:  get_data_feed('rateCards', 'US02', 'JPY')
-  'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection?$filter=Office eq \'{param1}\'&$ToCurrency eq \'{param2}\'&$format=json' ],
+  'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection?$filter=Office eq \'{param1}\' and ToCurrency eq \'{param2}\'&$format=json' ],
 
   // Project Deliverables by Project ID, e.g.:  get_data_feed('projectDeliverables', '1000100')
   'projectDeliverables': [ 'data/ProjectRelatedDeliverables.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection?$filter=Projid eq \'{param1}\'&$format=json' ],
