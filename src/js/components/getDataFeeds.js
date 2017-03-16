@@ -130,6 +130,10 @@ function getRateCard(officeId) {
         return parseInt(rc.CostRate) > 0 && rc.Office === officeId && rc.EmpGradeName;
       });
       resolve(rateCards);
+    }).fail(function () {
+      // not found, but lets fix this and return empty set
+      console.log('no rate card found.... returning empty set');
+      resolve([]);
     });
   });
 }
