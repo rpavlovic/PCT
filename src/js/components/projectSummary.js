@@ -66,7 +66,7 @@ var projectSummary = (function ($) {
       });
 
       projectInfo.OfficeName = office ? office.OfficeName : projectExpenses.Office;
-      projectInfo.BillsheetName = billSheets ? billSheets[0].BillsheetName : '';
+      projectInfo.BillsheetName = billSheets.length > 0 ? billSheets[0].BillsheetName : '';
       fillProjectInfoSummary(projectInfo);
 
       var selectedModel = getMarginModel(marginModeling);
@@ -82,13 +82,20 @@ var projectSummary = (function ($) {
   }
 
   function fillProjectInfoSummary(projectInfo) {
+    console.log(projectInfo);
+    var planBy;
     currencyStyles.initCurrencyStyles(projectInfo.Currency);
     $('#client-name').text(projectInfo.Clientname);
     $('#country').text(projectInfo.Region);
     $('#office').text(projectInfo.OfficeName);
     $('#project-name').text(projectInfo.Projname);
     $('#start-date').text(calcPrettyDate(projectInfo.EstStDate));
-    $('#duration').text(projectInfo.Duration);
+    if(projectInfo.Plantyp === "WK") {
+      planBy = " Week(s)";
+    } else {
+      planBy = " Month(s)";
+    }
+    $('#duration').text(projectInfo.Duration + planBy);
     $('#comp-type').text(projectInfo.Comptyp);
     $('#rate-card').text(projectInfo.BillsheetName);
     $('textarea[name="comments"]').text(projectInfo.Comments);
