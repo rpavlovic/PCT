@@ -69,7 +69,7 @@ var loadCustomBillSheet = (function ($) {
           },
           {
             name: "TitleId",
-            visible: false,
+       //     visible: false,
             title: "TitleId"
           },
           {
@@ -88,10 +88,10 @@ var loadCustomBillSheet = (function ($) {
           {
             name: "OverrideRate",
             title: "Upload / Override",
-            defaultContent: "<div contenteditable></div>",
+            defaultContent: "<div contenteditable class='currency-sign usd'></div>",
             render: function (data, type, row) {
               if (data) {
-                return "<div contenteditable>" + data + "</div>";
+                return "<div contenteditable class='currency-sign usd'>" + data + "</div>";
               }
             }
           },
@@ -111,7 +111,7 @@ var loadCustomBillSheet = (function ($) {
           {
             name: "Title Id",
             data: "TitleId",
-            visible: true,
+          // visible: true,
             title: "Title Id"
           },
           {
@@ -212,6 +212,7 @@ var loadCustomBillSheet = (function ($) {
       if (newlines) {
         var rows = data.split(/\n/),
           titles = '';
+
         //get titles from the Excel sheet
         for (var i = rows.length - 1; i >= 1; i--) {
           if (rows[0].indexOf(',') != -1) {
@@ -245,12 +246,12 @@ var loadCustomBillSheet = (function ($) {
 
     // Upload CSV into a table.
     $("#uploadTable").on('click', function (event, opt_startByte, opt_stopByte) {
-      $("input[type=\"file\"]").trigger('click', function () {
+
+      $("#fileinput").trigger('click', function () {
         event.stopPropagation();
       });
 
-      $("input[type=\"file\"]").on('change', function (evt) {
-
+      $("#fileinput").on('change', function (evt) {
         var files = evt.target.files,
           file = files[0],
           file_name = file.name,
@@ -260,12 +261,12 @@ var loadCustomBillSheet = (function ($) {
 
         reader.onloadend = function (event) {
           if (event.target.readyState == FileReader.DONE) {
-            uploadCSV(event.target.result);
+            uploadCSV(reader.result);
           }
         };
         var blob = file.slice(start, stop + 1);
+        reader.readAsText(blob);
 
-        reader.readAsBinaryString(blob);
         $('#bill-sheet-name').val(file_name.slice(0, -4));
       });
       event.stopPropagation();
