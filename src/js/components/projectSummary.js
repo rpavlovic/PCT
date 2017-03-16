@@ -32,31 +32,21 @@ var projectSummary = (function ($) {
           });
       });
     var p7 = Promise.resolve(p1)
-      .then(function(projectInfo){
+      .then(function (projectInfo) {
         return Promise.resolve(getBillSheet(projectInfo.BillsheetId));
       });
 
     var p8 = getOffices();
 
     function loadRateCardFromServer(OfficeId) {
-      return new Promise(function (resolve, reject) {
-        //console.log('RateCard Not found. checking service for OfficeId' + OfficeId);
-        $.getJSON(get_data_feed(feeds.rateCards, OfficeId), function (rateCards) {
-          var rcs = rateCards.d.results.filter(function (val) {
-            // add in any filtering params if we need them in the future
-            return parseInt(val.CostRate) > 0 && val.EmpGradeName;
-          });
-          var rc = {
+      var p = getRateCard(OfficeId);
+      return Promise.resolve(p)
+        .then(function (rateCards) {
+          return {
             OfficeId: OfficeId,
-            rateCards: rateCards.d.results
+            rateCards: rateCards
           };
-          resolve(rc);
-        }).fail(function () {
-          // not found, but lets fix this and return empty set
-          console.log('no rate cards found.... returning empty set');
-          resolve([]);
         });
-      });
     }
 
     Promise.all([p1, p2, p3, p4, p5, p6, p7, p8]).then(function (values) {
@@ -69,7 +59,7 @@ var projectSummary = (function ($) {
       var billSheets = values[6];
       var offices = values[7];
 
-      var office = offices.find(function(val){
+      var office = offices.find(function (val) {
         return val.Office === projectInfo.Office;
       });
 
@@ -79,7 +69,7 @@ var projectSummary = (function ($) {
 
       var selectedModel = getMarginModel(marginModeling);
 
-      if(projectResources.length) {
+      if (projectResources.length) {
         financialSummaryTable(projectInfo, selectedModel, projectResources, projectExpenses);
       }
 

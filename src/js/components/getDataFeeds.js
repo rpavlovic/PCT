@@ -106,7 +106,7 @@ function getBillSheet(cardId) {
   return new Promise(function (resolve, reject) {
     $.getJSON(get_data_feed(feeds.billSheet, cardId), function (cards) {
       var cardResults = cards.d.results;
-      if(cardId === ' '){
+      if (cardId === ' ') {
         resolve(cardResults);
       }
       else {
@@ -119,6 +119,17 @@ function getBillSheet(cardId) {
       // not found, but lets fix this and return empty set
       console.log('no custom bill sheet found.... returning empty set');
       resolve([]);
+    });
+  });
+}
+
+function getRateCard(officeId) {
+  return new Promise(function (resolve, reject) {
+    $.getJSON(get_data_feed(feeds.rateCards, officeId), function (rcs) {
+      var rateCards = rcs.d.results.filter(function (rc) {
+        return parseInt(rc.CostRate) > 0 && rc.Office === officeId && rc.EmpGradeName;
+      });
+      resolve(rateCards);
     });
   });
 }
