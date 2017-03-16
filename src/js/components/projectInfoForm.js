@@ -181,27 +181,29 @@ var projectInfoForm = (function ($) {
   }
 
   function prepopulate_ExtraInfo_JSON(projectInfo) {
-    $('textarea').val(projectInfo.Comments);
-    $('select[name="Region"]').val(projectInfo.Region);
-    $('select[name="Currency"]').val(projectInfo.Currency);
+    if(projectInfo && projectInfo.Projname) {
+      $('textarea').val(projectInfo.Comments);
+      $('select[name="Region"]').val(projectInfo.Region);
+      $('select[name="Currency"]').val(projectInfo.Currency);
 
-    if(projectInfo.Currency) {
-      $('select[name="Currency"]').prop("disabled", true);
+      if (projectInfo.Currency) {
+        $('select[name="Currency"]').prop("disabled", true);
+      }
+
+      $('select[name="Office"]').val(projectInfo.Office);
+      $('select[name="compensation"]').val(projectInfo.Comptyp);
+      $('form.project-info input[name="Clientname"]').val(projectInfo.Clientname);
+      $('form.project-info input[name="Projname"]').val(projectInfo.Projname);
+      $('form.project-info input[name="Preparedby"]').val(projectInfo.Preparedby);
+      select_plan_by.val(projectInfo.Plantyp);
+      var plan_by = (projectInfo.Plantyp === "WK") ? "Weeks" : "Months";
+      input_duration.val(projectInfo.Duration + " " + plan_by);
+      plan_units.val('Hourly');
+      createdOn = projectInfo.Createdon;
+      $('input.datepicker').val(calcPrettyDate(projectInfo.EstStDate));
+      $('input[name="weekstart"]').val(calcPrettyDate(projectInfo.StartDate));
+      $('input[name="enddate"]').val(calcPrettyDate(projectInfo.EstEndDate));
     }
-
-    $('select[name="Office"]').val(projectInfo.Office);
-    $('select[name="compensation"]').val(projectInfo.Comptyp);
-    $('form.project-info input[name="Clientname"]').val(projectInfo.Clientname);
-    $('form.project-info input[name="Projname"]').val(projectInfo.Projname);
-    $('form.project-info input[name="Preparedby"]').val(projectInfo.Preparedby);
-    select_plan_by.val(projectInfo.Plantyp);
-    var plan_by = (projectInfo.Plantyp === "WK") ? "Weeks" : "Months";
-    input_duration.val(projectInfo.Duration + " " + plan_by);
-    plan_units.val('Hourly');
-    createdOn = projectInfo.Createdon;
-    $('input.datepicker').val(calcPrettyDate(projectInfo.EstStDate));
-    $('input[name="weekstart"]').val(calcPrettyDate(projectInfo.StartDate));
-    $('input[name="enddate"]').val(calcPrettyDate(projectInfo.EstEndDate));
   }
 
   function initProjectInfoForm(feeds) {
