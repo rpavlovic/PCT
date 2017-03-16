@@ -24,28 +24,14 @@ var expenseTable = (function ($) {
   });
 
   function initExpenseTable() {
-    var p1 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectDeliverables, projectID), function (deliverables) {
-        resolve(deliverables.d.results.filter(filterByProjectId, projectID));
-      });
-    });
-
-    var p2 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectExpenses, projectID), function (expenses) {
-        resolve(expenses.d.results.filter(filterByProjectId, projectID));
-      });
-    });
-
-    var p3 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.project, projectID), function (projects) {
-        resolve(projects.d.results.find(filterByProjectId, projectID));
-      });
-    });
+    var p1 = getProjectDeliverables(projectID);
+    var p2 = getProjectExpenses(projectID);
+    var p3 = getProjectInfo(projectID);
 
     Promise.all([p1, p2, p3]).then(function (values) {
       var data = [];
-      deliverables = values[0].filter(matchProjID);
-      expenses = values[1].filter(matchProjID);
+      deliverables = values[0];
+      expenses = values[1];
       var projectInfo = values[2];
 
       curr = projectInfo.Currency ? projectInfo.Currency : 'USD';
@@ -126,7 +112,7 @@ var expenseTable = (function ($) {
             "data": "Amount",
             "defaultContent": '',
             "render": function (data, type, set, meta) {
-              return '<div contenteditable class="currency-sign '+ curr.toLowerCase() +'">' +convertDecimalToFixed(data) + '</div>';
+              return '<div contenteditable class="currency-sign ' + curr.toLowerCase() + '">' + convertDecimalToFixed(data) + '</div>';
             }
           }
         ],
@@ -135,7 +121,7 @@ var expenseTable = (function ($) {
           $("td:last-child", nRow).addClass('amount num');
           $("td:nth-last-of-type(-n+2)", nRow).addClass("contenteditable");
         },
-        "drawCallback": function(row) {
+        "drawCallback": function (row) {
           $('.contenteditable').on('keyup focusout', function (e) {
             recalculateStuff();
           });
@@ -143,15 +129,14 @@ var expenseTable = (function ($) {
         "createdRow": function (row, data, index) {
           $('tfoot th').removeClass('center');
         },
-         "initComplete": function (settings, json) {
-            setTimeout(recalculateStuff, 1000);
-            currencyStyles.initCurrencyStyles(curr);
-         },
+        "initComplete": function (settings, json) {
+          setTimeout(recalculateStuff, 1000);
+          currencyStyles.initCurrencyStyles(curr);
+        },
         "bDestroy": true
       });
 
       function recalculateStuff() {
-        console.log(projExpenseTable);
         var rows = projExpenseTable.rows();
         var rowSum = 0;
 
@@ -163,7 +148,7 @@ var expenseTable = (function ($) {
             var amtCells = parseFloat(convertToDecimal($(rows.context[0].aoData[i].anCells[j]).text()));
             amtPerRow += (!isNaN(amtCells) && amtCells.length !== 0) ? amtCells : 0;
             rowSum += amtPerRow;
-           }
+          }
         }
 
         if (rowSum) {
@@ -198,9 +183,9 @@ var expenseTable = (function ($) {
         event.preventDefault();
         console.log("saving expenses form");
         var url = $('#btn-save').attr('href'),
-            date = new Date(),
-            timeStamp = date.getTime();
-            
+          date = new Date(),
+          timeStamp = date.getTime();
+
         $('#btn-save').attr('href', updateQueryString('projID', projectID, url) + "&" + timeStamp);
 
         var rows = projExpenseTable.rows();

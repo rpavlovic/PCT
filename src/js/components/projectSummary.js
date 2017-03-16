@@ -10,35 +10,11 @@ var projectSummary = (function ($) {
 
   function initProjectSummary() {
 
-    var p1 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.project, projectId), function (projects) {
-        resolve(projects.d.results.find(filterByProjectId, projectId));
-      });
-    });
-
-    var p2 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectDeliverables, projectId), function (projectDeliverables) {
-        resolve(projectDeliverables.d.results.filter(filterByProjectId, projectId));
-      });
-    });
-
-    var p3 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.marginModeling, projectId, ' '), function (marginModeling) {
-        resolve(marginModeling.d.results.filter(filterByProjectId, projectId));
-      });
-    });
-
-    var p4 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectResources, projectId), function (projectResources) {
-        resolve(projectResources.d.results.filter(filterByProjectId, projectId));
-      });
-    });
-
-    var p5 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectExpenses, projectId), function (projectExpenses) {
-        resolve(projectExpenses.d.results.filter(filterByProjectId, projectId));
-      });
-    });
+    var p1 = getProjectInfo(projectId);
+    var p2 = getProjectDeliverables(projectId);
+    var p3 = getMarginModeling(projectId);
+    var p4 = getProjectResources(projectId);
+    var p5 = getProjectExpenses(projectId);
 
     function loadRateCardFromServer(OfficeId) {
       return new Promise(function (resolve, reject) {
@@ -48,12 +24,10 @@ var projectSummary = (function ($) {
             // add in any filtering params if we need them in the future
             return parseInt(val.CostRate) > 0 && val.EmpGradeName;
           });
-
           var rc = {
             OfficeId: OfficeId,
             rateCards: rateCards.d.results
           };
-
           resolve(rc);
         }).fail(function () {
           // not found, but lets fix this and return empty set
@@ -103,6 +77,7 @@ var projectSummary = (function ($) {
   }
 
   function fillProjectInfoSummary(projectInfo) {
+    console.log(projectInfo);
     currencyStyles.initCurrencyStyles(projectInfo.Currency);
     $('#client-name').text(projectInfo.Clientname);
     $('#country').text(projectInfo.Region);

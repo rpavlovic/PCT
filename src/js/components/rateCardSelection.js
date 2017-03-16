@@ -11,11 +11,7 @@ var rateCardSelect = (function ($) {
       rateCardTitles = [];
 
   function initRateCardSelect(BillsheetId) {
-    var rateCard = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.billSheet, ' '), function (cards) {
-        resolve(cards.d.results);
-      });
-    });
+    var rateCard = getBillSheet(' ');
 
     Promise.resolve(rateCard)
     .then(function (values) {

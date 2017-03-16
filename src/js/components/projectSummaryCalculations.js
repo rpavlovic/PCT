@@ -7,24 +7,9 @@ var projectSummaryCalculations = (function ($) {
   'use strict';
 
   function calculateBudget(projectId) {
-    var projectInfo = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.project, projectId), function (projects) {
-        // return only 1 project info
-        resolve(projects.d.results.find(filterByProjectId, projectId));
-      });
-    });
-
-    var pExpenses = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectExpenses, projectId), function (projectDeliverables) {
-        resolve(projectDeliverables.d.results.filter(filterByProjectId, projectId));
-      });
-    });
-
-    var pModels = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.marginModeling, projectId, ' '), function (marginModeling) {
-        resolve(marginModeling.d.results.filter(filterByProjectId, projectId));
-      });
-    });
+    var projectInfo = getProjectDeliverables(projectId);
+    var pExpenses = getProjectExpenses(projectId);
+    var pModels = getMarginModeling(projectId);
 
     return Promise.all([projectInfo, pExpenses, pModels]).then(function (values) {
       var projInfo = values[0];

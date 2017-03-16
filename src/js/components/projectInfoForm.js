@@ -182,72 +182,31 @@ var projectInfoForm = (function ($) {
     });
   }
 
-  function prepopulate_ExtraInfo_JSON(results) {
-    var extraProjInfo = results.find(function (value) {
-      return value.Projid === projectId;
-    });
-    if (extraProjInfo) {
-      //console.log(extraProjInfo);
-      $('textarea').val(extraProjInfo.Comments);
-      $('select[name="Region"]').val(extraProjInfo.Region);
-      $('select[name="Currency"]').val(extraProjInfo.Currency);
+  function prepopulate_ExtraInfo_JSON(projectInfo) {
+      $('textarea').val(projectInfo.Comments);
+      $('select[name="Region"]').val(projectInfo.Region);
+      $('select[name="Currency"]').val(projectInfo.Currency);
       $('select[name="Currency"]').prop( "disabled", true );
-      $('select[name="Office"]').val(extraProjInfo.Office);
-      $('select[name="compensation"]').val(extraProjInfo.Comptyp);
-      $('form.project-info input[name="Clientname"]').val(extraProjInfo.Clientname);
-      $('form.project-info input[name="Projname"]').val(extraProjInfo.Projname);
-      $('form.project-info input[name="Preparedby"]').val(extraProjInfo.Preparedby);
-      select_plan_by.val(extraProjInfo.Plantyp);
-      var plan_by;
-      if(extraProjInfo.Plantyp === "WK") {
-        plan_by = "Weeks";
-      } else {
-        plan_by = "Months";
-      }
-      input_duration.val(extraProjInfo.Duration + " " +  plan_by);
- //     plan_units.val(extraProjInfo.Comptyp);
+      $('select[name="Office"]').val(projectInfo.Office);
+      $('select[name="compensation"]').val(projectInfo.Comptyp);
+      $('form.project-info input[name="Clientname"]').val(projectInfo.Clientname);
+      $('form.project-info input[name="Projname"]').val(projectInfo.Projname);
+      $('form.project-info input[name="Preparedby"]').val(projectInfo.Preparedby);
+      select_plan_by.val(projectInfo.Plantyp);
+      var plan_by =(projectInfo.Plantyp === "WK") ? "Weeks" : "Months";
+      input_duration.val(projectInfo.Duration + " " +  plan_by);
       plan_units.val('Hourly');
-      createdOn = extraProjInfo.Createdon;
-      $('input.datepicker').val(calcPrettyDate(extraProjInfo.EstStDate));
-      $('input[name="weekstart"]').val(calcPrettyDate(extraProjInfo.StartDate));
-      $('input[name="enddate"]').val(calcPrettyDate(extraProjInfo.EstEndDate));
-    } else {
-      plan_units.val('HOURLY');
-    }
+      createdOn = projectInfo.Createdon;
+      $('input.datepicker').val(calcPrettyDate(projectInfo.EstStDate));
+      $('input[name="weekstart"]').val(calcPrettyDate(projectInfo.StartDate));
+      $('input[name="enddate"]').val(calcPrettyDate(projectInfo.EstEndDate));
   }
 
-
-
   function initProjectInfoForm(feeds) {
-    var p1 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectDeliverables, projectId), function (deliverables) {
-        resolve(deliverables.d.results.filter(filterByProjectId, projectId));
-      });
-    });
-
-    var p2 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.offices), function (offices) {
-        resolve(offices.d.results);
-      });
-    });
-
-    var p3 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.employee), function (employees) {
-        resolve(employees.d.results);
-      });
-    });
-
-    var p4 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.project, projectId), function (projects) {
-        resolve(projects.d.results.filter(filterByProjectId, projectId));
-      }).fail(function () {
-        // not found, but lets fix this and return empty set
-        // setting the flag here so we know if they hit delete for a deliverable
-        // we need to run delete payload commands
-        isNewProject = true;
-        resolve([]);
-      });
-    });
+    var p1 = getProjectDeliverables(projectId);
+    var p2 = getOffices();
+    var p3 = getEmployeeInfo();
+    var p4 = getProjectInfo(projectId);
 
     Promise.all([p1, p2, p3, p4])
       .then(function (values) {
