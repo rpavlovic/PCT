@@ -34,7 +34,7 @@ var loadCustomBillSheet = (function ($) {
           });
           populateTable(uniqRcs, false);
         });
-      })
+      });
     }
     else {
       var rcs = getBillSheet(getParameterByName('CardID'));
@@ -287,7 +287,7 @@ var loadCustomBillSheet = (function ($) {
           console.log("navigating to new window in" + timeout + "seconds");
           timeout = timeout ? timeout : 1;
           setTimeout(function () {
-            window.location.href = 'customBillSheet.htm?CardID=' + bsId;
+            if(!is_fiori()) { window.location.href = 'customBillSheet.htm?CardID=' + bsId; }
           }, timeout);
         }
       });
@@ -361,6 +361,7 @@ var loadCustomBillSheet = (function ($) {
         console.log("navigating to new window in" + timeout + "seconds");
         timeout = timeout ? timeout : 1;
         setTimeout(function () {
+          console.log(!is_fiori());
           window.location.href = 'customBillSheet.htm';
         }, timeout);
       },
@@ -369,7 +370,8 @@ var loadCustomBillSheet = (function ($) {
         console.log("navigating to new window in" + timeout + "seconds");
         timeout = timeout ? timeout : 1;
         setTimeout(function () {
-          window.location.href = 'customBillSheet.htm';
+          console.log(!is_fiori());
+           if(!is_fiori()) { window.location.href = 'customBillSheet.htm'; }
         }, timeout);
       }
     });

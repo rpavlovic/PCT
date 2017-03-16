@@ -2,6 +2,7 @@
  * @module Draw Data Table for Expense page.
  * @version
  */
+/*jshint loopfunc: true */
 var expenseTable = (function ($) {
   'use strict';
 
@@ -231,7 +232,7 @@ var expenseTable = (function ($) {
             console.log("navigating to new window in" + timeout + "seconds");
             timeout = timeout ? timeout : 1;
             setTimeout(function () {
-              window.location.href = $('#btn-save').attr('href');
+              if (!is_fiori()) { window.location.href = $('#btn-save').attr('href'); }
             }, timeout);
           }
         });

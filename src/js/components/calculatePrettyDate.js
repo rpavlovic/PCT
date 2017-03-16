@@ -26,6 +26,6 @@ function addMonthsUTC(date, count) {
     if (date.getUTCMonth() !== m)
       date.setUTCDate(0);
   }
-  var d = new Date(date);
-  return '/Date(' + d.getTime() + ')/';
+  var d1 = new Date(date);
+  return '/Date(' + d1.getTime() + ')/';
 }
