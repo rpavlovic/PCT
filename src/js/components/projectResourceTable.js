@@ -14,7 +14,7 @@ var projectResourceTable = (function ($) {
   var projectInfo;
   var currency;
 
-  function getRateCard(OfficeId) {
+  function getRateCardLocal(OfficeId) {
     if (!OfficeId) {
       return [];
     }
@@ -30,11 +30,6 @@ var projectResourceTable = (function ($) {
     var pGetRateCard = getRateCard(OfficeId);
     pGetRateCard.then(function (rateCards) {
       sessionStorage.setItem('RateCard' + OfficeId, JSON.stringify(rateCards));
-      resolve(rateCards);
-    }).fail(function () {
-      // not found, but lets fix this and return empty set
-      console.log('no rate cards found.... returning empty set');
-      resolve([]);
     });
   }
 
@@ -463,7 +458,7 @@ var projectResourceTable = (function ($) {
         var Office = nodes.closest('tr').find('.office :selected').val();
         var EmpGradeName = nodes.closest('tr').find('.title :selected').text();
         var CostCenter = nodes.closest('tr').find('.practice :selected').val();
-        var rateCards = getRateCard(Office);
+        var rateCards = getRateCardLocal(Office);
         var rates = rateCards.filter(function (val) {
           return val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter;
         });
@@ -505,7 +500,7 @@ var projectResourceTable = (function ($) {
         select += '<option data-class="">Select Title</option>';
         if (resource) {
           var empGrades = [];
-          var rateCards = getRateCard(resource.Officeid);
+          var rateCards = getRateCardLocal(resource.Officeid);
           rateCards.filter(function (val) {
             return val.Office === resource.Officeid;
           }).forEach(function (val) {
@@ -526,7 +521,7 @@ var projectResourceTable = (function ($) {
       }
 
       function getEmployeeClass(employee) {
-        var rateCards = getRateCard(employee.Officeid);
+        var rateCards = getRateCardLocal(employee.Officeid);
         var rcElement = rateCards.find(function (val) {
           return val.Office === employee.Officeid && employee.EmpGradeName === val.EmpGradeName;
         });
@@ -538,7 +533,7 @@ var projectResourceTable = (function ($) {
 
       // you should filter practices based on employee title/EmpGrade
       function getPractices(employee) {
-        var rateCards = getRateCard(employee.Officeid);
+        var rateCards = getRateCardLocal(employee.Officeid);
         var select = "<select class='practice' name='CostCenterName'>";
         select += "<option>Select Practice</option>";
         var practices = [];
@@ -577,7 +572,7 @@ var projectResourceTable = (function ($) {
           return '';
         }
 
-        var rateCards = getRateCard(resource.Officeid);
+        var rateCards = getRateCardLocal(resource.Officeid);
         var filteredRates = rateCards.filter(function (val) {
           //Practiceid which is also CostCenter
           return val.Office === resource.Officeid && val.EmpGradeName === resource.EmpGradeName && val.CostCenter === resource.Practiceid;
