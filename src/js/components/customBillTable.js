@@ -11,30 +11,37 @@ var loadCustomBillSheet = (function ($) {
 
     if (!getParameterByName('CardID')) {
       var pProfile = getEmployeeInfo();
-      pProfile.then(function (employee) {
-        var Office = employee.Office;
-        var pRateCards = getRateCard(Office);
-        pRateCards.then(function (rateCards) {
-          var uniqRcs = {};
-          rateCards.forEach(function (rc) {
-            uniqRcs[rc.EmpGrade] = rc;
+      var pOffices = getOffices();
+
+      Promise.all([pProfile, pOffices])
+        .then(function (values) {
+          var employee = values[0];
+          var officeInfo = values[1].find(function (val) {
+            return val.Office = employee.Office;
           });
 
-          uniqRcs = Object.values(uniqRcs).map(function (obj) {
-            return {
-              TitleDesc: obj.EmpGradeName,
-              TitleId: obj.EmpGrade,
-              Class: obj.Class,
-              StandardRate: obj.BillRate,
-              Currency: obj.LocalCurrency,
-              DiscountPer: ''
-            };
-          }).sort(function (a, b) {
-            return (a.TitleDesc > b.TitleDesc) ? 1 : ((b.TitleDesc > a.TitleDesc) ? -1 : 0);
+          var pRateCards = getRateCard(employee.Office, officeInfo.Currency);
+          pRateCards.then(function (rateCards) {
+            var uniqRcs = {};
+            rateCards.forEach(function (rc) {
+              uniqRcs[rc.EmpGrade] = rc;
+            });
+
+            uniqRcs = Object.values(uniqRcs).map(function (obj) {
+              return {
+                TitleDesc: obj.EmpGradeName,
+                TitleId: obj.EmpGrade,
+                Class: obj.Class,
+                StandardRate: obj.BillRate,
+                Currency: obj.LocalCurrency,
+                DiscountPer: ''
+              };
+            }).sort(function (a, b) {
+              return (a.TitleDesc > b.TitleDesc) ? 1 : ((b.TitleDesc > a.TitleDesc) ? -1 : 0);
+            });
+            populateTable(uniqRcs, false);
           });
-          populateTable(uniqRcs, false);
-        });
-      })
+        })
     }
     else {
       var rcs = getBillSheet(getParameterByName('CardID'));
@@ -54,7 +61,6 @@ var loadCustomBillSheet = (function ($) {
           },
           {
             name: "TitleId",
-            //     visible: false,
             title: "TitleId"
           },
           {
@@ -96,7 +102,6 @@ var loadCustomBillSheet = (function ($) {
           {
             name: "Title Id",
             data: "TitleId",
-            // visible: true,
             title: "Title Id"
           },
           {

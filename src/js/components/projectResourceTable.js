@@ -14,11 +14,11 @@ var projectResourceTable = (function ($) {
   var projectInfo;
   var currency;
 
-  function getRateCardLocal(OfficeId) {
+  function getRateCardLocal(OfficeId, Currency) {
     if (!OfficeId) {
       return [];
     }
-    var rc = sessionStorage.getItem('RateCard' + OfficeId);
+    var rc = sessionStorage.getItem('RateCard' + OfficeId + 'Currency' + Currency);
     if (rc) {
       return JSON.parse(rc);
     } else {
@@ -26,10 +26,10 @@ var projectResourceTable = (function ($) {
     }
   }
 
-  function loadRateCardFromServerIntoSessionStorage(OfficeId) {
-    var pGetRateCard = getRateCard(OfficeId);
+  function loadRateCardFromServerIntoSessionStorage(OfficeId, Currency) {
+    var pGetRateCard = getRateCard(OfficeId, Currency);
     pGetRateCard.then(function (rateCards) {
-      sessionStorage.setItem('RateCard' + OfficeId, JSON.stringify(rateCards));
+      sessionStorage.setItem('RateCard' + OfficeId + 'Currency' + Currency, JSON.stringify(rateCards));
     });
   }
 
@@ -37,12 +37,19 @@ var projectResourceTable = (function ($) {
     var p1 = getProjectDeliverables(projectID);
     var p2 = getOffices();
     var p4 = getProjectResources(projectID);
-    var p3 = Promise.resolve(p4)
-      .then(function (resources) {
+    //fees for modeling table targets
+    var t1 = getMarginModeling(projectID);
+    var p5 = getPlannedHours(projectID);
+    var pInfo = getProjectInfo(projectID);
+
+    var p3 = Promise.all([p4, pInfo])
+      .then(function (values) {
+        var resources = values[0];
+        var pInfo = values[1];
         var promiseArray = [];
         resources.forEach(function (val) {
-          if (!sessionStorage.getItem('RateCard' + val.Officeid)) {
-            promiseArray.push(loadRateCardFromServerIntoSessionStorage(val.Officeid));
+          if (!sessionStorage.getItem('RateCard' + val.Officeid + 'Currency' + pInfo.Currency)) {
+            promiseArray.push(loadRateCardFromServerIntoSessionStorage(val.Officeid, pInfo.Currency));
           }
         });
         return Promise.all(promiseArray)
@@ -52,26 +59,20 @@ var projectResourceTable = (function ($) {
           });
       });
 
-    //fees for modeling table targets
-    var t1 = getMarginModeling(projectID);
-    var p5 = getPlannedHours(projectID);
-    var pInfo = getProjectInfo(projectID);
-
     Promise.all([p1, p2, p3, p4, t1, p5, pInfo]).then(function (values) {
       //deliverables
       var deliverables = values[0];
       var offices = values[1];
-      // preload the rest of the bill rate cards
-      offices.forEach(function (val) {
-        if (!sessionStorage.getItem('RateCard' + val.Office))
-          loadRateCardFromServerIntoSessionStorage(val.Office);
-      });
-
-      // go ahead and prefetch the rest of the office rate cards for performance
       projectResources = values[3];
       var marginModeling = values[4];
       var plannedHours = values[5];
       projectInfo = values[6];
+      // preload the rest of the bill rate cards
+      // go ahead and prefetch the rest of the office rate cards for performance
+      offices.forEach(function (val) {
+        if (!sessionStorage.getItem('RateCard' + val.Office+'Currency' + projectInfo.Currency ))
+          loadRateCardFromServerIntoSessionStorage(val.Office);
+      });
 
       duration = projectInfo.Duration;
       office = projectInfo.Office;

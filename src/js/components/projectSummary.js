@@ -15,14 +15,16 @@ var projectSummary = (function ($) {
     var p3 = getMarginModeling(projectId);
     var p4 = getProjectResources(projectId);
     var p5 = getProjectExpenses(projectId);
-    var p6 = Promise.resolve(p4)
-      .then(function (resources) {
+    var p6 = Promise.all([p4, p1])
+      .then(function (values) {
+        var resources = values[0];
+        var pInfo = values[1];
         var promiseArray = [];
         var officeIds = {};
         resources.forEach(function (val) {
           if (!officeIds[val.Officeid]) {
             officeIds[val.Officeid] = true;
-            promiseArray.push(loadRateCardFromServer(val.Officeid));
+            promiseArray.push(loadRateCardFromServer(val.Officeid, pInfo.Currency));
           }
         });
         return Promise.all(promiseArray)
@@ -38,8 +40,8 @@ var projectSummary = (function ($) {
 
     var p8 = getOffices();
 
-    function loadRateCardFromServer(OfficeId) {
-      var p = getRateCard(OfficeId);
+    function loadRateCardFromServer(OfficeId, Currency) {
+      var p = getRateCard(OfficeId, Currency);
       return Promise.resolve(p)
         .then(function (rateCards) {
           return {
