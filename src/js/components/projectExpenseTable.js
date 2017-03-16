@@ -2,6 +2,7 @@
  * @module Draw Data Table for Expense page.
  * @version
  */
+/*jshint loopfunc: true */
 var expenseTable = (function ($) {
   'use strict';
 

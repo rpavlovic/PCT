@@ -2,7 +2,7 @@
  * @module Load Info Page form input fields.
  * @version
  */
-
+/*jshint loopfunc: true */
 var projectInfoForm = (function ($) {
   'use strict';
 

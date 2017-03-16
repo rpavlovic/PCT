@@ -2,7 +2,7 @@
  * @module Draw Data Table for Preoject Resource page.
  * @version
  */
-
+/*jshint loopfunc: true */
 var projectResourceTable = (function ($) {
   'use strict';
   var projectID = getParameterByName('projID') ? getParameterByName('projID').toString() : '';
@@ -76,7 +76,7 @@ var projectResourceTable = (function ($) {
       duration = projectInfo.Duration;
       office = projectInfo.Office;
       planBy = projectInfo.Plantyp;
-console.log(projectInfo);
+
       rateCardSelect.initRateCardSelect(projectInfo.BillsheetId);
 
       var selectedModel = marginModeling.find(function (obj) {
