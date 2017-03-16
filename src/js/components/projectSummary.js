@@ -15,6 +15,26 @@ var projectSummary = (function ($) {
     var p3 = getMarginModeling(projectId);
     var p4 = getProjectResources(projectId);
     var p5 = getProjectExpenses(projectId);
+    var p6 = Promise.resolve(p4)
+      .then(function (resources) {
+        var promiseArray = [];
+        var officeIds = {};
+        resources.forEach(function (val) {
+          if (!officeIds[val.Officeid]) {
+            officeIds[val.Officeid] = true;
+            promiseArray.push(loadRateCardFromServer(val.Officeid));
+          }
+        });
+        return Promise.all(promiseArray)
+          .then(function (rateCards) {
+            console.log("rateCard with associated offices are loaded");
+            return rateCards;
+          });
+      });
+    var p7 = Promise.resolve(p1)
+      .then(function(projectInfo){
+        return Promise.resolve(getBillSheet(projectInfo.BillsheetId));
+      });
 
     function loadRateCardFromServer(OfficeId) {
       return new Promise(function (resolve, reject) {
@@ -37,31 +57,16 @@ var projectSummary = (function ($) {
       });
     }
 
-    var p6 = Promise.resolve(p4)
-      .then(function (resources) {
-        var promiseArray = [];
-        var officeIds = {};
-        resources.forEach(function (val) {
-          if (!officeIds[val.Officeid]) {
-            officeIds[val.Officeid] = true;
-            promiseArray.push(loadRateCardFromServer(val.Officeid));
-          }
-        });
-        return Promise.all(promiseArray)
-          .then(function (rateCards) {
-            console.log("rateCard with associated offices are loaded");
-            return rateCards;
-          });
-      });
-
-    Promise.all([p1, p2, p3, p4, p5, p6]).then(function (values) {
+    Promise.all([p1, p2, p3, p4, p5, p6, p7]).then(function (values) {
       var projectInfo = values[0];
       var projectDeliverables = values[1];
       var marginModeling = values[2];
       var projectResources = values[3];
       var projectExpenses = values[4];
       var rateCards = values[5];
+      var billSheets = values[6];
 
+      projectInfo.BillsheetName = billSheets ? billSheets[0].BillsheetName : '';
       fillProjectInfoSummary(projectInfo);
 
       var selectedModel = getMarginModel(marginModeling);
@@ -77,7 +82,6 @@ var projectSummary = (function ($) {
   }
 
   function fillProjectInfoSummary(projectInfo) {
-    console.log(projectInfo);
     currencyStyles.initCurrencyStyles(projectInfo.Currency);
     $('#client-name').text(projectInfo.Clientname);
     $('#country').text(projectInfo.Region);
@@ -86,7 +90,7 @@ var projectSummary = (function ($) {
     $('#start-date').text(calcPrettyDate(projectInfo.EstStDate));
     $('#duration').text(projectInfo.Duration);
     $('#comp-type').text(projectInfo.Comptyp);
-    $('#rate-card').text(projectInfo.BillsheetId);
+    $('#rate-card').text(projectInfo.BillsheetName);
     $('textarea[name="comments"]').text(projectInfo.Comments);
   }
 
