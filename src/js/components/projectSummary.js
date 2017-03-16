@@ -36,6 +36,8 @@ var projectSummary = (function ($) {
         return Promise.resolve(getBillSheet(projectInfo.BillsheetId));
       });
 
+    var p8 = getOffices();
+
     function loadRateCardFromServer(OfficeId) {
       return new Promise(function (resolve, reject) {
         //console.log('RateCard Not found. checking service for OfficeId' + OfficeId);
@@ -57,7 +59,7 @@ var projectSummary = (function ($) {
       });
     }
 
-    Promise.all([p1, p2, p3, p4, p5, p6, p7]).then(function (values) {
+    Promise.all([p1, p2, p3, p4, p5, p6, p7, p8]).then(function (values) {
       var projectInfo = values[0];
       var projectDeliverables = values[1];
       var marginModeling = values[2];
@@ -65,7 +67,13 @@ var projectSummary = (function ($) {
       var projectExpenses = values[4];
       var rateCards = values[5];
       var billSheets = values[6];
+      var offices = values[7];
 
+      var office = offices.find(function(val){
+        return val.Office === projectInfo.Office;
+      });
+
+      projectInfo.OfficeName = office ? office.OfficeName : projectExpenses.Office;
       projectInfo.BillsheetName = billSheets ? billSheets[0].BillsheetName : '';
       fillProjectInfoSummary(projectInfo);
 
@@ -85,7 +93,7 @@ var projectSummary = (function ($) {
     currencyStyles.initCurrencyStyles(projectInfo.Currency);
     $('#client-name').text(projectInfo.Clientname);
     $('#country').text(projectInfo.Region);
-    $('#office').text(projectInfo.Office);
+    $('#office').text(projectInfo.OfficeName);
     $('#project-name').text(projectInfo.Projname);
     $('#start-date').text(calcPrettyDate(projectInfo.EstStDate));
     $('#duration').text(projectInfo.Duration);
@@ -116,7 +124,7 @@ var projectSummary = (function ($) {
 
     var netRevenue = budget - totalExpenses;
     var blendedAvg = netRevenue / resourceTotalHours;
-    var oopFees = totalExpenses / totalFees;
+    var oopFees = totalExpenses / totalFees * 100;
     if (totalFees <= 0) {
       oopFees = 0;
     }
