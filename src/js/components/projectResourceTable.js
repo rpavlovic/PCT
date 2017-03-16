@@ -26,22 +26,15 @@ var projectResourceTable = (function ($) {
     }
   }
 
-  function loadRateCardFromServer(OfficeId) {
-    return new Promise(function (resolve, reject) {
-      //console.log('RateCard Not found. checking service for OfficeId' + OfficeId);
-      $.getJSON(get_data_feed(feeds.rateCards, OfficeId), function (rateCards) {
-        var rateCard = rateCards.d.results.filter(function (val) {
-          // add in any filtering params if we need them in the future
-          return parseInt(val.CostRate) > 2 && val.EmpGradeName && OfficeId === val.Office;
-        });
-        sessionStorage.setItem('RateCard' + OfficeId, JSON.stringify(rateCard));
-
-        resolve(rateCard);
-      }).fail(function () {
-        // not found, but lets fix this and return empty set
-        console.log('no rate cards found.... returning empty set');
-        resolve([]);
-      });
+  function loadRateCardFromServerIntoSessionStorage(OfficeId) {
+    var pGetRateCard = getRateCard(OfficeId);
+    pGetRateCard.then(function (rateCards) {
+      sessionStorage.setItem('RateCard' + OfficeId, JSON.stringify(rateCards));
+      resolve(rateCards);
+    }).fail(function () {
+      // not found, but lets fix this and return empty set
+      console.log('no rate cards found.... returning empty set');
+      resolve([]);
     });
   }
 
@@ -54,7 +47,7 @@ var projectResourceTable = (function ($) {
         var promiseArray = [];
         resources.forEach(function (val) {
           if (!sessionStorage.getItem('RateCard' + val.Officeid)) {
-            promiseArray.push(loadRateCardFromServer(val.Officeid));
+            promiseArray.push(loadRateCardFromServerIntoSessionStorage(val.Officeid));
           }
         });
         return Promise.all(promiseArray)
@@ -76,7 +69,7 @@ var projectResourceTable = (function ($) {
       // preload the rest of the bill rate cards
       offices.forEach(function (val) {
         if (!sessionStorage.getItem('RateCard' + val.Office))
-          loadRateCardFromServer(val.Office);
+          loadRateCardFromServerIntoSessionStorage(val.Office);
       });
 
       // go ahead and prefetch the rest of the office rate cards for performance
@@ -92,7 +85,7 @@ var projectResourceTable = (function ($) {
       rateCardSelect.initRateCardSelect(projectInfo.BillsheetId);
 
       var selectedModel = marginModeling.find(function (obj) {
-          return obj.Selected === '1';
+        return obj.Selected === '1';
       });
 
       var targetMarginBasedFee = marginModeling.filter(function (obj) {
@@ -602,32 +595,33 @@ var projectResourceTable = (function ($) {
       }
 
       //To activate adjusted resource Tab.
-       var active_modeling_tabs = $('#modeling-table tr td');
+      var active_modeling_tabs = $('#modeling-table tr td');
 
-       function modelingTableTabActive() {
-         active_modeling_tabs.removeClass('active');
-         active_modeling_tabs.children('input').prop('checked', false);
-         function activateStates() {
-           // if (isAdjusted && tableFeeSum) {
-           //   $(active_modeling_tabs[2]).addClass('active');
-           //   $(active_modeling_tabs[2]).children('input').prop('checked', true);
-           // }
-           // else {
-           //   $(active_modeling_tabs[1]).addClass('active');
-           //   $(active_modeling_tabs[1]).children('input').prop('checked', true);
-           // }
-           if(selectedModel) {
-             $('#' + selectedModel.ModelType).prop("checked", true);
-             $('#' + selectedModel.ModelType).parent().addClass('active');
-           } else {
-             $(active_modeling_tabs[1]).addClass('active');
-              $(active_modeling_tabs[1]).children('input').prop('checked', true);
-           }
-         }
-         activateStates();
-       }
+      function modelingTableTabActive() {
+        active_modeling_tabs.removeClass('active');
+        active_modeling_tabs.children('input').prop('checked', false);
+        function activateStates() {
+          // if (isAdjusted && tableFeeSum) {
+          //   $(active_modeling_tabs[2]).addClass('active');
+          //   $(active_modeling_tabs[2]).children('input').prop('checked', true);
+          // }
+          // else {
+          //   $(active_modeling_tabs[1]).addClass('active');
+          //   $(active_modeling_tabs[1]).children('input').prop('checked', true);
+          // }
+          if (selectedModel) {
+            $('#' + selectedModel.ModelType).prop("checked", true);
+            $('#' + selectedModel.ModelType).parent().addClass('active');
+          } else {
+            $(active_modeling_tabs[1]).addClass('active');
+            $(active_modeling_tabs[1]).children('input').prop('checked', true);
+          }
+        }
 
-       modelingTableTabActive();
+        activateStates();
+      }
+
+      modelingTableTabActive();
 
       function recalculateStuff() {
         var rows = projResourceTable.rows();
@@ -783,8 +777,8 @@ var projectResourceTable = (function ($) {
       console.log("saving form");
 
       var url = $('#btn-save').attr('href'),
-          date = new Date(),
-          timeStamp = date.getTime();
+        date = new Date(),
+        timeStamp = date.getTime();
 
       url = updateQueryString('projID', projectID, url) + "&" + timeStamp;
       console.log(timeStamp)

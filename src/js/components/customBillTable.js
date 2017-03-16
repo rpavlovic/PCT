@@ -10,46 +10,31 @@ var loadCustomBillSheet = (function ($) {
     // get user profile
 
     if (!getParameterByName('CardID')) {
-      var pProfile = new Promise(function (resolve, reject) {
-        $.getJSON(get_data_feed(feeds.employee), function (employees) {
-          resolve(employees.d.results[0].Office);
-        }).fail(function () {
-          console.log("unable to find user profile.");
-          reject("error. cant load profile");
-        });
-      }).then(function (Office) {
-        return new Promise(function (resolve, reject) {
-          $.getJSON(get_data_feed(feeds.rateCards, Office), function (rcs) {
-            var rateCards = rcs.d.results.filter(function (rc) {
-              return rc.Office === Office && rc.EmpGradeName;
-            });
-
-            var uniqRcs = {};
-            rateCards.forEach(function (rc) {
-              uniqRcs[rc.EmpGrade] = rc;
-            });
-
-            uniqRcs = Object.values(uniqRcs).map(function (obj) {
-              return {
-                TitleDesc: obj.EmpGradeName,
-                TitleId: obj.EmpGrade,
-                Class: obj.Class,
-                StandardRate: obj.BillRate,
-                Currency: obj.LocalCurrency,
-                DiscountPer: ''
-              };
-            }).sort(function (a, b) {
-              return (a.TitleDesc > b.TitleDesc) ? 1 : ((b.TitleDesc > a.TitleDesc) ? -1 : 0);
-            });
-            resolve(uniqRcs);
-          }).fail(function () {
-            console.log("unable to find user rcs.");
-            reject("error. cant load profile");
+      var pProfile = getEmployeeInfo();
+      pProfile.then(function (employee) {
+        var Office = employee.Office;
+        var pRateCards = getRateCard(Office);
+        pRateCards.then(function (rateCards) {
+          var uniqRcs = {};
+          rateCards.forEach(function (rc) {
+            uniqRcs[rc.EmpGrade] = rc;
           });
+
+          uniqRcs = Object.values(uniqRcs).map(function (obj) {
+            return {
+              TitleDesc: obj.EmpGradeName,
+              TitleId: obj.EmpGrade,
+              Class: obj.Class,
+              StandardRate: obj.BillRate,
+              Currency: obj.LocalCurrency,
+              DiscountPer: ''
+            };
+          }).sort(function (a, b) {
+            return (a.TitleDesc > b.TitleDesc) ? 1 : ((b.TitleDesc > a.TitleDesc) ? -1 : 0);
+          });
+          populateTable(uniqRcs, false);
         });
-      }).then(function (res) {
-        populateTable(res, false);
-      });
+      })
     }
     else {
       var rcs = getBillSheet(getParameterByName('CardID'));
@@ -69,7 +54,7 @@ var loadCustomBillSheet = (function ($) {
           },
           {
             name: "TitleId",
-       //     visible: false,
+            //     visible: false,
             title: "TitleId"
           },
           {
@@ -111,7 +96,7 @@ var loadCustomBillSheet = (function ($) {
           {
             name: "Title Id",
             data: "TitleId",
-          // visible: true,
+            // visible: true,
             title: "Title Id"
           },
           {
@@ -147,7 +132,7 @@ var loadCustomBillSheet = (function ($) {
             title: "Discount",
             class: 'discount num',
             render: function (data, type, row) {
-              if(data) {
+              if (data) {
                 return data + "%";
               }
               return data;
@@ -171,17 +156,17 @@ var loadCustomBillSheet = (function ($) {
           $(nRow).removeClass('odd even');
           $("td:nth-child(n+6):not(:last-child)", nRow)
             .addClass("contenteditable");
-            floatLabel.initfloatLabel();
+          floatLabel.initfloatLabel();
           //populate input field with Billsheet Name.
-          if(aData.BillsheetName) {
+          if (aData.BillsheetName) {
             $('#bill-sheet-name').val(aData.BillsheetName);
             $('#btn-save').prop('disabled', false);
           } else {
             $('#btn-save').prop('disabled', true);
           }
 
-          $('#bill-sheet-name').on('focusout keypress', function(e) {
-            if($('#bill-sheet-name').val()) {
+          $('#bill-sheet-name').on('focusout keypress', function (e) {
+            if ($('#bill-sheet-name').val()) {
               $('#btn-save').prop('disabled', false);
             } else {
               $('#btn-save').prop('disabled', true);
@@ -240,8 +225,8 @@ var loadCustomBillSheet = (function ($) {
       }
     }
 
-    $('#downloadTemplate').on('click', function(e){
-        csv_table.tableToCSV();
+    $('#downloadTemplate').on('click', function (e) {
+      csv_table.tableToCSV();
     });
 
     // Upload CSV into a table.
@@ -309,6 +294,7 @@ var loadCustomBillSheet = (function ($) {
     });
 
     var bsId;
+
     function buildBillSheetPayload() {
       var csv_table = $("#csv-table").DataTable();
       var rows = csv_table.rows();
