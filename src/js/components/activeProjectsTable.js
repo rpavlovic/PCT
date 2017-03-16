@@ -181,7 +181,7 @@ var activeTableFunction = (function ($) {
               }
             });
             $('.toolbar').hide();
-            
+
           },
           "drawCallback": function( settings ) {
           },

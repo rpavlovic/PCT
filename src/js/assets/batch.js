@@ -54,7 +54,7 @@
 
     $.each(lines, function (i, l) {
       if (l.length) {
-        if (l.indexOf(boundary) == 0) {
+        if (l.indexOf(boundary) === 0) {
           if (d) data.push(d);
           d = {};
         } else if (d) {
