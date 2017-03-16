@@ -71,7 +71,7 @@ var projectResourceTable = (function ($) {
       // go ahead and prefetch the rest of the office rate cards for performance
       offices.forEach(function (val) {
         if (!sessionStorage.getItem('RateCard' + val.Office + 'Currency' + projectInfo.Currency))
-          loadRateCardFromServerIntoSessionStorage(val.Office);
+          loadRateCardFromServerIntoSessionStorage(val.Office, projectInfo.Currency);
       });
 
       duration = projectInfo.Duration;
