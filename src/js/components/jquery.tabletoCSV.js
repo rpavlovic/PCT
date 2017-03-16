@@ -134,13 +134,13 @@ $.fn.resourceTableToCSV = function () {
     var input_title = $('#bill-sheet-name').val();
 
     if (caption === "") {
-      download_link.download = input_title + "_" + ddmmyy + "(" + formatted_time + ")" + ".csv";
+      download_link.download = "projID"+getParameterByName('projID') + "_" + ddmmyy + "(" + formatted_time + ")" + ".csv";
     } else {
       download_link.download = caption + "-" + ddmmyy + ".csv";
     }
 
     if (navigator.msSaveBlob) { // IE 10+
-      navigator.msSaveBlob(blob, input_title + "_" + ddmmyy + "(" + formatted_time + ")" + ".csv");
+      navigator.msSaveBlob(blob, "projID"+getParameterByName('projID') + "_" + ddmmyy + "(" + formatted_time + ")" + ".csv");
     } else {
       document.body.appendChild(download_link);
       download_link.click();
