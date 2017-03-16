@@ -348,7 +348,7 @@ var projectInfoForm = (function ($) {
           console.log("navigating to new window in" + timeout + "seconds");
           timeout = timeout ? timeout : 1;
           setTimeout(function () {
-            window.location.href = $('#btn-save').attr('href');
+            if (!is_fiori()) { window.location.href = $('#btn-save').attr('href'); }
           }, timeout);
         }
       });
