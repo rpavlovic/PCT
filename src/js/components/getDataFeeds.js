@@ -84,7 +84,7 @@ function getProjectList() {
 function getEmployeeInfo() {
   return new Promise(function (resolve, reject) {
     $.getJSON(get_data_feed(feeds.employee), function (employees) {
-      resolve(employees.d.results);
+      resolve(employees.d.results[0]);
     });
   });
 }

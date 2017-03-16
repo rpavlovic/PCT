@@ -166,12 +166,10 @@ var projectInfoForm = (function ($) {
   }
 
   //match the employee office with list of offices and select the matching one.
-  function prepopulate_Employee_Office(results) {
-    results.forEach(function (employeeOffice) {
-      matchOptions(employeeOffice.Office, select_billing_office[0]);
-      matchOptions(employeeOffice.OfficeRegion, select_region[0]);
-      matchOptions(employeeOffice.OfficeCountry, select_country[0]);
-    });
+  function prepopulate_Employee_Office(employeeOffice) {
+    matchOptions(employeeOffice.Office, select_billing_office[0]);
+    matchOptions(employeeOffice.OfficeRegion, select_region[0]);
+    matchOptions(employeeOffice.OfficeCountry, select_country[0]);
   }
 
   function matchOptions(key, elem) {
@@ -183,23 +181,23 @@ var projectInfoForm = (function ($) {
   }
 
   function prepopulate_ExtraInfo_JSON(projectInfo) {
-      $('textarea').val(projectInfo.Comments);
-      $('select[name="Region"]').val(projectInfo.Region);
-      $('select[name="Currency"]').val(projectInfo.Currency);
-      $('select[name="Currency"]').prop( "disabled", true );
-      $('select[name="Office"]').val(projectInfo.Office);
-      $('select[name="compensation"]').val(projectInfo.Comptyp);
-      $('form.project-info input[name="Clientname"]').val(projectInfo.Clientname);
-      $('form.project-info input[name="Projname"]').val(projectInfo.Projname);
-      $('form.project-info input[name="Preparedby"]').val(projectInfo.Preparedby);
-      select_plan_by.val(projectInfo.Plantyp);
-      var plan_by =(projectInfo.Plantyp === "WK") ? "Weeks" : "Months";
-      input_duration.val(projectInfo.Duration + " " +  plan_by);
-      plan_units.val('Hourly');
-      createdOn = projectInfo.Createdon;
-      $('input.datepicker').val(calcPrettyDate(projectInfo.EstStDate));
-      $('input[name="weekstart"]').val(calcPrettyDate(projectInfo.StartDate));
-      $('input[name="enddate"]').val(calcPrettyDate(projectInfo.EstEndDate));
+    $('textarea').val(projectInfo.Comments);
+    $('select[name="Region"]').val(projectInfo.Region);
+    $('select[name="Currency"]').val(projectInfo.Currency);
+    $('select[name="Currency"]').prop("disabled", true);
+    $('select[name="Office"]').val(projectInfo.Office);
+    $('select[name="compensation"]').val(projectInfo.Comptyp);
+    $('form.project-info input[name="Clientname"]').val(projectInfo.Clientname);
+    $('form.project-info input[name="Projname"]').val(projectInfo.Projname);
+    $('form.project-info input[name="Preparedby"]').val(projectInfo.Preparedby);
+    select_plan_by.val(projectInfo.Plantyp);
+    var plan_by = (projectInfo.Plantyp === "WK") ? "Weeks" : "Months";
+    input_duration.val(projectInfo.Duration + " " + plan_by);
+    plan_units.val('Hourly');
+    createdOn = projectInfo.Createdon;
+    $('input.datepicker').val(calcPrettyDate(projectInfo.EstStDate));
+    $('input[name="weekstart"]').val(calcPrettyDate(projectInfo.StartDate));
+    $('input[name="enddate"]').val(calcPrettyDate(projectInfo.EstEndDate));
   }
 
   function initProjectInfoForm(feeds) {
@@ -240,9 +238,9 @@ var projectInfoForm = (function ($) {
   }
 
   function checkValues() {
-    var array_inpt  = [];
-    $(arguments).each(function() {
-      if(!$.trim($(this).val())) {
+    var array_inpt = [];
+    $(arguments).each(function () {
+      if (!$.trim($(this).val())) {
         $(this).addClass('empty-error');
         array_inpt.push($(this));
       } else {
@@ -259,8 +257,8 @@ var projectInfoForm = (function ($) {
     if (checkValues(input_duration, client_name, project_name, $('input.datepicker'))) {
 
       var url = $(this).attr('href'),
-          date = new Date(),
-          timeStamp = date.getTime();
+        date = new Date(),
+        timeStamp = date.getTime();
 
       url = updateQueryString('projID', projectId, url) + "&" + timeStamp;
 
@@ -342,7 +340,7 @@ var projectInfoForm = (function ($) {
           console.log("navigating to new window in" + timeout + "seconds");
           timeout = timeout ? timeout : 1;
           setTimeout(function () {
-         window.location.href = $('#btn-save').attr('href');
+            window.location.href = $('#btn-save').attr('href');
           }, timeout);
         },
         always: function (xhr, status, data) {
@@ -350,7 +348,7 @@ var projectInfoForm = (function ($) {
           console.log("navigating to new window in" + timeout + "seconds");
           timeout = timeout ? timeout : 1;
           setTimeout(function () {
-          window.location.href = $('#btn-save').attr('href');
+            window.location.href = $('#btn-save').attr('href');
           }, timeout);
         }
       });

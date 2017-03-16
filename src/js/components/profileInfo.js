@@ -15,16 +15,16 @@ var profileInfo = (function ($) {
     city = profile_form.find('.city');
 
   function initProfileInfo(feeds) {
-    $.getJSON(get_data_feed(feeds.employee), function (employees) {
-        var val = employees.d.results[0];
-        name.text(val.EmployeeFullName);
-        email.attr("href", "mailto:" + val.EmployeeEmail).text(val.EmployeeEmail);
-        phone.attr("href", "tel:" + val.OfficeTelnumber).text(val.OfficeTelnumber);
-        mobile.attr("href", "tel:" + val.EmployeePhoneNum).text(val.EmployeePhoneNum);
-        office.text(val.OfficeName).css('font-weight', 'bold');
-        street.text(val.OfficeHousenum + " " + val.OfficeStreet + ", " + val.OfficeFloor);
-        city.text(val.OfficeCity + ", " + val.OfficeRegion + ", " + val.OfficePostalcode);
-      });
+    var pEmployee = getEmployeeInfo();
+    pEmployee.then(function (employee) {
+      name.text(employee.EmployeeFullName);
+      email.attr("href", "mailto:" + employee.EmployeeEmail).text(employee.EmployeeEmail);
+      phone.attr("href", "tel:" + employee.OfficeTelnumber).text(employee.OfficeTelnumber);
+      mobile.attr("href", "tel:" + employee.EmployeePhoneNum).text(employee.EmployeePhoneNum);
+      office.text(employee.OfficeName).css('font-weight', 'bold');
+      street.text(employee.OfficeHousenum + " " + employee.OfficeStreet + ", " + employee.OfficeFloor);
+      city.text(employee.OfficeCity + ", " + employee.OfficeRegion + ", " + employee.OfficePostalcode);
+    });
 
     function sort_unique(arr) {
       if (arr.length === 0) return arr;
@@ -45,12 +45,12 @@ var profileInfo = (function ($) {
       return customRateCards;
     }
 
-    var card_names= [];
+    var card_names = [];
 
     $.getJSON(get_data_feed(feeds.billSheet, ' '), function (cards) {
       card_names = sort_unique(cards.d.results);
-      card_names.map(function(v, k) {
-        $('#profile-rate-cards ul').append('<li><a href="customBillSheet.htm?CardID='+v.BillsheetId+'">'+v.BillsheetName+'</a></li>');
+      card_names.map(function (v, k) {
+        $('#profile-rate-cards ul').append('<li><a href="customBillSheet.htm?CardID=' + v.BillsheetId + '">' + v.BillsheetName + '</a></li>');
       });
     });
   }
