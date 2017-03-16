@@ -45,10 +45,9 @@ var profileInfo = (function ($) {
       return customRateCards;
     }
 
-    var card_names = [];
-
-    $.getJSON(get_data_feed(feeds.billSheet, ' '), function (cards) {
-      card_names = sort_unique(cards.d.results);
+    var bs = getBillSheet(' ');
+    bs.then(function(cards){
+      var card_names = sort_unique(cards);
       card_names.map(function (v, k) {
         $('#profile-rate-cards ul').append('<li><a href="customBillSheet.htm?CardID=' + v.BillsheetId + '">' + v.BillsheetName + '</a></li>');
       });
