@@ -22,14 +22,13 @@ var feeds = {
   // this should give you all four at once, e.g.:  get_data_feed('resourceModeling', '1000100')
   'resourceModeling': [ 'data/MarginModeling.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection?$filter=Projid eq \'{param1}\'&$format=json' ],
 
-  // Rate Card / Bill Rate / Job Title by Office name, e.g.:  get_data_feed('rateCards', 'US02')
-  'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection?$filter=Office eq \'{param1}\'&$format=json' ],
+  // Rate Card / Bill Rate / Job Title by Office name, e.g.:  get_data_feed('rateCards', 'US02', 'JPY')
+  'rateCards': [ 'data/RateCardBillRateCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection?$filter=Office eq \'{param1}\'&$ToCurrency eq \'{param2}\'&$format=json' ],
 
   // Project Deliverables by Project ID, e.g.:  get_data_feed('projectDeliverables', '1000100')
   'projectDeliverables': [ 'data/ProjectRelatedDeliverables.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection?$filter=Projid eq \'{param1}\'&$format=json' ],
 
   // Project Resources by Project ID and Row Count, e.g.:  get_data_feed('projectResources', '1000100', 1)
-  //'projectResources': [ 'data/ProjectResourcesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection?$filter=Projid eq \'{param1}\' and Rowno eq \'{param2}\'&$format=json' ],
   'projectResources': [ 'data/ProjectResourcesCollection.json', '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection?$filter=Projid eq \'{param1}\' &$format=json' ],
 
   /*
