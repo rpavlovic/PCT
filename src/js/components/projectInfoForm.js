@@ -184,7 +184,11 @@ var projectInfoForm = (function ($) {
     $('textarea').val(projectInfo.Comments);
     $('select[name="Region"]').val(projectInfo.Region);
     $('select[name="Currency"]').val(projectInfo.Currency);
-    $('select[name="Currency"]').prop("disabled", true);
+
+    if(projectInfo.Currency) {
+      $('select[name="Currency"]').prop("disabled", true);
+    }
+
     $('select[name="Office"]').val(projectInfo.Office);
     $('select[name="compensation"]').val(projectInfo.Comptyp);
     $('form.project-info input[name="Clientname"]').val(projectInfo.Clientname);

@@ -773,7 +773,6 @@ var projectResourceTable = (function ($) {
 
       // ANNA put this somewhere in a separate button...
       $('#project-resource-table').resourceTableToCSV();
-      
 
       console.log("saving form");
 
