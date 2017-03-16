@@ -290,6 +290,7 @@ var projectResourceTable = (function ($) {
       //Project Resource Table Datatable starts.
       var projResourceTable = $('#project-resource-table').DataTable({
         "searching": false,
+        "dom": '<"toolbar"><B><tip>',
         "data": myRows,
         "deferRender": true,
         "paging": false,
@@ -301,6 +302,14 @@ var projectResourceTable = (function ($) {
           {
             "orderable": false,
             "targets": [1]
+          }
+        ],
+        "buttons": [
+          {
+            "extend": 'csv',
+            action: function ( e, dt, node, config ) {
+              $('#project-resource-table').resourceTableToCSV();
+           },
           }
         ],
         "order": [[3, 'asc']],
@@ -770,9 +779,6 @@ var projectResourceTable = (function ($) {
 
     $('.project-resources #btn-save').on('click', function (event) {
       event.preventDefault();
-
-      // ANNA put this somewhere in a separate button...
-      $('#project-resource-table').resourceTableToCSV();
 
       console.log("saving form");
 
