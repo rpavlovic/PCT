@@ -70,14 +70,14 @@ var projectResourceTable = (function ($) {
       // preload the rest of the bill rate cards
       // go ahead and prefetch the rest of the office rate cards for performance
       offices.forEach(function (val) {
-        if (!sessionStorage.getItem('RateCard' + val.Office+'Currency' + projectInfo.Currency ))
+        if (!sessionStorage.getItem('RateCard' + val.Office + 'Currency' + projectInfo.Currency))
           loadRateCardFromServerIntoSessionStorage(val.Office);
       });
 
       duration = projectInfo.Duration;
       office = projectInfo.Office;
       planBy = projectInfo.Plantyp;
-console.log(projectInfo);
+
       rateCardSelect.initRateCardSelect(projectInfo.BillsheetId);
 
       var selectedModel = marginModeling.find(function (obj) {
@@ -960,7 +960,6 @@ console.log(projectInfo);
       for (var j = 14; j < rows.context[0].aoData[i].anCells.length; j++) {
         var value = $(rows.context[0].aoData[i].anCells[j]).text();
         value = value ? value : "0.0";
-        //console.log("R" + rowIndex + "C" + columnIndex++ + ": " + value);
         var cellId = "R" + rowIndex + "C" + columnIndex;
         payloads.push({
           type: 'POST',
