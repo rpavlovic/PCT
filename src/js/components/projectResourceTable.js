@@ -46,38 +46,9 @@ var projectResourceTable = (function ($) {
   }
 
   function initProjectResourceTable() {
-    var p1 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectDeliverables, projectID), function (deliverables) {
-        var deliv = deliverables.d.results.filter(filterByProjectId, projectID);
-        resolve(deliv);
-      }).fail(function () {
-        // not found, but lets fix this and return empty set
-        console.log('no project deliverables found.... returning empty set');
-        resolve([]);
-      });
-    });
-
-    var p2 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.offices), function (offices) {
-        resolve(offices.d.results);
-      }).fail(function () {
-        // not found, but lets fix this and return empty set
-        console.log('no offices found.... returning empty set');
-        resolve([]);
-      });
-    });
-
-    var p4 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectResources, projectID), function (resource) {
-        var projectRes = resource.d.results.filter(filterByProjectId, projectID);
-        resolve(projectRes);
-      }).fail(function () {
-        // not found, but lets fix this and return empty set
-        console.log('no project resources found.... returning empty set');
-        resolve([]);
-      });
-    });
-
+    var p1 = getProjectDeliverables(projectID);
+    var p2 = getOffices();
+    var p4 = getProjectResources(projectID);
     var p3 = Promise.resolve(p4)
       .then(function (resources) {
         var promiseArray = [];
@@ -94,36 +65,9 @@ var projectResourceTable = (function ($) {
       });
 
     //fees for modeling table targets
-    var t1 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.marginModeling, projectID, ' '), function (data) {
-        var modeling = data.d.results.filter(filterByProjectId, projectID);
-        resolve(modeling);
-      }).fail(function () {
-        // not found, but lets fix this and return empty set
-        console.log('no margin modeling found.... returning empty set');
-        resolve([]);
-      });
-    });
-
-    var p5 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.plannedHours, projectID), function (plan) {
-        var ph = plan.d.results.filter(filterByProjectId, projectID);
-        resolve(ph);
-      }).fail(function () {
-        // not found, but lets fix this and return empty set
-        console.log('no planned hours found.... returning empty set');
-        resolve([]);
-      });
-    });
-
-    var pInfo = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.project, projectID), function (projects) {
-        var p = projects.d.results.filter(filterByProjectId, projectID);
-        resolve(p);
-      }).fail(function () {
-        resolve([]);
-      });
-    });
+    var t1 = getMarginModeling(projectID);
+    var p5 = getPlannedHours(projectID);
+    var pInfo = getProjectInfo(projectID);
 
     Promise.all([p1, p2, p3, p4, t1, p5, pInfo]).then(function (values) {
       //deliverables
@@ -139,12 +83,7 @@ var projectResourceTable = (function ($) {
       projectResources = values[3];
       var marginModeling = values[4];
       var plannedHours = values[5];
-      //var customRateCards = values[6];
       projectInfo = values[6];
-
-      projectInfo = projectInfo.find(function (val) {
-        return val.Projid === projectID;
-      });
 
       duration = projectInfo.Duration;
       office = projectInfo.Office;
@@ -470,16 +409,10 @@ var projectResourceTable = (function ($) {
         var url = $(this).attr('href');
         var CardID = $(this).find(':selected').val();
         url = updateQueryString('CardID', CardID, url);
-        var p = new Promise(function (resolve, reject) {
 
-          $.getJSON(get_data_feed(feeds.billSheet, CardID), function (cards) {
-            var cardResults = cards.d.results;
-            cardResults = cardResults.filter(function (val) {
-              return val.BillsheetId === CardID;
-            });
-            resolve(cardResults);
-          });
-        }).then(function (cardResults) {
+        var p = getBillSheet(CardID);
+
+        p.then(function (cardResults) {
           //console.log(cardResults);
           var projResourceTable = $('#project-resource-table').DataTable();
           var rows = projResourceTable.rows();

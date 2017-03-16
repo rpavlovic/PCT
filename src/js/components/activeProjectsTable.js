@@ -13,32 +13,16 @@ var activeTableFunction = (function ($) {
   function initActiveTable() {
     var table = $('#active-projects');
 
-    var p1 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.offices), function (offices) {
-        resolve(offices.d.results);
-      });
-    });
-
-    var p2 = new Promise(function (resolve, reject) {
-      $.getJSON(get_data_feed(feeds.projectList), function (projects) {
-        resolve(projects.d.results);
-      }).fail(function () {
-        // not found, but lets fix this and return empty set
-        console.log('no projects found.... returning empty set');
-        resolve([]);
-      });
-    });
-
+    var p1 = getOffices();
+    var p2 = getProjectList();
     var p3 = Promise.resolve(p2)
       .then(function (projects) {
         var pArray = [];
         projects.forEach(function (proj) {
           var p = projectSummaryCalculations.calculateBudget(proj.Projid);
-
           p.then(function (results) {
             proj.budget = convertToDollar(results.currency, results.budget);
           });
-
           pArray.push(p);
         });
 
