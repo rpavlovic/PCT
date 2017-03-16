@@ -7,7 +7,7 @@ var projectSummaryCalculations = (function ($) {
   'use strict';
 
   function calculateBudget(projectId) {
-    var projectInfo = getProjectDeliverables(projectId);
+    var projectInfo = getProjectInfo(projectId);
     var pExpenses = getProjectExpenses(projectId);
     var pModels = getMarginModeling(projectId);
 

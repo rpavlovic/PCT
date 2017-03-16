@@ -20,11 +20,9 @@ var activeTableFunction = (function ($) {
         var pArray = [];
         projects.forEach(function (proj) {
           var p = projectSummaryCalculations.calculateBudget(proj.Projid);
-
           p.then(function (results) {
             proj.budget = convertToDollar(results.currency, results.budget);
           });
-
           pArray.push(p);
         });
 
