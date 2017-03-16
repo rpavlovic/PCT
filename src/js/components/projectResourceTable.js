@@ -769,8 +769,12 @@ var projectResourceTable = (function ($) {
     });
 
     $('.project-resources #btn-save').on('click', function (event) {
-      $('#project-resource-table').tableToCSV();
       event.preventDefault();
+
+      // ANNA put this somewhere in a separate button...
+      $('#project-resource-table').resourceTableToCSV();
+      
+
       console.log("saving form");
 
       var url = $('#btn-save').attr('href'),
