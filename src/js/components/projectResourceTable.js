@@ -76,7 +76,7 @@ var projectResourceTable = (function ($) {
       duration = projectInfo.Duration;
       office = projectInfo.Office;
       planBy = projectInfo.Plantyp;
-
+console.log(projectInfo);
       rateCardSelect.initRateCardSelect(projectInfo.BillsheetId);
 
       var selectedModel = marginModeling.find(function (obj) {
@@ -776,7 +776,6 @@ var projectResourceTable = (function ($) {
         timeStamp = date.getTime();
 
       url = updateQueryString('projID', projectID, url) + "&" + timeStamp;
-      console.log(timeStamp)
 
       $('#btn-save').attr('href', url);
 
