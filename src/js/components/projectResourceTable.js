@@ -499,7 +499,6 @@ var projectResourceTable = (function ($) {
 
           // you should add in the logic here to see if there is a custom value and apply it to the
           // Bill rate Override field for this row..
-          // projectInfo.BillsheetId = $('#rate-card').val();    
           console.log(projectInfo.BillsheetId);
           // filter on the custom billsheets, and then get the rate by employee title, grade name, etc..
           console.log(customBillsheets);
