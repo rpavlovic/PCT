@@ -14,6 +14,8 @@ var projectResourceTable = (function ($) {
   var projectInfo;
   var currency;
 
+  var customBillsheets;
+
   function getRateCardLocal(OfficeId, Currency) {
     if (!OfficeId || !Currency) {
       return [];
@@ -28,7 +30,7 @@ var projectResourceTable = (function ($) {
 
   function loadRateCardFromServerIntoSessionStorage(OfficeId, Currency) {
     var pGetRateCard = getRateCard(OfficeId, Currency);
-    pGetRateCard.then(function (rateCards) {
+    return pGetRateCard.then(function (rateCards) {
       sessionStorage.setItem('RateCard' + OfficeId + 'Currency' + Currency, JSON.stringify(rateCards));
     });
   }
@@ -47,9 +49,11 @@ var projectResourceTable = (function ($) {
         var resources = values[0];
         var pInfo = values[1];
         var promiseArray = [];
+        var limit = {};
         resources.forEach(function (val) {
-          if (!sessionStorage.getItem('RateCard' + val.Officeid + 'Currency' + pInfo.Currency)) {
+          if (!limit['RateCard' + val.Officeid + 'Currency' + pInfo.Currency] && !sessionStorage.getItem('RateCard' + val.Officeid + 'Currency' + pInfo.Currency)) {
             promiseArray.push(loadRateCardFromServerIntoSessionStorage(val.Officeid, pInfo.Currency));
+            limit['RateCard' + val.Officeid + 'Currency' + pInfo.Currency] = 1;
           }
         });
         return Promise.all(promiseArray)
@@ -59,7 +63,8 @@ var projectResourceTable = (function ($) {
           });
       });
 
-    Promise.all([p1, p2, p3, p4, t1, p5, pInfo]).then(function (values) {
+    var pBillsheets = getBillSheet(' ');
+    Promise.all([p1, p2, p3, p4, t1, p5, pInfo, pBillsheets]).then(function (values) {
       //deliverables
       var deliverables = values[0];
       var offices = values[1];
@@ -67,6 +72,8 @@ var projectResourceTable = (function ($) {
       var marginModeling = values[4];
       var plannedHours = values[5];
       projectInfo = values[6];
+      customBillsheets = values[7];
+
       // preload the rest of the bill rate cards
       // go ahead and prefetch the rest of the office rate cards for performance
       offices.forEach(function (val) {
@@ -78,7 +85,7 @@ var projectResourceTable = (function ($) {
       office = projectInfo.Office;
       planBy = projectInfo.Plantyp;
 
-      rateCardSelect.initRateCardSelect(projectInfo.BillsheetId);
+      rateCardSelect.initRateCardSelect(customBillsheets, projectInfo.BillsheetId);
 
       var selectedModel = marginModeling.find(function (obj) {
         return obj.Selected === '1';
@@ -309,7 +316,7 @@ var projectResourceTable = (function ($) {
             "extend": 'csv',
             action: function ( e, dt, node, config ) {
               $('#project-resource-table').resourceTableToCSV();
-           },
+           }
           }
         ],
         "order": [[3, 'asc']],
@@ -404,6 +411,9 @@ var projectResourceTable = (function ($) {
 
       // maybe move this into that
       $('#rate-card').on('change', function (event) {
+
+        projectInfo.BillsheetId = $('#rate-card').val();
+
         var url = $(this).attr('href');
         var CardID = $(this).find(':selected').val();
         url = updateQueryString('CardID', CardID, url);
@@ -480,6 +490,14 @@ var projectResourceTable = (function ($) {
           nodes.closest('tr').find('.td-billrate').empty().append(currency + selectedRate.BillRate);
           //this doesn't work if costrate is hidden
           nodes.closest('tr').find('.td-costrate').empty().append(selectedRate.CostRate);
+
+          // you should add in the logic here to see if there is a custom value and apply it to the
+          // Bill rate Override field for this row..
+          //projectInfo.BillsheetId = $('#rate-card').val();
+          console.log(projectInfo.BillsheetId);
+          // filter on the custom billsheets, and then get the rate by employee title, grade name, etc..
+          console.log(customBillsheets);
+
           //for calculations on resourceCalculation.js file
           resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
         }
