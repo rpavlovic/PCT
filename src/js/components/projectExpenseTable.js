@@ -42,7 +42,7 @@ var expenseTable = (function ($) {
       });
 
       var projExpenseTable = table.DataTable({
-        // "dom":'<tip>',
+        "dom": '<"toolbar"><B><tip>',
         "searching": false,
         "data": data,
         "paging": false,
@@ -56,6 +56,14 @@ var expenseTable = (function ($) {
           "orderable": false,
           "targets": [0, 1]
         }],
+        "buttons": [
+          {
+            "extend": 'csv',
+            action: function ( e, dt, node, config ) {
+              $('#project-expense-table').resourceTableToCSV();
+           }
+          }
+        ],
         "columns": [
           {
             "title": 'Row',
