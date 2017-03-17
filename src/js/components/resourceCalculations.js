@@ -6,7 +6,7 @@
 var resourceCalculation = (function ($) {
   'use strict';
 
-  function initResourceFormulas(data, table) {
+  function initResourceFormulas(data, table, curr) {
     var table1 = {
       total_hours : $("#project-resource-table tbody td.total-hours"),
       row : $(data).closest('tr'), //if data is entered
@@ -24,9 +24,6 @@ var resourceCalculation = (function ($) {
       avarage_rate_adj : $("#modeling-table tbody #avg-rate_adjusted-resource"),
       contrib_adj: $("#modeling-table tbody #contribution-margin_adjusted-resource"),
     };
-
-    var REgex_num = /^[\$]?[0-9\.\,]+[\%]?/g;
-    var REgex_dollar = /(\d)(?=(\d\d\d)+(?!\d))/g;
 
     var sum_rate = 0,
         total_rate_sum = 0,
@@ -53,11 +50,11 @@ var resourceCalculation = (function ($) {
     sum_rate += Number(sum_hours * dollars);
 
     //sum of all hours given
-      $(table1.row).find(table1.total_hours).text(sum_hours.toFixed(2));
+      $(table1.row).find(table1.total_hours).text(convertDecimalToFixed(sum_hours));
 
     //total fees cell
       if(table1.row.length > 0) {
-        $(table1.row).find(table1.total_fees).text('$' + sum_rate.toFixed(3).replace(REgex_dollar, "$1,"));
+        $(table1.row).find(table1.total_fees).text(convertToDollar(curr, sum_rate));
       }
 
 
@@ -66,13 +63,13 @@ var resourceCalculation = (function ($) {
       total_hours += Number($(this).text().replace(/[^0-9\.]/g,""));
     });
 
-    $('tfoot th.total-hours').text(total_hours.toFixed(2));
+    $('tfoot th.total-hours').text(convertDecimalToFixed(total_hours));
 
     table1.total_fees.each(function() {
       total_rate_sum += Number($(this).text().replace(/[^0-9\.]/g,""));
     });
 
-    var total_fees = "$" + total_rate_sum.toFixed(3).replace(REgex_dollar, "$1,");
+    var total_fees = convertToDollar(curr, total_rate_sum);
 
     if($('td.rate-override').text().replace(/[^0-9\.]/g,"")> 0) {
       table1.fees_adj.text(total_fees);
@@ -86,12 +83,12 @@ var resourceCalculation = (function ($) {
     var av_rate =  total_rate_sum/total_hours;
     if(av_rate > 0) {
       if(table1.bill_rate_override > 0 || $('td.rate-override').text().replace(/[^0-9\.]/g,"")> 0) {
-        table1.avarage_rate_adj.text("$" + av_rate.toFixed(3).replace(REgex_dollar, "$1,"));
+        table1.avarage_rate_adj.text(convertToDollar(curr, av_rate));
       } else {
          table1.avarage_rate_adj.text('');
       }
       if(table1.bill_rate > 0) {
-        table1.avarage_rate_std.text("$" + av_rate.toFixed(3).replace(REgex_dollar, "$1,"));
+        table1.avarage_rate_std.text(convertToDollar(curr, av_rate));
       }
     }
 
@@ -101,10 +98,10 @@ var resourceCalculation = (function ($) {
    var adjusted_fees = $('#total-fee_adjusted-resource').text().replace(/[^0-9\.]/g,"");
    var contrib_margin = (standard_fees-40)/standard_fees * 100;
    if(contrib_margin > 0) {
-     table1.contrib_std.text(contrib_margin.toFixed(1) + "%");
+     table1.contrib_std.text(convertToPercent(contrib_margin));
      if( adjusted_fees > 0) {
       contrib_margin = (adjusted_fees-40)/adjusted_fees * 100;
-       table1.contrib_adj.text(contrib_margin.toFixed(1) + "%");
+       table1.contrib_adj.text(convertToPercent(contrib_margin));
        console.log(adjusted_fees);
      } else {
        table1.contrib_adj.text('');
