@@ -102,10 +102,17 @@ $.fn.resourceTableToCSV = function () {
     });
 
     $(this).find('tfoot tr').each(function () {
-      var data = ['','','','','','','','','','',''];
+      var data = [];
+      if(table.attr('id') === 'project-resource-table') {
+        data = ['','','','','','','','','','',''];
+      }
+      if(table.attr('id') === 'project-expense-table') {
+        data = ['','','',''];
+      }
 
       $(this).find('th').each(function () {
         var text = clean_text($(this).text());
+        console.log(text);
         data.push(text);
       });
 
