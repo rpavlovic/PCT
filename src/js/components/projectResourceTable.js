@@ -499,7 +499,7 @@ var projectResourceTable = (function ($) {
           console.log(customBillsheets);
 
           //for calculations on resourceCalculation.js file
-          resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table");
+          resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table", projectInfo.Currency);
         }
       }
 

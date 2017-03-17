@@ -4,7 +4,7 @@
  */
 function convertToPercent(amount){
   if(amount && $.isNumeric(amount)) {
-    return (Math.round(amount * 100).toFixed(2)) + '%';
+    return (amount * 100).toFixed(2) + '%';
   }
   else {
     return 0 + "%";
