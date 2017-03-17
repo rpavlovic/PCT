@@ -112,7 +112,6 @@ $.fn.resourceTableToCSV = function () {
 
       $(this).find('th').each(function () {
         var text = clean_text($(this).text());
-        console.log(text);
         data.push(text);
       });
 
