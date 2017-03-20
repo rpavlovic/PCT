@@ -844,7 +844,7 @@ var projectResourceTable = (function ($) {
             else {
               // we're on local, so go ahead and go to next page
               setTimeout(function () {
-                window.location.href = 'customBillSheet.htm';
+                window.location.href = $('#btn-save').attr('href');
               }, timeout);
             }
           }
