@@ -38,44 +38,26 @@ var summaryOfficeTable = (function ($) {
     });
 
     rows = Object.values(rows);
-    var sumHours = rows.reduce(function (acc, val) {
-      return acc + parseFloat(val.hours);
-    }, 0);
 
-    rows.forEach(function (row) {
-      row.staffMix = row.hours / sumHours * 100;
+    var reducedObject =  rows.reduce(function (a, b) {
+      return {
+        fees: a.fees + b.fees,
+        localFees: a.localFees + b.localFees,
+        hours: a.hours + b.hours
+      }
     });
-
-    var totalFees = rows.reduce(function (acc, val) {
-      if (val.fees)
-        return acc + parseFloat(val.fees);
-      else return acc;
-    }, 0);
-
-    var localFees = rows.reduce(function (acc, val) {
-      if (val.localFees)
-        return acc + parseFloat(val.localFees);
-      else return acc;
-    }, 0);
-
-
-    var totalHours = rows.reduce(function (acc, val) {
-      if (val.hours)
-        return acc + parseFloat(val.hours);
-      else return acc;
-    }, 0);
-
-    $('#office-total-hours').text(totalHours);
 
     // only need to messwith the numbers if we have selected one of these models
     // need to calculate the ratios here...
     rows.forEach(function (row) {
-      var ratio = row.fees / totalFees;
-      var localRatio = row.localFees / localFees;
+      row.staffMix = row.hours / reducedObject.hours * 100;
+      var ratio = row.fees / reducedObject.fees;
+      var localRatio = row.localFees / reducedObject.localFees;
       row.localFees = localRatio * selectedModel.Fees;
       row.fees = ratio * selectedModel.Fees;
     });
     // now we actually override withthe  total fee from the selected model.
+    $('#office-total-hours').text(reducedObject.hours);
     $('#office-total-fees').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
     $('#office-total-currency').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
 
