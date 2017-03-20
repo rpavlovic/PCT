@@ -92,7 +92,12 @@ $.fn.resourceTableToCSV = function () {
         if ($(this).has('select').length) {
           text = clean_text($(this).find('select option:selected').text());
         } else {
-          text = clean_text($(this).text());
+          if($(this).hasClass('td-billrate') || $(this).hasClass('rate-override') || $(this).hasClass('total-fees') || $(this).hasClass('amount')){
+            text = clean_text(convertDecimalToFixed(convertToDecimal($(this).text())));
+          }
+          else {
+            text = clean_text($(this).text());
+          }
         }
         data.push(text);
       });
@@ -111,7 +116,12 @@ $.fn.resourceTableToCSV = function () {
       }
 
       $(this).find('th').each(function () {
-        var text = clean_text($(this).text());
+        var text = '';
+        if($(this).hasClass('can-clear') || $(this).hasClass('total-fees')){
+          text = clean_text(convertDecimalToFixed(convertToDecimal($(this).text())));
+        }else {
+          text = clean_text($(this).text());
+        }
         data.push(text);
       });
 
