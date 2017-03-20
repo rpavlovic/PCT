@@ -479,28 +479,26 @@ var projectResourceTable = (function ($) {
         var EmpGradeName = nodes.closest('tr').find('.title :selected').text();
         var CostCenter = nodes.closest('tr').find('.practice :selected').val();
         var rateCards = getRateCardLocal(Office, projectInfo.Currency);
-        var rates = rateCards.filter(function (val) {
+        var selectedRate = rateCards.find(function (val) {
           return val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter;
         });
-        if (rates.length > 1) {
-          console.log("error. more than one matching rate found.");
-        }
-        else if (rates.length === 1) {
-          var selectedRate = rates.pop();
-          nodes.closest('tr').find('.td-billrate').empty().append(currency + selectedRate.BillRate);
-          //this doesn't work if costrate is hidden
-          nodes.closest('tr').find('.td-costrate').empty().append(selectedRate.CostRate);
 
-          // you should add in the logic here to see if there is a custom value and apply it to the
-          // Bill rate Override field for this row..
-          //projectInfo.BillsheetId = $('#rate-card').val();
-          console.log(projectInfo.BillsheetId);
-          // filter on the custom billsheets, and then get the rate by employee title, grade name, etc..
-          console.log(customBillsheets);
+        nodes.closest('tr').find('.td-billrate').empty().append(currency + selectedRate.BillRate);
+        //this doesn't work if costrate is hidden
+        nodes.closest('tr').find('.td-costrate').empty().append(selectedRate.CostRate);
 
-          //for calculations on resourceCalculation.js file
-          resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table", projectInfo.Currency);
+        if (projectInfo.BillsheetId) {
+          var targetEmployeeRate = customBillsheets.find(function (rateCard) {
+            return rateCard.BillsheetId === projectInfo.BillsheetId && EmpGradeName === rateCard.TitleDesc;
+          });
+
+          if (parseFloat(targetEmployeeRate.OverrideRate) > 0) {
+            nodes.closest('tr').find('.rate-override div').text(targetEmployeeRate.OverrideRate);
+          }
         }
+
+        //for calculations on resourceCalculation.js file
+        resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table", projectInfo.Currency);
       }
 
       function getOffices(Officeid) {
