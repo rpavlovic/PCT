@@ -282,20 +282,23 @@ var loadCustomBillSheet = (function ($) {
           var timeout = getParameterByName('timeout');
           console.log("navigating to new window in" + timeout + "seconds");
           timeout = timeout ? timeout : 1;
-          setTimeout(function () {
-            // where do they go after they save a sheet?
-            window.location.href = 'customBillSheet.htm?CardID=' + bsId;
-          }, timeout);
-        },
-        always: function (xhr, status, data) {
-          var timeout = getParameterByName('timeout');
-          console.log("navigating to new window in" + timeout + "seconds");
-          timeout = timeout ? timeout : 1;
-          setTimeout(function () {
-            if (!is_fiori()) {
+          if(status !== 'error') {
+            // no error, let's proceed
+            setTimeout(function () {
               window.location.href = 'customBillSheet.htm?CardID=' + bsId;
+            }, timeout);
+          }
+          else {
+            if(is_fiori()) {
+              alert('an error occurred, and your changes were not saved. You may have to log out and clear cache.');
             }
-          }, timeout);
+            else {
+              // we're on local, so go ahead and go to next page
+              setTimeout(function () {
+                window.location.href = 'customBillSheet.htm?CardID=' + bsId;
+              }, timeout);
+            }
+          }
         }
       });
     });
@@ -367,19 +370,23 @@ var loadCustomBillSheet = (function ($) {
         var timeout = getParameterByName('timeout');
         console.log("navigating to new window in" + timeout + "seconds");
         timeout = timeout ? timeout : 1;
-        setTimeout(function () {
-          window.location.href = 'customBillSheet.htm';
-        }, timeout);
-      },
-      always: function (xhr, status, data) {
-        var timeout = getParameterByName('timeout');
-        console.log("navigating to new window in" + timeout + "seconds");
-        timeout = timeout ? timeout : 1;
-        setTimeout(function () {
-          if (!is_fiori()) {
-            window.location.href = 'customBillSheet.htm';
+        if(status !== 'error') {
+          // no error, let's proceed
+          setTimeout(function () {
+            window.location.href = $('#btn-save').attr('href');
+          }, timeout);
+        }
+        else {
+          if(is_fiori()) {
+            alert('an error occurred, and your changes were not saved. You may have to log out and clear cache.');
           }
-        }, timeout);
+          else {
+            // we're on local, so go ahead and go to next page
+            setTimeout(function () {
+              window.location.href = 'customBillSheet.htm';
+            }, timeout);
+          }
+        }
       }
     });
   }

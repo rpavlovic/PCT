@@ -231,17 +231,23 @@ var expenseTable = (function ($) {
             var timeout = getParameterByName('timeout');
             console.log("navigating to new window in" + timeout + "seconds");
             timeout = timeout ? timeout : 1;
-            setTimeout(function () {
-              window.location.href = $('#btn-save').attr('href');
-            }, timeout);
-          },
-          always: function (xhr, status, data) {
-            var timeout = getParameterByName('timeout');
-            console.log("navigating to new window in" + timeout + "seconds");
-            timeout = timeout ? timeout : 1;
-            setTimeout(function () {
-              if (!is_fiori()) { window.location.href = $('#btn-save').attr('href'); }
-            }, timeout);
+            if(status !== 'error') {
+              // no error, let's proceed
+              setTimeout(function () {
+                window.location.href = $('#btn-save').attr('href');
+              }, timeout);
+            }
+            else {
+              if(is_fiori()) {
+                alert('an error occurred, and your changes were not saved. You may have to log out and clear cache.');
+              }
+              else {
+                // we're on local, so go ahead and go to next page
+                setTimeout(function () {
+                  window.location.href = $('#btn-save').attr('href');
+                }, timeout);
+              }
+            }
           }
         });
       });
