@@ -35,26 +35,22 @@ var summaryRoleTable = (function ($) {
     // use this ratio against fft or tmbf
     rows = Object.values(rows);
 
-    var totalHrs = rows.reduce(function (acc, val) {
-      return acc + parseFloat(val.hours);
-    }, 0);
-
-    $('#roles-total-hours').text(totalHrs);
-    rows.forEach(function (row) {
-      row.staffMix = row.hours / totalHrs * 100;
+    var reducedObject = rows.reduce(function (a, b) {
+      return {
+        fees: a.fees + b.fees,
+        hours: a.hours + b.hours
+      }
     });
 
-    var rolesTotalFee = rows.reduce(function (acc, val) {
-      if (val.fees)
-        return acc + parseFloat(val.fees);
-      else return acc;
-    }, 0);
     // only need to messwith the numbers if we have selected one of these models
     // need to calculate the ratios here...
     rows.forEach(function (row) {
-      var ratio = row.fees / rolesTotalFee;
+      var ratio = row.fees / reducedObject.fees;
       row.fees = ratio * selectedModel.Fees;
+      row.staffMix = row.hours / reducedObject.hours * 100;
     });
+
+    $('#roles-total-hours').text(reducedObject.hours);
     // now we actually override withthe  total fee from the selected model.
     $('#roles-total').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
 
