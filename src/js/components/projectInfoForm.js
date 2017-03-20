@@ -327,27 +327,7 @@ var projectInfoForm = (function ($) {
         }
       });
 
-      // then we will post the batch,
-      $.ajaxBatch({
-        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
-        data: payloads,
-        complete: function (xhr, status, data) {
-          var timeout = getParameterByName('timeout');
-          console.log("navigating to new window in" + timeout + "seconds");
-          timeout = timeout ? timeout : 1;
-          setTimeout(function () {
-            window.location.href = $('#btn-save').attr('href');
-          }, timeout);
-        },
-        always: function (xhr, status, data) {
-          var timeout = getParameterByName('timeout');
-          console.log("navigating to new window in" + timeout + "seconds");
-          timeout = timeout ? timeout : 1;
-          setTimeout(function () {
-            if (!is_fiori()) { window.location.href = $('#btn-save').attr('href'); }
-          }, timeout);
-        }
-      });
+      ajaxBatch(payloads, $('#btn-save').attr('href'));
     } //end if
   });
 
