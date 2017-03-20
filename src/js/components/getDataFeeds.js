@@ -140,3 +140,15 @@ function getRateCard(officeId, currency) {
     });
   });
 }
+
+function getRateCardLocal(OfficeId, Currency) {
+  if (!OfficeId || !Currency) {
+    return [];
+  }
+  var rc = sessionStorage.getItem('RateCard' + OfficeId + 'Currency' + Currency);
+  if (rc) {
+    return JSON.parse(rc);
+  } else {
+    return [];
+  }
+}

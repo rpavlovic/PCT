@@ -16,18 +16,6 @@ var projectResourceTable = (function ($) {
 
   var customBillsheets;
 
-  function getRateCardLocal(OfficeId, Currency) {
-    if (!OfficeId || !Currency) {
-      return [];
-    }
-    var rc = sessionStorage.getItem('RateCard' + OfficeId + 'Currency' + Currency);
-    if (rc) {
-      return JSON.parse(rc);
-    } else {
-      return [];
-    }
-  }
-
   function loadRateCardFromServerIntoSessionStorage(OfficeId, Currency) {
     var pGetRateCard = getRateCard(OfficeId, Currency);
     return pGetRateCard.then(function (rateCards) {
