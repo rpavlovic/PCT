@@ -121,7 +121,12 @@ var expenseTable = (function ($) {
             "data": "Amount",
             "defaultContent": '',
             "render": function (data, type, set, meta) {
-              return '<div contenteditable class="currency-sign ' + curr.toLowerCase() + '">' + convertDecimalToFixed(data) + '</div>';
+              if(data.length) {
+                return '<div contenteditable class="currency-sign ' + curr.toLowerCase() + '">' + convertDecimalToFixed(data) + '</div>';
+              }
+              else{
+                return '<div contenteditable class="currency-sign ' + curr.toLowerCase() + '"></div>';
+              }
             }
           }
         ],

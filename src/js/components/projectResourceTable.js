@@ -319,6 +319,8 @@ var projectResourceTable = (function ($) {
             var OfficeId = $(this).val();
             var Currency = projectInfo.Currency;
 
+            // clear out the rest of the rows when office was changed..
+            nodes.closest('tr').find('.title').empty();
             nodes.closest('tr').find('.td-class').empty();
             nodes.closest('tr').find('.practice').empty();
             nodes.closest('tr').find('.td-billrate').empty();
