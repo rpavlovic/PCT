@@ -273,34 +273,8 @@ var loadCustomBillSheet = (function ($) {
     $('.custom-bill-sheet #btn-save').on('click', function (event) {
       event.preventDefault();
       console.log("saving form");
-
       var payloads = buildBillSheetPayload();
-      $.ajaxBatch({
-        url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
-        data: payloads,
-        complete: function (xhr, status, data) {
-          var timeout = getParameterByName('timeout');
-          console.log("navigating to new window in" + timeout + "seconds");
-          timeout = timeout ? timeout : 1;
-          if(status !== 'error') {
-            // no error, let's proceed
-            setTimeout(function () {
-              window.location.href = 'customBillSheet.htm?CardID=' + bsId;
-            }, timeout);
-          }
-          else {
-            if(is_fiori()) {
-              alert('an error occurred, and your changes were not saved. You may have to log out and clear cache.');
-            }
-            else {
-              // we're on local, so go ahead and go to next page
-              setTimeout(function () {
-                window.location.href = 'customBillSheet.htm?CardID=' + bsId;
-              }, timeout);
-            }
-          }
-        }
-      });
+      ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId);
     });
 
     var bsId;
@@ -363,32 +337,7 @@ var loadCustomBillSheet = (function ($) {
       });
     }
 
-    $.ajaxBatch({
-      url: '/sap/opu/odata/sap/ZUX_PCT_SRV/$batch',
-      data: deletePayloads,
-      complete: function (xhr, status, data) {
-        var timeout = getParameterByName('timeout');
-        console.log("navigating to new window in" + timeout + "seconds");
-        timeout = timeout ? timeout : 1;
-        if(status !== 'error') {
-          // no error, let's proceed
-          setTimeout(function () {
-            window.location.href = $('#btn-save').attr('href');
-          }, timeout);
-        }
-        else {
-          if(is_fiori()) {
-            alert('an error occurred, and your changes were not saved. You may have to log out and clear cache.');
-          }
-          else {
-            // we're on local, so go ahead and go to next page
-            setTimeout(function () {
-              window.location.href = 'customBillSheet.htm';
-            }, timeout);
-          }
-        }
-      }
-    });
+    ajaxBatch(deletePayloads, 'customBillSheet.htm');
   }
 
   return {
