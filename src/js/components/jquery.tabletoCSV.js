@@ -82,12 +82,12 @@ $.fn.resourceTableToCSV = function () {
     var rows = [];
     $(this).find('thead tr, tbody tr').each(function () {
       var data = [];
-      $(this).find('th').each(function () {
+      $(this).find('th:not(".hide")').each(function () {
         var text = clean_text($(this).text());
         title.push(text);
       });
 
-      $(this).find('td').each(function () {
+      $(this).find('td:not(".hide")').each(function () {
         var text = '';
         if ($(this).has('select').length) {
           text = clean_text($(this).find('select option:selected').text());
@@ -104,7 +104,7 @@ $.fn.resourceTableToCSV = function () {
     $(this).find('tfoot tr').each(function () {
       var data = [];
       if(table.attr('id') === 'project-resource-table') {
-        data = ['','','','','','','','','','',''];
+        data = ['','','','','','','','','',''];
       }
       if(table.attr('id') === 'project-expense-table') {
         data = ['','','',''];
