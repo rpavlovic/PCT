@@ -181,6 +181,9 @@ var projectInfoForm = (function ($) {
   }
 
   function prepopulate_ExtraInfo_JSON(projectInfo) {
+    // lock in hourly by default no matter what.
+    plan_units.val('Hourly');
+
     if(projectInfo && projectInfo.Projname) {
       $('textarea').val(projectInfo.Comments);
       $('select[name="Region"]').val(projectInfo.Region);
@@ -198,7 +201,6 @@ var projectInfoForm = (function ($) {
       select_plan_by.val(projectInfo.Plantyp);
       var plan_by = (projectInfo.Plantyp === "WK") ? "Weeks" : "Months";
       input_duration.val(projectInfo.Duration + " " + plan_by);
-      plan_units.val('Hourly');
       createdOn = projectInfo.Createdon;
       $('input.datepicker').val(calcPrettyDate(projectInfo.EstStDate));
       $('input[name="weekstart"]').val(calcPrettyDate(projectInfo.StartDate));
