@@ -60,7 +60,10 @@ function getProjectExpenses(projectId) {
 function getOffices() {
   return new Promise(function (resolve, reject) {
     $.getJSON(get_data_feed(feeds.offices), function (offices) {
-      resolve(offices.d.results);
+      var sortedOffices = offices.d.results.sort(function (a, b) {
+        return (a.OfficeName > b.OfficeName) ? 1 : ((b.OfficeName > a.OfficeName) ? -1 : 0);
+      });
+      resolve(sortedOffices);
     }).fail(function () {
       // not found, but lets fix this and return empty set
       console.log('no offices found.... returning empty set');

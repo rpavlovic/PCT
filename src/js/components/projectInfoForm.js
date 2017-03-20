@@ -141,11 +141,14 @@ var projectInfoForm = (function ($) {
     });
 
     results.forEach(function (office) {
-      offices.push('<option value="' + office.Office + '">' + office.OfficeName + ', ' + office.City + ' (' + office.Office + ')</option>');
       matchOptions(office.Currency, select_currency[0]);
     });
 
-    select_billing_office.append($.unique(offices.sort()));
+    results.forEach(function(office){
+      offices.push('<option value="' + office.Office + '">' + office.OfficeName + ', ' + office.City + ' (' + office.Office + ')</option>');
+    });
+
+    select_billing_office.append(offices);
     select_country.append($.unique(countries.sort()));
     select_region.append($.unique(regions.sort()));
   }

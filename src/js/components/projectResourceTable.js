@@ -62,13 +62,6 @@ var projectResourceTable = (function ($) {
       projectInfo = values[6];
       customBillsheets = values[7];
 
-      // preload the rest of the bill rate cards
-      // go ahead and prefetch the rest of the office rate cards for performance
-      offices.forEach(function (val) {
-        if (!getRateCardLocal(val.Office, projectInfo.Currency).length)
-          loadRateCardFromServerIntoSessionStorage(val.Office, projectInfo.Currency);
-      });
-
       duration = projectInfo.Duration;
       office = projectInfo.Office;
       planBy = projectInfo.Plantyp;
@@ -323,11 +316,27 @@ var projectResourceTable = (function ($) {
           $("#project-resource-table tbody select.office").on('change', function () {
             console.log("office changed");
             var nodes = $(this);
-            updateEmployeeTitleSelect(nodes);
+            var OfficeId = $(this).val();
+            var Currency = projectInfo.Currency;
+
             nodes.closest('tr').find('.td-class').empty();
             nodes.closest('tr').find('.practice').empty();
             nodes.closest('tr').find('.td-billrate').empty();
             nodes.closest('tr').find('.td-costrate').empty();
+
+            // check to see if that office Rate exists in local storage
+            // if it exists, then go ahead and then update the dropdown
+            if (getRateCardLocal(OfficeId, Currency).length) {
+              updateEmployeeTitleSelect(nodes);
+            }
+            else{
+              var pGetRateCard = getRateCard(OfficeId, Currency);
+              console.log('rate card not found. loading from server');
+              return pGetRateCard.then(function (rateCards) {
+                sessionStorage.setItem('RateCard' + OfficeId + 'Currency' + Currency, JSON.stringify(rateCards));
+                updateEmployeeTitleSelect(nodes);
+              })
+            }
             recalculateStuff();
           });
           $("#project-resource-table tbody select.title").on('change', function () {
