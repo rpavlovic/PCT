@@ -16,18 +16,6 @@ var projectResourceTable = (function ($) {
 
   var customBillsheets;
 
-  function getRateCardLocal(OfficeId, Currency) {
-    if (!OfficeId || !Currency) {
-      return [];
-    }
-    var rc = sessionStorage.getItem('RateCard' + OfficeId + 'Currency' + Currency);
-    if (rc) {
-      return JSON.parse(rc);
-    } else {
-      return [];
-    }
-  }
-
   function loadRateCardFromServerIntoSessionStorage(OfficeId, Currency) {
     var pGetRateCard = getRateCard(OfficeId, Currency);
     return pGetRateCard.then(function (rateCards) {
@@ -51,7 +39,7 @@ var projectResourceTable = (function ($) {
         var promiseArray = [];
         var limit = {};
         resources.forEach(function (val) {
-          if (!limit['RateCard' + val.Officeid + 'Currency' + pInfo.Currency] && !sessionStorage.getItem('RateCard' + val.Officeid + 'Currency' + pInfo.Currency)) {
+          if (!limit['RateCard' + val.Officeid + 'Currency' + pInfo.Currency] && !getRateCardLocal(val.Officeid, pInfo.Currency).length) {
             promiseArray.push(loadRateCardFromServerIntoSessionStorage(val.Officeid, pInfo.Currency));
             limit['RateCard' + val.Officeid + 'Currency' + pInfo.Currency] = 1;
           }
@@ -77,7 +65,7 @@ var projectResourceTable = (function ($) {
       // preload the rest of the bill rate cards
       // go ahead and prefetch the rest of the office rate cards for performance
       offices.forEach(function (val) {
-        if (!sessionStorage.getItem('RateCard' + val.Office + 'Currency' + projectInfo.Currency))
+        if (!getRateCardLocal(val.Office, projectInfo.Currency).length)
           loadRateCardFromServerIntoSessionStorage(val.Office, projectInfo.Currency);
       });
 

@@ -41,14 +41,23 @@ var projectSummary = (function ($) {
     var p8 = getOffices();
 
     function loadRateCardFromServer(OfficeId, Currency) {
-      var p = getRateCard(OfficeId, Currency);
-      return Promise.resolve(p)
-        .then(function (rateCards) {
-          return {
-            OfficeId: OfficeId,
-            rateCards: rateCards
-          };
-        });
+      var rcLocal = getRateCardLocal(OfficeId, Currency);
+      if (rcLocal.length) {
+        return {
+          OfficeId: OfficeId,
+          rateCards: rcLocal
+        };
+      } else {
+        var p = getRateCard(OfficeId, Currency);
+        return Promise.resolve(p)
+          .then(function (rateCards) {
+            sessionStorage.setItem('RateCard' + OfficeId + 'Currency' + Currency, JSON.stringify(rateCards));
+            return {
+              OfficeId: OfficeId,
+              rateCards: rateCards
+            };
+          });
+      }
     }
 
     Promise.all([p1, p2, p3, p4, p5, p6, p7, p8]).then(function (values) {
@@ -90,7 +99,7 @@ var projectSummary = (function ($) {
     $('#office').text(projectInfo.OfficeName);
     $('#project-name').text(projectInfo.Projname);
     $('#start-date').text(calcPrettyDate(projectInfo.EstStDate));
-    if(projectInfo.Plantyp === "WK") {
+    if (projectInfo.Plantyp === "WK") {
       planBy = " Week(s)";
     } else {
       planBy = " Month(s)";

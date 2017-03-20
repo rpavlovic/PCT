@@ -13,25 +13,10 @@ var projectInfoForm = (function ($) {
   }
 
   var deletePayloads = [];
-  var isNewProject = false;
-
   var projectDeliverables = [];
-  var items_currency =
-      [
-        'AUD',
-        'CAD',
-        'CHF',
-        'CNY',
-        'EUR',
-        'GBP',
-        'HKD',
-        'JPY',
-        'MYR',
-        'NZD',
-        'SGD',
-        'USD'
-      ],
-    items_region = [],
+  var items_currency = Object.keys(terms_currency);
+
+  var items_region = [],
     select_billing_office = $("form.project-info select[name='Office']"),
     select_currency = $("form.project-info select[name='Currency']"),
     select_region = $("form.project-info select[name='Region']"),
