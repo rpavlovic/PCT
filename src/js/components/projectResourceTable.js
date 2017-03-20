@@ -323,7 +323,7 @@ var projectResourceTable = (function ($) {
             nodes.closest('tr').find('.practice').empty();
             nodes.closest('tr').find('.td-billrate').empty();
             nodes.closest('tr').find('.td-costrate').empty();
-            
+
             // check to see if that office Rate exists in local storage
             // if it exists, then go ahead and then update the dropdown
             if (getRateCardLocal(OfficeId, Currency).length) {
