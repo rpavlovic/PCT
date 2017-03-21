@@ -319,6 +319,7 @@ var projectResourceTable = (function ($) {
             var OfficeId = $(this).val();
             var Currency = projectInfo.Currency;
 
+            $('.loader').show();
             // clear out the rest of the rows when office was changed..
             nodes.closest('tr').find('.title').empty();
             nodes.closest('tr').find('.td-class').empty();
@@ -513,6 +514,7 @@ var projectResourceTable = (function ($) {
       }
 
       function updateEmployeeTitleSelect(nodes) {
+        $('.loader').hide();
         var employeeTitleSelect = nodes.closest('tr').find('.title');
         var Officeid = nodes.closest('tr').find('.office :selected').val();
         var empTitles = getEmployeeTitles({EmpGradeName: '', Officeid: Officeid});
