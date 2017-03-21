@@ -8,6 +8,7 @@ var loadCustomBillSheet = (function ($) {
   function initLoadCustomBillSheet() {
     var csv_table = $("#csv-table");
     // get user profile
+    showLoader();
 
     if (!getParameterByName('CardID')) {
       var pProfile = getEmployeeInfo();
@@ -51,6 +52,7 @@ var loadCustomBillSheet = (function ($) {
     }
 
     function populateTable(rows, isUploaded) {
+      hideLoader();
       //console.log(rows);
       var columns;
       if (isUploaded) {
