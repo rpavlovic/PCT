@@ -6,8 +6,7 @@
 $.fn.tableToCSV = function () {
 
   var clean_text = function (text) {
-    text = text.replace(/"/g, ',');
-    return '"' + text + '"';
+    return text.replace(/"/g, ',').replace(',', '|');
   };
 
   $(this).each(function () {

@@ -71,7 +71,8 @@ var loadCustomBillSheet = (function ($) {
           },
           {
             name: "StandardRate",
-            title: "Standard Rate"
+            title: "Rate",
+            class: 'rate num'
           },
           {
             name: "Currency",
@@ -81,6 +82,7 @@ var loadCustomBillSheet = (function ($) {
           {
             name: "OverrideRate",
             title: "Upload / Override",
+            class: 'rate-override num',
             defaultContent: "<div contenteditable class='currency-sign usd'></div>",
             render: function (data, type, row) {
               if (data) {
@@ -90,7 +92,8 @@ var loadCustomBillSheet = (function ($) {
           },
           {
             name: "Discount",
-            title: "Discount"
+            title: "Discount",
+            class: 'discount num'
           }
         ];
       }
@@ -179,55 +182,47 @@ var loadCustomBillSheet = (function ($) {
               $('#btn-save').prop('disabled', true);
             }
           });
-
-          //Calculate percentage for the discount.
-          $("td:nth-child(6) div", nRow).on('keyup focusout', function (e) {
-            if ($.isNumeric($(e.target).text()) && $(e.target).text().length > 0) {
-              var ovd_rate = $(e.target).text(),
-                st_rate = $(e.target).parent().prevAll('.rate').text().replace(/[^0-9\.]/g, ""),
-                minus = st_rate - ovd_rate,
-                percent = ( (st_rate - ovd_rate) / st_rate) * 100;
-              $(e.target).parent().next('.discount').html(percent.toFixed(3) + "%");
-            }
-            else {
-              $(e.target).parent().next('.discount').empty();
-            }
+        },
+        "initComplete": function (settings, json) {
+          $(".rate-override div").on('keyup blur', function (e) {
+            recalcTable();
           });
+          setTimeout(recalcTable, 1000);
         },
         bDestroy: true
       });
+    }
+
+    function recalcTable(){
+     $('tbody tr[role="row"]').each(function(i, obj){
+       var rate = convertToDecimal($(obj).find('.rate').text());
+       var overrideRate = convertToDecimal($(obj).find('.rate-override div').text());
+       if(overrideRate > 0){
+         var discount = (rate-overrideRate)/ rate;
+         $(obj).find('.discount').text(convertToPercent(discount));
+       }
+       else{
+         $(obj).find('.discount').text('');
+       }
+     });
     }
 
     function uploadCSV(data) {
       var newlines = /\r|\n/.exec(data);
 
       if (newlines) {
-        var rows = data.split(/\n/),
-          titles = '';
+        var rows = data.split(/\n/);
 
-        //get titles from the Excel sheet
-        for (var i = rows.length - 1; i >= 1; i--) {
-          if (rows[0].indexOf(',') != -1) {
-            titles = rows[0].split(/","/g);
-
-            if ($.trim(titles[0]) === "Title") {
-              //get titles from the Excel.
-              titles[0] = titles[0].replace(/"/g, ",");
-              titles[titles.length - 1] = titles[titles.length - 1].replace(/"/g, ",");
-            }
-          }
-        }
+        // remove title row.
+        rows.shift();
         rows = rows.map(function (row, index) {
-          var columns = row.split('","');
-          columns[0] = columns[0].replace(/"/g, "");
+          var columns = row.split(/,/);
+          // convert pipe back to columns
+          columns[0] = columns[0].replace(/"/g, "").replace('|', ',');
           columns[columns.length - 1] = columns[columns.length - 1].replace(/"/g, " ");
           return columns;
         });
 
-        //remove the row with titles from the table
-        if ($.trim(rows["0"]["0"]) === 'Title') {
-          rows.shift();
-        }
         populateTable(rows, true);
       }
     }
