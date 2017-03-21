@@ -25,11 +25,13 @@ var expenseTable = (function ($) {
   });
 
   function initExpenseTable() {
+    showLoader();
     var p1 = getProjectDeliverables(projectID);
     var p2 = getProjectExpenses(projectID);
     var p3 = getProjectInfo(projectID);
 
     Promise.all([p1, p2, p3]).then(function (values) {
+      hideLoader();
       var data = [];
       deliverables = values[0];
       expenses = values[1];

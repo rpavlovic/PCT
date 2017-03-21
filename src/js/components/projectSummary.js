@@ -9,7 +9,7 @@ var projectSummary = (function ($) {
   var projectId = getParameterByName('projID');
 
   function initProjectSummary() {
-
+    showLoader();
     var p1 = getProjectInfo(projectId);
     var p2 = getProjectDeliverables(projectId);
     var p3 = getMarginModeling(projectId);
@@ -61,6 +61,7 @@ var projectSummary = (function ($) {
     }
 
     Promise.all([p1, p2, p3, p4, p5, p6, p7, p8]).then(function (values) {
+      hideLoader();
       var projectInfo = values[0];
       var projectDeliverables = values[1];
       var marginModeling = values[2];
