@@ -202,12 +202,14 @@ var projectInfoForm = (function ($) {
     var p3 = getEmployeeInfo();
     var p4 = getProjectInfo(projectId);
 
+    showLoader();
     Promise.all([p1, p2, p3, p4])
       .then(function (values) {
         prepopulateDeliverables(values[0]);
         prepopulate_Billing_Office_JSON(values[1]);
         prepopulate_Employee_Office(values[2]);
         prepopulate_ExtraInfo_JSON(values[3]);
+        hideLoader();
         floatLabel.initfloatLabel();
       });
   }

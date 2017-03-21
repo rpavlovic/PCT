@@ -13,6 +13,7 @@ var activeTableFunction = (function ($) {
   function initActiveTable() {
     var table = $('#active-projects');
 
+    showLoader();
     var p1 = getOffices();
     var p2 = getProjectList();
     var p3 = Promise.resolve(p2)
@@ -34,6 +35,8 @@ var activeTableFunction = (function ($) {
 
     Promise.all([p1, p3])
       .then(function (values) {
+        hideLoader();
+
         var curr;
         var offices = values[0];
         var projects = values[1];

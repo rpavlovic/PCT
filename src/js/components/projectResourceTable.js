@@ -24,6 +24,7 @@ var projectResourceTable = (function ($) {
   }
 
   function initProjectResourceTable() {
+    showLoader();
     var p1 = getProjectDeliverables(projectID);
     var p2 = getOffices();
     var p4 = getProjectResources(projectID);
@@ -53,6 +54,7 @@ var projectResourceTable = (function ($) {
 
     var pBillsheets = getBillSheet(' ');
     Promise.all([p1, p2, p3, p4, t1, p5, pInfo, pBillsheets]).then(function (values) {
+      hideLoader();
       //deliverables
       var deliverables = values[0];
       var offices = values[1];
