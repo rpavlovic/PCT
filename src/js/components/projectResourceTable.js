@@ -296,7 +296,7 @@ var projectResourceTable = (function ($) {
         ],
         "buttons": [
           {
-            "extend": 'csv',
+            "extend": 'excel',
             action: function ( e, dt, node, config ) {
               $('#project-resource-table').resourceTableToCSV();
            }

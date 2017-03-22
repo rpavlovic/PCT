@@ -60,7 +60,7 @@ var expenseTable = (function ($) {
         }],
         "buttons": [
           {
-            "extend": 'csv',
+            "extend": 'excel',
             action: function ( e, dt, node, config ) {
               $('#project-expense-table').resourceTableToCSV();
            }
