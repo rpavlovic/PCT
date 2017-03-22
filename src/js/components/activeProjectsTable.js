@@ -143,7 +143,7 @@ var activeTableFunction = (function ($) {
           "bFilter": true,
           "select": true,
           "buttons": [
-            'copy', 'csv', 'excel',
+            'copy', 'excel',
             {
               "extend": 'pdf',
               "download": 'open'
