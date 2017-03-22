@@ -8,6 +8,8 @@
     display: none;
   }
   table {
+    width: 100%;
+    font-size: 80%;
     &.dataTable.display tfoot tr th:not(:first-child),
     &.dataTable.display tfoot tr td:not(:first-child),
     td:not(:first-child),
