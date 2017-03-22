@@ -18,7 +18,7 @@ var loadCustomBillSheet = (function ($) {
         .then(function (values) {
           var employee = values[0];
           var officeInfo = values[1].find(function (val) {
-            return val.Office = employee.Office;
+            return val.Office === employee.Office;
           });
 
           var pRateCards = getRateCard(employee.Office, officeInfo.Currency);
@@ -174,7 +174,9 @@ var loadCustomBillSheet = (function ($) {
           } else {
             $('#btn-save').prop('disabled', true);
           }
-
+          if ($('#bill-sheet-name').val()) {
+            $('#btn-save').prop('disabled', false);
+          }
           $('#bill-sheet-name').on('focusout keypress', function (e) {
             if ($('#bill-sheet-name').val()) {
               $('#btn-save').prop('disabled', false);
@@ -258,7 +260,6 @@ var loadCustomBillSheet = (function ($) {
         };
         var blob = file.slice(start, stop + 1);
         reader.readAsText(blob);
-
         $('#bill-sheet-name').val(file_name.slice(0, -4));
       });
       event.stopPropagation();
