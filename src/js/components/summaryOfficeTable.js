@@ -42,7 +42,7 @@ var summaryOfficeTable = (function ($) {
       return {
         fees: a.fees + b.fees,
         hours: a.hours + b.hours
-      }
+      };
     });
 
     // only need to messwith the numbers if we have selected one of these models
@@ -64,6 +64,7 @@ var summaryOfficeTable = (function ($) {
       length: false,
       info: false,
       order: [[1, 'asc']],
+      bAutoWidth:false,
       "columns": [
         {
           "title": "Office",
