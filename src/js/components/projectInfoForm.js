@@ -254,14 +254,10 @@ var projectInfoForm = (function ($) {
     //if Input fields fileld in are filled then continue to the next page.
     if (checkValues(input_duration, client_name, project_name, $('input.datepicker'))) {
 
-      var url = $(this).attr('href'),
-        date = new Date(),
-        timeStamp = date.getTime();
-
-      url = updateQueryString('projID', projectId, url) + "&" + timeStamp;
+      var url = $(this).attr('href');
+      url = updateQueryString('projID', projectId, url) + "&" + getTimestamp();
 
       $(this).attr('href', url);
-
 
       // get val in unix epoch time
       var EstStDate = new Date($('input.datepicker').val()).getTime();

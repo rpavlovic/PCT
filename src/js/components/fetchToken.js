@@ -6,7 +6,7 @@ function fetchToken() {
   if (is_fiori()) {
     $.ajax({
       method: "GET",
-      url: "/sap/opu/odata/sap/ZUX_PCT_SRV/$metadata",
+      url: "/sap/opu/odata/sap/ZUX_PCT_SRV/$metadata?" + getTimestamp(),
       beforeSend: function (request) {
         request.setRequestHeader("X-CSRF-Token", "Fetch");
       }
