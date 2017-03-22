@@ -223,6 +223,11 @@ var loadCustomBillSheet = (function ($) {
           return columns;
         });
 
+        // remove rows that are invalid cells
+        rows = rows.filter(function(row){
+          return row.length > 5;
+        });
+
         populateTable(rows, true);
       }
     }
