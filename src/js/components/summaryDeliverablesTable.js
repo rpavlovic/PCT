@@ -107,6 +107,7 @@ var summaryDeliverablesTable = (function ($) {
       length: false,
       info: false,
       order: [[1, 'asc']],
+      bAutoWidth:false,
       "columns": [
         {
           "title": "Deliverable/Workstream",
