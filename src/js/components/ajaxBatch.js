@@ -15,7 +15,8 @@ function ajaxBatch(payloads, windowTargetUrl) {
       complete: function (xhr, status, data) {
         var timeout = getParameterByName('timeout');
         console.log("navigating to new window in" + timeout + "seconds");
-        timeout = timeout ? timeout : 1;
+        timeout = timeout ? timeout : 1500;
+        showLoader();
         if (status !== 'error' && xhr.status === 202) {
           // no error, let's proceed
           setTimeout(function () {
