@@ -175,19 +175,19 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Role',
           "data": "Role",
-          "defaultContent": '<div contenteditable />',
+          "defaultContent": "<div contenteditable onkeypress='return (this.innerText.length <= 39)'/>",
           "render": function (data, type, row, meta) {
             if (data)
-              return "<div contenteditable>" + data + "</div>";
+              return "<div contenteditable onkeypress='return (this.innerText.length <= 39)'>" + data + "</div>";
           }
         },
         {
           "title": 'Proposed <br/> Resource',
           "data": "ProposedResource",
-          "defaultContent": '<div contenteditable />',
+          "defaultContent": "<div contenteditable onkeypress='return (this.innerText.length <= 39)'/>",
           "render": function (data, type, row, meta) {
             if (data)
-              return "<div contenteditable>" + data + "</div>";
+              return "<div contenteditable onkeypress='return (this.innerText.length <= 39)'>" + data + "</div>";
           }
         },
         {
