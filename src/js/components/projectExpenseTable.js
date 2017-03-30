@@ -115,7 +115,7 @@ var expenseTable = (function ($) {
             "data": "CatDesc",
             "defaultContent": '',
             "render": function (data) {
-              return '<div contenteditable>' + data + '</div>';
+              return '<div contenteditable onkeypress="return (this.innerText.length <= 39)">' + data + '</div>';
             }
           },
           {
