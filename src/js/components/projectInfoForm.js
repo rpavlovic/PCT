@@ -251,6 +251,9 @@ var projectInfoForm = (function ($) {
   $('.project-info #btn-save').on('click', function (event) {
     event.preventDefault();
 
+    // clean inputs first.
+    trimInputs();
+
     //if Input fields fileld in are filled then continue to the next page.
     if (checkValues(input_duration, client_name, project_name, $('input.datepicker'))) {
 

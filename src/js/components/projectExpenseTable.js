@@ -197,6 +197,7 @@ var expenseTable = (function ($) {
 
       $('.project-expense #btn-save').on('click', function (event) {
         event.preventDefault();
+        trimInputs();
         console.log("saving expenses form");
         var url = $('#btn-save').attr('href');
 
