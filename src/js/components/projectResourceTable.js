@@ -799,6 +799,8 @@ var projectResourceTable = (function ($) {
     $('.project-resources #btn-save').on('click', function (event) {
       event.preventDefault();
 
+      trimInputs();
+
       console.log("saving form");
 
       var url = $('#btn-save').attr('href');
