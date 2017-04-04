@@ -46,7 +46,7 @@ var summaryDeliverablesTable = (function ($) {
 
     deliverables.forEach(function (d) {
       if (d.TotalHrs) {
-        d.HoursPercentage = d.TotalHrs / totalProjectHours * 100;
+        d.HoursPercentage = d.TotalHrs / totalProjectHours;
       } else
         d.HoursPercentage = 0;
     });
@@ -177,9 +177,9 @@ var summaryDeliverablesTable = (function ($) {
           "class": "deliv-percent",
           render: function (data, type, row) {
             if (data || isNaN(data)) {
-              return data.toFixed(2) + '%';
+              return convertToPercent(data);
             } else {
-              return data + "%";
+              return convertToPercent(data);
             }
           }
         }

@@ -67,11 +67,11 @@ var summaryOfficeTable = (function ($) {
     // only need to messwith the numbers if we have selected one of these models
     // need to calculate the ratios here...
     rows.forEach(function (row) {
-      row.staffMix = row.hours / reducedObject.hours * 100;
+      row.staffMix = row.hours / reducedObject.hours;
       row.localFeeObject = {
         localCurrency: row.localCurrency,
         localFees: row.fees * row.exchangeRate
-      }
+      };
     });
 
     // now we actually override withthe  total fee from the selected model.
@@ -152,9 +152,9 @@ var summaryOfficeTable = (function ($) {
           "class": "office-total-mix",
           render: function (data, type, row) {
             if (data) {
-              return data.toFixed(2) + '%';
+              return convertToPercent(data);
             } else {
-              return data + "%";
+              return convertToPercent(data);
             }
           }
         }

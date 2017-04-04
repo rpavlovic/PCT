@@ -98,7 +98,7 @@ var projectSummary = (function ($) {
     $('#office').text(projectInfo.OfficeName);
     $('#project-name').text(projectInfo.Projname);
     $('#start-date').text(calcPrettyDate(projectInfo.EstStDate));
-    
+
     var planBy = (projectInfo.Plantyp === "WK") ? " Week(s)" : " Month(s)";
     $('#duration').text(projectInfo.Duration + planBy);
     $('#comp-type').text(projectInfo.Comptyp);
@@ -128,7 +128,7 @@ var projectSummary = (function ($) {
 
     var netRevenue = budget - totalExpenses;
     var blendedAvg = netRevenue / resourceTotalHours;
-    var oopFees = totalExpenses / totalFees * 100;
+    var oopFees = totalExpenses / totalFees;
     if (totalFees <= 0) {
       oopFees = 0;
     }
@@ -139,10 +139,9 @@ var projectSummary = (function ($) {
     $('#total-budget').text(convertToDollar(projectInfo.Currency, budget));
     $('#expenses').text(convertToDollar(projectInfo.Currency, totalExpenses)).addClass("low-value");
     $('#net-revenue').text(convertToDollar(projectInfo.Currency, netRevenue));
+    $('#contribution-margin').text(parseFloat(contributionMargin).toFixed(1) + "%").addClass(class_name);
 
-    $('#contribution-margin').text(contributionMargin + '%').addClass(class_name);
-
-    $('#oop-fees').text(oopFees.toFixed(2) + "%");
+    $('#oop-fees').text(convertToPercent(oopFees));
     $('#total-hours').text(resourceTotalHours);
     $('#avg-rate').text(convertToDollar(projectInfo.Currency, blendedAvg));
 
