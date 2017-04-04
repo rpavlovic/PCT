@@ -83,7 +83,7 @@ var summaryRoleTable = (function ($) {
           }
         },
         {
-          "title": "Proj. Fees",
+          "title": "Fees in Target",
           "data": 'fees',
           "defaultContent": "$0",
           "class": "office-total-fees",
