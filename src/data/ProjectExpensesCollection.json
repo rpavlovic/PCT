@@ -266,6 +266,34 @@
         "CatDesc": "pockets",
         "Amount": "2222.00",
         "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='c0971a7a-089a-44e2-8',ExpRow='001')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='c0971a7a-089a-44e2-8',ExpRow='001')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+        },
+        "Projid": "c0971a7a-089a-44e2-8",
+        "ExpRow": "001",
+        "DelvDesc": "Deliverable A",
+        "Category": "Trav",
+        "CatDesc": "",
+        "Amount": "5000.00",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='c0971a7a-089a-44e2-8',ExpRow='002')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='c0971a7a-089a-44e2-8',ExpRow='002')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+        },
+        "Projid": "c0971a7a-089a-44e2-8",
+        "ExpRow": "002",
+        "DelvDesc": "Deliverable B",
+        "Category": "Trav",
+        "CatDesc": "",
+        "Amount": "10000.00",
+        "Currency": "USD"
       }
     ]
   }
