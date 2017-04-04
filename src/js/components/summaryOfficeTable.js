@@ -48,7 +48,7 @@ var summaryOfficeTable = (function ($) {
         fees: a.fees + b.fees,
         localFees: a.localFees + b.localFees,
         hours: a.hours + b.hours
-      }
+      };
     });
 
     // only need to messwith the numbers if we have selected one of these models
@@ -80,6 +80,7 @@ var summaryOfficeTable = (function ($) {
       length: false,
       info: false,
       order: [[1, 'asc']],
+      bAutoWidth:false,
       "columns": [
         {
           "title": "Office",
@@ -102,7 +103,7 @@ var summaryOfficeTable = (function ($) {
           }
         },
         {
-          "title": "Proj. Fees",
+          "title": "Fees in Target",
           "data": 'fees',
           "defaultContent": "$0",
           "class": "office-total-fees",
