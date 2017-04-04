@@ -2,6 +2,20 @@
  * @module Draw Data Table for Active Projects.
  * @version
  */
+
+function getExchangeRate(rateCardArray, officeId, practiceId, empGradeName){
+  var rcOffice = rateCardArray.find(function(rcCollection){
+    return rcCollection.OfficeId === officeId;
+  });
+
+  var empRc = rcOffice.rateCards.find(function(rc){
+    return rc.EmpGradeName === empGradeName && rc.Office === officeId && rc.CostCenter === practiceId;
+  });
+
+  return empRc.SourceBillrate/empRc.BillRate;
+}
+
+
 var summaryOfficeTable = (function ($) {
   'use strict';
   function initSummaryOfficeTable(projectInfo, projectResources, rateCards, selectedModel) {
@@ -33,10 +47,10 @@ var summaryOfficeTable = (function ($) {
         };
       }
 
-      console.log(resource);
-      console.log(office);
+      // calculate exchange rate based on the resource, office, etc...
+      var exRate = getExchangeRate(rateCards, resource.Officeid, resource.Practiceid, resource.EmpGradeName);
 
-      rows[resource.Officeid + resource.Practiceid].localFees += parseFloat(resource.TotalHrs) * (parseFloat(resource.SourceBillrate) || parseFloat(office.SourceBillrate));
+      rows[resource.Officeid + resource.Practiceid].exchangeRate = exRate;
       rows[resource.Officeid + resource.Practiceid].fees += parseFloat(resource.TotalFee);
       rows[resource.Officeid + resource.Practiceid].hours += parseFloat(resource.TotalHrs);
     });
@@ -46,7 +60,6 @@ var summaryOfficeTable = (function ($) {
     var reducedObject = rows.reduce(function (a, b) {
       return {
         fees: a.fees + b.fees,
-        localFees: a.localFees + b.localFees,
         hours: a.hours + b.hours
       };
     });
@@ -55,17 +68,11 @@ var summaryOfficeTable = (function ($) {
     // need to calculate the ratios here...
     rows.forEach(function (row) {
       row.staffMix = row.hours / reducedObject.hours * 100;
-      // var ratio = row.fees / reducedObject.fees;
-      // var localRatio = row.localFees / reducedObject.localFees;
-      // row.localFees = localRatio * selectedModel.Fees;
-      // row.fees = ratio * selectedModel.Fees;
       row.localFeeObject = {
         localCurrency: row.localCurrency,
-        localFees: row.localFees
+        localFees: row.fees * row.exchangeRate
       }
     });
-
-    console.log(rows);
 
     // now we actually override withthe  total fee from the selected model.
     $('#office-total-hours').text(reducedObject.hours);
@@ -121,7 +128,7 @@ var summaryOfficeTable = (function ($) {
           "defaultContent": "$0",
           "class": "office-total-currency",
           render: function (data, type, row) {
-            if (data || isNaN(data)) {
+            if (data && isNaN(data)) {
               return convertToDollar(data.localCurrency, data.localFees);
             } else {
               return data;
