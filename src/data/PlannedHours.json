@@ -1584,6 +1584,42 @@
         "Plantyp": "WK",
         "Cellid": "R3C4",
         "Planhours": "20.000"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='c0971a7a-089a-44e2-8',Rowno='001',Plantyp='MN',Cellid='R1C1')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='c0971a7a-089a-44e2-8',Rowno='001',Plantyp='MN',Cellid='R1C1')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "c0971a7a-089a-44e2-8",
+        "Rowno": "001",
+        "Plantyp": "MN",
+        "Cellid": "R1C1",
+        "Planhours": "400.00"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='c0971a7a-089a-44e2-8',Rowno='002',Plantyp='MN',Cellid='R2C1')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='c0971a7a-089a-44e2-8',Rowno='002',Plantyp='MN',Cellid='R2C1')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "c0971a7a-089a-44e2-8",
+        "Rowno": "002",
+        "Plantyp": "MN",
+        "Cellid": "R2C1",
+        "Planhours": "200.00"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='c0971a7a-089a-44e2-8',Rowno='003',Plantyp='MN',Cellid='R3C1')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='c0971a7a-089a-44e2-8',Rowno='003',Plantyp='MN',Cellid='R3C1')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "c0971a7a-089a-44e2-8",
+        "Rowno": "003",
+        "Plantyp": "MN",
+        "Cellid": "R3C1",
+        "Planhours": "1000.00"
       }
     ]
   }

@@ -473,6 +473,69 @@
         "TotalHrs": 92,
         "TotalFee": "1335.840",
         "Plantyp": "WK"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='c0971a7a-089a-44e2-8',Rowno='001')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='c0971a7a-089a-44e2-8',Rowno='001')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "BillRateOvride": "0.00",
+        "Duration": "1",
+        "EmpGradeName": "Account Executive",
+        "Projid": "c0971a7a-089a-44e2-8",
+        "Rowno": "001",
+        "DelvDesc": "Deliverable A",
+        "Officeid": "US12",
+        "Practiceid": "US99330400",
+        "Role": "",
+        "ProposedRes": "",
+        "BillRate": "160.00",
+        "TotalHrs": 400,
+        "TotalFee": "64000.00",
+        "Plantyp": "MN"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='c0971a7a-089a-44e2-8',Rowno='002')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='c0971a7a-089a-44e2-8',Rowno='002')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "BillRateOvride": "0.00",
+        "Duration": "1",
+        "EmpGradeName": "Account Director",
+        "Projid": "c0971a7a-089a-44e2-8",
+        "Rowno": "002",
+        "DelvDesc": "Deliverable A",
+        "Officeid": "GB01",
+        "Practiceid": "GB99600400",
+        "Role": "",
+        "ProposedRes": "",
+        "BillRate": "215.91",
+        "TotalHrs": 200,
+        "TotalFee": "43182.00",
+        "Plantyp": "MN"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='c0971a7a-089a-44e2-8',Rowno='003')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='c0971a7a-089a-44e2-8',Rowno='003')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "BillRateOvride": "0.00",
+        "Duration": "1",
+        "EmpGradeName": "Account Coordinator",
+        "Projid": "c0971a7a-089a-44e2-8",
+        "Rowno": "003",
+        "DelvDesc": "Deliverable B",
+        "Officeid": "CN02",
+        "Practiceid": "CN99750400",
+        "Role": "",
+        "ProposedRes": "",
+        "BillRate": "65.98",
+        "TotalHrs": 1000,
+        "TotalFee": "65980.00",
+        "Plantyp": "MN"
       }
     ]
   }

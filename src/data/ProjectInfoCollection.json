@@ -432,6 +432,33 @@
         "Createdon": "\/Date(1491264000000)\/",
         "Changedby": "",
         "Changedon": null
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('c0971a7a-089a-44e2-8')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('c0971a7a-089a-44e2-8')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
+        },
+        "BillsheetId": "0",
+        "Projid": "c0971a7a-089a-44e2-8",
+        "Plantyp": "MN",
+        "Region": "APAC",
+        "Office": "US12",
+        "Currency": "USD",
+        "Clientname": "Test Project 47",
+        "Projname": "Test Project 49",
+        "Comptyp": "Time + Materials",
+        "EstStDate": "\/Date(1491177600000)\/",
+        "Duration": 1,
+        "PlanUnits": "Hou",
+        "StartDate": "\/Date(1491177600000)\/",
+        "EstEndDate": "\/Date(1493856000000)\/",
+        "Comments": "",
+        "Preparedby": "John Mills Kelly the Third",
+        "Createdby": "RPAVLOVIC",
+        "Createdon": "\/Date(1491264000000)\/",
+        "Changedby": "",
+        "Changedon": null
       }
     ]
   }
