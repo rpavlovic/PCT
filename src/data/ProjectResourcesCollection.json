@@ -452,6 +452,27 @@
         "TotalHrs": 40,
         "TotalFee": "12367.200",
         "Plantyp": "WK"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='531592d1-dd0b-437e-b',Rowno='003')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='531592d1-dd0b-437e-b',Rowno='003')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "BillRateOvride": "0.000",
+        "Duration": "4",
+        "EmpGradeName": "Intern",
+        "Projid": "531592d1-dd0b-437e-b",
+        "Rowno": "003",
+        "DelvDesc": "Mixed 2",
+        "Officeid": "CN03",
+        "Practiceid": "CN99769996",
+        "Role": "Interned",
+        "ProposedRes": "Jim",
+        "BillRate": "14.520",
+        "TotalHrs": 92,
+        "TotalFee": "1335.840",
+        "Plantyp": "WK"
       }
     ]
   }
