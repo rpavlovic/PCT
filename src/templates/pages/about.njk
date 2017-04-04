@@ -2,5 +2,12 @@
 {% set base_path = "/" %}
 {% set pgAbout = true %}
 {% block content %}
-<h1>About Page</h1>
+  <div class="clearfix page-header">
+      <h1>{%set page_title = 'About Us'%} {{page_title}}</h1>
+  </div>
+  <div class="row">
+     <div class="col-12">
+      <img style="margin: 0 auto; width:30%" src="images/comingsoon.png" />
+     </div>
+  </div>
 {% endblock %}
