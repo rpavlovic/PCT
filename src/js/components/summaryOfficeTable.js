@@ -68,6 +68,9 @@ var summaryOfficeTable = (function ($) {
     // need to calculate the ratios here...
     rows.forEach(function (row) {
       row.staffMix = row.hours / reducedObject.hours;
+      var ratio = row.fees / reducedObject.fees;
+      row.fees = ratio * selectedModel.Fees;
+
       row.localFeeObject = {
         localCurrency: row.localCurrency,
         localFees: row.fees * row.exchangeRate
