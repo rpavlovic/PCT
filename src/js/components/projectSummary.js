@@ -92,19 +92,14 @@ var projectSummary = (function ($) {
   }
 
   function fillProjectInfoSummary(projectInfo) {
-    console.log(projectInfo);
-    var planBy;
     currencyStyles.initCurrencyStyles(projectInfo.Currency);
     $('#client-name').text(projectInfo.Clientname);
     $('#country').text(projectInfo.Region);
     $('#office').text(projectInfo.OfficeName);
     $('#project-name').text(projectInfo.Projname);
     $('#start-date').text(calcPrettyDate(projectInfo.EstStDate));
-    if (projectInfo.Plantyp === "WK") {
-      planBy = " Week(s)";
-    } else {
-      planBy = " Month(s)";
-    }
+    
+    var planBy = (projectInfo.Plantyp === "WK") ? " Week(s)" : " Month(s)";
     $('#duration').text(projectInfo.Duration + planBy);
     $('#comp-type').text(projectInfo.Comptyp);
     $('#rate-card').text(projectInfo.BillsheetName);
