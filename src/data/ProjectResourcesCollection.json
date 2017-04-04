@@ -17,8 +17,8 @@
         "Practiceid": "US99334000",
         "Role": "President",
         "ProposedRes": "Resource Name 1",
-        "BillRate": "450.000",
-        "BillRateOvride": "400.000",
+        "BillRate": "450.00",
+        "BillRateOvride": "400.00",
         "TotalHrs": 52,
         "TotalFee": "20800.00",
         "Plantyp": "WK"
@@ -39,7 +39,7 @@
         "Practiceid": "US99330600",
         "Role": "Manager1",
         "ProposedRes": "Resource Name #2",
-        "BillRate": "425.000",
+        "BillRate": "425.00",
         "BillRateOvride": "400.00",
         "TotalHrs": 52,
         "TotalFee": "20800.00",
@@ -61,7 +61,7 @@
         "Practiceid": "US99339900",
         "Role": "Manager Dir",
         "ProposedRes": "Third Resource",
-        "BillRate": "375.000",
+        "BillRate": "375.00",
         "BillRateOvride": "300.00",
         "TotalHrs": 52,
         "TotalFee": "15600.00",
@@ -83,7 +83,7 @@
         "Practiceid": "JP99334000",
         "Role": "Developer",
         "ProposedRes": "Resource Name 1",
-        "BillRate": "36.000",
+        "BillRate": "36.00",
         "BillRateOvride": "75.00",
         "TotalHrs": 52,
         "TotalFee": "3900.00",
@@ -105,7 +105,7 @@
         "Practiceid": "JP99334400",
         "Role": "Manager1",
         "ProposedRes": "Resource Name #2",
-        "BillRate": "50.000",
+        "BillRate": "50.00",
         "BillRateOvride": "75.00",
         "TotalHrs": 52,
         "TotalFee": "3900.00",
@@ -127,7 +127,7 @@
         "Practiceid": "JP99334400",
         "Role": "Manager1",
         "ProposedRes": "Third Resource",
-        "BillRate": "400.000",
+        "BillRate": "400.00",
         "BillRateOvride": "665.00",
         "TotalHrs": 52,
         "TotalFee": "34580.00",
@@ -149,7 +149,7 @@
         "Practiceid": "US99313600",
         "Role": "Manager1",
         "ProposedRes": "Fourth Resource",
-        "BillRate": "400.000",
+        "BillRate": "400.00",
         "BillRateOvride": "665.00",
         "TotalHrs": 28,
         "TotalFee": "18620.00",
@@ -171,7 +171,7 @@
         "Practiceid": "JP99334000",
         "Role": "Developer",
         "ProposedRes": "Resource Name 1",
-        "BillRate": "36.000",
+        "BillRate": "36.00",
         "BillRateOvride": "75.00",
         "TotalHrs": 52,
         "TotalFee": "3900.00",
@@ -193,7 +193,7 @@
         "Practiceid": "JP99334400",
         "Role": "Manager1",
         "ProposedRes": "Resource Name #2",
-        "BillRate": "50.000",
+        "BillRate": "50.00",
         "BillRateOvride": "75.00",
         "TotalHrs": 52,
         "TotalFee": "3900.00",
@@ -215,7 +215,7 @@
         "Practiceid": "JP99334400",
         "Role": "Manager1",
         "ProposedRes": "Third Resource",
-        "BillRate": "400.000",
+        "BillRate": "400.00",
         "BillRateOvride": "665.00",
         "TotalHrs": 52,
         "TotalFee": "34580.00",
@@ -237,7 +237,7 @@
         "Practiceid": "US99313600",
         "Role": "Manager1",
         "ProposedRes": "Fourth Resource",
-        "BillRate": "400.000",
+        "BillRate": "400.00",
         "BillRateOvride": "665.00",
         "TotalHrs": 28,
         "TotalFee": "18620.00",
@@ -249,7 +249,7 @@
           "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='4ec3f9a3-233f-4fca-8',Rowno='001')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
         },
-        "BillRateOvride": "80.000",
+        "BillRateOvride": "80.00",
         "Duration": "8",
         "EmpGradeName": "Account Coordinator",
         "Projid": "4ec3f9a3-233f-4fca-8",
@@ -259,9 +259,9 @@
         "Practiceid": "US99319997",
         "Role": "aaa",
         "ProposedRes": "aaa",
-        "BillRate": "115.000",
+        "BillRate": "115.00",
         "TotalHrs": 32,
-        "TotalFee": "2560.000",
+        "TotalFee": "2560.00",
         "Plantyp": "WK"
       },
       {
@@ -270,7 +270,7 @@
           "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='4ec3f9a3-233f-4fca-8',Rowno='002')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
         },
-        "BillRateOvride": "190.000",
+        "BillRateOvride": "190.00",
         "Duration": "8",
         "EmpGradeName": "Copywriter",
         "Projid": "4ec3f9a3-233f-4fca-8",
@@ -280,9 +280,9 @@
         "Practiceid": "US99190400",
         "Role": "bbb",
         "ProposedRes": "bbb",
-        "BillRate": "200.000",
+        "BillRate": "200.00",
         "TotalHrs": 32,
-        "TotalFee": "6080.000",
+        "TotalFee": "6080.00",
         "Plantyp": "WK"
       },
       {
@@ -291,7 +291,7 @@
           "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='7bf809e5-3543-4e5d-9',Rowno='001')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
         },
-        "BillRateOvride": "100.000",
+        "BillRateOvride": "100.00",
         "Duration": "4",
         "EmpGradeName": "Account Coordinator",
         "Projid": "7bf809e5-3543-4e5d-9",
@@ -301,9 +301,9 @@
         "Practiceid": "US99319997",
         "Role": "MA",
         "ProposedRes": "BOB",
-        "BillRate": "115.000",
+        "BillRate": "115.00",
         "TotalHrs": 4,
-        "TotalFee": "400.000",
+        "TotalFee": "400.00",
         "Plantyp": "WK"
       },
       {
@@ -312,7 +312,7 @@
           "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='7bf809e5-3543-4e5d-9',Rowno='002')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
         },
-        "BillRateOvride": "100.000",
+        "BillRateOvride": "100.00",
         "Duration": "4",
         "EmpGradeName": "Account Coordinator",
         "Projid": "7bf809e5-3543-4e5d-9",
@@ -322,9 +322,9 @@
         "Practiceid": "US99199995",
         "Role": "QQ",
         "ProposedRes": "FFF",
-        "BillRate": "120.000",
+        "BillRate": "120.00",
         "TotalHrs": 4,
-        "TotalFee": "400.000",
+        "TotalFee": "400.00",
         "Plantyp": "WK"
       },
       {
@@ -333,7 +333,7 @@
           "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='7bf809e5-3543-4e5d-9',Rowno='003')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
         },
-        "BillRateOvride": "0.000",
+        "BillRateOvride": "0.00",
         "Duration": "4",
         "EmpGradeName": "Chairman",
         "Projid": "7bf809e5-3543-4e5d-9",
@@ -343,9 +343,9 @@
         "Practiceid": "US99251600",
         "Role": "ujm",
         "ProposedRes": "anna",
-        "BillRate": "450.000",
+        "BillRate": "450.00",
         "TotalHrs": 4,
-        "TotalFee": "1800.000",
+        "TotalFee": "1800.00",
         "Plantyp": "WK"
       },
       {
@@ -354,7 +354,7 @@
           "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='62b5a229-51b4-48a5-a',Rowno='001')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
         },
-        "BillRateOvride": "0.000",
+        "BillRateOvride": "0.00",
         "Duration": "4",
         "EmpGradeName": "Account Coordinator",
         "Projid": "62b5a229-51b4-48a5-a",
@@ -364,9 +364,9 @@
         "Practiceid": "US99319997",
         "Role": "a55",
         "ProposedRes": "john",
-        "BillRate": "115.000",
+        "BillRate": "115.00",
         "TotalHrs": 44,
-        "TotalFee": "5060.000",
+        "TotalFee": "5060.00",
         "Plantyp": "MN"
       },
       {
@@ -375,7 +375,7 @@
           "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='62b5a229-51b4-48a5-a',Rowno='002')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
         },
-        "BillRateOvride": "0.000",
+        "BillRateOvride": "0.00",
         "Duration": "4",
         "EmpGradeName": "Administrative Staff",
         "Projid": "62b5a229-51b4-48a5-a",
@@ -385,9 +385,9 @@
         "Practiceid": "US99199995",
         "Role": "",
         "ProposedRes": "",
-        "BillRate": "120.000",
+        "BillRate": "120.00",
         "TotalHrs": 15,
-        "TotalFee": "1800.000",
+        "TotalFee": "1800.00",
         "Plantyp": "MN"
       },
       {
@@ -396,7 +396,7 @@
           "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='62b5a229-51b4-48a5-a',Rowno='003')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
         },
-        "BillRateOvride": "200.000",
+        "BillRateOvride": "200.00",
         "Duration": "4",
         "EmpGradeName": "Chairman",
         "Projid": "62b5a229-51b4-48a5-a",
@@ -406,9 +406,9 @@
         "Practiceid": "US99410400",
         "Role": "",
         "ProposedRes": "",
-        "BillRate": "400.000",
+        "BillRate": "400.00",
         "TotalHrs": 48,
-        "TotalFee": "9600.000",
+        "TotalFee": "9600.00",
         "Plantyp": "MN"
       },
       {
@@ -417,7 +417,7 @@
           "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='531592d1-dd0b-437e-b',Rowno='001')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
         },
-        "BillRateOvride": "0.000",
+        "BillRateOvride": "0.00",
         "Duration": "4",
         "EmpGradeName": "Architect",
         "Projid": "531592d1-dd0b-437e-b",
@@ -427,9 +427,9 @@
         "Practiceid": "US99330400",
         "Role": "Janitor",
         "ProposedRes": "SSS",
-        "BillRate": "290.000",
+        "BillRate": "290.00",
         "TotalHrs": 110,
-        "TotalFee": "31900.000",
+        "TotalFee": "31900.00",
         "Plantyp": "WK"
       },
       {
@@ -438,7 +438,7 @@
           "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='531592d1-dd0b-437e-b',Rowno='002')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
         },
-        "BillRateOvride": "0.000",
+        "BillRateOvride": "0.00",
         "Duration": "4",
         "EmpGradeName": "Chairman",
         "Projid": "531592d1-dd0b-437e-b",
@@ -450,7 +450,7 @@
         "ProposedRes": "Table",
         "BillRate": "309.180",
         "TotalHrs": 40,
-        "TotalFee": "12367.200",
+        "TotalFee": "12367.20",
         "Plantyp": "WK"
       },
       {
@@ -459,7 +459,7 @@
           "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='531592d1-dd0b-437e-b',Rowno='003')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
         },
-        "BillRateOvride": "0.000",
+        "BillRateOvride": "0.00",
         "Duration": "4",
         "EmpGradeName": "Intern",
         "Projid": "531592d1-dd0b-437e-b",
@@ -471,7 +471,7 @@
         "ProposedRes": "Jim",
         "BillRate": "14.520",
         "TotalHrs": 92,
-        "TotalFee": "1335.840",
+        "TotalFee": "1335.84",
         "Plantyp": "WK"
       },
       {
