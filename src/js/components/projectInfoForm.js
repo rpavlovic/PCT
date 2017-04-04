@@ -29,8 +29,7 @@ var projectInfoForm = (function ($) {
     prepared_by = $('form.project-info input[name="Preparedby"]'),
     selected = false,
     compensation_type = $("select[name='compensation']"),
-    comments = $("textarea[name='Comments']"),
-    createdOn = null;
+    comments = $("textarea[name='Comments']");
 
   items_currency.forEach(function (currency) {
     select_currency.append('<option value="' + currency + '">' + currency + '</option>');
@@ -189,7 +188,6 @@ var projectInfoForm = (function ($) {
       select_plan_by.val(projectInfo.Plantyp);
       var plan_by = (projectInfo.Plantyp === "WK") ? "Weeks" : "Months";
       input_duration.val(projectInfo.Duration + " " + plan_by);
-      createdOn = projectInfo.Createdon;
       $('input.datepicker').val(calcPrettyDate(projectInfo.EstStDate));
       $('input[name="weekstart"]').val(calcPrettyDate(projectInfo.StartDate));
       $('input[name="enddate"]').val(calcPrettyDate(projectInfo.EstEndDate));
@@ -266,11 +264,6 @@ var projectInfoForm = (function ($) {
       var EstStDate = new Date($('input.datepicker').val()).getTime();
       var startDate = new Date($('input[name="weekstart"]').val()).getTime();
       var EstEndDate = new Date($('input[name="enddate"]').val()).getTime();
-      var changedDate = new Date().getTime();
-
-      if (!createdOn) {
-        createdOn = "\/Date(" + changedDate + ")\/";
-      }
 
       var formData = {
         "__metadata": {
