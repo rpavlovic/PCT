@@ -1536,6 +1536,54 @@
         "Plantyp": "WK",
         "Cellid": "R2C4",
         "Planhours": "10.000"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='003',Plantyp='WK',Cellid='R3C1')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='003',Plantyp='WK',Cellid='R3C1')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "531592d1-dd0b-437e-b",
+        "Rowno": "003",
+        "Plantyp": "WK",
+        "Cellid": "R3C1",
+        "Planhours": "11.000"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='003',Plantyp='WK',Cellid='R3C2')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='003',Plantyp='WK',Cellid='R3C2')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "531592d1-dd0b-437e-b",
+        "Rowno": "003",
+        "Plantyp": "WK",
+        "Cellid": "R3C2",
+        "Planhours": "11.000"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='003',Plantyp='WK',Cellid='R3C3')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='003',Plantyp='WK',Cellid='R3C3')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "531592d1-dd0b-437e-b",
+        "Rowno": "003",
+        "Plantyp": "WK",
+        "Cellid": "R3C3",
+        "Planhours": "50.000"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='003',Plantyp='WK',Cellid='R3C4')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='003',Plantyp='WK',Cellid='R3C4')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "531592d1-dd0b-437e-b",
+        "Rowno": "003",
+        "Plantyp": "WK",
+        "Cellid": "R3C4",
+        "Planhours": "20.000"
       }
     ]
   }
