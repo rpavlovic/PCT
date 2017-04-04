@@ -210,6 +210,26 @@
         "Projid": "d288ebd8-ab66-44f0-b",
         "Delvid": "001",
         "DelvDesc": "Nothing"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection(Projid='531592d1-dd0b-437e-b',Delvid='001')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection(Projid='531592d1-dd0b-437e-b',Delvid='001')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectDeliverables"
+        },
+        "Projid": "531592d1-dd0b-437e-b",
+        "Delvid": "001",
+        "DelvDesc": "Mixed 1"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection(Projid='531592d1-dd0b-437e-b',Delvid='002')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection(Projid='531592d1-dd0b-437e-b',Delvid='002')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectDeliverables"
+        },
+        "Projid": "531592d1-dd0b-437e-b",
+        "Delvid": "002",
+        "DelvDesc": "Mixed 2"
       }
     ]
   }

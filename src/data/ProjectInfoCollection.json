@@ -405,6 +405,33 @@
         "Createdon": "\/Date(1489536000000)\/",
         "Changedby": "",
         "Changedon": null
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('531592d1-dd0b-437e-b')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('531592d1-dd0b-437e-b')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
+        },
+        "BillsheetId": "",
+        "Projid": "531592d1-dd0b-437e-b",
+        "Plantyp": "WK",
+        "Region": "APAC",
+        "Office": "US02",
+        "Currency": "USD",
+        "Clientname": "Mixed Currency",
+        "Projname": "Mixed Currency",
+        "Comptyp": "Commission",
+        "EstStDate": "\/Date(1491264000000)\/",
+        "Duration": 4,
+        "PlanUnits": "Hou",
+        "StartDate": "\/Date(1491177600000)\/",
+        "EstEndDate": "\/Date(1493337600000)\/",
+        "Comments": "RDFADS",
+        "Preparedby": "Rdinh",
+        "Createdby": "RDINH",
+        "Createdon": "\/Date(1491264000000)\/",
+        "Changedby": "",
+        "Changedon": null
       }
     ]
   }

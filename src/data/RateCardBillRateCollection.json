@@ -52558,6 +52558,248 @@
         "CostCenterName": "WS Japan - Social Impact",
         "EmpGrade": "990044",
         "LocalCurrency": "JPY"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.RateCardDetails"
+        },
+        "Class": "E6",
+        "SourceBillrate": "250.00",
+        "ToCurrency": "USD",
+        "OfficeName": "KRC London",
+        "Office": "GB21",
+        "Company": "GBA1",
+        "CostRate": "1.24",
+        "EmpGradeName": "Chairman",
+        "FiscalYear": "2017",
+        "BillRate": "309.18",
+        "CostCenter": "GB25692600",
+        "FiscalPeriod": "2017004",
+        "CostCenterName": "KRC London - Research",
+        "EmpGrade": "990000",
+        "LocalCurrency": "GBP"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.RateCardDetails"
+        },
+        "Class": "E2",
+        "SourceBillrate": "120.00",
+        "ToCurrency": "USD",
+        "OfficeName": "KRC London",
+        "Office": "GB21",
+        "Company": "GBA1",
+        "CostRate": "1.24",
+        "EmpGradeName": "Assoc Creative Dir",
+        "FiscalYear": "2017",
+        "BillRate": "148.40",
+        "CostCenter": "GB25692600",
+        "FiscalPeriod": "2017004",
+        "CostCenterName": "KRC London - Research",
+        "EmpGrade": "990020",
+        "LocalCurrency": "GBP"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.RateCardDetails"
+        },
+        "Class": "M1",
+        "SourceBillrate": "110.00",
+        "ToCurrency": "USD",
+        "OfficeName": "KRC London",
+        "Office": "GB21",
+        "Company": "GBA1",
+        "CostRate": "7.96",
+        "EmpGradeName": "Research Manager",
+        "FiscalYear": "2017",
+        "BillRate": "136.04",
+        "CostCenter": "GB25692600",
+        "FiscalPeriod": "2017004",
+        "CostCenterName": "KRC London - Research",
+        "EmpGrade": "990112",
+        "LocalCurrency": "GBP"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.RateCardDetails"
+        },
+        "Class": "S4",
+        "SourceBillrate": "90.00",
+        "ToCurrency": "USD",
+        "OfficeName": "KRC London",
+        "Office": "GB21",
+        "Company": "GBA1",
+        "CostRate": "21.02",
+        "EmpGradeName": "Sr Acct Exec",
+        "FiscalYear": "2017",
+        "BillRate": "111.30",
+        "CostCenter": "GB25692600",
+        "FiscalPeriod": "2017004",
+        "CostCenterName": "KRC London - Research",
+        "EmpGrade": "990013",
+        "LocalCurrency": "GBP"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.RateCardDetails"
+        },
+        "Class": "S3",
+        "SourceBillrate": "70.00",
+        "ToCurrency": "USD",
+        "OfficeName": "KRC London",
+        "Office": "GB21",
+        "Company": "GBA1",
+        "CostRate": "22.26",
+        "EmpGradeName": "Account Executive",
+        "FiscalYear": "2017",
+        "BillRate": "86.57",
+        "CostCenter": "GB25692600",
+        "FiscalPeriod": "2017004",
+        "CostCenterName": "KRC London - Research",
+        "EmpGrade": "990014",
+        "LocalCurrency": "GBP"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.RateCardDetails"
+        },
+        "Class": "M1",
+        "SourceBillrate": "110.00",
+        "ToCurrency": "USD",
+        "OfficeName": "KRC London",
+        "Office": "GB21",
+        "Company": "GBA1",
+        "CostRate": "25.97",
+        "EmpGradeName": "Account Supervisor",
+        "FiscalYear": "2017",
+        "BillRate": "136.04",
+        "CostCenter": "GB25692600",
+        "FiscalPeriod": "2017004",
+        "CostCenterName": "KRC London - Research",
+        "EmpGrade": "990011",
+        "LocalCurrency": "GBP"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.RateCardDetails"
+        },
+        "Class": "E1",
+        "SourceBillrate": "140.00",
+        "ToCurrency": "USD",
+        "OfficeName": "KRC London",
+        "Office": "GB21",
+        "Company": "GBA1",
+        "CostRate": "40.81",
+        "EmpGradeName": "Vice President",
+        "FiscalYear": "2017",
+        "BillRate": "173.14",
+        "CostCenter": "GB25692600",
+        "FiscalPeriod": "2017004",
+        "CostCenterName": "KRC London - Research",
+        "EmpGrade": "990009",
+        "LocalCurrency": "GBP"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.RateCardDetails"
+        },
+        "Class": "E2",
+        "SourceBillrate": "125.00",
+        "ToCurrency": "USD",
+        "OfficeName": "KRC London",
+        "Office": "GB21",
+        "Company": "GBA1",
+        "CostRate": "56.89",
+        "EmpGradeName": "Director",
+        "FiscalYear": "2017",
+        "BillRate": "154.59",
+        "CostCenter": "GB25692600",
+        "FiscalPeriod": "2017004",
+        "CostCenterName": "KRC London - Research",
+        "EmpGrade": "990028",
+        "LocalCurrency": "GBP"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.RateCardDetails"
+        },
+        "Class": "E4",
+        "SourceBillrate": "200.00",
+        "ToCurrency": "USD",
+        "OfficeName": "KRC London",
+        "Office": "GB21",
+        "Company": "GBA1",
+        "CostRate": "58.13",
+        "EmpGradeName": "Exec Vice Pres",
+        "FiscalYear": "2017",
+        "BillRate": "247.34",
+        "CostCenter": "GB25692600",
+        "FiscalPeriod": "2017004",
+        "CostCenterName": "KRC London - Research",
+        "EmpGrade": "990005",
+        "LocalCurrency": "GBP"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.RateCardDetails"
+        },
+        "Class": "E2",
+        "SourceBillrate": "165.00",
+        "ToCurrency": "USD",
+        "OfficeName": "KRC London",
+        "Office": "GB21",
+        "Company": "GBA1",
+        "CostRate": "85.33",
+        "EmpGradeName": "Sr Vice Pres",
+        "FiscalYear": "2017",
+        "BillRate": "204.06",
+        "CostCenter": "GB25692600",
+        "FiscalPeriod": "2017004",
+        "CostCenterName": "KRC London - Research",
+        "EmpGrade": "990008",
+        "LocalCurrency": "GBP"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/RateCardCollection('GB21')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.RateCardDetails"
+        },
+        "Class": "E6",
+        "SourceBillrate": "300.00",
+        "ToCurrency": "USD",
+        "OfficeName": "KRC London",
+        "Office": "GB21",
+        "Company": "GBA1",
+        "CostRate": "132.33",
+        "EmpGradeName": "President",
+        "FiscalYear": "2017",
+        "BillRate": "371.01",
+        "CostCenter": "GB25692600",
+        "FiscalPeriod": "2017004",
+        "CostCenterName": "KRC London - Research",
+        "EmpGrade": "990003",
+        "LocalCurrency": "GBP"
       }
     ]
   }
