@@ -284,6 +284,30 @@ table {
       }
     }
   }
+  #financial-summary-table,
+  #breakdown-delivery-table {
+    tr {
+      td:not(:first-child) {
+        text-align: right;
+      }
+    }
+  }
+  #breakdown-office-table,
+  #breakdown-role-table {
+    tr {
+      td:not(:first-child):not(:nth-child(2)) {
+        text-align: right;
+      }
+    }
+  }
+  #breakdown-role-table{
+    tr {
+      td:nth-child(2),
+      th:nth-child(2) {
+        text-align: center;
+      }
+    }
+  }
 }
 .new-row td {
   @include animation(fadeIt 2s ease-in-out);
