@@ -410,6 +410,48 @@
         "TotalHrs": 48,
         "TotalFee": "9600.000",
         "Plantyp": "MN"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='531592d1-dd0b-437e-b',Rowno='001')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='531592d1-dd0b-437e-b',Rowno='001')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "BillRateOvride": "0.000",
+        "Duration": "4",
+        "EmpGradeName": "Architect",
+        "Projid": "531592d1-dd0b-437e-b",
+        "Rowno": "001",
+        "DelvDesc": "Mixed 1",
+        "Officeid": "US12",
+        "Practiceid": "US99330400",
+        "Role": "Janitor",
+        "ProposedRes": "SSS",
+        "BillRate": "290.000",
+        "TotalHrs": 110,
+        "TotalFee": "31900.000",
+        "Plantyp": "WK"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='531592d1-dd0b-437e-b',Rowno='002')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='531592d1-dd0b-437e-b',Rowno='002')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "BillRateOvride": "0.000",
+        "Duration": "4",
+        "EmpGradeName": "Chairman",
+        "Projid": "531592d1-dd0b-437e-b",
+        "Rowno": "002",
+        "DelvDesc": "Mixed 2",
+        "Officeid": "GB21",
+        "Practiceid": "GB25692600",
+        "Role": "Chair",
+        "ProposedRes": "Table",
+        "BillRate": "309.180",
+        "TotalHrs": 40,
+        "TotalFee": "12367.200",
+        "Plantyp": "WK"
       }
     ]
   }

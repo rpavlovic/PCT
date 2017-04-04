@@ -43,7 +43,6 @@
         "Amount": "400.00",
         "Currency": "USD"
       },
-
       {
         "__metadata": {
           "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
@@ -86,7 +85,6 @@
         "Amount": "400.00",
         "Currency": "JPY"
       },
-
       {
         "__metadata": {
           "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
@@ -129,7 +127,6 @@
         "Amount": "400.00",
         "Currency": "EUR"
       },
-
       {
         "__metadata": {
           "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='7bf809e5-3543-4e5d-9',ExpRow='001')",
@@ -240,6 +237,34 @@
         "Category": "Othe",
         "CatDesc": "SOMETHING",
         "Amount": "75.00",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='531592d1-dd0b-437e-b',ExpRow='001')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='531592d1-dd0b-437e-b',ExpRow='001')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+        },
+        "Projid": "531592d1-dd0b-437e-b",
+        "ExpRow": "001",
+        "DelvDesc": "Mixed 2",
+        "Category": "Trav",
+        "CatDesc": "Bus",
+        "Amount": "1000.00",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='531592d1-dd0b-437e-b',ExpRow='002')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='531592d1-dd0b-437e-b',ExpRow='002')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+        },
+        "Projid": "531592d1-dd0b-437e-b",
+        "ExpRow": "002",
+        "DelvDesc": "Mixed 1",
+        "Category": "OOP",
+        "CatDesc": "pockets",
+        "Amount": "2222.00",
         "Currency": "USD"
       }
     ]
