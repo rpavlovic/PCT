@@ -69,8 +69,8 @@ var summaryOfficeTable = (function ($) {
 
     // now we actually override withthe  total fee from the selected model.
     $('#office-total-hours').text(reducedObject.hours);
-    // $('#office-total-fees').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
-    // $('#office-total-currency').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
+    $('#office-total-fees').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
+    $('#office-total-currency').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
 
     byOfficeTable.DataTable({
       dom: '<tip>',
