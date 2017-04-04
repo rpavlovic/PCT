@@ -47,7 +47,7 @@ var summaryRoleTable = (function ($) {
     rows.forEach(function (row) {
       var ratio = row.fees / reducedObject.fees;
       row.fees = ratio * selectedModel.Fees;
-      row.staffMix = row.hours / reducedObject.hours * 100;
+      row.staffMix = row.hours / reducedObject.hours;
     });
 
     $('#roles-total-hours').text(reducedObject.hours);
@@ -111,9 +111,9 @@ var summaryRoleTable = (function ($) {
           "class": "office-total-mix",
           render: function (data, type, row) {
             if (data) {
-              return data.toFixed(2) + '%';
+              return convertToPercent(data);
             } else {
-              return data + "%";
+              return convertToPercent(data);
             }
           }
         }
