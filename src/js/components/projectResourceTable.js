@@ -328,7 +328,14 @@ var projectResourceTable = (function ($) {
             nodes.closest('tr').find('.practice').empty();
             nodes.closest('tr').find('.td-billrate').empty();
             nodes.closest('tr').find('.td-costrate').empty();
-
+            nodes.closest('tr').find("select.practice").css({
+              'background':'red',
+              'color': '#fff'
+            });
+            nodes.closest('tr').find("select.title").css({
+              'background':'red',
+              'color': '#fff'
+            });
             // check to see if that office Rate exists in local storage
             // if it exists, then go ahead and then update the dropdown
             if (getRateCardLocal(OfficeId, Currency).length) {
@@ -351,6 +358,14 @@ var projectResourceTable = (function ($) {
             updatePracticeSelect(nodes);
             nodes.closest('tr').find('.td-billrate').empty();
             nodes.closest('tr').find('.td-costrate').empty();
+            nodes.css({
+              'background':'',
+              'color': ''
+            });
+            nodes.closest('tr').find("select.practice").css({
+              'background':'red',
+              'color': '#fff'
+            });
             recalculateStuff();
           });
 
@@ -359,6 +374,10 @@ var projectResourceTable = (function ($) {
             // just sending out this so we can modify the same row.
             var nodes = $(this);
             loadBillRate(nodes);
+            nodes.css({
+              'background':'',
+              'color': ''
+            });
             recalculateStuff();
           });
           $('.contenteditable').on('keyup focusout', function (e) {

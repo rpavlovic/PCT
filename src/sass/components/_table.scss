@@ -300,10 +300,14 @@ table {
       }
     }
   }
-  #breakdown-role-table{
+  #breakdown-role-table {
     tr {
-      td:nth-child(2),
-      th:nth-child(2) {
+      td:nth-child(2){
+        text-align: center;
+      }
+    }
+    thead {
+      th:nth-child(2)  {
         text-align: center;
       }
     }
