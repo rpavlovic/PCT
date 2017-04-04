@@ -191,7 +191,7 @@ var projectResourceTable = (function ($) {
           }
         },
         {
-          "title": 'Bill Rate',
+          "title": 'Office Standard Rate',
           "defaultContent": '',
           "data": "BillRate",
           "class": "td-billrate",
@@ -205,7 +205,7 @@ var projectResourceTable = (function ($) {
           }
         },
         {
-          "title": 'Bill Rate <br/> Override',
+          "title": 'Client Ratecard',
           "data": "BillRateOvride",
           "defaultContent": '<div contenteditable class="currency-sign usd" />',
           "class": "rate-override num",
@@ -340,7 +340,7 @@ var projectResourceTable = (function ($) {
               return pGetRateCard.then(function (rateCards) {
                 sessionStorage.setItem('RateCard' + OfficeId + 'Currency' + Currency, JSON.stringify(rateCards));
                 updateEmployeeTitleSelect(nodes);
-              })
+              });
             }
             recalculateStuff();
           });
