@@ -1440,6 +1440,102 @@
         "Plantyp": "WK",
         "Cellid": "R4C8",
         "Planhours": 0
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='001',Plantyp='WK',Cellid='R1C1')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='001',Plantyp='WK',Cellid='R1C1')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "531592d1-dd0b-437e-b",
+        "Rowno": "001",
+        "Plantyp": "WK",
+        "Cellid": "R1C1",
+        "Planhours": "20.000"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='001',Plantyp='WK',Cellid='R1C2')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='001',Plantyp='WK',Cellid='R1C2')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "531592d1-dd0b-437e-b",
+        "Rowno": "001",
+        "Plantyp": "WK",
+        "Cellid": "R1C2",
+        "Planhours": "30.000"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='001',Plantyp='WK',Cellid='R1C3')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='001',Plantyp='WK',Cellid='R1C3')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "531592d1-dd0b-437e-b",
+        "Rowno": "001",
+        "Plantyp": "WK",
+        "Cellid": "R1C3",
+        "Planhours": "40.000"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='001',Plantyp='WK',Cellid='R1C4')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='001',Plantyp='WK',Cellid='R1C4')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "531592d1-dd0b-437e-b",
+        "Rowno": "001",
+        "Plantyp": "WK",
+        "Cellid": "R1C4",
+        "Planhours": "20.000"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='002',Plantyp='WK',Cellid='R2C1')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='002',Plantyp='WK',Cellid='R2C1')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "531592d1-dd0b-437e-b",
+        "Rowno": "002",
+        "Plantyp": "WK",
+        "Cellid": "R2C1",
+        "Planhours": "10.000"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='002',Plantyp='WK',Cellid='R2C2')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='002',Plantyp='WK',Cellid='R2C2')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "531592d1-dd0b-437e-b",
+        "Rowno": "002",
+        "Plantyp": "WK",
+        "Cellid": "R2C2",
+        "Planhours": "10.000"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='002',Plantyp='WK',Cellid='R2C3')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='002',Plantyp='WK',Cellid='R2C3')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "531592d1-dd0b-437e-b",
+        "Rowno": "002",
+        "Plantyp": "WK",
+        "Cellid": "R2C3",
+        "Planhours": "10.000"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='002',Plantyp='WK',Cellid='R2C4')",
+          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/PlannedHoursSet(Projid='531592d1-dd0b-437e-b',Rowno='002',Plantyp='WK',Cellid='R2C4')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.PlannedHours"
+        },
+        "Projid": "531592d1-dd0b-437e-b",
+        "Rowno": "002",
+        "Plantyp": "WK",
+        "Cellid": "R2C4",
+        "Planhours": "10.000"
       }
     ]
   }

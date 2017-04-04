@@ -28,19 +28,25 @@ var summaryOfficeTable = (function ($) {
           localFees: 0,
           fees: 0,
           hours: 0,
-          staffMix: 0
+          staffMix: 0,
+          localCurrency: office.LocalCurrency
         };
       }
 
+      console.log(resource);
+      console.log(office);
+
+      rows[resource.Officeid + resource.Practiceid].localFees += parseFloat(resource.TotalHrs) * (parseFloat(resource.SourceBillrate) || parseFloat(office.SourceBillrate));
       rows[resource.Officeid + resource.Practiceid].fees += parseFloat(resource.TotalFee);
       rows[resource.Officeid + resource.Practiceid].hours += parseFloat(resource.TotalHrs);
     });
 
     rows = Object.values(rows);
 
-    var reducedObject =  rows.reduce(function (a, b) {
+    var reducedObject = rows.reduce(function (a, b) {
       return {
         fees: a.fees + b.fees,
+        localFees: a.localFees + b.localFees,
         hours: a.hours + b.hours
       };
     });
@@ -49,12 +55,22 @@ var summaryOfficeTable = (function ($) {
     // need to calculate the ratios here...
     rows.forEach(function (row) {
       row.staffMix = row.hours / reducedObject.hours * 100;
-      var ratio = row.fees / reducedObject.fees;
-      row.fees = ratio * selectedModel.Fees;
+      // var ratio = row.fees / reducedObject.fees;
+      // var localRatio = row.localFees / reducedObject.localFees;
+      // row.localFees = localRatio * selectedModel.Fees;
+      // row.fees = ratio * selectedModel.Fees;
+      row.localFeeObject = {
+        localCurrency: row.localCurrency,
+        localFees: row.localFees
+      }
     });
+
+    console.log(rows);
+
     // now we actually override withthe  total fee from the selected model.
     $('#office-total-hours').text(reducedObject.hours);
     $('#office-total-fees').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
+    $('#office-total-currency').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
 
     byOfficeTable.DataTable({
       dom: '<tip>',
@@ -94,6 +110,19 @@ var summaryOfficeTable = (function ($) {
           render: function (data, type, row) {
             if (data || isNaN(data)) {
               return convertToDollar(projectInfo.Currency, data);
+            } else {
+              return data;
+            }
+          }
+        },
+        {
+          "title": "Fees in Local Currency",
+          "data": 'localFeeObject',
+          "defaultContent": "$0",
+          "class": "office-total-currency",
+          render: function (data, type, row) {
+            if (data || isNaN(data)) {
+              return convertToDollar(data.localCurrency, data.localFees);
             } else {
               return data;
             }
