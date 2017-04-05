@@ -329,12 +329,10 @@ var projectResourceTable = (function ($) {
             nodes.closest('tr').find('.td-billrate').empty();
             nodes.closest('tr').find('.td-costrate').empty();
             nodes.closest('tr').find("select.practice").css({
-              'background':'red',
-              'color': '#fff'
+              'border':'solid 1px red',
             });
             nodes.closest('tr').find("select.title").css({
-              'background':'red',
-              'color': '#fff'
+              'border':'solid 1px red',
             });
             // check to see if that office Rate exists in local storage
             // if it exists, then go ahead and then update the dropdown
@@ -359,12 +357,10 @@ var projectResourceTable = (function ($) {
             nodes.closest('tr').find('.td-billrate').empty();
             nodes.closest('tr').find('.td-costrate').empty();
             nodes.css({
-              'background':'',
-              'color': ''
+              'border':'',
             });
             nodes.closest('tr').find("select.practice").css({
-              'background':'red',
-              'color': '#fff'
+              'border':'solid 1px red',
             });
             recalculateStuff();
           });
@@ -375,8 +371,7 @@ var projectResourceTable = (function ($) {
             var nodes = $(this);
             loadBillRate(nodes);
             nodes.css({
-              'background':'',
-              'color': ''
+              'border':'',
             });
             recalculateStuff();
           });
