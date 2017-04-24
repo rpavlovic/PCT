@@ -79,7 +79,7 @@ var activeTableFunction = (function ($) {
               }
             },
             {
-              "title": 'Billing Office',
+              "title": 'Lead Office',
               "data": "Office"
             },
             {
