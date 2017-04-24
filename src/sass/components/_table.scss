@@ -287,6 +287,7 @@ table {
   #financial-summary-table,
   #breakdown-delivery-table {
     tr {
+      th:not(:first-child),
       td:not(:first-child) {
         text-align: right;
       }
@@ -295,6 +296,7 @@ table {
   #breakdown-office-table,
   #breakdown-role-table {
     tr {
+      th:not(:first-child):not(:nth-child(2)),
       td:not(:first-child):not(:nth-child(2)) {
         text-align: right;
       }
