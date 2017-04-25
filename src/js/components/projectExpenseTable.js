@@ -195,13 +195,13 @@ var expenseTable = (function ($) {
         recalculateStuff();
       });
 
-      $('.project-expense #btn-save').on('click', function (event) {
+      $('.project-expense #btn-save, .project-expense #btn-save-only').on('click', function (event) {
         event.preventDefault();
         trimInputs();
         console.log("saving expenses form");
-        var url = $('#btn-save').attr('href');
 
-        $('#btn-save').attr('href', updateQueryString('projID', projectID, url) + "&" + getTimestamp());
+        var url = $(this).attr('href');
+        $(this).attr('href', updateQueryString('projID', projectID, url) + "&" + getTimestamp());
 
         var rows = projExpenseTable.rows();
         var payloads = [];
@@ -230,8 +230,12 @@ var expenseTable = (function ($) {
           });
           row++;
         });
+        if(event.target.id === "btn-save") {
+          ajaxBatch(payloads, $(this).attr('href'), true);
+        } else {
+          ajaxBatch(payloads, $(this).attr('href'), false);
+        }
 
-        ajaxBatch(payloads, $('#btn-save').attr('href'));
       });
     });
   }

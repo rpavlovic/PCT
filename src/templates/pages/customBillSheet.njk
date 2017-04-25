@@ -14,7 +14,7 @@
       <div class="col-3">
         <form>
           <div class="field-wrapper">
-            <label for="billsheet-name">Client Rate Card Name (50 characters)</label>
+            <label for="billsheet-name">Client Rate Card Name (50 characters) </label>
             <input type="text" id="bill-sheet-name" name="billsheet-name" placeholder="Client Rate Card Name (50 characters)" value="" maxlength="50" />
           </div>
         </form>
@@ -38,7 +38,8 @@
      <div class="row button-row">
       <div class="col-12">
         {{ button.default(label='Save and Continue', context='btn btn-green arrowpointer float-right', id='btn-save') }}
-        {{ button.default(label='Back', id="btn-back", context='btn-light-grey float-right') }}
+        {{ button.default(label='Save', context='btn btn-green float-right', id='btn-save-only') }}
+        {{ button.default(label='Back', id="btn-back", context='btn-light-grey float-left') }}
       </div>
     </div>
 

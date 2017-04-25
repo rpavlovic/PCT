@@ -171,17 +171,22 @@ var loadCustomBillSheet = (function ($) {
           if (aData.BillsheetName) {
             $('#bill-sheet-name').val(aData.BillsheetName);
             $('#btn-save').prop('disabled', false);
+            $('#btn-save-only').prop('disabled', false);
           } else {
             $('#btn-save').prop('disabled', true);
+            $('#btn-save-only').prop('disabled', true);
           }
           if ($('#bill-sheet-name').val()) {
             $('#btn-save').prop('disabled', false);
+            $('#btn-save-only').prop('disabled', false);
           }
           $('#bill-sheet-name').on('focusout keypress', function (e) {
             if ($('#bill-sheet-name').val()) {
               $('#btn-save').prop('disabled', false);
+              $('#btn-save-only').prop('disabled', false);
             } else {
               $('#btn-save').prop('disabled', true);
+              $('#btn-save-only').prop('disabled', true);
             }
           });
         },
