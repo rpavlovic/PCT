@@ -278,11 +278,15 @@ var loadCustomBillSheet = (function ($) {
       }
     });
 
-    $('.custom-bill-sheet #btn-save').on('click', function (event) {
+    $('.custom-bill-sheet #btn-save, .custom-bill-sheet #btn-save-only').on('click', function (event) {
       event.preventDefault();
       console.log("saving form");
       var payloads = buildBillSheetPayload();
-      ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId);
+      if(event.target.id === 'btn-save') {
+        ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId, true);
+      } else {
+        ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId, false);
+      }
     });
 
     var bsId;
