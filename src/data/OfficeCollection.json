@@ -3,116 +3,8 @@
     "results": [
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
-        },
-        "Brand": "WBSW",
-        "Company": "US10",
-        "Compname": "Weber Shandwick",
-        "Office": "US02",
-        "OfficeName": "WS Chicago",
-        "City": "Chicago",
-        "District": "",
-        "Postalcode": "60611",
-        "Pobox": "",
-        "Street": "N. Michigan Avenue",
-        "Housenum": "875",
-        "Street2": "",
-        "Building": "",
-        "Floor": "",
-        "Country": "US",
-        "Region": "IL",
-        "Telnumber": "312-988-2003",
-        "Telextens": "",
-        "Faxnumber": "312-988-2363",
-        "Currency": "USD"
-      },
-      {
-        "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
-        },
-        "Brand": "WBSW",
-        "Company": "US10",
-        "Compname": "Weber Shandwick",
-        "Office": "US30",
-        "OfficeName": "Powell Tate",
-        "City": "Washington",
-        "District": "",
-        "Postalcode": "20001",
-        "Pobox": "",
-        "Street": "10th Street N.W.",
-        "Housenum": "733",
-        "Street2": "",
-        "Building": "",
-        "Floor": "",
-        "Country": "US",
-        "Region": "DC",
-        "Telnumber": "202-383-9700",
-        "Telextens": "",
-        "Faxnumber": "202-383-0079",
-        "Currency": "USD"
-      },
-      {
-        "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
-        },
-        "Brand": "WBSW",
-        "Company": "US10",
-        "Compname": "Weber Shandwick",
-        "Office": "US95",
-        "OfficeName": "WS Washington DC",
-        "City": "Washington",
-        "District": "",
-        "Postalcode": "20001",
-        "Pobox": "",
-        "Street": "10th Street N.W.",
-        "Housenum": "733",
-        "Street2": "",
-        "Building": "",
-        "Floor": "",
-        "Country": "US",
-        "Region": "DC",
-        "Telnumber": "202-383-9700",
-        "Telextens": "",
-        "Faxnumber": "202-383-0079",
-        "Currency": "USD"
-      },
-      {
-        "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
-        },
-        "Brand": "WBSW",
-        "Company": "US10",
-        "Compname": "Weber Shandwick",
-        "Office": "US94",
-        "OfficeName": "SM New York",
-        "City": "New York",
-        "District": "",
-        "Postalcode": "10022",
-        "Pobox": "",
-        "Street": "Third Avenue",
-        "Housenum": "909",
-        "Street2": "",
-        "Building": "",
-        "Floor": "",
-        "Country": "US",
-        "Region": "NY",
-        "Telnumber": "212-445-8000",
-        "Telextens": "",
-        "Faxnumber": "212-445-8001",
-        "Currency": "USD"
-      },
-      {
-        "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -138,8 +30,89 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
+        },
+        "Brand": "WBSW",
+        "Company": "US10",
+        "Compname": "Weber Shandwick",
+        "Office": "US30",
+        "OfficeName": "Powell Tate",
+        "City": "Washington",
+        "District": "",
+        "Postalcode": "20001",
+        "Pobox": "",
+        "Street": "10th Street N.W.",
+        "Housenum": "733",
+        "Street2": "",
+        "Building": "",
+        "Floor": "",
+        "Country": "US",
+        "Region": "DC",
+        "Telnumber": "202-383-9700",
+        "Telextens": "",
+        "Faxnumber": "202-383-0079",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
+        },
+        "Brand": "WBSW",
+        "Company": "US10",
+        "Compname": "Weber Shandwick",
+        "Office": "US95",
+        "OfficeName": "WS Washington DC",
+        "City": "Washington",
+        "District": "",
+        "Postalcode": "20001",
+        "Pobox": "",
+        "Street": "10th Street N.W.",
+        "Housenum": "733",
+        "Street2": "",
+        "Building": "",
+        "Floor": "",
+        "Country": "US",
+        "Region": "DC",
+        "Telnumber": "202-383-9700",
+        "Telextens": "",
+        "Faxnumber": "202-383-0079",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
+        },
+        "Brand": "WBSW",
+        "Company": "US10",
+        "Compname": "Weber Shandwick",
+        "Office": "US94",
+        "OfficeName": "SM New York",
+        "City": "New York",
+        "District": "",
+        "Postalcode": "10022",
+        "Pobox": "",
+        "Street": "Third Avenue",
+        "Housenum": "909",
+        "Street2": "",
+        "Building": "",
+        "Floor": "",
+        "Country": "US",
+        "Region": "NY",
+        "Telnumber": "212-445-8000",
+        "Telextens": "",
+        "Faxnumber": "212-445-8001",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -165,35 +138,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
-        },
-        "Brand": "WBSW",
-        "Company": "US10",
-        "Compname": "Weber Shandwick",
-        "Office": "USI7",
-        "OfficeName": "Creation New York",
-        "City": "New York",
-        "District": "",
-        "Postalcode": "10022",
-        "Pobox": "",
-        "Street": "Third Avenue",
-        "Housenum": "909",
-        "Street2": "",
-        "Building": "",
-        "Floor": "",
-        "Country": "US",
-        "Region": "NY",
-        "Telnumber": "",
-        "Telextens": "",
-        "Faxnumber": "",
-        "Currency": "USD"
-      },
-      {
-        "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -219,8 +165,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -246,8 +192,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -273,8 +219,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -300,8 +246,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -327,8 +273,35 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
+        },
+        "Brand": "WBSW",
+        "Company": "US10",
+        "Compname": "Weber Shandwick",
+        "Office": "US02",
+        "OfficeName": "WS Chicago",
+        "City": "Chicago",
+        "District": "",
+        "Postalcode": "60611",
+        "Pobox": "",
+        "Street": "N. Michigan Avenue",
+        "Housenum": "875",
+        "Street2": "",
+        "Building": "",
+        "Floor": "",
+        "Country": "US",
+        "Region": "IL",
+        "Telnumber": "312-988-2003",
+        "Telextens": "",
+        "Faxnumber": "312-988-2363",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -354,8 +327,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -381,8 +354,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -408,8 +381,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -435,8 +408,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -462,8 +435,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -489,8 +462,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -516,35 +489,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
-        },
-        "Brand": "WBSW",
-        "Company": "US10",
-        "Compname": "Weber Shandwick",
-        "Office": "USI6",
-        "OfficeName": "Creation So Cal",
-        "City": "Los Angeles",
-        "District": "",
-        "Postalcode": "90069",
-        "Pobox": "",
-        "Street": "Melrose Avenue",
-        "Housenum": "8687",
-        "Street2": "",
-        "Building": "",
-        "Floor": "",
-        "Country": "US",
-        "Region": "CA",
-        "Telnumber": "",
-        "Telextens": "",
-        "Faxnumber": "",
-        "Currency": "USD"
-      },
-      {
-        "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -570,8 +516,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -597,8 +543,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -624,8 +570,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -651,8 +597,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -678,8 +624,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -705,8 +651,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -732,8 +678,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -759,8 +705,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -786,8 +732,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -813,8 +759,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -840,8 +786,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -867,8 +813,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -894,8 +840,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -921,62 +867,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
-        },
-        "Brand": "WBSW",
-        "Company": "US10",
-        "Compname": "Weber Shandwick",
-        "Office": "USI9",
-        "OfficeName": "ReviveHealth",
-        "City": "Nashville",
-        "District": "",
-        "Postalcode": "37203",
-        "Pobox": "",
-        "Street": "10th Ave South  Suite 214",
-        "Housenum": "209",
-        "Street2": "",
-        "Building": "",
-        "Floor": "",
-        "Country": "US",
-        "Region": "TN",
-        "Telnumber": "615-742-7242",
-        "Telextens": "",
-        "Faxnumber": "",
-        "Currency": "USD"
-      },
-      {
-        "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
-        },
-        "Brand": "WBSW",
-        "Company": "US10",
-        "Compname": "Weber Shandwick",
-        "Office": "USJ1",
-        "OfficeName": "RVH Issues Crisis",
-        "City": "Nashville",
-        "District": "",
-        "Postalcode": "37203",
-        "Pobox": "",
-        "Street": "10th Ave South  Suite 214",
-        "Housenum": "209",
-        "Street2": "",
-        "Building": "",
-        "Floor": "",
-        "Country": "US",
-        "Region": "TN",
-        "Telnumber": "615-742-7242",
-        "Telextens": "",
-        "Faxnumber": "",
-        "Currency": "USD"
-      },
-      {
-        "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1002,8 +894,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1029,8 +921,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1056,8 +948,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1083,8 +975,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1110,8 +1002,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1137,8 +1029,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1164,8 +1056,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1191,8 +1083,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1218,8 +1110,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1245,8 +1137,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1272,8 +1164,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1299,8 +1191,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1326,8 +1218,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1353,8 +1245,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1380,8 +1272,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1407,8 +1299,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1434,8 +1326,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1461,8 +1353,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1488,8 +1380,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1515,8 +1407,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1542,8 +1434,62 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
+        },
+        "Brand": "WBSW",
+        "Company": "US10",
+        "Compname": "Weber Shandwick",
+        "Office": "US01",
+        "OfficeName": "WS Minneapolis",
+        "City": "Minneapolis",
+        "District": "",
+        "Postalcode": "55402",
+        "Pobox": "",
+        "Street": "Marquette Ave.",
+        "Housenum": "510",
+        "Street2": "",
+        "Building": "",
+        "Floor": "",
+        "Country": "US",
+        "Region": "MN",
+        "Telnumber": "952-832-5000",
+        "Telextens": "",
+        "Faxnumber": "952-831-8241",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
+        },
+        "Brand": "WBSW",
+        "Company": "US10",
+        "Compname": "Weber Shandwick",
+        "Office": "US98",
+        "OfficeName": "WR Minneapolis",
+        "City": "Minneapolis",
+        "District": "",
+        "Postalcode": "55402",
+        "Pobox": "",
+        "Street": "Marquette Ave.",
+        "Housenum": "510",
+        "Street2": "",
+        "Building": "",
+        "Floor": "",
+        "Country": "US",
+        "Region": "MN",
+        "Telnumber": "952-832-5000",
+        "Telextens": "",
+        "Faxnumber": "952-831-8241",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1569,8 +1515,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1596,35 +1542,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
-        },
-        "Brand": "WBSW",
-        "Company": "US10",
-        "Compname": "Weber Shandwick",
-        "Office": "USI8",
-        "OfficeName": "Creation Seattle",
-        "City": "Seattle",
-        "District": "",
-        "Postalcode": "98101",
-        "Pobox": "",
-        "Street": "Stewart Street",
-        "Housenum": "818",
-        "Street2": "",
-        "Building": "",
-        "Floor": "",
-        "Country": "US",
-        "Region": "WA",
-        "Telnumber": "",
-        "Telextens": "",
-        "Faxnumber": "",
-        "Currency": "USD"
-      },
-      {
-        "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1650,8 +1569,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1677,8 +1596,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1704,8 +1623,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1731,8 +1650,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1758,8 +1677,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1785,8 +1704,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1812,8 +1731,35 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
+        },
+        "Brand": "WBSW",
+        "Company": "US10",
+        "Compname": "Weber Shandwick",
+        "Office": "US27",
+        "OfficeName": "Global Ent'ment",
+        "City": "Los Angeles",
+        "District": "",
+        "Postalcode": "90069",
+        "Pobox": "",
+        "Street": "Melrose Avenue",
+        "Housenum": "8687",
+        "Street2": "",
+        "Building": "",
+        "Floor": "",
+        "Country": "US",
+        "Region": "CA",
+        "Telnumber": "310-854-8100",
+        "Telextens": "",
+        "Faxnumber": "310-854-8101",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1839,8 +1785,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1866,8 +1812,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1893,8 +1839,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1920,8 +1866,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1947,8 +1893,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -1974,8 +1920,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2001,8 +1947,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2028,8 +1974,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2055,8 +2001,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2064,12 +2010,12 @@
         "Compname": "Weber Shandwick",
         "Office": "CA01",
         "OfficeName": "WS Toronto",
-        "City": "Suite 400",
+        "City": "Toronto",
         "District": "",
-        "Postalcode": "M5J 1A7",
+        "Postalcode": "M5A 0L6",
         "Pobox": "",
-        "Street": "Queen's Quay W.",
-        "Housenum": "207",
+        "Street": "King Street East",
+        "Housenum": "351",
         "Street2": "",
         "Building": "",
         "Floor": "",
@@ -2082,8 +2028,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2093,10 +2039,10 @@
         "OfficeName": "WS Vancouver",
         "City": "Toronto",
         "District": "",
-        "Postalcode": "M5J 1A7",
+        "Postalcode": "M5A 0L6",
         "Pobox": "",
-        "Street": "Queen's Quay W.",
-        "Housenum": "207",
+        "Street": "King Street East",
+        "Housenum": "351",
         "Street2": "",
         "Building": "",
         "Floor": "",
@@ -2109,8 +2055,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2120,10 +2066,10 @@
         "OfficeName": "WS Canada Corp.",
         "City": "Toronto",
         "District": "",
-        "Postalcode": "M5J 1A7",
+        "Postalcode": "M5A 0L6",
         "Pobox": "",
-        "Street": "Queen's Quay W.",
-        "Housenum": "207",
+        "Street": "King Street East",
+        "Housenum": "351",
         "Street2": "",
         "Building": "",
         "Floor": "",
@@ -2136,8 +2082,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2163,8 +2109,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2190,8 +2136,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2199,17 +2145,17 @@
         "Compname": "Weber Shandwick",
         "Office": "CA13",
         "OfficeName": "WS Montreal",
-        "City": "Montreal",
+        "City": "Toronto",
         "District": "",
-        "Postalcode": "H2Z 1S8",
+        "Postalcode": "M5A 0L6",
         "Pobox": "",
-        "Street": "Suite 1101",
-        "Housenum": "",
-        "Street2": "1080 Beaver Hall",
+        "Street": "King Street East",
+        "Housenum": "351",
+        "Street2": "",
         "Building": "",
         "Floor": "",
         "Country": "CA",
-        "Region": "QC",
+        "Region": "ON",
         "Telnumber": "416-964-6444",
         "Telextens": "",
         "Faxnumber": "416-964-6611",
@@ -2217,8 +2163,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2244,8 +2190,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2271,8 +2217,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2298,8 +2244,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2325,8 +2271,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2352,8 +2298,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2379,8 +2325,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2406,8 +2352,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2433,8 +2379,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2460,8 +2406,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2487,8 +2433,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2514,8 +2460,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2541,8 +2487,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2568,8 +2514,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2595,8 +2541,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2622,8 +2568,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2649,8 +2595,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2676,8 +2622,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2703,8 +2649,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2730,8 +2676,62 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
+        },
+        "Brand": "WBSW",
+        "Company": "US10",
+        "Compname": "Weber Shandwick",
+        "Office": "FR01",
+        "OfficeName": "WS Paris OLD",
+        "City": "Paris",
+        "District": "",
+        "Postalcode": "75009",
+        "Pobox": "",
+        "Street": "8 rue Auber",
+        "Housenum": "",
+        "Street2": "",
+        "Building": "",
+        "Floor": "",
+        "Country": "FR",
+        "Region": "",
+        "Telnumber": "33153320900",
+        "Telextens": "",
+        "Faxnumber": "33147595659",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
+        },
+        "Brand": "WBSW",
+        "Company": "US10",
+        "Compname": "Weber Shandwick",
+        "Office": "FR02",
+        "OfficeName": "GH Paris OLD",
+        "City": "Paris",
+        "District": "",
+        "Postalcode": "75009",
+        "Pobox": "",
+        "Street": "8 rue Auber",
+        "Housenum": "",
+        "Street2": "",
+        "Building": "",
+        "Floor": "",
+        "Country": "FR",
+        "Region": "",
+        "Telnumber": "33144519037",
+        "Telextens": "",
+        "Faxnumber": "33147595659",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2757,8 +2757,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2784,8 +2784,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2811,8 +2811,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2838,8 +2838,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2847,7 +2847,7 @@
         "Compname": "Weber Shandwick",
         "Office": "NL01",
         "OfficeName": "WS Netherlands",
-        "City": "The Hague",
+        "City": "DEN HAAG",
         "District": "",
         "Postalcode": "2511 VB",
         "Pobox": "",
@@ -2858,15 +2858,15 @@
         "Floor": "",
         "Country": "NL",
         "Region": "",
-        "Telnumber": "(0) 2 235 65 71",
+        "Telnumber": "70 31 21 070",
         "Telextens": "",
-        "Faxnumber": "(0) 2 230 68 28",
+        "Faxnumber": "",
         "Currency": "USD"
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2874,7 +2874,7 @@
         "Compname": "Weber Shandwick",
         "Office": "NL02",
         "OfficeName": "Golin The Hague",
-        "City": "The Hague",
+        "City": "DEN HAAG",
         "District": "",
         "Postalcode": "2511 VB",
         "Pobox": "",
@@ -2892,14 +2892,14 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
         "Company": "US10",
         "Compname": "Weber Shandwick",
-        "Office": "JP09",
+        "Office": "JP01",
         "OfficeName": "WS Tokyo",
         "City": "Tokyo",
         "District": "",
@@ -2919,8 +2919,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2946,8 +2946,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -2973,8 +2973,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3000,8 +3000,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3027,35 +3027,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
-        },
-        "Brand": "WBSW",
-        "Company": "US10",
-        "Compname": "Weber Shandwick",
-        "Office": "JP09",
-        "OfficeName": "DeVries Japan",
-        "City": "Tokyo",
-        "District": "",
-        "Postalcode": "1080073",
-        "Pobox": "",
-        "Street": "Mita Kokusai Bldg, 1-4-28 Mita,",
-        "Housenum": "13F",
-        "Street2": "",
-        "Building": "",
-        "Floor": "",
-        "Country": "JP",
-        "Region": "",
-        "Telnumber": "81-3-5427-7345",
-        "Telextens": "",
-        "Faxnumber": "81-3-5427-7320",
-        "Currency": "USD"
-      },
-      {
-        "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3081,8 +3054,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3108,8 +3081,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3135,8 +3108,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3162,8 +3135,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3189,8 +3162,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3216,8 +3189,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3243,8 +3216,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3270,8 +3243,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3297,8 +3270,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3324,8 +3297,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3351,35 +3324,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
-        },
-        "Brand": "WBSW",
-        "Company": "US10",
-        "Compname": "Weber Shandwick",
-        "Office": "HK16",
-        "OfficeName": "DeVries Hong Kong",
-        "City": "Quarry Bay",
-        "District": "",
-        "Postalcode": "",
-        "Pobox": "",
-        "Street": "King's Road",
-        "Housenum": "979",
-        "Street2": "",
-        "Building": "",
-        "Floor": "",
-        "Country": "HK",
-        "Region": "",
-        "Telnumber": "2501 7946",
-        "Telextens": "",
-        "Faxnumber": "2522 9442",
-        "Currency": "USD"
-      },
-      {
-        "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3405,8 +3351,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3432,8 +3378,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3459,35 +3405,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
-        },
-        "Brand": "WBSW",
-        "Company": "US10",
-        "Compname": "Weber Shandwick",
-        "Office": "SG10",
-        "OfficeName": "Creation Singapore",
-        "City": "",
-        "District": "",
-        "Postalcode": "238838",
-        "Pobox": "",
-        "Street": "Orchard Road",
-        "Housenum": "40A",
-        "Street2": "",
-        "Building": "",
-        "Floor": "",
-        "Country": "SG",
-        "Region": "",
-        "Telnumber": "6825 8000",
-        "Telextens": "",
-        "Faxnumber": "6822 8501",
-        "Currency": "USD"
-      },
-      {
-        "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3513,8 +3432,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3540,8 +3459,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3567,8 +3486,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3594,8 +3513,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3621,8 +3540,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3648,8 +3567,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3675,8 +3594,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3702,8 +3621,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3729,8 +3648,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3756,62 +3675,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
-        },
-        "Brand": "WBSW",
-        "Company": "US10",
-        "Compname": "Weber Shandwick",
-        "Office": "CN23",
-        "OfficeName": "Creation Beijing",
-        "City": "Bejing",
-        "District": "",
-        "Postalcode": "100020",
-        "Pobox": "",
-        "Street": "Chaoyangmen Wai Da Jie",
-        "Housenum": "16",
-        "Street2": "17/F China Life Tower",
-        "Building": "",
-        "Floor": "",
-        "Country": "CN",
-        "Region": "",
-        "Telnumber": "-21-2411-0000",
-        "Telextens": "",
-        "Faxnumber": "-21-2411-0109",
-        "Currency": "USD"
-      },
-      {
-        "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
-        },
-        "Brand": "WBSW",
-        "Company": "US10",
-        "Compname": "Weber Shandwick",
-        "Office": "CN24",
-        "OfficeName": "Creation Shanghai",
-        "City": "Shanghai",
-        "District": "",
-        "Postalcode": "200031",
-        "Pobox": "",
-        "Street": "HuaiHai Zhong Road",
-        "Housenum": "1045",
-        "Street2": "18/F HuaiHai Plaza",
-        "Building": "",
-        "Floor": "",
-        "Country": "CN",
-        "Region": "",
-        "Telnumber": "-21-2411-0000",
-        "Telextens": "",
-        "Faxnumber": "-21-2411-0109",
-        "Currency": "USD"
-      },
-      {
-        "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3837,8 +3702,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3864,8 +3729,35 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
+        },
+        "Brand": "WBSW",
+        "Company": "US10",
+        "Compname": "Weber Shandwick",
+        "Office": "TW01",
+        "OfficeName": "WS Taipei",
+        "City": "Taipei",
+        "District": "",
+        "Postalcode": "110",
+        "Pobox": "",
+        "Street": "Sinyi Rd. Sec. 5 150, Sinyi Rd. Sec. 5",
+        "Housenum": "",
+        "Street2": "Suite 1205, 12F, No. 2, Lane 150,",
+        "Building": "",
+        "Floor": "",
+        "Country": "TW",
+        "Region": "",
+        "Telnumber": "-2-2722-5779",
+        "Telextens": "",
+        "Faxnumber": "-2-8789-8818",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
@@ -3891,8 +3783,8 @@
       },
       {
         "__metadata": {
-          "id": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
-          "uri": "https://fioriqa.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
+          "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/OfficeCollection('US10')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.OfficeDetails"
         },
         "Brand": "WBSW",
