@@ -3,7 +3,8 @@
  * @returns {string}
  */
 function convertToDecimal(amount){
-  var sign =  currencyStyles.currSymbol();
-  var res = amount.replace(sign, '').replace(/,/g, '').replace('%', '').trim();
+  // need to strip out all symbols
+  var re = /[^0-9.]/gi;
+  var res = amount.replace(re, '').trim();
   return res ? res : '0';
 }
