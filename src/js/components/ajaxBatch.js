@@ -4,6 +4,7 @@
  */
 
 function ajaxBatch(payloads, windowTargetUrl, continueBtn) {
+
   if (payloads.length === 0) {
     // no payload, so just go to target page
     window.location.href = windowTargetUrl;
