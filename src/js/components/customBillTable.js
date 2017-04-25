@@ -170,23 +170,23 @@ var loadCustomBillSheet = (function ($) {
           //populate input field with Billsheet Name.
           if (aData.BillsheetName) {
             $('#bill-sheet-name').val(aData.BillsheetName);
-            $('#btn-save').prop('disabled', false);
-            $('#btn-save-only').prop('disabled', false);
+            $('#btn-save, #btn-save-only').prop('disabled', false);
+            // $('#btn-save-only').prop('disabled', false);
           } else {
-            $('#btn-save').prop('disabled', true);
-            $('#btn-save-only').prop('disabled', true);
+            $('#btn-save, #btn-save-only').prop('disabled', true);
+            // $('#btn-save-only').prop('disabled', true);
           }
           if ($('#bill-sheet-name').val()) {
-            $('#btn-save').prop('disabled', false);
-            $('#btn-save-only').prop('disabled', false);
+            $('#btn-save, #btn-save-only').prop('disabled', false);
+            // $('#btn-save-only').prop('disabled', false);
           }
           $('#bill-sheet-name').on('focusout keypress', function (e) {
             if ($('#bill-sheet-name').val()) {
-              $('#btn-save').prop('disabled', false);
-              $('#btn-save-only').prop('disabled', false);
+              $('#btn-save, #btn-save-only').prop('disabled', false);
+              // $('#btn-save-only').prop('disabled', false);
             } else {
-              $('#btn-save').prop('disabled', true);
-              $('#btn-save-only').prop('disabled', true);
+              $('#btn-save, #btn-save-only').prop('disabled', true);
+              // $('#btn-save-only').prop('disabled', true);
             }
           });
         },
@@ -251,6 +251,7 @@ var loadCustomBillSheet = (function ($) {
       });
 
       $("#fileinput").on('change', function (evt) {
+
         var files = evt.target.files,
           file = files[0],
           file_name = file.name,
@@ -265,7 +266,14 @@ var loadCustomBillSheet = (function ($) {
         };
         var blob = file.slice(start, stop + 1);
         reader.readAsText(blob);
-        $('#bill-sheet-name').val(file_name.slice(0, -4));
+
+        if(file_name.length <=50) {
+          $('#bill-sheet-name').val(file_name.slice(0, -4));
+        } else {
+          $('#bill-sheet-name').val(file_name.substr(0, 50));
+          confirm("the file name will be trimmed to 50 characters.");
+        }
+
       });
       event.stopPropagation();
     });
