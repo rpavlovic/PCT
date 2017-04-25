@@ -5,5 +5,5 @@
 function convertToDecimal(amount){
   var sign =  currencyStyles.currSymbol();
   var res = amount.replace(sign, '').replace(/,/g, '').replace('%', '').trim();
-  return res ? res : '';
+  return res ? res : '0';
 }

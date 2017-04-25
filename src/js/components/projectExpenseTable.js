@@ -224,7 +224,7 @@ var expenseTable = (function ($) {
               "DelvDesc": $(row.anCells[2]).find('select :selected').val(),
               "Category": $(row.anCells[3]).find('select :selected').val().substr(0, 4),
               "CatDesc": $(row.anCells[4]).find('div').text(),
-              "Amount": $(row.anCells[5]).find('div').text(),
+              "Amount": convertToDecimal($(row.anCells[5]).find('div').text()),
               "Currency": "USD"
             }
           });
