@@ -503,7 +503,7 @@ var projectResourceTable = (function ($) {
         //this doesn't work if costrate is hidden
         nodes.closest('tr').find('.td-costrate').empty().append(selectedRate.CostRate);
 
-        if (projectInfo.BillsheetId) {
+        if (projectInfo.BillsheetId && projectInfo.BillsheetId !== "0" && projectInfo.BillsheetId.length) {
           var targetEmployeeRate = customBillsheets.find(function (rateCard) {
             return rateCard.BillsheetId === projectInfo.BillsheetId && EmpGradeName === rateCard.TitleDesc;
           });
@@ -694,7 +694,7 @@ var projectResourceTable = (function ($) {
           else {
             $(rows.context[0].aoData[i].anCells[9]).css('color', '#5b5b5b');
           }
-          var rate = billRateOverride ? billRateOverride : billRate;
+          var rate = parseFloat(billRateOverride) ? billRateOverride : billRate;
           var costRate = convertToDecimal($(rows.context[0].aoData[i].anCells[11]).text());
 
           costRate = !isNaN(costRate) ? costRate : 0;
