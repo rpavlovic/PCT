@@ -357,10 +357,10 @@ var projectResourceTable = (function ($) {
             nodes.closest('tr').find('.td-billrate').empty();
             nodes.closest('tr').find('.td-costrate').empty();
             nodes.css({
-              'border':'',
+              'border':''
             });
             nodes.closest('tr').find("select.practice").css({
-              'border':'solid 1px red',
+              'border':'solid 1px red'
             });
             recalculateStuff();
           });
@@ -371,7 +371,7 @@ var projectResourceTable = (function ($) {
             var nodes = $(this);
             loadBillRate(nodes);
             nodes.css({
-              'border':'',
+              'border':''
             });
             recalculateStuff();
           });
@@ -871,7 +871,7 @@ var projectResourceTable = (function ($) {
         "Fees": convertToDecimal($("#modeling-table tbody #total-fee_adjusted-resource").text()) ? convertToDecimal($("#modeling-table tbody #total-fee_adjusted-resource").text()) : "0.0",
         "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_adjusted-resource").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_adjusted-resource").text()) : "0.0",
         "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_adjusted-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_adjusted-resource").text()) : "0.0",
-        "Currency": "USD",
+        "Currency": projectInfo.Currency,
         "Selected": selectedModelId === 'ARBF' ? '1' : '0'
       }
     });
@@ -890,7 +890,7 @@ var projectResourceTable = (function ($) {
         "Fees": convertToDecimal($("#modeling-table tbody #total-fee_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #total-fee_standard-resource").text()) : "0.0",
         "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_standard-resource").text()) : "0.0",
         "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_standard-resource").text()) : "0.0",
-        "Currency": "USD", // need to change this to the correct currency
+        "Currency": projectInfo.Currency,
         "Selected": selectedModelId === 'SRBF' ? '1' : '0'
       }
     });
@@ -909,7 +909,7 @@ var projectResourceTable = (function ($) {
         "Fees": convertToDecimal($("#modeling-table tbody #fixed-fee-target").text()) ? convertToDecimal($("#modeling-table tbody #fixed-fee-target").text()) : "0.0",
         "CtrMargin": convertToDecimal($("#modeling-table tbody #contribution-margin_fixed-fee").text()) ? convertToDecimal($("#modeling-table tbody #contribution-margin_fixed-fee").text()) : "0.0",
         "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_fixed-resource").text()) : "0.0",
-        "Currency": "USD",
+        "Currency": projectInfo.Currency,
         "Selected": selectedModelId === 'FFT' ? '1' : '0'
       }
     });
@@ -927,7 +927,7 @@ var projectResourceTable = (function ($) {
         "Fees": convertToDecimal($("#modeling-table tbody #total-fee_target-resource").text()) ? convertToDecimal($("#modeling-table tbody #total-fee_target-resource").text()) : "0.0",
         "CtrMargin": convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()) ? convertToDecimal($("#modeling-table tbody #target-contribution-margin").text()) : "0.0",
         "AvgRate": convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()) ? convertToDecimal($("#modeling-table tbody #avg-rate_target-resource").text()) : "0.0",
-        "Currency": "USD",
+        "Currency": projectInfo.Currency,
         "Selected": selectedModelId === 'TMBF' ? '1' : '0'
       }
     });
