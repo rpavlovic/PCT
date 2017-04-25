@@ -246,7 +246,7 @@ var projectInfoForm = (function ($) {
     return array_inpt.length === 0;
   }
 
-  $('.project-info #btn-save').on('click', function (event) {
+  $('.project-info #btn-save, .project-info #btn-save-only').on('click', function (event) {
     event.preventDefault();
 
     // clean inputs first.
@@ -257,7 +257,6 @@ var projectInfoForm = (function ($) {
 
       var url = $(this).attr('href');
       url = updateQueryString('projID', projectId, url) + "&" + getTimestamp();
-
       $(this).attr('href', url);
 
       // get val in unix epoch time
@@ -320,8 +319,11 @@ var projectInfoForm = (function ($) {
           deliverableId++;
         }
       });
-
-      ajaxBatch(payloads, $('#btn-save').attr('href'));
+      if(event.target.id === "btn-save") {
+        ajaxBatch(payloads, $(this).attr('href'), true);
+      } else {
+        ajaxBatch(payloads, $(this).attr('href'), false);
+      }
     } //end if
   });
 

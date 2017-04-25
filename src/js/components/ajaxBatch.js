@@ -3,7 +3,7 @@
  * @version
  */
 
-function ajaxBatch(payloads, windowTargetUrl) {
+function ajaxBatch(payloads, windowTargetUrl, continueBtn) {
   if (payloads.length === 0) {
     // no payload, so just go to target page
     window.location.href = windowTargetUrl;
@@ -19,9 +19,11 @@ function ajaxBatch(payloads, windowTargetUrl) {
         showLoader();
         if (status !== 'error' && xhr.status === 202) {
           // no error, let's proceed
-          setTimeout(function () {
-            window.location.href = windowTargetUrl;
-          }, timeout);
+          if(continueBtn) {
+            setTimeout(function () {
+              window.location.href = windowTargetUrl;
+            }, timeout);
+          }
         }
         else {
           if (is_fiori()) {
@@ -29,9 +31,11 @@ function ajaxBatch(payloads, windowTargetUrl) {
           }
           else {
             // we're on local, so go ahead and go to next page
-            setTimeout(function () {
-              window.location.href = windowTargetUrl;
-            }, timeout);
+            if(continueBtn) {
+              setTimeout(function () {
+                window.location.href = windowTargetUrl;
+              }, timeout);
+            }
           }
         }
       }

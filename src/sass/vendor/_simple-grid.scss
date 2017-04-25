@@ -31,6 +31,7 @@ $breakpoint-large: 75em;
   min-height: 100vh;
   padding-top: rem-calc(20);
   padding-bottom: rem-calc(100);
+  position: relative;
   @include breakpoint('medium') {
     padding-bottom: 0;
   }

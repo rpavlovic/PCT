@@ -810,17 +810,17 @@ var projectResourceTable = (function ($) {
       }
     });
 
-    $('.project-resources #btn-save').on('click', function (event) {
+    $('.project-resources #btn-save, .project-resources #btn-save-only').on('click', function (event) {
       event.preventDefault();
 
       trimInputs();
 
       console.log("saving form");
 
-      var url = $('#btn-save').attr('href');
+      var url = $(this).attr('href');
       url = updateQueryString('projID', projectID, url) + "&" + getTimestamp();
 
-      $('#btn-save').attr('href', url);
+      $(this).attr('href', url);
 
       var modelingTablePayloads = buildModelingTablePayload();
       var resourcePayloads = buildResourcePayload();
@@ -843,7 +843,11 @@ var projectResourceTable = (function ($) {
         .concat(resourcePayloads)
         .concat(resourceHours);
 
-      ajaxBatch(payloads, $('#btn-save').attr('href'));
+      if(event.target.id === 'btn-save') {
+        ajaxBatch(payloads, $(this).attr('href'), true);
+      } else {
+         ajaxBatch(payloads, $(this).attr('href'), false);
+      }
     });
   }
 

@@ -171,17 +171,22 @@ var loadCustomBillSheet = (function ($) {
           if (aData.BillsheetName) {
             $('#bill-sheet-name').val(aData.BillsheetName);
             $('#btn-save').prop('disabled', false);
+            $('#btn-save-only').prop('disabled', false);
           } else {
             $('#btn-save').prop('disabled', true);
+            $('#btn-save-only').prop('disabled', true);
           }
           if ($('#bill-sheet-name').val()) {
             $('#btn-save').prop('disabled', false);
+            $('#btn-save-only').prop('disabled', false);
           }
           $('#bill-sheet-name').on('focusout keypress', function (e) {
             if ($('#bill-sheet-name').val()) {
               $('#btn-save').prop('disabled', false);
+              $('#btn-save-only').prop('disabled', false);
             } else {
               $('#btn-save').prop('disabled', true);
+              $('#btn-save-only').prop('disabled', true);
             }
           });
         },
@@ -273,11 +278,15 @@ var loadCustomBillSheet = (function ($) {
       }
     });
 
-    $('.custom-bill-sheet #btn-save').on('click', function (event) {
+    $('.custom-bill-sheet #btn-save, .custom-bill-sheet #btn-save-only').on('click', function (event) {
       event.preventDefault();
       console.log("saving form");
       var payloads = buildBillSheetPayload();
-      ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId);
+      if(event.target.id === 'btn-save') {
+        ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId, true);
+      } else {
+        ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId, false);
+      }
     });
 
     var bsId;
