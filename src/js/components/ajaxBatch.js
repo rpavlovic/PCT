@@ -5,6 +5,7 @@
 
 function ajaxBatch(payloads, windowTargetUrl, continueBtn) {
 
+  showLoader();
   if (payloads.length === 0) {
     // no payload, so just go to target page
     window.location.href = windowTargetUrl;
@@ -17,8 +18,8 @@ function ajaxBatch(payloads, windowTargetUrl, continueBtn) {
         var timeout = getParameterByName('timeout');
         console.log("navigating to new window in" + timeout + "seconds");
         timeout = timeout ? timeout : 1;
-        showLoader();
-        if (status !== 'error' && xhr.status === 202) {
+        hideLoader();
+        if (status !== 'error' && xhr.status === 202 && -1 !== xhr.responseText.indexOf("HTTP/1.1 400 Bad Request")) {
           // no error, let's proceed
           if(continueBtn) {
             setTimeout(function () {
@@ -29,6 +30,9 @@ function ajaxBatch(payloads, windowTargetUrl, continueBtn) {
         else {
           if (is_fiori()) {
             alert('an error occurred, and your changes were not saved. You may have to log out and clear cache.');
+            console.log(xhr);
+            console.log(status);
+            console.log(data);
           }
           else {
             // we're on local, so go ahead and go to next page
