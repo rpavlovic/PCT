@@ -564,6 +564,7 @@ var projectResourceTable = (function ($) {
           });
 
           if (parseFloat(targetEmployeeRate.OverrideRate) > 0) {
+          if (targetEmployeeRate && parseFloat(targetEmployeeRate.OverrideRate) > 0) {
             nodes.closest('tr').find('.rate-override div').text(targetEmployeeRate.OverrideRate);
           }
         }
