@@ -69,7 +69,7 @@ var expenseTable = (function ($) {
         "columns": [
           {
             "title": 'Row',
-            "sClass": "center",
+            "sClass": "center rowno",
             "data": "ExpRow",
             "defaultContent": '',
             "render": function (data, type, row, meta) {
@@ -141,6 +141,13 @@ var expenseTable = (function ($) {
           $('.contenteditable').on('keyup focusout', function (e) {
             recalculateStuff();
           });
+
+          var rowNumber = 1;
+          $.each($("#project-expense-table tbody tr"), function(k, v){
+            $(v).find('.rowno').text(rowNumber);
+            rowNumber++;
+          });
+
         },
         "createdRow": function (row, data, index) {
           $('tfoot th').removeClass('center');

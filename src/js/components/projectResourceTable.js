@@ -110,7 +110,7 @@ var projectResourceTable = (function ($) {
       var columns = [
         {
           "title": 'Row',
-          "class": "center",
+          "class": "center rowno",
           "defaultContent": '',
           "data": "Rowno",
           "render": function (data, type, row, meta) {
@@ -329,10 +329,10 @@ var projectResourceTable = (function ($) {
             nodes.closest('tr').find('.td-billrate').empty();
             nodes.closest('tr').find('.td-costrate').empty();
             nodes.closest('tr').find("select.practice").css({
-              'border':'solid 1px red',
+              'border':'solid 1px red'
             });
             nodes.closest('tr').find("select.title").css({
-              'border':'solid 1px red',
+              'border':'solid 1px red'
             });
             // check to see if that office Rate exists in local storage
             // if it exists, then go ahead and then update the dropdown
@@ -384,6 +384,12 @@ var projectResourceTable = (function ($) {
             } else {
               rate_td.prev().css('color', '#5b5b5b');
             }
+          });
+
+          var rowNumber = 1;
+          $.each($("#project-resource-table tbody tr"), function(k, v){
+            $(v).find('.rowno').text(rowNumber);
+            rowNumber++;
           });
         },
         "initComplete": function (settings, json) {
@@ -639,14 +645,6 @@ var projectResourceTable = (function ($) {
         active_modeling_tabs.removeClass('active');
         active_modeling_tabs.children('input').prop('checked', false);
         function activateStates() {
-          // if (isAdjusted && tableFeeSum) {
-          //   $(active_modeling_tabs[2]).addClass('active');
-          //   $(active_modeling_tabs[2]).children('input').prop('checked', true);
-          // }
-          // else {
-          //   $(active_modeling_tabs[1]).addClass('active');
-          //   $(active_modeling_tabs[1]).children('input').prop('checked', true);
-          // }
           if (selectedModel) {
             $('#' + selectedModel.ModelType).prop("checked", true);
             $('#' + selectedModel.ModelType).parent().addClass('active');
