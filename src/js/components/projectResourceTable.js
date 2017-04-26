@@ -278,6 +278,7 @@ var projectResourceTable = (function ($) {
       for (var i = 1; i <= duration; i++) {
         columns.push({
           "title": planLabel === 'Month' ? calcMonthHeader(startDate) : 'Week ' + i,
+          "sClass": "hour",
           "data": 'hour-' + i,
           "defaultContent": '<div contenteditable />',
           render: renderMonth
@@ -459,7 +460,7 @@ var projectResourceTable = (function ($) {
 
         var clonedResource =  { Officeid: office, EmpGradeName: title, Practiceid: practiceId };
 
-        projResourceTable.row.add({
+        var clonedRow = {
           "Office": office,
           "CostCenterName": clonedResource,
           "Deliverables": deliverable,
@@ -468,7 +469,14 @@ var projectResourceTable = (function ($) {
           "ProposedResource": proposedResource,
           "EmpGradeName": clonedResource,
           "BillRate": billRate
-        }).draw().node();
+        };
+
+        $.each($(currentRow).find('.hour'), function(k, v){
+          var hrCell = k+1;
+          clonedRow['hour-' + hrCell] = $(v).text();
+        });
+
+        projResourceTable.row.add(clonedRow).draw().node();
 
         recalculateStuff();
       });
