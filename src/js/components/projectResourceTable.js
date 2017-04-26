@@ -109,6 +109,12 @@ var projectResourceTable = (function ($) {
       var hoursSum = 0;
       var columns = [
         {
+          "title": '<i class="fa fa-copy"></i>',
+          "class": "center blue-bg",
+          "data": null,
+          "defaultContent": '<a href=" " class="copy"><i class="fa fa-copy"></i></a>'
+        },
+        {
           "title": 'Row',
           "class": "center rowno",
           "defaultContent": '',
@@ -175,6 +181,7 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Role',
           "data": "Role",
+          "sClass": "td-role",
           "defaultContent": "<div contenteditable onkeypress='return (this.innerText.length <= 39)'/>",
           "render": function (data, type, row, meta) {
             if (data)
@@ -184,6 +191,7 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Proposed <br/> Resource',
           "data": "ProposedResource",
+          "sClass": "td-proposed-resource",
           "defaultContent": "<div contenteditable onkeypress='return (this.innerText.length <= 39)'/>",
           "render": function (data, type, row, meta) {
             if (data)
@@ -308,7 +316,7 @@ var projectResourceTable = (function ($) {
         "select": true,
         "rowCallback": function (row, json) {
           $(row).removeClass('odd even');
-          $("td:nth-child(n+8):not(:nth-child(10)):not(:nth-child(12)):not(:nth-child(13))", row)
+          $("td:nth-child(n+9):not(:nth-child(11)):not(:nth-child(13)):not(:nth-child(14))", row)
             .addClass("contenteditable");
         },
         "createdRow": function (row, data, index) {
@@ -431,6 +439,40 @@ var projectResourceTable = (function ($) {
         recalculateStuff();
       });
 
+      //clone row
+      $('#project-resource-table tbody').on('click', '.copy', function (e) {
+        e.preventDefault();
+        var currentRow = $(this).closest('tr');
+
+        //console.log(currentRow);
+
+        var deliverable = $(currentRow).find('select.deliverable option:selected').text();
+        var office = $(currentRow).find('select.office option:selected').val();
+        var title = $(currentRow).find('select.title option:selected').text();
+        var resourceClass = $(currentRow).find('.td-class').text();
+        var practiceId = $(currentRow).find('select.practice option:selected').val();
+        var role = $(currentRow).find('.td-role').text();
+        var proposedResource = $(currentRow).find('.td-proposed-resource').text();
+
+        var billRate = $(currentRow).find('.td-billrate').text().replace('$', '');
+        //console.log($(currentRow));
+
+        var clonedResource =  { Officeid: office, EmpGradeName: title, Practiceid: practiceId };
+
+        projResourceTable.row.add({
+          "Office": office,
+          "CostCenterName": clonedResource,
+          "Deliverables": deliverable,
+          "Class": clonedResource,
+          "Role": role,
+          "ProposedResource": proposedResource,
+          "EmpGradeName": clonedResource,
+          "BillRate": billRate
+        }).draw().node();
+
+        recalculateStuff();
+      });
+
       // maybe move this into that
       $('#rate-card').on('change', function (event) {
 
@@ -448,20 +490,18 @@ var projectResourceTable = (function ($) {
           var rows = projResourceTable.rows();
           for (var i = 0; i < rows.context[0].aoData.length; i++) {
             // employee title
-            //console.log($(rows.context[0].aoData[i].anCells[4]).find(':selected').text());
-            var EmpGrade = $(rows.context[0].aoData[i].anCells[4]).find(':selected').val();
+            var EmpGrade = $(rows.context[0].aoData[i].anCells[5]).find(':selected').val();
             // bill rate override
-            //console.log($(rows.context[0].aoData[i].anCells[10]).find('div'));
             var foundCard = cardResults.filter(function (val) {
               return val.TitleId === EmpGrade;
             });
-            $(rows.context[0].aoData[i].anCells[10]).find('div').text('');
+            $(rows.context[0].aoData[i].anCells[11]).find('div').text('');
             if (foundCard[0] && parseInt(foundCard[0].OverrideRate)) {
-              $(rows.context[0].aoData[i].anCells[10]).find('div').text(foundCard[0].OverrideRate);
-              $(rows.context[0].aoData[i].anCells[9]).css('color', 'lightgrey');
+              $(rows.context[0].aoData[i].anCells[11]).find('div').text(foundCard[0].OverrideRate);
+              $(rows.context[0].aoData[i].anCells[10]).css('color', 'lightgrey');
             }
             else {
-              $(rows.context[0].aoData[i].anCells[9]).css('color', '#5b5b5b');
+              $(rows.context[0].aoData[i].anCells[10]).css('color', '#5b5b5b');
             }
           }
           recalculateStuff();
@@ -671,29 +711,29 @@ var projectResourceTable = (function ($) {
         for (var i = 0; i < rows.context[0].aoData.length; i++) {
           // get sum of the hour column per row
           var hoursPerRow = 0;
-          for (var j = 14; j < rows.context[0].aoData[i].anCells.length; j++) {
+          for (var j = 15; j < rows.context[0].aoData[i].anCells.length; j++) {
             var hoursCells = parseFloat($(rows.context[0].aoData[i].anCells[j]).text());
             hoursPerRow += !isNaN(hoursCells) ? hoursCells : 0;
           }
           var rowSum = !isNaN(hoursPerRow) ? hoursPerRow.toFixed(2) : '';
-          $(rows.context[0].aoData[i].anCells[12]).text(rowSum);
+          $(rows.context[0].aoData[i].anCells[13]).text(rowSum);
 
           // calc fee per row
-          var billRate = convertToDecimal($(rows.context[0].aoData[i].anCells[9]).text());
+          var billRate = convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text());
           billRate = !isNaN(billRate) ? billRate : 0;
 
-          var billRateOverride = convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text());
+          var billRateOverride = convertToDecimal($(rows.context[0].aoData[i].anCells[11]).text());
           billRateOverride = !isNaN(billRateOverride) ? billRateOverride : 0;
 
           //highlight the rate is override is present.
           if (!isNaN(billRateOverride) && billRateOverride > 0) {
-            $(rows.context[0].aoData[i].anCells[9]).css('color', 'lightgrey');
+            $(rows.context[0].aoData[i].anCells[10]).css('color', 'lightgrey');
           }
           else {
-            $(rows.context[0].aoData[i].anCells[9]).css('color', '#5b5b5b');
+            $(rows.context[0].aoData[i].anCells[10]).css('color', '#5b5b5b');
           }
           var rate = parseFloat(billRateOverride) ? billRateOverride : billRate;
-          var costRate = convertToDecimal($(rows.context[0].aoData[i].anCells[11]).text());
+          var costRate = convertToDecimal($(rows.context[0].aoData[i].anCells[12]).text());
 
           costRate = !isNaN(costRate) ? costRate : 0;
           if (!isAdjusted && parseFloat(billRateOverride)) {
@@ -705,9 +745,9 @@ var projectResourceTable = (function ($) {
           var totalCostPerRow = parseFloat(hoursPerRow) * costRate;
 
           if (totalFeePerRow) {
-            $(rows.context[0].aoData[i].anCells[13]).text(convertToDollar(projectInfo.Currency, totalFeePerRow));
+            $(rows.context[0].aoData[i].anCells[14]).text(convertToDollar(projectInfo.Currency, totalFeePerRow));
           } else {
-            $(rows.context[0].aoData[i].anCells[13]).text('');
+            $(rows.context[0].aoData[i].anCells[14]).text('');
           }
 
           totalCostSum += totalCostPerRow;
@@ -941,7 +981,7 @@ var projectResourceTable = (function ($) {
     //console.log(rows.context[0].aoData);
     for (var i = 0; i < rows.context[0].aoData.length; i++) {
       var payloadIndex = padNumber(rowIndex);
-      var brOverRide = convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text()) ? convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text()).toString() : null;
+      var brOverRide = convertToDecimal($(rows.context[0].aoData[i].anCells[11]).text()) ? convertToDecimal($(rows.context[0].aoData[i].anCells[11]).text()).toString() : null;
       payloads.push({
         type: 'POST',
         url: '/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection',
@@ -954,16 +994,16 @@ var projectResourceTable = (function ($) {
           "Projid": projectID,
           "Duration": duration.toString(),
           "Rowno": payloadIndex,
-          "DelvDesc": $(rows.context[0].aoData[i].anCells[2]).find('option:selected').text(),
-          "Officeid": $(rows.context[0].aoData[i].anCells[3]).find('option:selected').val(),
-          "EmpGradeName": $(rows.context[0].aoData[i].anCells[4]).find('option:selected').text(),
-          "Practiceid": $(rows.context[0].aoData[i].anCells[6]).find('option:selected').val(),
-          "Role": $(rows.context[0].aoData[i].anCells[7]).text(),
-          "ProposedRes": $(rows.context[0].aoData[i].anCells[8]).text(),
-          "BillRate": convertToDecimal($(rows.context[0].aoData[i].anCells[9]).text()),
+          "DelvDesc": $(rows.context[0].aoData[i].anCells[3]).find('option:selected').text(),
+          "Officeid": $(rows.context[0].aoData[i].anCells[4]).find('option:selected').val(),
+          "EmpGradeName": $(rows.context[0].aoData[i].anCells[5]).find('option:selected').text(),
+          "Practiceid": $(rows.context[0].aoData[i].anCells[7]).find('option:selected').val(),
+          "Role": $(rows.context[0].aoData[i].anCells[8]).text(),
+          "ProposedRes": $(rows.context[0].aoData[i].anCells[9]).text(),
+          "BillRate": convertToDecimal($(rows.context[0].aoData[i].anCells[10]).text()),
           "BillRateOvride": brOverRide,
-          "TotalHrs": parseFloat(convertToDecimal($(rows.context[0].aoData[i].anCells[12]).text())),
-          "TotalFee": convertToDecimal($(rows.context[0].aoData[i].anCells[13]).text()),
+          "TotalHrs": parseFloat(convertToDecimal($(rows.context[0].aoData[i].anCells[13]).text())),
+          "TotalFee": convertToDecimal($(rows.context[0].aoData[i].anCells[14]).text()),
           "Plantyp": planBy
         }
       });
@@ -982,7 +1022,7 @@ var projectResourceTable = (function ($) {
       var hoursPerRow = 0;
       var columnIndex = 1;
       var payloadRowIndex = padNumber(rowIndex);
-      for (var j = 14; j < rows.context[0].aoData[i].anCells.length; j++) {
+      for (var j = 15; j < rows.context[0].aoData[i].anCells.length; j++) {
         var value = $(rows.context[0].aoData[i].anCells[j]).text();
         value = value ? value : "0.0";
         var cellId = "R" + rowIndex + "C" + columnIndex;
