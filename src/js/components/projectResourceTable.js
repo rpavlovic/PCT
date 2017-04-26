@@ -468,7 +468,8 @@ var projectResourceTable = (function ($) {
           "Role": role,
           "ProposedResource": proposedResource,
           "EmpGradeName": clonedResource,
-          "BillRate": billRate
+          "BillRate": billRate,
+          "CostRate": clonedResource
         };
 
         $.each($(currentRow).find('.hour'), function(k, v){
