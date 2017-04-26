@@ -77,7 +77,12 @@ var loadCustomBillSheet = (function ($) {
           {
             name: "Currency",
             defaultContent: "USD",
-            title: "Currency"
+            title: "Local Currency",
+            render: function (data, type, row) {
+              if (data) {
+                return data;
+              }
+            }
           },
           {
             name: "OverrideRate",
@@ -85,9 +90,8 @@ var loadCustomBillSheet = (function ($) {
             class: 'rate-override num',
             defaultContent: "<div contenteditable class='currency-sign usd'></div>",
             render: function (data, type, row) {
-              if (data) {
-                return "<div contenteditable class='currency-sign usd'>" + data + "</div>";
-              }
+              var data = parseFloat(data) ? data : '';
+              return "<div contenteditable class='currency-sign " + row[4].toLowerCase() + "'>" + data + "</div>";
             }
           },
           {
@@ -123,7 +127,13 @@ var loadCustomBillSheet = (function ($) {
           {
             name: "Currency",
             defaultContent: "USD",
-            title: "Currency"
+            title: "Local Currency",
+            data: "Currency",
+            render: function (data, type, row) {
+              if (data) {
+                return "<div contenteditable class='currency-sign " + row.Currency.toLowerCase() + "'>" + data + "</div>";
+              }
+            }
           },
           {
             name: "OverrideRate",
@@ -132,9 +142,8 @@ var loadCustomBillSheet = (function ($) {
             title: "Upload / Override",
             defaultContent: "<div contenteditable class='currency-sign usd'></div>",
             render: function (data, type, row) {
-              if (parseFloat(data)) {
-                return "<div contenteditable class='currency-sign usd'>" + data + "</div>";
-              }
+              var data = parseFloat(data) ? data : '';
+              return "<div contenteditable class='currency-sign " + row.Currency.toLowerCase() + "'>" + data + "</div>";
             }
           },
           {
@@ -142,10 +151,7 @@ var loadCustomBillSheet = (function ($) {
             title: "Discount",
             class: 'discount num',
             render: function (data, type, row) {
-              if (data) {
-                return data + "%";
-              }
-              return data;
+              return parseFloat(data) ? data + "%" : data;
             }
           }
         ];
