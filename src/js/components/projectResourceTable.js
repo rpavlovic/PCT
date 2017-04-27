@@ -3,6 +3,25 @@
  * @version
  */
 /*jshint loopfunc: true */
+var classLetters = {
+  "E": 1000,
+  "M": 500,
+  "S": 1
+};
+
+
+function getClassValue(resClass) {
+  return parseInt(classLetters[resClass[0]]) + parseInt(resClass[1]);
+}
+
+$.fn.dataTableExt.oSort["rclass-desc"] = function (x, y) {
+  return getClassValue(x) < getClassValue(y);
+};
+
+$.fn.dataTableExt.oSort["rclass-asc"] = function (x, y) {
+  return getClassValue(x) > getClassValue(y);
+};
+
 var projectResourceTable = (function ($) {
   'use strict';
   var projectID = getParameterByName('projID') ? getParameterByName('projID').toString() : '';
@@ -34,23 +53,23 @@ var projectResourceTable = (function ($) {
     var pInfo = getProjectInfo(projectID);
 
     var p3 = Promise.all([p4, pInfo])
-      .then(function (values) {
-        var resources = values[0];
-        var pInfo = values[1];
-        var promiseArray = [];
-        var limit = {};
-        resources.forEach(function (val) {
-          if (!limit['RateCard' + val.Officeid + 'Currency' + pInfo.Currency] && !getRateCardLocal(val.Officeid, pInfo.Currency).length) {
-            promiseArray.push(loadRateCardFromServerIntoSessionStorage(val.Officeid, pInfo.Currency));
-            limit['RateCard' + val.Officeid + 'Currency' + pInfo.Currency] = 1;
-          }
-        });
-        return Promise.all(promiseArray)
-          .then(function (results) {
-            console.log("rateCard with associated offices are loaded");
-            return resources;
-          });
+    .then(function (values) {
+      var resources = values[0];
+      var pInfo = values[1];
+      var promiseArray = [];
+      var limit = {};
+      resources.forEach(function (val) {
+        if (!limit['RateCard' + val.Officeid + 'Currency' + pInfo.Currency] && !getRateCardLocal(val.Officeid, pInfo.Currency).length) {
+          promiseArray.push(loadRateCardFromServerIntoSessionStorage(val.Officeid, pInfo.Currency));
+          limit['RateCard' + val.Officeid + 'Currency' + pInfo.Currency] = 1;
+        }
       });
+      return Promise.all(promiseArray)
+      .then(function (results) {
+        console.log("rateCard with associated offices are loaded");
+        return resources;
+      });
+    });
 
     var pBillsheets = getBillSheet(' ');
     Promise.all([p1, p2, p3, p4, t1, p5, pInfo, pBillsheets]).then(function (values) {
@@ -120,12 +139,7 @@ var projectResourceTable = (function ($) {
           "defaultContent": '',
           "data": "Rowno",
           "render": function (data, type, row, meta) {
-            if (data) {
-              return parseInt(data);
-            }
-            else {
-              return meta.row + 1;
-            }
+            return meta.row + 1;
           }
         },
         {
@@ -136,66 +150,60 @@ var projectResourceTable = (function ($) {
         },
         {
           "title": 'Deliverable / Work&nbsp;Stream',
-          "data": "Deliverables",
           "defaultContent": '',
           "render": function (data, type, row, meta) {
-            return getDeliverables(data);
+            return getDeliverables(row);
           }
         },
         {
           "title": 'Office',
-          "data": "Office",
           "defaultContent": '',
           "class": "td-office",
           "render": function (data, type, row, meta) {
-            return getOffices(data);
+            return getOffices(row);
           }
         },
         {
           "title": 'Title',
-          "data": "EmpGradeName",
           "defaultContent": '',
           "class": 'td-title',
           "render": function (data, type, row, meta) {
-            return getEmployeeTitles(data);
+            return getEmployeeTitles(row);
           }
         },
         {
           "title": 'Class',
-          "data": "Class",
           "class": "center td-class",
           "defaultContent": '',
+          "sType": "rclass",
           render: function (data, type, row) {
-            return getEmployeeClass(data);
+            return getEmployeeClass(row);
           }
         },
         {
           "title": 'Practice',
-          "data": "CostCenterName",
           "defaultContent": '',
           "class": "td-practice",
           "render": function (data, type, row, meta) {
-            return getPractices(data);
+            return getPractices(row);
           }
         },
         {
           "title": 'Role',
-          "data": "Role",
           "sClass": "td-role",
           "defaultContent": "<div contenteditable onkeypress='return (this.innerText.length <= 39)'/>",
           "render": function (data, type, row, meta) {
-            if (data)
-              return "<div contenteditable onkeypress='return (this.innerText.length <= 39)'>" + data + "</div>";
+            if (row.Role)
+              return "<div contenteditable onkeypress='return (this.innerText.length <= 39)'>" + row.Role + "</div>";
           }
         },
         {
           "title": 'Proposed <br/> Resource',
-          "data": "ProposedResource",
           "sClass": "td-proposed-resource",
           "defaultContent": "<div contenteditable onkeypress='return (this.innerText.length <= 39)'/>",
           "render": function (data, type, row, meta) {
-            if (data)
-              return "<div contenteditable onkeypress='return (this.innerText.length <= 39)'>" + data + "</div>";
+            if (row.ProposedRes)
+              return "<div contenteditable onkeypress='return (this.innerText.length <= 39)'>" + row.ProposedRes + "</div>";
           }
         },
         {
@@ -228,48 +236,45 @@ var projectResourceTable = (function ($) {
           "class": 'td-costrate hide',
           "visible": true,
           "render": function (data, type, row, meta) {
-            return getCostRate(data);
+            return getCostRate(row);
           }
         },
         {
           "title": 'Total Hours',
-          "data": "TotalHours",
           "defaultContent": '',
           "class": "total-hours can-clear"
         },
         {
           "title": 'Total Fees',
-          "data": "TotalFees",
           "defaultContent": '',
-          "class": "total-fees can-clear",
-          "render": function (data, type, row, meta) {
-            return data;
-          }
+          "class": "total-fees can-clear"
         }
       ];
 
       // this is supposed to come from data/PlannedHours.json
       projectResources.forEach(function (resource) {
-
+        // var row = {
+        //   "EmpGradeName": resource,
+        //   "Deliverables": resource.DelvDesc,
+        //   "Office": resource.Officeid,
+        //   "Role": resource.Role,
+        //   "ProposedResource": resource.ProposedRes,
+        //   "Class": resource,
+        //   "CostRate": resource,
+        //   "CostCenterName": resource,
+        //   "BillRate": resource.BillRate,
+        //   "BillRateOvride": resource.BillRateOvride,
+        //   "Currency": projectInfo.Currency //from projectInfo
+        // };
+        console.log(resource);
+        // just patching up some stuff
+        resource.Currency = projectInfo.Currency;
         resource.Rowno = parseInt(resource.Rowno);
-        var row = {
-          "Rowno": resource.Rowno,
-          "EmpGradeName": resource,
-          "Deliverables": resource.DelvDesc,
-          "Office": resource.Officeid,
-          "Role": resource.Role,
-          "ProposedResource": resource.ProposedRes,
-          "Class": resource,
-          "CostRate": resource,
-          "CostCenterName": resource,
-          "BillRate": resource.BillRate,
-          "BillRateOvride": resource.BillRateOvride,
-          "Currency": projectInfo.Currency //from projectInfo
-        };
+
         $.each(hrRows[resource.Rowno], function (k, v) {
-          row['hour-' + k] = v;
+          resource['hour-' + k] = v;
         });
-        myRows.push(row);
+        myRows.push(resource);
       });
 
       var planLabel = planBy === 'WK' ? 'Week' : 'Month';
@@ -300,15 +305,15 @@ var projectResourceTable = (function ($) {
         "columnDefs": [
           {
             "orderable": false,
-            "targets": [1]
+            "targets": [0, 1, 2]
           }
         ],
         "buttons": [
           {
             "extend": 'excel',
-            action: function ( e, dt, node, config ) {
+            action: function (e, dt, node, config) {
               $('#project-resource-table').resourceTableToCSV();
-           }
+            }
           }
         ],
         "order": [[3, 'asc']],
@@ -318,58 +323,78 @@ var projectResourceTable = (function ($) {
         "rowCallback": function (row, json) {
           $(row).removeClass('odd even');
           $("td:nth-child(n+9):not(:nth-child(11)):not(:nth-child(13)):not(:nth-child(14))", row)
-            .addClass("contenteditable");
+          .addClass("contenteditable");
         },
         "createdRow": function (row, data, index) {
           $('tfoot th').removeClass('center blue-bg total-hours total-fees rate-override td-costrate num hide td-office td-title td-class td-practice td-billrate');
         },
         "drawCallback": function (row) {
-          $("#project-resource-table tbody select.office").on('change', function () {
-            console.log("office changed");
-            var nodes = $(this);
-            var OfficeId = $(this).val();
-            var Currency = projectInfo.Currency;
+          $("#project-resource-table tbody select.deliverable").on('change', function () {
+            var dataRow = $(this).closest('tr');
+            var currentRowObject = Object.assign({}, projResourceTable.row(dataRow).data());
+            currentRowObject.DelvDesc = $(this).val();
+            projResourceTable.row(dataRow).data(currentRowObject).draw();
+          });
 
-            $('.loader').show();
+          $("#project-resource-table tbody").on('change', 'select.office', function () {
+            // console.log("office changed");
+            var dataRowO = $(this).closest('tr');
+
+            console.log(projResourceTable.row(dataRowO).data());
+
+            var currentRowObj = Object.assign({}, projResourceTable.row(dataRowO).data());
+            currentRowObj.Officeid = $(this).val();
+            currentRowObj.EmpGradeName = '';
+            currentRowObj.Class = '';
+            currentRowObj.CostCenterName = '';
+            currentRowObj.CostRate = '';
+            currentRowObj.BillRate = '';
+            currentRowObj.BillRateOvride = '';
+
+
+            var nodes = $(this);
+            // var OfficeId = $(this).val();
+            // var Currency = projectInfo.Currency;
+            //$('.loader').show();
             // clear out the rest of the rows when office was changed..
-            nodes.closest('tr').find('.title').empty();
-            nodes.closest('tr').find('.td-class').empty();
-            nodes.closest('tr').find('.practice').empty();
-            nodes.closest('tr').find('.td-billrate').empty();
-            nodes.closest('tr').find('.td-costrate').empty();
             nodes.closest('tr').find("select.practice").css({
-              'border':'solid 1px red'
+              'border': 'solid 1px red'
             });
             nodes.closest('tr').find("select.title").css({
-              'border':'solid 1px red'
+              'border': 'solid 1px red'
             });
             // check to see if that office Rate exists in local storage
             // if it exists, then go ahead and then update the dropdown
-            if (getRateCardLocal(OfficeId, Currency).length) {
-              updateEmployeeTitleSelect(nodes);
+            if (getRateCardLocal(currentRowObj.Officeid, currentRowObj.Currency).length) {
+              projResourceTable.row(dataRowO).data(currentRowObj).draw();
             }
-            else{
-              var pGetRateCard = getRateCard(OfficeId, Currency);
+            else {
+              var pGetRateCard = getRateCard(currentRowObj.Officeid, currentRowObj.Currency);
               console.log('rate card not found. loading from server');
               return pGetRateCard.then(function (rateCards) {
-                sessionStorage.setItem('RateCard' + OfficeId + 'Currency' + Currency, JSON.stringify(rateCards));
-                updateEmployeeTitleSelect(nodes);
+                sessionStorage.setItem('RateCard' + currentRowObj.Officeid + 'Currency' + currentRowObj.Currency, JSON.stringify(rateCards));
+                projResourceTable.row(dataRowO).data(currentRowObj).draw();
               });
             }
             recalculateStuff();
           });
+
           $("#project-resource-table tbody select.title").on('change', function () {
             console.log("title changed");
             var nodes = $(this);
-            getClass(nodes);
-            updatePracticeSelect(nodes);
-            nodes.closest('tr').find('.td-billrate').empty();
-            nodes.closest('tr').find('.td-costrate').empty();
+            var dataRow = $(this).closest('tr');
+            console.log(projResourceTable.row(dataRow).data());
+            var currentRowObject1 = projResourceTable.row(dataRow).data();
+            currentRowObject1.EmpGradeName = $(this).find(':selected').text();
+            currentRowObject1.Class = nodes.find(':selected').data('class');
+            currentRowObject1.CostCenterName = '';
+            projResourceTable.row(dataRow).data(currentRowObject1).draw();
+
             nodes.css({
-              'border':''
+              'border': ''
             });
             nodes.closest('tr').find("select.practice").css({
-              'border':'solid 1px red'
+              'border': 'solid 1px red'
             });
             recalculateStuff();
           });
@@ -378,9 +403,9 @@ var projectResourceTable = (function ($) {
             console.log("practice/cost center changed");
             // just sending out this so we can modify the same row.
             var nodes = $(this);
-            loadBillRate(nodes);
+            //loadBillRate(nodes);
             nodes.css({
-              'border':''
+              'border': ''
             });
             recalculateStuff();
           });
@@ -396,7 +421,7 @@ var projectResourceTable = (function ($) {
           });
 
           var rowNumber = 1;
-          $.each($("#project-resource-table tbody tr"), function(k, v){
+          $.each($("#project-resource-table tbody tr"), function (k, v) {
             $(v).find('.rowno').text(rowNumber);
             rowNumber++;
           });
@@ -411,13 +436,25 @@ var projectResourceTable = (function ($) {
 
       function addRow() {
         //if there is no data add one empty row.
-        projResourceTable.row.add({
-          "Office": '',
-          "CostCenterName": '',
-          "Deliverables": deliverables,
-          "Class": '',
-          "Role": ''
-        }).draw().node();
+        var rows = projResourceTable.rows().count();
+        console.log(rows);
+        // we should clone the last row
+        if (rows > 0) {
+          var lastRow = projResourceTable.row(':last').data();
+          console.log(lastRow.Class.EmpGradeName);
+          projResourceTable.row.add(lastRow).draw().node();
+
+        }
+        else {
+          projResourceTable.row.add({
+            "Office": '',
+            "CostCenterName": '',
+            "Deliverables": deliverables[0].DelvDesc,
+            "Class": '',
+            "Role": ''
+          }).draw().node();
+        }
+        recalculateStuff();
         currencyStyles.initCurrencyStyles(projectInfo.Currency);
       }
 
@@ -436,50 +473,21 @@ var projectResourceTable = (function ($) {
       //Remove row
       $('#project-resource-table tbody').on('click', '.remove', function (e) {
         e.preventDefault();
-        projResourceTable.row($(this).parents('tr')).remove().draw(false);
+        projResourceTable.row($(this).closest('tr')).remove().draw();
         recalculateStuff();
       });
 
       //clone row
       $('#project-resource-table tbody').on('click', '.copy', function (e) {
         e.preventDefault();
-        var currentRow = $(this).closest('tr');
-
-        //console.log(currentRow);
-
-        var deliverable = $(currentRow).find('select.deliverable option:selected').text();
-        var office = $(currentRow).find('select.office option:selected').val();
-        var title = $(currentRow).find('select.title option:selected').text();
-        var resourceClass = $(currentRow).find('.td-class').text();
-        var practiceId = $(currentRow).find('select.practice option:selected').val();
-        var role = $(currentRow).find('.td-role').text();
-        var proposedResource = $(currentRow).find('.td-proposed-resource').text();
-
-        var billRate = $(currentRow).find('.td-billrate').text().replace('$', '');
-        //console.log($(currentRow));
-
-        var clonedResource =  { Officeid: office, EmpGradeName: title, Practiceid: practiceId };
-
-        var clonedRow = {
-          "Office": office,
-          "CostCenterName": clonedResource,
-          "Deliverables": deliverable,
-          "Class": clonedResource,
-          "Role": role,
-          "ProposedResource": proposedResource,
-          "EmpGradeName": clonedResource,
-          "BillRate": billRate,
-          "CostRate": clonedResource
-        };
-
-        $.each($(currentRow).find('.hour'), function(k, v){
-          var hrCell = k+1;
-          clonedRow['hour-' + hrCell] = $(v).text();
-        });
-
-        projResourceTable.row.add(clonedRow).draw().node();
-
+        var currentRowbody = projResourceTable.row($(this).closest('tr')).data();
+        projResourceTable.row.add(currentRowbody).draw().node();
         recalculateStuff();
+      });
+
+      $('#project-resource-table tbody').on('click', 'tr', function () {
+        console.log(projResourceTable.row(this).data());
+        var currentRow = projResourceTable.row(this).data();
       });
 
       // maybe move this into that
@@ -517,30 +525,14 @@ var projectResourceTable = (function ($) {
         });
       });
 
-      function getClass(nodes) {
-        nodes.closest('tr').find('.td-class').empty().append(nodes.find(':selected').data('class'));
-      }
-
-      function getDeliverables(data) {
+      function getDeliverables(resource) {
         var select = "<select class='deliverable' name='DelvDesc'>";
         $.each(deliverables, function (key, val) {
-          var selected = val.DelvDesc === data ? 'selected="selected" ' : '';
+          var selected = val.DelvDesc === resource.DelvDesc ? 'selected="selected" ' : '';
           select += '<option ' + selected + ' >' + val.DelvDesc + '</option>';
         });
         select += "</select>";
         return select;
-      }
-
-      //get deliverables from projectRelatedDeliverables json
-      function updatePracticeSelect(nodes) {
-        var practiceSelect = nodes.closest('tr').find('.practice');
-        var Officeid = nodes.closest('tr').find('.office :selected').val();
-        var EmpGradeName = nodes.closest('tr').find('.title :selected').text();
-        var practices = getPractices({
-          EmpGradeName: EmpGradeName,
-          Officeid: Officeid
-        });
-        practiceSelect.html(practices);
       }
 
       function loadBillRate(nodes) {
@@ -563,7 +555,6 @@ var projectResourceTable = (function ($) {
             return rateCard.BillsheetId === projectInfo.BillsheetId && EmpGradeName === rateCard.TitleDesc;
           });
 
-          if (parseFloat(targetEmployeeRate.OverrideRate) > 0) {
           if (targetEmployeeRate && parseFloat(targetEmployeeRate.OverrideRate) > 0) {
             nodes.closest('tr').find('.rate-override div').text(targetEmployeeRate.OverrideRate);
           }
@@ -573,24 +564,15 @@ var projectResourceTable = (function ($) {
         resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table", projectInfo.Currency);
       }
 
-      function getOffices(Officeid) {
+      function getOffices(resource) {
         var select = "<select class='office' name='Office'>";
         select += "<option>Select Office</option>";
-
         $.each(offices, function (key, val) {
-          var selectString = Officeid === val.Office ? 'selected="selected"' : '';
+          var selectString = resource.Officeid === val.Office ? 'selected="selected"' : '';
           select += '<option value="' + val.Office + '"' + selectString + '>' + val.OfficeName + ', ' + val.City + ' (' + val.Office + ')</option>';
         });
         select += "</select>";
         return select;
-      }
-
-      function updateEmployeeTitleSelect(nodes) {
-        $('.loader').hide();
-        var employeeTitleSelect = nodes.closest('tr').find('.title');
-        var Officeid = nodes.closest('tr').find('.office :selected').val();
-        var empTitles = getEmployeeTitles({EmpGradeName: '', Officeid: Officeid});
-        employeeTitleSelect.html(empTitles);
       }
 
       function getEmployeeTitles(resource) {
@@ -886,15 +868,15 @@ var projectResourceTable = (function ($) {
 
 
       var payloads = modelingTablePayloads
-        .concat(updateProjectInfo)
-        .concat(deletePayloads)
-        .concat(resourcePayloads)
-        .concat(resourceHours);
+      .concat(updateProjectInfo)
+      .concat(deletePayloads)
+      .concat(resourcePayloads)
+      .concat(resourceHours);
 
-      if(event.target.id === 'btn-save') {
+      if (event.target.id === 'btn-save') {
         ajaxBatch(payloads, $(this).attr('href'), true);
       } else {
-         ajaxBatch(payloads, $(this).attr('href'), false);
+        ajaxBatch(payloads, $(this).attr('href'), false);
       }
     });
   }
