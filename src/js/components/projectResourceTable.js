@@ -366,7 +366,7 @@ var projectResourceTable = (function ($) {
             recalculateStuff();
           });
 
-         $("#project-resource-table tbody select.practice").on('change', function () {
+          $("#project-resource-table tbody select.practice").on('change', function () {
             console.log("practice/cost center changed");
             var dataRow = $(this).closest('tr');
             var currentRowObj = projResourceTable.row(dataRow).data();
@@ -530,7 +530,7 @@ var projectResourceTable = (function ($) {
 
       function getEmployeeTitles(resource) {
         var selectedStyle = resource.EmpGradeName ? '' : "style='border:solid 1px red;'";
-        var select = "<select class='title' name='EmpGradeName' " + selectedStyle +">";
+        var select = "<select class='title' name='EmpGradeName' " + selectedStyle + ">";
         select += '<option data-class="">Select Title</option>';
         var empGrades = [];
         var rateCards = getRateCardLocal(resource.Officeid, projectInfo.Currency);
