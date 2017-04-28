@@ -411,23 +411,13 @@ var projectResourceTable = (function ($) {
       function addRow() {
         //if there is no data add one empty row.
         var rows = projResourceTable.rows().count();
-        console.log(rows);
-        // we should clone the last row
-        if (rows > 0) {
-          var lastRow = projResourceTable.row(':last').data();
-          console.log(lastRow.Class.EmpGradeName);
-          projResourceTable.row.add(lastRow).draw().node();
-
-        }
-        else {
-          projResourceTable.row.add({
-            "Office": '',
-            "CostCenterName": '',
-            "Deliverables": deliverables[0].DelvDesc,
-            "Class": '',
-            "Role": ''
-          }).draw().node();
-        }
+        projResourceTable.row.add({
+          "Office": '',
+          "CostCenterName": '',
+          "Deliverables": deliverables[0].DelvDesc,
+          "Class": '',
+          "Role": ''
+        }).draw().node();
         recalculateStuff();
         currencyStyles.initCurrencyStyles(projectInfo.Currency);
       }
@@ -459,14 +449,13 @@ var projectResourceTable = (function ($) {
         recalculateStuff();
       });
 
-      $('#project-resource-table tbody').on('click', 'tr', function () {
-        console.log(projResourceTable.row(this).data());
-        var currentRow = projResourceTable.row(this).data();
-      });
-
-      // maybe move this into that
+      // for debugging
+      // $('#project-resource-table tbody').on('click', 'tr', function () {
+      //   console.log(projResourceTable.row(this).data());
+      //   var currentRow = projResourceTable.row(this).data();
+      // });
+      
       $('#rate-card').on('change', function (event) {
-
         projectInfo.BillsheetId = $('#rate-card').val();
 
         var url = $(this).attr('href');
@@ -474,9 +463,7 @@ var projectResourceTable = (function ($) {
         url = updateQueryString('CardID', CardID, url);
 
         var p = getBillSheet(CardID);
-
         p.then(function (cardResults) {
-          //console.log(cardResults);
           var projResourceTable = $('#project-resource-table').DataTable();
           var rows = projResourceTable.rows();
           for (var i = 0; i < rows.context[0].aoData.length; i++) {
@@ -638,7 +625,6 @@ var projectResourceTable = (function ($) {
 
       function recalculateStuff() {
         var rows = projResourceTable.rows();
-        //  console.log(rows.context[0].aoData);
         var tableHoursSum = 0;
         var tableFeeSum = 0;
         // calculate total hours
@@ -915,7 +901,6 @@ var projectResourceTable = (function ($) {
 
     var rowIndex = 1;
     var payloads = [];
-    //console.log(rows.context[0].aoData);
     for (var i = 0; i < rows.context[0].aoData.length; i++) {
       var payloadIndex = padNumber(rowIndex);
       var brOverRide = convertToDecimal($(rows.context[0].aoData[i].anCells[11]).text()) ? convertToDecimal($(rows.context[0].aoData[i].anCells[11]).text()).toString() : null;
