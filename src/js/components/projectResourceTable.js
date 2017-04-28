@@ -454,7 +454,7 @@ var projectResourceTable = (function ($) {
       //   console.log(projResourceTable.row(this).data());
       //   var currentRow = projResourceTable.row(this).data();
       // });
-      
+
       $('#rate-card').on('change', function (event) {
         projectInfo.BillsheetId = $('#rate-card').val();
 
@@ -804,11 +804,7 @@ var projectResourceTable = (function ($) {
         .concat(resourcePayloads)
         .concat(resourceHours);
 
-      if (event.target.id === 'btn-save') {
-        ajaxBatch(payloads, $(this).attr('href'), true);
-      } else {
-        ajaxBatch(payloads, $(this).attr('href'), false);
-      }
+      ajaxBatch(payloads, $(this).attr('href'), event.target.id === 'btn-save');
     });
   }
 
