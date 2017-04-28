@@ -35,23 +35,23 @@ var projectResourceTable = (function ($) {
     var pInfo = getProjectInfo(projectID);
 
     var p3 = Promise.all([p4, pInfo])
-    .then(function (values) {
-      var resources = values[0];
-      var pInfo = values[1];
-      var promiseArray = [];
-      var limit = {};
-      resources.forEach(function (val) {
-        if (!limit['RateCard' + val.Officeid + 'Currency' + pInfo.Currency] && !getRateCardLocal(val.Officeid, pInfo.Currency).length) {
-          promiseArray.push(loadRateCardFromServerIntoSessionStorage(val.Officeid, pInfo.Currency));
-          limit['RateCard' + val.Officeid + 'Currency' + pInfo.Currency] = 1;
-        }
+      .then(function (values) {
+        var resources = values[0];
+        var pInfo = values[1];
+        var promiseArray = [];
+        var limit = {};
+        resources.forEach(function (val) {
+          if (!limit['RateCard' + val.Officeid + 'Currency' + pInfo.Currency] && !getRateCardLocal(val.Officeid, pInfo.Currency).length) {
+            promiseArray.push(loadRateCardFromServerIntoSessionStorage(val.Officeid, pInfo.Currency));
+            limit['RateCard' + val.Officeid + 'Currency' + pInfo.Currency] = 1;
+          }
+        });
+        return Promise.all(promiseArray)
+          .then(function (results) {
+            console.log("rateCard with associated offices are loaded");
+            return resources;
+          });
       });
-      return Promise.all(promiseArray)
-      .then(function (results) {
-        console.log("rateCard with associated offices are loaded");
-        return resources;
-      });
-    });
 
     var pBillsheets = getBillSheet(' ');
     Promise.all([p1, p2, p3, p4, t1, p5, pInfo, pBillsheets]).then(function (values) {
@@ -297,7 +297,7 @@ var projectResourceTable = (function ($) {
         "rowCallback": function (row, json) {
           $(row).removeClass('odd even');
           $("td:nth-child(n+9):not(:nth-child(11)):not(:nth-child(13)):not(:nth-child(14))", row)
-          .addClass("contenteditable");
+            .addClass("contenteditable");
         },
         "createdRow": function (row, data, index) {
           $('tfoot th').removeClass('center blue-bg total-hours total-fees rate-override td-costrate num hide td-office td-title td-class td-practice td-billrate');
@@ -813,10 +813,10 @@ var projectResourceTable = (function ($) {
 
 
       var payloads = modelingTablePayloads
-      .concat(updateProjectInfo)
-      .concat(deletePayloads)
-      .concat(resourcePayloads)
-      .concat(resourceHours);
+        .concat(updateProjectInfo)
+        .concat(deletePayloads)
+        .concat(resourcePayloads)
+        .concat(resourceHours);
 
       if (event.target.id === 'btn-save') {
         ajaxBatch(payloads, $(this).attr('href'), true);
