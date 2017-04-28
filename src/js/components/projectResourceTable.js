@@ -22,6 +22,22 @@ $.fn.dataTableExt.oSort["rclass-asc"] = function (x, y) {
   return getClassValue(x) > getClassValue(y);
 };
 
+$.fn.dataTableExt.oSort["select-desc"] = function (x, y) {
+  return $(x).find(":selected").val() < $(y).find(":selected").val();
+};
+
+$.fn.dataTableExt.oSort["select-asc"] = function (x, y) {
+  return $(x).find(":selected").val() > $(y).find(":selected").val();
+};
+
+$.fn.dataTableExt.oSort["selecttext-desc"] = function (x, y) {
+  return $(x).find(":selected").text() < $(y).find(":selected").text();
+};
+
+$.fn.dataTableExt.oSort["selecttext-asc"] = function (x, y) {
+  return $(x).find(":selected").text() > $(y).find(":selected").text();
+};
+
 var projectResourceTable = (function ($) {
   'use strict';
   var projectID = getParameterByName('projID') ? getParameterByName('projID').toString() : '';
@@ -131,13 +147,14 @@ var projectResourceTable = (function ($) {
           "title": '<i class="fa fa-copy"></i>',
           "class": "center blue-bg",
           "data": null,
+          "orderable": false,
           "defaultContent": '<a href=" " class="copy"><i class="fa fa-copy"></i></a>'
         },
         {
           "title": 'Row',
           "class": "center rowno",
           "defaultContent": '',
-          "data": "Rowno",
+          "orderable": false,
           "render": function (data, type, row, meta) {
             return meta.row + 1;
           }
@@ -146,12 +163,16 @@ var projectResourceTable = (function ($) {
           "title": '<i class="fa fa-trash"></i>',
           "class": "center blue-bg",
           "data": null,
+          "orderable": false,
           "defaultContent": '<a href=" " class="remove"><i class="fa fa-trash"></i></a>'
         },
         {
           "title": 'Deliverable / Work&nbsp;Stream',
+          "data": 'DelvDesc',
           "defaultContent": '',
+          "sType": "select",
           "render": function (data, type, row, meta) {
+          //  return data;
             return getDeliverables(row);
           }
         },
@@ -159,6 +180,7 @@ var projectResourceTable = (function ($) {
           "title": 'Office',
           "defaultContent": '',
           "class": "td-office",
+          "sType": "selecttext",
           "render": function (data, type, row, meta) {
             return getOffices(row);
           }
@@ -167,6 +189,7 @@ var projectResourceTable = (function ($) {
           "title": 'Title',
           "defaultContent": '',
           "class": 'td-title',
+          "sType": "selecttext",
           "render": function (data, type, row, meta) {
             return getEmployeeTitles(row);
           }
@@ -209,25 +232,25 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Office Standard Rate',
           "defaultContent": '',
-          "data": "BillRate",
           "class": "td-billrate",
           "render": function (data, type, row, meta) {
             if (row.Currency) {
               currencyStyles.initCurrencyStyles(row.Currency);
             }
-            if (data) {
-              return convertToDollar(projectInfo.Currency, parseFloat(data));
+            if (row.BillRate) {
+              return convertToDollar(projectInfo.Currency, parseFloat(row.BillRate));
             }
           }
         },
         {
           "title": 'Client Ratecard',
           "data": "BillRateOvride",
+          "orderable": false,
           "defaultContent": '<div contenteditable class="currency-sign usd" />',
           "class": "rate-override num",
           "render": function (data, type, row, meta) {
-            if (parseFloat(data))
-              return '<div contenteditable class="currency-sign usd">' + parseFloat(data) + '</div>';
+            if (parseFloat(row.BillRateOvride))
+              return '<div contenteditable class="currency-sign '+ projectInfo.Currency + '">' + parseFloat(row.BillRateOvride) + '</div>';
           }
         },
         {
@@ -247,6 +270,7 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Total Fees',
           "defaultContent": '',
+          "orderable": false,
           "class": "total-fees can-clear"
         }
       ];
@@ -282,6 +306,7 @@ var projectResourceTable = (function ($) {
       var startDate = projectInfo.EstStDate;
       for (var i = 1; i <= duration; i++) {
         columns.push({
+          "orderable": false,
           "title": planLabel === 'Month' ? calcMonthHeader(startDate) : 'Week ' + i,
           "sClass": "hour",
           "data": 'hour-' + i,
@@ -302,12 +327,6 @@ var projectResourceTable = (function ($) {
         "info": false,
         "bAutoWidth": false,
         "ordering": true,
-        "columnDefs": [
-          {
-            "orderable": false,
-            "targets": [0, 1, 2]
-          }
-        ],
         "buttons": [
           {
             "extend": 'excel',
@@ -316,7 +335,7 @@ var projectResourceTable = (function ($) {
             }
           }
         ],
-        "order": [[3, 'asc']],
+        //"order": [[3, 'asc']],
         "columns": columns,
         "bFilter": false,
         "select": true,
@@ -331,7 +350,12 @@ var projectResourceTable = (function ($) {
         "drawCallback": function (row) {
           $("#project-resource-table tbody select.deliverable").on('change', function () {
             var dataRow = $(this).closest('tr');
-            var currentRowObject = Object.assign({}, projResourceTable.row(dataRow).data());
+            var currentRowObject = projResourceTable.row(dataRow).data();
+            if(!currentRowObject)
+              return;
+
+            console.log(currentRowObject);
+
             currentRowObject.DelvDesc = $(this).val();
             projResourceTable.row(dataRow).data(currentRowObject).draw();
           });
@@ -342,19 +366,20 @@ var projectResourceTable = (function ($) {
 
             console.log(projResourceTable.row(dataRowO).data());
 
-            var currentRowObj = Object.assign({}, projResourceTable.row(dataRowO).data());
+            var currentRowObj = projResourceTable.row(dataRowO).data();
+            if(!currentRowObj)
+              return;
             currentRowObj.Officeid = $(this).val();
             currentRowObj.EmpGradeName = '';
             currentRowObj.Class = '';
-            currentRowObj.CostCenterName = '';
+            currentRowObj.Practiceid = '';
             currentRowObj.CostRate = '';
             currentRowObj.BillRate = '';
             currentRowObj.BillRateOvride = '';
 
-
             var nodes = $(this);
-            // var OfficeId = $(this).val();
-            // var Currency = projectInfo.Currency;
+            var OfficeId = $(this).val();
+            var Currency = projectInfo.Currency;
             //$('.loader').show();
             // clear out the rest of the rows when office was changed..
             nodes.closest('tr').find("select.practice").css({
@@ -365,14 +390,14 @@ var projectResourceTable = (function ($) {
             });
             // check to see if that office Rate exists in local storage
             // if it exists, then go ahead and then update the dropdown
-            if (getRateCardLocal(currentRowObj.Officeid, currentRowObj.Currency).length) {
+            if (getRateCardLocal(currentRowObj.Officeid, Currency).length) {
               projResourceTable.row(dataRowO).data(currentRowObj).draw();
             }
             else {
-              var pGetRateCard = getRateCard(currentRowObj.Officeid, currentRowObj.Currency);
-              console.log('rate card not found. loading from server');
+              var pGetRateCard = getRateCard(currentRowObj.Officeid, Currency);
+              console.log('rate card' + currentRowObj.Officeid + ' not found. loading from server');
               return pGetRateCard.then(function (rateCards) {
-                sessionStorage.setItem('RateCard' + currentRowObj.Officeid + 'Currency' + currentRowObj.Currency, JSON.stringify(rateCards));
+                sessionStorage.setItem('RateCard' + currentRowObj.Officeid + 'Currency' + Currency, JSON.stringify(rateCards));
                 projResourceTable.row(dataRowO).data(currentRowObj).draw();
               });
             }
@@ -384,11 +409,17 @@ var projectResourceTable = (function ($) {
             var nodes = $(this);
             var dataRow = $(this).closest('tr');
             console.log(projResourceTable.row(dataRow).data());
-            var currentRowObject1 = projResourceTable.row(dataRow).data();
-            currentRowObject1.EmpGradeName = $(this).find(':selected').text();
-            currentRowObject1.Class = nodes.find(':selected').data('class');
-            currentRowObject1.CostCenterName = '';
-            projResourceTable.row(dataRow).data(currentRowObject1).draw();
+            var currentRowObj = projResourceTable.row(dataRow).data();
+            if(!currentRowObj)
+              return;
+            currentRowObj.EmpGradeName = $(this).find(':selected').text();
+            currentRowObj.Class = nodes.find(':selected').data('class');
+            currentRowObj.Practiceid = '';
+            currentRowObj.CostRate = '';
+            currentRowObj.BillRate = '';
+            currentRowObj.BillRateOvride = '';
+
+            projResourceTable.row(dataRow).data(currentRowObj).draw();
 
             nodes.css({
               'border': ''
@@ -403,12 +434,26 @@ var projectResourceTable = (function ($) {
             console.log("practice/cost center changed");
             // just sending out this so we can modify the same row.
             var nodes = $(this);
-            //loadBillRate(nodes);
+            var dataRow = $(this).closest('tr');
+            console.log(projResourceTable.row(dataRow).data());
+            var currentRowObj = projResourceTable.row(dataRow).data();
+            if(!currentRowObj)
+              return;
+
+            currentRowObj.Practiceid = $(this).find(':selected').val();
+
+            var rateCard = getBillRateCard(currentRowObj);
+            currentRowObj.BillRate = rateCard.BillRate;
+            currentRowObj.CostRate = rateCard.CostRate;
+            projResourceTable.row(dataRow).data(currentRowObj).draw();
             nodes.css({
               'border': ''
             });
+            resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table", projectInfo.Currency);
             recalculateStuff();
           });
+
+
           $('.contenteditable').on('keyup focusout', function (e) {
             recalculateStuff();
             //lighten the rate when in override mode.
@@ -535,34 +580,42 @@ var projectResourceTable = (function ($) {
         return select;
       }
 
-      function loadBillRate(nodes) {
-        currency = currencyStyles.currSymbol();
-        // the officeId, US01, US12, etc
-        var Office = nodes.closest('tr').find('.office :selected').val();
-        var EmpGradeName = nodes.closest('tr').find('.title :selected').text();
-        var CostCenter = nodes.closest('tr').find('.practice :selected').val();
-        var rateCards = getRateCardLocal(Office, projectInfo.Currency);
-        var selectedRate = rateCards.find(function (val) {
-          return val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter;
+      function getBillRateCard(resource){
+        var rateCards = getRateCardLocal(resource.Officeid, projectInfo.Currency);
+        var selectedRateCard = rateCards.find(function (val) {
+          return val.Office === resource.Officeid && val.EmpGradeName === resource.EmpGradeName && val.CostCenter === resource.Practiceid;
         });
-
-        nodes.closest('tr').find('.td-billrate').empty().append(currency + selectedRate.BillRate);
-        //this doesn't work if costrate is hidden
-        nodes.closest('tr').find('.td-costrate').empty().append(selectedRate.CostRate);
-
-        if (projectInfo.BillsheetId && projectInfo.BillsheetId !== "0" && projectInfo.BillsheetId.length) {
-          var targetEmployeeRate = customBillsheets.find(function (rateCard) {
-            return rateCard.BillsheetId === projectInfo.BillsheetId && EmpGradeName === rateCard.TitleDesc;
-          });
-
-          if (targetEmployeeRate && parseFloat(targetEmployeeRate.OverrideRate) > 0) {
-            nodes.closest('tr').find('.rate-override div').text(targetEmployeeRate.OverrideRate);
-          }
-        }
-
-        //for calculations on resourceCalculation.js file
-        resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table", projectInfo.Currency);
+        return selectedRateCard ? selectedRateCard : '';
       }
+
+      // function loadBillRate(nodes) {
+      //   currency = currencyStyles.currSymbol();
+      //   // the officeId, US01, US12, etc
+      //   // var Office = nodes.closest('tr').find('.office :selected').val();
+      //   var EmpGradeName = nodes.closest('tr').find('.title :selected').text();
+      //   var CostCenter = nodes.closest('tr').find('.practice :selected').val();
+      //   var rateCards = getRateCardLocal(Office, projectInfo.Currency);
+      //   var selectedRate = rateCards.find(function (val) {
+      //     return val.Office === Office && val.EmpGradeName === EmpGradeName && val.CostCenter === CostCenter;
+      //   });
+      //
+      //   nodes.closest('tr').find('.td-billrate').empty().append(currency + selectedRate.BillRate);
+      //   //this doesn't work if costrate is hidden
+      //   nodes.closest('tr').find('.td-costrate').empty().append(selectedRate.CostRate);
+      //
+      //   if (projectInfo.BillsheetId && projectInfo.BillsheetId !== "0" && projectInfo.BillsheetId.length) {
+      //     var targetEmployeeRate = customBillsheets.find(function (rateCard) {
+      //       return rateCard.BillsheetId === projectInfo.BillsheetId && EmpGradeName === rateCard.TitleDesc;
+      //     });
+      //
+      //     if (targetEmployeeRate && parseFloat(targetEmployeeRate.OverrideRate) > 0) {
+      //       nodes.closest('tr').find('.rate-override div').text(targetEmployeeRate.OverrideRate);
+      //     }
+      //   }
+      //
+      //   //for calculations on resourceCalculation.js file
+      //   resourceCalculation.initResourceFormulas(nodes.closest('tr').find('.td-billrate'), "#project-resource-table", projectInfo.Currency);
+      // }
 
       function getOffices(resource) {
         var select = "<select class='office' name='Office'>";
