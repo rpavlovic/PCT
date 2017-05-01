@@ -4,7 +4,6 @@
  */
 
 function ajaxBatch(payloads, windowTargetUrl, continueBtn) {
-
   showLoader();
   if (payloads.length === 0) {
     // no payload, so just go to target page
@@ -16,8 +15,9 @@ function ajaxBatch(payloads, windowTargetUrl, continueBtn) {
       data: payloads,
       complete: function (xhr, status, data) {
         var timeout = getParameterByName('timeout');
-        console.log("navigating to new window in" + timeout + "seconds");
         timeout = timeout ? timeout : 1;
+        console.log("navigating to new window in" + timeout + "seconds");
+
         hideLoader();
         if (status !== 'error' && xhr.status === 202 && -1 !== xhr.responseText.indexOf("HTTP/1.1 400 Bad Request")) {
           // no error, let's proceed

@@ -319,11 +319,8 @@ var projectInfoForm = (function ($) {
           deliverableId++;
         }
       });
-      if(event.target.id === "btn-save") {
-        ajaxBatch(payloads, $(this).attr('href'), true);
-      } else {
-        ajaxBatch(payloads, $(this).attr('href'), false);
-      }
+
+      ajaxBatch(payloads, $(this).attr('href'), event.target.id === "btn-save");
     } //end if
   });
 
