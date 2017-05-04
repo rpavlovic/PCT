@@ -19,7 +19,7 @@ function ajaxBatch(payloads, windowTargetUrl, continueBtn) {
         console.log("navigating to new window in" + timeout + "seconds");
 
         hideLoader();
-        if (status !== 'error' && xhr.status === 202 && -1 !== xhr.responseText.indexOf("HTTP/1.1 400 Bad Request")) {
+        if (status !== 'error' && xhr.status === 202 && -1 === xhr.responseText.indexOf("HTTP/1.1 400 Bad Request")) {
           // no error, let's proceed
           if(continueBtn) {
             setTimeout(function () {
