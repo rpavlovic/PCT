@@ -9,6 +9,7 @@ var progressNav = (function ($) {
     var radio_href_value = $(form + ' input[type=radio]').val(),
         current_li = $(form + ' li.current'),
         radio = $(form + ' input[type=radio]');
+
     // TODO make pagination like to click back to the previously filled form.
       if((radio_href_value !== window.location.pathname) || ($(form + ' li:not("current")'))) {
         //disable radio checkboxes to prevent going forward before filling the form.
@@ -25,6 +26,7 @@ var progressNav = (function ($) {
         var href = $(form + ' input[type=radio]:checked').val();
         window.location =  href +'?projID='+ getParameterByName('projID') + "&" + getTimestamp();
       });
+
     }
     return {
       initProgressNav:initProgressNav

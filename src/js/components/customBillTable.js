@@ -90,7 +90,7 @@ var loadCustomBillSheet = (function ($) {
             class: 'rate-override num',
             defaultContent: "<div contenteditable class='currency-sign usd'></div>",
             render: function (data, type, row) {
-              var data = parseFloat(data) ? data : '';
+              data = parseFloat(data) ? data : '';
               return "<div contenteditable class='currency-sign " + row[4].toLowerCase() + "'>" + data + "</div>";
             }
           },
@@ -142,7 +142,7 @@ var loadCustomBillSheet = (function ($) {
             title: "Upload / Override",
             defaultContent: "<div contenteditable class='currency-sign usd'></div>",
             render: function (data, type, row) {
-              var data = parseFloat(data) ? data : '';
+              data = parseFloat(data) ? data : '';
               return "<div contenteditable class='currency-sign " + row.Currency.toLowerCase() + "'>" + data + "</div>";
             }
           },
