@@ -72,6 +72,7 @@ var loadCustomBillSheet = (function ($) {
           },
           {
             name: "Class",
+            "sType": "rclass",
             title: "Class"
           },
           {
@@ -121,7 +122,9 @@ var loadCustomBillSheet = (function ($) {
           {
             name: "Class",
             data: "Class",
-            title: "Class"
+            "data": "Class",
+            "sType": "rclass",
+            "defaultContent": '',
           },
           {
             name: "StandardRate",
