@@ -1,33 +1,33 @@
 {
-  "d": {
-    "results": [
+  "d" : {
+    "results" : [
       {
-        "__metadata": {
-          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection('ADULFAN')",
-          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection('ADULFAN')",
-          "type": "ZUX_EMPLOYEE_DETAILS_SRV.EmployeeProfile"
+        "__metadata" : {
+          "id" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection('SGANTEDI')",
+          "uri" : "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/EmployeeCollection('SGANTEDI')",
+          "type" : "ZUX_EMPLOYEE_DETAILS_SRV.EmployeeProfile"
         },
-        "OfficeName": "Weber Shandwick",
-        "EmployeePhoneNum": "",
-        "Office": "US12",
-        "OfficeCity": "New York",
-        "OfficeDistrict": "",
-        "UsrId": "ADULFAN",
-        "EmployeeNumber": "10000310",
-        "OfficePostalcode": "10022",
-        "EmployeeFullName": "Anna Dulfan",
-        "OfficePobox": "",
-        "EmployeeEmail": "N@A",
-        "OfficeStreet": "Third Avenue",
-        "OfficeHousenum": "909",
-        "OfficeStreet2": "",
-        "OfficeBuilding": "",
-        "OfficeFloor": "",
-        "OfficeCountry": "US",
-        "OfficeRegion": "NY",
-        "OfficeTelnumber": "212-445-8000",
-        "OfficeTelextens": "",
-        "OfficeFaxnumber": "212-445-8001"
+        "OfficeName" : "Weber Shandwick",
+        "EmployeePhoneNum" : "",
+        "Office" : "US01",
+        "OfficeCity" : "Minneapolis",
+        "OfficeDistrict" : "",
+        "UsrId" : "SGANTEDI",
+        "EmployeeNumber" : "10000071",
+        "OfficePostalcode" : "55437",
+        "EmployeeFullName" : "Subrahmanyam Gantedi",
+        "OfficePobox" : "",
+        "EmployeeEmail" : "SUBRAHMANYAM.GANTEDI@INTERPUBLIC.COM",
+        "OfficeStreet" : "Norman Center Drive",
+        "OfficeHousenum" : "8000",
+        "OfficeStreet2" : "",
+        "OfficeBuilding" : "",
+        "OfficeFloor" : "",
+        "OfficeCountry" : "US",
+        "OfficeRegion" : "MN",
+        "OfficeTelnumber" : "952-832-5000",
+        "OfficeTelextens" : "",
+        "OfficeFaxnumber" : "952-831-8241"
       }
     ]
   }
