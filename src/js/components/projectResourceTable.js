@@ -180,21 +180,19 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Role',
           "sClass": "td-role",
-          "orderable": false,
-          "defaultContent": "<div contenteditable onkeypress='return (this.innerText.length <= 39)'/>",
+          "defaultContent": "<div contenteditable />",
           "render": function (data, type, row, meta) {
             if (row.Role)
-              return "<div contenteditable onkeypress='return (this.innerText.length <= 39)'>" + row.Role + "</div>";
+              return "<div contenteditable>" + row.Role.substr(0,39) + "</div>";
           }
         },
         {
           "title": 'Proposed <br/> Resource',
           "sClass": "td-proposed-resource",
-          "orderable": false,
-          "defaultContent": "<div contenteditable onkeypress='return (this.innerText.length <= 39)'/>",
+          "defaultContent": "<div contenteditable />",
           "render": function (data, type, row, meta) {
             if (row.ProposedRes)
-              return "<div contenteditable onkeypress='return (this.innerText.length <= 39)'>" + row.ProposedRes + "</div>";
+              return "<div contenteditable>" + row.ProposedRes.substr(0, 39) + "</div>";
           }
         },
         {
@@ -213,7 +211,6 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Client Ratecard',
           "data": "BillRateOvride",
-          "orderable": false,
           "defaultContent": '<div contenteditable class="currency-sign usd" />',
           "class": "rate-override num",
           "render": function (data, type, row, meta) {
@@ -261,9 +258,8 @@ var projectResourceTable = (function ($) {
       var startDate = projectInfo.EstStDate;
       for (var i = 1; i <= duration; i++) {
         columns.push({
-          "orderable": false,
           "title": planLabel === 'Month' ? calcMonthHeader(startDate) : 'Week ' + i,
-          "sClass": "hour",
+          "sClass": "hour hour-"+i,
           "data": 'hour-' + i,
           "defaultContent": '<div contenteditable />',
           render: renderMonth
@@ -381,6 +377,47 @@ var projectResourceTable = (function ($) {
             projResourceTable.row(dataRow).data(currentRowObj).draw();
             resourceCalculation.initResourceFormulas($(this).closest('tr').find('.td-billrate'), "#project-resource-table", projectInfo.Currency);
             recalculateStuff();
+          });
+
+          $('.td-role.contenteditable div').on('keyup focusout', function (e) {
+            var dataRow = $(this).closest('tr');
+            var currentRowObj = projResourceTable.row(dataRow).data();
+            if (!currentRowObj)
+              return;
+
+            currentRowObj.Role = $(this).text().substr(0,39);
+          });
+
+          $('.td-proposed-resource.contenteditable div').on('keyup focusout', function (e) {
+            var dataRow = $(this).closest('tr');
+            var currentRowObj = projResourceTable.row(dataRow).data();
+            if (!currentRowObj)
+              return;
+
+            currentRowObj.ProposedRes = $(this).text().substr(0,39);
+          });
+
+          $('.rate-override.contenteditable div').on('keyup focusout', function (e) {
+            var dataRow = $(this).closest('tr');
+            var currentRowObj = projResourceTable.row(dataRow).data();
+
+            if (!currentRowObj)
+              return;
+
+            currentRowObj.BillRateOvride = $(this).text();
+          });
+
+          $('.hour.contenteditable div').on('keyup focusout', function (e) {
+            var dataRow = $(this).closest('tr');
+            var currentRowObj = projResourceTable.row(dataRow).data();
+            var classes = $(this).parent().attr('class');
+            var hrId = classes.match(/hour-\d+/g);
+
+            if (!currentRowObj)
+              return;
+
+            if(hrId)
+              currentRowObj[hrId[0]] = $(this).text();
           });
 
           $('.contenteditable').on('keyup focusout', function (e) {
