@@ -98,9 +98,16 @@
     });
 
     //Back to previous Page function
-    $('#btn-back').on('click', function(){
-      window.history.back();
+    $('#btn-back').on('click', function(event) {
+      event.preventDefault();
+      var href = $(this).attr('href');
+      window.location =  href +'?projID='+ getParameterByName('projID') + "&" + getTimestamp();
       return false;
+    });
+
+    $("#history-back").on('click', function(e) {
+        window.history.back();
+        return false;
     });
 
   });
