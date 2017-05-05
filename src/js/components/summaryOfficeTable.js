@@ -18,7 +18,7 @@ function getExchangeRate(rateCardArray, officeId, practiceId, empGradeName){
 
 var summaryOfficeTable = (function ($) {
   'use strict';
-  function initSummaryOfficeTable(projectInfo, projectResources, rateCards, selectedModel) {
+  function initSummaryOfficeTable(projectInfo, projectResources, projectExpenses, rateCards, selectedModel) {
     var byOfficeTable = $("#breakdown-office-table");
     var rows = {};
 
@@ -133,6 +133,19 @@ var summaryOfficeTable = (function ($) {
           render: function (data, type, row) {
             if (data && isNaN(data)) {
               return convertToDollar(data.localCurrency, data.localFees);
+            } else {
+              return data;
+            }
+          }
+        },
+        {
+          "title": "Expenses",
+          "data": "TotalExpenses",
+          "defaultContent": "$0",
+          "class": "deliv-expenses",
+          render: function (data, type, row) {
+            if (data || isNaN(data)) {
+              return convertToDollar(projectInfo.Currency, data);
             } else {
               return data;
             }
