@@ -76,8 +76,9 @@ var summaryRoleTable = (function ($) {
         {
           "title": "Class",
           "data": 'class',
-          "defaultContent": "0",
+          "defaultContent": "",
           "class": "office",
+          "sType": "rclass",
           render: function (data, type, row) {
             return data;
           }

@@ -10,25 +10,55 @@ function getClassValue(resClass) {
 }
 
 $.fn.dataTableExt.oSort["rclass-desc"] = function (x, y) {
-  return getClassValue(x) < getClassValue(y);
+  if (getClassValue(x) < getClassValue(y))
+    return -1;
+  else if (getClassValue(x) > getClassValue(y))
+    return 1;
+  else // must be equal
+    return 0;
 };
 
 $.fn.dataTableExt.oSort["rclass-asc"] = function (x, y) {
-  return getClassValue(x) > getClassValue(y);
+  if (getClassValue(x) > getClassValue(y))
+    return -1;
+  else if (getClassValue(x) < getClassValue(y))
+    return 1;
+  else // must be equal
+    return 0;
 };
 
 $.fn.dataTableExt.oSort["select-desc"] = function (x, y) {
-  return $(x).find(":selected").val() < $(y).find(":selected").val();
+  if ($(x).find(":selected").val() < $(y).find(":selected").val())
+    return -1;
+  else if ($(x).find(":selected").val() > $(y).find(":selected").val())
+    return 1;
+  else
+    return 0;
 };
 
 $.fn.dataTableExt.oSort["select-asc"] = function (x, y) {
-  return $(x).find(":selected").val() > $(y).find(":selected").val();
+  if ($(x).find(":selected").val() > $(y).find(":selected").val())
+    return -1;
+  else if ($(x).find(":selected").val() < $(y).find(":selected").val())
+    return 1;
+  else
+    return 0;
 };
 
 $.fn.dataTableExt.oSort["selecttext-desc"] = function (x, y) {
-  return $(x).find(":selected").text() < $(y).find(":selected").text();
+  if($(x).find(":selected").text() < $(y).find(":selected").text())
+    return -1;
+  else if($(x).find(":selected").text() > $(y).find(":selected").text())
+    return 1;
+  else
+    return 0;
 };
 
 $.fn.dataTableExt.oSort["selecttext-asc"] = function (x, y) {
-  return $(x).find(":selected").text() > $(y).find(":selected").text();
+  if($(x).find(":selected").text() > $(y).find(":selected").text())
+    return -1;
+  else if($(x).find(":selected").text() < $(y).find(":selected").text())
+    return 1;
+  else
+    return 0;
 };
