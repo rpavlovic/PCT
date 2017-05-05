@@ -10,17 +10,17 @@ var loadCustomBillSheet = (function ($) {
     // get user profile
     showLoader();
 
-    if (!getParameterByName('CardID')) {
-      var pProfile = getEmployeeInfo();
-      var pOffices = getOffices();
+    var pProfile = getEmployeeInfo();
+    var pOffices = getOffices();
+    Promise.all([pProfile, pOffices])
+      .then(function (values) {
+        var employee = values[0];
+        var officeInfo = values[1].find(function (val) {
+          return val.Office === employee.Office;
+        });
 
-      Promise.all([pProfile, pOffices])
-        .then(function (values) {
-          var employee = values[0];
-          var officeInfo = values[1].find(function (val) {
-            return val.Office === employee.Office;
-          });
-
+        if (!getParameterByName('CardID')) {
+          // we fetch the default rate card, so we can figure out the currency of the user's home office.
           var pRateCards = getRateCard(employee.Office, officeInfo.Currency);
           pRateCards.then(function (rateCards) {
             var uniqRcs = {};
@@ -42,14 +42,19 @@ var loadCustomBillSheet = (function ($) {
             });
             populateTable(uniqRcs, false);
           });
-        });
-    }
-    else {
-      var rcs = getBillSheet(getParameterByName('CardID'));
-      rcs.then(function (values) {
-        populateTable(values, false);
+        }
+        else {
+          var rcs = getBillSheet(getParameterByName('CardID'));
+          rcs.then(function (values) {
+            // Adding in the user's home currency since we don't have a field to save in the DB
+            values = values.map(function (obj) {
+              obj.Currency = officeInfo.Currency;
+              return obj;
+            });
+            populateTable(values, false);
+          });
+        }
       });
-    }
 
     function populateTable(rows, isUploaded) {
       hideLoader();
@@ -206,18 +211,18 @@ var loadCustomBillSheet = (function ($) {
       });
     }
 
-    function recalcTable(){
-     $('tbody tr[role="row"]').each(function(i, obj){
-       var rate = convertToDecimal($(obj).find('.rate').text());
-       var overrideRate = convertToDecimal($(obj).find('.rate-override div').text());
-       if(overrideRate > 0){
-         var discount = (rate-overrideRate)/ rate;
-         $(obj).find('.discount').text(convertToPercent(discount));
-       }
-       else{
-         $(obj).find('.discount').text('');
-       }
-     });
+    function recalcTable() {
+      $('tbody tr[role="row"]').each(function (i, obj) {
+        var rate = convertToDecimal($(obj).find('.rate').text());
+        var overrideRate = convertToDecimal($(obj).find('.rate-override div').text());
+        if (overrideRate > 0) {
+          var discount = (rate - overrideRate) / rate;
+          $(obj).find('.discount').text(convertToPercent(discount));
+        }
+        else {
+          $(obj).find('.discount').text('');
+        }
+      });
     }
 
     function uploadCSV(data) {
@@ -237,7 +242,7 @@ var loadCustomBillSheet = (function ($) {
         });
 
         // remove rows that are invalid cells
-        rows = rows.filter(function(row){
+        rows = rows.filter(function (row) {
           return row.length > 5;
         });
 
@@ -273,7 +278,7 @@ var loadCustomBillSheet = (function ($) {
         var blob = file.slice(start, stop + 1);
         reader.readAsText(blob);
 
-        if(file_name.length <=50) {
+        if (file_name.length <= 50) {
           $('#bill-sheet-name').val(file_name.slice(0, -4));
         } else {
           $('#bill-sheet-name').val(file_name.substr(0, 50));
@@ -296,7 +301,7 @@ var loadCustomBillSheet = (function ($) {
       event.preventDefault();
       console.log("saving form");
       var payloads = buildBillSheetPayload();
-      if(event.target.id === 'btn-save') {
+      if (event.target.id === 'btn-save') {
         ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId, true);
       } else {
         ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId, false);
