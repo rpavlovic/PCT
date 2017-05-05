@@ -138,7 +138,7 @@ var projectResourceTable = (function ($) {
           "defaultContent": '',
           "sType": "select",
           "render": function (data, type, row, meta) {
-            return getDeliverables(row);
+            return getDeliverablesDropdown(deliverables, row);
           }
         },
         {
@@ -147,7 +147,7 @@ var projectResourceTable = (function ($) {
           "class": "td-office",
           "sType": "selecttext",
           "render": function (data, type, row, meta) {
-            return getOffices(row);
+            return getOfficesDropdown(offices, row);
           }
         },
         {
@@ -523,33 +523,12 @@ var projectResourceTable = (function ($) {
         });
       });
 
-      function getDeliverables(resource) {
-        var select = "<select class='deliverable' name='DelvDesc'>";
-        $.each(deliverables, function (key, val) {
-          var selected = val.DelvDesc === resource.DelvDesc ? 'selected="selected" ' : '';
-          select += '<option ' + selected + ' >' + val.DelvDesc + '</option>';
-        });
-        select += "</select>";
-        return select;
-      }
-
       function getBillRateCard(resource) {
         var rateCards = getRateCardLocal(resource.Officeid, projectInfo.Currency);
         var selectedRateCard = rateCards.find(function (val) {
           return val.Office === resource.Officeid && val.EmpGradeName === resource.EmpGradeName && val.CostCenter === resource.Practiceid;
         });
         return selectedRateCard ? selectedRateCard : '';
-      }
-
-      function getOffices(resource) {
-        var select = "<select class='office' name='Office'>";
-        select += "<option>Select Office</option>";
-        $.each(offices, function (key, val) {
-          var selectString = resource.Officeid === val.Office ? 'selected="selected"' : '';
-          select += '<option value="' + val.Office + '"' + selectString + '>' + val.OfficeName + ', ' + val.City + ' (' + val.Office + ')</option>';
-        });
-        select += "</select>";
-        return select;
       }
 
       function getEmployeeTitles(resource) {
