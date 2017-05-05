@@ -86,7 +86,7 @@ var projectSummary = (function ($) {
       }
 
       summaryDeliverablesTable.initSummaryDeliverablesTable(projectInfo, projectDeliverables, projectResources, projectExpenses, selectedModel);
-      summaryOfficeTable.initSummaryOfficeTable(projectInfo, projectResources, rateCards, selectedModel);
+      summaryOfficeTable.initSummaryOfficeTable(projectInfo, projectResources, projectExpenses, rateCards, selectedModel);
       summaryRoleTable.initSummaryRoleTable(projectInfo, projectResources, rateCards, selectedModel);
     });
   }

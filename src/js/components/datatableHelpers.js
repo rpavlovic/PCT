@@ -61,3 +61,25 @@ $.fn.dataTableExt.oSort["selecttext-asc"] = function (x, y) {
   else
     return 0;
 };
+
+function getDeliverablesDropdown(deliverables, resource) {
+  var select = "<select class='deliverable' name='DelvDesc'>";
+  $.each(deliverables, function (key, val) {
+    var selected = val.DelvDesc === resource.DelvDesc ? 'selected="selected" ' : '';
+    select += '<option ' + selected + ' >' + val.DelvDesc + '</option>';
+  });
+  select += "</select>";
+  return select;
+}
+
+
+function getOfficesDropdown(offices, resource) {
+  var select = "<select class='office' name='Office'>";
+  select += "<option>Select Office</option>";
+  $.each(offices, function (key, val) {
+    var selectString = resource.Officeid === val.Office ? 'selected="selected"' : '';
+    select += '<option value="' + val.Office + '"' + selectString + '>' + val.OfficeName + ', ' + val.City + ' (' + val.Office + ')</option>';
+  });
+  select += "</select>";
+  return select;
+}

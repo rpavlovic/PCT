@@ -138,7 +138,7 @@ var projectResourceTable = (function ($) {
           "defaultContent": '',
           "sType": "select",
           "render": function (data, type, row, meta) {
-            return getDeliverables(row);
+            return getDeliverablesDropdown(deliverables, row);
           }
         },
         {
@@ -147,7 +147,7 @@ var projectResourceTable = (function ($) {
           "class": "td-office",
           "sType": "selecttext",
           "render": function (data, type, row, meta) {
-            return getOffices(row);
+            return getOfficesDropdown(offices, row);
           }
         },
         {
@@ -180,21 +180,19 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Role',
           "sClass": "td-role",
-          "orderable": false,
-          "defaultContent": "<div contenteditable onkeypress='return (this.innerText.length <= 39)'/>",
+          "defaultContent": "<div contenteditable />",
           "render": function (data, type, row, meta) {
             if (row.Role)
-              return "<div contenteditable onkeypress='return (this.innerText.length <= 39)'>" + row.Role + "</div>";
+              return "<div contenteditable>" + row.Role.substr(0,39) + "</div>";
           }
         },
         {
           "title": 'Proposed <br/> Resource',
           "sClass": "td-proposed-resource",
-          "orderable": false,
-          "defaultContent": "<div contenteditable onkeypress='return (this.innerText.length <= 39)'/>",
+          "defaultContent": "<div contenteditable />",
           "render": function (data, type, row, meta) {
             if (row.ProposedRes)
-              return "<div contenteditable onkeypress='return (this.innerText.length <= 39)'>" + row.ProposedRes + "</div>";
+              return "<div contenteditable>" + row.ProposedRes.substr(0, 39) + "</div>";
           }
         },
         {
@@ -213,7 +211,6 @@ var projectResourceTable = (function ($) {
         {
           "title": 'Client Ratecard',
           "data": "BillRateOvride",
-          "orderable": false,
           "defaultContent": '<div contenteditable class="currency-sign usd" />',
           "class": "rate-override num",
           "render": function (data, type, row, meta) {
@@ -261,9 +258,8 @@ var projectResourceTable = (function ($) {
       var startDate = projectInfo.EstStDate;
       for (var i = 1; i <= duration; i++) {
         columns.push({
-          "orderable": false,
           "title": planLabel === 'Month' ? calcMonthHeader(startDate) : 'Week ' + i,
-          "sClass": "hour",
+          "sClass": "hour hour-"+i,
           "data": 'hour-' + i,
           "defaultContent": '<div contenteditable />',
           render: renderMonth
@@ -383,6 +379,47 @@ var projectResourceTable = (function ($) {
             recalculateStuff();
           });
 
+          $('.td-role.contenteditable div').on('keyup focusout', function (e) {
+            var dataRow = $(this).closest('tr');
+            var currentRowObj = projResourceTable.row(dataRow).data();
+            if (!currentRowObj)
+              return;
+
+            currentRowObj.Role = $(this).text().substr(0,39);
+          });
+
+          $('.td-proposed-resource.contenteditable div').on('keyup focusout', function (e) {
+            var dataRow = $(this).closest('tr');
+            var currentRowObj = projResourceTable.row(dataRow).data();
+            if (!currentRowObj)
+              return;
+
+            currentRowObj.ProposedRes = $(this).text().substr(0,39);
+          });
+
+          $('.rate-override.contenteditable div').on('keyup focusout', function (e) {
+            var dataRow = $(this).closest('tr');
+            var currentRowObj = projResourceTable.row(dataRow).data();
+
+            if (!currentRowObj)
+              return;
+
+            currentRowObj.BillRateOvride = $(this).text();
+          });
+
+          $('.hour.contenteditable div').on('keyup focusout', function (e) {
+            var dataRow = $(this).closest('tr');
+            var currentRowObj = projResourceTable.row(dataRow).data();
+            var classes = $(this).parent().attr('class');
+            var hrId = classes.match(/hour-\d+/g);
+
+            if (!currentRowObj)
+              return;
+
+            if(hrId)
+              currentRowObj[hrId[0]] = $(this).text();
+          });
+
           $('.contenteditable').on('keyup focusout', function (e) {
             recalculateStuff();
             //lighten the rate when in override mode.
@@ -486,33 +523,12 @@ var projectResourceTable = (function ($) {
         });
       });
 
-      function getDeliverables(resource) {
-        var select = "<select class='deliverable' name='DelvDesc'>";
-        $.each(deliverables, function (key, val) {
-          var selected = val.DelvDesc === resource.DelvDesc ? 'selected="selected" ' : '';
-          select += '<option ' + selected + ' >' + val.DelvDesc + '</option>';
-        });
-        select += "</select>";
-        return select;
-      }
-
       function getBillRateCard(resource) {
         var rateCards = getRateCardLocal(resource.Officeid, projectInfo.Currency);
         var selectedRateCard = rateCards.find(function (val) {
           return val.Office === resource.Officeid && val.EmpGradeName === resource.EmpGradeName && val.CostCenter === resource.Practiceid;
         });
         return selectedRateCard ? selectedRateCard : '';
-      }
-
-      function getOffices(resource) {
-        var select = "<select class='office' name='Office'>";
-        select += "<option>Select Office</option>";
-        $.each(offices, function (key, val) {
-          var selectString = resource.Officeid === val.Office ? 'selected="selected"' : '';
-          select += '<option value="' + val.Office + '"' + selectString + '>' + val.OfficeName + ', ' + val.City + ' (' + val.Office + ')</option>';
-        });
-        select += "</select>";
-        return select;
       }
 
       function getEmployeeTitles(resource) {

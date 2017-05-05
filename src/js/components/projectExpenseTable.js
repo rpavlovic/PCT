@@ -29,13 +29,15 @@ var expenseTable = (function ($) {
     var p1 = getProjectDeliverables(projectID);
     var p2 = getProjectExpenses(projectID);
     var p3 = getProjectInfo(projectID);
+    var p4 = getOffices();
 
-    Promise.all([p1, p2, p3]).then(function (values) {
+    Promise.all([p1, p2, p3, p4]).then(function (values) {
       hideLoader();
       var data = [];
       deliverables = values[0];
       expenses = values[1];
       var projectInfo = values[2];
+      var offices = values[3];
 
       curr = projectInfo.Currency ? projectInfo.Currency : 'USD';
 
@@ -90,10 +92,28 @@ var expenseTable = (function ($) {
             "title": 'Deliverable / Work&nbsp;Stream',
             "data": "DelvDesc",
             "defaultContent": '<select class="deliverable">',
-            "render": function (data, type, set, meta) {
-              return getDeliverablesDropDown(data);
+            "render": function (data, type, row, meta) {
+              return getDeliverablesDropdown(deliverables, row);
             }
           },
+          {
+            "title": 'Office',
+            "defaultContent": '',
+            "class": "td-office",
+            "sType": "selecttext",
+            "render": function (data, type, row, meta) {
+              return getOfficesDropdown(offices, row);
+            }
+          },
+          // {
+          //   "title": 'Practice',
+          //   "defaultContent": '',
+          //   "class": "td-practice",
+          //   "sType": "selecttext",
+          //   "render": function (data, type, row, meta) {
+          //     return getPracticeDropdown(row);
+          //   }
+          // },
           {
             "title": "Category",
             "data": "Category",
@@ -229,8 +249,9 @@ var expenseTable = (function ($) {
               "ExpRow": padNumber($(row.anCells[0]).text()),
               "Projid": projectID,
               "DelvDesc": $(row.anCells[2]).find('select :selected').val(),
-              "Category": $(row.anCells[3]).find('select :selected').val().substr(0, 4),
-              "CatDesc": $(row.anCells[4]).find('div').text(),
+              "Officeid": $(row.anCells[3]).find('select :selected').val(),
+              "Category": $(row.anCells[4]).find('select :selected').val().substr(0, 4),
+              "CatDesc": $(row.anCells[5]).find('div').text(),
               "Amount": convertToDecimal($(row.anCells[5]).find('div').text()),
               "Currency": curr
             }
@@ -261,16 +282,6 @@ var expenseTable = (function ($) {
       }
       expLength--;
     }
-  }
-
-  function getDeliverablesDropDown(data) {
-    var output = '<select class="deliverable">';
-    deliverables.forEach(function (deliverable) {
-      var selectedText = deliverable.DelvDesc === data ? 'selected="selected"' : '';
-      output += '<option data-delvid="' + deliverable.Delvid + '"' + selectedText + '>' + deliverable.DelvDesc + '</option>';
-    });
-    output += '</select>';
-    return output;
   }
 
   return {
