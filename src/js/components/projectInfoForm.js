@@ -12,6 +12,7 @@ var projectInfoForm = (function ($) {
     projectId = get_unique_id();
   }
 
+  var BillsheetId = "";
   var deletePayloads = [];
   var projectDeliverables = [];
   var items_currency = Object.keys(terms_currency);
@@ -172,6 +173,7 @@ var projectInfoForm = (function ($) {
     plan_units.val('Hourly');
 
     if(projectInfo && projectInfo.Projname) {
+      BillsheetId = projectInfo.BillsheetId;
       $('textarea').val(projectInfo.Comments);
       $('select[name="Region"]').val(projectInfo.Region);
       $('select[name="Currency"]').val(projectInfo.Currency);
@@ -270,6 +272,7 @@ var projectInfoForm = (function ($) {
           "uri": getHost() + "/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('" + projectId + "')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
         },
+        "BillsheetId": BillsheetId,
         "Projid": projectId.toString(),
         "Plantyp": select_plan_by.val().toString().substr(0, 2),
         "Region": select_region.val(),
