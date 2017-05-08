@@ -106,15 +106,6 @@ var expenseTable = (function ($) {
             }
           },
           {
-            "title": 'Practice',
-            "defaultContent": '',
-            "class": "td-practice",
-            "sType": "selecttext",
-            "render": function (data, type, row, meta) {
-              return getPractices(projectInfo, row);
-            }
-          },
-          {
             "title": "Category",
             "data": "Category",
             "defaultContent": '',
@@ -167,7 +158,6 @@ var expenseTable = (function ($) {
             if (!currentRowObj)
               return;
             currentRowObj.Officeid = $(this).val();
-            currentRowObj.Practiceid = '';
 
             var nodes = $(this);
             var Currency = projectInfo.Currency;
@@ -190,17 +180,6 @@ var expenseTable = (function ($) {
             recalculateStuff();
           });
 
-          $("#project-expense-table tbody select.practice").on('change', function () {
-            console.log("practice/cost center changed");
-            var dataRow = $(this).closest('tr');
-            var currentRowObj = projExpenseTable.row(dataRow).data();
-            if (!currentRowObj)
-              return;
-
-            currentRowObj.Practiceid = $(this).find(':selected').val();
-            projExpenseTable.row(dataRow).data(currentRowObj).draw();
-            recalculateStuff();
-          });
 
           $("#project-expense-table tbody select.category").on('change', function () {
             console.log("cateogry center changed");
@@ -324,10 +303,9 @@ var expenseTable = (function ($) {
               "Projid": projectID,
               "DelvDesc": $(row.anCells[2]).find('select :selected').val(),
               "Officeid": $(row.anCells[3]).find('select :selected').val(),
-              "Practiceid": $(row.anCells[4]).find('select :selected').val(),
-              "Category": $(row.anCells[5]).find('select :selected').val(),
-              "CatDesc": $(row.anCells[6]).find('div').text(),
-              "Amount": convertToDecimal($(row.anCells[7]).find('div').text()),
+              "Category": $(row.anCells[4]).find('select :selected').val(),
+              "CatDesc": $(row.anCells[5]).find('div').text(),
+              "Amount": convertToDecimal($(row.anCells[6]).find('div').text()),
               "Currency": curr
             }
           });

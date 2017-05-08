@@ -15,10 +15,12 @@ var projectSummary = (function ($) {
     var p3 = getMarginModeling(projectId);
     var p4 = getProjectResources(projectId);
     var p5 = getProjectExpenses(projectId);
-    var p6 = Promise.all([p4, p1])
+    var p6 = Promise.all([p4, p1, p5])
       .then(function (values) {
         var resources = values[0];
         var pInfo = values[1];
+        var expenseList = values[2];
+
         var promiseArray = [];
         var officeIds = {};
         resources.forEach(function (val) {
@@ -27,6 +29,13 @@ var projectSummary = (function ($) {
             promiseArray.push(loadRateCardFromServer(val.Officeid, pInfo.Currency));
           }
         });
+        expenseList.forEach(function (val) {
+          if (!officeIds[val.Officeid]) {
+            officeIds[val.Officeid] = true;
+            promiseArray.push(loadRateCardFromServer(val.Officeid, pInfo.Currency));
+          }
+        });
+
         return Promise.all(promiseArray)
           .then(function (rateCards) {
             console.log("rateCard with associated offices are loaded");
