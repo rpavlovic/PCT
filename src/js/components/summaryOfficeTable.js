@@ -83,7 +83,7 @@ var summaryOfficeTable = (function ($) {
     });
 
     rows = Object.values(rows);
-    
+
     var reducedObject = rows.reduce(function (a, b) {
       return {
         fees: a.fees + b.fees,
