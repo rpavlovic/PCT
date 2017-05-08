@@ -55,6 +55,22 @@
           "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
         },
+        "Projid": "1000100",
+        "ExpRow": "004",
+        "DelvDesc": "QA Work",
+        "Officeid": "US12",
+        "Practiceid": "US9933400",
+        "Category": "Freelancers",
+        "CatDesc": "Freelancer 3",
+        "Amount": "1400.00",
+        "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection('1000100')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+        },
         "Projid": "1000101",
         "ExpRow": "001",
         "DelvDesc": "Software Project",
