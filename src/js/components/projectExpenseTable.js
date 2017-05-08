@@ -133,14 +133,16 @@ var expenseTable = (function ($) {
           {
             "title": "Description",
             "data": "CatDesc",
+            "sClass": 'td-description',
             "defaultContent": '',
             "render": function (data) {
-              return '<div contenteditable onkeypress="return (this.innerText.length <= 39)">' + data + '</div>';
+              return '<div contenteditable>' + data.substr(0,39) + '</div>';
             }
           },
           {
             "title": "Amount",
             "data": "Amount",
+            "sClass": 'td-amount',
             "defaultContent": '',
             "render": function (data, type, set, meta) {
               if(data.length) {
@@ -158,6 +160,78 @@ var expenseTable = (function ($) {
           $("td:nth-last-of-type(-n+2)", nRow).addClass("contenteditable");
         },
         "drawCallback": function (row) {
+          $("#project-expense-table tbody select.office").on('change', function () {
+            console.log("office changed");
+            var dataRowO = $(this).closest('tr');
+            var currentRowObj = projExpenseTable.row(dataRowO).data();
+            if (!currentRowObj)
+              return;
+            currentRowObj.Officeid = $(this).val();
+            currentRowObj.Practiceid = '';
+
+            var nodes = $(this);
+            var Currency = projectInfo.Currency;
+            $('.loader').show();
+            // check to see if that office Rate exists in local storage
+            // if it exists, then go ahead and then update the dropdown
+            if (getRateCardLocal(currentRowObj.Officeid, Currency).length) {
+              projExpenseTable.row(dataRowO).data(currentRowObj).draw();
+              $('.loader').hide();
+            }
+            else {
+              var pGetRateCard = getRateCard(currentRowObj.Officeid, Currency);
+              console.log('rate card' + currentRowObj.Officeid + ' not found. loading from server');
+              return pGetRateCard.then(function (rateCards) {
+                sessionStorage.setItem('RateCard' + currentRowObj.Officeid + 'Currency' + Currency, JSON.stringify(rateCards));
+                $('.loader').hide();
+                projExpenseTable.row(dataRowO).data(currentRowObj).draw();
+              });
+            }
+            recalculateStuff();
+          });
+
+          $("#project-expense-table tbody select.practice").on('change', function () {
+            console.log("practice/cost center changed");
+            var dataRow = $(this).closest('tr');
+            var currentRowObj = projExpenseTable.row(dataRow).data();
+            if (!currentRowObj)
+              return;
+
+            currentRowObj.Practiceid = $(this).find(':selected').val();
+            projExpenseTable.row(dataRow).data(currentRowObj).draw();
+            recalculateStuff();
+          });
+
+          $("#project-expense-table tbody select.category").on('change', function () {
+            console.log("cateogry center changed");
+            var dataRow = $(this).closest('tr');
+            var currentRowObj = projExpenseTable.row(dataRow).data();
+            if (!currentRowObj)
+              return;
+
+            currentRowObj.Category = $(this).find(':selected').val();
+            projExpenseTable.row(dataRow).data(currentRowObj).draw();
+            recalculateStuff();
+          });
+
+          $('.td-description.contenteditable div').on('keyup focusout', function (e) {
+            var dataRow = $(this).closest('tr');
+            var currentRowObj = projExpenseTable.row(dataRow).data();
+            if (!currentRowObj)
+              return;
+
+            currentRowObj.CatDesc = $(this).text().substr(0,39);
+          });
+
+          $('.td-amount.contenteditable div').on('keyup focusout', function (e) {
+            var dataRow = $(this).closest('tr');
+            var currentRowObj = projExpenseTable.row(dataRow).data();
+            if (!currentRowObj)
+              return;
+
+            currentRowObj.Amount = $(this).text().substr(0,39);
+          });
+
           $('.contenteditable').on('keyup focusout', function (e) {
             recalculateStuff();
           });
@@ -250,9 +324,10 @@ var expenseTable = (function ($) {
               "Projid": projectID,
               "DelvDesc": $(row.anCells[2]).find('select :selected').val(),
               "Officeid": $(row.anCells[3]).find('select :selected').val(),
-              "Category": $(row.anCells[4]).find('select :selected').val().substr(0, 4),
-              "CatDesc": $(row.anCells[5]).find('div').text(),
-              "Amount": convertToDecimal($(row.anCells[5]).find('div').text()),
+              "Practiceid": $(row.anCells[4]).find('select :selected').val(),
+              "Category": $(row.anCells[5]).find('select :selected').val(),
+              "CatDesc": $(row.anCells[6]).find('div').text(),
+              "Amount": convertToDecimal($(row.anCells[7]).find('div').text()),
               "Currency": curr
             }
           });
