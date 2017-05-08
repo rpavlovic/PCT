@@ -343,6 +343,7 @@ var loadCustomBillSheet = (function ($) {
             "BillsheetId": bsId,
             "BillsheetName": $('#bill-sheet-name').val(),
             "RowId": rowId,
+            "Currency": $(cells[4]).text(),
             "TitleId": $(cells[1]).text(),
             "TitleDesc": $(cells[0]).text(),
             "StandardRate": StandardRate,
