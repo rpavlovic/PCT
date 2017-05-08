@@ -174,7 +174,7 @@ var projectResourceTable = (function ($) {
           "class": "td-practice",
           "sType": "selecttext",
           "render": function (data, type, row, meta) {
-            return getPractices(row);
+            return getPractices(projectInfo, row);
           }
         },
         {
@@ -565,34 +565,6 @@ var projectResourceTable = (function ($) {
           return rcElement.Class;
         else
           return '';
-      }
-
-      // you should filter practices based on employee title/EmpGrade
-      function getPractices(employee) {
-        var rateCards = getRateCardLocal(employee.Officeid, projectInfo.Currency);
-        var selectedStyle = employee.Practiceid ? '' : "style='border:solid 1px red;'";
-        var select = "<select class='practice' name='CostCenterName' " + selectedStyle + ">";
-        select += "<option>Select Practice</option>";
-        var practices = [];
-        rateCards.filter(function (val) {
-          return val.Office === employee.Officeid && val.CostCenterName && employee.EmpGradeName === val.EmpGradeName;
-        }).forEach(function (val) {
-          practices[val.CostCenter] = val;
-        });
-        practices = Object.values(practices);
-        practices.sort(function (a, b) {
-          return (a.CostCenterName > b.CostCenterName) ? 1 : ((b.CostCenterName > a.CostCenterName) ? -1 : 0);
-        });
-
-        practices.forEach(function (val) {
-          var selected = '';
-          if (val.CostCenter === employee.Practiceid) {
-            selected = 'selected="selected" ';
-          }
-          select += '<option value="' + val.CostCenter + '" ' + selected + '>' + val.CostCenterName + '</option>';
-        });
-        select += "</select>";
-        return select;
       }
 
       function renderMonth(data, type, row, meta) {

@@ -63,102 +63,101 @@ var loadCustomBillSheet = (function ($) {
       if (isUploaded) {
         columns = [
           {
-            name: "Title",
-            title: "Title"
+            "name": "Title",
+            "title": "Title"
           },
           {
-            name: "TitleId",
-            title: "TitleId"
+            "name": "TitleId",
+            "title": "TitleId"
           },
           {
-            name: "Class",
+            "name": "Class",
             "sType": "rclass",
-            title: "Class"
+            "title": "Class"
           },
           {
-            name: "StandardRate",
-            title: "Rate",
-            class: 'rate num'
+            "name": "StandardRate",
+            "title": "Rate",
+            "class": 'rate num'
           },
           {
-            name: "Currency",
-            defaultContent: "USD",
-            title: "Local Currency",
-            render: function (data, type, row) {
+            "name": "Currency",
+            "defaultContent": "USD",
+            "title": "Local Currency",
+            "render": function (data, type, row) {
               if (data) {
                 return data;
               }
             }
           },
           {
-            name: "OverrideRate",
-            title: "Upload / Override",
-            class: 'rate-override num',
-            defaultContent: "<div contenteditable class='currency-sign usd'></div>",
-            render: function (data, type, row) {
+            "name": "OverrideRate",
+            "title": "Upload / Override",
+            "class": 'rate-override num',
+            "defaultContent": "<div contenteditable class='currency-sign usd'></div>",
+            "render": function (data, type, row) {
               data = parseFloat(data) ? data : '';
               return "<div contenteditable class='currency-sign " + row[4].toLowerCase() + "'>" + data + "</div>";
             }
           },
           {
-            name: "Discount",
-            title: "Discount",
-            class: 'discount num'
+            "name": "Discount",
+            "title": "Discount",
+            "class": 'discount num'
           }
         ];
       }
       else {
         columns = [
           {
-            name: "Title",
-            data: "TitleDesc",
-            title: "Title"
+            "name": "Title",
+            "data": "TitleDesc",
+            "title": "Title"
           },
           {
-            name: "Title Id",
-            data: "TitleId",
-            title: "Title Id"
+            "name": "Title Id",
+            "data": "TitleId",
+            "title": "Title Id"
           },
           {
-            name: "Class",
-            data: "Class",
+            "name": "Class",
             "data": "Class",
             "sType": "rclass",
-            "defaultContent": '',
+            "defaultContent": ''
           },
           {
-            name: "StandardRate",
-            data: "StandardRate",
-            title: "Rate",
-            class: 'rate num'
+            "name": "StandardRate",
+            "data": "StandardRate",
+            "title": "Rate",
+            "class": 'rate num'
           },
           {
-            name: "Currency",
-            defaultContent: "USD",
-            title: "Local Currency",
-            data: "Currency",
-            render: function (data, type, row) {
+            "name": "Currency",
+            "defaultContent": "USD",
+            "title": "Local Currency",
+            "data": "Currency",
+            "render": function (data, type, row) {
               if (data) {
-                return "<div contenteditable class='currency-sign " + row.Currency.toLowerCase() + "'>" + data + "</div>";
+                return "<div class='currency-sign " + row.Currency.toLowerCase() + "'>" + data + "</div>";
               }
             }
           },
           {
-            name: "OverrideRate",
-            class: 'rate-override num',
-            data: "OverrideRate",
-            title: "Upload / Override",
-            defaultContent: "<div contenteditable class='currency-sign usd'></div>",
-            render: function (data, type, row) {
+            "name": "OverrideRate",
+            "class": 'rate-override num',
+            "data": "OverrideRate",
+            "title": "Upload / Override",
+            "defaultContent": "<div contenteditable class='currency-sign usd'></div>",
+            "render": function (data, type, row) {
               data = parseFloat(data) ? data : '';
               return "<div contenteditable class='currency-sign " + row.Currency.toLowerCase() + "'>" + data + "</div>";
             }
           },
           {
-            data: "DiscountPer",
-            title: "Discount",
-            class: 'discount num',
-            render: function (data, type, row) {
+            "data": "DiscountPer",
+            "title": "Discount",
+            "class": 'discount num',
+            "render": function (data, type, row) {
               return parseFloat(data) ? data + "%" : data;
             }
           }
