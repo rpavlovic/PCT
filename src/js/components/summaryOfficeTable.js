@@ -3,16 +3,16 @@
  * @version
  */
 
-function getExchangeRate(rateCardArray, officeId, practiceId, empGradeName){
-  var rcOffice = rateCardArray.find(function(rcCollection){
+function getExchangeRate(rateCardArray, officeId, practiceId, empGradeName) {
+  var rcOffice = rateCardArray.find(function (rcCollection) {
     return rcCollection.OfficeId === officeId;
   });
 
-  var empRc = rcOffice.rateCards.find(function(rc){
+  var empRc = rcOffice.rateCards.find(function (rc) {
     return rc.EmpGradeName === empGradeName && rc.Office === officeId && rc.CostCenter === practiceId;
   });
 
-  return empRc.SourceBillrate/empRc.BillRate;
+  return empRc.SourceBillrate / empRc.BillRate;
 }
 
 
@@ -42,25 +42,53 @@ var summaryOfficeTable = (function ($) {
           localFees: 0,
           fees: 0,
           hours: 0,
+          expenses: 0,
           staffMix: 0,
           localCurrency: office.LocalCurrency
         };
       }
 
       // calculate exchange rate based on the resource, office, etc...
-      var exRate = getExchangeRate(rateCards, resource.Officeid, resource.Practiceid, resource.EmpGradeName);
-
-      rows[resource.Officeid + resource.Practiceid].exchangeRate = exRate;
+      rows[resource.Officeid + resource.Practiceid].exchangeRate = getExchangeRate(rateCards, resource.Officeid, resource.Practiceid, resource.EmpGradeName);
       rows[resource.Officeid + resource.Practiceid].fees += parseFloat(resource.TotalFee);
       rows[resource.Officeid + resource.Practiceid].hours += parseFloat(resource.TotalHrs);
     });
 
-    rows = Object.values(rows);
+    projectExpenses.forEach(function (expense) {
+      // just the rate card we need to find to get the SourceBillRate
+      var office = {};
+      if (!rows[expense.Officeid + expense.Practiceid]) {
+        var officeRateCards = rateCards.find(function (val) {
+          return val.OfficeId === expense.Officeid;
+        });
 
+        if (officeRateCards) {
+          office = officeRateCards.rateCards.find(function (val) {
+            return val.OfficeId === expense.OfficeId && val.CostCenter === expense.Practiceid;
+          });
+        }
+
+        rows[expense.Officeid + expense.Practiceid] = {
+          office: office.OfficeName ? office.OfficeName : expense.Officeid,
+          practice: office.CostCenterName ? office.CostCenterName : expense.Practiceid,
+          localFees: 0,
+          fees: 0,
+          hours: 0,
+          expenses: 0,
+          staffMix: 0,
+          localCurrency: office.LocalCurrency
+        };
+      }
+      rows[expense.Officeid + expense.Practiceid].expenses += parseFloat(expense.Amount);
+    });
+
+    rows = Object.values(rows);
+    
     var reducedObject = rows.reduce(function (a, b) {
       return {
         fees: a.fees + b.fees,
-        hours: a.hours + b.hours
+        hours: a.hours + b.hours,
+        expenses: a.expenses + b.expenses
       };
     });
 
@@ -79,6 +107,8 @@ var summaryOfficeTable = (function ($) {
 
     // now we actually override withthe  total fee from the selected model.
     $('#office-total-hours').text(reducedObject.hours);
+    $('#office-total-expenses').text(convertToDollar(projectInfo.Currency, parseFloat(reducedObject.expenses)));
+
     $('#office-total-fees').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
     $('#office-total-currency').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
 
@@ -90,7 +120,7 @@ var summaryOfficeTable = (function ($) {
       length: false,
       info: false,
       order: [[1, 'asc']],
-      bAutoWidth:false,
+      bAutoWidth: false,
       "columns": [
         {
           "title": "Office",
@@ -131,20 +161,20 @@ var summaryOfficeTable = (function ($) {
           "defaultContent": "$0",
           "class": "office-total-currency",
           render: function (data, type, row) {
-            if (data && isNaN(data)) {
+            if (data && !isNaN(data.localFees)) {
               return convertToDollar(data.localCurrency, data.localFees);
             } else {
-              return data;
+              return '0';
             }
           }
         },
         {
           "title": "Expenses",
-          "data": "TotalExpenses",
+          "data": "expenses",
           "defaultContent": "$0",
           "class": "deliv-expenses",
           render: function (data, type, row) {
-            if (data || isNaN(data)) {
+            if (data && !isNaN(data)) {
               return convertToDollar(projectInfo.Currency, data);
             } else {
               return data;
