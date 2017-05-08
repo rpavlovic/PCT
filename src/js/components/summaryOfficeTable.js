@@ -25,7 +25,7 @@ var summaryOfficeTable = (function ($) {
     projectResources.forEach(function (resource) {
       // just the rate card we need to find to get the SourceBillRate
       var office = {};
-      if (!rows[resource.Officeid + resource.Practiceid]) {
+      if (!rows[resource.Officeid]) {
         var officeRateCards = rateCards.find(function (val) {
           return val.OfficeId === resource.Officeid;
         });
@@ -36,9 +36,8 @@ var summaryOfficeTable = (function ($) {
           });
         }
 
-        rows[resource.Officeid + resource.Practiceid] = {
+        rows[resource.Officeid] = {
           office: office.OfficeName ? office.OfficeName : resource.Officeid,
-          practice: office.CostCenterName ? office.CostCenterName : resource.Practiceid,
           localFees: 0,
           fees: 0,
           hours: 0,
@@ -49,28 +48,27 @@ var summaryOfficeTable = (function ($) {
       }
 
       // calculate exchange rate based on the resource, office, etc...
-      rows[resource.Officeid + resource.Practiceid].exchangeRate = getExchangeRate(rateCards, resource.Officeid, resource.Practiceid, resource.EmpGradeName);
-      rows[resource.Officeid + resource.Practiceid].fees += parseFloat(resource.TotalFee);
-      rows[resource.Officeid + resource.Practiceid].hours += parseFloat(resource.TotalHrs);
+      rows[resource.Officeid].exchangeRate = getExchangeRate(rateCards, resource.Officeid, resource.Practiceid, resource.EmpGradeName);
+      rows[resource.Officeid].fees += parseFloat(resource.TotalFee);
+      rows[resource.Officeid].hours += parseFloat(resource.TotalHrs);
     });
 
     projectExpenses.forEach(function (expense) {
       // just the rate card we need to find to get the SourceBillRate
       var office = {};
-      if (!rows[expense.Officeid + expense.Practiceid]) {
+      if (!rows[expense.Officeid]) {
         var officeRateCards = rateCards.find(function (val) {
           return val.OfficeId === expense.Officeid;
         });
 
         if (officeRateCards) {
           office = officeRateCards.rateCards.find(function (val) {
-            return val.OfficeId === expense.OfficeId && val.CostCenter === expense.Practiceid;
+            return val.OfficeId === expense.OfficeId;
           });
         }
 
-        rows[expense.Officeid + expense.Practiceid] = {
+        rows[expense.Officeid] = {
           office: office.OfficeName ? office.OfficeName : expense.Officeid,
-          practice: office.CostCenterName ? office.CostCenterName : expense.Practiceid,
           localFees: 0,
           fees: 0,
           hours: 0,
@@ -79,7 +77,7 @@ var summaryOfficeTable = (function ($) {
           localCurrency: office.LocalCurrency
         };
       }
-      rows[expense.Officeid + expense.Practiceid].expenses += parseFloat(expense.Amount);
+      rows[expense.Officeid].expenses += parseFloat(expense.Amount);
     });
 
     rows = Object.values(rows);
@@ -125,16 +123,6 @@ var summaryOfficeTable = (function ($) {
         {
           "title": "Office",
           "data": 'office',
-          "defaultContent": "",
-          "class": "office",
-          render: function (data, type, row) {
-            if (data)
-              return data;
-          }
-        },
-        {
-          "title": "Billing Office",
-          "data": 'practice',
           "defaultContent": "",
           "class": "office",
           render: function (data, type, row) {

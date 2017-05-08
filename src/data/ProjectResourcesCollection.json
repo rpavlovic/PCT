@@ -350,6 +350,28 @@
       },
       {
         "__metadata": {
+          "id": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000100',Rowno='1')",
+          "uri": "http://OMAEDCSAP751.interpublic.com:8027/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='1000100',Rowno='1')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "Projid": "7bf809e5-3543-4e5d-9",
+        "Duration": "8",
+        "Rowno": "004",
+        "DelvDesc": "TOP",
+        "Officeid": "US12",
+        "Class": "E6",
+        "EmpGradeName": "President",
+        "Practiceid": "US9933400",
+        "Role": "President",
+        "ProposedRes": "Resource Name 1",
+        "BillRate": "450.00",
+        "BillRateOvride": "400.00",
+        "TotalHrs": 4,
+        "TotalFee": "20800.00",
+        "Plantyp": "WK"
+      },
+      {
+        "__metadata": {
           "id": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='62b5a229-51b4-48a5-a',Rowno='001')",
           "uri": "https://fioridev.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='62b5a229-51b4-48a5-a',Rowno='001')",
           "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"

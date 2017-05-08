@@ -447,6 +447,9 @@ var projectResourceTable = (function ($) {
 
       function addRow() {
         //if there is no data add one empty row.
+        if(!deliverables.length)
+          return;
+
         var rows = projResourceTable.rows().count();
         projResourceTable.row.add({
           "Office": '',
