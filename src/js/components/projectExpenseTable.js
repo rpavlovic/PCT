@@ -105,15 +105,15 @@ var expenseTable = (function ($) {
               return getOfficesDropdown(offices, row);
             }
           },
-          // {
-          //   "title": 'Practice',
-          //   "defaultContent": '',
-          //   "class": "td-practice",
-          //   "sType": "selecttext",
-          //   "render": function (data, type, row, meta) {
-          //     return getPracticeDropdown(row);
-          //   }
-          // },
+          {
+            "title": 'Practice',
+            "defaultContent": '',
+            "class": "td-practice",
+            "sType": "selecttext",
+            "render": function (data, type, row, meta) {
+              return getPractices(projectInfo, row);
+            }
+          },
           {
             "title": "Category",
             "data": "Category",

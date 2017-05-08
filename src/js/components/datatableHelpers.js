@@ -83,3 +83,34 @@ function getOfficesDropdown(offices, resource) {
   select += "</select>";
   return select;
 }
+
+// this is Resource or Expense
+function getPractices(projectInfo, resource) {
+  var rateCards = getRateCardLocal(resource.Officeid, projectInfo.Currency);
+  var selectedStyle = resource.Practiceid ? '' : "style='border:solid 1px red;'";
+  var select = "<select class='practice' name='CostCenterName' " + selectedStyle + ">";
+  select += "<option>Select Practice</option>";
+  var practices = [];
+  rateCards.filter(function (val) {
+    // combining this conditional. if there's an EmpGradeName, then we need to filter,
+    // otherwise just show any practice.
+    var hasGradeName = resource.EmpGradeName ? resource.EmpGradeName === val.EmpGradeName : true;
+    return val.Office === resource.Officeid && val.CostCenterName && hasGradeName;
+  }).forEach(function (val) {
+    practices[val.CostCenter] = val;
+  });
+  practices = Object.values(practices);
+  practices.sort(function (a, b) {
+    return (a.CostCenterName > b.CostCenterName) ? 1 : ((b.CostCenterName > a.CostCenterName) ? -1 : 0);
+  });
+
+  practices.forEach(function (val) {
+    var selected = '';
+    if (val.CostCenter === resource.Practiceid) {
+      selected = 'selected="selected" ';
+    }
+    select += '<option value="' + val.CostCenter + '" ' + selected + '>' + val.CostCenterName + '</option>';
+  });
+  select += "</select>";
+  return select;
+}
