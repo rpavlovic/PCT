@@ -239,7 +239,7 @@ var expenseTable = (function ($) {
         for (var i = 0; i < rows.context[0].aoData.length; i++) {
           // get sum of the hour column per row
           var amtPerRow = 0;
-          for (var j = 5; j < rows.context[0].aoData[i].anCells.length; j++) {
+          for (var j = 6; j < rows.context[0].aoData[i].anCells.length; j++) {
 
             var amtCells = parseFloat(convertToDecimal($(rows.context[0].aoData[i].anCells[j]).text()));
             amtPerRow += (!isNaN(amtCells) && amtCells.length !== 0) ? amtCells : 0;

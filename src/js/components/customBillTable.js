@@ -121,6 +121,7 @@ var loadCustomBillSheet = (function ($) {
           {
             "name": "Class",
             "data": "Class",
+            "title":"Class",
             "sType": "rclass",
             "defaultContent": ''
           },
@@ -172,7 +173,7 @@ var loadCustomBillSheet = (function ($) {
         searching: false,
         paging: false,
         length: false,
-        order: [[0, 'asc']],
+        order: [[2  , 'desc']],
         columns: columns,
         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
           $(nRow).removeClass('odd even');
