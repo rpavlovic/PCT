@@ -118,13 +118,13 @@ var activeTableFunction = (function ($) {
               }
             },
             {
-              "title": '<i class="fa fa-files-o"></i>',
+              "title": '<i class="fa fa-pencil-square-o"></i>',
               "class": "center blue-bg",
               "data": "Projid",
               "defaultContent": '',
               "render": function (data, type, set, meta) {
                 if (data) {
-                  return '<a href="projectGeneral.htm?projID=' + data + '" class=""><i class="fa fa-files-o"></i></a>';
+                  return '<a href="projectGeneral.htm?projID=' + data + '" class=""><i class="fa fa-pencil-square-o"></i></a>';
                 }
               }
             },
