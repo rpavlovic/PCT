@@ -43,6 +43,7 @@ var summaryOfficeTable = (function ($) {
           hours: 0,
           expenses: 0,
           staffMix: 0,
+          budget: 0,
           localCurrency: office.LocalCurrency
         };
       }
@@ -74,6 +75,7 @@ var summaryOfficeTable = (function ($) {
           hours: 0,
           expenses: 0,
           staffMix: 0,
+          budget: 0,
           localCurrency: office.LocalCurrency
         };
       }
@@ -96,16 +98,23 @@ var summaryOfficeTable = (function ($) {
       row.staffMix = row.hours / reducedObject.hours;
       var ratio = row.fees / reducedObject.fees;
       row.fees = ratio * selectedModel.Fees;
-
+      row.budget = row.fees + row.expenses;
       row.localFeeObject = {
         localCurrency: row.localCurrency,
         localFees: row.fees * row.exchangeRate
       };
     });
 
+    // we have to do this again based on the model selected
+    var budget = 0;
+    rows.forEach(function (row) {
+      budget += row.budget;
+    });
+
     // now we actually override withthe  total fee from the selected model.
     $('#office-total-hours').text(reducedObject.hours);
     $('#office-total-expenses').text(convertToDollar(projectInfo.Currency, parseFloat(reducedObject.expenses)));
+    $('#office-budget').text(convertToDollar(projectInfo.Currency, parseFloat(budget)));
 
     $('#office-total-fees').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
     $('#office-total-currency').text(convertToDollar(projectInfo.Currency, parseFloat(selectedModel.Fees)));
@@ -161,6 +170,19 @@ var summaryOfficeTable = (function ($) {
           "data": "expenses",
           "defaultContent": "$0",
           "class": "deliv-expenses",
+          render: function (data, type, row) {
+            if (data && !isNaN(data)) {
+              return convertToDollar(projectInfo.Currency, data);
+            } else {
+              return data;
+            }
+          }
+        },
+        {
+          "title": "Total Budget",
+          "data": "budget",
+          "defaultContent": "$0",
+          "class": "total-budget",
           render: function (data, type, row) {
             if (data && !isNaN(data)) {
               return convertToDollar(projectInfo.Currency, data);
