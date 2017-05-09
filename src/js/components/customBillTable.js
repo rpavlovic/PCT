@@ -46,9 +46,8 @@ var loadCustomBillSheet = (function ($) {
         else {
           var rcs = getBillSheet(getParameterByName('CardID'));
           rcs.then(function (values) {
-            // Adding in the user's home currency since we don't have a field to save in the DB
             values = values.map(function (obj) {
-              obj.Currency = officeInfo.Currency;
+              obj.Currency = obj.Currency ? obj.Currency : officeInfo.Currency;
               return obj;
             });
             populateTable(values, false);
