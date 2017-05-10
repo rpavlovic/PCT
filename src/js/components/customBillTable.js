@@ -303,11 +303,13 @@ var loadCustomBillSheet = (function ($) {
       event.preventDefault();
       console.log("saving form");
       var payloads = buildBillSheetPayload();
-      if (event.target.id === 'btn-save') {
-        ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId, true);
-      } else {
-        ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId, false);
-      }
+      //if (event.target.id === 'btn-save') {
+      // both of these buttons are the same thing. Save and Continue doesn't actually go anywhere else,
+      // and save needs to refresh the page with the new billsheet id when there is no CardID set
+      ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId, true);
+      // } else {
+      //   ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId, false);
+      // }
     });
 
     var bsId;
