@@ -209,7 +209,7 @@ var projectResourceTable = (function ($) {
           }
         },
         {
-          "title": 'Client Ratecard',
+          "title": 'Client Rate Card',
           "data": "BillRateOvride",
           "defaultContent": '<div contenteditable class="currency-sign usd" />',
           "class": "rate-override num",
