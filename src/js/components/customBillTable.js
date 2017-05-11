@@ -46,9 +46,8 @@ var loadCustomBillSheet = (function ($) {
         else {
           var rcs = getBillSheet(getParameterByName('CardID'));
           rcs.then(function (values) {
-            // Adding in the user's home currency since we don't have a field to save in the DB
             values = values.map(function (obj) {
-              obj.Currency = officeInfo.Currency;
+              obj.Currency = obj.Currency ? obj.Currency : officeInfo.Currency;
               return obj;
             });
             populateTable(values, false);
@@ -304,11 +303,13 @@ var loadCustomBillSheet = (function ($) {
       event.preventDefault();
       console.log("saving form");
       var payloads = buildBillSheetPayload();
-      if (event.target.id === 'btn-save') {
-        ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId, true);
-      } else {
-        ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId, false);
-      }
+      //if (event.target.id === 'btn-save') {
+      // both of these buttons are the same thing. Save and Continue doesn't actually go anywhere else,
+      // and save needs to refresh the page with the new billsheet id when there is no CardID set
+      ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId, true);
+      // } else {
+      //   ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId, false);
+      // }
     });
 
     var bsId;
