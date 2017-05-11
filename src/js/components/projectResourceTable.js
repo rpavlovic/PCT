@@ -446,6 +446,37 @@ var projectResourceTable = (function ($) {
             }
           });
 
+          $('#rate-card').on('change', function (event) {
+            projectInfo.BillsheetId = $('#rate-card').val();
+
+            var url = $(this).attr('href');
+            var CardID = $(this).find(':selected').val();
+            url = updateQueryString('CardID', CardID, url);
+
+            var p = getBillSheet(CardID);
+            p.then(function (cardResults) {
+              var projResourceTable = $('#project-resource-table').DataTable();
+              var rows = projResourceTable.rows();
+              for (var i = 0; i < rows.context[0].aoData.length; i++) {
+                // employee title
+                var EmpGrade = $(rows.context[0].aoData[i].anCells[5]).find(':selected').val();
+                // bill rate override
+                var foundCard = cardResults.filter(function (val) {
+                  return val.TitleId === EmpGrade;
+                });
+                $(rows.context[0].aoData[i].anCells[11]).find('div').text('');
+                if (foundCard[0] && parseInt(foundCard[0].OverrideRate)) {
+                  $(rows.context[0].aoData[i].anCells[11]).find('div').text(foundCard[0].OverrideRate);
+                  $(rows.context[0].aoData[i].anCells[10]).css('color', 'lightgrey');
+                }
+                else {
+                  $(rows.context[0].aoData[i].anCells[10]).css('color', '#5b5b5b');
+                }
+              }
+              recalculateStuff();
+            });
+          });
+
           var rowNumber = 1;
           $.each($("#project-resource-table tbody tr"), function (k, v) {
             $(v).find('.rowno').text(rowNumber);
@@ -510,36 +541,6 @@ var projectResourceTable = (function ($) {
       //   var currentRow = projResourceTable.row(this).data();
       // });
 
-      $('#rate-card').on('change', function (event) {
-        projectInfo.BillsheetId = $('#rate-card').val();
-
-        var url = $(this).attr('href');
-        var CardID = $(this).find(':selected').val();
-        url = updateQueryString('CardID', CardID, url);
-
-        var p = getBillSheet(CardID);
-        p.then(function (cardResults) {
-          var projResourceTable = $('#project-resource-table').DataTable();
-          var rows = projResourceTable.rows();
-          for (var i = 0; i < rows.context[0].aoData.length; i++) {
-            // employee title
-            var EmpGrade = $(rows.context[0].aoData[i].anCells[5]).find(':selected').val();
-            // bill rate override
-            var foundCard = cardResults.filter(function (val) {
-              return val.TitleId === EmpGrade;
-            });
-            $(rows.context[0].aoData[i].anCells[11]).find('div').text('');
-            if (foundCard[0] && parseInt(foundCard[0].OverrideRate)) {
-              $(rows.context[0].aoData[i].anCells[11]).find('div').text(foundCard[0].OverrideRate);
-              $(rows.context[0].aoData[i].anCells[10]).css('color', 'lightgrey');
-            }
-            else {
-              $(rows.context[0].aoData[i].anCells[10]).css('color', '#5b5b5b');
-            }
-          }
-          recalculateStuff();
-        });
-      });
 
       function getBillRateCard(resource) {
         var rateCards = getRateCardLocal(resource.Officeid, projectInfo.Currency);
