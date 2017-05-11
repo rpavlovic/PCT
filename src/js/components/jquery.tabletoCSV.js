@@ -108,10 +108,10 @@ $.fn.resourceTableToCSV = function () {
     $(this).find('tfoot tr').each(function () {
       var data = [];
       if(table.attr('id') === 'project-resource-table') {
-        data = ['','','','','','','','','',''];
+        data = ['','','','','','','','','','',''];
       }
       if(table.attr('id') === 'project-expense-table') {
-        data = ['','','',''];
+        data = [];
       }
 
       $(this).find('th').each(function () {
@@ -126,6 +126,7 @@ $.fn.resourceTableToCSV = function () {
 
       data = data.join(",");
       rows.push(data);
+      console.log(data);
     });
 
     title = title.join(',');

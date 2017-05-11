@@ -284,6 +284,7 @@ table {
       }
     }
   }
+  #breakdown-office-table,
   #financial-summary-table,
   #breakdown-delivery-table {
     tr {
@@ -293,7 +294,7 @@ table {
       }
     }
   }
-  #breakdown-office-table,
+
   #breakdown-role-table {
     tr {
       th:not(:first-child):not(:nth-child(2)),
