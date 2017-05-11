@@ -61,7 +61,7 @@ var summaryRoleTable = (function ($) {
       paging: false,
       length: false,
       info: false,
-      order: [[1, 'asc']],
+      order: [[1, 'desc']],
       bAutoWidth: false,
       "columns": [
         {
