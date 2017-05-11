@@ -151,6 +151,7 @@ var expenseTable = (function ($) {
           $("td:nth-last-of-type(-n+2)", nRow).addClass("contenteditable");
         },
         "drawCallback": function (row) {
+          $('select').off();
           $("#project-expense-table tbody select.office").on('change', function () {
             console.log("office changed");
             var dataRowO = $(this).closest('tr');
@@ -192,6 +193,8 @@ var expenseTable = (function ($) {
             projExpenseTable.row(dataRow).data(currentRowObj).draw();
             recalculateStuff();
           });
+
+          $('.contenteditable, .contenteditable div').off();
 
           $('.td-description.contenteditable div').on('keyup focusout', function (e) {
             var dataRow = $(this).closest('tr');

@@ -299,6 +299,7 @@ var projectResourceTable = (function ($) {
           $('tfoot th').removeClass('center blue-bg total-hours total-fees rate-override td-costrate num hide td-office td-title td-class td-practice td-billrate');
         },
         "drawCallback": function (row) {
+          $("select").off();
           $("#project-resource-table tbody select.deliverable").on('change', function () {
             var dataRow = $(this).closest('tr');
             var currentRowObject = projResourceTable.row(dataRow).data();
@@ -392,6 +393,7 @@ var projectResourceTable = (function ($) {
             recalculateStuff();
           });
 
+          $('.contenteditable, .contenteditable div').off();
           $('.td-role.contenteditable div').on('keyup focusout', function (e) {
             var dataRow = $(this).closest('tr');
             var currentRowObj = projResourceTable.row(dataRow).data();
@@ -497,7 +499,7 @@ var projectResourceTable = (function ($) {
       //clone row
       $('#project-resource-table tbody').on('click', '.copy', function (e) {
         e.preventDefault();
-        var currentRowbody = projResourceTable.row($(this).closest('tr')).data();
+        var currentRowbody = Object.assign({}, projResourceTable.row($(this).closest('tr')).data());
         projResourceTable.row.add(currentRowbody).draw().node();
         recalculateStuff();
       });
