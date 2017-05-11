@@ -504,6 +504,62 @@
         "CtrMargin": "0.00",
         "AvgRate": "0.00",
         "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='f80ddad7-b730-4d7a-a',ModelType='ARBF')",
+          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='f80ddad7-b730-4d7a-a',ModelType='ARBF')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": "f80ddad7-b730-4d7a-a",
+        "Selected": "0",
+        "ModelType": "ARBF",
+        "Fees": "17400.00",
+        "CtrMargin": "67.10",
+        "AvgRate": "174.00",
+        "Currency": "GBP"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='f80ddad7-b730-4d7a-a',ModelType='FFT')",
+          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='f80ddad7-b730-4d7a-a',ModelType='FFT')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": "f80ddad7-b730-4d7a-a",
+        "Selected": "1",
+        "ModelType": "FFT",
+        "Fees": "20000.00",
+        "CtrMargin": "71.40",
+        "AvgRate": "200.00",
+        "Currency": "GBP"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='f80ddad7-b730-4d7a-a',ModelType='SRBF')",
+          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='f80ddad7-b730-4d7a-a',ModelType='SRBF')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": "f80ddad7-b730-4d7a-a",
+        "Selected": "0",
+        "ModelType": "SRBF",
+        "Fees": "21500.00",
+        "CtrMargin": "73.40",
+        "AvgRate": "215.00",
+        "Currency": "GBP"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='f80ddad7-b730-4d7a-a',ModelType='TMBF')",
+          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectRsrcModelingCollection(Projid='f80ddad7-b730-4d7a-a',ModelType='TMBF')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectRsrcModeling"
+        },
+        "Projid": "f80ddad7-b730-4d7a-a",
+        "Selected": "0",
+        "ModelType": "TMBF",
+        "Fees": "17863.13",
+        "CtrMargin": "68.00",
+        "AvgRate": "178.63",
+        "Currency": "GBP"
       }
     ]
   }

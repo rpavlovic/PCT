@@ -558,6 +558,111 @@
         "TotalHrs": 1000,
         "TotalFee": "65980.00",
         "Plantyp": "MN"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='f80ddad7-b730-4d7a-a',Rowno='001')",
+          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='f80ddad7-b730-4d7a-a',Rowno='001')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "BillRateOvride": "130.00",
+        "Duration": "8",
+        "EmpGradeName": "Account Director",
+        "Projid": "f80ddad7-b730-4d7a-a",
+        "Rowno": "001",
+        "DelvDesc": "0123456789012345678901234567890123456789",
+        "Officeid": "GB01",
+        "Practiceid": "GB99600400",
+        "Role": "",
+        "ProposedRes": "",
+        "BillRate": "165.00",
+        "TotalHrs": 20,
+        "TotalFee": "2600.00",
+        "Plantyp": "WK"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='f80ddad7-b730-4d7a-a',Rowno='002')",
+          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='f80ddad7-b730-4d7a-a',Rowno='002')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "BillRateOvride": "95.00",
+        "Duration": "8",
+        "EmpGradeName": "Sr Acct Exec",
+        "Projid": "f80ddad7-b730-4d7a-a",
+        "Rowno": "002",
+        "DelvDesc": "0123456789012345678901234567890123456789",
+        "Officeid": "GB01",
+        "Practiceid": "GB99600400",
+        "Role": "",
+        "ProposedRes": "",
+        "BillRate": "110.00",
+        "TotalHrs": 20,
+        "TotalFee": "1900.00",
+        "Plantyp": "WK"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='f80ddad7-b730-4d7a-a',Rowno='003')",
+          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='f80ddad7-b730-4d7a-a',Rowno='003')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "BillRateOvride": "225.00",
+        "Duration": "8",
+        "EmpGradeName": "EVP/ GM / MD",
+        "Projid": "f80ddad7-b730-4d7a-a",
+        "Rowno": "003",
+        "DelvDesc": "0123456789012345678901234567890123456789",
+        "Officeid": "GB01",
+        "Practiceid": "GB99600400",
+        "Role": "",
+        "ProposedRes": "",
+        "BillRate": "350.00",
+        "TotalHrs": 20,
+        "TotalFee": "4500.00",
+        "Plantyp": "WK"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='f80ddad7-b730-4d7a-a',Rowno='004')",
+          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='f80ddad7-b730-4d7a-a',Rowno='004')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "BillRateOvride": "220.00",
+        "Duration": "8",
+        "EmpGradeName": "Sr Vice Pres",
+        "Projid": "f80ddad7-b730-4d7a-a",
+        "Rowno": "004",
+        "DelvDesc": "0123456789012345678901234567890123456789",
+        "Officeid": "GB06",
+        "Practiceid": "GB99641200",
+        "Role": "",
+        "ProposedRes": "",
+        "BillRate": "250.00",
+        "TotalHrs": 20,
+        "TotalFee": "4400.00",
+        "Plantyp": "WK"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='f80ddad7-b730-4d7a-a',Rowno='005')",
+          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectResourcesCollection(Projid='f80ddad7-b730-4d7a-a',Rowno='005')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectResources"
+        },
+        "BillRateOvride": "0.00",
+        "Duration": "8",
+        "EmpGradeName": "Sr Consultant",
+        "Projid": "f80ddad7-b730-4d7a-a",
+        "Rowno": "005",
+        "DelvDesc": "0123456789012345678901234567890123456789",
+        "Officeid": "GB06",
+        "Practiceid": "GB99641200",
+        "Role": "",
+        "ProposedRes": "",
+        "BillRate": "200.00",
+        "TotalHrs": 20,
+        "TotalFee": "4000.00",
+        "Plantyp": "WK"
       }
     ]
   }

@@ -330,6 +330,51 @@
         "CatDesc": "",
         "Amount": "10000.00",
         "Currency": "USD"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='f80ddad7-b730-4d7a-a',ExpRow='001')",
+          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='f80ddad7-b730-4d7a-a',ExpRow='001')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+        },
+        "Projid": "f80ddad7-b730-4d7a-a",
+        "ExpRow": "001",
+        "Officeid": "GB01",
+        "DelvDesc": "Third Deliverable",
+        "Category": "OOP",
+        "CatDesc": "",
+        "Amount": "3000.00",
+        "Currency": "GBP"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='f80ddad7-b730-4d7a-a',ExpRow='002')",
+          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='f80ddad7-b730-4d7a-a',ExpRow='002')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+        },
+        "Projid": "f80ddad7-b730-4d7a-a",
+        "ExpRow": "002",
+        "Officeid": "US12",
+        "DelvDesc": "0123456789012345678901234567890123456789",
+        "Category": "Travel",
+        "CatDesc": "",
+        "Amount": "2500.00",
+        "Currency": "GBP"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='f80ddad7-b730-4d7a-a',ExpRow='003')",
+          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectExpensesCollection(Projid='f80ddad7-b730-4d7a-a',ExpRow='003')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectExpenses"
+        },
+        "Projid": "f80ddad7-b730-4d7a-a",
+        "ExpRow": "003",
+        "Officeid": "US09",
+        "DelvDesc": "0123456789012345678901234567890123456789",
+        "Category": "3rd Party Costs",
+        "CatDesc": "",
+        "Amount": "8000.00",
+        "Currency": "GBP"
       }
     ]
   }

@@ -32,20 +32,19 @@ var summaryOfficeTable = (function ($) {
 
         if (officeRateCards) {
           office = officeRateCards.rateCards.find(function (val) {
-            return val.OfficeId === resource.OfficeId && val.CostCenter === resource.Practiceid && resource.EmpGradeName === val.EmpGradeName;
+            return val.Office === resource.Officeid && val.CostCenter === resource.Practiceid && resource.EmpGradeName === val.EmpGradeName;
           });
+          rows[resource.Officeid] = {
+            office: office.OfficeName ? office.OfficeName : resource.Officeid,
+            localFees: 0,
+            fees: 0,
+            hours: 0,
+            expenses: 0,
+            staffMix: 0,
+            budget: 0,
+            localCurrency: office.LocalCurrency
+          };
         }
-
-        rows[resource.Officeid] = {
-          office: office.OfficeName ? office.OfficeName : resource.Officeid,
-          localFees: 0,
-          fees: 0,
-          hours: 0,
-          expenses: 0,
-          staffMix: 0,
-          budget: 0,
-          localCurrency: office.LocalCurrency
-        };
       }
 
       // calculate exchange rate based on the resource, office, etc...
@@ -64,20 +63,20 @@ var summaryOfficeTable = (function ($) {
 
         if (officeRateCards) {
           office = officeRateCards.rateCards.find(function (val) {
-            return val.OfficeId === expense.OfficeId;
+            return val.Office === expense.Officeid;
           });
-        }
 
-        rows[expense.Officeid] = {
-          office: office.OfficeName ? office.OfficeName : expense.Officeid,
-          localFees: 0,
-          fees: 0,
-          hours: 0,
-          expenses: 0,
-          staffMix: 0,
-          budget: 0,
-          localCurrency: office.LocalCurrency
-        };
+          rows[expense.Officeid] = {
+            office: office.OfficeName ? office.OfficeName : expense.Officeid,
+            localFees: 0,
+            fees: 0,
+            hours: 0,
+            expenses: 0,
+            staffMix: 0,
+            budget: 0,
+            localCurrency: office.LocalCurrency
+          };
+        }
       }
       rows[expense.Officeid].expenses += parseFloat(expense.Amount);
     });

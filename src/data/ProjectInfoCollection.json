@@ -459,6 +459,33 @@
         "Createdon": "\/Date(1491264000000)\/",
         "Changedby": "",
         "Changedon": null
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('f80ddad7-b730-4d7a-a')",
+          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjectInfoCollection('f80ddad7-b730-4d7a-a')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectInfo"
+        },
+        "BillsheetId": "b8c18a99-eab7-4c4e-b",
+        "Projid": "f80ddad7-b730-4d7a-a",
+        "Plantyp": "WK",
+        "Region": "APAC",
+        "Office": "GB01",
+        "Currency": "GBP",
+        "Clientname": "London Test Client 01234567890123456789",
+        "Projname": "Testing with GBP 01234567890123456789",
+        "Comptyp": "Other",
+        "EstStDate": "\/Date(1494115200000)\/",
+        "Duration": 8,
+        "PlanUnits": "Hou",
+        "StartDate": "\/Date(1494115200000)\/",
+        "EstEndDate": "\/Date(1498694400000)\/",
+        "Comments": "",
+        "Preparedby": "John Mills Kelly 01234567890123456789",
+        "Createdby": "MKELLY",
+        "Createdon": "\/Date(1494460800000)\/",
+        "Changedby": "",
+        "Changedon": null
       }
     ]
   }

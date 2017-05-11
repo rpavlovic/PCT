@@ -250,6 +250,36 @@
         "Projid": "c0971a7a-089a-44e2-8",
         "Delvid": "002",
         "DelvDesc": "Deliverable B"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection(Projid='f80ddad7-b730-4d7a-a',Delvid='001')",
+          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection(Projid='f80ddad7-b730-4d7a-a',Delvid='001')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectDeliverables"
+        },
+        "Projid": "f80ddad7-b730-4d7a-a",
+        "Delvid": "001",
+        "DelvDesc": "0123456789012345678901234567890123456789"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection(Projid='f80ddad7-b730-4d7a-a',Delvid='002')",
+          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection(Projid='f80ddad7-b730-4d7a-a',Delvid='002')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectDeliverables"
+        },
+        "Projid": "f80ddad7-b730-4d7a-a",
+        "Delvid": "002",
+        "DelvDesc": "40 Characters"
+      },
+      {
+        "__metadata": {
+          "id": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection(Projid='f80ddad7-b730-4d7a-a',Delvid='003')",
+          "uri": "https://fioridev2.interpublic.com:443/sap/opu/odata/sap/ZUX_PCT_SRV/ProjDeliverablesCollection(Projid='f80ddad7-b730-4d7a-a',Delvid='003')",
+          "type": "ZUX_EMPLOYEE_DETAILS_SRV.ProjectDeliverables"
+        },
+        "Projid": "f80ddad7-b730-4d7a-a",
+        "Delvid": "003",
+        "DelvDesc": "Third Deliverable"
       }
     ]
   }
