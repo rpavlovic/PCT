@@ -139,19 +139,6 @@ var summaryOfficeTable = (function ($) {
           }
         },
         {
-          "title": "Fees in Target",
-          "data": 'fees',
-          "defaultContent": "$0",
-          "class": "office-total-fees",
-          render: function (data, type, row) {
-            if (data || isNaN(data)) {
-              return convertToDollar(projectInfo.Currency, data);
-            } else {
-              return data;
-            }
-          }
-        },
-        {
           "title": "Fees in Local Currency",
           "data": 'localFeeObject',
           "defaultContent": "$0",
@@ -161,6 +148,19 @@ var summaryOfficeTable = (function ($) {
               return convertToDollar(data.localCurrency, data.localFees);
             } else {
               return '0';
+            }
+          }
+        },
+        {
+          "title": "Fees in Target",
+          "data": 'fees',
+          "defaultContent": "$0",
+          "class": "office-total-fees",
+          render: function (data, type, row) {
+            if (data || isNaN(data)) {
+              return convertToDollar(projectInfo.Currency, data);
+            } else {
+              return data;
             }
           }
         },
