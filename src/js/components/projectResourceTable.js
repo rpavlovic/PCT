@@ -373,6 +373,19 @@ var projectResourceTable = (function ($) {
 
             var rateCard = getBillRateCard(currentRowObj);
             currentRowObj.BillRate = rateCard.BillRate;
+
+            // if there is a custom bill sheet selected, apply BillRateOvride.
+            if(projectInfo.BillsheetId){
+              // applying custom bill sheet.
+              var customRate = customBillsheets.find(function(customCard){
+                return customCard.BillsheetId === projectInfo.BillsheetId && parseFloat(customCard.OverrideRate) > 0 && currentRowObj.EmpGradeName === customCard.TitleDesc;
+              });
+
+              if(customRate){
+                currentRowObj.BillRateOvride = customRate.OverrideRate;
+              }
+            }
+
             currentRowObj.CostRate = rateCard.CostRate;
             projResourceTable.row(dataRow).data(currentRowObj).draw();
             resourceCalculation.initResourceFormulas($(this).closest('tr').find('.td-billrate'), "#project-resource-table", projectInfo.Currency);
