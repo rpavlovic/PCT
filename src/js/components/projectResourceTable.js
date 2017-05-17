@@ -183,7 +183,7 @@ var projectResourceTable = (function ($) {
           "defaultContent": "<div contenteditable />",
           "render": function (data, type, row, meta) {
             if (row.Role)
-              return "<div contenteditable onkeypress='return (this.innerText.length <= 39)'>" + row.Role.substr(0,39) + "</div>";
+              return "<div contenteditable onkeypress='return (this.innerText.length < 40)'>" + row.Role.substr(0,40) + "</div>";
           }
         },
         {
@@ -192,7 +192,7 @@ var projectResourceTable = (function ($) {
           "defaultContent": "<div contenteditable />",
           "render": function (data, type, row, meta) {
             if (row.ProposedRes)
-              return "<div contenteditable onkeypress='return (this.innerText.length <= 39)'>" + row.ProposedRes.substr(0,39) + "</div>";
+              return "<div contenteditable onkeypress='return (this.innerText.length < 40)'>" + row.ProposedRes.substr(0,40) + "</div>";
           }
         },
         {
@@ -400,7 +400,7 @@ var projectResourceTable = (function ($) {
             if (!currentRowObj)
               return;
 
-            currentRowObj.Role = $(this).text().substr(0,39);
+            currentRowObj.Role = $(this).text().substr(0,40);
           });
 
           $('.td-proposed-resource.contenteditable div').on('keyup focusout', function (e) {
@@ -409,7 +409,7 @@ var projectResourceTable = (function ($) {
             if (!currentRowObj)
               return;
 
-            currentRowObj.ProposedRes = $(this).text().substr(0,39);
+            currentRowObj.ProposedRes = $(this).text().substr(0,40);
           });
 
           $('.rate-override.contenteditable div').on('keyup focusout', function (e) {
