@@ -127,7 +127,7 @@ var expenseTable = (function ($) {
             "sClass": 'td-description',
             "defaultContent": '',
             "render": function (data) {
-              return '<div contenteditable>' + data.substr(0,39) + '</div>';
+              return "<div contenteditable onkeypress='return (this.innerText.length <= 39)'>" + data.substr(0,39) + "</div>";
             }
           },
           {
