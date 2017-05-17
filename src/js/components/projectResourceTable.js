@@ -183,7 +183,7 @@ var projectResourceTable = (function ($) {
           "defaultContent": "<div contenteditable />",
           "render": function (data, type, row, meta) {
             if (row.Role)
-              return "<div contenteditable>" + row.Role.substr(0,39) + "</div>";
+              return "<div contenteditable onkeypress='return (this.innerText.length <= 39)'>" + row.Role.substr(0,39) + "</div>";
           }
         },
         {
@@ -192,7 +192,7 @@ var projectResourceTable = (function ($) {
           "defaultContent": "<div contenteditable />",
           "render": function (data, type, row, meta) {
             if (row.ProposedRes)
-              return "<div contenteditable>" + row.ProposedRes.substr(0, 39) + "</div>";
+              return "<div contenteditable onkeypress='return (this.innerText.length <= 39)'>" + row.ProposedRes.substr(0,39) + "</div>";
           }
         },
         {
