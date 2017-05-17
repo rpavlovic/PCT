@@ -127,7 +127,7 @@ var expenseTable = (function ($) {
             "sClass": 'td-description',
             "defaultContent": '',
             "render": function (data) {
-              return "<div contenteditable onkeypress='return (this.innerText.length <= 39)'>" + data.substr(0,39) + "</div>";
+              return "<div contenteditable onkeypress='return (this.innerText.length <= 35)'>" + data.substr(0,34) + "</div>";
             }
           },
           {
@@ -202,7 +202,7 @@ var expenseTable = (function ($) {
             if (!currentRowObj)
               return;
 
-            currentRowObj.CatDesc = $(this).text().substr(0,39);
+            currentRowObj.CatDesc = $(this).text().substr(0,34);
           });
 
           $('.td-amount.contenteditable div').on('keyup focusout', function (e) {
@@ -307,7 +307,7 @@ var expenseTable = (function ($) {
               "DelvDesc": $(row.anCells[2]).find('select :selected').val(),
               "Officeid": $(row.anCells[3]).find('select :selected').val(),
               "Category": $(row.anCells[4]).find('select :selected').val(),
-              "CatDesc": $(row.anCells[5]).find('div').text(),
+              "CatDesc": $(row.anCells[5]).find('div').text().substr(0, 34),
               "Amount": convertToDecimal($(row.anCells[6]).find('div').text()),
               "Currency": curr
             }
