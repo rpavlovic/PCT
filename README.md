@@ -1,16 +1,35 @@
-# Weber Shandwick
+# Weber Shandwick's PCT tool
 
-A static gulp site
+A static [gulp](http://gulpjs.com/) site, running [Nunjucks](https://mozilla.github.io/nunjucks/) and [jQuery](https://jquery.com/), 
 
-`npm install`
+## Dependencies
 
-`gulp` will build, compile, and watch any changes made to the files during development of the project. It will also start a proxy local server and will refresh during any changes during development of the project.
+* [Node.js](https://nodejs.org/en/)
+    * [Install on Mac](https://treehouse.github.io/installation-guides/mac/node-mac.html)
+    * [Install on Windows](http://blueashes.com/2011/web-development/install-nodejs-on-windows/)
+* gulp
+    * [Install on Mac](https://travismaynard.com/writing/getting-started-with-gulp)
+    * [Install on Windows](http://omcfarlane.co.uk/install-gulp-js-windows/)
 
-To manually output a static build for the IPG team:
+## Project Setup
 
-`gulp ipg`
+Navigate to the source directory, and run `npm install` via command line.
 
-That will generate flat HTML in the ./build directory, and zip it up. If your build directory is already complete (via `gulp` or `gulp build`), you can just run `gulp zip`, which is way faster.
+## Build Process
+
+`gulp` will build, compile, and watch any changes made to the files during development of the project. It will also start a local node server, which will auto-refresh any changes during development (using [Browsersync](https://www.browsersync.io/)).
+
+To manually output a static build:
+
+`gulp build && gulp move && gulp moveJS`
+
+Followed by:
+
+`gulp zip`
+
+That will generate flat HTML in the ./build directory, and zip it up.
+
+If your build directory is already complete `gulp ipg`, which is way faster.
 
 ## Forking Workflow
 
