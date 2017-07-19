@@ -31,7 +31,11 @@ That will generate flat HTML in the ./build directory, and zip it up.
 
 If your build directory is already complete `gulp ipg`, which is way faster.
 
-## Forking Workflow
+## Git Workflow
+
+To clone this repository:
+
+`git clone https://github.com/northpoint/weber-shandwick.git`
 
 Fork the repo, push to your fork, and submit pull requests. Keep your commits clean:
 
