@@ -6,7 +6,7 @@
     "eqeqeq": true,
     "eqnull": true,
     "maxdepth": 3,
-    "undef": true,
-    "unused": true,
-    "plusplus": true
+    "undef": false,
+    "unused": false,
+    "plusplus": false
 }

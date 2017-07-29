@@ -1,6 +1,8 @@
 /**
  * @module Ajax Batch Functionality
- * @version
+ * @param {Array} payloads: array of JSON payload(s)
+ * @param {String} windowTargetUrl: URL of next page
+ * @param {Boolean} continueBtn: optional param indicating whether request came from a "continue on to next page" button
  */
 
 function ajaxBatch(payloads, windowTargetUrl, continueBtn) {

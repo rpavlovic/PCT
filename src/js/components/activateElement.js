@@ -1,7 +1,8 @@
 /**
-* @module Highlight  header on radio click
-* @version
-*/
+ * @module Highlight header on radio click
+ * @version
+ */
+
 $.fn.activateElement = function() {
 
   function remove_active(elem, class_name) {
@@ -27,15 +28,18 @@ $.fn.activateElement = function() {
     clicked_element.on('click', function() {
       //remove all active first.
       remove_active(all_active_elements, class_name);
+
       //if not dropdown button.
       if (!activate_element.hasClass(class_name)) {
         activate_element.addClass(class_name);
       }
+
       //if dropdown button.
       else if(removeClass) {
         activate_element.removeClass(class_name);
       }
     });
+
     //on reset clear active too.
     $('button[type="reset"]').on('click', function() {
     });

@@ -40,43 +40,53 @@ var summaryDeliverablesTable = (function ($) {
       d.TotalExpenses = d.TotalExpenses ? d.TotalExpenses : 0;
 
       d.Budget = d.TotalExpenses + d.TotalFee;
-      if (d.TotalHrs)
+      if (d.TotalHrs) {
         totalProjectHours += parseFloat(d.TotalHrs);
+      }
     });
 
     deliverables.forEach(function (d) {
       if (d.TotalHrs) {
         d.HoursPercentage = d.TotalHrs / totalProjectHours;
-      } else
+      } else {
         d.HoursPercentage = 0;
+      }
     });
 
     var totalProjectFees = deliverables.reduce(function (acc, val) {
-      if (parseFloat(val.TotalFee))
+      if (parseFloat(val.TotalFee)) {
         return acc + parseFloat(val.TotalFee);
-      else
+      }
+      else {
         return acc;
+      }
     }, 0);
 
     var totalExpenses = deliverables.reduce(function (acc, val) {
-      if (val.TotalExpenses)
+      if (val.TotalExpenses) {
         return acc + parseFloat(val.TotalExpenses);
-      else
+      }
+      else {
         return acc;
+      }
     }, 0);
 
     var totalBudget = deliverables.reduce(function (acc, val) {
-      if (val.Budget)
+      if (val.Budget) {
         return acc + parseFloat(val.Budget);
-      else
+      }
+      else {
         return acc;
+      }
     }, 0);
 
     var totalHours = deliverables.reduce(function (acc, val) {
-      if (val.TotalHrs)
+      if (val.TotalHrs) {
         return acc + parseFloat(val.TotalHrs);
-      else
+      }
+      else {
         return acc;
+      }
     }, 0);
 
     // need to figure out the appropropriate ratios

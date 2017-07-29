@@ -27,7 +27,9 @@ var profileInfo = (function ($) {
     });
 
     function sort_unique(arr) {
-      if (arr.length === 0) return arr;
+      if (arr.length === 0) {
+        return arr;
+      }
 
       var customRateCards = {};
       for (var i = 0; i < arr.length; i++) { // start loop at 1 as element 0 can never be a duplicate
@@ -36,10 +38,12 @@ var profileInfo = (function ($) {
         }
       }
       customRateCards = Object.values(customRateCards).sort(function (a, b) {
-        if (a.BillsheetName < b.BillsheetName)
+        if (a.BillsheetName < b.BillsheetName) {
           return -1;
-        if (a.BillsheetName > b.BillsheetName)
+        }
+        if (a.BillsheetName > b.BillsheetName) {
           return 1;
+        }
         return 0;
       });
       return customRateCards;

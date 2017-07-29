@@ -182,8 +182,9 @@ var projectResourceTable = (function ($) {
           "sClass": "td-role",
           "defaultContent": "<div contenteditable />",
           "render": function (data, type, row, meta) {
-            if (row.Role)
+            if (row.Role) {
               return "<div contenteditable onkeypress='return (this.innerText.length < 40)'>" + row.Role.substr(0,40) + "</div>";
+            }
           }
         },
         {
@@ -191,8 +192,9 @@ var projectResourceTable = (function ($) {
           "sClass": "td-proposed-resource",
           "defaultContent": "<div contenteditable />",
           "render": function (data, type, row, meta) {
-            if (row.ProposedRes)
+            if (row.ProposedRes) {
               return "<div contenteditable onkeypress='return (this.innerText.length < 40)'>" + row.ProposedRes.substr(0,40) + "</div>";
+            }
           }
         },
         {
@@ -214,8 +216,9 @@ var projectResourceTable = (function ($) {
           "defaultContent": '<div contenteditable class="currency-sign usd" />',
           "class": "rate-override num",
           "render": function (data, type, row, meta) {
-            if (parseFloat(row.BillRateOvride))
+            if (parseFloat(row.BillRateOvride)) {
               return '<div contenteditable class="currency-sign ' + projectInfo.Currency + '">' + parseFloat(row.BillRateOvride) + '</div>';
+            }
           }
         },
         {
@@ -286,7 +289,7 @@ var projectResourceTable = (function ($) {
             }
           }
         ],
-        //"order": [[3, 'asc']],
+
         "columns": columns,
         "bFilter": false,
         "select": true,
@@ -303,8 +306,9 @@ var projectResourceTable = (function ($) {
           $("#project-resource-table tbody select.deliverable").on('change', function () {
             var dataRow = $(this).closest('tr');
             var currentRowObject = projResourceTable.row(dataRow).data();
-            if (!currentRowObject)
+            if (!currentRowObject) {
               return;
+            }
 
             currentRowObject.DelvDesc = $(this).val();
             projResourceTable.row(dataRow).data(currentRowObject).draw();
@@ -314,8 +318,10 @@ var projectResourceTable = (function ($) {
             console.log("office changed");
             var dataRowO = $(this).closest('tr');
             var currentRowObj = projResourceTable.row(dataRowO).data();
-            if (!currentRowObj)
+            if (!currentRowObj){
               return;
+            }
+
             currentRowObj.Officeid = $(this).val();
             currentRowObj.EmpGradeName = '';
             currentRowObj.Class = '';
@@ -349,8 +355,9 @@ var projectResourceTable = (function ($) {
             console.log("title changed");
             var dataRow = $(this).closest('tr');
             var currentRowObj = projResourceTable.row(dataRow).data();
-            if (!currentRowObj)
+            if (!currentRowObj) {
               return;
+            }
 
             currentRowObj.EmpGradeName = $(this).find(':selected').text();
             currentRowObj.Class = $(this).find(':selected').data('class');
@@ -367,8 +374,9 @@ var projectResourceTable = (function ($) {
             console.log("practice/cost center changed");
             var dataRow = $(this).closest('tr');
             var currentRowObj = projResourceTable.row(dataRow).data();
-            if (!currentRowObj)
+            if (!currentRowObj) {
               return;
+            }
 
             currentRowObj.Practiceid = $(this).find(':selected').val();
 
@@ -397,8 +405,9 @@ var projectResourceTable = (function ($) {
           $('.td-role.contenteditable div').on('keyup focusout', function (e) {
             var dataRow = $(this).closest('tr');
             var currentRowObj = projResourceTable.row(dataRow).data();
-            if (!currentRowObj)
+            if (!currentRowObj) {
               return;
+            }
 
             currentRowObj.Role = $(this).text().substr(0,40);
           });
@@ -406,8 +415,9 @@ var projectResourceTable = (function ($) {
           $('.td-proposed-resource.contenteditable div').on('keyup focusout', function (e) {
             var dataRow = $(this).closest('tr');
             var currentRowObj = projResourceTable.row(dataRow).data();
-            if (!currentRowObj)
+            if (!currentRowObj) {
               return;
+            }
 
             currentRowObj.ProposedRes = $(this).text().substr(0,40);
           });
@@ -416,8 +426,9 @@ var projectResourceTable = (function ($) {
             var dataRow = $(this).closest('tr');
             var currentRowObj = projResourceTable.row(dataRow).data();
 
-            if (!currentRowObj)
+            if (!currentRowObj) {
               return;
+            }
 
             currentRowObj.BillRateOvride = $(this).text();
           });
@@ -428,11 +439,13 @@ var projectResourceTable = (function ($) {
             var classes = $(this).parent().attr('class');
             var hrId = classes.match(/hour-\d+/g);
 
-            if (!currentRowObj)
+            if (!currentRowObj) {
               return;
+            }
 
-            if(hrId)
+            if(hrId) {
               currentRowObj[hrId[0]] = $(this).text();
+            }
           });
 
           $('.contenteditable').on('keyup focusout', function (e) {
@@ -493,8 +506,9 @@ var projectResourceTable = (function ($) {
 
       function addRow() {
         //if there is no data add one empty row.
-        if(!deliverables.length)
+        if(!deliverables.length) {
           return;
+        }
 
         var rows = projResourceTable.rows().count();
         projResourceTable.row.add({
@@ -535,13 +549,6 @@ var projectResourceTable = (function ($) {
         recalculateStuff();
       });
 
-      // for debugging
-      // $('#project-resource-table tbody').on('click', 'tr', function () {
-      //   console.log(projResourceTable.row(this).data());
-      //   var currentRow = projResourceTable.row(this).data();
-      // });
-
-
       function getBillRateCard(resource) {
         var rateCards = getRateCardLocal(resource.Officeid, projectInfo.Currency);
         var selectedRateCard = rateCards.find(function (val) {
@@ -580,10 +587,12 @@ var projectResourceTable = (function ($) {
         var rcElement = rateCards.find(function (val) {
           return val.Office === employee.Officeid && employee.EmpGradeName === val.EmpGradeName;
         });
-        if (rcElement)
+        if (rcElement) {
           return rcElement.Class;
-        else
+        }
+        else {
           return '';
+        }
       }
 
       function renderMonth(data, type, row, meta) {

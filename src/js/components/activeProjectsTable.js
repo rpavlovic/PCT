@@ -5,6 +5,7 @@
 var activeTableFunction = (function ($) {
   'use strict';
 
+  // Create brand new project
   $('#start-project').on('click', function (e) {
     e.preventDefault();
     window.location.href = 'projectGeneral.htm?projID=' + get_project_id();
@@ -173,7 +174,7 @@ var activeTableFunction = (function ($) {
                 label.insertBefore(select);
                 //create filters
                 column.data().unique().sort().each(function (d) {
-                  if (typeof d === 'string' && d.indexOf('/Date') != -1) {
+                  if (typeof d === 'string' && d.indexOf('/Date') !== -1) {
                     var str = d;
                     var num = parseInt(str.replace(/[^0-9]/g, ""));
                     d = new Date(num);
