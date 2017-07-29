@@ -134,8 +134,9 @@ var summaryOfficeTable = (function ($) {
           "defaultContent": "",
           "class": "office",
           render: function (data, type, row) {
-            if (data)
+            if (data) {
               return data;
+            }
           }
         },
         {
@@ -196,8 +197,9 @@ var summaryOfficeTable = (function ($) {
           "defaultContent": "0",
           "class": "office-total-hours",
           render: function (data, type, row) {
-            if (data)
+            if (data) {
               return data;
+            }
           }
         },
         {

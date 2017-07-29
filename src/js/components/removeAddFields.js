@@ -22,7 +22,7 @@ var addRemoveFields = (function ($) {
         if($(form + ' .deliverables .row').length > 2) {
           $this.detach();
         }
-        if($(form + ' .deliverables .row').length == 2) {
+        if($(form + ' .deliverables .row').length === 2) {
            Form.removeBtn.prop('disabled', true);
         }
       }

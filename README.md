@@ -1,6 +1,6 @@
 # Weber Shandwick's PCT tool
 
-A static [gulp](http://gulpjs.com/) site, running [Nunjucks](https://mozilla.github.io/nunjucks/) and [jQuery](https://jquery.com/), 
+A static [gulp](http://gulpjs.com/) site, running [Nunjucks](https://mozilla.github.io/nunjucks/) and [jQuery](https://jquery.com/), that interfaces with SAP using oData services.
 
 ## Dependencies
 
@@ -31,10 +31,22 @@ That will generate flat HTML in the ./build directory, and zip it up.
 
 If your build directory is already complete `gulp ipg`, which is way faster.
 
+## Git Config
+
+Git comes preinstalled on many systems. If it’s not already installed you can get it (and other tools) by installing XCode for free from the AppStore or by visiting http://git-scm.com.
+
+To identify you and your work, on the command line, tell git who you are:
+
+```
+git config --global user.name "Your Name"
+git config --global user.email "user@domain.com"
+```
+
+You should also setup your SSH key: https://help.github.com/articles/generating-ssh-keys/
+
 ## Cloning
 
 To clone this repository:
-
 
 ```
 git clone https://github.com/northpoint/weber-shandwick.git

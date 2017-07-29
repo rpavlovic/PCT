@@ -13,11 +13,11 @@ var captureEditTd = (function ($) {
     });
 
      $(table).on('keydown blur', 'td.contenteditable > div', function (event) {
-      var esc = event.which == 27,
-          nl = event.which == 13,
-          tab = event.which == 9,
+      var esc = event.which === 27,
+          nl = event.which === 13,
+          tab = event.which === 9,
           el = event.target,
-          input = el.nodeName != 'INPUT' && el.nodeName != 'TEXTAREA' && el.nodeName != 'SELECT',
+          input = el.nodeName !== 'INPUT' && el.nodeName !== 'TEXTAREA' && el.nodeName !== 'SELECT',
           data = {};
       if (input) {
         if(tab) {

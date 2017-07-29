@@ -1,5 +1,5 @@
 /**
- * @module takes in unix epoch time  "\/Date(1484784000000)\/", and returns MM DD, YYYY
+ * @module takes in unix epoch time "\/Date(1484784000000)\/", and returns MM DD, YYYY
  * @version
  */
 
@@ -23,8 +23,9 @@ function addMonthsUTC(date, count) {
     date.setUTCMonth(date.getUTCMonth() + count, 1);
     m = date.getUTCMonth();
     date.setUTCDate(d);
-    if (date.getUTCMonth() !== m)
+    if (date.getUTCMonth() !== m) {
       date.setUTCDate(0);
+    }
   }
   var d1 = new Date(date);
   return '/Date(' + d1.getTime() + ')/';

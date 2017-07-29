@@ -19,7 +19,7 @@ function getProjectDeliverables(projectId) {
       resolve(projectDeliverables.d.results.filter(filterByProjectId, projectId));
     }).fail(function () {
       // not found, but lets fix this and return empty set
-      console.log('no project deliverables found.... returning empty set');
+      console.log('no project deliverables found... returning empty set');
       resolve([]);
     });
   });
@@ -31,7 +31,7 @@ function getMarginModeling(projectId) {
       resolve(marginModeling.d.results.filter(filterByProjectId, projectId));
     }).fail(function () {
       // not found, but lets fix this and return empty set
-      console.log('no margin modeling found.... returning empty set');
+      console.log('no margin modeling found... returning empty set');
       resolve([]);
     });
   });
@@ -43,7 +43,7 @@ function getProjectResources(projectId) {
       resolve(projectResources.d.results.filter(filterByProjectId, projectId));
     }).fail(function () {
       // not found, but lets fix this and return empty set
-      console.log('no project resources found.... returning empty set');
+      console.log('no project resources found... returning empty set');
       resolve([]);
     });
   });
@@ -66,7 +66,7 @@ function getOffices() {
       resolve(sortedOffices);
     }).fail(function () {
       // not found, but lets fix this and return empty set
-      console.log('no offices found.... returning empty set');
+      console.log('no offices found... returning empty set');
       resolve([]);
     });
   });
@@ -78,7 +78,7 @@ function getProjectList() {
       resolve(projects.d.results);
     }).fail(function () {
       // not found, but lets fix this and return empty set
-      console.log('no projects found.... returning empty set');
+      console.log('no projects found... returning empty set');
       resolve([]);
     });
   });
@@ -99,7 +99,7 @@ function getPlannedHours(projectId) {
       resolve(ph);
     }).fail(function () {
       // not found, but lets fix this and return empty set
-      console.log('no planned hours found.... returning empty set');
+      console.log('no planned hours found... returning empty set');
       resolve([]);
     });
   });
@@ -120,15 +120,16 @@ function getBillSheet(cardId) {
       }
     }).fail(function () {
       // not found, but lets fix this and return empty set
-      console.log('no custom bill sheet found.... returning empty set');
+      console.log('no custom bill sheet found... returning empty set');
       resolve([]);
     });
   });
 }
 
 function getRateCard(officeId, currency) {
-  if(!currency)
+  if(!currency) {
     currency = ' ';
+  }
   
   return new Promise(function (resolve, reject) {
     $.getJSON(get_data_feed(feeds.rateCards, officeId, currency), function (rcs) {
@@ -138,7 +139,7 @@ function getRateCard(officeId, currency) {
       resolve(rateCards);
     }).fail(function () {
       // not found, but lets fix this and return empty set
-      console.log('no rate card found.... returning empty set');
+      console.log('no rate card found... returning empty set');
       resolve([]);
     });
   });

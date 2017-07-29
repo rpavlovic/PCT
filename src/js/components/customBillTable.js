@@ -273,7 +273,7 @@ var loadCustomBillSheet = (function ($) {
           reader = new FileReader();
 
         reader.onloadend = function (event) {
-          if (event.target.readyState == FileReader.DONE) {
+          if (event.target.readyState === FileReader.DONE) {
             uploadCSV(reader.result);
           }
         };
@@ -303,13 +303,8 @@ var loadCustomBillSheet = (function ($) {
       event.preventDefault();
       console.log("saving form");
       var payloads = buildBillSheetPayload();
-      //if (event.target.id === 'btn-save') {
-      // both of these buttons are the same thing. Save and Continue doesn't actually go anywhere else,
-      // and save needs to refresh the page with the new billsheet id when there is no CardID set
+
       ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId, true);
-      // } else {
-      //   ajaxBatch(payloads, 'customBillSheet.htm?CardID=' + bsId, false);
-      // }
     });
 
     var bsId;
@@ -326,7 +321,7 @@ var loadCustomBillSheet = (function ($) {
       for (var i = 0; i < rows.context[0].aoData.length; i++) {
         var hoursPerRow = 0;
         var cells = $(rows.context[0].aoData[i].anCells);
-        //console.log(cells);
+
         var rowId = padNumber(rowIndex, 5);
         var StandardRate = convertToDecimal($(cells[3]).text()) ? convertToDecimal($(cells[3]).text()) : "0.0";
         var OverrideRate = convertToDecimal($(cells[5]).text()) ? convertToDecimal($(cells[5]).text()) : "0.0";

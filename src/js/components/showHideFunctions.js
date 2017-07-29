@@ -26,7 +26,7 @@ var showHide = (function ($) {
     $('.toggle').on('click', function() {
       $('.toolbar').fadeToggle('slow');
        $(this).html($(this)
-        .html() == '- Hide Options' ? '+ Advanced Search Options' : '- Hide Options');
+        .html() === '- Hide Options' ? '+ Advanced Search Options' : '- Hide Options');
     });
     //open the tabs
     fadeTabs.initFadeTabs();

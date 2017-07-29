@@ -75,10 +75,12 @@ var expenseTable = (function ($) {
             "data": "ExpRow",
             "defaultContent": '',
             "render": function (data, type, row, meta) {
-              if (data)
+              if (data) {
                 return parseInt(data);
-              else
+              }
+              else {
                 return meta.row + 1;
+              }
             }
           },
           {
@@ -156,8 +158,9 @@ var expenseTable = (function ($) {
             console.log("office changed");
             var dataRowO = $(this).closest('tr');
             var currentRowObj = projExpenseTable.row(dataRowO).data();
-            if (!currentRowObj)
+            if (!currentRowObj) {
               return;
+            }
             currentRowObj.Officeid = $(this).val();
 
             var nodes = $(this);
@@ -186,8 +189,9 @@ var expenseTable = (function ($) {
             console.log("cateogry center changed");
             var dataRow = $(this).closest('tr');
             var currentRowObj = projExpenseTable.row(dataRow).data();
-            if (!currentRowObj)
+            if (!currentRowObj) {
               return;
+            }
 
             currentRowObj.Category = $(this).find(':selected').val();
             projExpenseTable.row(dataRow).data(currentRowObj).draw();
@@ -199,8 +203,9 @@ var expenseTable = (function ($) {
           $('.td-description.contenteditable div').on('keyup focusout', function (e) {
             var dataRow = $(this).closest('tr');
             var currentRowObj = projExpenseTable.row(dataRow).data();
-            if (!currentRowObj)
+            if (!currentRowObj) {
               return;
+            }
 
             currentRowObj.CatDesc = $(this).text().substr(0,35);
           });
@@ -208,8 +213,9 @@ var expenseTable = (function ($) {
           $('.td-amount.contenteditable div').on('keyup focusout', function (e) {
             var dataRow = $(this).closest('tr');
             var currentRowObj = projExpenseTable.row(dataRow).data();
-            if (!currentRowObj)
+            if (!currentRowObj) {
               return;
+            }
 
             currentRowObj.Amount = $(this).text().substr(0,40);
           });
